@@ -198,7 +198,7 @@ class PelConvert {
    */
   static function bytesToSShort(&$bytes, $offset, $endian) {
     $n = self::bytesToShort($bytes, $offset, $endian);
-    if ($n > 32768)
+    if ($n > 32767)
       return $n - 65536;
     else
       return $n;
