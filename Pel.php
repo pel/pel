@@ -43,7 +43,7 @@
  * The PEL translations are stored in './locale'.  It is important to
  * use an absolute path here because the lookups will be relative to
  * the current directory. */
-bindtextdomain('PEL', dirname(__FILE__) . '/locale');
+bindtextdomain('pel', dirname(__FILE__) . '/locale');
 
 
 /**
@@ -118,7 +118,7 @@ class Pel {
    * no translation could be found.
    */
   static function tra($str) {
-    return dgettext('PEL', $str);
+    return dgettext('pel', $str);
   }
   
 
@@ -145,7 +145,7 @@ class Pel {
   static function fmt() {
     $args = func_get_args();
     $str = array_shift($args);
-    return vsprintf(dgettext('PEL', $str), $args);
+    return vsprintf(dgettext('pel', $str), $args);
   }
 
 }
