@@ -29,7 +29,7 @@
 # placed in the current directory.
 
 MAJOR=0
-MINOR=1
+MINOR=2
 VERSION=$MAJOR.$MINOR
 
 if test -e pel-$VERSION; then
@@ -41,14 +41,22 @@ echo -n "Retrieving CVS snapshot from SourceForge... "
 cvs -Q -z3 export -kv -r HEAD -d pel-$VERSION pel
 echo "done."
 
+echo -n "Generating CVS ChangeLog... "
+cvs2cl --domain users.sourceforge.net --utc --file pel-$VERSION/ChangeLog
+echo "done."
+
+
 cd pel-$VERSION
 
 rm make-release.sh .cvsignore
 
 echo -n "Running phpDocumentor... "
-../../phpdocumentor/phpdoc -q on -s on \
+../../phpdocumentor/phpdoc -q on -s on           \
+    -o 'HTML:frames:earthli'                     \
     -ti "PEL: PHP EXIF Library Version $VERSION" \
-    -ct 'date' -dn PEL -f '*.php' -t doc
+    -ct 'date' -dn PEL                           \
+    -f 'Pel*.php,README,INSTALL,NEWS,ChangeLog'  \
+    -t doc
 echo "done."
 
 cd ..
@@ -65,8 +73,7 @@ echo -n "Creating pel-$VERSION.zip... "
 zip -qr pel-$VERSION.zip pel-$VERSION
 echo "done."
 
-echo "Tag CVS with 'release-${MAJOR}_${MINOR}' and"
-read -p "upload files to SourceForge? [y/N] " -n 1
+read -p "Tag CVS with 'release-${MAJOR}_${MINOR}' and upload files to SourceForge? [y/N] " -n 1
 echo
 
 if [ "x$REPLY" == "xy" -o "x$REPLY" == "xY" ]; then
