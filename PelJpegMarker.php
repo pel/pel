@@ -23,6 +23,7 @@
 
 /* $Id$ */
 
+
 /**
  * Classes for dealing with JPEG markers.
  *
@@ -33,6 +34,7 @@
  * License (GPL)
  * @package PEL
  */
+
 
 /**
  * Class with static methods for JPEG markers.

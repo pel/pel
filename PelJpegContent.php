@@ -35,8 +35,10 @@
  * @package PEL
  */
 
-/** Class definition of {@link PelDataWindow}. */
+/**#@+ Required class definitions. */
 require_once('PelDataWindow.php');
+/**#@-*/
+
 
 /**
  * Class representing content in a JPEG file.

@@ -35,10 +35,11 @@
  * @package PEL
  */
 
-/** Class definition of {@link PelJpegMarker}. */
-require_once('PelJpegMarker.php');
-/** Class definition of {@link PelJpegContent}. */
+/**#@+ Required class definitions. */
 require_once('PelJpegContent.php');
+require_once('PelJpegMarker.php');
+/**#@-*/
+
 
 /**
  * Class representing a JPEG section.
