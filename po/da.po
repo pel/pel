@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PEL 0.3\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-06-09 14:49+0200\n"
-"PO-Revision-Date: 2004-06-09 14:52+0200\n"
+"POT-Creation-Date: 2004-06-09 14:59+0200\n"
+"PO-Revision-Date: 2004-06-09 15:02+0200\n"
 "Last-Translator: Martin Geisler <gimpster@gimpster.com>\n"
 "Language-Team: Danish <dansk@klid.dk>\n"
 "MIME-Version: 1.0\n"
@@ -37,7 +37,7 @@ msgstr "  Tag: 0x%04X (%s)\n"
 #: PelEntry.php:322
 #, php-format
 msgid "    Format    : %d (%s)\n"
-msgstr "    Format      : %d (%s)\n"
+msgstr "    Format     : %d (%s)\n"
 
 #: PelEntry.php:324
 #, php-format
@@ -47,7 +47,7 @@ msgstr "    Komponenter: %d\n"
 #: PelEntry.php:325
 #, php-format
 msgid "    Value     : %s\n"
-msgstr "    Værdi       : %s\n"
+msgstr "    Værdi      : %s\n"
 
 #: PelEntryRational.php:123 PelEntryRational.php:128
 #, php-format
@@ -851,14 +851,18 @@ msgstr "Sektion %d (markering 0x%02X - %s):\n"
 msgid "  Description: %s\n"
 msgstr "  Beskrivelse: %s\n"
 
-#: PelJpeg.php:218
-#, php-format
-msgid "  Size: %d bytes\n"
-msgstr "  Størrelse: %d bytes\n"
+#: PelJpeg.php:216
+msgid "  Content    : EXIF data\n"
+msgstr "  Indhold    : EXIF data\n"
 
 #: PelJpeg.php:219
-msgid "  Unknown content\n"
-msgstr "  Ukendt indhold\n"
+#, fuzzy, php-format
+msgid "  Size       : %d bytes\n"
+msgstr "  Størrelse  : %d bytes\n"
+
+#: PelJpeg.php:220
+msgid "  Content    : Unknown\n"
+msgstr "  Indhold    : Ukendt\n"
 
 #: PelTag.php:1231
 #, php-format
