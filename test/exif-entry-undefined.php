@@ -64,17 +64,24 @@ class UndefinedTestCase extends UnitTestCase {
 
     $this->assertEqual($entry->getValue(), 0.0);
 
+    $entry->setValue(2.0);
+    $this->assertEqual($entry->getValue(), 2.0);
+    $this->assertEqual($entry->getText(false), 'Version 2.0');
+    $this->assertEqual($entry->getText(true), '2.0');
+    $this->assertEqual($entry->getBytes(PelConvert::LITTLE_ENDIAN), '0200');
+  
+    $entry->setValue(2.1);
+    $this->assertEqual($entry->getValue(), 2.1);
+    $this->assertEqual($entry->getText(false), 'Version 2.1');
+    $this->assertEqual($entry->getText(true), '2.1');
+    $this->assertEqual($entry->getBytes(PelConvert::LITTLE_ENDIAN), '0210');
+  
     $entry->setValue(2.01);
     $this->assertEqual($entry->getValue(), 2.01);
     $this->assertEqual($entry->getText(false), 'Version 2.01');
     $this->assertEqual($entry->getText(true), '2.01');
     $this->assertEqual($entry->getBytes(PelConvert::LITTLE_ENDIAN), '0201');
 
-    $entry->setValue(2.1);
-    $this->assertEqual($entry->getValue(), 2.1);
-    $this->assertEqual($entry->getText(false), 'Version 2.1');
-    $this->assertEqual($entry->getText(true), '2.1');
-    $this->assertEqual($entry->getBytes(PelConvert::LITTLE_ENDIAN), '0210');
   }
   
 }
