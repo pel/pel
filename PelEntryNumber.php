@@ -38,8 +38,8 @@
 
 /** Class definition of {@link PelException}. */
 require_once('PelException.php');
-/** Class definition of {@link PelExifEntry}. */
-require_once('PelExifEntry.php');
+/** Class definition of {@link PelEntry}. */
+require_once('PelEntry.php');
 
 
 /**
@@ -66,7 +66,7 @@ class PelOverflowException extends PelException {
  * @package PEL
  * @subpackage EXIF
  */
-abstract class PelExifEntryNumber extends PelExifEntry {
+abstract class PelEntryNumber extends PelEntry {
 
   /**
    * The value held by this entry.
@@ -86,7 +86,7 @@ abstract class PelExifEntryNumber extends PelExifEntry {
    *
    * This method can change both the number of components and the
    * value of the components.  Range checks will be made on the new
-   * value, and a {@link PelExifEntryOverflowException} will be thrown
+   * value, and a {@link PelEntryOverflowException} will be thrown
    * if the value is found to be outside the legal range.
    *
    * The method accept several number arguments.  The {@link
@@ -96,7 +96,7 @@ abstract class PelExifEntryNumber extends PelExifEntry {
    * @param int $value... the new value(s).  This can be zero or more
    * numbers.  The input will be checked to ensure that the numbers
    * are within the valid range.  If not, then a {@link
-   * PelExifEntryOverflowException} will be thrown.
+   * PelEntryOverflowException} will be thrown.
    *
    * @see getValue
    */
