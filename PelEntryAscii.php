@@ -111,7 +111,7 @@ class PelEntryAscii extends PelEntry {
   function setValue($str) {
     $this->components = strlen($str)+1;
     $this->str        = $str;
-    $this->bytes      = $str . chr(0);
+    $this->bytes      = $str . chr(0x00);
   }
 
 
