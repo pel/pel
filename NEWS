@@ -5,16 +5,16 @@ Copyright (C) 2004  Martin Geisler <gimpster@users.sourceforge.net>
 Licensed under the GNU GPL, see COPYING for details.
 
 
-PEL Version 0.3  ?th May 2004
-*****************************
+PEL Version 0.3  May 25th, 2004
+*******************************
 
 Notes:
 
 Support was added for parsing TIFF images, leading to a mass renaming
 of files and classes to cleanup the class hierarchy.  The decoding of
 EXIF data is now tested against known values (over 400 individual
-tests).  This lead to the discovery of a couple of subtle bugs.  The
-documentation has been updated.
+tests), this lead to the discovery of a couple of subtle bugs.  The
+documentation has been updated and expanded.
 
 Changes:
 
@@ -40,8 +40,8 @@ Changes:
 * Updated documentation all over.
 
 
-PEL Version 0.2  16th May 2004
-******************************
+PEL Version 0.2  May 16th, 2004
+*******************************
 
 Notes:
 
@@ -69,8 +69,8 @@ Changes:
 
 * Updated doc comments all over.
 
-PEL Version 0.1  8th May 2004
-*****************************
+PEL Version 0.1  May 8th, 2004
+******************************
 
 Notes:
 
