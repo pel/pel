@@ -339,8 +339,8 @@ class PelEntryCopyright extends PelEntryAscii {
       $p = '';
       $e = '';
     } else {
-      $p = ' (Photographer)';
-      $e = ' (Editor)';
+      $p = ' ' . Pel::tra('(Photographer)');
+      $e = ' ' . Pel::tra('(Editor)');
     }
 
     if ($this->photographer != '' && $this->editor != '')
