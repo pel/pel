@@ -16,7 +16,9 @@ attention is needed.
    It would be nice to have functions that could give you a particular
    entry with just one function call.
 
-* Interpret the MakerNotes
+* Interpret the MakerNotes.
+
+* Test and interpret GPS information.
 
 * Look at using Gettext or some other tool for I18n.
 
