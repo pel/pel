@@ -50,6 +50,8 @@ require_once('Pel.php');
 
 
 /**
+ * Exception indicating that an unexpected format was found.
+ *
  * @author Martin Geisler <gimpster@users.sourceforge.net>
  * @package PEL
  * @subpackage Exception
@@ -72,6 +74,9 @@ class PelUnexpectedFormatException extends PelException {
 
 
 /**
+ * Exception indicating that an unexpected number of components was
+ * found.
+ *
  * @author Martin Geisler <gimpster@users.sourceforge.net>
  * @package PEL
  * @subpackage Exception
@@ -165,7 +170,7 @@ abstract class PelEntry {
         throw new PelUnexpectedFormatException($format, PelFormat::ASCII);
 
       if ($components != 20)
-        throw new PelWrongComponentsCountException($components, 20);
+        throw new PelWrongComponentCountException($components, 20);
 
       /* Split the string into year, month, date, hour, minute, and
        * second components. */
@@ -323,7 +328,7 @@ abstract class PelEntry {
 
   
   /**
-   * Get the value of an entry as text.
+   * Get the value of this entry as text.
    *
    * The value will be returned in a format suitable for presentation,
    * e.g., rationals will be returned as 'x/y', ASCII strings will be
@@ -335,6 +340,39 @@ abstract class PelEntry {
    * @return string the value as text.
    */
   abstract function getText($brief = false);
+
+
+  /**
+   * Get the value of this entry.
+   *
+   * The value returned will generally be the same as the one supplied
+   * to the constructor or with {@link setValue()}.  For a formatted
+   * version of the value, one should use {@link getText()} instead.
+   *
+   * @return mixed the unformatted value.
+   */
+  abstract function getValue();
+
+
+  /**
+   * Set the value of this entry.
+   *
+   * The value should be in the same format as for the constructor.
+   *
+   * @param mixed the new value.
+   *
+   * @abstract
+   */
+  function setValue($value) {
+    /* This (fake) abstract method is here to make it possible for the
+     * documentation to refer to PelEntry::setValue().
+     *
+     * It cannot declared abstract in the proper PHP way, for then PHP
+     * wont allow subclasses to define it with two arguments (which is
+     * what PelEntryCopyright does).
+     */
+    throw new PelException('setValue() is abstract.');
+  }
 
 
   /**
