@@ -68,7 +68,6 @@ class PelJpegInvalidMarkerException extends PelException {
 /**
  * @author Martin Geisler <gimpster@users.sourceforge.net>
  * @package PEL
- * @subpackage JPEG
  */
 class PelJpeg {
 
@@ -130,7 +129,7 @@ class PelJpeg {
         $d->setWindowStart(2);
 
         if ($marker == PelJpegMarker::APP1) {
-          $content = new PelExifData($d->getClone(0, $len));
+          $content = new PelExif($d->getClone(0, $len));
           $section = new PelJpegSection($marker, $content);
           $this->appendSection($section);
         } else {
@@ -223,6 +222,18 @@ class PelJpeg {
     }
 
     return $str;
+  }
+
+
+  function isValid(PelDataWindow $d) {
+    /* JPEG data is stored in little-endian format. */
+    $d->setByteOrder(PelConvert::BIG_ENDIAN);
+    
+    for ($i = 0; $i < 7; $i++)
+      if ($d->getByte($i) != 0xFF)
+        break;
+    
+    return $d->getByte($i) == PelJpegMarker::SOI;
   }
 
 }
