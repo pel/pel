@@ -35,11 +35,18 @@
  * @package PEL
  */
 
+/**#@+ Required class definitions. */
 require_once('PelDataWindow.php');
 require_once('PelIfd.php');
+/**#@-*/
 
 
-
+/**
+ * Class for handling TIFF data.
+ *
+ * @author Martin Geisler <gimpster@users.sourceforge.net>
+ * @package PEL
+ */
 class PelTiff {
 
   /**
@@ -56,6 +63,17 @@ class PelTiff {
   private $order = PelConvert::LITTLE_ENDIAN;
 
 
+  /**
+   * Construct a new object for holding TIFF data.
+   *
+   * The data given will be parsed and an internal tree representation
+   * will be built.  If the data cannot be parsed correctly, a {@link
+   * PelInvalidDataException} is thrown, explaining the problem.
+   *
+   * @param PelDataWindow the data from which the object will be
+   * constructed.  This should be valid TIFF data, coming either
+   * directly from a TIFF image or from the EXIF data in a JPEG image.
+   */
   function __construct(PelDataWindow $d) {
     Pel::debug('Parsing %d bytes of TIFF data...', $d->getSize());
     $this->size = $d->getSize();
@@ -103,13 +121,18 @@ class PelTiff {
    * Return the first IFD.
    *
    * @return PelIfd the first IFD contained in the TIFF data, if any.
-   * If there is no IFD <tt>null</tt> will be returned.
+   * If there is no IFD null will be returned.
    */
   function getIfd() {
     return $this->ifd;
   }
 
 
+  /**
+   * Turn this object into bytes.
+   *
+   * @return string the bytes representing this object.
+   */
   function getBytes() {
     if ($this->order == PelConvert::LITTLE_ENDIAN)
       $bytes = 'II';
@@ -143,7 +166,7 @@ class PelTiff {
   /**
    * Return a string representation of this object.
    *
-   * @string a string describing this object.  This is mostly useful
+   * @return string a string describing this object.  This is mostly useful
    * for debugging.
    */
   function __toString() {
@@ -155,8 +178,19 @@ class PelTiff {
   }
 
 
-
+  /**
+   * Check if data is valid TIFF data.
+   *
+   * This will read just enough data from the data window to determine
+   * if the data is valid TIFF data.
+   *
+   * @return boolean true if the data is TIFF data, false otherwise.
+   */
   function isValid(PelDataWindow $d) {
+    /* First check that we have enough data. */
+    if ($d->getSize() < 8)
+      return false;
+
     /* Byte order */
     if ($d->strcmp(0, 'II')) {
       $d->setByteOrder(PelConvert::LITTLE_ENDIAN);
