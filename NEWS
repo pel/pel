@@ -17,6 +17,14 @@ was changed slightly, making it more convenient to use.
 
 Changes:
 
+* Some images have content following the EOI marker --- this would
+  make PEL thrown an exception.  The content is now stored as a
+  PelJpegContent object associated with the fictive marker 0x00.
+
+* Added code to handle images where the length of the thumbnail image
+  is broken.  PEL would previously throw an exception, but the length
+  is now adjusted instead, and the parsing continues.
+
 * Fixed a number of bugs regarding the conversion back and forth
   between integers and bytes.  These bugs affected the parsing of
   large integers that would overflow a signed 32 bit integer.
