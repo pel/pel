@@ -1012,221 +1012,221 @@ class PelTag {
   static function getName($tag) {
     switch ($tag) {
     case self::INTEROPERABILITY_INDEX:
-      return Pel::tra('InteroperabilityIndex');
+      return 'InteroperabilityIndex';
     case self::INTEROPERABILITY_VERSION:
-      return Pel::tra('InteroperabilityVersion');
+      return 'InteroperabilityVersion';
     case self::IMAGE_WIDTH:
-      return Pel::tra('ImageWidth');
+      return 'ImageWidth';
     case self::IMAGE_LENGTH:
-      return Pel::tra('ImageLength');
+      return 'ImageLength';
     case self::BITS_PER_SAMPLE:
-      return Pel::tra('BitsPerSample');
+      return 'BitsPerSample';
     case self::COMPRESSION:
-      return Pel::tra('Compression');
+      return 'Compression';
     case self::PHOTOMETRIC_INTERPRETATION:
-      return Pel::tra('PhotometricInterpretation');
+      return 'PhotometricInterpretation';
     case self::FILL_ORDER:
-      return Pel::tra('FillOrder');
+      return 'FillOrder';
     case self::DOCUMENT_NAME:
-      return Pel::tra('DocumentName');
+      return 'DocumentName';
     case self::IMAGE_DESCRIPTION:
-      return Pel::tra('ImageDescription');
+      return 'ImageDescription';
     case self::MAKE:
-      return Pel::tra('Make');
+      return 'Make';
     case self::MODEL:
-      return Pel::tra('Model');
+      return 'Model';
     case self::STRIP_OFFSETS:
-      return Pel::tra('StripOffsets');
+      return 'StripOffsets';
     case self::ORIENTATION:
-      return Pel::tra('Orientation');
+      return 'Orientation';
     case self::SAMPLES_PER_PIXEL:
-      return Pel::tra('SamplesPerPixel');
+      return 'SamplesPerPixel';
     case self::ROWS_PER_STRIP:
-      return Pel::tra('RowsPerStrip');
+      return 'RowsPerStrip';
     case self::STRIP_BYTE_COUNTS:
-      return Pel::tra('StripByteCounts');
+      return 'StripByteCounts';
     case self::X_RESOLUTION:
-      return Pel::tra('XResolution');
+      return 'XResolution';
     case self::Y_RESOLUTION:
-      return Pel::tra('YResolution');
+      return 'YResolution';
     case self::PLANAR_CONFIGURATION:
-      return Pel::tra('PlanarConfiguration');
+      return 'PlanarConfiguration';
     case self::RESOLUTION_UNIT:
-      return Pel::tra('ResolutionUnit');
+      return 'ResolutionUnit';
     case self::TRANSFER_FUNCTION:
-      return Pel::tra('TransferFunction');
+      return 'TransferFunction';
     case self::SOFTWARE:
-      return Pel::tra('Software');
+      return 'Software';
     case self::DATE_TIME:
-      return Pel::tra('DateTime');
+      return 'DateTime';
     case self::ARTIST:
-      return Pel::tra('Artist');
+      return 'Artist';
     case self::WHITE_POINT:
-      return Pel::tra('WhitePoint');
+      return 'WhitePoint';
     case self::PRIMARY_CHROMATICITIES:
-      return Pel::tra('PrimaryChromaticities');
+      return 'PrimaryChromaticities';
     case self::TRANSFER_RANGE:
-      return Pel::tra('TransferRange');
+      return 'TransferRange';
     case self::JPEG_PROC:
-      return Pel::tra('JPEGProc');
+      return 'JPEGProc';
     case self::JPEG_INTERCHANGE_FORMAT:
-      return Pel::tra('JPEGInterchangeFormat');
+      return 'JPEGInterchangeFormat';
     case self::JPEG_INTERCHANGE_FORMAT_LENGTH:
-      return Pel::tra('JPEGInterchangeFormatLength');
+      return 'JPEGInterchangeFormatLength';
     case self::YCBCR_COEFFICIENTS:
-      return Pel::tra('YCbCrCoefficients');
+      return 'YCbCrCoefficients';
     case self::YCBCR_SUB_SAMPLING:
-      return Pel::tra('YCbCrSubSampling');
+      return 'YCbCrSubSampling';
     case self::YCBCR_POSITIONING:
-      return Pel::tra('YCbCrPositioning');
+      return 'YCbCrPositioning';
     case self::REFERENCE_BLACK_WHITE:
-      return Pel::tra('ReferenceBlackWhite');
+      return 'ReferenceBlackWhite';
     case self::RELATED_IMAGE_FILE_FORMAT:
-      return Pel::tra('RelatedImageFileFormat');
+      return 'RelatedImageFileFormat';
     case self::RELATED_IMAGE_WIDTH:
-      return Pel::tra('RelatedImageWidth');
+      return 'RelatedImageWidth';
     case self::RELATED_IMAGE_LENGTH:
-      return Pel::tra('RelatedImageLength');
+      return 'RelatedImageLength';
     case self::CFA_REPEAT_PATTERN_DIM:
-      return Pel::tra('CFARepeatPatternDim');
+      return 'CFARepeatPatternDim';
     case self::CFA_PATTERN:
-      return Pel::tra('CFAPattern');
+      return 'CFAPattern';
     case self::BATTERY_LEVEL:
-      return Pel::tra('BatteryLevel');
+      return 'BatteryLevel';
     case self::COPYRIGHT:
-      return Pel::tra('Copyright');
+      return 'Copyright';
     case self::EXPOSURE_TIME:
-      return Pel::tra('ExposureTime');
+      return 'ExposureTime';
     case self::FNUMBER:
-      return Pel::tra('FNumber');
+      return 'FNumber';
     case self::IPTC_NAA:
-      return Pel::tra('IPTC/NAA');
+      return 'IPTC/NAA';
     case self::EXIF_IFD_POINTER:
-      return Pel::tra('ExifIFDPointer');
+      return 'ExifIFDPointer';
     case self::INTER_COLOR_PROFILE:
-      return Pel::tra('InterColorProfile');
+      return 'InterColorProfile';
     case self::EXPOSURE_PROGRAM:
-      return Pel::tra('ExposureProgram');
+      return 'ExposureProgram';
     case self::SPECTRAL_SENSITIVITY:
-      return Pel::tra('SpectralSensitivity');
+      return 'SpectralSensitivity';
     case self::GPS_INFO_IFD_POINTER:
-      return Pel::tra('GPSInfoIFDPointer');
+      return 'GPSInfoIFDPointer';
 //    case self::GPS_VERSION_ID:
-//      return Pel::tra('GPSVersionID');
+//      return 'GPSVersionID';
 //    case self::GPS_LATITUDE_REF:
-//      return Pel::tra('GPSLatitudeRef');
+//      return 'GPSLatitudeRef';
 //    case self::GPS_LATITUDE:
-//      return Pel::tra('GPSLatitude');
+//      return 'GPSLatitude';
 //    case self::GPS_LONGITUDE_REF:
-//      return Pel::tra('GPSLongitudeRef');
+//      return 'GPSLongitudeRef';
 //    case self::GPS_LONGITUDE:
-//      return Pel::tra('GPSLongitude'); 
+//      return 'GPSLongitude'; 
     case self::ISO_SPEED_RATINGS:
-      return Pel::tra('ISOSpeedRatings');
+      return 'ISOSpeedRatings';
     case self::OECF:
-      return Pel::tra('OECF');
+      return 'OECF';
     case self::EXIF_VERSION:
-      return Pel::tra('ExifVersion');
+      return 'ExifVersion';
     case self::DATE_TIME_ORIGINAL:
-      return Pel::tra('DateTimeOriginal');
+      return 'DateTimeOriginal';
     case self::DATE_TIME_DIGITIZED:
-      return Pel::tra('DateTimeDigitized');
+      return 'DateTimeDigitized';
     case self::COMPONENTS_CONFIGURATION:
-      return Pel::tra('ComponentsConfiguration');
+      return 'ComponentsConfiguration';
     case self::COMPRESSED_BITS_PER_PIXEL:
-      return Pel::tra('CompressedBitsPerPixel');
+      return 'CompressedBitsPerPixel';
     case self::SHUTTER_SPEED_VALUE:
-      return Pel::tra('ShutterSpeedValue');
+      return 'ShutterSpeedValue';
     case self::APERTURE_VALUE:
-      return Pel::tra('ApertureValue');
+      return 'ApertureValue';
     case self::BRIGHTNESS_VALUE:
-      return Pel::tra('BrightnessValue');
+      return 'BrightnessValue';
     case self::EXPOSURE_BIAS_VALUE:
-      return Pel::tra('ExposureBiasValue');
+      return 'ExposureBiasValue';
     case self::MAX_APERTURE_VALUE:
-      return Pel::tra('MaxApertureValue');
+      return 'MaxApertureValue';
     case self::SUBJECT_DISTANCE:
-      return Pel::tra('SubjectDistance');
+      return 'SubjectDistance';
     case self::METERING_MODE:
-      return Pel::tra('MeteringMode');
+      return 'MeteringMode';
     case self::LIGHT_SOURCE:
-      return Pel::tra('LightSource');
+      return 'LightSource';
     case self::FLASH:
-      return Pel::tra('Flash');
+      return 'Flash';
     case self::FOCAL_LENGTH:
-      return Pel::tra('FocalLength');
+      return 'FocalLength';
     case self::MAKER_NOTE:
-      return Pel::tra('MakerNote');
+      return 'MakerNote';
     case self::USER_COMMENT:
-      return Pel::tra('UserComment');
+      return 'UserComment';
     case self::SUB_SEC_TIME:
-      return Pel::tra('SubsecTime');
+      return 'SubsecTime';
     case self::SUB_SEC_TIME_ORIGINAL:
-      return Pel::tra('SubSecTimeOriginal');
+      return 'SubSecTimeOriginal';
     case self::SUB_SEC_TIME_DIGITIZED:
-      return Pel::tra('SubSecTimeDigitized');
+      return 'SubSecTimeDigitized';
     case self::FLASH_PIX_VERSION:
-      return Pel::tra('FlashPixVersion');
+      return 'FlashPixVersion';
     case self::COLOR_SPACE:
-      return Pel::tra('ColorSpace');
+      return 'ColorSpace';
     case self::PIXEL_X_DIMENSION:
-      return Pel::tra('PixelXDimension');
+      return 'PixelXDimension';
     case self::PIXEL_Y_DIMENSION:
-      return Pel::tra('PixelYDimension');
+      return 'PixelYDimension';
     case self::RELATED_SOUND_FILE:
-      return Pel::tra('RelatedSoundFile');
+      return 'RelatedSoundFile';
     case self::INTEROPERABILITY_IFD_POINTER:
-      return Pel::tra('InteroperabilityIFDPointer');
+      return 'InteroperabilityIFDPointer';
     case self::FLASH_ENERGY:
-      return Pel::tra('FlashEnergy');
+      return 'FlashEnergy';
     case self::SPATIAL_FREQUENCY_RESPONSE:
-      return Pel::tra('SpatialFrequencyResponse');
+      return 'SpatialFrequencyResponse';
     case self::FOCAL_PLANE_X_RESOLUTION:
-      return Pel::tra('FocalPlaneXResolution');
+      return 'FocalPlaneXResolution';
     case self::FOCAL_PLANE_Y_RESOLUTION:
-      return Pel::tra('FocalPlaneYResolution');
+      return 'FocalPlaneYResolution';
     case self::FOCAL_PLANE_RESOLUTION_UNIT:
-      return Pel::tra('FocalPlaneResolutionUnit');
+      return 'FocalPlaneResolutionUnit';
     case self::SUBJECT_LOCATION:
-      return Pel::tra('SubjectLocation');
+      return 'SubjectLocation';
     case self::EXPOSURE_INDEX:
-      return Pel::tra('ExposureIndex');
+      return 'ExposureIndex';
     case self::SENSING_METHOD:
-      return Pel::tra('SensingMethod');
+      return 'SensingMethod';
     case self::FILE_SOURCE:
-      return Pel::tra('FileSource');
+      return 'FileSource';
     case self::SCENE_TYPE:
-      return Pel::tra('SceneType');
+      return 'SceneType';
     case self::NEW_CFA_PATTERN:
-      return Pel::tra('CFAPattern');
+      return 'CFAPattern';
     case self::SUBJECT_AREA:
-      return Pel::tra('SubjectArea');
+      return 'SubjectArea';
     case self::CUSTOM_RENDERED:
-      return Pel::tra('CustomRendered');
+      return 'CustomRendered';
     case self::EXPOSURE_MODE:
-      return Pel::tra('ExposureMode');
+      return 'ExposureMode';
     case self::WHITE_BALANCE:
-      return Pel::tra('WhiteBalance');
+      return 'WhiteBalance';
     case self::DIGITAL_ZOOM_RATIO:
-      return Pel::tra('DigitalZoomRatio');
+      return 'DigitalZoomRatio';
     case self::FOCAL_LENGTH_IN_35MM_FILM:
-      return Pel::tra('FocalLengthIn35mmFilm');
+      return 'FocalLengthIn35mmFilm';
     case self::SCENE_CAPTURE_TYPE:
-      return Pel::tra('SceneCaptureType');
+      return 'SceneCaptureType';
     case self::GAIN_CONTROL:
-      return Pel::tra('GainControl');
+      return 'GainControl';
     case self::CONTRAST:
-      return Pel::tra('Contrast');
+      return 'Contrast';
     case self::SATURATION:
-      return Pel::tra('Saturation');
+      return 'Saturation';
     case self::SHARPNESS:
-      return Pel::tra('Sharpness');
+      return 'Sharpness';
     case self::DEVICE_SETTING_DESCRIPTION:
-      return Pel::tra('DeviceSettingDescription');
+      return 'DeviceSettingDescription';
     case self::SUBJECT_DISTANCE_RANGE:
-      return Pel::tra('SubjectDistanceRange');
+      return 'SubjectDistanceRange';
     case self::IMAGE_UNIQUE_ID:
-      return Pel::tra('ImageUniqueID');
+      return 'ImageUniqueID';
     default:
       return Pel::fmt('Unknown: 0x%02X', $tag);
     }
