@@ -41,26 +41,30 @@ require_once('PelException.php');
 /** Class definition of {@link PelDataWindow}. */
 require_once('PelDataWindow.php');
 
+require_once('PelTag.php');
+require_once('PelFormat.php');
+require_once('PelEntry.php');
+
 /**
  * @author Martin Geisler <gimpster@users.sourceforge.net>
  * @package PEL
  * @subpackage Exception
  */
-class PelExifIfdException extends PelException {}
+class PelIfdException extends PelException {}
 
 /**
  * Class representing an EXIF IFD.
  *
  * {@link PelExifData EXIF data} is structured as a number of Image
  * File Directories, IFDs for short.  Each IFD contains a number of
- * {@link PelExifEntry entries}, some data and finally a link to the
+ * {@link PelEntry entries}, some data and finally a link to the
  * next IFD.
  *
  * @author Martin Geisler <gimpster@users.sourceforge.net>
  * @package PEL
  * @subpackage EXIF
  */
-class PelExifIfd {
+class PelIfd {
 
   const IFD0 = 0;
   const IFD1 = 1;
@@ -68,14 +72,14 @@ class PelExifIfd {
   const GPS  = 3;
   const INTEROPERABILITY = 4;
 
-  /* PelExifEntry array */
+  /* PelEntry array */
   private $entries = array();
   private $type;
   private $offset;
   private $order;
-  /* The next PelExifIfd or null if this is the last. */
+  /* The next PelIfd or null if this is the last. */
   private $next = null;
-  /* Sub Ifds pointed to by this Ifd, as PelExifTag => PelExifIfd pairs. */
+  /* Sub Ifds pointed to by this Ifd, as PelTag => PelIfd pairs. */
   private $sub = array();
 
   private $thumb_data = null;
@@ -113,17 +117,17 @@ class PelExifIfd {
       // TODO: increment window start instead of using offsets.
       $tag = $d->getShort($offset + 12 * $i);
       Pel::debug('Loading entry %s (%d of %d)...',
-                 PelExifTag::getName($tag), $i + 1, $n);
+                 PelTag::getName($tag), $i + 1, $n);
       
       switch ($tag) {
-      case PelExifTag::EXIF_IFD_POINTER:
-      case PelExifTag::GPS_INFO_IFD_POINTER:
-      case PelExifTag::INTEROPERABILITY_IFD_POINTER:
+      case PelTag::EXIF_IFD_POINTER:
+      case PelTag::GPS_INFO_IFD_POINTER:
+      case PelTag::INTEROPERABILITY_IFD_POINTER:
         $o = $d->getLong($offset + 12 * $i + 8);
         // println('Found sub IFD');
-        $this->sub[$tag] = new PelExifIfd($d, $o);
+        $this->sub[$tag] = new PelIfd($d, $o);
         break;
-      case PelExifTag::JPEG_INTERCHANGE_FORMAT:
+      case PelTag::JPEG_INTERCHANGE_FORMAT:
         $thumb_offset = $d->getLong($offset + 12 * $i + 8);
         // println('Thumbnail data at %d.', $thumb_offset);
         
@@ -133,7 +137,7 @@ class PelExifIfd {
           $this->thumb_data = $d->getClone($thumb_offset, $thumb_length);
         
         break;
-      case PelExifTag::JPEG_INTERCHANGE_FORMAT_LENGTH:
+      case PelTag::JPEG_INTERCHANGE_FORMAT_LENGTH:
         $thumb_length = $d->getLong($offset + 12 * $i + 8);
         // println('Thumbnail size: %d.', $thumb_length);
 
@@ -154,7 +158,7 @@ class PelExifIfd {
          * Size? If bigger than 4 bytes, the actual data is not in the
          * entry but somewhere else (offset).
          */
-        $s = PelExifFormat::getSize($format) * $components;
+        $s = PelFormat::getSize($format) * $components;
         if ($s > 0) {    
           if ($s > 4)
             $doff = $d->getLong($offset + 12 * $i + 8);
@@ -165,25 +169,25 @@ class PelExifIfd {
           // TODO: remove these checks if PelDataWindow is going to do them
           // anyway.
           //if ($d->getSize() < $doff + $s)
-          //  throw new PelExifEntryException('Not enough data.');
+          //  throw new PelEntryException('Not enough data.');
           
           $data = $d->getClone($doff, $s);
         } else {
           $data = new PelDataWindow();
         }
 
-        $entry = PelExifEntry::newFromData($tag, $format, $components, $data);
+        $entry = PelEntry::newFromData($tag, $format, $components, $data);
         $this->entries[$tag] = $entry;
 
         /* The format of the thumbnail is stored in this tag. */
 //         TODO: handle TIFF thumbnail.
-//         if ($tag == PelExifTag::COMPRESSION) {
+//         if ($tag == PelTag::COMPRESSION) {
 //           $this->thumb_format = $data->getShort();
 //         }
         
         
 //         if (ExifTag::isKnownTag($tag)) {
-//           $this->entries[] = new PelExifEntry($data, $offset + 12 * $i, $order);
+//           $this->entries[] = new PelEntry($data, $offset + 12 * $i, $order);
 //         } else {
 //           // TODO: should we bail out completely like libexif does
 //           // because we claim to know all EXIF tags?
@@ -201,9 +205,9 @@ class PelExifIfd {
       // println('Next IFD is at offset %d', $o);
       /* Sanity check. */
       if ($o > $d->getSize() - 6)
-        throw new PelExifIfdException('Bogus offset!');
+        throw new PelIfdException('Bogus offset!');
 
-      $this->next = new PelExifIfd($d, $o);
+      $this->next = new PelIfd($d, $o);
     } else {
       // println('That was the last IFD');
     }
@@ -220,7 +224,7 @@ class PelExifIfd {
     }
   }
 
-  function addEntry(PelExifEntry $e) {
+  function addEntry(PelEntry $e) {
     $this->entries[$e->getTag()] = $e;
   }
 
@@ -235,8 +239,8 @@ class PelExifIfd {
   /**
    * Returns all entries contained in this IFD.
    *
-   * @return array an array of {@link PelExifEntry} objects, or rather
-   * descendant classes.  The array has {@link PelExifTag}s as keys
+   * @return array an array of {@link PelEntry} objects, or rather
+   * descendant classes.  The array has {@link PelTag}s as keys
    * and the entries as values.
    *
    * @see getEntry
@@ -280,12 +284,12 @@ class PelExifIfd {
   /**
    * Return a sub IFD.
    *
-   * @param PelExifTag the tag of the sub IFD.  This should be one of
-   * {@link PelExifTag::EXIF_IFD_POINTER}, {@link
-   * PelExifTag::GPS_INFO_IFD_POINTER}, or {@link
-   * PelExifTag::INTEROPERABILITY_IFD_POINTER}.
+   * @param PelTag the tag of the sub IFD.  This should be one of
+   * {@link PelTag::EXIF_IFD_POINTER}, {@link
+   * PelTag::GPS_INFO_IFD_POINTER}, or {@link
+   * PelTag::INTEROPERABILITY_IFD_POINTER}.
    *
-   * @return PelExifIfd the IFD associated with the tag, or null if
+   * @return PelIfd the IFD associated with the tag, or null if
    * that sub IFD doesn't exist.
    */
   function getSubIfd($tag) {
@@ -357,18 +361,18 @@ class PelExifIfd {
     if ($this->thumb_data != null) {
       Pel::debug('Appending %d bytes of thumbnail data at %d',
                  $this->thumb_data->getSize(), $end);
-      // TODO: make PelExifEntry a class that can be constructed with
+      // TODO: make PelEntry a class that can be constructed with
       // arguments corresponding to the newt four lines.
-      $bytes .= PelConvert::shortToBytes(PelExifTag::JPEG_INTERCHANGE_FORMAT_LENGTH,
+      $bytes .= PelConvert::shortToBytes(PelTag::JPEG_INTERCHANGE_FORMAT_LENGTH,
                                          $this->order);
-      $bytes .= PelConvert::shortToBytes(PelExifFormat::LONG, $this->order);
+      $bytes .= PelConvert::shortToBytes(PelFormat::LONG, $this->order);
       $bytes .= PelConvert::longToBytes(1, $this->order);
       $bytes .= PelConvert::longToBytes($this->thumb_data->getSize(),
                                         $this->order);
       
-      $bytes .= PelConvert::shortToBytes(PelExifTag::JPEG_INTERCHANGE_FORMAT,
+      $bytes .= PelConvert::shortToBytes(PelTag::JPEG_INTERCHANGE_FORMAT,
                                       $this->order);
-      $bytes .= PelConvert::shortToBytes(PelExifFormat::LONG, $this->order);
+      $bytes .= PelConvert::shortToBytes(PelFormat::LONG, $this->order);
       $bytes .= PelConvert::longToBytes(1, $this->order);
       $bytes .= PelConvert::longToBytes($end, $this->order);
       
@@ -383,7 +387,7 @@ class PelExifIfd {
       /* Make an aditional entry with the pointer. */
       $bytes .= PelConvert::shortToBytes($tag, $this->order);
       /* Next the format, which is always unsigned long. */
-      $bytes .= PelConvert::shortToBytes(PelExifFormat::LONG, $this->order);
+      $bytes .= PelConvert::shortToBytes(PelFormat::LONG, $this->order);
       /* There's only one component. */
       $bytes .= PelConvert::longToBytes(1, $this->order);
 
