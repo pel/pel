@@ -47,6 +47,8 @@
  */
 class Pel {
 
+  static $debug = false;
+
   /**
    * Conditionally output debug information.
    *
@@ -60,7 +62,7 @@ class Pel {
    * available for the format string as usual with sprintf().
    */
   static function debug() {
-    if (defined('PEL_DEBUG') && PEL_DEBUG) {
+    if (self::$debug) {
       $args = func_get_args();
       $str = array_shift($args);
       vprintf($str . "\n", $args);
@@ -82,7 +84,7 @@ class Pel {
    * available for the format string as usual with sprintf().
    */
   static function warning() {
-    if (defined('PEL_DEBUG') && PEL_DEBUG) {
+    if (self::$debug) {
       $args = func_get_args();
       $str = array_shift($args);
       vprintf('Warning: ' . $str . "\n", $args);
