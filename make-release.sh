@@ -45,15 +45,34 @@ MAJOR=0
 MINOR=4
 VERSION=$MAJOR.$MINOR
 
+# Remove old directory, if present
 if test -e pel-$VERSION; then
     echo "Removing old pel-$VERSION directory"
-    rm -r pel-$VERSION
+    rm -r pel-$VERSION       \
+        pel-$VERSION.tar.bz2 \
+        pel-$VERSION.tar.gz  \
+        pel-$VERSION.zip
 fi
+
+# Determine if this is the final run or just a trial
+read -p "Tag CVS with 'release-${MAJOR}_${MINOR}' and upload files to SourceForge? [y/N] " -n 1
+echo
+
+# Do the tagging of CVS
+if [ "$REPLY" == "y" -o "$REPLY" == "Y" ]; then
+    echo -n "Tagging CVS with 'release-${MAJOR}_${MINOR}'... "
+    cvs -Q tag release-${MAJOR}_${MINOR}
+    echo "done."
+else
+    echo "Skipping tagging."
+fi
+
 
 echo -n "Retrieving CVS snapshot from SourceForge... "
 cvs -Q -z3 export -kv -r HEAD -d pel-$VERSION pel
 echo "done."
 
+# Generate the ChangeLog, prefixed with a standard header
 echo -n "Generating CVS ChangeLog... "
 echo "ChangeLog file for PEL: PHP EXIF Library.  A library with support for
 reading and writing all EXIF headers of JPEG images using PHP.
@@ -63,6 +82,7 @@ Licensed under the GNU GPL, see COPYING for details.
 
 " > pel-$VERSION/ChangeLog
 cvs2cl --global-opts -q            \
+    --tagdates                     \
     --domain users.sourceforge.net \
     --utc                          \
     --stdout >> pel-$VERSION/ChangeLog
@@ -71,10 +91,13 @@ echo "done."
 
 cd pel-$VERSION
 
+# Generate the binary MO files
 ./update-locales.sh
 
+# Cleanup files that aren't needed in the released package
 rm make-release.sh .cvsignore
 
+# Generate the API documentation
 echo -n "Running phpDocumentor... "
 ../../phpdocumentor/phpdoc -q on -s on           \
     -o 'HTML:frames:earthli'                     \
@@ -84,7 +107,13 @@ echo -n "Running phpDocumentor... "
     -t doc
 echo "done."
 
+# Add anchors and headers to the HTML ChangeLog so that each release
+# notices can link back to it
+perl -p -i -e 's|^\d{4}-\d\d-\d\d \d\d:\d\d  tag release-(\d)_(\d)$|</pre>\n\n<div align="center"><h2><a id="v\2.\3"></a>PEL Version \2.\3</h2></div>\n<pre>\n|' doc/ric_ChangeLog.html
+
+# Leave the package directory
 cd ..
+
 
 echo -n "Creating pel-$VERSION.tar.gz... "
 tar -cz pel-$VERSION -f pel-$VERSION.tar.gz
@@ -98,14 +127,9 @@ echo -n "Creating pel-$VERSION.zip... "
 zip -qr pel-$VERSION.zip pel-$VERSION
 echo "done."
 
-read -p "Tag CVS with 'release-${MAJOR}_${MINOR}' and upload files to SourceForge? [y/N] " -n 1
-echo
 
-if [ "x$REPLY" == "xy" -o "x$REPLY" == "xY" ]; then
-    echo -n "Tagging CVS with 'release-${MAJOR}_${MINOR}'... "
-    cvs -Q tag release-${MAJOR}_${MINOR}
-    echo "done."
-    
+# Upload the compressed files and API documentation, if allowed
+if [ "$REPLY" == "y" -o "$REPLY" == "Y" ]; then
     echo -n "Uploading files to SourceForge for release... "
     ncftpput upload.sourceforge.net /incoming \
         pel-$VERSION.tar.gz \
@@ -118,5 +142,7 @@ if [ "x$REPLY" == "xy" -o "x$REPLY" == "xY" ]; then
         shell.sourceforge.net:/home/groups/p/pe/pel/htdocs
     echo "done."
 else
-    echo "Skipping tagging and upload."
+    echo "Skipping upload."
 fi
+
+# The End --- PEL has now been packaged!
