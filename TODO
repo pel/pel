@@ -27,8 +27,3 @@ attention is needed.
 * Write functions to replace the builtin PHP EXIF functions.
    This would make PEL a drop-in replacement for people who cannot use
    the PHP EXIF extension.
-
-* Parse TIFF images.
-   If I've understood things correctly, then TIFF images have embedded
-   EXIF information too, so it's should just be a simple matter of
-   parsing the TIFF format and reusing the EXIF code already written.
