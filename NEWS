@@ -5,6 +5,24 @@ Copyright (C) 2004  Martin Geisler <gimpster@users.sourceforge.net>
 Licensed under the GNU GPL, see COPYING for details.
 
 
+PEL Version 0.6  (Not released yet.)
+************************************
+
+Notes:
+
+The PelJpeg objects can now again be turned into bytes, suitable for
+writing to a file.
+
+
+Changes:
+
+* The edit-description.php example script has been updated.
+
+* A stupid bug prevented PelJpeg objects from being turned into bytes.
+
+* Fixed the output of PelEntryRationals::getText().
+
+
 PEL Version 0.5  June 28th, 2004
 ********************************
 
