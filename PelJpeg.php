@@ -39,7 +39,8 @@
  *
  * <code>
  * $jpeg = new PelJpeg($data);
- * $tiff = $jpeg->getSection(PelJpegMarker::APP1);
+ * $app1 = $jpeg->getSection(PelJpegMarker::APP1);
+ * $tiff = $app1->getTiff();
  * $ifd0 = $tiff->getIfd();
  * $exif = $ifd0->getSubIfd(PelTag::EXIF_IFD_POINTER);
  * $ifd1 = $ifd0->getNextIfd();
@@ -320,8 +321,8 @@ class PelJpeg {
     $bytes = '';
 
     foreach ($this->sections as $section) {
-      $m = $sections[0];
-      $c = $sections[1];
+      $m = $section[0];
+      $c = $section[1];
 
       /* Write the marker */
       $bytes .= "\xFF" . PelJpegMarker::getBytes($m);
