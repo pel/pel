@@ -43,7 +43,7 @@
 
 
 MAJOR=0
-MINOR=7
+MINOR=8
 VERSION=$MAJOR.$MINOR
 
 # Remove old directories, if present
@@ -104,18 +104,25 @@ cd pel-$VERSION
 # Generate the binary MO files
 ./update-locales.sh
 
-# Cleanup files that aren't needed in the released package
-rm make-release.sh .cvsignore users
 
 # Generate the API documentation
 echo -n "Running phpDocumentor... "
-../../phpdocumentor/phpdoc -q on -s on           \
-    -o 'HTML:frames:earthli'                     \
-    -ti "PEL: PHP EXIF Library Version $VERSION" \
-    -ct 'date' -dn PEL                           \
-    -f 'Pel*.php,README,INSTALL,NEWS,ChangeLog'  \
-    -t doc
+../../phpdocumentor/phpdoc                                          \
+    --quiet               "on"                                      \
+    --sourcecode          "on"                                      \
+    --title               "PEL: PHP EXIF Library Version $VERSION"  \
+    --output              "HTML:frames:earthli"                     \
+    --customtags          "date"                                    \
+    --defaultpackagename  "PEL"                                     \
+    --directory           "tutorials"                               \
+    --filename            "Pel*.php,README,INSTALL,NEWS,ChangeLog"  \
+    --target              "doc"
 echo "done."
+
+# Cleanup files that aren't needed in the released package
+rm make-release.sh .cvsignore users
+rm -r tutorials
+
 
 # Add anchors and headers to the HTML ChangeLog so that each release
 # notices can link back to it
