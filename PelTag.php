@@ -43,7 +43,7 @@
  * This class defines the constants that represents the EXIF tags
  * known to PEL.  They are supposed to be used whenever one needs to
  * specify an EXIF tag, and they will be denoted by the pseudo type
- * {@link PelExifTag} throughout the documentation.
+ * {@link PelTag} throughout the documentation.
  *
  * All the methods in this class are static and should be called with
  * the EXIF tag on which they should operate.
@@ -52,7 +52,7 @@
  * @package PEL
  * @subpackage EXIF
  */
-class PelExifTag {
+class PelTag {
 
   const INTEROPERABILITY_INDEX         = 0x0001;
   const INTEROPERABILITY_VERSION       = 0x0002;
@@ -161,7 +161,7 @@ class PelExifTag {
   /**
    * Check a short value to see if it's a valid EXIF tag.
    *
-   * @param PelExifTag the tag.
+   * @param PelTag the tag.
    *
    * @return boolean true if the tag is known, false otherwise.
    */
@@ -173,7 +173,7 @@ class PelExifTag {
   /**
    * Returns a short name for an EXIF tag.
    *
-   * @param PelExifTag the tag.
+   * @param PelTag the tag.
    *
    * @return string the short name of the tag, e.g., 'ImageWidth' for
    * the {@link IMAGE_WIDTH} tag.  If the tag isn't known, the string
@@ -407,7 +407,7 @@ class PelExifTag {
   /**
    * Returns a title for an EXIF tag.
    *
-   * @param PelExifTag the tag.
+   * @param PelTag the tag.
    *
    * @return string the title of the tag, e.g., 'Image Width' for the
    * {@link IMAGE_WIDTH} tag.  If the tag isn't known, the string
@@ -641,7 +641,7 @@ class PelExifTag {
   /**
    * Returns a description of an EXIF tag.
    *
-   * @param PelExifTag the tag.
+   * @param PelTag the tag.
    *
    * @return string the description of the tag which generally
    * explains how the tag is supposed to be used or interpreted.  If
