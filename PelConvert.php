@@ -150,7 +150,7 @@ class PelConvert {
   static function bytesToSByte(&$bytes, $offset) {
     $n = self::bytesToByte($bytes, $offset);
     if ($n > 127)
-      return $n - 255;
+      return $n - 256;
     else
       return $n;
   }
