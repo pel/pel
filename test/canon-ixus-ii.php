@@ -38,7 +38,8 @@ class CanonIxusII extends UnitTestCase {
     $jpeg = new PelJpeg($data);
 
     /* The first IFD. */
-    $ifd0 = $jpeg->getSection(2)->getContent()->getTiff()->getIfd();
+    $app1 = $jpeg->getSection(PelJpegMarker::APP1);
+    $ifd0 = $app1->getTiff()->getIfd();
     $this->assertNotNull($ifd0);
 
     $entry = $ifd0->getEntry(PelTag::MAKE);
