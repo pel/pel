@@ -10,9 +10,15 @@ PEL Version 0.7  (not yet released.)
 
 Notes:
 
-The Danish translation was updated slightly.
+PEL now runs on installations without support for Gettext, but does so
+with English texts only.  The Danish translation was updated slightly.
+Some tailing newlines were deleted from two files, they could have
+caused problems, if PEL were included in another project.
 
 Changes:
+
+* Added a work-around, so the PEL will run (with English texts only)
+  on installations without support for Gettext.
 
 * Updated the Danish translation.
 
