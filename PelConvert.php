@@ -56,7 +56,7 @@
 class PelConvert {
 
   /**
-   * Little-endian byte order.
+   * Little-endian (Intel) byte order.
    *
    * Data stored in little-endian byte order store the least
    * significant byte first, so the number 0x12345678 becomes 0x78
@@ -65,7 +65,7 @@ class PelConvert {
   const LITTLE_ENDIAN = true;
 
   /**
-   * Big-endian byte order.
+   * Big-endian (Motorola) byte order.
    *
    * Data stored in big-endian byte order store the most significant
    * byte first, so the number 0x12345678 becomes 0x12 0x34 0x56 0x78
