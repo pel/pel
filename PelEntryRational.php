@@ -271,7 +271,7 @@ class PelEntrySRational extends PelEntrySLong {
       return sprintf('%s%.01f', $v[0]*$v[1] > 0 ? '+' : '', $v[0]/$v[1]);
 
     default:
-      parent::getText($brief);
+      return parent::getText($brief);
     }
   }
 
