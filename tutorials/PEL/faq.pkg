@@ -42,16 +42,20 @@
   section or entry exist.  The correct way to use them is thus
   something along the lines of:</para>
 
-    <programlisting role="php">
-      <![CDATA[
+  <programlisting role="php">
+    <![CDATA[
 $app1 = $jpeg->getSection(PelJpegMarker::APP1);
 if ($app1 instanceof PelExif) {
   /* Do something with the EXIF data. */
 } else {
   /* Sorry --- no EXIF data found. */
 }
-      ]]>
-    </programlisting>
+    ]]>
+  </programlisting>
+  
+  <para>The same principle applies to the return values of <!-- // -->
+  {@link PelIfd::getEntry()} and all other methods which return
+  objects.</para>
 
 </refsect1>
 
@@ -59,7 +63,11 @@ if ($app1 instanceof PelExif) {
 
   <title>Does PEL handle IPTC entries?</title>
 
-  <para>No, PEL only deals with EXIF data.</para>
+  <para>No, PEL only deals with EXIF data, and no such extension is
+  planned.  Try taking at look at the <!-- /////////////////////// -->
+  {@link http://www.ozhiker.com/electronics/pjmt/ PHP JPEG Metadata
+  Toolkit} which should handle IPTC along with a huge number of other
+  metadata formats.</para>
 
 </refsect1>
 
