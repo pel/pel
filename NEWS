@@ -5,32 +5,47 @@ Copyright (C) 2004  Martin Geisler <gimpster@users.sourceforge.net>
 Licensed under the GNU GPL, see COPYING for details.
 
 
-PEL Version 0.6  (Not released yet.)
-************************************
+PEL Version 0.6  July 21st 2004
+*******************************
 
 Notes:
 
-The PelJpeg objects can now again be turned into bytes, suitable for
-writing to a file.  The example shell scripts have been updated and
-can now be run from any directory.  New images from Nikon models E950,
-E5000, and Coolscan IV have been added to the test suite.
+The interface for PelJpeg and PelTiff was changed so that one can now
+add new content from scratch to JPEG and TIFF images.  Bugs in the
+loading of signed bytes and shorts were fixed, aswell as a bug where
+timestamps were saved in UTC time, but loaded in local time.  The code
+that turned PelJpeg objects into bytes was fixed, and new test cases
+were written to test the writing and reading of PelJpeg objects to and
+from files.  New images from Nikon models E950, E5000, and Coolscan IV
+have been added to the test suite, bringing the total number of tests
+up to more than 1000.
 
 Changes:
 
-* Fixed loading of signed bytes and shorts.
+* The timestamps were saved as UTC time in PelEntryTime, but loaded as
+  local time in PelEntry.  This lead to differences when one tried to
+  load a previously saved timestamp.
+
+* Changed the constructors in PelJpeg, PelExif, PelTiff, and PelIfd so
+  that one can now make new objects without filling them with data
+  immediatly.  This makes it possible to add, say, a new APP1 section
+  with EXIF to a JPEG image lacking such information.
+
+* Fixed loading of signed bytes and shorts in PelConvert.
 
 * Renamed the isValidMarker() method into just isValid() in
   PelJpegMarker, so that it matches the other isValid() methods found
   in PelJpeg and PelTiff.
 
 * Added test images from Nikon models E950, E5000 and the film scanner
-  Coolscan IV ED.
+  Coolscan IV ED, and added tests that would read their contents.
 
 * The shell scripts could only be run from the test directory because
   of the use of relative paths in the require_once() statements.  The
   scripts can now be run from any directory.
 
-* A stupid bug prevented PelJpeg objects from being turned into bytes.
+* A stupid bug that prevented PelJpeg objects from being turned into
+  bytes was fixed.
 
 * Fixed the output of PelEntryRationals::getText().
 
