@@ -137,21 +137,21 @@ class PelEntryShort extends PelEntryNumber {
       //CC (e->components, 1, v);
       switch ($this->value[0]) {
       case 0:
-        return 'Unknown';
+        return Pel::tra('Unknown');
       case 1:
-        return 'Average';
+        return Pel::tra('Average');
       case 2:
-        return 'Center-Weighted Average';
+        return Pel::tra('Center-Weighted Average');
       case 3:
-        return 'Spot';
+        return Pel::tra('Spot');
       case 4:
-        return 'Multi Spot';
+        return Pel::tra('Multi Spot');
       case 5:
-        return 'Pattern';
+        return Pel::tra('Pattern');
       case 6:
-        return 'Partial';
+        return Pel::tra('Partial');
       case 255:
-        return 'Other';
+        return Pel::tra('Other');
       default:
         return $this->value[0];
       }
@@ -160,9 +160,9 @@ class PelEntryShort extends PelEntryNumber {
       //CC (e->components, 1, v);
       switch ($this->value[0]) {
       case 1:
-        return 'Uncompressed';
+        return Pel::tra('Uncompressed');
       case 6:
-        return 'JPEG compression';
+        return Pel::tra('JPEG compression');
       default:
         return $this->value[0];
       
@@ -172,9 +172,9 @@ class PelEntryShort extends PelEntryNumber {
       //CC (e->components, 1, v);
       switch ($this->value[0]) {
       case 1:
-        return 'chunky format';
+        return Pel::tra('chunky format');
       case 2:
-        return 'planar format';
+        return Pel::tra('planar format');
       default:
         return $this->value[0];
       }
@@ -183,19 +183,19 @@ class PelEntryShort extends PelEntryNumber {
       //CC (e->components, 1, v);
       switch ($this->value[0]) {
       case 1:
-        return 'Not defined';
+        return Pel::tra('Not defined');
       case 2:
-        return 'One-chip color area sensor';
+        return Pel::tra('One-chip color area sensor');
       case 3:
-        return 'Two-chip color area sensor';
+        return Pel::tra('Two-chip color area sensor');
       case 4:
-        return 'Three-chip color area sensor';
+        return Pel::tra('Three-chip color area sensor');
       case 5:
-        return 'Color sequential area sensor';
+        return Pel::tra('Color sequential area sensor');
       case 7:
-        return 'Trilinear sensor';
+        return Pel::tra('Trilinear sensor');
       case 8:
-        return 'Color sequential linear sensor';
+        return Pel::tra('Color sequential linear sensor');
       default:
         return $this->value[0];
       }
@@ -204,45 +204,45 @@ class PelEntryShort extends PelEntryNumber {
       //CC (e->components, 1, v);
       switch ($this->value[0]) {
       case 0:
-        return 'Unknown';
+        return Pel::tra('Unknown');
       case 1:
-        return 'Daylight';
+        return Pel::tra('Daylight');
       case 2:
-        return 'Fluorescent';
+        return Pel::tra('Fluorescent');
       case 3:
-        return 'Tungsten (incandescent light)';
+        return Pel::tra('Tungsten (incandescent light)');
       case 4:
-        return 'Flash';
+        return Pel::tra('Flash');
       case 9:
-        return 'Fine weather';
+        return Pel::tra('Fine weather');
       case 10:
-        return 'Cloudy weather';
+        return Pel::tra('Cloudy weather');
       case 11:
-        return 'Shade';
+        return Pel::tra('Shade');
       case 12:
-        return 'Daylight fluorescent';
+        return Pel::tra('Daylight fluorescent');
       case 13:
-        return 'Day white fluorescent';
+        return Pel::tra('Day white fluorescent');
       case 14:
-        return 'Cool white fluorescent';
+        return Pel::tra('Cool white fluorescent');
       case 15:
-        return 'White fluorescent';
+        return Pel::tra('White fluorescent');
       case 17:
-        return 'Standard light A';
+        return Pel::tra('Standard light A');
       case 18:
-        return 'Standard light B';
+        return Pel::tra('Standard light B');
       case 19:
-        return 'Standard light C';
+        return Pel::tra('Standard light C');
       case 20:
-        return 'D55';
+        return Pel::tra('D55');
       case 21:
-        return 'D65';
+        return Pel::tra('D65');
       case 22:
-        return 'D75';
+        return Pel::tra('D75');
       case 24:
-        return 'ISO studio tungsten';
+        return Pel::tra('ISO studio tungsten');
       case 255:
-        return 'Other';
+        return Pel::tra('Other');
       default:
         return $this->value[0];
       }
@@ -252,9 +252,9 @@ class PelEntryShort extends PelEntryNumber {
       //CC (e->components, 1, v);
       switch ($this->value[0]) {
       case 2:
-        return 'Inch';
+        return Pel::tra('Inch');
       case 3:
-        return 'Centimeter';
+        return Pel::tra('Centimeter');
       default:
         return $this->value[0];
       }
@@ -263,25 +263,23 @@ class PelEntryShort extends PelEntryNumber {
       //CC (e->components, 1, v);
       switch ($this->value[0]) {
       case 0:
-        return 'Not defined';
+        return Pel::tra('Not defined');
       case 1:
-        return 'Manual';
+        return Pel::tra('Manual');
       case 2:
-        return 'Normal program';
+        return Pel::tra('Normal program');
       case 3:
-        return 'Aperture priority';
+        return Pel::tra('Aperture priority');
       case 4:
-        return 'Shutter priority';
+        return Pel::tra('Shutter priority');
       case 5:
-        return 'Creative program (biased toward depth of field)';
+        return Pel::tra('Creative program (biased toward depth of field)');
       case 6:
-        return 'Action program (biased toward fast shutter speed)';
+        return Pel::tra('Action program (biased toward fast shutter speed)');
       case 7:
-        return 'Portrait mode (for closeup photos with the ' .
-          'background out of focus';
+        return Pel::tra('Portrait mode (for closeup photos with the background out of focus');
       case 8:
-        return 'Landscape mode (for landscape photos with the ' .
-          'background in focus';
+        return Pel::tra('Landscape mode (for landscape photos with the background in focus');
       default:
         return $this->value[0];
       }
@@ -290,21 +288,21 @@ class PelEntryShort extends PelEntryNumber {
       //CC (e->components, 1, v);
       switch ($this->value[0]) {
       case 1:
-        return 'top - left';
+        return Pel::tra('top - left');
       case 2:
-        return 'top - right';
+        return Pel::tra('top - right');
       case 3:
-        return 'bottom - right';
+        return Pel::tra('bottom - right');
       case 4:
-        return 'bottom - left';
+        return Pel::tra('bottom - left');
       case 5:
-        return 'left - top';
+        return Pel::tra('left - top');
       case 6:
-        return 'right - top';
+        return Pel::tra('right - top');
       case 7:
-        return 'right - bottom';
+        return Pel::tra('right - bottom');
       case 8:
-        return 'left - bottom';
+        return Pel::tra('left - bottom');
       default:
         return $this->value[0];
       }
@@ -313,9 +311,9 @@ class PelEntryShort extends PelEntryNumber {
       //CC (e->components, 1, v);
       switch ($this->value[0]) {
       case 1:
-        return 'centered';
+        return Pel::tra('centered');
       case 2:
-        return 'co-sited';
+        return Pel::tra('co-sited');
       default:
         return $this->value[0];
       }
@@ -346,7 +344,7 @@ class PelEntryShort extends PelEntryNumber {
       case 1:
         return 'sRGB';
       case 0xffff:
-        return 'Uncalibrated';
+        return Pel::tra('Uncalibrated');
       default:
         return $this->value[0];
       }
@@ -355,61 +353,51 @@ class PelEntryShort extends PelEntryNumber {
       //CC (e->components, 1, v);
       switch ($this->value[0]) {
       case 0x0000:
-        return 'Flash did not fire.';
+        return Pel::tra('Flash did not fire.');
       case 0x0001:
-        return 'Flash fired.';
+        return Pel::tra('Flash fired.');
       case 0x0005:
-        return 'Strobe return light not detected.';
+        return Pel::tra('Strobe return light not detected.');
       case 0x0007:
-        return 'Strobe return light detected.';
+        return Pel::tra('Strobe return light detected.');
       case 0x0009:
-        return 'Flash fired, compulsory flash mode';
+        return Pel::tra('Flash fired, compulsory flash mode');
       case 0x000d:
-        return 'Flash fired, compulsory flash mode, return light ' .
-          'not detected.';
+        return Pel::tra('Flash fired, compulsory flash mode, return light not detected.');
       case 0x000f:
-        return 'Flash fired, compulsory flash mode, return light ' .
-          'detected.';
+        return Pel::tra('Flash fired, compulsory flash mode, return light detected.';
       case 0x0010:
-        return 'Flash did not fire, compulsory flash mode.';
+        return Pel::tra('Flash did not fire, compulsory flash mode.');
       case 0x0018:
-        return 'Flash did not fire, auto mode.';
+        return Pel::tra('Flash did not fire, auto mode.');
       case 0x0019:
-        return 'Flash fired, auto mode.';
+        return Pel::tra('Flash fired, auto mode.');
       case 0x001d:
-        return 'Flash fired, auto mode, return light not detected.';
+        return Pel::tra('Flash fired, auto mode, return light not detected.');
       case 0x001f:
-        return 'Flash fired, auto mode, return light detected.';
+        return Pel::tra('Flash fired, auto mode, return light detected.');
       case 0x0020:
-        return 'No flash function.';
+        return Pel::tra('No flash function.');
       case 0x0041:
-        return 'Flash fired, red-eye reduction mode.';
+        return Pel::tra('Flash fired, red-eye reduction mode.');
       case 0x0045:
-        return 'Flash fired, red-eye reduction mode, return light ' .
-          'not detected.';
+        return Pel::tra('Flash fired, red-eye reduction mode, return light not detected.');
       case 0x0047:
-        return 'Flash fired, red-eye reduction mode, return light ' .
-          'detected.';
+        return Pel::tra('Flash fired, red-eye reduction mode, return light detected.');
       case 0x0049:
-        return 'Flash fired, compulsory flash mode, red-eye ' .
-          'reduction mode.';
+        return Pel::tra('Flash fired, compulsory flash mode, red-eye reduction mode.');
       case 0x004d:
-        return 'Flash fired, compulsory flash mode, red-eye ' .
-          'reduction mode, return light not detected.';
+        return Pel::tra('Flash fired, compulsory flash mode, red-eye reduction mode, return light not detected.');
       case 0x004f:
-        return 'Flash fired, compulsory flash mode, red-eye ' .
-          'reduction mode, return light detected.';
+        return Pel::tra('Flash fired, compulsory flash mode, red-eye reduction mode, return light detected.');
       case 0x0058:
-        return 'Flash did not fire, auto mode, red-eye ' .
-          'reduction mode';
+        return Pel::tra('Flash did not fire, auto mode, red-eye reduction mode');
       case 0x0059:
-        return 'Flash fired, auto mode, red-eye reduction mode.';
+        return Pel::tra('Flash fired, auto mode, red-eye reduction mode.');
       case 0x005d:
-        return 'Flash fired, auto mode, return light not detected, ' .
-          'red-eye reduction mode.';
+        return Pel::tra('Flash fired, auto mode, return light not detected, red-eye reduction mode.');
       case 0x005f:
-        return 'Flash fired, auto mode, return light detected, ' .
-          'red-eye reduction mode.';
+        return Pel::tra('Flash fired, auto mode, return light detected, red-eye reduction mode.');
       default:
         return $this->value[0];
       }
@@ -418,9 +406,9 @@ class PelEntryShort extends PelEntryNumber {
       //CC (e->components, 1, v);
       switch ($this->value[0]) {
       case 0:
-        return 'Normal process';
+        return Pel::tra('Normal process');
       case 1:
-        return 'Custom process';
+        return Pel::tra('Custom process');
       default:
         return $this->value[0];
       }
@@ -429,11 +417,11 @@ class PelEntryShort extends PelEntryNumber {
       //CC (e->components, 1, v);
       switch ($this->value[0]) {
       case 0:
-        return 'Auto exposure';
+        return Pel::tra('Auto exposure');
       case 1:
-        return 'Manual exposure';
+        return Pel::tra('Manual exposure');
       case 2:
-        return 'Auto bracket';
+        return Pel::tra('Auto bracket');
       default:
         return $this->value[0];
       }
@@ -442,9 +430,9 @@ class PelEntryShort extends PelEntryNumber {
       //CC (e->components, 1, v);
       switch ($this->value[0]) {
       case 0:
-        return 'Auto white balance';
+        return Pel::tra('Auto white balance');
       case 1:
-        return 'Manual white balance';
+        return Pel::tra('Manual white balance');
       default:
         return $this->value[0];
       }
@@ -453,13 +441,13 @@ class PelEntryShort extends PelEntryNumber {
       //CC (e->components, 1, v);
       switch ($this->value[0]) {
       case 0:
-        return 'Standard';
+        return Pel::tra('Standard');
       case 1:
-        return 'Landscape';
+        return Pel::tra('Landscape');
       case 2:
-        return 'Portrait';
+        return Pel::tra('Portrait');
       case 3:
-        return 'Night scene';
+        return Pel::tra('Night scene');
       default:
         return $this->value[0];
       }
@@ -468,15 +456,15 @@ class PelEntryShort extends PelEntryNumber {
       //CC (e->components, 1, v);
       switch ($this->value[0]) {
       case 0:
-        return 'Normal';
+        return Pel::tra('Normal');
       case 1:
-        return 'Low gain up';
+        return Pel::tra('Low gain up');
       case 2:
-        return 'High gain up';
+        return Pel::tra('High gain up');
       case 3:
-        return 'Low gain down';
+        return Pel::tra('Low gain down');
       case 4:
-        return 'High gain down';
+        return Pel::tra('High gain down');
       default:
         return $this->value[0];
       }
@@ -485,11 +473,11 @@ class PelEntryShort extends PelEntryNumber {
       //CC (e->components, 1, v);
       switch ($this->value[0]) {
       case 0:
-        return 'Normal';
+        return Pel::tra('Normal');
       case 1:
-        return 'Low saturation';
+        return Pel::tra('Low saturation');
       case 2:
-        return 'High saturation';
+        return Pel::tra('High saturation');
       default:
         return $this->value[0];
       }
@@ -499,11 +487,11 @@ class PelEntryShort extends PelEntryNumber {
       //CC (e->components, 1, v);
       switch ($this->value[0]) {
       case 0:
-        return 'Normal';
+        return Pel::tra('Normal');
       case 1:
-        return 'Soft';
+        return Pel::tra('Soft');
       case 2:
-        return 'Hard';
+        return Pel::tra('Hard');
       default:
         return $this->value[0];
       }
@@ -512,13 +500,13 @@ class PelEntryShort extends PelEntryNumber {
       //CC (e->components, 1, v);
       switch ($this->value[0]) {
       case 0:
-        return 'Unknown';
+        return Pel::tra('Unknown');
       case 1:
-        return 'Macro';
+        return Pel::tra('Macro');
       case 2:
-        return 'Close view';
+        return Pel::tra('Close view');
       case 3:
-        return 'Distant view';
+        return Pel::tra('Distant view');
       default:
         return $this->value[0];
       }
@@ -537,16 +525,14 @@ class PelEntryShort extends PelEntryNumber {
                        $this->value[2]);
 
       case 4:
-        return sprintf('Within rectangle (width %d, height %d) around ' .
-                       '(x,y) = (%d,%d)',
+        return sprintf('Within rectangle (width %d, height %d) around (x,y) = (%d,%d)',
                        $this->value[0],
                        $this->value[1],
                        $this->value[2],
                        $this->value[3]);
         
       default:
-        return sprintf('Unexpected number of components ' .
-                       '(%d, expected 2, 3, or 4).', $this->components);
+        return sprintf('Unexpected number of components (%d, expected 2, 3, or 4).', $this->components);
       }
 
     default:
