@@ -47,11 +47,8 @@ supplied with PEL, found in the 'doc' directory.  There you will find
 a complete API documentation which describes all the classes and files
 in PEL, and their use.
 
-The API documentation will not be present if you have retrieved PEL
-from CVS --- in that case, you can either generate it yourself using
-phpDocumentor (http://phpdoc.org/) or read it online at
-
-  http://pel.sourceforge.net/doc/
+The scripts found in the 'examples' directory are also a good source
+of information.
 
 PEL is hosted on SourceForge and uses the tools found there for
 support.  For general discussions about the future development of PEL,
