@@ -60,7 +60,7 @@ class PelOverflowException extends PelException {
    * @param int the maximum allowed value.
    */
   function __construct($v, $min, $max) {
-    parent::__construct('Value %d out of range [%d, %d]',
+    parent::__construct('Value %.0f out of range [%.0f, %.0f]',
                         $v, $min, $max);
   }
 }
@@ -209,7 +209,6 @@ abstract class PelEntryNumber extends PelEntry {
    */
   function addNumber($n) {
     $this->validateNumber($n);
-
     $this->value[] = $n;
     $this->components++;
   }
