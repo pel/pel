@@ -37,9 +37,9 @@
  */
 
 /** Class definition of {@link PelJpegMarker}. */
-include_once('PelJpegMarker.php');
+require_once('PelJpegMarker.php');
 /** Class definition of {@link PelJpegContent}. */
-include_once('PelJpegContent.php');
+require_once('PelJpegContent.php');
 
 /**
  * Class representing a JPEG section.

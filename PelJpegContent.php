@@ -37,7 +37,7 @@
  */
 
 /** Class definition of {@link PelDataWindow}. */
-include_once('PelDataWindow.php');
+require_once('PelDataWindow.php');
 
 /**
  * Class representing content in a JPEG file.

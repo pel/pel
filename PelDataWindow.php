@@ -35,9 +35,9 @@
  */
 
 /** Class definition of {@link PelException}. */
-include_once('PelException.php');
+require_once('PelException.php');
 /** Class definition of {@link PelConvert}. */
-include_once('PelConvert.php');
+require_once('PelConvert.php');
 
 
 /**

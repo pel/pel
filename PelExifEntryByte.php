@@ -37,7 +37,7 @@
  */
 
 /** Class definition of {@link PelExifEntryNumber}. */
-include_once('PelExifEntryNumber.php');
+require_once('PelExifEntryNumber.php');
 
 
 /**

@@ -37,9 +37,9 @@
  */
 
 /** Class definition of {@link PelException}. */
-include_once('PelException.php');
+require_once('PelException.php');
 /** Class definition of {@link PelExifEntry}. */
-include_once('PelExifEntry.php');
+require_once('PelExifEntry.php');
 
 
 /**

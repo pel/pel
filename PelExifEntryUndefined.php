@@ -43,11 +43,11 @@
  */
 
 /** Class definition of {@link PelException}. */
-include_once('PelException.php');
+require_once('PelException.php');
 /** Class definition of {@link PelExifEntry}. */
-include_once('PelExifEntry.php');
+require_once('PelExifEntry.php');
 
-include_once('Pel.php');
+require_once('Pel.php');
 
 /**
  * Class for holding data of any kind.

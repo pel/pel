@@ -37,17 +37,17 @@
  */
 
 /** Class definition of {@link PelException}. */
-include_once('PelException.php');
+require_once('PelException.php');
 /** Class definition of {@link PelJpegContent}. */
-include_once('PelJpegContent.php');
+require_once('PelJpegContent.php');
 /** Class definition of {@link PelExifIfd}. */
-include_once('PelExifIfd.php');
+require_once('PelExifIfd.php');
 /** Class definition of {@link PelExifTag}. */
-include_once('PelExifTag.php');
+require_once('PelExifTag.php');
 /** Class definition of {@link PelExifEntry}. */
-include_once('PelExifEntry.php');
+require_once('PelExifEntry.php');
 /** Class definition of {@link PelExifFormat}. */
-include_once('PelExifFormat.php');
+require_once('PelExifFormat.php');
 
 /**
  * Exception throw if invalid EXIF data is found.

@@ -46,7 +46,7 @@
  */
 
 /** Class definition of {@link PelExifEntry}. */
-include_once('PelExifEntry.php');
+require_once('PelExifEntry.php');
 
 /**
  * Class for holding a plain ASCII string.

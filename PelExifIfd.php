@@ -37,9 +37,9 @@
  */
 
 /** Class definition of {@link PelException}. */
-include_once('PelException.php');
+require_once('PelException.php');
 /** Class definition of {@link PelDataWindow}. */
-include_once('PelDataWindow.php');
+require_once('PelDataWindow.php');
 
 /**
  * @author Martin Geisler <gimpster@users.sourceforge.net>

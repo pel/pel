@@ -40,17 +40,17 @@
  */
 
 /** Class definition of {@link PelException}. */
-include_once('PelException.php');
+require_once('PelException.php');
 /** Class definition of {@link PelJpegMarker}. */
-include_once('PelJpegMarker.php');
+require_once('PelJpegMarker.php');
 /** Class definition of {@link PelJpegContent}. */
-include_once('PelJpegContent.php');
+require_once('PelJpegContent.php');
 /** Class definition of {@link PelJpegSection}. */
-include_once('PelJpegSection.php');
+require_once('PelJpegSection.php');
 /** Class definition of {@link PelExifData}. */
-include_once('PelExifData.php');
+require_once('PelExifData.php');
 
-include_once('Pel.php');
+require_once('Pel.php');
 
 /**
  * @author Martin Geisler <gimpster@users.sourceforge.net>
