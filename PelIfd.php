@@ -46,6 +46,8 @@ require_once('Pel.php');
 
 
 /**
+ * Exception indicating a general problem with the IFD.
+ *
  * @author Martin Geisler <gimpster@users.sourceforge.net>
  * @package PEL
  * @subpackage Exception
