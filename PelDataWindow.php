@@ -194,8 +194,8 @@ class PelDataWindow {
 
     if ($size < 0 || $size > $this->size)
       throw new PelDataWindowWindowException('Window [0, %d] ' .
-                                          'does not fit in window [0, %d]',
-                                          $size, $this->size);
+                                             'does not fit in window [0, %d]',
+                                             $size, $this->size);
     $this->size = $size;
   }
   
@@ -242,7 +242,7 @@ class PelDataWindow {
   function getClone($start = false, $size = false) {
     $c = new PelDataWindow();
     $c->initializeClone($this->data, $this->start, $this->size, $this->order);
-
+    
     if (is_int($start))
       $c->setWindowStart($start);
 
@@ -266,7 +266,7 @@ class PelDataWindow {
   private function validateOffset($o) {
     if ($o < 0 || $o >= $this->size)
       throw new PelDataWindowOffsetException('Offset %d not within [%d, %d]',
-                                          $o, 0, $this->size-1);
+                                             $o, 0, $this->size-1);
   }
 
 
@@ -525,7 +525,8 @@ class PelDataWindow {
       if ($this->data{$o + $i} != $str{$i})
         return false;
     }
-    
+
+    /* All characters matches each other, return true. */
     return true;
   }
 
