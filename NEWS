@@ -12,8 +12,9 @@ Notes:
 
 This release has been tested with images from a number of different
 camera models (from Fujifilm, Nikon, Ricoh, Sony, and Canon), leading
-to the discovery and fixing of a number of bugs.  The API for PelJpeg
-was changed slightly, making it more convenient to use.
+to the discovery and fixing of a number of bugs.  The API for
+PelJpeg::getSection() was changed slightly, making it more convenient
+to use.  All classes and methods are now documented.
 
 Changes:
 
@@ -41,7 +42,7 @@ Changes:
 * The byte order can now be specified when a PelTiff object is
   converted into bytes.
 
-* Updated documentation.
+* Updated documentation, PEL is now fully documented.
 
 
 PEL Version 0.4  June 9th, 2004

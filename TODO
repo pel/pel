@@ -20,6 +20,4 @@ attention is needed.
 
 * Test and interpret GPS information.
 
-* Document all files, classes, and methods.
-
 * Handle character encodings of the USER_COMMENT tag.
