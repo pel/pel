@@ -130,6 +130,17 @@ class PelTiff {
 
 
   /**
+   * Returns the byte order.
+   *
+   * @return PelByteOrder the byte order of the data, one of {@link
+   * PelConvert::LITTLE_ENDIAN} and {@link PelConvert::BIG_ENDIAN}.
+   */
+  function getByteOrder() {
+    return $this->order;
+  }
+
+
+  /**
    * Turn this object into bytes.
    *
    * @return string the bytes representing this object.
