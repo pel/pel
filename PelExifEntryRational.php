@@ -155,6 +155,22 @@ class PelExifEntryRational extends PelExifEntryLong {
 }
 
 
+/**
+ * Class for holding signed rational numbers.
+ *
+ * This class can hold rational numbers, consisting of a enumerator
+ * and denumerator both of which are of type unsigned long.  Each
+ * rational is represented by an array with just two entries: the
+ * enumerator and the denumerator, in that order.
+ *
+ * The class can hold either just a single rational or an array of
+ * rationals.  The class will be used to manipulate any of the EXIF
+ * tags which can have format {@link PelExifFormat::SRATIONAL}.
+ *
+ * @author Martin Geisler <gimpster@users.sourceforge.net>
+ * @package PEL
+ * @subpackage EXIF
+ */
 class PelExifEntrySRational extends PelExifEntrySLong {
 
   /**
@@ -162,8 +178,8 @@ class PelExifEntrySRational extends PelExifEntrySLong {
    *
    * @param PelExifTag the tag which this entry represents.  This
    * should be one of the constants defined in {@link PelExifTag},
-   * e.g., {@link PelExifTag::X_RESOLUTION}, or any other tag which can
-   * have format {@link PelExifFormat::RATIONAL}.
+   * e.g., {@link PelExifTag::SHUTTER_SPEED_VALUE}, or any other tag
+   * which can have format {@link PelExifFormat::SRATIONAL}.
    *
    * @param array $value... the rational(s) that this entry will
    * represent.  The arguments passed must obey the same rules as the
