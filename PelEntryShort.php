@@ -37,6 +37,8 @@
 
 /**#@+ Required class definitions. */
 require_once('PelEntryNumber.php');
+require_once('PelConvert.php');
+require_once('Pel.php');
 /**#@-*/
 
 
@@ -365,7 +367,7 @@ class PelEntryShort extends PelEntryNumber {
       case 0x000d:
         return Pel::tra('Flash fired, compulsory flash mode, return light not detected.');
       case 0x000f:
-        return Pel::tra('Flash fired, compulsory flash mode, return light detected.';
+        return Pel::tra('Flash fired, compulsory flash mode, return light detected.');
       case 0x0010:
         return Pel::tra('Flash did not fire, compulsory flash mode.');
       case 0x0018:
