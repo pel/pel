@@ -172,8 +172,8 @@ abstract class PelEntry {
       $d = explode('-', strtr($data->getBytes(0, -1), '.: ', '---'));
       // TODO: handle timezones.
       require_once('PelEntryAscii.php');
-      return new PelEntryTime($tag, mktime($d[3], $d[4], $d[5],
-                                               $d[1], $d[2], $d[0]));
+      return new PelEntryTime($tag, gmmktime($d[3], $d[4], $d[5],
+                                             $d[1], $d[2], $d[0]));
 
     case PelTag::COPYRIGHT:
       if ($format != PelFormat::ASCII)
