@@ -53,7 +53,7 @@ if ($argc < $need) {
  * to be big and uncompressed. */
 ini_set('memory_limit', '32M');
 
-$data = new PelDataWindow(file_get_contents($argv[2]));
+$data = new PelDataWindow(file_get_contents($argv[$need-1]));
 
 if (PelJpeg::isValid($data)) {
   print(new PelJpeg($data));
