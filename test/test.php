@@ -37,6 +37,7 @@ $test = new GroupTest('All PEL tests');
 $test->addTestFile('exif-entry-ascii.php');
 $test->addTestFile('exif-entry-number.php');
 $test->addTestFile('exif-entry-undefined.php');
+$test->addTestFile('sony-dsc-v1.php');
 $test->run(new TextReporter());
 
 ?>
