@@ -29,21 +29,31 @@ error_reporting(E_ALL);
 /* Make PEL speak the users language, if it is available. */
 setlocale(LC_ALL, '');
 
-if ($argc < 2) {
-  printf("Usage: %s <filename>\n", $argv[0]);
-  print("The <filename> should point to a JPEG or TIFF image.\n");
-  exit(1);
-}
-
 require_once('../PelDataWindow.php');
 require_once('../PelJpeg.php');
 require_once('../PelTiff.php');
+
+$need = 2;
+if ($argv[1] == '-d') {
+  Pel::$debug = true;
+  $need = 3;
+}
+
+if ($argc < $need) {
+  printf("Usage: %s [-d] <filename>\n", $argv[0]);
+  print("Optional arguments:\n");
+  print("  -d        turn debug output on.\n");
+  print("Mandatory arguments:\n");
+  print("  filename  a JPEG or TIFF image.\n");
+  exit(1);
+}
+
 
 /* We typically need lots of RAM to parse TIFF images since they tend
  * to be big and uncompressed. */
 ini_set('memory_limit', '32M');
 
-$data = new PelDataWindow(file_get_contents($argv[1]));
+$data = new PelDataWindow(file_get_contents($argv[2]));
 
 if (PelJpeg::isValid($data)) {
   print(new PelJpeg($data));
