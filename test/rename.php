@@ -24,6 +24,13 @@
 
 /* $Id$ */
 
+/* An example of how PEL can be used.  The script will read the EXIF
+ * timestamps in the files given, and rename the files based on that.
+ * Should there be several files with the same timestamp --- the
+ * resolution of the EXIF timestamp is one second, so a burst of
+ * images will typically have identical timestamps --- then the next
+ * available time will be used. */
+
 error_reporting(E_ALL);
 
 /* a printf() variant that appends a newline to the output. */
@@ -37,6 +44,7 @@ function println(/* fmt, args... */) {
 /* Make PEL speak the users language, if it is available. */
 setlocale(LC_ALL, '');
 
+/* Load the required class definitions. */
 require_once(dirname(__FILE__) . '/../PelDataWindow.php');
 require_once(dirname(__FILE__) . '/../PelJpeg.php');
 require_once(dirname(__FILE__) . '/../PelTiff.php');
@@ -44,17 +52,22 @@ require_once(dirname(__FILE__) . '/../PelTiff.php');
 $prog = array_shift($argv);
 $error = false;
 
+/* Accept the optional -d command line argument. */
 if (isset($argv[0]) && $argv[0] == '-d') {
   Pel::$debug = true;
   array_shift($argv);
 }
 
+/* Print usage information if there are no more command line
+ * arguments. */
 if (empty($argv)) {
   println('Usage: %s [-d] <file> ...', $prog);
   println('Optional arguments:');
   println('  -d        turn debug output on.');
   println('Mandatory arguments:');
   println('  file ...  one or more file names.');
+  println();
+  println('The files will be renamed based on their EXIF timestamp.');
   exit(1);
 }
 
