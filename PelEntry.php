@@ -216,9 +216,9 @@ abstract class PelEntry {
 
       case PelFormat::SBYTE:
         require_once('PelEntryByte.php');
-        $v =  new PelEntryByte($tag);
+        $v =  new PelEntrySByte($tag);
         for ($i = 0; $i < $components; $i++)
-          $v->addNumber($data->getSByte($i*2));
+          $v->addNumber($data->getSByte($i));
         return $v;
 
       case PelFormat::ASCII:

@@ -17,6 +17,8 @@ E5000, and Coolscan IV have been added to the test suite.
 
 Changes:
 
+* Fixed loading of signed bytes.
+
 * Renamed the isValidMarker() method into just isValid() in
   PelJpegMarker, so that it matches the other isValid() methods found
   in PelJpeg and PelTiff.
