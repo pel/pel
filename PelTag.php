@@ -614,8 +614,9 @@ class PelTag {
   /**
    * Focal Length
    *
-   * The actual focal length of the lens, in mm. Conversion is
-   * not made to the focal length of a 35 mm film camera.
+   * The actual focal length of the lens, in mm. Conversion is not
+   * made to the focal length of a 35 mm film camera, see the {@link
+   * FOCAL_LENGTH_IN_35MM_FILM} tag for this information.
    */
   const FOCAL_LENGTH                   = 0x920A;
 
@@ -914,7 +915,8 @@ class PelTag {
    *
    * This tag indicates the equivalent focal length assuming a
    * 35mm film camera, in mm. A value of 0 means the focal length is
-   * unknown. Note that this tag differs from the FocalLength tag.
+   * unknown. Note that this tag differs from the {@link FOCAL_LENGTH}
+   * tag.
    */
   const FOCAL_LENGTH_IN_35MM_FILM      = 0xA405;
 
@@ -923,7 +925,7 @@ class PelTag {
    *
    * This tag indicates the type of scene that was shot. It can
    * also be used to record the mode in which the image was shot. Note
-   * that this differs from the scene type (SceneType) tag.
+   * that this differs from the {@link SCENE_TYPE} tag.
    */
   const SCENE_CAPTURE_TYPE             = 0xA406;
 
