@@ -34,12 +34,12 @@
 # http://onlyphp.com/detail-1511.html
 # http://hotscripts.com/Detailed/35006.html
 # http://php-resource.de/scripte/show/5686/
+# http://scriptsearch.com/details/11255.html
+# http://php.resourceindex.com/detail/04003.html
 # http://script.dk/sourcecode.jsp?resourceId=1227
 # http://coding.phpground.net/download-mod-707.html
-# http://www.scripts.com/php/image-manipulation/pel-php-exif-library
+# http://scripts.com/php/image-manipulation/pel-php-exif-library
 
-# http://phpfreaks.com/ (not yet listed)
-# http://php.resourceindex.com/ (not yet listed)
 
 MAJOR=0
 MINOR=4
