@@ -21,9 +21,13 @@ your choice.  Your application can then start using the classed
 defined in PEL, most likely the PelJpeg class which contain an entire
 JPEG image or the PelTiff class for working with TIFF images.
 
+It is important to understand that PEL is a library and not an
+application with a pretty interface --- PEL is a collection of classes
+that can be used to parse, read, and write EXIF headers.
 
-Usage
-*****
+
+Using PEL
+*********
 
 Your application should include at least the PelDataWindow.php file
 for the definition of the basic PelDataWindow class which is used to
@@ -61,8 +65,8 @@ requests here:
 
   http://sourceforge.net/tracker/?group_id=108380
 
-If you change the code, then it is highly recommended that you
-download SimpleTest from
+If you change the code (to fix bugs or to implement enhancements),
+then it is highly recommended that you download SimpleTest from
 
   http://sourceforge.net/projects/simpletest
 
