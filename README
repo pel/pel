@@ -29,17 +29,28 @@ Features
 Getting Support
 ***************
 
+The first place you should consult for support is the documentation
+supplied with PEL, found in the 'doc' directory.  There you'll find a
+complete API documentation which describes all the classes and files
+in PEL, and their use.
+
+The API documentation will not be present if you have retrieved PEL
+from CVS --- in that case, you can either generate it yourself using
+phpDocumentor (http://phpdoc.org/) or read it online at
+
+  http://pel.sourceforge.net/doc/
+
 PEL is hosted on SourceForge and uses the tools found there for
 support.  For general discussions about the future development of PEL,
 please use the development mailinglist.  Remember to subscribe before
 you post on the list, you can subscribe here:
 
-  https://lists.sourceforge.net/lists/listinfo/pel-devel
+  http://lists.sourceforge.net/lists/listinfo/pel-devel
 
 If you have a specific support request, a bug report, a feature
 request, or maybe a patch, please use the corresponding tracker:
 
-  https://sourceforge.net/tracker/?group_id=108380
+  http://sourceforge.net/tracker/?group_id=108380
 
 
 Credits
