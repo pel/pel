@@ -39,15 +39,15 @@ $test->addTestFile('convert.php');
 $test->addTestFile('ascii.php');
 $test->addTestFile('number.php');
 $test->addTestFile('undefined.php');
-$test->addTestFile('read-write.php');
 
-$test->addTestFile('sony-dsc-v1.php');
 
-$test->addTestFile('canon-ixus-ii.php');
 
-$test->addTestFile('nikon-e950.php');
-$test->addTestFile('nikon-e5000.php');
-$test->addTestFile('nikon-coolscan-iv.php');
+$image_tests = scandir('image-tests');
+
+foreach ($image_tests as $image_test)
+  if (substr($image_test, -4) == '.php')
+    $test->addTestFile('image-tests/' . $image_test);
+
 
 $test->run(new TextReporter());
 
