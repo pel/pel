@@ -217,8 +217,6 @@ abstract class PelEntry {
 
       case PelFormat::ASCII:
         require_once('PelEntryAscii.php');
-        // TODO: check that $data always has $components bytes so that
-        // we can remove the final NULL character like this.
         return new PelEntryAscii($tag, $data->getBytes(0, -1));
 
       case PelFormat::SHORT:
