@@ -88,16 +88,19 @@ class PelWrongComponentCountException extends PelException {
    * components.
    *
    * Some tags have strict limits as to the allowed number of
-   * components, and this exception is thrown if a tag violates such a
-   * constraint.
+   * components, and this exception is thrown if the data violates
+   * such a constraint.
+   *
+   * @param PelTag the tag for which the violation was found.
    *
    * @param int the number of components found.
    *
    * @param int the expected number of components.
    */
-  function __construct($found, $expected) {
-    parent::__construct('Wrong number of components found: %d. Expected %d.',
-                        $found, $expected);
+  function __construct($tag, $found, $expected) {
+    parent::__construct('Wrong number of components found for %s tag: %d. ' .
+                        'Expected %d.',
+                        PelTag::getName($tag), $found, $expected);
   }
 }
 
@@ -170,7 +173,7 @@ abstract class PelEntry {
         throw new PelUnexpectedFormatException($format, PelFormat::ASCII);
 
       if ($components != 20)
-        throw new PelWrongComponentCountException($components, 20);
+        throw new PelWrongComponentCountException($tag, $components, 20);
 
       /* Split the string into year, month, date, hour, minute, and
        * second components. */
