@@ -60,31 +60,35 @@ class AsciiTestCase extends UnitTestCase {
   function testCopyright() {
     $entry = new PelExifEntryCopyright();
     $this->assertEqual($entry->getTag(), PelExifTag::COPYRIGHT);
-    $this->assertEqual($entry->getPhotographer(), '');
-    $this->assertEqual($entry->getEditor(), '');
+    $value = $entry->getValue();
+    $this->assertEqual($value[0], '');
+    $this->assertEqual($value[1], '');
     $this->assertEqual($entry->getText(false), '');
     $this->assertEqual($entry->getText(true), '');
 
     $entry->setValue('A');
-    $this->assertEqual($entry->getPhotographer(), 'A');
-    $this->assertEqual($entry->getEditor(), '');
+    $value = $entry->getValue();
+    $this->assertEqual($value[0], 'A');
+    $this->assertEqual($value[1], '');
     $this->assertEqual($entry->getText(false), 'A (Photographer)');
     $this->assertEqual($entry->getText(true), 'A');
-    $this->assertEqual($entry->getBytes(), 'A' . chr(0));
+    $this->assertEqual($entry->getBytes(PelConvert::LITTLE_ENDIAN), 'A' . chr(0));
 
     $entry->setValue('', 'B');
-    $this->assertEqual($entry->getPhotographer(), '');
-    $this->assertEqual($entry->getEditor(), 'B');
+    $value = $entry->getValue();
+    $this->assertEqual($value[0], '');
+    $this->assertEqual($value[1], 'B');
     $this->assertEqual($entry->getText(false), 'B (Editor)');
     $this->assertEqual($entry->getText(true), 'B');
-    $this->assertEqual($entry->getBytes(), ' ' . chr(0) . 'B' . chr(0));
+    $this->assertEqual($entry->getBytes(PelConvert::LITTLE_ENDIAN), ' ' . chr(0) . 'B' . chr(0));
 
     $entry->setValue('A', 'B');
-    $this->assertEqual($entry->getPhotographer(), 'A');
-    $this->assertEqual($entry->getEditor(), 'B');
+    $value = $entry->getValue();
+    $this->assertEqual($value[0], 'A');
+    $this->assertEqual($value[1], 'B');
     $this->assertEqual($entry->getText(false), 'A (Photographer) - B (Editor)');
     $this->assertEqual($entry->getText(true), 'A - B');
-    $this->assertEqual($entry->getBytes(), 'A' . chr(0) . 'B' . chr(0));
+    $this->assertEqual($entry->getBytes(PelConvert::LITTLE_ENDIAN), 'A' . chr(0) . 'B' . chr(0));
   }
   
 }
