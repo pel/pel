@@ -231,8 +231,36 @@ class PelExifIfd {
       return null;
   }
 
+
+  /**
+   * Returns all entries contained in this IFD.
+   *
+   * @return array an array of {@link PelExifEntry} objects, or rather
+   * descendant classes.  The array has {@link PelExifTag}s as keys
+   * and the entries as values.
+   *
+   * @see getEntry
+   */
   function getEntries() {
     return $this->entries;
+  }
+
+
+  /**
+   * Returns available thumbnail data.
+   *
+   * @return string the bytes in the thumbnail, if any.  If the IFD
+   * doesn't contain any thumbnail data, the empty string is returned.
+   *
+   * @todo Throw an exception instead when no data is available?
+   *
+   * @todo Return the $this->thumb_data object instead of the bytes?
+   */
+  function getThumbnailData() {
+    if ($this->thumb_data != null)
+      return $this->thumb_data->getBytes();
+    else
+      return '';
   }
   
 
