@@ -47,14 +47,17 @@
 class PelException extends Exception {
 
   /**
-   * Construct a new exception.
+   * Construct a new PEL exception.
    *
-   * @param mixed $args,... any number of arguments can be given.  The
-   * first argument must be a string which will be used as a format
-   * string for sprintf() --- the remaining arguments will be
-   * available for the format string as usual with sprintf().
+   * @param string $fmt an optional format string can be given.  It
+   * will be used as a format string for sprintf().  The remaining
+   * arguments will be available for the format string as usual with
+   * sprintf().
+   *
+   * @param mixed $args,... any number of arguments to be used with
+   * the format string.
    */
-  function __construct() {
+  function __construct(/* fmt, args... */) {
     $args = func_get_args();
     $str = array_shift($args);
     parent::__construct(vsprintf($str, $args));
