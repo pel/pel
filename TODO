@@ -22,4 +22,5 @@ attention is needed.
 
 * Document all files, classes, and methods.
 
-* Write code for doing automated tests.
+* Write test cases for SimpleTest
+   Get it from http://sf.net/projects/simpletest.
