@@ -31,12 +31,12 @@ stored data in.  The PelJpeg class is also needed if PEL should do the
 parsing of JPEG data for you.
 
 This example will load a JPEG file given as a command line argument,
-parse the EXIF data within, change the comment to 'Edited by PEL', and
-finally save the file again.
+parse the EXIF data within, change the image description to 'Edited by
+PEL', and finally save the file again.
 
   <?php
-  include_once('PelJpeg.php');
-  include_once('PelDataWindow.php');
+  require_once('PelJpeg.php');
+  require_once('PelDataWindow.php');
   
   $data = new PelDataWindow(file_get_contents($argv[1]));
   $jpeg = new PelJpeg($data);
