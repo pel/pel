@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-06-08 16:16+0200\n"
+"POT-Creation-Date: 2004-06-09 00:28+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -162,7 +162,7 @@ msgstr ""
 msgid "Tungsten (incandescent light)"
 msgstr ""
 
-#: PelEntryShort.php:217 PelTag.php:1155 PelTag.php:1389
+#: PelEntryShort.php:217 PelTag.php:1389
 msgid "Flash"
 msgstr ""
 
@@ -555,54 +555,6 @@ msgstr ""
 msgid "Dumping %d bytes of EXIF data...\n"
 msgstr ""
 
-#: PelFormat.php:150
-msgid "Ascii"
-msgstr ""
-
-#: PelFormat.php:151
-msgid "Byte"
-msgstr ""
-
-#: PelFormat.php:152
-msgid "Short"
-msgstr ""
-
-#: PelFormat.php:153
-msgid "Long"
-msgstr ""
-
-#: PelFormat.php:154
-msgid "Rational"
-msgstr ""
-
-#: PelFormat.php:155
-msgid "SByte"
-msgstr ""
-
-#: PelFormat.php:156
-msgid "SShort"
-msgstr ""
-
-#: PelFormat.php:157
-msgid "SLong"
-msgstr ""
-
-#: PelFormat.php:158
-msgid "SRational"
-msgstr ""
-
-#: PelFormat.php:159
-msgid "Float"
-msgstr ""
-
-#: PelFormat.php:160
-msgid "Double"
-msgstr ""
-
-#: PelFormat.php:161
-msgid "Undefined"
-msgstr ""
-
 #: PelFormat.php:162 PelFormat.php:189
 #, php-format
 msgid "Unknown type: 0x%X"
@@ -898,410 +850,6 @@ msgstr ""
 msgid "  Unknown content\n"
 msgstr ""
 
-#: PelTag.php:1015
-msgid "InteroperabilityIndex"
-msgstr ""
-
-#: PelTag.php:1017
-msgid "InteroperabilityVersion"
-msgstr ""
-
-#: PelTag.php:1019
-msgid "ImageWidth"
-msgstr ""
-
-#: PelTag.php:1021
-msgid "ImageLength"
-msgstr ""
-
-#: PelTag.php:1023
-msgid "BitsPerSample"
-msgstr ""
-
-#: PelTag.php:1025 PelTag.php:1259
-msgid "Compression"
-msgstr ""
-
-#: PelTag.php:1027
-msgid "PhotometricInterpretation"
-msgstr ""
-
-#: PelTag.php:1029
-msgid "FillOrder"
-msgstr ""
-
-#: PelTag.php:1031
-msgid "DocumentName"
-msgstr ""
-
-#: PelTag.php:1033
-msgid "ImageDescription"
-msgstr ""
-
-#: PelTag.php:1035
-msgid "Make"
-msgstr ""
-
-#: PelTag.php:1037 PelTag.php:1271
-msgid "Model"
-msgstr ""
-
-#: PelTag.php:1039
-msgid "StripOffsets"
-msgstr ""
-
-#: PelTag.php:1041 PelTag.php:1275
-msgid "Orientation"
-msgstr ""
-
-#: PelTag.php:1043
-msgid "SamplesPerPixel"
-msgstr ""
-
-#: PelTag.php:1045
-msgid "RowsPerStrip"
-msgstr ""
-
-#: PelTag.php:1047
-msgid "StripByteCounts"
-msgstr ""
-
-#: PelTag.php:1049
-msgid "XResolution"
-msgstr ""
-
-#: PelTag.php:1051
-msgid "YResolution"
-msgstr ""
-
-#: PelTag.php:1053
-msgid "PlanarConfiguration"
-msgstr ""
-
-#: PelTag.php:1055
-msgid "ResolutionUnit"
-msgstr ""
-
-#: PelTag.php:1057
-msgid "TransferFunction"
-msgstr ""
-
-#: PelTag.php:1059 PelTag.php:1293
-msgid "Software"
-msgstr ""
-
-#: PelTag.php:1061
-msgid "DateTime"
-msgstr ""
-
-#: PelTag.php:1063 PelTag.php:1297
-msgid "Artist"
-msgstr ""
-
-#: PelTag.php:1065
-msgid "WhitePoint"
-msgstr ""
-
-#: PelTag.php:1067
-msgid "PrimaryChromaticities"
-msgstr ""
-
-#: PelTag.php:1069
-msgid "TransferRange"
-msgstr ""
-
-#: PelTag.php:1071 PelTag.php:1305
-msgid "JPEGProc"
-msgstr ""
-
-#: PelTag.php:1073
-msgid "JPEGInterchangeFormat"
-msgstr ""
-
-#: PelTag.php:1075
-msgid "JPEGInterchangeFormatLength"
-msgstr ""
-
-#: PelTag.php:1077
-msgid "YCbCrCoefficients"
-msgstr ""
-
-#: PelTag.php:1079
-msgid "YCbCrSubSampling"
-msgstr ""
-
-#: PelTag.php:1081
-msgid "YCbCrPositioning"
-msgstr ""
-
-#: PelTag.php:1083
-msgid "ReferenceBlackWhite"
-msgstr ""
-
-#: PelTag.php:1085
-msgid "RelatedImageFileFormat"
-msgstr ""
-
-#: PelTag.php:1087
-msgid "RelatedImageWidth"
-msgstr ""
-
-#: PelTag.php:1089
-msgid "RelatedImageLength"
-msgstr ""
-
-#: PelTag.php:1091
-msgid "CFARepeatPatternDim"
-msgstr ""
-
-#: PelTag.php:1093 PelTag.php:1201
-msgid "CFAPattern"
-msgstr ""
-
-#: PelTag.php:1095
-msgid "BatteryLevel"
-msgstr ""
-
-#: PelTag.php:1097 PelTag.php:1331
-msgid "Copyright"
-msgstr ""
-
-#: PelTag.php:1099
-msgid "ExposureTime"
-msgstr ""
-
-#: PelTag.php:1101 PelTag.php:1335
-msgid "FNumber"
-msgstr ""
-
-#: PelTag.php:1103 PelTag.php:1337
-msgid "IPTC/NAA"
-msgstr ""
-
-#: PelTag.php:1105
-msgid "ExifIFDPointer"
-msgstr ""
-
-#: PelTag.php:1107
-msgid "InterColorProfile"
-msgstr ""
-
-#: PelTag.php:1109
-msgid "ExposureProgram"
-msgstr ""
-
-#: PelTag.php:1111
-msgid "SpectralSensitivity"
-msgstr ""
-
-#: PelTag.php:1113
-msgid "GPSInfoIFDPointer"
-msgstr ""
-
-#: PelTag.php:1125
-msgid "ISOSpeedRatings"
-msgstr ""
-
-#: PelTag.php:1127 PelTag.php:1361
-msgid "OECF"
-msgstr ""
-
-#: PelTag.php:1129
-msgid "ExifVersion"
-msgstr ""
-
-#: PelTag.php:1131
-msgid "DateTimeOriginal"
-msgstr ""
-
-#: PelTag.php:1133
-msgid "DateTimeDigitized"
-msgstr ""
-
-#: PelTag.php:1135
-msgid "ComponentsConfiguration"
-msgstr ""
-
-#: PelTag.php:1137
-msgid "CompressedBitsPerPixel"
-msgstr ""
-
-#: PelTag.php:1139
-msgid "ShutterSpeedValue"
-msgstr ""
-
-#: PelTag.php:1141
-msgid "ApertureValue"
-msgstr ""
-
-#: PelTag.php:1143
-msgid "BrightnessValue"
-msgstr ""
-
-#: PelTag.php:1145
-msgid "ExposureBiasValue"
-msgstr ""
-
-#: PelTag.php:1147
-msgid "MaxApertureValue"
-msgstr ""
-
-#: PelTag.php:1149
-msgid "SubjectDistance"
-msgstr ""
-
-#: PelTag.php:1151
-msgid "MeteringMode"
-msgstr ""
-
-#: PelTag.php:1153
-msgid "LightSource"
-msgstr ""
-
-#: PelTag.php:1157
-msgid "FocalLength"
-msgstr ""
-
-#: PelTag.php:1159
-msgid "MakerNote"
-msgstr ""
-
-#: PelTag.php:1161
-msgid "UserComment"
-msgstr ""
-
-#: PelTag.php:1163
-msgid "SubsecTime"
-msgstr ""
-
-#: PelTag.php:1165
-msgid "SubSecTimeOriginal"
-msgstr ""
-
-#: PelTag.php:1167
-msgid "SubSecTimeDigitized"
-msgstr ""
-
-#: PelTag.php:1169
-msgid "FlashPixVersion"
-msgstr ""
-
-#: PelTag.php:1171
-msgid "ColorSpace"
-msgstr ""
-
-#: PelTag.php:1173
-msgid "PixelXDimension"
-msgstr ""
-
-#: PelTag.php:1175
-msgid "PixelYDimension"
-msgstr ""
-
-#: PelTag.php:1177
-msgid "RelatedSoundFile"
-msgstr ""
-
-#: PelTag.php:1179
-msgid "InteroperabilityIFDPointer"
-msgstr ""
-
-#: PelTag.php:1181
-msgid "FlashEnergy"
-msgstr ""
-
-#: PelTag.php:1183
-msgid "SpatialFrequencyResponse"
-msgstr ""
-
-#: PelTag.php:1185
-msgid "FocalPlaneXResolution"
-msgstr ""
-
-#: PelTag.php:1187
-msgid "FocalPlaneYResolution"
-msgstr ""
-
-#: PelTag.php:1189
-msgid "FocalPlaneResolutionUnit"
-msgstr ""
-
-#: PelTag.php:1191
-msgid "SubjectLocation"
-msgstr ""
-
-#: PelTag.php:1193
-msgid "ExposureIndex"
-msgstr ""
-
-#: PelTag.php:1195
-msgid "SensingMethod"
-msgstr ""
-
-#: PelTag.php:1197
-msgid "FileSource"
-msgstr ""
-
-#: PelTag.php:1199
-msgid "SceneType"
-msgstr ""
-
-#: PelTag.php:1203
-msgid "SubjectArea"
-msgstr ""
-
-#: PelTag.php:1205
-msgid "CustomRendered"
-msgstr ""
-
-#: PelTag.php:1207
-msgid "ExposureMode"
-msgstr ""
-
-#: PelTag.php:1209
-msgid "WhiteBalance"
-msgstr ""
-
-#: PelTag.php:1211
-msgid "DigitalZoomRatio"
-msgstr ""
-
-#: PelTag.php:1213
-msgid "FocalLengthIn35mmFilm"
-msgstr ""
-
-#: PelTag.php:1215
-msgid "SceneCaptureType"
-msgstr ""
-
-#: PelTag.php:1217
-msgid "GainControl"
-msgstr ""
-
-#: PelTag.php:1219 PelTag.php:1453
-msgid "Contrast"
-msgstr ""
-
-#: PelTag.php:1221 PelTag.php:1455
-msgid "Saturation"
-msgstr ""
-
-#: PelTag.php:1223 PelTag.php:1457
-msgid "Sharpness"
-msgstr ""
-
-#: PelTag.php:1225
-msgid "DeviceSettingDescription"
-msgstr ""
-
-#: PelTag.php:1227
-msgid "SubjectDistanceRange"
-msgstr ""
-
-#: PelTag.php:1229
-msgid "ImageUniqueID"
-msgstr ""
-
 #: PelTag.php:1231
 #, php-format
 msgid "Unknown: 0x%02X"
@@ -1327,6 +875,10 @@ msgstr ""
 msgid "Bits per Sample"
 msgstr ""
 
+#: PelTag.php:1259
+msgid "Compression"
+msgstr ""
+
 #: PelTag.php:1261
 msgid "Photometric Interpretation"
 msgstr ""
@@ -1347,8 +899,16 @@ msgstr ""
 msgid "Manufacturer"
 msgstr ""
 
+#: PelTag.php:1271
+msgid "Model"
+msgstr ""
+
 #: PelTag.php:1273
 msgid "Strip Offsets"
+msgstr ""
+
+#: PelTag.php:1275
+msgid "Orientation"
 msgstr ""
 
 #: PelTag.php:1277
@@ -1383,8 +943,16 @@ msgstr ""
 msgid "Transfer Function"
 msgstr ""
 
+#: PelTag.php:1293
+msgid "Software"
+msgstr ""
+
 #: PelTag.php:1295
 msgid "Date and Time"
+msgstr ""
+
+#: PelTag.php:1297
+msgid "Artist"
 msgstr ""
 
 #: PelTag.php:1299
@@ -1397,6 +965,10 @@ msgstr ""
 
 #: PelTag.php:1303
 msgid "Transfer Range"
+msgstr ""
+
+#: PelTag.php:1305
+msgid "JPEGProc"
 msgstr ""
 
 #: PelTag.php:1307
@@ -1447,8 +1019,20 @@ msgstr ""
 msgid "Battery Level"
 msgstr ""
 
+#: PelTag.php:1331
+msgid "Copyright"
+msgstr ""
+
 #: PelTag.php:1333
 msgid "Exposure Time"
+msgstr ""
+
+#: PelTag.php:1335
+msgid "FNumber"
+msgstr ""
+
+#: PelTag.php:1337
+msgid "IPTC/NAA"
 msgstr ""
 
 #: PelTag.php:1339
@@ -1473,6 +1057,10 @@ msgstr ""
 
 #: PelTag.php:1359
 msgid "ISO Speed Ratings"
+msgstr ""
+
+#: PelTag.php:1361
+msgid "OECF"
 msgstr ""
 
 #: PelTag.php:1363
@@ -1645,6 +1233,18 @@ msgstr ""
 
 #: PelTag.php:1451
 msgid "Gain Control"
+msgstr ""
+
+#: PelTag.php:1453
+msgid "Contrast"
+msgstr ""
+
+#: PelTag.php:1455
+msgid "Saturation"
+msgstr ""
+
+#: PelTag.php:1457
+msgid "Sharpness"
 msgstr ""
 
 #: PelTag.php:1459
