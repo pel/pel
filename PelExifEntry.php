@@ -44,28 +44,35 @@ include_once('PelDataWindow.php');
 include_once('PelExifTag.php');
 /** Class definition of {@link PelExifFormat}. */
 include_once('PelExifFormat.php');
-/** Class definition of {@link PelExifEntryAscii}. */
-include_once('PelExifEntryAscii.php');
-/** Class definition of {@link PelExifEntryShort}. */
-include_once('PelExifEntryShort.php');
-/** Class definition of {@link PelExifEntryLong}. */
-include_once('PelExifEntryLong.php');
-/** Class definition of {@link PelExifEntryRational}. */
-include_once('PelExifEntryRational.php');
-/** Class definition of {@link PelExifEntryUndefined}. */
-include_once('PelExifEntryUndefined.php');
 
 /**
  * @author Martin Geisler <gimpster@users.sourceforge.net>
  * @package PEL
- * @subpackage EXIF
+ * @subpackage Exception
  */
-class PelExifEntryException extends PelException { }
+class PelUnexpectedFormatException extends PelException {
+  function __construct($found, $expected) {
+    parent::__construct('Unexpected format found: %s. Expected %s instead.',
+                        PelExifFormat::getName($found),
+                        PelExifFormat::getName($expected));
+  }
+}
+
 
 /**
- * @todo turn calls to {@link PelExifFormat::getSize} into the right
- * size of the format when it is known in advance.
- *
+ * @author Martin Geisler <gimpster@users.sourceforge.net>
+ * @package PEL
+ * @subpackage Exception
+ */
+class PelWrongComponentCountException extends PelException {
+  function __construct($found, $expected) {
+    parent::__construct('Wrong number of components found: %d. Expected %d.',
+                        $found, $expected);
+  }
+}
+
+
+/**
  * @author Martin Geisler <gimpster@users.sourceforge.net>
  * @package PEL
  * @subpackage EXIF
@@ -102,35 +109,33 @@ abstract class PelExifEntry {
     case PelExifTag::DATE_TIME_ORIGINAL:
     case PelExifTag::DATE_TIME_DIGITIZED:
       if ($format != PelExifFormat::ASCII)
-        throw new PelExifEntryException('Wrong format, found %s, expected %s',
-                                        PelExifFormat::getName($format),
-                                        PelExifFormat::getName(PelExifFormat::ASCII));
+        throw new PelUnexpectedFormatException($format, PelExifFormat::ASCII);
+
       if ($components != 20)
-        throw new PelExifEntryException('Wrong number of components, found %d, ' .
-                                        'expected %d', $components, 20);
-      
-      // println('Making timestamp from "%s"', $data->getBytes(0, -1));
+        throw new PelWrongComponentsCountException($components, 20);
 
       $d = explode('-', strtr($data->getBytes(0, -1), ': ', '--'));
       // TODO: handle timezones.
+      include_once('PelExifEntryAscii.php');
       return new PelExifEntryTime($tag, mktime($d[3], $d[4], $d[5],
                                                $d[1], $d[2], $d[0]));
 
     case PelExifTag::COPYRIGHT:
       if ($format != PelExifFormat::ASCII)
-        throw new PelExifEntryException('Wrong format, found %s, expected %s',
-                                        PelExifFormat::getName($format),
-                                        PelExifFormat::getName(PelExifFormat::ASCII));
+        throw new PelUnexpectedFormatException($format, PelExifFormat::ASCII);
       
       $v = explode("\0", trim($data->getBytes(), ' '));
+      include_once('PelExifEntryAscii.php');
       return new PelExifEntryCopyright($v[0], $v[1]);
 
     case PelExifTag::EXIF_VERSION:
     case PelExifTag::FLASH_PIX_VERSION:
     case PelExifTag::INTEROPERABILITY_VERSION:
+      include_once('PelExifEntryUndefined.php');
       return new PelExifEntryVersion($tag, $data->getBytes() / 100);
 
     case PelExifTag::USER_COMMENT:
+      include_once('PelExifEntryUndefined.php');
       if ($data->getSize() < 8) {
         return new PelExifEntryUserComment();
       } else {
@@ -141,40 +146,75 @@ abstract class PelExifEntry {
     default:
       /* Then handle the formats. */
       switch ($format) {
+      case PelExifFormat::BYTE:
+        include_once('PelExifEntryByte.php');
+        $v =  new PelExifEntryByte($tag);
+        for ($i = 0; $i < $components; $i++)
+          $v->addNumber($data->getByte($i*2));
+        return $v;
+
+      case PelExifFormat::SBYTE:
+        include_once('PelExifEntryByte.php');
+        $v =  new PelExifEntryByte($tag);
+        for ($i = 0; $i < $components; $i++)
+          $v->addNumber($data->getSByte($i*2));
+        return $v;
+
       case PelExifFormat::ASCII:
+        include_once('PelExifEntryAscii.php');
         // TODO: check that $data always has $components bytes so that
         // we can remove the final NULL character like this.
         return new PelExifEntryAscii($tag, $data->getBytes(0, -1));
 
       case PelExifFormat::SHORT:
+        include_once('PelExifEntryShort.php');
         $v =  new PelExifEntryShort($tag);
         for ($i = 0; $i < $components; $i++)
           $v->addNumber($data->getShort($i*2));
         return $v;
 
+      case PelExifFormat::SSHORT:
+        include_once('PelExifEntryShort.php');
+        $v =  new PelExifEntrySShort($tag);
+        for ($i = 0; $i < $components; $i++)
+          $v->addNumber($data->getSShort($i*2));
+        return $v;
+
       case PelExifFormat::LONG:
+        include_once('PelExifEntryLong.php');
         $v =  new PelExifEntryLong($tag);
         for ($i = 0; $i < $components; $i++)
           $v->addNumber($data->getLong($i*4));
         return $v;
 
+      case PelExifFormat::SLONG:
+        include_once('PelExifEntryLong.php');
+        $v =  new PelExifEntrySLong($tag);
+        for ($i = 0; $i < $components; $i++)
+          $v->addNumber($data->getSLong($i*4));
+        return $v;
+
       case PelExifFormat::RATIONAL:
+        include_once('PelExifEntryRational.php');
         $v =  new PelExifEntryRational($tag);
         for ($i = 0; $i < $components; $i++)
           $v->addNumber($data->getRational($i*8));
         return $v;
 
       case PelExifFormat::SRATIONAL:
+        include_once('PelExifEntryRational.php');
         $v =  new PelExifEntrySRational($tag);
         for ($i = 0; $i < $components; $i++)
           $v->addNumber($data->getSRational($i*8));
         return $v;
 
       case PelExifFormat::UNDEFINED:
+        include_once('PelExifEntryUndefined.php');
         return new PelExifEntryUndefined($tag, $data->getBytes());
 
       default:
-        throw new PelException('Unsupported format: %s', PelExifFormat::getName($format));
+        throw new PelException('Unsupported format: %s',
+                               PelExifFormat::getName($format));
       }
     }
   }
