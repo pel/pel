@@ -44,11 +44,11 @@ require_once('PelDataWindow.php');
  * Class representing content in a JPEG file.
  *
  * A JPEG file consists of a sequence of {@link PelJpegSection
- * sections} each of which has an associated {@link PelJpegMarker}
+ * sections} each of which has an associated {@link PelJpegMarker
  * marker} and some content.  This class represents the content, and
  * this basic type is just a simple holder of such content,
- * represented by a {@link PelDataWindow} object.  The {@link
- * PelExifData} class is an example of more specialized JPEG content.
+ * represented by a {@link PelDataWindow} object.  The {@link PelExif}
+ * class is an example of more specialized JPEG content.
  *
  * @author Martin Geisler <gimpster@users.sourceforge.net>
  * @package PEL
@@ -56,17 +56,35 @@ require_once('PelDataWindow.php');
 class PelJpegContent {
   private $data = null;
 
+  /**
+   * Make a new piece of JPEG content.
+   *
+   * @param PelDataWindow the content.
+   */
   function __construct(PelDataWindow $data) {
     $this->data = $data;
   }
 
+  
+  /**
+   * Return the bytes of the content.
+   *
+   * @return string the content.  
+   */
   function getBytes() {
     return $this->data->getBytes();
   }
   
+
+  /**
+   * Return the size of the content.
+   *
+   * @return int the size.  
+   */
   function getSize() {
     return $this->data->getSize();
   }
+
 }
 
 ?>
