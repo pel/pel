@@ -36,9 +36,9 @@
 # http://php-resource.de/scripte/show/5686/
 # http://script.dk/sourcecode.jsp?resourceId=1227
 # http://coding.phpground.net/download-mod-707.html
+# http://www.scripts.com/php/image-manipulation/pel-php-exif-library
 
 # http://phpfreaks.com/ (not yet listed)
-# http://www.scripts.com/ (not yet listed)
 # http://php.resourceindex.com/ (not yet listed)
 
 MAJOR=0
