@@ -97,8 +97,12 @@ please contribute one.  The image should
 * licensed under the GNU GPL as the rest of PEL, so that it can be
   redistributed as part of the test suite.
 
+Submit your test image(s) using the SourceForge Patch Tracker found at
+
+  http://sourceforge.net/tracker/?group_id=108380&atid=650324
+
 All image contributers will be given full credit in the AUTHORS file
-distributed with PEL.
+distributed with PEL and on the PEL homepage at http://pel.sf.net/.
 
 
 Credits
