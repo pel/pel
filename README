@@ -68,6 +68,39 @@ request, or maybe a patch, please use the corresponding tracker:
   http://sourceforge.net/tracker/?group_id=108380
 
 
+Contributing Test Images
+************************
+
+To make PEL as stable as possible, it is tested with images from a
+number of cameras.  Those test images are distributed as part of PEL,
+and can be found in the test/images directory.
+
+If you own a camera model from which there are no test image, then
+please contribute one.  The image should
+
+* contain as much interesting EXIF tags as possible.  The camera
+  should therefore be set to a manual mode, and the settings should be
+  changed from their defaults,
+
+* have as small a file size as possible, so use a resolution of
+  640x480 or less, if possible.  Also, use the poorest image quality
+  (the best compression) to reduce the file size.  It should be
+  possible to get the file size down to around 50--75 KiB.
+
+* should come from the camera unaltered.  Do not resize the image
+  using an image manipulation program, for then it is this program
+  that will be tested, not the camera that took the image,
+
+* be of something neutral --- a flower, a mountain or something like
+  that, and not be a shot from a private party,
+
+* licensed under the GNU GPL as the rest of PEL, so that it can be
+  redistributed as part of the test suite.
+
+All image contributers will be given full credit in the AUTHORS file
+distributed with PEL.
+
+
 Credits
 *******
 
