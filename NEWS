@@ -11,12 +11,19 @@ PEL Version 0.6  (Not released yet.)
 Notes:
 
 The PelJpeg objects can now again be turned into bytes, suitable for
-writing to a file.
+writing to a file.  The example shell scripts have been updated and
+can now be run from any directory.  New images from Nikon models E950,
+E5000, and Coolscan IV have been added to the test suite.
 
 
 Changes:
 
-* The edit-description.php example script has been updated.
+* Added test images from Nikon models E950, E5000 and the film scanner
+  Coolscan IV ED.
+
+* The shell scripts could only be run from the test directory because
+  of the use of relative paths in the require_once() statements.  The
+  scripts can now be run from any directory.
 
 * A stupid bug prevented PelJpeg objects from being turned into bytes.
 
