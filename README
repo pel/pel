@@ -25,6 +25,9 @@ Features
 
 * Extensible object-oriented design.
 
+* Unit-tested with SimpleTest (http://sf.net/projects/simpletest) to
+  prevent regression.
+
 
 Getting Support
 ***************
