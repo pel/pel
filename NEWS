@@ -10,11 +10,18 @@ PEL Version 0.3  ?th May 2004
 
 Notes:
 
-The decoding of EXIF data is now tested against known values (over 400
-individual tests).  This lead to the discovery of a couple of subtle
-bugs.  The documentation has been updated.
+Support was added for parsing TIFF images, leading to a mass renaming
+of files and classes to cleanup the class hierarchy.  The decoding of
+EXIF data is now tested against known values (over 400 individual
+tests).  This lead to the discovery of a couple of subtle bugs.  The
+documentation has been updated.
 
 Changes:
+
+* Renamed all files and classes so that only EXIF specific code is
+  labeled with Exif.  So, for example, PelExifIfd is now PelIfd, since
+  the IFD structure isn't specific to EXIF but rather to TIFF images.
+  The same applies to the former PelExifEntry* classes.
 
 * Fixed offset bug in PelDataWindow::getBytes() which caused the
   method to return too much data.
@@ -27,8 +34,8 @@ Changes:
 * Unit tests for EXIF decoding.  PEL is now tested with an image from
   a Sony DSC V1 and one from a Canon IXUS II.
 
-* Changed all occurances of include_once() to require_once() since the
-  files are required.
+* Changed all occurrences of include_once() to require_once() since
+  the files are required.
 
 * Updated documentation all over.
 

@@ -20,13 +20,14 @@ before version 1.0 is reached.  Go to the PEL development mailinglist
 Features
 ********
 
+* Reads JPEG and TIFF images.
+
 * Supports reading and writing all tags supported by the C libexif
   (http://sf.net/projects/libexif) library.
 
 * Extensible object-oriented design.
 
-* Unit-tested with SimpleTest (http://sf.net/projects/simpletest) to
-  prevent regression.
+* Unit-tested with SimpleTest (http://sf.net/projects/simpletest).
 
 
 Getting Support
