@@ -42,6 +42,7 @@
  * meaning.
  *
  * @package PEL
+ * @subpackage Exception
  */
 class PelException extends Exception {
 

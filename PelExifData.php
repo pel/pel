@@ -54,9 +54,9 @@ include_once('PelExifFormat.php');
  *
  * @author Martin Geisler <gimpster@users.sourceforge.net>
  * @package PEL
- * @subpackage EXIF
+ * @subpackage Exception
  */
-class PelExifDataException extends PelException {}
+class PelExifInvalidDataException extends PelException {}
 
 /**
  * Class representing EXIF data.
@@ -99,7 +99,8 @@ class PelExifData extends PelJpegContent {
     $this->size = $d->getSize();
 
     if ($d->getSize() < 6)
-      throw new PelExifDataException('Not enough data to be valid EXIF data.');
+      throw new PelExifInvalidDataException('Not enough data to be ' .
+                                            'valid EXIF data.');
     
 //     if ($d->strcmp(0, self::EXIF_HEADER)) {
 //       printf ("Found EXIF header.\n");
@@ -125,7 +126,8 @@ class PelExifData extends PelJpegContent {
 //           $size--;
 //           $l = ($d{0} << 8) | $d{1};
 //           if ($l > $size)
-//             throw new PelExifDataException('Invalid length: ' . $l . ' > ' . $size);
+//           throw new PelExifInvalidDataException('Invalid length: %d > %d',
+//                                                 $l, $size);
 //           $d = substr($d, $l);
 //           $size -= $l;
 //           continue;
@@ -137,36 +139,37 @@ class PelExifData extends PelJpegContent {
 //           break;
 //         }        
 //         /* Unknown marker or data. Give up. */
-//         throw new PelExifDataException('EXIF marker not found.');
+//         throw new PelExifInvalidDataException('EXIF marker not found.');
 //     }
     
 //     $d->setWindowStart(1);
 // $d = substr($d, 1);
 //       $size--;
 //       if ($size < 2) {
-//         throw new PelExifDataException('Size too small.');
+//         throw new PelExifInvalidDataException('Size too small.');
 //       }
 //       $len = (ord($d{0}) << 8) | ord($d{1});
 //       printf ("We have to deal with %d bytes of EXIF data.\n", $len);
 //       $d = substr($d, 2);
 //       $size -= 2;
-//       throw new PelExifDataException('EXIF marker not found.');
+//       throw new PelExifInvalidDataException('EXIF marker not found.');
 //     }
 
     /* Verify the EXIF header */
     if ($d->getSize() < 6)
-      throw new PelExifDataException('Not enough data to be valid EXIF data.');
+      throw new PelExifInvalidDataException('Not enough data to be ' .
+                                            'valid EXIF data.');
     
     if ($d->strcmp(0, self::EXIF_HEADER)) {
       //printf ("Found EXIF header.\n");
     } else {
-      throw new PelExifDataException('EXIF header not found.');
+      throw new PelExifInvalidDataException('EXIF header not found.');
     }
     
     /* Byte order */
     // TODO: redundant check?!
     if ($d->getSize() < 12)
-      throw new PelExifDataException('Size too small');
+      throw new PelExifInvalidDataException('Size too small');
 
     if ($d->strcmp(6, 'II')) {
       $d->setByteOrder(PelConvert::LITTLE_ENDIAN);
@@ -177,13 +180,13 @@ class PelExifData extends PelJpegContent {
       $this->order = PelConvert::LITTLE_ENDIAN;
       //printf("Found Motorola byte order\n");
     } else {
-      throw new PelExifDataException('Unknown byte order: 0x%X 0x%X',
-                                  $d->getByte(6), $d->getByte(7));
+      throw new PelExifInvalidDataException('Unknown byte order: 0x%X 0x%X',
+                                            $d->getByte(6), $d->getByte(7));
     }
     
     /* Fixed value */
     if ($d->getShort(8) != self::TIFF_HEADER)
-      throw new PelExifDataException('Wrong fixed value, should TIFF 42?');
+      throw new PelExifInvalidDataException('Missing TIFF magic value.');
 
     /* IFD 0 offset */
     $offset = $d->getLong(10);
