@@ -38,7 +38,7 @@ class SonyDscV1 extends UnitTestCase {
     $jpeg = new PelJpeg($data);
 
     /* The first IFD. */
-    $ifd0 = $jpeg->getSection(2)->getContent()->getIfd();
+    $ifd0 = $jpeg->getSection(2)->getContent()->getTiff()->getIfd();
     $this->assertNotNull($ifd0);
 
     $entry = $ifd0->getEntry(PelTag::IMAGE_DESCRIPTION);
