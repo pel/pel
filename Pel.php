@@ -36,6 +36,16 @@
  */
 
 
+/* Initialse Gettext.  This must be done before any part of PEL calls
+ * Pel::tra() or Pel::fmt() --- this is ensured if every piece of code
+ * using those two functions require() this file.
+ *
+ * The PEL translations are stored in './locale'.  It is important to
+ * use an absolute path here because the lookups will be relative to
+ * the current directory. */
+bindtextdomain('PEL', dirname(__FILE__) . '/locale');
+
+
 /**
  * Class with miscellaneous static methods. 
  *
@@ -91,6 +101,51 @@ class Pel {
       $str = array_shift($args);
       vprintf('Warning: ' . $str . "\n", $args);
     }
+  }
+
+
+  /**
+   * Translate a string.
+   *
+   * This static function will use Gettext to translate a string.  By
+   * always using this function for static string one is assured that
+   * the translation will be taken from the correct text domain.
+   * Dynamic strings should be passed to {@link fmt} instead.
+   *
+   * @param string the string that should be translated.
+   *
+   * @return string the translated string, or the original string if
+   * no translation could be found.
+   */
+  static function tra($str) {
+    return dgettext('PEL', $str);
+  }
+  
+
+  /**
+   * Translate and format a string.
+   *
+   * This static function will first use Gettext to translate a format
+   * string, which will then have access to any extra arguments.  By
+   * always using this function for dynamic string one is assured that
+   * the translation will be taken from the correct text domain.  If
+   * the string is static, use {@link tra} instead as it will be
+   * faster.
+   *
+   * @param string $format the format string.  This will be translated
+   * before being used as a format string.
+   *
+   * @param mixed $args,... any number of arguments can be given.  The
+   * arguments will be available for the format string as usual with
+   * sprintf().
+   *
+   * @return string the translated string, or the original string if
+   * no translation could be found.
+   */
+  static function fmt() {
+    $args = func_get_args();
+    $str = array_shift($args);
+    return vsprintf(dgettext('PEL', $str), $args);
   }
 
 }
