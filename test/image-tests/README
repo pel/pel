@@ -1,6 +1,6 @@
 README file for PEL Test Images.
 
-Copyright (C) 2004  Martin Geisler <gimpster@users.sourceforge.net>
+Copyright (C) 2004, 2005  Martin Geisler.
 Licensed under the GNU GPL, see COPYING for details.
 
 
@@ -18,7 +18,8 @@ unit tests.
 
 To use those files with PEL, simply place this directory (the
 image-tests directory) under the test directory in an unpacked PEL
-source tree.
+source tree.  Then run the test.php script, which will now
+automatically pickup the new tests.
 
 The images can be used by anybody, but may only be redistributed under
 the GNU GPL.  See the file COPYING for the details.
@@ -36,19 +37,18 @@ please contribute one.  The image should
 
 * have as small a file size as possible, so use a resolution of
   640x480 or less, if possible.  Also, use the poorest image quality
-  (the best compression) to reduce the file size.  It should be
-  possible to get the file size down to around 50--75 KiB.
+  (the best compression) to reduce the file size.
 
-* should come from the camera unaltered.  Do not resize the image
-  using an image manipulation program, for then it is this program
-  that will be tested, not the camera that took the image,
+* come from the camera unaltered.  Do not resize the image using an
+  image manipulation program, for then it is this program that will be
+  tested, not the camera that took the image,
 
 * be of something which wont protest to be widely published on the
   net.  Things like a flower, a mountain, or a cat springs to mind,
   whereas pictures from a private party are no good,
 
-* licensed under the GNU GPL as the rest of PEL, so that it can be
-  redistributed as part of the test suite.
+* be licensed under the GNU GPL as the rest of PEL Test Images, so
+  that it can be redistributed with it.
 
 Submit your test image(s) using the SourceForge Patch Tracker found at
 
