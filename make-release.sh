@@ -42,7 +42,7 @@
 # http://php.resourceindex.com/ (not yet listed)
 
 MAJOR=0
-MINOR=3
+MINOR=4
 VERSION=$MAJOR.$MINOR
 
 if test -e pel-$VERSION; then
