@@ -56,7 +56,6 @@ class UndefinedTestCase extends UnitTestCase {
   }
 
   function testVersion() {
-    define('PEL_DEBUG', true);
     $entry = new PelExifEntryVersion();
     $this->assertError('Missing argument 1 for PelExifEntryVersion::__construct()');
 
