@@ -1,0 +1,60 @@
+<refentry id="{@id}">                            <!-- -*- nxml -*- -->
+  <refnamediv>
+    <refname>PHP EXIF Library</refname>
+    <refpurpose>Overview of PEL</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <authorblurb>
+      <para>
+        <author>
+          <firstname>Martin</firstname>
+          <surname>Geisler</surname>
+        </author>
+        {@link mailto:gimpster@users.sourceforge.net
+        gimpster@users.sourceforge.net}
+      </para>
+    </authorblurb>
+  </refsynopsisdiv>
+
+<!--
+    One will find lots of seeminly unnecessary comments in this file,
+    but they are there to keep {@link xxx yyy} constructs on one line.
+    This is necessary because the phpDocumentor 1.3.0RC3 parser
+    apparently cannot handle linebreaks in that construct.
+-->
+
+  <refsect1 id="{@id intro}">
+    <title>What is the PHP EXIF Library?</title>
+
+    <para>The PHP EXIF Library (called PEL for short) is a library
+    written in {@link http://www.php.net/ PHP} which will allow you to
+    manipulate {@link http://www.exif.org/ EXIF} data.  This is the
+    data that digital cameras place in their images, such as the date
+    and time, shutter speed, ISO value and so on.</para>
+
+    <para>PEL makes it easy to parse EXIF data stored in JPEG and TIFF
+    images.  Once an image has been loaded, the data can be changed at
+    will by manipulating the objects representing the data.  The
+    objects can be saved again to produce a valid image.</para>
+
+    <para>This documentation contains:</para>
+    <itemizedlist>
+
+      <listitem>
+        <para>Full details on all classes and methods in PEL.  Begin
+        with {@link PelJpeg}.</para>
+      </listitem>
+
+      <listitem>
+        <para>Instructions on {@tutorial using.pkg}.</para>
+      </listitem>
+
+      <listitem>
+        <para>A list of {@tutorial faq.pkg}.</para>
+      </listitem>
+
+    </itemizedlist>
+
+  </refsect1>
+
+</refentry>

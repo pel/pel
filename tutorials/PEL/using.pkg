@@ -1,0 +1,193 @@
+<refentry id="{@id}">                            <!-- -*- nxml -*- -->
+  <refnamediv>
+    <refname>Using PEL in applications</refname>
+    <refpurpose>Learn how to load, edit, and save images</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <authorblurb>
+      <para>
+        <author>
+          <firstname>Martin</firstname>
+          <surname>Geisler</surname>
+        </author>
+        {@link mailto:gimpster@users.sourceforge.net
+        gimpster@users.sourceforge.net}
+      </para>
+    </authorblurb>
+  </refsynopsisdiv>
+
+  {@toc}
+
+<!--
+    One will find lots of seeminly unnecessary comments in this file,
+    but they are there to keep {@link xxx yyy} constructs on one line.
+    This is necessary because the phpDocumentor 1.3.0RC3 parser
+    apparently cannot handle linebreaks in that construct.
+-->
+
+  <refsect1 id="{@id jpeg}">
+    <title>Loading a JPEG image</title>
+
+    <para>The typical use for PEL is to read and write data from JPEG
+    images.  Such an image is represented in PEL using an object of
+    the <classname>PelJpeg</classname> class.  With the filename of a
+    JPEG image stored in the variable <varname>$filename</varname>,
+    then it is a simple matter of creating a {@link PelJpeg} object,
+    and then load the image:</para>
+
+    <programlisting role="php">
+      <![CDATA[
+$jpeg = new PelJpeg();
+$jpeg->loadFile($filename);
+      ]]>
+    </programlisting>
+
+    <para>If this succeeded without any exceptions being thrown, one
+    can proceed to find the EXIF data itself.  Some knowledge about
+    the structure of a JPEG file is in order: JPEG files consist of a
+    number sections containing {@link PelJpegContent content}
+    identified by a {@link PelJpegMarker marker}.  The EXIF data is
+    normally stored in the {@link PelJpegMarker::APP1 APP1} marker, so
+    using the {@link PelJpeg::getSection()} method like this retrieves
+    the EXIF information:</para>
+
+    <programlisting role="php">
+      <![CDATA[
+$exif = $jpeg->getSection(PelJpegMarker::APP1);
+      ]]>
+    </programlisting>
+
+    <para>The section stored in <varname>$exif</varname> is now a
+    {@link PelExif} object.</para>
+
+    <warning>
+      <para>If the JPEG image does not contain EXIF information, then
+      the <varname>$exif</varname> variable will either be
+      <literal>null</literal> or a generic {@link PelJpegContent}
+      object representing some other kind of data.</para>
+
+      <para>So remember to test the return value, and use
+      <literal>instanceof</literal> for extra safety.</para>
+    </warning>
+
+  </refsect1>
+
+
+  <refsect1 id="{@id tiff}">
+    <title>Obtaining the TIFF data</title>
+
+    <para>The EXIF data is not stored directly in this object, instead
+    it is stored in a {@link PelTiff} object, which can be retrieved
+    using the {@link PelExif::getTiff() getTiff()} method:</para>
+
+    <programlisting role="php">
+      <![CDATA[
+$tiff = $exif->getTiff();
+      ]]>
+    </programlisting>
+
+    <para>This peculiar step is necessary because what one normally
+    thinks of as EXIF data is really just an extension of the TIFF
+    standard.  PEL models this by having the {@link PelExif} object
+    contain a {@link PelTiff} object.</para>
+
+    <para>TIFF data is organized as a chain of Image File Directories
+    (IFDs), each represented by a {@link PelIfd} object.  Each IFD has
+    a number of entries ({@link PelEntry} objects) which one can get
+    hold of using the {@link PelIfd::getEntry() getEntry()}
+    method.</para>
+
+    <para>The first IFD, number zero, will normally contain the <!--
+    --> {@link PelTag::IMAGE_DESCRIPTION IMAGE_DESCRIPTION} tag.  The
+    following code will initialize <varname>$ifd0</varname> with the
+    first IFD, and <varname>$desc</varname> with the
+    description:</para>
+
+    <programlisting role="php">
+      <![CDATA[
+$ifd0 = $tiff->getIfd();
+$desc = $ifd0->getEntry(PelTag::IMAGE_DESCRIPTION);
+      ]]>
+    </programlisting>
+
+    <para>Now <varname>$desc</varname> will contain a <!-- /////// -->
+    {@link PelEntryAscii} object holding the description.  Each entry
+    is represented using an object of a class descendent of <!-- / -->
+    {@link PelEntry}.  There are classes for numbers such as <!-- -->
+    {@link PelEntryShort} for small numbers and {@link PelEntryLong}
+    for big numbers, and more specialized classes, such as <!-- // -->
+    {@link PelEntryVersion} for version numbers, {@link PelEntryTime}
+    for date and time, and so on.</para>
+  
+  </refsect1>
+
+  <refsect1 id="{@id reading}">
+    <title>Reading Values</title>
+
+    <para>The value of any entry can be retrieved by calling the <!--
+    --> {@link PelEntry::getValue() getValue()} method on the object.
+    Doing this on <varname>$desc</varname> will return a string, while
+    doing it on a {@link PelEntryShort} will normally return an
+    integer (see {@link PelEntryNumber::getValue() the documentation}
+    for the full story).  So to echo the description one simply
+    does:</para>
+    
+    <programlisting role="php">
+      <![CDATA[
+echo 'The description: ' . $desc->getValue();
+      ]]>
+    </programlisting>
+    
+  </refsect1>
+
+  <refsect1 id="{@id writing}">
+
+    <title>Writing Values</title>
+
+    <para>Writing new values (changing values) to an entry is just as
+    easy as reading values, one just uses the <!-- /////////////// -->
+    {@link PelEntry::setValue() setValue()} method on the entry in
+    question.</para>
+
+    <para>Continuing on our example from before where
+    <varname>$desc</varname> contains a {@link PelEntryAscii} object
+    with the description for the image, one changes the description
+    with:</para>
+
+    <programlisting role="php">
+      <![CDATA[
+$desc->setValue('The new description.');
+      ]]>
+    </programlisting>
+
+    <para>The object is now updated and is ready to be turned back
+    into bytes, so that the image can be saved with the new, updated
+    description.</para>
+
+  </refsect1>
+
+  <refsect1 id="{@id saving}">
+
+    <title>Saving an Image</title>
+
+    <para>After having changed an image, one would probably want to
+    save it to keep the changes.</para>
+
+    <para>{@link PelJpeg} objects (and {@link PelTiff} objects) can be
+    turned back into bytes with the {@link PelJpeg::getBytes()
+    getBytes} method.  This will turn the object and all the objects
+    within it into bytes, which can then be saved in a file to produce
+    a JPEG image.</para>
+
+    <para>With the image loaded into <varname>$jpeg</varname> it is a
+    simple matter to write the new JPEG file:</para>
+
+    <programlisting role="php">
+      <![CDATA[
+file_put_contents('new-' . $filename, $jpeg->getBytes());
+      ]]>
+    </programlisting>
+
+  </refsect1>
+
+</refentry>
