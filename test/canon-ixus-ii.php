@@ -34,8 +34,8 @@ class CanonIxusII extends UnitTestCase {
   function testRead() {
     //define('PEL_DEBUG', true);
 
-    $data = new PelDataWindow(file_get_contents('images/canon-ixus-ii.jpg'));
-    $jpeg = new PelJpeg($data);
+    $jpeg = new PelJpeg();
+    $jpeg->loadFile('images/canon-ixus-ii.jpg');
 
     /* The first IFD. */
     $app1 = $jpeg->getSection(PelJpegMarker::APP1);
@@ -74,8 +74,8 @@ class CanonIxusII extends UnitTestCase {
 
     $entry = $ifd0->getEntry(PelTag::DATE_TIME);
     $this->assertIsA($entry, 'PelEntryTime');
-    $this->assertEqual($entry->getValue(), gmmktime(17, 43, 48, 7, 10, 2004));
-    $this->assertEqual($entry->getText(), '2004:07:10 17:43:48');
+    $this->assertEqual($entry->getValue(), gmmktime(19, 43, 48, 7, 10, 2004));
+    $this->assertEqual($entry->getText(), '2004:07:10 19:43:48');
  
     $entry = $ifd0->getEntry(PelTag::YCBCR_POSITIONING);
     $this->assertIsA($entry, 'PelEntryShort');
@@ -104,13 +104,13 @@ class CanonIxusII extends UnitTestCase {
 
     $entry = $exif->getEntry(PelTag::DATE_TIME_ORIGINAL);
     $this->assertIsA($entry, 'PelEntryTime');
-    $this->assertEqual($entry->getValue(), gmmktime(17, 43, 48, 7, 10, 2004));
-    $this->assertEqual($entry->getText(), '2004:07:10 17:43:48');
+    $this->assertEqual($entry->getValue(), gmmktime(19, 43, 48, 7, 10, 2004));
+    $this->assertEqual($entry->getText(), '2004:07:10 19:43:48');
  
     $entry = $exif->getEntry(PelTag::DATE_TIME_DIGITIZED);
     $this->assertIsA($entry, 'PelEntryTime');
-    $this->assertEqual($entry->getValue(), gmmktime(17, 43, 48, 7, 10, 2004));
-    $this->assertEqual($entry->getText(), '2004:07:10 17:43:48');
+    $this->assertEqual($entry->getValue(), gmmktime(19, 43, 48, 7, 10, 2004));
+    $this->assertEqual($entry->getText(), '2004:07:10 19:43:48');
  
     $entry = $exif->getEntry(PelTag::COMPONENTS_CONFIGURATION);
     $this->assertIsA($entry, 'PelEntryUndefined');

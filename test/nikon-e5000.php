@@ -34,8 +34,8 @@ class NikonE5000 extends UnitTestCase {
   function testRead() {
     //define('PEL_DEBUG', true);
 
-    $data = new PelDataWindow(file_get_contents('images/nikon-e5000.jpg'));
-    $jpeg = new PelJpeg($data);
+    $jpeg = new PelJpeg();
+    $jpeg->loadFile('images/nikon-e5000.jpg');
 
     /* The first IFD. */
     $app1 = $jpeg->getSection(PelJpegMarker::APP1);
@@ -79,8 +79,8 @@ class NikonE5000 extends UnitTestCase {
 
     $entry = $ifd0->getEntry(PelTag::DATE_TIME);
     $this->assertIsA($entry, 'PelEntryTime');
-    $this->assertEqual($entry->getValue(), gmmktime(12, 53, 52, 5, 21, 2002));
-    $this->assertEqual($entry->getText(), '2002:05:21 12:53:52');
+    $this->assertEqual($entry->getValue(), gmmktime(14, 53, 52, 5, 21, 2002));
+    $this->assertEqual($entry->getText(), '2002:05:21 14:53:52');
     
     $entry = $ifd0->getEntry(PelTag::YCBCR_POSITIONING);
     $this->assertIsA($entry, 'PelEntryShort');
@@ -119,13 +119,13 @@ class NikonE5000 extends UnitTestCase {
 
     $entry = $exif->getEntry(PelTag::DATE_TIME_ORIGINAL);
     $this->assertIsA($entry, 'PelEntryTime');
-    $this->assertEqual($entry->getValue(), gmmktime(12, 53, 52, 5, 21, 2002));
-    $this->assertEqual($entry->getText(), '2002:05:21 12:53:52');
+    $this->assertEqual($entry->getValue(), gmmktime(14, 53, 52, 5, 21, 2002));
+    $this->assertEqual($entry->getText(), '2002:05:21 14:53:52');
     
     $entry = $exif->getEntry(PelTag::DATE_TIME_DIGITIZED);
     $this->assertIsA($entry, 'PelEntryTime');
-    $this->assertEqual($entry->getValue(), gmmktime(12, 53, 52, 5, 21, 2002));
-    $this->assertEqual($entry->getText(), '2002:05:21 12:53:52');
+    $this->assertEqual($entry->getValue(), gmmktime(14, 53, 52, 5, 21, 2002));
+    $this->assertEqual($entry->getText(), '2002:05:21 14:53:52');
     
     $entry = $exif->getEntry(PelTag::COMPONENTS_CONFIGURATION);
     $this->assertIsA($entry, 'PelEntryUndefined');

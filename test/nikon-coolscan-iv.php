@@ -34,8 +34,8 @@ class NikonCoolscanIV extends UnitTestCase {
   function testRead() {
     //define('PEL_DEBUG', true);
 
-    $data = new PelDataWindow(file_get_contents('images/nikon-coolscan-iv.jpg'));
-    $jpeg = new PelJpeg($data);
+    $jpeg = new PelJpeg();
+    $jpeg->loadFile('images/nikon-coolscan-iv.jpg');
 
     /* The first IFD. */
     $app1 = $jpeg->getSection(PelJpegMarker::APP1);
@@ -64,8 +64,8 @@ class NikonCoolscanIV extends UnitTestCase {
 
     $entry = $ifd0->getEntry(PelTag::DATE_TIME);
     $this->assertIsA($entry, 'PelEntryTime');
-    $this->assertEqual($entry->getValue(), gmmktime(22, 24, 35, 7, 16, 2004));
-    $this->assertEqual($entry->getText(), '2004:07:16 22:24:35');
+    $this->assertEqual($entry->getValue(), gmmktime(0, 24, 35, 7, 17, 2004));
+    $this->assertEqual($entry->getText(), '2004:07:17 00:24:35');
     
     $entry = $ifd0->getEntry(PelTag::YCBCR_POSITIONING);
     $this->assertIsA($entry, 'PelEntryShort');

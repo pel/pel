@@ -32,10 +32,10 @@ class SonyDscV1 extends UnitTestCase {
   }
 
   function testRead() {
-    //define('PEL_DEBUG', true);
+    //Pel::$debug = true;
 
-    $data = new PelDataWindow(file_get_contents('images/sony-dsc-v1.jpg'));
-    $jpeg = new PelJpeg($data);
+    $jpeg = new PelJpeg();
+    $jpeg->loadFile('images/sony-dsc-v1.jpg');
 
     /* The first IFD. */
     $app1 = $jpeg->getSection(PelJpegMarker::APP1);
@@ -79,8 +79,8 @@ class SonyDscV1 extends UnitTestCase {
 
     $entry = $ifd0->getEntry(PelTag::DATE_TIME);
     $this->assertIsA($entry, 'PelEntryTime');
-    $this->assertEqual($entry->getValue(), gmmktime(16, 9, 53, 7, 10, 2004));
-    $this->assertEqual($entry->getText(), '2004:07:10 16:09:53');
+    $this->assertEqual($entry->getValue(), gmmktime(18, 9, 53, 7, 10, 2004));
+    $this->assertEqual($entry->getText(), '2004:07:10 18:09:53');
     
     $entry = $ifd0->getEntry(PelTag::YCBCR_POSITIONING);
     $this->assertIsA($entry, 'PelEntryShort');
@@ -122,13 +122,13 @@ class SonyDscV1 extends UnitTestCase {
 
     $entry = $exif->getEntry(PelTag::DATE_TIME_ORIGINAL);
     $this->assertIsA($entry, 'PelEntryTime');
-    $this->assertEqual($entry->getValue(), gmmktime(16, 9, 53, 7, 10, 2004));
-    $this->assertEqual($entry->getText(), '2004:07:10 16:09:53');
+    $this->assertEqual($entry->getValue(), gmmktime(18, 9, 53, 7, 10, 2004));
+    $this->assertEqual($entry->getText(), '2004:07:10 18:09:53');
     
     $entry = $exif->getEntry(PelTag::DATE_TIME_DIGITIZED);
     $this->assertIsA($entry, 'PelEntryTime');
-    $this->assertEqual($entry->getValue(), gmmktime(16, 9, 53, 7, 10, 2004));
-    $this->assertEqual($entry->getText(), '2004:07:10 16:09:53');
+    $this->assertEqual($entry->getValue(), gmmktime(18, 9, 53, 7, 10, 2004));
+    $this->assertEqual($entry->getText(), '2004:07:10 18:09:53');
     
     $entry = $exif->getEntry(PelTag::COMPONENTS_CONFIGURATION);
     $this->assertIsA($entry, 'PelEntryUndefined');
@@ -282,8 +282,8 @@ class SonyDscV1 extends UnitTestCase {
 
     $entry = $ifd1->getEntry(PelTag::DATE_TIME);
     $this->assertIsA($entry, 'PelEntryTime');
-    $this->assertEqual($entry->getValue(), gmmktime(16, 9, 53, 7, 10, 2004));
-    $this->assertEqual($entry->getText(), '2004:07:10 16:09:53');
+    $this->assertEqual($entry->getValue(), gmmktime(18, 9, 53, 7, 10, 2004));
+    $this->assertEqual($entry->getText(), '2004:07:10 18:09:53');
     
     $thumb = $ifd1->getThumbnailData();
     $this->assertEqual($thumb,
