@@ -514,25 +514,17 @@ class PelEntryShort extends PelEntryNumber {
     case PelTag::SUBJECT_AREA:
       switch ($this->components) {
       case 2:
-        return sprintf('(x,y) = (%d,%d)',
-                       $this->value[0],
-                       $this->value[1]);
-        
+        return Pel::fmt('(x,y) = (%d,%d)', $this->value[0], $this->value[1]);
       case 3:
-        return sprintf('Within distance %d of (x,y) = (%d,%d)',
-                       $this->value[0],
-                       $this->value[1],
-                       $this->value[2]);
-
+        return Pel::fmt('Within distance %d of (x,y) = (%d,%d)',
+                        $this->value[0], $this->value[1], $this->value[2]);
       case 4:
-        return sprintf('Within rectangle (width %d, height %d) around (x,y) = (%d,%d)',
-                       $this->value[0],
-                       $this->value[1],
-                       $this->value[2],
-                       $this->value[3]);
+        return Pel::fmt('Within rectangle (width %d, height %d) around (x,y) = (%d,%d)',
+                        $this->value[0], $this->value[1],
+                        $this->value[2], $this->value[3]);
         
       default:
-        return sprintf('Unexpected number of components (%d, expected 2, 3, or 4).', $this->components);
+        return Pel::fmt('Unexpected number of components (%d, expected 2, 3, or 4).', $this->components);
       }
 
     default:
