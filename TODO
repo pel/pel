@@ -12,12 +12,6 @@ In addition to the following list, then the source contains a number
 of comments beginning with 'TODO' which marks extra places where
 attention is needed.
 
-* Make it possible to construct new EXIF data.
-   The class constructors have to be changed to accept only the most
-   necessary arguments, and not a PelDataWindow object as today.  The
-   classes then need new addXXX methods that one would call to add
-   sections, entries, or whatever.
-
 * Add convenience functions.
    It would be nice to have functions that could give you a particular
    entry or the embedded thumbnail with just one function call.
