@@ -5,6 +5,28 @@ Copyright (C) 2004  Martin Geisler <gimpster@users.sourceforge.net>
 Licensed under the GNU GPL, see COPYING for details.
 
 
+PEL Version 0.8  (not yet released)
+***********************************
+
+Notes:
+
+A small bug was fixed in an example.  New test images were added from
+Leica D-LUX, Olympos C50Z and C765 cameras.  Code and documentation
+cleanup.
+
+Changes:
+
+* Fixed the edit-description.php example, it still used PelEntryString
+  instead of PelEntryAscii.  Thanks goes to Achim Gerber.
+
+* Fixed the throwing of a PelWrongComponentCountException in PelEntry,
+  the class name was misspelled.
+
+* Added abstract getValue() and setValue() methods to PelEntry, to
+  better describe that all objects representing EXIF entries have
+  those two methods.
+
+
 PEL Version 0.7  October 10th 2004
 **********************************
 
