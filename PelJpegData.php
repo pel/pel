@@ -43,12 +43,20 @@ include_once('PelJpegSection.php');
 /** Class definition of {@link PelExifData}. */
 include_once('PelExifData.php');
 
+include_once('Pel.php');
+
 /**
  * @author Martin Geisler <gimpster@users.sourceforge.net>
  * @package PEL
- * @subpackage JPEG
+ * @subpackage Exception
  */
-class PelJpegDataException extends PelException {}
+class PelJpegInvalidMarkerException extends PelException {
+
+  function __construct($marker, $offset) {
+    parent::__construct('Invalid marker found at offset %d: 0x%2X',
+                        $offset, $marker);
+  }
+}
 
 /**
  * @author Martin Geisler <gimpster@users.sourceforge.net>
@@ -64,9 +72,13 @@ class PelJpegData {
   private $jpeg_data = null;
 
 
+  /**
+   * @todo Make the constructor take a plain string with bytes instead
+   * of requiring the {@link PelDataWindow} object?
+   */
   function __construct(PelDataWindow $d) {
 
-    //println('Parsing ' . $d->getSize() . ' bytes...');
+    Pel::debug('Parsing %d bytes...', $d->getSize());
 
     /* JPEG data is stored in little-endian format. */
     $d->setByteOrder(PelConvert::BIG_ENDIAN);
@@ -86,11 +98,10 @@ class PelJpegData {
       $marker = $d->getByte($i);
 
       if (!PelJpegMarker::isValidMarker($marker))
-        throw new PelJpegDataException('Invalid marker: 0x%02X at offset %d',
-                                    $marker, $i);
+        throw new PelJpegInvalidMarkerException($marker, $i);
 
-//       println('Found marker 0x%X %s offset %d',
-//               $marker, PelJpegMarker::getName($marker), $i);
+      Pel::debug('Found marker 0x%X %-4s offset %d',
+                 $marker, PelJpegMarker::getName($marker), $i);
 
       /* Move window so first byte becomes first byte in this
        * section. */
@@ -99,13 +110,14 @@ class PelJpegData {
       if ($marker == PelJpegMarker::SOI || $marker == PelJpegMarker::EOI) {
         $content = new PelJpegContent(new PelDataWindow());
         $section = new PelJpegSection($marker, $content);
-        self::appendSection($section);
+        $this->appendSection($section);
       } else {
         /* Read the length of the section.  The length includes the
          * two bytes used to store the length. */
         $len = $d->getShort(0) - 2;
-
-        // println('Found %s section of length %d', PelJpegMarker::getName($marker), $len);
+        
+        Pel::debug('Found %s section of length %d',
+                   PelJpegMarker::getName($marker), $len);
 
         /* Skip past the length. */
         $d->setWindowStart(2);
@@ -113,16 +125,16 @@ class PelJpegData {
         if ($marker == PelJpegMarker::APP1) {
           $content = new PelExifData($d->getClone(0, $len));
           $section = new PelJpegSection($marker, $content);
-          self::appendSection($section);
+          $this->appendSection($section);
         } else {
           $content = new PelJpegContent($d->getClone(0, $len));
           $section = new PelJpegSection($marker, $content);
-          self::appendSection($section);
+          $this->appendSection($section);
           
           /* In case of SOS, image data will follow. */
           if ($marker == PelJpegMarker::SOS) {
             $this->jpeg_data = $d->getClone($len, -2);
-            //println('JPEG data: ' . $this->jpeg_data->__toString());
+            Pel::debug('JPEG data: ' . $this->jpeg_data->__toString());
 
             /* Skip past the JPEG data. */
             $d->setWindowStart($this->jpeg_data->getSize());
