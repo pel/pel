@@ -47,6 +47,7 @@ include_once('PelException.php');
 /** Class definition of {@link PelExifEntry}. */
 include_once('PelExifEntry.php');
 
+include_once('Pel.php');
 
 /**
  * Class for holding data of any kind.
@@ -74,7 +75,7 @@ class PelExifEntryUndefined extends PelExifEntry {
   function __construct($tag, $data = '') {
     $this->tag        = $tag;
     $this->format     = PelExifFormat::UNDEFINED;
-    $this->setUndefined($data);
+    self::setValue($data);
   }
 
 
@@ -83,13 +84,20 @@ class PelExifEntryUndefined extends PelExifEntry {
    *
    * @param string the data that this entry will be holding.  Since
    * the format is undefined, no checking will be done on the data.
-   *
-   * @todo find a better name... maybe figure out a way to have all
-   * setters named setValue?
    */
-  function setUndefined($data) {
+  function setValue($data) {
     $this->components = strlen($data);
     $this->bytes      = $data;
+  }
+
+
+  /**
+   * Get the data of this undefined entry.
+   *
+   * @return string the data that this entry is holding.
+   */
+  function getValue() {
+    return $this->bytes;
   }
 
 
@@ -150,7 +158,7 @@ class PelExifEntryUndefined extends PelExifEntry {
 
     case PelExifTag::MAKER_NOTE:
       // TODO: handle maker notes.
-      return $this->components . ' bytes unknown data';
+      return $this->components . ' bytes unknown MakerNote data';
 
     default:
       return '(undefined)';
@@ -169,11 +177,11 @@ class PelExifEntryUndefined extends PelExifEntry {
  * tag}, and this class will make sure that the format is kept.
  *
  * The most basic use of this class simply stores an ASCII encoded
- * string for later retrieval using {@link getComment}:
+ * string for later retrieval using {@link getValue}:
  *
  * <code>
  * $entry = new PelExifEntryUserComment('An ASCII string');
- * echo $entry->getComment();
+ * echo $entry->getValue();
  * </code>
  *
  * The string can be encoded with a different encoding, and if so, the
@@ -181,8 +189,8 @@ class PelExifEntryUndefined extends PelExifEntry {
  * standard specifies three known encodings: 'ASCII', 'JIS', and
  * 'Unicode'.  If the user comment is encoded using a character
  * encoding different from the tree known encodings, then the empty
- * string should be passed as encoding, thereby making the encoding
- * undefined.
+ * string should be passed as encoding, thereby specifying that the
+ * encoding is undefined.
  *
  * @author Martin Geisler <gimpster@users.sourceforge.net>
  * @package PEL
@@ -204,6 +212,7 @@ class PelExifEntryUserComment extends PelExifEntryUndefined {
    *
    * @var string
    */
+  private $encoding;
 
   /**
    * Make a new entry for holding a user comment.
@@ -216,7 +225,7 @@ class PelExifEntryUserComment extends PelExifEntryUndefined {
    */
   function __construct($comment = '', $encoding = 'ASCII') {
     parent::__construct(PelExifTag::USER_COMMENT);
-    $this->setComment($comment, $encoding);
+    self::setValue($comment, $encoding);
   }
 
   
@@ -229,10 +238,10 @@ class PelExifEntryUserComment extends PelExifEntryUndefined {
    * 'ASCII', 'JIS', 'Unicode', or the empty string specifying an
    * unknown encoding.
    */
-  function setComment($comment = '', $encoding = 'ASCII') {
+  function setValue($comment = '', $encoding = 'ASCII') {
     $this->comment  = $comment;
     $this->encoding = $encoding;
-    $this->setUndefined(str_pad($encoding, 8, chr(0)) . $comment);
+    parent::setValue(str_pad($encoding, 8, chr(0)) . $comment);
   }
 
 
@@ -240,12 +249,12 @@ class PelExifEntryUserComment extends PelExifEntryUndefined {
    * Returns the user comment.
    *
    * The comment is returned with the same character encoding as when
-   * it was set using {@link setComment} or {@link __construct the
+   * it was set using {@link setValue} or {@link __construct the
    * constructor}.
    *
    * @return string the user comment.
    */
-  function getComment() {
+  function getValue() {
     return $this->comment;
   }
 
@@ -290,7 +299,7 @@ class PelExifEntryUserComment extends PelExifEntryUndefined {
  * entry:
  * <code>
  * if ($entry->getTag() == PelExifTag::EXIF_VERSION &&
- *     $entry->getVersion() > 2.0) {
+ *     $entry->getValue() > 2.0) {
  *   echo 'Recent EXIF version.';
  * }
  * </code>
@@ -322,7 +331,7 @@ class PelExifEntryVersion extends PelExifEntryUndefined {
    */
   function __construct($tag, $version = 0.0) {
     parent::__construct($tag);
-    $this->setVersion($version);
+    $this->setValue($version);
   }
 
 
@@ -333,11 +342,11 @@ class PelExifEntryVersion extends PelExifEntryUndefined {
    * exactly four digits: two digits on either side of the decimal
    * point.
    */
-  function setVersion($version = 0.0) {
+  function setValue($version = 0.0) {
     $this->version = $version;
     $major = floor($version);
     $minor = ($version - $major)*100;
-    $this->setUndefined(sprintf('%02d%02d', $major, $minor));
+    parent::setValue(sprintf('%02.0f%02.0f', $major, $minor));
   }
 
 
@@ -345,10 +354,10 @@ class PelExifEntryVersion extends PelExifEntryUndefined {
    * Return the version held by this entry.
    *
    * @return float the version.  This will be the same as the value
-   * given to {@link setVersion} or {@link __construct the
+   * given to {@link setValue} or {@link __construct the
    * constructor}.
    */
-  function getVersion() {
+  function getValue() {
     return $this->version;
   }
 
