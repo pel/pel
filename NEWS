@@ -12,6 +12,9 @@ Notes:
 
 Changes:
 
+* Changed all occurances of include_once() to require_once() since the
+  files are required.
+
 
 PEL Version 0.2  16th May 2004
 ******************************
