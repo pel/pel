@@ -35,6 +35,7 @@ require_once(SIMPLE_TEST . 'reporter.php');
 
 $test = new GroupTest('All PEL tests');
 $test->addTestFile('data-window.php');
+$test->addTestFile('convert.php');
 $test->addTestFile('ascii.php');
 $test->addTestFile('number.php');
 $test->addTestFile('undefined.php');
