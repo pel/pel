@@ -26,9 +26,12 @@
 
 error_reporting(E_ALL);
 
+/* Make PEL speak the users language, if it is available. */
+setlocale(LC_ALL, '');
+
 if ($argc < 2) {
-  print('Usage: ' . $argv[0] . " <filename>\n");
-  print("The <filename> should be a JPEG or TIFF image.\n");
+  printf("Usage: %s <filename>\n", $argv[0]);
+  print("The <filename> should point to a JPEG or TIFF image.\n");
   exit(1);
 }
 
@@ -47,7 +50,7 @@ if (PelJpeg::isValid($data)) {
 } elseif (PelTiff::isValid($data)) {
   print(new PelTiff($data));
 } else {
-  print("Unrecognized image format! First 16 bytes:\n");
+  print("Unrecognized image format! The first 16 bytes follow:\n");
   PelConvert::bytesToDump($data->getBytes(0, 16)); 
 }
 
