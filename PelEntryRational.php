@@ -120,30 +120,30 @@ class PelEntryRational extends PelEntryLong {
     switch ($this->tag) {
     case PelTag::FNUMBER:
       //CC (e->components, 1, v);
-      return sprintf('f/%.01f', $v[0]/$v[1]);
+      return Pel::fmt('f/%.01f', $v[0]/$v[1]);
 
     case PelTag::APERTURE_VALUE:
       //CC (e->components, 1, v);
       //if (!v_rat.denominator) return (NULL);
-      return sprintf('f/%.01f', pow(2, $v[0]/$v[1]/2));
+      return Pel::fmt('f/%.01f', pow(2, $v[0]/$v[1]/2));
 
     case PelTag::FOCAL_LENGTH:
       //CC (e->components, 1, v);
       //if (!v_rat.denominator) return (NULL);
-      return sprintf('%.1f mm', $v[0]/$v[1]);
+      return Pel::fmt('%.1f mm', $v[0]/$v[1]);
       
     case PelTag::SUBJECT_DISTANCE:
       //CC (e->components, 1, v);
       //if (!v_rat.denominator) return (NULL);
-      return sprintf('%.1f m', $v[0]/$v[1]);
+      return Pel::fmt('%.1f m', $v[0]/$v[1]);
 
     case PelTag::EXPOSURE_TIME:
       //CC (e->components, 1, v);
       //if (!v_rat.denominator) return (NULL);
       if ($v[0]/$v[1] < 1)
-        return sprintf('1/%d sec.', $v[1]/$v[0]);
+        return Pel::fmt('1/%d sec.', $v[1]/$v[0]);
       else
-        return sprintf('%d sec.', $v[0]/$v[1]);
+        return Pel::fmt('%d sec.', $v[0]/$v[1]);
       
     default:
       return parent::getText($brief);
@@ -227,8 +227,8 @@ class PelEntrySRational extends PelEntrySLong {
     case PelTag::SHUTTER_SPEED_VALUE:
       //CC (e->components, 1, v);
       //if (!v_srat.denominator) return (NULL);
-      return sprintf('%.0f/%.0f sec. (APEX: %d)',
-                     $v[0], $v[1], pow(sqrt(2), $v[0]/$v[1]));
+      return Pel::fmt('%.0f/%.0f sec. (APEX: %d)',
+                      $v[0], $v[1], pow(sqrt(2), $v[0]/$v[1]));
 
     case PelTag::BRIGHTNESS_VALUE:
       //CC (e->components, 1, v);
