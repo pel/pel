@@ -40,14 +40,14 @@
 require_once('PelException.php');
 /** Class definition of {@link PelJpegContent}. */
 require_once('PelJpegContent.php');
-/** Class definition of {@link PelExifIfd}. */
-require_once('PelExifIfd.php');
-/** Class definition of {@link PelExifTag}. */
-require_once('PelExifTag.php');
-/** Class definition of {@link PelExifEntry}. */
-require_once('PelExifEntry.php');
-/** Class definition of {@link PelExifFormat}. */
-require_once('PelExifFormat.php');
+/** Class definition of {@link PelIfd}. */
+require_once('PelIfd.php');
+/** Class definition of {@link PelTag}. */
+require_once('PelTag.php');
+/** Class definition of {@link PelEntry}. */
+require_once('PelEntry.php');
+/** Class definition of {@link PelFormat}. */
+require_once('PelFormat.php');
 
 /**
  * Exception throw if invalid EXIF data is found.
@@ -61,7 +61,7 @@ class PelExifInvalidDataException extends PelException {}
 /**
  * Class representing EXIF data.
  *
- * EXIF data resides as {@link PelJpegData data} in a {@link
+ * EXIF data resides as {@link PelJpeg data} in a {@link
  * PelJpegSection JPEG section} and consists of a header followed by a
  * number of {@link PelJpegIfd IFDs}.
  *
@@ -87,7 +87,7 @@ class PelExifData extends PelJpegContent {
    */
   const TIFF_HEADER = 0x002A;
 
-  /* The first PelExifIfd, if any */
+  /* The first PelIfd, if any */
   private $ifd = null;
   private $size = 0;
 
@@ -196,7 +196,7 @@ class PelExifData extends PelJpegContent {
      * offsets to other Ifds. */
     /* The offset counts from the beginning of the TIFF header, which
      * itself starts with the 'II' or 'MM' at byte 6. */
-    $this->ifd = new PelExifIfd($d->getClone(6), $offset);
+    $this->ifd = new PelIfd($d->getClone(6), $offset);
   }
 
   function getSize() {
