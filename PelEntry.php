@@ -87,21 +87,50 @@ abstract class PelEntry {
    * Subclasses must either override {@link getBytes()} or, if
    * possible, maintain this property so that it always contains a
    * true representation of the entry.
+   *
+   * @var string
    */
   protected $bytes = '';
+
+  /**
+   * The {@link PelTag} of this entry.
+   *
+   * @var PelTag
+   */
   protected $tag;
+
+  /**
+   * The {@link PelFormat} of this entry.
+   *
+   * @var PelFormat
+   */
   protected $format;
+
+  /**
+   * The number of components of this entry.
+   *
+   * @var int
+   */
   protected $components;
 
-  /*
-  function __construct($tag, $format, $components, $bytes) {
-    $this->tag        = $tag;
-    $this->format     = $format;
-    $this->components = $components;
-    $this->bytes      = $bytes;
-  }
-  */
 
+  /**
+   * Make a new entry from a bunch of bytes.
+   *
+   * This method will create the proper subclass of {@link PelEntry}
+   * corresponding to the {@link PelTag} and {@link PelFormat} given.
+   *
+   * @param PelTag the tag of the entry.
+   *
+   * @param PelFormat the format of the entry.
+   *
+   * @param int the components in the entry.
+   *
+   * @param PelDataWindow the data which will be used to construct the
+   * entry.
+   *
+   * @return PelEntry a newly created entry, holding the data given.
+   */
   static function newFromData($tag, $format, $components, $data) {
 
     /* First handle tags for which we have a speficic PelEntryXXX
@@ -221,22 +250,41 @@ abstract class PelEntry {
     }
   }
 
+
+  /**
+   * Return the tag of this entry.
+   *
+   * @return PelTag the tag of this entry.
+   */
   function getTag() {
     return $this->tag;
   }
 
+
+  /**
+   * Return the format of this entry.
+   *
+   * @return PelFormat the format of this entry.
+   */
   function getFormat() {
     return $this->format;
   }
 
+
+  /**
+   * Return the number of components of this entry.
+   *
+   * @return int the number of components of this entry.
+   */
   function getComponents() {
     return $this->components;
   }
 
+
   /**
    * Turn this entry into bytes.
    *
-   * @param boolean the desired byte order, which must be either
+   * @param PelByteOrder the desired byte order, which must be either
    * {@link Convert::LITTLE_ENDIAN} or {@link Convert::BIG_ENDIAN}.
    *
    * @return string bytes representing this entry.
@@ -260,6 +308,13 @@ abstract class PelEntry {
    */
   abstract function getText($brief = false);
 
+
+  /**
+   * Turn this entry into a string.
+   *
+   * @return string a string representation of this entry.  This is
+   * mostly for debugging.
+   */
   function __toString() {
     $str = sprintf("  Tag: 0x%04X ('%s')\n",
                    $this->tag, PelTag::getName($this->tag));

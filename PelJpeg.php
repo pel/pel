@@ -39,18 +39,15 @@
  * @package PEL
  */
 
-/** Class definition of {@link PelException}. */
-require_once('PelException.php');
-/** Class definition of {@link PelJpegMarker}. */
-require_once('PelJpegMarker.php');
-/** Class definition of {@link PelJpegContent}. */
+/**#@+ Required class definitions. */
 require_once('PelJpegContent.php');
-/** Class definition of {@link PelJpegSection}. */
+require_once('PelJpegMarker.php');
 require_once('PelJpegSection.php');
-/** Class definition of {@link PelExif}. */
+require_once('PelException.php');
 require_once('PelExif.php');
-
 require_once('Pel.php');
+/**#@-*/
+
 
 /**
  * @author Martin Geisler <gimpster@users.sourceforge.net>
@@ -66,6 +63,8 @@ class PelJpegInvalidMarkerException extends PelException {
 }
 
 /**
+ * Class for handling JPEG data.
+ *
  * @author Martin Geisler <gimpster@users.sourceforge.net>
  * @package PEL
  */

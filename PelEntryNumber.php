@@ -35,10 +35,10 @@
  * @package PEL
  */
 
-/** Class definition of {@link PelException}. */
+/**#@+ Required class definitions. */
 require_once('PelException.php');
-/** Class definition of {@link PelEntry}. */
 require_once('PelEntry.php');
+/**#@-*/
 
 
 /**
@@ -73,9 +73,34 @@ abstract class PelEntryNumber extends PelEntry {
    */
   protected $value = array();
 
+  /**
+   * The minimum allowed value.
+   *
+   * Any attempt to change the value below this variable will result
+   * in a {@link PelOverflowException} being thrown.
+   *
+   * @var int
+   */
   protected $min;
-  protected $max;
 
+  /**
+   * The maxumum allowed value.
+   *
+   * Any attempt to change the value over this variable will result in
+   * a {@link PelOverflowException} being thrown.
+   *
+   * @var int
+   */
+  protected $max;
+  
+  /**
+   * The dimension of the number held.
+   *
+   * Normal numbers have a dimension of one, pairs have a dimension of
+   * two, etc.
+   *
+   * @var int
+   */
   protected $dimension = 1;
 
 
@@ -84,17 +109,18 @@ abstract class PelEntryNumber extends PelEntry {
    *
    * This method can change both the number of components and the
    * value of the components.  Range checks will be made on the new
-   * value, and a {@link PelEntryOverflowException} will be thrown
-   * if the value is found to be outside the legal range.
+   * value, and a {@link PelOverflowException} will be thrown if the
+   * value is found to be outside the legal range.
    *
-   * The method accept several number arguments.  The {@link
-   * getNumber} method will always return an array except for when a
-   * single number is given here.
+   * The method accept several number arguments.  The {@link getValue}
+   * method will always return an array except for when a single
+   * number is given here.
    *
-   * @param int $value... the new value(s).  This can be zero or more
-   * numbers.  The input will be checked to ensure that the numbers
-   * are within the valid range.  If not, then a {@link
-   * PelEntryOverflowException} will be thrown.
+   * @param int|array $value... the new value(s).  This can be zero or
+   * more numbers, that is, either either integers or arrays.  The
+   * input will be checked to ensure that the numbers are within the
+   * valid range.  If not, then a {@link PelOverflowException} will be
+   * thrown.
    *
    * @see getValue
    */
@@ -103,6 +129,20 @@ abstract class PelEntryNumber extends PelEntry {
     $this->setValueArray($value);
   }
 
+
+  /**
+   * Change the value.
+   *
+   * This method can change both the number of components and the
+   * value of the components.  Range checks will be made on the new
+   * value, and a {@link PelOverflowException} will be thrown if the
+   * value is found to be outside the legal range.
+   *
+   * @param array the new values.  The array must contain the new
+   * numbers.
+   *
+   * @see getValue
+   */
   function setValueArray($value) {
     foreach ($value as $v)
       $this->validateNumber($v);
@@ -111,7 +151,13 @@ abstract class PelEntryNumber extends PelEntry {
     $this->value      = $value;
   }
 
-  
+
+  /**
+   * Return the value held.
+   *
+   * @return int|array this will either be a single number if there is
+   * only one component, or an array of numbers otherwise.
+   */
   function getValue() {
     if ($this->components == 1)
       return $this->value[0];
@@ -120,6 +166,18 @@ abstract class PelEntryNumber extends PelEntry {
   }
 
 
+  /**
+   * Validate a number.
+   *
+   * This method will check that the number given is within the range
+   * given my {@link getMin()} and {@link getMax()}, inclusive.  If
+   * not, then a {@link PelOverflowException} is thrown.
+   *
+   * @param int|array the number in question.
+   *
+   * @return void nothing, but throws a {@link PelOverflowException}
+   * if the number is found to be outside the legal range.
+   */
   function validateNumber($n) {
     if ($this->dimension == 1) {
       if ($n < $this->min || $n > $this->max)
@@ -132,6 +190,14 @@ abstract class PelEntryNumber extends PelEntry {
   }
 
 
+  /**
+   * Add a number.
+   *
+   * This appends a number to the numbers already held by this entry,
+   * thereby increasing the number of components by one.
+   *
+   * @param int|array the number to be added.
+   */
   function addNumber($n) {
     $this->validateNumber($n);
 
@@ -226,7 +292,6 @@ abstract class PelEntryNumber extends PelEntry {
 
     return $str;
   }
-
 
 }
 
