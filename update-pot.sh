@@ -1,7 +1,7 @@
 #!/bin/sh
 #
 #  PEL: PHP EXIF Library.  A library with support for reading and
-#  writing all EXIF headers of JPEG images using PHP.
+#  writing all EXIF headers in JPEG and TIFF images using PHP.
 #
 #  Copyright (C) 2004  Martin Geisler <gimpster@users.sourceforge.net>
 #
