@@ -124,6 +124,19 @@ abstract class PelExifEntry {
       $v = explode("\0", trim($data->getBytes(), ' '));
       return new PelExifEntryCopyright($v[0], $v[1]);
 
+    case PelExifTag::EXIF_VERSION:
+    case PelExifTag::FLASH_PIX_VERSION:
+    case PelExifTag::INTEROPERABILITY_VERSION:
+      return new PelExifEntryVersion($tag, $data->getBytes() / 100);
+
+    case PelExifTag::USER_COMMENT:
+      if ($data->getSize() < 8) {
+        return new PelExifEntryUserComment();
+      } else {
+        return new PelExifEntryUserComment($data->getBytes(8),
+                                           rtrim($data->getBytes(0, 8)));
+      }
+
     default:
       /* Then handle the formats. */
       switch ($format) {
