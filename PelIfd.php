@@ -33,14 +33,12 @@
  * @license http://www.gnu.org/licenses/gpl.html GNU General Public
  * License (GPL)
  * @package PEL
- * @subpackage EXIF
  */
 
 /** Class definition of {@link PelException}. */
 require_once('PelException.php');
 /** Class definition of {@link PelDataWindow}. */
 require_once('PelDataWindow.php');
-
 require_once('PelTag.php');
 require_once('PelFormat.php');
 require_once('PelEntry.php');
@@ -53,16 +51,14 @@ require_once('PelEntry.php');
 class PelIfdException extends PelException {}
 
 /**
- * Class representing an EXIF IFD.
+ * Class representing an Image File Directory (IFD).
  *
- * {@link PelExifData EXIF data} is structured as a number of Image
- * File Directories, IFDs for short.  Each IFD contains a number of
- * {@link PelEntry entries}, some data and finally a link to the
- * next IFD.
+ * {@link PelTiff TIFF data} is structured as a number of Image File
+ * Directories, IFDs for short.  Each IFD contains a number of {@link
+ * PelEntry entries}, some data and finally a link to the next IFD.
  *
  * @author Martin Geisler <gimpster@users.sourceforge.net>
  * @package PEL
- * @subpackage EXIF
  */
 class PelIfd {
 
@@ -79,7 +75,7 @@ class PelIfd {
   private $order;
   /* The next PelIfd or null if this is the last. */
   private $next = null;
-  /* Sub Ifds pointed to by this Ifd, as PelTag => PelIfd pairs. */
+  /* Sub IFDs pointed to by this IFD, as PelTag => PelIfd pairs. */
   private $sub = array();
 
   private $thumb_data = null;
@@ -88,7 +84,9 @@ class PelIfd {
   // private $thumb_format;
 
   
-  /* Construct a new Image File Directory (IFD) from the data passed
+  /* Construct a new Image File Directory (IFD).
+   *
+   * @param  from the data passed
    * in $data.  The IFD will be constructed using data starting at offset
    * $offset. */
   function __construct(PelDataWindow $d, $offset) {

@@ -42,7 +42,6 @@
  * @license http://www.gnu.org/licenses/gpl.html GNU General Public
  * License (GPL)
  * @package PEL
- * @subpackage EXIF
  */
 
 /** Class definition of {@link PelEntry}. */
@@ -60,7 +59,6 @@ require_once('PelEntry.php');
  *
  * @author Martin Geisler <gimpster@users.sourceforge.net>
  * @package PEL
- * @subpackage EXIF
  */
 class PelEntryAscii extends PelEntry {
 
@@ -159,7 +157,6 @@ class PelEntryAscii extends PelEntry {
  *
  * @author Martin Geisler <gimpster@users.sourceforge.net>
  * @package PEL
- * @subpackage EXIF
  */
 class PelEntryTime extends PelEntryAscii {
 
@@ -237,7 +234,7 @@ class PelEntryTime extends PelEntryAscii {
  * This would be done like this:
  *
  * <code>
- * $entry = new PelCopyright('Copyright, Martin Geisler, 2004');
+ * $entry = new PelEntryCopyright('Copyright, Martin Geisler, 2004');
  * $ifd0->addEntry($entry);
  * </code>
  *
@@ -248,9 +245,8 @@ class PelEntryTime extends PelEntryAscii {
  *
  * @author Martin Geisler <gimpster@users.sourceforge.net>
  * @package PEL
- * @subpackage EXIF
  */
-class PelCopyright extends PelEntryAscii {
+class PelEntryCopyright extends PelEntryAscii {
 
   /**
    * The photographer copyright.

@@ -39,7 +39,6 @@
  * @license http://www.gnu.org/licenses/gpl.html GNU General Public
  * License (GPL)
  * @package PEL
- * @subpackage EXIF
  */
 
 /** Class definition of {@link PelException}. */
@@ -56,7 +55,6 @@ require_once('Pel.php');
  *
  * @author Martin Geisler <gimpster@users.sourceforge.net>
  * @package PEL
- * @subpackage EXIF
  */
 class PelEntryUndefined extends PelEntry {
 
@@ -203,7 +201,6 @@ class PelEntryUndefined extends PelEntry {
  *
  * @author Martin Geisler <gimpster@users.sourceforge.net>
  * @package PEL
- * @subpackage EXIF
  */
 class PelEntryUserComment extends PelEntryUndefined {
 
@@ -315,7 +312,6 @@ class PelEntryUserComment extends PelEntryUndefined {
  *
  * @author Martin Geisler <gimpster@users.sourceforge.net>
  * @package PEL
- * @subpackage EXIF
  */
 class PelEntryVersion extends PelEntryUndefined {
 

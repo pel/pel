@@ -33,7 +33,6 @@
  * @license http://www.gnu.org/licenses/gpl.html GNU General Public
  * License (GPL)
  * @package PEL
- * @subpackage EXIF
  */
 
 /** Class definition of {@link PelEntryNumber}. */
@@ -58,7 +57,6 @@ require_once('PelEntryNumber.php');
  *
  * @author Martin Geisler <gimpster@users.sourceforge.net>
  * @package PEL
- * @subpackage EXIF
  */
 class PelEntryLong extends PelEntryNumber {
 
@@ -129,7 +127,6 @@ class PelEntryLong extends PelEntryNumber {
  *
  * @author Martin Geisler <gimpster@users.sourceforge.net>
  * @package PEL
- * @subpackage EXIF
  */
 class PelEntrySLong extends PelEntryNumber {
 

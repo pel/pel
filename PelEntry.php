@@ -38,19 +38,15 @@
  * @license http://www.gnu.org/licenses/gpl.html GNU General Public
  * License (GPL)
  * @package PEL
- * @subpackage EXIF
  */
 
-
-/** Class definition of {@link PelException}. */
-require_once('PelException.php');
-/** Class definition of {@link PelDataWindow}. */
+/**#@+ Required class definitions. */
 require_once('PelDataWindow.php');
-
-/** Class definition of {@link PelTag}. */
-require_once('PelTag.php');
-/** Class definition of {@link PelFormat}. */
+require_once('PelException.php');
 require_once('PelFormat.php');
+require_once('PelTag.php');
+/**#@-*/
+
 
 /**
  * @author Martin Geisler <gimpster@users.sourceforge.net>
@@ -82,7 +78,6 @@ class PelWrongComponentCountException extends PelException {
 /**
  * @author Martin Geisler <gimpster@users.sourceforge.net>
  * @package PEL
- * @subpackage EXIF
  */
 abstract class PelEntry {
 

@@ -32,7 +32,6 @@
  * @license http://www.gnu.org/licenses/gpl.html GNU General Public
  * License (GPL)
  * @package PEL
- * @subpackage JPEG
  */
 
 /**
@@ -45,7 +44,6 @@
  *
  * @author Martin Geisler <gimpster@users.sourceforge.net>
  * @package PEL
- * @subpackage JPEG
  */
 class PelJpegMarker {
 

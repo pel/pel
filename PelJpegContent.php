@@ -33,7 +33,6 @@
  * @license http://www.gnu.org/licenses/gpl.html GNU General Public
  * License (GPL)
  * @package PEL
- * @subpackage JPEG
  */
 
 /** Class definition of {@link PelDataWindow}. */
@@ -51,7 +50,6 @@ require_once('PelDataWindow.php');
  *
  * @author Martin Geisler <gimpster@users.sourceforge.net>
  * @package PEL
- * @subpackage JPEG
  */
 class PelJpegContent {
   private $data = null;
