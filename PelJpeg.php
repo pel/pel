@@ -45,6 +45,11 @@
  * $ifd1 = $ifd0->getNextIfd();
  * </code>
  *
+ * Should one have some image data of an unknown type, then the {@link
+ * isValid()} method is handy: it will quickly test if the data could
+ * be valid JPEG data.  The {@link PelTiff::isValid()} method does the
+ * same for TIFF images.
+ *
  * @author Martin Geisler <gimpster@users.sourceforge.net>
  * @version $Revision$
  * @date $Date$
@@ -62,12 +67,27 @@ require_once('Pel.php');
 
 
 /**
+ * Exception thrown when an invalid marker is found.
+ *
+ * This exception is thrown when PEL expects to find a {@link
+ * PelJpegMarker} and instead finds a byte that isn't a known marker.
+ *
  * @author Martin Geisler <gimpster@users.sourceforge.net>
  * @package PEL
  * @subpackage Exception
  */
 class PelJpegInvalidMarkerException extends PelException {
 
+  /**
+   * Construct a new invalid marker exception.
+   *
+   * The exception will contain a message describing the error,
+   * including the byte found and the offset of the offending byte.
+   *
+   * @param int the byte found.
+   *
+   * @param int the offset in the data.
+   */
   function __construct($marker, $offset) {
     parent::__construct('Invalid marker found at offset %d: 0x%2X',
                         $offset, $marker);

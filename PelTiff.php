@@ -45,6 +45,26 @@ require_once('Pel.php');
 /**
  * Class for handling TIFF data.
  *
+ * EXIF data is actually an extension of the TIFF file format.  TIFF
+ * images consist of a number of {@link PelIfd Image File Directories}
+ * (IFDs), each containing a number of {@link PelEntry entries}.  The
+ * IFDs are linked to each other --- one can get hold of the first one
+ * with the {@link getIfd()} method.
+ *
+ * To parse a TIFF image for EXIF data one would do:
+ *
+ * <code> 
+ * $tiff = new PelTiff($data);
+ * $ifd0 = $tiff->getIfd();
+ * $exif = $ifd0->getSubIfd(PelTag::EXIF_IFD_POINTER);
+ * $ifd1 = $ifd0->getNextIfd();
+ * </code>
+ *
+ * Should one have some image data of an unknown type, then the {@link
+ * isValid()} method is handy: it will quickly test if the data could
+ * be valid TIFF data.  The {@link PelJpeg::isValid()} method does the
+ * same for JPEG images.
+ *
  * @author Martin Geisler <gimpster@users.sourceforge.net>
  * @package PEL
  */
