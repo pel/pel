@@ -71,8 +71,4 @@ request, or maybe a patch, please use the corresponding tracker:
 Credits
 *******
 
-PEL is written by Martin Geisler <gimpster@users.sourceforge.net>.
-
-The source started out as a port of the nice, clean C code found in
-libexif.  The German, French, and Spanish translations are also taken
-from the libexif project.
+See the file AUTHORS for a list of people who have contributed to PEL.
