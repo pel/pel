@@ -10,12 +10,14 @@ PEL Version 0.8  (not yet released)
 
 Notes:
 
-Erranous entries will now be skipped while loading instead of causing
-a total abort.  A small bug was fixed in an example.  New test images
-were added from Leica D-LUX, Olympos C50Z and C765 cameras.  Code and
-documentation cleanup.
+Erroneous entries will now be skipped while loading instead of causing
+a total abort.  The documentation was expanded with a short tutorial
+and a FAQ.  New test images were added from Leica D-LUX, Olympos C50Z
+and C765 cameras.
 
 Changes:
+
+* Added more documentation in the form of a short tutorial and a FAQ.
 
 * Instead of aborting on load errors, PelIfd::load() will now continue
   with the next entry.  A warning will be issued if debugging is
@@ -39,6 +41,8 @@ Changes:
   those two methods.
 
 * Updated copyright statements throughout the source to year 2005.
+
+* Fixed (some) of the XHTML errors in the phpDocumentor template.
 
 
 PEL Version 0.7  October 10th 2004
@@ -85,7 +89,7 @@ Notes:
 
 The interface for PelJpeg and PelTiff was changed so that one can now
 add new content from scratch to JPEG and TIFF images.  Bugs in the
-loading of signed bytes and shorts were fixed, aswell as a bug where
+loading of signed bytes and shorts were fixed, as well as a bug where
 timestamps were saved in UTC time, but loaded in local time.  The code
 that turned PelJpeg objects into bytes was fixed, and new test cases
 were written to test the writing and reading of PelJpeg objects to and
