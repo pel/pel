@@ -1,7 +1,7 @@
 NEWS file for PEL: PHP EXIF Library.  A library with support for
 reading and writing EXIF headers in JPEG and TIFF images using PHP.
 
-Copyright (C) 2004  Martin Geisler <gimpster@users.sourceforge.net>
+Copyright (C) 2004, 2005  Martin Geisler.
 Licensed under the GNU GPL, see COPYING for details.
 
 
@@ -37,6 +37,8 @@ Changes:
 * Added abstract getValue() and setValue() methods to PelEntry, to
   better describe that all objects representing EXIF entries have
   those two methods.
+
+* Updated copyright statements throughout the source to year 2005.
 
 
 PEL Version 0.7  October 10th 2004
