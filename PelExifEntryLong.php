@@ -25,7 +25,7 @@
 
 
 /**
- * Classes used to hold longs.
+ * Classes used to hold longs, both signed and unsigned.
  *
  * @author Martin Geisler <gimpster@users.sourceforge.net>
  * @version $Revision$
@@ -49,9 +49,9 @@ include_once('PelExifEntryNumber.php');
  * example:
  * <code>
  * $w = $ifd->getEntry(PelExifTag::EXIF_IMAGE_WIDTH);
- * $w->setNumbers($h->getNumbers() / 2);
+ * $w->setValue($h->getValue() / 2);
  * $h = $ifd->getEntry(PelExifTag::EXIF_IMAGE_HEIGHT);
- * $h->setNumbers($h->getNumbers() / 2);
+ * $h->setValue($h->getValue() / 2);
  * </code>
  * Here the width and height is updated to 50% of their original
  * values.
@@ -100,9 +100,9 @@ class PelExifEntryLong extends PelExifEntryNumber {
     $this->max    = 4294967295;
     $this->format = PelExifFormat::LONG;
 
-    $numbers = func_get_args();
-    array_shift($numbers);
-    $this->setNumbersArray($numbers);
+    $value = func_get_args();
+    array_shift($value);
+    $this->setValueArray($value);
   }
 
 
@@ -119,9 +119,9 @@ class PelExifEntrySLong extends PelExifEntryNumber {
     $this->max    = 2147483647;
     $this->format = PelExifFormat::SLONG;
 
-    $numbers = func_get_args();
-    array_shift($numbers);
-    $this->setNumbersArray($numbers);
+    $value = func_get_args();
+    array_shift($value);
+    $this->setValueArray($value);
   }
 
 
