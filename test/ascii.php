@@ -27,39 +27,39 @@
 class AsciiTestCase extends UnitTestCase {
 
   function __construct() {
-    require_once('../PelExifEntryAscii.php');
+    require_once('../PelEntryAscii.php');
     parent::__construct('PEL EXIF ASCII Tests');
   }
 
   function testReturnValues() {
-    $entry = new PelExifEntryAscii();
-    $this->assertError('Missing argument 1 for PelExifEntryAscii::__construct()');
+    $entry = new PelEntryAscii();
+    $this->assertError('Missing argument 1 for PelEntryAscii::__construct()');
 
-    $entry = new PelExifEntryAscii(42);
+    $entry = new PelEntryAscii(42);
     $this->assertNoErrors();
 
-    $entry = new PelExifEntryAscii(42, 'foo bar baz');
+    $entry = new PelEntryAscii(42, 'foo bar baz');
     $this->assertEqual($entry->getComponents(), 12);
     $this->assertEqual($entry->getValue(), 'foo bar baz');
   }
 
   function testTime() {
-    $entry = new PelExifEntryTime();
-    $this->assertError('Missing argument 1 for PelExifEntryTime::__construct()');
+    $entry = new PelEntryTime();
+    $this->assertError('Missing argument 1 for PelEntryTime::__construct()');
 
-    $entry = new PelExifEntryTime(42);
+    $entry = new PelEntryTime(42);
     $this->assertNoErrors();
     $this->assertEqual($entry->getValue(), time());
     $this->assertEqual($entry->getComponents(), 20);
 
-    $entry = new PelExifEntryTime(42, 10);
+    $entry = new PelEntryTime(42, 10);
     $this->assertEqual($entry->getValue(), 10);
     $this->assertEqual($entry->getText(), '1970:01:01 00:00:10');
   }
 
   function testCopyright() {
-    $entry = new PelExifEntryCopyright();
-    $this->assertEqual($entry->getTag(), PelExifTag::COPYRIGHT);
+    $entry = new PelCopyright();
+    $this->assertEqual($entry->getTag(), PelTag::COPYRIGHT);
     $value = $entry->getValue();
     $this->assertEqual($value[0], '');
     $this->assertEqual($value[1], '');
