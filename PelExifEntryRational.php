@@ -117,8 +117,8 @@ class PelExifEntryRational extends PelExifEntryLong {
    * @return string the value as text.
    */
   function getText($brief = false) {
-    if (isset($this->numbers[0]))
-      $v = $this->numbers[0];
+    if (isset($this->value[0]))
+      $v = $this->value[0];
     
     switch ($this->tag) {
     case PelExifTag::FNUMBER:
@@ -224,8 +224,8 @@ class PelExifEntrySRational extends PelExifEntrySLong {
    * @return string the value as text.
    */
   function getText($brief = false) {
-    if (isset($this->numbers[0]))
-      $v = $this->numbers[0];
+    if (isset($this->value[0]))
+      $v = $this->value[0];
 
     switch ($this->tag) {
     case PelExifTag::SHUTTER_SPEED_VALUE:

@@ -110,15 +110,15 @@ abstract class PelExifEntryNumber extends PelExifEntry {
       $this->validateNumber($v);
     
     $this->components = count($value);
-    $this->numbers    = $value;
+    $this->value      = $value;
   }
 
   
   function getValue() {
     if ($this->components == 1)
-      return $this->numbers[0];
+      return $this->value[0];
     else
-      return $this->numbers;
+      return $this->value;
   }
 
 
@@ -137,7 +137,7 @@ abstract class PelExifEntryNumber extends PelExifEntry {
   function addNumber($n) {
     $this->validateNumber($n);
 
-    $this->numbers[] = $n;
+    $this->value[] = $n;
     $this->components++;
   }
 
@@ -173,10 +173,10 @@ abstract class PelExifEntryNumber extends PelExifEntry {
     $bytes = '';
     for ($i = 0; $i < $this->components; $i++) {
       if ($this->dimension == 1) {
-        $bytes .= $this->numberToBytes($this->numbers[$i], $o);
+        $bytes .= $this->numberToBytes($this->value[$i], $o);
       } else {
         for ($j = 0; $j < $this->dimension; $j++) {
-          $bytes .= $this->numberToBytes($this->numbers[$i][$j], $o);
+          $bytes .= $this->numberToBytes($this->value[$i][$j], $o);
         }
       }
     }
@@ -220,10 +220,10 @@ abstract class PelExifEntryNumber extends PelExifEntry {
     if ($this->components == 0)
       return '';
 
-    $str = $this->formatNumber($this->numbers[0]);
+    $str = $this->formatNumber($this->value[0]);
     for ($i = 1; $i < $this->components; $i++) {
       $str .= ($brief ? ' ' : ', ');
-      $str .= $this->formatNumber($this->numbers[$i]);
+      $str .= $this->formatNumber($this->value[$i]);
     }
 
     return $str;
