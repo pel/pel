@@ -536,6 +536,16 @@ class PelDataWindow {
                    strlen($this->data));
   }
 
+
+  /**
+   * Clear the data.
+   *
+   * This method is for debugging only.  It removed the data held by
+   * this data window, thereby removing access to it for all clones
+   * too.  This is usefull when a data window object is to be printed
+   * with print_r() or a similar function, and the binary output would
+   * mess up the terminal or browser.
+   */
   function clear() {
     $this->data = '(cleared)';
   }
