@@ -1,0 +1,37 @@
+AUTHORS file for PEL: PHP EXIF Library.  A library with support for
+reading and writing EXIF headers in JPEG and TIFF images using PHP.
+
+Copyright (C) 2004  Martin Geisler <gimpster@users.sourceforge.net>
+Licensed under the GNU GPL, see COPYING for details.
+
+
+Credits
+*******
+
+PEL is written by Martin Geisler <gimpster@users.sourceforge.net>.
+
+The source started out as a port of the nice, clean C code found in
+libexif.  The German, French, and Spanish translations are also taken
+from the libexif project.
+
+
+Test Image Contributors
+***********************
+
+Lars Geisler: Nikon Coolscan IV ED test image.
+
+Stéphanie Bittel: Canon IXUS II test image.
+
+Bernhard Bittel: Nikon E950 and E5000 test images.
+
+
+Translators
+***********
+
+German: Hans Ulrich Niedermann, Lutz Möller (for libexif).
+
+French: Arnaud Launay (for libexif).
+
+Danish: Martin Geisler.
+
+Spanish: Fabian Mandelbaum (for libexif).
