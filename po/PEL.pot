@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-06-04 13:30+0200\n"
+"POT-Creation-Date: 2004-06-04 22:51+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -16,261 +16,284 @@ msgstr ""
 "Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: PelJpegMarker.php:282 PelJpegMarker.php:359
+#: PelJpegMarker.php:282 PelJpegMarker.php:424
 #, php-format
 msgid "Unknown marker: 0x%02X"
 msgstr ""
 
-#: PelJpegMarker.php:295
+#: PelJpegMarker.php:296
 msgid "Encoding (baseline)"
 msgstr ""
 
-#: PelJpegMarker.php:296
+#: PelJpegMarker.php:298
 msgid "Encoding (extended sequential)"
 msgstr ""
 
-#: PelJpegMarker.php:297
+#: PelJpegMarker.php:300
 msgid "Encoding (progressive)"
 msgstr ""
 
-#: PelJpegMarker.php:298
+#: PelJpegMarker.php:302
 msgid "Encoding (lossless)"
 msgstr ""
 
-#: PelJpegMarker.php:299
+#: PelJpegMarker.php:304
 msgid "Encoding (differential sequential)"
 msgstr ""
 
-#: PelJpegMarker.php:300
+#: PelJpegMarker.php:306
 msgid "Encoding (differential progressive)"
 msgstr ""
 
-#: PelJpegMarker.php:301
+#: PelJpegMarker.php:308
 msgid "Encoding (differential lossless)"
 msgstr ""
 
-#: PelJpegMarker.php:302
+#: PelJpegMarker.php:310
 msgid "Encoding (extended sequential, arithmetic)"
 msgstr ""
 
-#: PelJpegMarker.php:303
+#: PelJpegMarker.php:312
 msgid "Encoding (progressive, arithmetic)"
 msgstr ""
 
-#: PelJpegMarker.php:304
+#: PelJpegMarker.php:314
 msgid "Encoding (lossless, arithmetic)"
 msgstr ""
 
-#: PelJpegMarker.php:305
+#: PelJpegMarker.php:316
 msgid "Encoding (differential sequential, arithmetic)"
 msgstr ""
 
-#: PelJpegMarker.php:306
+#: PelJpegMarker.php:318
 msgid "Encoding (differential progressive, arithmetic)"
 msgstr ""
 
-#: PelJpegMarker.php:307
+#: PelJpegMarker.php:320
 msgid "Encoding (differential lossless, arithmetic)"
 msgstr ""
 
-#: PelJpegMarker.php:308
+#: PelJpegMarker.php:322
 msgid "Start of image"
 msgstr ""
 
-#: PelJpegMarker.php:309
+#: PelJpegMarker.php:324
 msgid "End of image"
 msgstr ""
 
-#: PelJpegMarker.php:310
+#: PelJpegMarker.php:326
 msgid "Start of scan"
 msgstr ""
 
-#: PelJpegMarker.php:311 PelJpegMarker.php:358
+#: PelJpegMarker.php:328 PelJpegMarker.php:422
 msgid "Comment"
 msgstr ""
 
-#: PelJpegMarker.php:312
+#: PelJpegMarker.php:330
 msgid "Define Huffman table"
 msgstr ""
 
-#: PelJpegMarker.php:313
+#: PelJpegMarker.php:332
 msgid "Extension"
 msgstr ""
 
-#: PelJpegMarker.php:314
+#: PelJpegMarker.php:334
 msgid "Define arithmetic coding conditioning"
 msgstr ""
 
-#: PelJpegMarker.php:315
+#: PelJpegMarker.php:336
 msgid "Restart 0"
 msgstr ""
 
-#: PelJpegMarker.php:316
+#: PelJpegMarker.php:338
 msgid "Restart 1"
 msgstr ""
 
-#: PelJpegMarker.php:317
+#: PelJpegMarker.php:340
 msgid "Restart 2"
 msgstr ""
 
-#: PelJpegMarker.php:318
+#: PelJpegMarker.php:342
 msgid "Restart 3"
 msgstr ""
 
-#: PelJpegMarker.php:319
+#: PelJpegMarker.php:344
 msgid "Restart 4"
 msgstr ""
 
-#: PelJpegMarker.php:320
+#: PelJpegMarker.php:346
 msgid "Restart 5"
 msgstr ""
 
-#: PelJpegMarker.php:321
+#: PelJpegMarker.php:348
 msgid "Restart 6"
 msgstr ""
 
-#: PelJpegMarker.php:322
+#: PelJpegMarker.php:350
 msgid "Restart 7"
 msgstr ""
 
-#: PelJpegMarker.php:323
+#: PelJpegMarker.php:352
 msgid "Define quantization table"
 msgstr ""
 
-#: PelJpegMarker.php:324
+#: PelJpegMarker.php:354
 msgid "Define number of lines"
 msgstr ""
 
-#: PelJpegMarker.php:325
+#: PelJpegMarker.php:356
 msgid "Define restart interval"
 msgstr ""
 
-#: PelJpegMarker.php:326
+#: PelJpegMarker.php:358
 msgid "Define hierarchical progression"
 msgstr ""
 
-#: PelJpegMarker.php:327
+#: PelJpegMarker.php:360
 msgid "Expand reference component"
 msgstr ""
 
-#: PelJpegMarker.php:328
+#: PelJpegMarker.php:362
 msgid "Application segment 0"
 msgstr ""
 
-#: PelJpegMarker.php:329
+#: PelJpegMarker.php:364
 msgid "Application segment 1"
 msgstr ""
 
-#: PelJpegMarker.php:330
+#: PelJpegMarker.php:366
 msgid "Application segment 2"
 msgstr ""
 
-#: PelJpegMarker.php:331
+#: PelJpegMarker.php:368
 msgid "Application segment 3"
 msgstr ""
 
-#: PelJpegMarker.php:332
+#: PelJpegMarker.php:370
 msgid "Application segment 4"
 msgstr ""
 
-#: PelJpegMarker.php:333
+#: PelJpegMarker.php:372
 msgid "Application segment 5"
 msgstr ""
 
-#: PelJpegMarker.php:334
+#: PelJpegMarker.php:374
 msgid "Application segment 6"
 msgstr ""
 
-#: PelJpegMarker.php:335
+#: PelJpegMarker.php:376
 msgid "Application segment 7"
 msgstr ""
 
-#: PelJpegMarker.php:336
+#: PelJpegMarker.php:378
 msgid "Application segment 8"
 msgstr ""
 
-#: PelJpegMarker.php:337
+#: PelJpegMarker.php:380
 msgid "Application segment 9"
 msgstr ""
 
-#: PelJpegMarker.php:338
+#: PelJpegMarker.php:382
 msgid "Application segment 10"
 msgstr ""
 
-#: PelJpegMarker.php:339
+#: PelJpegMarker.php:384
 msgid "Application segment 11"
 msgstr ""
 
-#: PelJpegMarker.php:340
+#: PelJpegMarker.php:386
 msgid "Application segment 12"
 msgstr ""
 
-#: PelJpegMarker.php:341
+#: PelJpegMarker.php:388
 msgid "Application segment 13"
 msgstr ""
 
-#: PelJpegMarker.php:342
+#: PelJpegMarker.php:390
 msgid "Application segment 14"
 msgstr ""
 
-#: PelJpegMarker.php:343
+#: PelJpegMarker.php:392
 msgid "Application segment 15"
 msgstr ""
 
-#: PelJpegMarker.php:344
+#: PelJpegMarker.php:394
 msgid "Extension 0"
 msgstr ""
 
-#: PelJpegMarker.php:345
+#: PelJpegMarker.php:396
 msgid "Extension 1"
 msgstr ""
 
-#: PelJpegMarker.php:346
+#: PelJpegMarker.php:398
 msgid "Extension 2"
 msgstr ""
 
-#: PelJpegMarker.php:347
+#: PelJpegMarker.php:400
 msgid "Extension 3"
 msgstr ""
 
-#: PelJpegMarker.php:348
+#: PelJpegMarker.php:402
 msgid "Extension 4"
 msgstr ""
 
-#: PelJpegMarker.php:349
+#: PelJpegMarker.php:404
 msgid "Extension 5"
 msgstr ""
 
-#: PelJpegMarker.php:350
+#: PelJpegMarker.php:406
 msgid "Extension 6"
 msgstr ""
 
-#: PelJpegMarker.php:351
+#: PelJpegMarker.php:408
 msgid "Extension 7"
 msgstr ""
 
-#: PelJpegMarker.php:352
+#: PelJpegMarker.php:410
 msgid "Extension 8"
 msgstr ""
 
-#: PelJpegMarker.php:353
+#: PelJpegMarker.php:412
 msgid "Extension 9"
 msgstr ""
 
-#: PelJpegMarker.php:354
+#: PelJpegMarker.php:414
 msgid "Extension 10"
 msgstr ""
 
-#: PelJpegMarker.php:355
+#: PelJpegMarker.php:416
 msgid "Extension 11"
 msgstr ""
 
-#: PelJpegMarker.php:356
+#: PelJpegMarker.php:418
 msgid "Extension 12"
 msgstr ""
 
-#: PelJpegMarker.php:357
+#: PelJpegMarker.php:420
 msgid "Extension 13"
+msgstr ""
+
+#: PelJpeg.php:202
+msgid "Dumping JPEG data...\n"
+msgstr ""
+
+#: PelJpeg.php:206
+#, php-format
+msgid "Section %d (marker 0x%02X - %s):\n"
+msgstr ""
+
+#: PelJpeg.php:208
+#, php-format
+msgid "  Description: %s\n"
+msgstr ""
+
+#: PelJpeg.php:218
+#, php-format
+msgid "  Size: %d bytes\n"
+msgstr ""
+
+#: PelJpeg.php:219
+msgid "  Unknown content\n"
 msgstr ""
 
 #: PelTag.php:184 PelTag.php:418
