@@ -61,7 +61,6 @@ abstract class WriteEntryTestCase extends UnitTestCase {
 
     /* Now read the file and see if the entries are still there. */
 
-
     $jpeg = new PelJpeg();
     $jpeg->loadFile('test-output.jpg');
     
@@ -77,7 +76,6 @@ abstract class WriteEntryTestCase extends UnitTestCase {
     }
 
     unlink('test-output.jpg');
-
   }
 
 }
@@ -195,6 +193,25 @@ class WriteSLongTestCase extends WriteEntryTestCase {
     $this->entries[] = new PelEntrySLong(0xF509);
 
     parent::__construct('PEL SLong Read/Write Tests');
+  }
+}
+
+class WriteAsciiTestCase extends WriteEntryTestCase {
+  function __construct() {
+    require_once('../PelEntryAscii.php');
+
+    $this->entries[] = new PelEntryAscii(0xF601);
+    $this->entries[] = new PelEntryAscii(0xF602, '');
+    $this->entries[] = new PelEntryAscii(0xF603, 'Hello World!');
+
+    $this->entries[] = new PelEntryTime(PelTag::DATE_TIME);
+    $this->entries[] = new PelEntryTime(PelTag::DATE_TIME_ORIGINAL, 0);
+    $this->entries[] = new PelEntryTime(PelTag::DATE_TIME_DIGITIZED,
+                                        123456789);
+
+    $this->entries[] = new PelEntryCopyright(PelTag::COPYRIGHT, 'Foo', 'Bar');
+
+    parent::__construct('PEL Ascii Read/Write Tests');
   }
 }
 
