@@ -209,7 +209,7 @@ class PelEntryTime extends PelEntryAscii {
    * @param int the new timestamp to be held by this entry.  This
    * should be a standard UNIX timestamp (counting the number of
    * seconds since 00:00:00 January 1st, 1970 UTC).  The old timestamp
-   * will be overwritten, retrive it first with {@link getValue} if
+   * will be overwritten, retrieve it first with {@link getValue} if
    * necessary.
    *
    * @todo How to deal with timezones? Use the TimeZoneOffset tag
@@ -225,7 +225,7 @@ class PelEntryTime extends PelEntryAscii {
 /**
  * Class for holding copyright information.
  *
- * The EXIF standard speficies a certain format for copyright
+ * The EXIF standard specifies a certain format for copyright
  * information where the one {@link PelTag::COPYRIGHT copyright
  * tag} holds both the photographer and editor copyrights, separated
  * by a NULL character.
@@ -324,7 +324,7 @@ class PelEntryCopyright extends PelEntryAscii {
    * Return a text string with the copyright information.
    *
    * The photographer and editor copyright fields will be returned
-   * with a '-' inbetween if both copyright fields are present,
+   * with a '-' in between if both copyright fields are present,
    * otherwise only one of them will be returned.
    *
    * @param boolean if false, then the strings '(Photographer)' and
