@@ -70,33 +70,67 @@ class PelIfd {
   const GPS  = 3;
   const INTEROPERABILITY = 4;
 
-  /* PelEntry array */
+  /**
+   * The entries held by this directory.
+   *
+   * Each tag in the directory is represented by a {@link PelEntry}
+   * object in this array.
+   *
+   * @var array
+   */
   private $entries = array();
+
+  /**
+   * The type of this directory (not currently used).
+   *
+   * @var int
+   */
   private $type;
-  private $offset;
-  private $order;
-  /* The next PelIfd or null if this is the last. */
+
+  /**
+   * The next directory.
+   *
+   * This will be initialized in the constructor, or be left as null
+   * if this is the last directory.
+   *
+   * @var PelIfd
+   */
   private $next = null;
-  /* Sub IFDs pointed to by this IFD, as PelTag => PelIfd pairs. */
+
+  /**
+   * Sub-directories pointed to by this directory.
+   *
+   * This will be an array of ({@link PelTag}, {@link PelIfd}) pairs.
+   *
+   * @var array
+   */
   private $sub = array();
 
+  /**
+   * The thumbnail data.
+   *
+   * This will be initialized in the constructor, or be left as null
+   * if there are no thumbnail as part of this directory.
+   *
+   * @var PelDataWindow
+   */
   private $thumb_data = null;
   // TODO: use this format to choose between the
   // JPEG_INTERCHANGE_FORMAT and STRIP_OFFSETS tags.
   // private $thumb_format;
 
   
-  /* Construct a new Image File Directory (IFD).
+  /**
+   * Construct a new Image File Directory (IFD).
    *
-   * @param  from the data passed
-   * in $data.  The IFD will be constructed using data starting at offset
-   * $offset. */
+   * @param PelDataWindow the data window that will provide the data.
+   *
+   * @param int the offset within the window where the directory will
+   * be found.
+   */
   function __construct(PelDataWindow $d, $offset) {
     $thumb_offset = 0;
     $thumb_length = 0;
-
-    $this->order  = $d->getByteOrder();
-    $this->offset = $offset;
 
     Pel::debug('Constructing IFD at offset %d from %d bytes...',
                $offset, $d->getSize());
@@ -214,6 +248,11 @@ class PelIfd {
   }
 
 
+  /**
+   * Get the name of this directory (not currently used).
+   *
+   * @return string the name of this directory.
+   */
   function getName() {
     switch ($this->type) {
     case self::IFD0: return '0';
@@ -224,10 +263,29 @@ class PelIfd {
     }
   }
 
+
+  /**
+   * Appends an entry to the directory.
+   *
+   * @param PelEntry the entry that will be added.
+   *
+   * @todo The entry will be identified with it's tag, so each
+   * directory can only contain one entry with each tag.  Is this a
+   * bug?
+   */
   function addEntry(PelEntry $e) {
     $this->entries[$e->getTag()] = $e;
   }
 
+
+  /**
+   * Retrieve an entry.
+   *
+   * @param PelTag the tag identifying the entry.
+   *
+   * @return PelEntry the entry associated with the tag, or null if no
+   * such entry exists.
+   */
   function getEntry($tag) {
     if (isset($this->entries[$tag]))
       return $this->entries[$tag];
@@ -268,14 +326,33 @@ class PelIfd {
   }
   
 
-  function setNextIfd(ExifIfd $i) {
+  /**
+   * Make this directory point to a new directory.
+   *
+   * @param PelIfd the IFD that this directory will point to.
+   */
+  function setNextIfd(PelIfd $i) {
     $this->next = $i;
   }
 
+
+  /**
+   * Return the IFD pointed to by this directory.
+   *
+   * @return PelIfd the next IFD, following this IFD. If this is the
+   * last IFD, null is returned.
+   */
   function getNextIfd() {
     return $this->next;
   }
 
+
+  /**
+   * Check if this is the last IFD.
+   *
+   * @return boolean true if there are no following IFD, false
+   * otherwise.
+   */
   function isLastIfd() {
     return $this->next == null;
   }
@@ -299,11 +376,31 @@ class PelIfd {
       return null;
   }
 
+
+  /**
+   * Get all sub IFDs.
+   *
+   * @return array an array with ({@link PelTag}, {@link PelIfd})
+   * pairs.
+   */
   function getSubIfds() {
     return $this->sub;
   }
 
 
+  /**
+   * Turn this directory into bytes.
+   *
+   * This directory will be turned into a byte string, with the
+   * specified byte order.  The offsets will be calculated from the
+   * offset given.
+   *
+   * @param int the offset of the first byte of this directory.
+   *
+   * @param PelByteOrder the byte order that should be used when
+   * turning integers into bytes.  This should be one of {@link
+   * PelConvert::LITTLE_ENDIAN} and {@link PelConvert::BIG_ENDIAN}.
+   */
   function getBytes($offset, $order) {
     $bytes = '';
     $extra_bytes = '';
@@ -318,7 +415,7 @@ class PelIfd {
       $n += 2;
     }
 
-    $bytes .= PelConvert::shortToBytes($n, $this->order);
+    $bytes .= PelConvert::shortToBytes($n, $order);
 
     /* Initialize offset of extra data.  This included the bytes
      * preceding this IFD, the bytes needed for the count of entries,
@@ -327,16 +424,11 @@ class PelIfd {
      */
     $end = $offset + 2 + 12 * $n + 4;
 
-    // println('Final byte of this IFD minimum %d.', $end);
-
     foreach ($this->entries as $tag => $entry) {
       /* Each entry is 12 bytes long. */
-      $bytes .= PelConvert::shortToBytes($entry->getTag(),
-                                         $this->order);
-      $bytes .= PelConvert::shortToBytes($entry->getFormat(),
-                                         $this->order);
-      $bytes .= PelConvert::longToBytes($entry->getComponents(),
-                                        $this->order);
+      $bytes .= PelConvert::shortToBytes($entry->getTag(), $order);
+      $bytes .= PelConvert::shortToBytes($entry->getFormat(), $order);
+      $bytes .= PelConvert::longToBytes($entry->getComponents(), $order);
       
       /*
        * Size? If bigger than 4 bytes, the actual data is not in
@@ -347,7 +439,7 @@ class PelIfd {
       if ($s > 4) {
         Pel::debug('Data size %d too big, storing at offset %d instead.',
                    $s, $end);
-        $bytes .= PelConvert::longToBytes($end, $this->order);
+        $bytes .= PelConvert::longToBytes($end, $order);
         $extra_bytes .= $data;
         $end += $s;
       } else {
@@ -364,17 +456,17 @@ class PelIfd {
       // TODO: make PelEntry a class that can be constructed with
       // arguments corresponding to the newt four lines.
       $bytes .= PelConvert::shortToBytes(PelTag::JPEG_INTERCHANGE_FORMAT_LENGTH,
-                                         $this->order);
-      $bytes .= PelConvert::shortToBytes(PelFormat::LONG, $this->order);
-      $bytes .= PelConvert::longToBytes(1, $this->order);
+                                         $order);
+      $bytes .= PelConvert::shortToBytes(PelFormat::LONG, $order);
+      $bytes .= PelConvert::longToBytes(1, $order);
       $bytes .= PelConvert::longToBytes($this->thumb_data->getSize(),
-                                        $this->order);
+                                        $order);
       
       $bytes .= PelConvert::shortToBytes(PelTag::JPEG_INTERCHANGE_FORMAT,
-                                      $this->order);
-      $bytes .= PelConvert::shortToBytes(PelFormat::LONG, $this->order);
-      $bytes .= PelConvert::longToBytes(1, $this->order);
-      $bytes .= PelConvert::longToBytes($end, $this->order);
+                                         $order);
+      $bytes .= PelConvert::shortToBytes(PelFormat::LONG, $order);
+      $bytes .= PelConvert::longToBytes(1, $order);
+      $bytes .= PelConvert::longToBytes($end, $order);
       
       $extra_bytes .= $this->thumb_data->getBytes();
       $end += $this->thumb_data->getSize();
@@ -385,17 +477,17 @@ class PelIfd {
     $sub_bytes = '';
     foreach ($this->sub as $tag => $sub) {
       /* Make an aditional entry with the pointer. */
-      $bytes .= PelConvert::shortToBytes($tag, $this->order);
+      $bytes .= PelConvert::shortToBytes($tag, $order);
       /* Next the format, which is always unsigned long. */
-      $bytes .= PelConvert::shortToBytes(PelFormat::LONG, $this->order);
+      $bytes .= PelConvert::shortToBytes(PelFormat::LONG, $order);
       /* There's only one component. */
-      $bytes .= PelConvert::longToBytes(1, $this->order);
+      $bytes .= PelConvert::longToBytes(1, $order);
 
-      $data = $sub->getBytes($end, $this->order);
+      $data = $sub->getBytes($end, $order);
       $s = strlen($data);
       $sub_bytes .= $data;
 
-      $bytes .= PelConvert::longToBytes($end, $this->order);
+      $bytes .= PelConvert::longToBytes($end, $order);
       $end += $s;
     }
 
@@ -408,17 +500,23 @@ class PelIfd {
 
     Pel::debug('Link to next IFD: %d', $link);
     
-    $bytes .= PelConvert::longtoBytes($link, $this->order);
+    $bytes .= PelConvert::longtoBytes($link, $order);
 
     $bytes .= $extra_bytes . $sub_bytes;
 
     if (!self::isLastIfd())
-      $bytes .= $this->next->getBytes($end, $this->order);
+      $bytes .= $this->next->getBytes($end, $order);
 
     return $bytes;
   }
 
-
+  
+  /**
+   * Turn this directory into text.
+   *
+   * @return string information about the directory, mainly for
+   * debugging.
+   */
   function __toString() {
     $str = Pel::fmt("Dumping EXIF IFD %s with %d entries...\n",
                     self::getName(), count($this->entries));
