@@ -199,14 +199,14 @@ class PelJpeg {
 
 
   function __toString() {
-    $str = "Dumping JPEG data...\n";
+    $str = Pel::tra("Dumping JPEG data...\n");
     for ($i = 0; $i < $this->count; $i++) {
       $m = $this->sections[$i]->getMarker();
       $c = $this->sections[$i]->getContent();
-      $str .= sprintf("Section %d (marker 0x%X - %s):\n",
-                      $i, $m, PelJpegMarker::getName($m));
-      $str .= sprintf("  Description: %s\n",
-                      PelJpegMarker::getDescription($m));
+      $str .= Pel::fmt("Section %d (marker 0x%02X - %s):\n",
+                       $i, $m, PelJpegMarker::getName($m));
+      $str .= Pel::fmt("  Description: %s\n",
+                       PelJpegMarker::getDescription($m));
       
       if ($m == PelJpegMarker::SOI ||
           $m == PelJpegMarker::EOI)
@@ -215,8 +215,8 @@ class PelJpeg {
       if ($m == PelJpegMarker::APP1) {
         $str .= $c->__toString() . "\n";
       } else {
-        $str .= sprintf("  Size: %d\n", $c->getSize()); 
-        $str .= sprintf("  Unknown content.\n");
+        $str .= Pel::fmt("  Size: %d bytes\n", $c->getSize()); 
+        $str .= Pel::tra("  Unknown content\n");
       }
     }
 
