@@ -41,7 +41,6 @@
  *
  * @author Martin Geisler <gimpster@users.sourceforge.net>
  * @package PEL
- * @subpackage JPEG
  */
 class Pel {
 
