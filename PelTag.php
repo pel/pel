@@ -67,7 +67,11 @@ class PelTag {
    */
   const INTEROPERABILITY_INDEX         = 0x0001;
 
-  /** Interoperability Version */
+  /** Interoperability Version
+   *
+   * An entry holding this tag must have format {@link
+   * PelFormat::UNDEFINED}.
+   */
   const INTEROPERABILITY_VERSION       = 0x0002;
 
   /**
@@ -262,6 +266,9 @@ class PelTag {
    *
    * The date and time of image creation. In this standard
    * (EXIF-2.1) it is the date and time the file was changed.
+   *
+   * An entry holding this tag must have format {@link
+   * PelFormat::ASCII} and a component count of exactly 20.
    */
   const DATE_TIME                      = 0x0132;
 
@@ -421,6 +428,9 @@ class PelTag {
    * terminating NULL code, then the editor copyright is given (see
    * example 3). When the field is left blank, it is treated as
    * unknown.
+   *
+   * An entry holding this tag must have format {@link
+   * PelFormat::ASCII}.
    */
   const COPYRIGHT                      = 0x8298;
 
@@ -502,6 +512,9 @@ class PelTag {
    *
    * The version of this standard supported. Nonexistence of this
    * field is taken to mean non-conformance to the standard.
+   *
+   * An entry holding this tag must have format {@link
+   * PelFormat::UNDEFINED}.
    */
   const EXIF_VERSION                   = 0x9000;
 
@@ -511,6 +524,9 @@ class PelTag {
    * The date and time when the original image data was
    * generated. For a digital still camera the date and time the
    * picture was taken are recorded.
+   *
+   * An entry holding this tag must have format {@link
+   * PelFormat::ASCII} and a component count of exactly 20.
    */
   const DATE_TIME_ORIGINAL             = 0x9003;
 
@@ -519,6 +535,8 @@ class PelTag {
    *
    * The date and time when the image was stored as digital data.
    * 
+   * An entry holding this tag must have format {@link
+   * PelFormat::ASCII} and a component count of exactly 20.
    */
   const DATE_TIME_DIGITIZED            = 0x9004;
 
@@ -664,6 +682,9 @@ class PelTag {
    * USER_COMMENT} area is set aside, it is recommended that the ID
    * code be ASCII and that the following user comment part be filled
    * with blank characters [20.H].
+   *
+   * An entry holding this tag must have format {@link
+   * PelFormat::UNDEFINED}.
    */
   const USER_COMMENT                   = 0x9286;
 
@@ -695,6 +716,9 @@ class PelTag {
    * FlashPix Version
    *
    * The FlashPix format version supported by a FPXR file.
+   *
+   * An entry holding this tag must have format {@link
+   * PelFormat::UNDEFINED}.
    */
   const FLASH_PIX_VERSION              = 0xA000;
 

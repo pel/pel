@@ -10,11 +10,23 @@ PEL Version 0.8  (not yet released)
 
 Notes:
 
-A small bug was fixed in an example.  New test images were added from
-Leica D-LUX, Olympos C50Z and C765 cameras.  Code and documentation
-cleanup.
+Erranous entries will now be skipped while loading instead of causing
+a total abort.  A small bug was fixed in an example.  New test images
+were added from Leica D-LUX, Olympos C50Z and C765 cameras.  Code and
+documentation cleanup.
 
 Changes:
+
+* Instead of aborting on load errors, PelIfd::load() will now continue
+  with the next entry.  A warning will be issued if debugging is
+  turned on in PEL.
+
+* Added a PelEntryException class.  When an entry cannot be loaded in
+  PelEntry::newFromData(), an appropriate subclass of this exception
+  will be thrown.
+
+* Described the requirements in terms of formats and component counts
+  in the documentation for individual tags in PelTag.
 
 * Fixed the edit-description.php example, it still used PelEntryString
   instead of PelEntryAscii.  Thanks goes to Achim Gerber.

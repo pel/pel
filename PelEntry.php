@@ -50,23 +50,37 @@ require_once('Pel.php');
 
 
 /**
+ * Exception indicating a problem with the entry.
+ *
+ * @author Martin Geisler <gimpster@users.sourceforge.net>
+ * @package PEL
+ * @subpackage Exception
+ */
+class PelEntryException extends PelException {}
+
+
+/**
  * Exception indicating that an unexpected format was found.
  *
  * @author Martin Geisler <gimpster@users.sourceforge.net>
  * @package PEL
  * @subpackage Exception
  */
-class PelUnexpectedFormatException extends PelException {
+class PelUnexpectedFormatException extends PelEntryException {
 
   /**
    * Construct a new exception indicating an invalid format.
+   *
+   * @param PelTag the tag for which the violation was found.
    *
    * @param PelFormat the format found.
    *
    * @param PelFormat the expected format.
    */
-  function __construct($found, $expected) {
-    parent::__construct('Unexpected format found: %s. Expected %s instead.',
+  function __construct($tag, $found, $expected) {
+    parent::__construct('Unexpected format found for %s tag: %s. ' .
+                        'Expected %s instead.',
+                        PelTag::getName($tag),
                         PelFormat::getName($found),
                         PelFormat::getName($expected));
   }
@@ -81,7 +95,7 @@ class PelUnexpectedFormatException extends PelException {
  * @package PEL
  * @subpackage Exception
  */
-class PelWrongComponentCountException extends PelException {
+class PelWrongComponentCountException extends PelEntryException {
 
   /**
    * Construct a new exception indicating a wrong number of
@@ -147,8 +161,16 @@ abstract class PelEntry {
   /**
    * Make a new entry from a bunch of bytes.
    *
-   * This method will create the proper subclass of {@link PelEntry}
-   * corresponding to the {@link PelTag} and {@link PelFormat} given.
+   * This factory method will create the proper subclass of {@link
+   * PelEntry} corresponding to the {@link PelTag} and {@link
+   * PelFormat} given.
+   *
+   * A {@link PelUnexpectedFormatException} is thrown if a mismatch is
+   * discovered between the tag and format, and likewise a {@link
+   * PelWrongComponentCountException} is thrown if the number of
+   * components does not match the requirements of the tag.  The
+   * requirements for a given tag (if any) can be found in the
+   * documentation for {@link PelTag}.
    *
    * @param PelTag the tag of the entry.
    *
@@ -170,7 +192,8 @@ abstract class PelEntry {
     case PelTag::DATE_TIME_ORIGINAL:
     case PelTag::DATE_TIME_DIGITIZED:
       if ($format != PelFormat::ASCII)
-        throw new PelUnexpectedFormatException($format, PelFormat::ASCII);
+        throw new PelUnexpectedFormatException($tag, $format,
+                                               PelFormat::ASCII);
 
       if ($components != 20)
         throw new PelWrongComponentCountException($tag, $components, 20);
@@ -185,7 +208,8 @@ abstract class PelEntry {
 
     case PelTag::COPYRIGHT:
       if ($format != PelFormat::ASCII)
-        throw new PelUnexpectedFormatException($format, PelFormat::ASCII);
+        throw new PelUnexpectedFormatException($tag, $format,
+                                               PelFormat::ASCII);
       
       $v = explode("\0", trim($data->getBytes(), ' '));
       require_once('PelEntryAscii.php');
@@ -195,14 +219,16 @@ abstract class PelEntry {
     case PelTag::FLASH_PIX_VERSION:
     case PelTag::INTEROPERABILITY_VERSION:
       if ($format != PelFormat::UNDEFINED)
-        throw new PelUnexpectedFormatException($format, PelFormat::UNDEFINED);
+        throw new PelUnexpectedFormatException($tag, $format,
+                                               PelFormat::UNDEFINED);
 
       require_once('PelEntryUndefined.php');
       return new PelEntryVersion($tag, $data->getBytes() / 100);
 
     case PelTag::USER_COMMENT:
       if ($format != PelFormat::UNDEFINED)
-        throw new PelUnexpectedFormatException($format, PelFormat::UNDEFINED);
+        throw new PelUnexpectedFormatException($tag, $format,
+                                               PelFormat::UNDEFINED);
 
       require_once('PelEntryUndefined.php');
       if ($data->getSize() < 8) {

@@ -204,8 +204,12 @@ class PelIfd {
           $data = new PelDataWindow();
         }
 
-        $entry = PelEntry::newFromData($tag, $format, $components, $data);
-        $this->entries[$tag] = $entry;
+        try {
+          $entry = PelEntry::newFromData($tag, $format, $components, $data);
+          $this->entries[$tag] = $entry;
+        } catch (PelEntryException $e) {
+          Pel::warning('Could not load entry %d: %s', $i, $e->getMessage());
+        }
 
         /* The format of the thumbnail is stored in this tag. */
 //         TODO: handle TIFF thumbnail.
