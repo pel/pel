@@ -41,6 +41,7 @@ require_once('PelException.php');
 require_once('PelFormat.php');
 require_once('PelEntry.php');
 require_once('PelTag.php');
+require_once('Pel.php');
 /**#@-*/
 
 
@@ -419,13 +420,13 @@ class PelIfd {
 
 
   function __toString() {
-    $str = sprintf("Dumping EXIF IFD %s with %d entries...\n",
-                   self::getName(), count($this->entries));
+    $str = Pel::fmt("Dumping EXIF IFD %s with %d entries...\n",
+                    self::getName(), count($this->entries));
     
     foreach ($this->entries as $entry)
       $str .= $entry->__toString();
 
-    $str .= sprintf("Dumping %d sub IFDs...\n", count($this->sub));
+    $str .= Pel::fmt("Dumping %d sub IFDs...\n", count($this->sub));
 
     foreach ($this->sub as $tag => $ifd)
       $str .= $ifd->__toString();

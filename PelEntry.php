@@ -45,6 +45,7 @@ require_once('PelDataWindow.php');
 require_once('PelException.php');
 require_once('PelFormat.php');
 require_once('PelTag.php');
+require_once('Pel.php');
 /**#@-*/
 
 
@@ -316,13 +317,13 @@ abstract class PelEntry {
    * mostly for debugging.
    */
   function __toString() {
-    $str = sprintf("  Tag: 0x%04X ('%s')\n",
-                   $this->tag, PelTag::getName($this->tag));
-    $str .= sprintf("    Format    : %d ('%s')\n",
-                    $this->format,
-                    PelFormat::getName($this->format));
-    $str .= sprintf("    Components: %d\n", $this->components);
-    $str .= sprintf("    Value     : %s\n", $this->getText());
+    $str = Pel::fmt("  Tag: 0x%04X (%s)\n",
+                    $this->tag, PelTag::getName($this->tag));
+    $str .= Pel::fmt("    Format    : %d (%s)\n",
+                     $this->format,
+                     PelFormat::getName($this->format));
+    $str .= Pel::fmt("    Components: %d\n", $this->components);
+    $str .= Pel::fmt("    Value     : %s\n", $this->getText());
     return $str;
   }
 

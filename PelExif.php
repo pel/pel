@@ -43,6 +43,7 @@ require_once('PelEntry.php');
 require_once('PelTiff.php');
 require_once('PelIfd.php');
 require_once('PelTag.php');
+require_once('Pel.php');
 /**#@-*/
 
 
@@ -141,9 +142,8 @@ class PelExif extends PelJpegContent {
    * useful for debugging.
    */
   function __toString() {
-    return sprintf("Dumping %d bytes of EXIF data...\n%s",
-                   $this->size,
-                   $this->tiff->__toString());
+    return Pel::fmt("Dumping %d bytes of EXIF data...\n", $this->size) .
+      $this->tiff->__toString();
   }
 
 }

@@ -38,6 +38,7 @@
 /**#@+ Required class definitions. */
 require_once('PelDataWindow.php');
 require_once('PelIfd.php');
+require_once('Pel.php');
 /**#@-*/
 
 
@@ -170,7 +171,7 @@ class PelTiff {
    * for debugging.
    */
   function __toString() {
-    $str = sprintf("Dumping %d bytes of TIFF data...\n", $this->size);
+    $str = Pel::fmt("Dumping %d bytes of TIFF data...\n", $this->size);
     if ($this->ifd != null)
       $str .= $this->ifd->__toString();
 

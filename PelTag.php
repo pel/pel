@@ -1161,7 +1161,7 @@ class PelTag {
              'each image. It is recorded as an ASCII string equivalent ' .
              'to hexadecimal notation and 128-bit fixed length.');
     default:
-      return sprintf('Unknown Tag: 0x%X', $tag);
+      return Pel::fmt('Unknown Tag: 0x%04X', $tag);
     }
   }
 }
