@@ -5,18 +5,20 @@ Copyright (C) 2004  Martin Geisler <gimpster@users.sourceforge.net>
 Licensed under the GNU GPL, see COPYING for details.
 
 
-                         --------------------
-                             Description
-                       ========================
+Description
+***********
 
 PEL lets you read and write EXIF headers found in JPEG images easily.
 See the file INSTALL for an introduction to how PEL can be used by
 other applications.
 
-                                   
-                         --------------------
-                               Features
-                       ========================
+Please note that PEL is not mature, the API will probably change
+before version 1.0 is reached.  Go to the PEL development mailinglist
+(look below) and share your ideas about how the API should look like.
+
+
+Features
+********
 
 * Supports reading and writing all tags supported by the C libexif
   (http://sf.net/projects/libexif) library.
@@ -24,9 +26,24 @@ other applications.
 * Extensible object-oriented design.
 
 
-                         --------------------
-                               Credits
-                       ========================
+Getting Support
+***************
+
+PEL is hosted on SourceForge and uses the tools found there for
+support.  For general discussions about the future development of PEL,
+please use the development mailinglist.  Remember to subscribe before
+you post on the list, you can subscribe here:
+
+  https://lists.sourceforge.net/lists/listinfo/pel-devel
+
+If you have a specific support request, a bug report, a feature
+request, or maybe a patch, please use the corresponding tracker:
+
+  https://sourceforge.net/tracker/?group_id=108380
+
+
+Credits
+*******
 
 PEL started out as a port of libexif (http://sf.net/projects/libexif)
 from C to PHP.

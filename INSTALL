@@ -5,18 +5,16 @@ Copyright (C) 2004  Martin Geisler <gimpster@users.sourceforge.net>
 Licensed under the GNU GPL, see COPYING for details.
 
 
-                         --------------------
-                             Requirements
-                       ========================
+Requirements
+************
 
 PEL requires PHP 5.  The world is still waiting for the final release
 of this version, but in the mean time the release candidates should be
 used.  PEL was developed with PHP 5 Release Candidate 2.
 
 
-                         --------------------
-                             Installation
-                       ========================
+Installation
+************
 
 PEL is installed by downloading it and unpacking it in a directory of
 your choice.  Your application can then start using the classed
@@ -24,9 +22,8 @@ defined in PEL, most likely the PelJpegData class which contain an
 entire JPEG image.
 
 
-                         --------------------
-                                Usage
-                       ========================
+Usage
+*****
 
 Your application should include at least the PelDataWindow.php file
 for the definition of the basic PelDataWindow class which is used to
