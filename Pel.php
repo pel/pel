@@ -50,6 +50,18 @@
 if (function_exists('dgettext')) {
   bindtextdomain('pel', dirname(__FILE__) . '/locale');
 } else {
+
+  /**
+   * Lookup a message in a specific domain.
+   *
+   * This is just a stub which will return the message untranslated.
+   *
+   * @param string $domain the domain.
+   *
+   * @param string $str the message to be translated.
+   *
+   * @return string the untranslated message.
+   */
   function dgettext($domain, $str) {
     return $str;
   }
