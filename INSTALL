@@ -80,7 +80,14 @@ requests here:
   http://sourceforge.net/tracker/?group_id=108380
 
 If you change the code (to fix bugs or to implement enhancements),
-then it is highly recommended that you download SimpleTest from
+then it is highly recommended that you test your changes against known
+good data.  To do this, first download the image tests available from
+the PEL homepage:
+
+  http://pel.sourceforge.net/
+
+Unpack this in the test directory, thereby creating an image-tests
+directory there.  Then download SimpleTest from
 
   http://sourceforge.net/projects/simpletest
 
