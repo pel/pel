@@ -7,14 +7,19 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PEL 0.3\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-06-08 16:16+0200\n"
-"PO-Revision-Date: 2004-06-08 16:22+0200\n"
+"POT-Creation-Date: 2004-06-09 14:49+0200\n"
+"PO-Revision-Date: 2004-06-09 14:52+0200\n"
 "Last-Translator: Martin Geisler <gimpster@gimpster.com>\n"
 "Language-Team: Danish <dansk@klid.dk>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: PelDataWindow.php:535
+#, php-format
+msgid "DataWindow: %d bytes in [%d, %d] of %d bytes"
+msgstr "DataWindow: %d bytes i [%d, %d] af %d bytes"
 
 #: PelEntryAscii.php:342
 msgid "(Photographer)"
@@ -34,12 +39,12 @@ msgstr "  Tag: 0x%04X (%s)\n"
 msgid "    Format    : %d (%s)\n"
 msgstr "    Format      : %d (%s)\n"
 
-#: PelEntry.php:325
+#: PelEntry.php:324
 #, php-format
 msgid "    Components: %d\n"
 msgstr "    Komponenter: %d\n"
 
-#: PelEntry.php:326
+#: PelEntry.php:325
 #, php-format
 msgid "    Value     : %s\n"
 msgstr "    Værdi       : %s\n"
@@ -162,7 +167,7 @@ msgstr ""
 msgid "Tungsten (incandescent light)"
 msgstr ""
 
-#: PelEntryShort.php:217 PelTag.php:1155 PelTag.php:1389
+#: PelEntryShort.php:217 PelTag.php:1389
 msgid "Flash"
 msgstr "Blitz"
 
@@ -391,7 +396,9 @@ msgstr ""
 
 #: PelEntryShort.php:396
 msgid "Flash did not fire, auto mode, red-eye reduction mode."
-msgstr "Blitzen blev ikke brugt, automatisk indstilling, indstilling for reduktion af røde øjne."
+msgstr ""
+"Blitzen blev ikke brugt, automatisk indstilling, indstilling for reduktion "
+"af røde øjne."
 
 #: PelEntryShort.php:398
 msgid "Flash fired, auto mode, red-eye reduction mode."
@@ -408,7 +415,7 @@ msgstr ""
 
 #: PelEntryShort.php:411
 msgid "Normal process"
-msgstr ""
+msgstr "Normal proces"
 
 #: PelEntryShort.php:413
 msgid "Custom process"
@@ -558,59 +565,10 @@ msgstr "Version %s"
 msgid "Dumping %d bytes of EXIF data...\n"
 msgstr "Dumper %d bytes EXIF data...\n"
 
-#: PelFormat.php:150
-msgid "Ascii"
-msgstr ""
-
-#: PelFormat.php:151
-msgid "Byte"
-msgstr ""
-
-#: PelFormat.php:152
-msgid "Short"
-msgstr ""
-
-#: PelFormat.php:153
-msgid "Long"
-msgstr "Langt"
-
-#: PelFormat.php:154
-#, fuzzy
-msgid "Rational"
-msgstr "Delvis"
-
-#: PelFormat.php:155
-msgid "SByte"
-msgstr ""
-
-#: PelFormat.php:156
-msgid "SShort"
-msgstr ""
-
-#: PelFormat.php:157
-msgid "SLong"
-msgstr ""
-
-#: PelFormat.php:158
-msgid "SRational"
-msgstr ""
-
-#: PelFormat.php:159
-msgid "Float"
-msgstr ""
-
-#: PelFormat.php:160
-msgid "Double"
-msgstr ""
-
-#: PelFormat.php:161
-msgid "Undefined"
-msgstr "Udefineret"
-
-#: PelFormat.php:162 PelFormat.php:189
+#: PelFormat.php:163 PelFormat.php:190
 #, php-format
-msgid "Unknown type: 0x%X"
-msgstr "Ukendt type: 0x%X"
+msgid "Unknown format: 0x%X"
+msgstr "Ukendt format: 0x%X"
 
 #: PelIfd.php:423
 #, php-format
@@ -741,7 +699,7 @@ msgstr "Genstart 7"
 
 #: PelJpegMarker.php:352
 msgid "Define quantization table"
-msgstr ""
+msgstr "Definér kvantitationstabel"
 
 #: PelJpegMarker.php:354
 msgid "Define number of lines"
@@ -753,7 +711,7 @@ msgstr "Definér genstart interval"
 
 #: PelJpegMarker.php:358
 msgid "Define hierarchical progression"
-msgstr ""
+msgstr "Definér hierarkisk progression"
 
 #: PelJpegMarker.php:360
 msgid "Expand reference component"
@@ -902,410 +860,6 @@ msgstr "  Størrelse: %d bytes\n"
 msgid "  Unknown content\n"
 msgstr "  Ukendt indhold\n"
 
-#: PelTag.php:1015
-msgid "InteroperabilityIndex"
-msgstr "InteroperabilityIndex"
-
-#: PelTag.php:1017
-msgid "InteroperabilityVersion"
-msgstr "InteroperabilityVersion"
-
-#: PelTag.php:1019
-msgid "ImageWidth"
-msgstr "BilledBredde"
-
-#: PelTag.php:1021
-msgid "ImageLength"
-msgstr "BilledLængde"
-
-#: PelTag.php:1023
-msgid "BitsPerSample"
-msgstr "BitsPrPrøve"
-
-#: PelTag.php:1025 PelTag.php:1259
-msgid "Compression"
-msgstr "Kompression"
-
-#: PelTag.php:1027
-msgid "PhotometricInterpretation"
-msgstr ""
-
-#: PelTag.php:1029
-msgid "FillOrder"
-msgstr ""
-
-#: PelTag.php:1031
-msgid "DocumentName"
-msgstr "DokumentNavn"
-
-#: PelTag.php:1033
-msgid "ImageDescription"
-msgstr "BilledBeskrivelse"
-
-#: PelTag.php:1035
-msgid "Make"
-msgstr "Mærke"
-
-#: PelTag.php:1037 PelTag.php:1271
-msgid "Model"
-msgstr "Model"
-
-#: PelTag.php:1039
-msgid "StripOffsets"
-msgstr ""
-
-#: PelTag.php:1041 PelTag.php:1275
-msgid "Orientation"
-msgstr "Orientering"
-
-#: PelTag.php:1043
-msgid "SamplesPerPixel"
-msgstr "PrøverPrPixel"
-
-#: PelTag.php:1045
-msgid "RowsPerStrip"
-msgstr "RækkerPrStribe"
-
-#: PelTag.php:1047
-msgid "StripByteCounts"
-msgstr ""
-
-#: PelTag.php:1049
-msgid "XResolution"
-msgstr "x-opløsning"
-
-#: PelTag.php:1051
-msgid "YResolution"
-msgstr "y-opløsning"
-
-#: PelTag.php:1053
-msgid "PlanarConfiguration"
-msgstr ""
-
-#: PelTag.php:1055
-msgid "ResolutionUnit"
-msgstr "OpløsningsEnhed"
-
-#: PelTag.php:1057
-msgid "TransferFunction"
-msgstr "OverførselsFunktion"
-
-#: PelTag.php:1059 PelTag.php:1293
-msgid "Software"
-msgstr "Software"
-
-#: PelTag.php:1061
-msgid "DateTime"
-msgstr "DatoTid"
-
-#: PelTag.php:1063 PelTag.php:1297
-msgid "Artist"
-msgstr "Kunstner"
-
-#: PelTag.php:1065
-msgid "WhitePoint"
-msgstr ""
-
-#: PelTag.php:1067
-msgid "PrimaryChromaticities"
-msgstr ""
-
-#: PelTag.php:1069
-msgid "TransferRange"
-msgstr ""
-
-#: PelTag.php:1071 PelTag.php:1305
-msgid "JPEGProc"
-msgstr ""
-
-#: PelTag.php:1073
-msgid "JPEGInterchangeFormat"
-msgstr ""
-
-#: PelTag.php:1075
-msgid "JPEGInterchangeFormatLength"
-msgstr ""
-
-#: PelTag.php:1077
-msgid "YCbCrCoefficients"
-msgstr ""
-
-#: PelTag.php:1079
-msgid "YCbCrSubSampling"
-msgstr ""
-
-#: PelTag.php:1081
-msgid "YCbCrPositioning"
-msgstr ""
-
-#: PelTag.php:1083
-msgid "ReferenceBlackWhite"
-msgstr ""
-
-#: PelTag.php:1085
-msgid "RelatedImageFileFormat"
-msgstr "RelateretBilledFilFormat"
-
-#: PelTag.php:1087
-msgid "RelatedImageWidth"
-msgstr "RelateretBilledBredde"
-
-#: PelTag.php:1089
-msgid "RelatedImageLength"
-msgstr "RelateretBilledLængde"
-
-#: PelTag.php:1091
-msgid "CFARepeatPatternDim"
-msgstr ""
-
-#: PelTag.php:1093 PelTag.php:1201
-msgid "CFAPattern"
-msgstr ""
-
-#: PelTag.php:1095
-msgid "BatteryLevel"
-msgstr "BatteriNiveau"
-
-#: PelTag.php:1097 PelTag.php:1331
-msgid "Copyright"
-msgstr "Ophavsret"
-
-#: PelTag.php:1099
-msgid "ExposureTime"
-msgstr "BelysningsTid"
-
-#: PelTag.php:1101 PelTag.php:1335
-msgid "FNumber"
-msgstr ""
-
-#: PelTag.php:1103 PelTag.php:1337
-msgid "IPTC/NAA"
-msgstr ""
-
-#: PelTag.php:1105
-msgid "ExifIFDPointer"
-msgstr ""
-
-#: PelTag.php:1107
-msgid "InterColorProfile"
-msgstr ""
-
-#: PelTag.php:1109
-msgid "ExposureProgram"
-msgstr "BelysningsProgram"
-
-#: PelTag.php:1111
-msgid "SpectralSensitivity"
-msgstr ""
-
-#: PelTag.php:1113
-msgid "GPSInfoIFDPointer"
-msgstr ""
-
-#: PelTag.php:1125
-msgid "ISOSpeedRatings"
-msgstr "ISOHastighed"
-
-#: PelTag.php:1127 PelTag.php:1361
-msgid "OECF"
-msgstr ""
-
-#: PelTag.php:1129
-msgid "ExifVersion"
-msgstr "ExifVersion"
-
-#: PelTag.php:1131
-msgid "DateTimeOriginal"
-msgstr "DatoTidOriginal"
-
-#: PelTag.php:1133
-msgid "DateTimeDigitized"
-msgstr "DatoTidDigitaliseret"
-
-#: PelTag.php:1135
-msgid "ComponentsConfiguration"
-msgstr ""
-
-#: PelTag.php:1137
-msgid "CompressedBitsPerPixel"
-msgstr ""
-
-#: PelTag.php:1139
-msgid "ShutterSpeedValue"
-msgstr "LukketidsVærdi"
-
-#: PelTag.php:1141
-msgid "ApertureValue"
-msgstr "Blændetal"
-
-#: PelTag.php:1143
-msgid "BrightnessValue"
-msgstr ""
-
-#: PelTag.php:1145
-msgid "ExposureBiasValue"
-msgstr ""
-
-#: PelTag.php:1147
-msgid "MaxApertureValue"
-msgstr ""
-
-#: PelTag.php:1149
-msgid "SubjectDistance"
-msgstr ""
-
-#: PelTag.php:1151
-msgid "MeteringMode"
-msgstr ""
-
-#: PelTag.php:1153
-msgid "LightSource"
-msgstr "Lyskilde"
-
-#: PelTag.php:1157
-msgid "FocalLength"
-msgstr "FokusLængde"
-
-#: PelTag.php:1159
-msgid "MakerNote"
-msgstr ""
-
-#: PelTag.php:1161
-msgid "UserComment"
-msgstr "BrugerKommentar"
-
-#: PelTag.php:1163
-msgid "SubsecTime"
-msgstr ""
-
-#: PelTag.php:1165
-msgid "SubSecTimeOriginal"
-msgstr ""
-
-#: PelTag.php:1167
-msgid "SubSecTimeDigitized"
-msgstr ""
-
-#: PelTag.php:1169
-msgid "FlashPixVersion"
-msgstr "FlashPixVersion"
-
-#: PelTag.php:1171
-msgid "ColorSpace"
-msgstr ""
-
-#: PelTag.php:1173
-msgid "PixelXDimension"
-msgstr ""
-
-#: PelTag.php:1175
-msgid "PixelYDimension"
-msgstr ""
-
-#: PelTag.php:1177
-msgid "RelatedSoundFile"
-msgstr ""
-
-#: PelTag.php:1179
-msgid "InteroperabilityIFDPointer"
-msgstr ""
-
-#: PelTag.php:1181
-msgid "FlashEnergy"
-msgstr "BlitzEnergi"
-
-#: PelTag.php:1183
-msgid "SpatialFrequencyResponse"
-msgstr ""
-
-#: PelTag.php:1185
-msgid "FocalPlaneXResolution"
-msgstr ""
-
-#: PelTag.php:1187
-msgid "FocalPlaneYResolution"
-msgstr ""
-
-#: PelTag.php:1189
-msgid "FocalPlaneResolutionUnit"
-msgstr ""
-
-#: PelTag.php:1191
-msgid "SubjectLocation"
-msgstr ""
-
-#: PelTag.php:1193
-msgid "ExposureIndex"
-msgstr ""
-
-#: PelTag.php:1195
-msgid "SensingMethod"
-msgstr ""
-
-#: PelTag.php:1197
-msgid "FileSource"
-msgstr ""
-
-#: PelTag.php:1199
-msgid "SceneType"
-msgstr ""
-
-#: PelTag.php:1203
-msgid "SubjectArea"
-msgstr ""
-
-#: PelTag.php:1205
-msgid "CustomRendered"
-msgstr ""
-
-#: PelTag.php:1207
-msgid "ExposureMode"
-msgstr ""
-
-#: PelTag.php:1209
-msgid "WhiteBalance"
-msgstr ""
-
-#: PelTag.php:1211
-msgid "DigitalZoomRatio"
-msgstr ""
-
-#: PelTag.php:1213
-msgid "FocalLengthIn35mmFilm"
-msgstr "FokusLængdePå35mmFilm"
-
-#: PelTag.php:1215
-msgid "SceneCaptureType"
-msgstr ""
-
-#: PelTag.php:1217
-msgid "GainControl"
-msgstr ""
-
-#: PelTag.php:1219 PelTag.php:1453
-msgid "Contrast"
-msgstr "Kontrast"
-
-#: PelTag.php:1221 PelTag.php:1455
-msgid "Saturation"
-msgstr "Farvemætning"
-
-#: PelTag.php:1223 PelTag.php:1457
-msgid "Sharpness"
-msgstr "Skarphed"
-
-#: PelTag.php:1225
-msgid "DeviceSettingDescription"
-msgstr ""
-
-#: PelTag.php:1227
-msgid "SubjectDistanceRange"
-msgstr ""
-
-#: PelTag.php:1229
-msgid "ImageUniqueID"
-msgstr ""
-
 #: PelTag.php:1231
 #, php-format
 msgid "Unknown: 0x%02X"
@@ -1331,6 +885,10 @@ msgstr "Billedlængde"
 msgid "Bits per Sample"
 msgstr "Bits pr. prøve"
 
+#: PelTag.php:1259
+msgid "Compression"
+msgstr "Kompression"
+
 #: PelTag.php:1261
 msgid "Photometric Interpretation"
 msgstr ""
@@ -1351,9 +909,17 @@ msgstr "Billedbeskrivelse"
 msgid "Manufacturer"
 msgstr "Fremstiller"
 
+#: PelTag.php:1271
+msgid "Model"
+msgstr "Model"
+
 #: PelTag.php:1273
 msgid "Strip Offsets"
 msgstr ""
+
+#: PelTag.php:1275
+msgid "Orientation"
+msgstr "Orientering"
 
 #: PelTag.php:1277
 msgid "Samples per Pixel"
@@ -1387,9 +953,17 @@ msgstr "Enhed for opløsning"
 msgid "Transfer Function"
 msgstr "Overførselsfunktion"
 
+#: PelTag.php:1293
+msgid "Software"
+msgstr "Software"
+
 #: PelTag.php:1295
 msgid "Date and Time"
 msgstr "Dato og tid"
+
+#: PelTag.php:1297
+msgid "Artist"
+msgstr "Kunstner"
 
 #: PelTag.php:1299
 msgid "White Point"
@@ -1401,6 +975,10 @@ msgstr ""
 
 #: PelTag.php:1303
 msgid "Transfer Range"
+msgstr ""
+
+#: PelTag.php:1305
+msgid "JPEGProc"
 msgstr ""
 
 #: PelTag.php:1307
@@ -1451,9 +1029,21 @@ msgstr ""
 msgid "Battery Level"
 msgstr "Batteri niveau"
 
+#: PelTag.php:1331
+msgid "Copyright"
+msgstr "Ophavsret"
+
 #: PelTag.php:1333
 msgid "Exposure Time"
 msgstr "Belysningstid"
+
+#: PelTag.php:1335
+msgid "FNumber"
+msgstr ""
+
+#: PelTag.php:1337
+msgid "IPTC/NAA"
+msgstr ""
 
 #: PelTag.php:1339
 msgid "Exif IFD Pointer"
@@ -1478,6 +1068,10 @@ msgstr ""
 #: PelTag.php:1359
 msgid "ISO Speed Ratings"
 msgstr "ISO hastighed"
+
+#: PelTag.php:1361
+msgid "OECF"
+msgstr ""
 
 #: PelTag.php:1363
 msgid "Exif Version"
@@ -1651,6 +1245,18 @@ msgstr ""
 msgid "Gain Control"
 msgstr ""
 
+#: PelTag.php:1453
+msgid "Contrast"
+msgstr "Kontrast"
+
+#: PelTag.php:1455
+msgid "Saturation"
+msgstr "Farvemætning"
+
+#: PelTag.php:1457
+msgid "Sharpness"
+msgstr "Skarphed"
+
 #: PelTag.php:1459
 msgid "Device Setting Description"
 msgstr ""
@@ -1701,7 +1307,7 @@ msgid ""
 msgstr ""
 "Antallet af bits pr. billedkomponent. I denne standard er hver "
 "billedkomponent på 8 bit, så værdien for dette tag er 9. Se også "
-"<PrøverPrPixel>. I JPEG komprimeret data bliver en JPEG marker brugt i "
+"<SamplesPerPixel>. I JPEG komprimeret data bliver en JPEG marker brugt i "
 "stedet for dette tag."
 
 #: PelTag.php:1493
@@ -1733,7 +1339,7 @@ msgstr ""
 "En tekststreng der angiver titlen på billedet. Det kan være en kommentar så "
 "som \"1988 firma picnic\" eller lignende. To-byte tegnsæt kan ikke bruges. "
 "Når et 2-byte tegnsæt er nødvendigt, så skal Exif Private tag'et "
-"<BrugerKommentar> bruges."
+"<UserComment> bruges."
 
 #: PelTag.php:1503
 msgid ""
@@ -1781,18 +1387,24 @@ msgid ""
 "The total number of bytes in each strip. With JPEG compressed data this "
 "designation is not needed and is omitted."
 msgstr ""
+"Det totale antal bytes i hver stribe. Med JPEG komprimeret data er denne "
+"oplysning ikke nødvendig og derfor udeladt."
 
 #: PelTag.php:1517
 msgid ""
 "The number of pixels per <ResolutionUnit> in the <ImageWidth> direction. "
 "When the image resolution is unknown, 72 [dpi] is designated."
 msgstr ""
+"Antallet af pixels pr. <ResolutionUnit> i <ImageWidth> retningen. Når "
+"billedopløsningen er ukendt, angives 72 [dpi]."
 
 #: PelTag.php:1519
 msgid ""
 "The number of pixels per <ResolutionUnit> in the <ImageLength> direction. "
 "The same value as <XResolution> is designated."
 msgstr ""
+"Antallet af pixels pr. <ResolutionUnit> i <ImageLength> retningen. Angiver "
+"sammen værdi som <XResolution>."
 
 #: PelTag.php:1521
 msgid ""
@@ -1822,12 +1434,19 @@ msgid ""
 "is not specified, but it is recommended that the example shown below be "
 "followed. When the field is left blank, it is treated as unknown."
 msgstr ""
+"Dette felt gemmer navnet og versionen af softwaren eller firmwaren i "
+"kameraet eller billed input apparatet der blev brugt til at generere "
+"billedet. Der er ikke specificeret noget detaljeret format, men det "
+"anbefales at eksemplet vist nedenfor bliver fulgt. Når dette felt er ladt "
+"blankt, så betragtes det som ukendt."
 
 #: PelTag.php:1529
 msgid ""
 "The date and time of image creation. In this standard (EXIF-2.1) it is the "
 "date and time the file was changed."
 msgstr ""
+"Datoen og tidspunktet hvor billedet blev lavet. I denne standard (EXIF-2.1) "
+"er det datoen og tidspunktet hvor filen blev ændret."
 
 #: PelTag.php:1531
 msgid ""
@@ -1836,6 +1455,11 @@ msgid ""
 "the information be written as in the example below for ease of "
 "Interoperability. When the field is left blank, it is treated as unknown."
 msgstr ""
+"Dette felt gemmer navnet på ejeren af kameraet, photografen eller skaberen "
+"af billedet. Der er ikke specificeret noget detaljeret format, men det "
+"anbefales at informationen bliver skrevet som i eksemplet nedenfor, for at "
+"sikre nem udveksling af data. Når dette felt er ladt blankt, så betragtes "
+"det som ukendt."
 
 #: PelTag.php:1533
 msgid ""
@@ -2091,41 +1715,42 @@ msgid ""
 "code be ASCII and that the following user comment part be filled with blank "
 "characters [20.H]."
 msgstr ""
-"Et tag hvor Exif brugere kan skrive nøgleord eller kommentarer til billedet, "
-"udover dem i <BilledBeskrivelse>, og uden begrænsningerne for tegnsættes som "
-"i >BilledBeskrivelse> tagget. Tegnsætttet der bruges i <BrugerKommentar> "
-"tagget bliver identificeret på baggrund af en ID-kode i en fast 8 byte "
-"område i starten af dataområdet for tagget. Den ubrugte del af dette område "
-"fyldes med NULL (\"00.h\"). ID koder bliver tildelt ved registrering. Måden "
-"hvorpå hver tegnsæt angives på er givet i tabel 6. Værdien af CountN bliver "
-"bestemt baseret på de 8 bytes i tegnsæt området og antallet af bytes i "
-"brugerkommentardelen. Da typen ikke er ASCII, så er det ikke nødvendigt at "
-"terminere med NULL (se figur 9). ID koden for <BrugerKommentar> området kan "
-"være en Defineret kode såsom JIS eller ASCII eller den kan være Udefineret. "
-"Navnet for Udefineret er UdefineretTekst og ID koden er fyldt med 8 bytes "
-"der alle er NULL (\"00.h\"). En Exif læser der læser <BrugerKommentar> "
-"tagget skal have en funktion der kan bestemme ID koden. Denne funktion er "
-"ikke nødvendig i Exif læsere der ikke bruger <BrugerKommentar> tagget (se "
-"tabel 7). Når et <BrugerKommentar> felt bliver lagt til side, så anbefales "
-"det, at ID koden er ASCII og at de følgende del til brugerkommentar fylles "
-"med mellemrum [20.h]."
+"Et felt hvor Exif brugere kan skrive nøgleord eller kommentarer til "
+"billedet, udover dem i <ImageDescription>, og uden begrænsningerne for "
+"tegnsættes som i <ImageDescription> feltet. Tegnsætttet der bruges i "
+"<UserComment> feltet bliver identificeret på baggrund af en ID-kode i en "
+"fast 8 byte område i starten af dataområdet for feltet. Den ubrugte del af "
+"dette område fyldes med NULL (\"00.h\"). ID koder bliver tildelt ved "
+"registrering. Måden hvorpå hver tegnsæt angives på er givet i tabel 6. "
+"Værdien af CountN bliver bestemt baseret på de 8 bytes i tegnsæt området og "
+"antallet af bytes i brugerkommentardelen. Da typen ikke er ASCII, så er det "
+"ikke nødvendigt at terminere med NULL (se figur 9). ID koden for "
+"<UserComment> området kan være en Defineret kode såsom JIS eller ASCII eller "
+"den kan være Udefineret. Navnet for Udefineret er UdefineretTekst og ID "
+"koden er fyldt med 8 bytes der alle er NULL (\"00.h\"). En Exif læser der "
+"læser <UserComment> feltet skal have en funktion der kan bestemme ID koden. "
+"Denne funktion er ikke nødvendig i Exif læsere der ikke bruger <UserComment> "
+"feltet (se tabel 7). Når et <UserComment> felt bliver lagt til side, så "
+"anbefales det, at ID koden er ASCII og at de følgende del til "
+"brugerkommentar fylles med mellemrum [20.h]."
 
 #: PelTag.php:1632
 msgid "A tag used to record fractions of seconds for the <DateTime> tag."
-msgstr "Et tag brugt til at gemme brøkdele af sekunder for <DatoTid> tagget."
+msgstr "Et felt brugt til at gemme brøkdele af sekunder for <DateTime> feltet."
 
 #: PelTag.php:1634
 msgid ""
 "A tag used to record fractions of seconds for the <DateTimeOriginal> tag."
 msgstr ""
-"Et tag brugt til at gemme brøkdele af sekunder for <DatoTidOriginal> tagget."
+"Et felt brugt til at gemme brøkdele af sekunder for <DateTimeOriginal> "
+"tagget."
 
 #: PelTag.php:1636
 msgid ""
 "A tag used to record fractions of seconds for the <DateTimeDigitized> tag."
 msgstr ""
-"Et tag brugt til at gemme brøkdele af sekunder for <DatoTidDigitaliseret> "
-"tagget."
+"Et felt brugt til at gemme brøkdele af sekunder for <DateTimeDigitized> "
+"feltet."
 
 #: PelTag.php:1638
 msgid "The FlashPix format version supported by a FPXR file."
