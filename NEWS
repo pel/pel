@@ -10,7 +10,20 @@ PEL Version 0.4  (not yet released)
 
 Notes:
 
+The infrastructure for internationalisation has been put in place.
+Preliminary translations for Danish, German, French, and Spanish is
+included.
+
 Changes:
+
+* Added German, French, and Spanish translations taken from libexif.
+  The translations were made by Lutz Müller, Fabian Mandelbaum, and
+  Arnaud Launay, respectively.
+
+* Added new static methods Pel::tra and Pel::fmt which are used for
+  interaction with Gettext.  The first function simply translates its
+  argument, the second will in addition function like sprintf() when
+  given several arguments.
 
 * Updated documentation.
 
