@@ -377,28 +377,38 @@ class PelEntryVersion extends PelEntryUndefined {
    * either 'Exif' or 'FlashPix'.
    */
   function getText($brief = false) {
-    if ($brief)
-      $v = '';
-    else
-      $v = 'Version ';
-
-    $v .= $this->version;
+    $v = $this->version;
 
     /* Versions numbers like 2.0 would be output as just 2 if we don't
      * add the '.0' ourselves. */
     if (floor($this->version) == $this->version)
       $v .= '.0';
 
-    if ($this->tag == PelTag::EXIF_VERSION)
-      return 'Exif ' . $v;
+    switch ($this->tag) {
+    case PelTag::EXIF_VERSION:
+      if ($brief)
+        return Pel::fmt('Exif %s', $v);
+      else
+        return Pel::fmt('Exif Version %s', $v);
+      
+    case PelTag::FLASH_PIX_VERSION:
+      if ($brief)
+        return Pel::fmt('FlashPix %s', $v);
+      else
+        return Pel::fmt('FlashPix Version %s', $v);
+      
+    case PelTag::INTEROPERABILITY_VERSION:
+      if ($brief)
+        return Pel::fmt('Interoperability %s', $v);
+      else
+        return Pel::fmt('Interoperability Version %s', $v);
+    }
+
+    if ($brief)
+      return $v;
+    else
+      return Pel::fmt('Version %s', $v);
     
-    if ($this->tag == PelTag::FLASH_PIX_VERSION)
-      return 'FlashPix ' . $v;
-
-    if ($this->tag == PelTag::INTEROPERABILITY_VERSION)
-      return 'Interoperability ' . $v;
-
-    return $v;
   }
 
 }
