@@ -531,6 +531,13 @@ class PelDataWindow {
   }
 
 
+  /**
+   * Return a string representation of the data window.
+   *
+   * @return string a description of the window with information about
+   * the number of bytes accessible, the total number of bytes, and
+   * the window start and stop.
+   */
   function __toString() {
     return Pel::fmt('DataWindow: %d bytes in [%d, %d] of %d bytes',
                     $this->size,

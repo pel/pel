@@ -49,6 +49,16 @@ require_once('PelEntry.php');
  * @subpackage Exception
  */
 class PelOverflowException extends PelException {
+  
+  /**
+   * Construct a new overflow exception.
+   *
+   * @param int the value that is out of range.
+   *
+   * @param int the minimum allowed value.
+   *
+   * @param int the maximum allowed value.
+   */
   function __construct($v, $min, $max) {
     parent::__construct('Value %d out of range [%d, %d]',
                         $v, $min, $max);
