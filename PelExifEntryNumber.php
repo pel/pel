@@ -62,8 +62,6 @@ class PelOverflowException extends PelException {
  *
  * This class can hold numbers, with range checks.
  *
- * @todo distinguish between signed and unsigned shorts.
- *
  * @author Martin Geisler <gimpster@users.sourceforge.net>
  * @package PEL
  * @subpackage EXIF
@@ -71,11 +69,11 @@ class PelOverflowException extends PelException {
 abstract class PelExifEntryNumber extends PelExifEntry {
 
   /**
-   * The numbers held by this entry.
+   * The value held by this entry.
    *
    * @var array
    */
-  protected $numbers = array();
+  protected $value = array();
 
   protected $min;
   protected $max;
@@ -95,29 +93,28 @@ abstract class PelExifEntryNumber extends PelExifEntry {
    * getNumber} method will always return an array except for when a
    * single number is given here.
    *
-   * @param short $value the new value(s).  This can be zero or more
+   * @param int $value the new value(s).  This can be zero or more
    * numbers.  The input will be checked to ensure that the numbers
    * are within the valid range.  If not, then a {@link
    * PelExifEntryOverflowException} will be thrown.
    *
-   * @see getNumbers
+   * @see getValue
    */
-  function setNumbers(/* ... */) {
-    $numbers = func_get_args();
-    $this->setNumbersArray($numbers);
+  function setValue(/* ... */) {
+    $value = func_get_args();
+    $this->setValueArray($value);
   }
 
-  function setNumbersArray($numbers) {
-    foreach ($numbers as $n) {
-      $this->validateNumber($n);
-      
-      $this->components = count($numbers);
-      $this->numbers    = $numbers;
-    }
+  function setValueArray($value) {
+    foreach ($value as $v)
+      $this->validateNumber($v);
+    
+    $this->components = count($value);
+    $this->numbers    = $value;
   }
 
   
-  function getNumbers() {
+  function getValue() {
     if ($this->components == 1)
       return $this->numbers[0];
     else
