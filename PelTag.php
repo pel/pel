@@ -1480,7 +1480,7 @@ class PelTag {
   function getDescription($tag) {
     switch ($tag) {
     case self::INTEROPERABILITY_INDEX:
-      return Pel::tra('Indicates the identification of the Interoperability rule. Use "R98" for stating ExifR98 Rules. Four bytes used including the termination code (NULL). see the separate volume of Recommended Exif Interoperability Rules (ExifR98) for other tags used for ExifR98.');
+      return Pel::tra('Indicates the identification of the Interoperability rule. Use "R98" for stating ExifR98 Rules. Four bytes used including the termination code (NULL). See the separate volume of Recommended Exif Interoperability Rules (ExifR98) for other tags used for ExifR98.');
     case self::INTEROPERABILITY_VERSION:
       return '';
     case self::IMAGE_WIDTH:
