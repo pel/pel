@@ -27,7 +27,7 @@
 /**
  * Classes representing JPEG data.
  *
- * The {@link PelJpegData} class defined here provides an abstraction
+ * The {@link PelJpeg} class defined here provides an abstraction
  * for dealing with a JPEG file.  The file will be contain a number of
  * sections indicated by markers, which is modelled with the {@link
  * PelJpegSection} and {@link PelJpegMarker} classes.
@@ -47,8 +47,8 @@ require_once('PelJpegMarker.php');
 require_once('PelJpegContent.php');
 /** Class definition of {@link PelJpegSection}. */
 require_once('PelJpegSection.php');
-/** Class definition of {@link PelExifData}. */
-require_once('PelExifData.php');
+/** Class definition of {@link PelExif}. */
+require_once('PelExif.php');
 
 require_once('Pel.php');
 
@@ -70,7 +70,7 @@ class PelJpegInvalidMarkerException extends PelException {
  * @package PEL
  * @subpackage JPEG
  */
-class PelJpegData {
+class PelJpeg {
 
   private $count = 0;
   private $sections = array();
