@@ -25,8 +25,21 @@
 
 # This small script retrieves the latest version of PEL, packs it up
 # into two tarballs (gz and bz2) and a zip file, and then asks for
-# permission to upload these files to SourceForge.  The files are
-# placed in the current directory.
+# permission to upload these files to SourceForge.  The generated
+# files are placed in the current directory.
+
+# Next go to the following sites and update the release information:
+
+# http://freshmeat.net/projects/pel
+# http://onlyphp.com/detail-1511.html
+# http://hotscripts.com/Detailed/35006.html
+# http://php-resource.de/scripte/show/5686/
+# http://script.dk/sourcecode.jsp?resourceId=1227
+# http://coding.phpground.net/download-mod-707.html
+
+# http://phpfreaks.com/ (not yet listed)
+# http://www.scripts.com/ (not yet listed)
+# http://php.resourceindex.com/ (not yet listed)
 
 MAJOR=0
 MINOR=3
@@ -49,11 +62,16 @@ Copyright (C) 2004  Martin Geisler <gimpster@users.sourceforge.net>
 Licensed under the GNU GPL, see COPYING for details.
 
 " > pel-$VERSION/ChangeLog
-cvs2cl --domain users.sourceforge.net --utc --stdout >> pel-$VERSION/ChangeLog
+cvs2cl --global-opts -q            \
+    --domain users.sourceforge.net \
+    --utc                          \
+    --stdout >> pel-$VERSION/ChangeLog
 echo "done."
 
 
 cd pel-$VERSION
+
+./update-locales.sh
 
 rm make-release.sh .cvsignore
 
