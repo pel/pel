@@ -24,7 +24,7 @@
 /* $Id$ */
 
 
-class NumberTestCase extends UnitTestCase {
+abstract class NumberTestCase extends UnitTestCase {
 
   private $min;
   private $max;
@@ -98,6 +98,8 @@ class NumberTestCase extends UnitTestCase {
 
 }
 
+/* The just defined class should be ignored by SimpleTest since it's
+ * an abstract base class for the real tests defined below. */
 SimpleTestOptions::ignore('NumberTestCase');
 
 class ByteTestCase extends NumberTestCase {
