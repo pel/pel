@@ -35,10 +35,9 @@
  * @package PEL
  */
 
-/** Class definition of {@link PelException}. */
-require_once('PelException.php');
-/** Class definition of {@link PelEntryLong}. */
+/**#@+ Required class definitions. */
 require_once('PelEntryLong.php');
+/**#@-*/
 
 
 /**

@@ -41,12 +41,10 @@
  * @package PEL
  */
 
-/** Class definition of {@link PelException}. */
-require_once('PelException.php');
-/** Class definition of {@link PelEntry}. */
+/**#@+ Required class definitions. */
 require_once('PelEntry.php');
+/**#@-*/
 
-require_once('Pel.php');
 
 /**
  * Class for holding data of any kind.

@@ -44,8 +44,10 @@
  * @package PEL
  */
 
-/** Class definition of {@link PelEntry}. */
+/**#@+ Required class definitions. */
 require_once('PelEntry.php');
+/**#@-*/
+
 
 /**
  * Class for holding a plain ASCII string.
@@ -53,8 +55,8 @@ require_once('PelEntry.php');
  * This class can hold a single ASCII string, and it will be used as in
  * <code>
  * $entry = $ifd->getEntry(PelTag::IMAGE_DESCRIPTION);
- * print($entry->getAscii());
- * $entry->setAscii('This is my image.  I like it.');
+ * print($entry->getValue());
+ * $entry->setValue('This is my image.  I like it.');
  * </code>
  *
  * @author Martin Geisler <gimpster@users.sourceforge.net>

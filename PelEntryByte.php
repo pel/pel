@@ -35,8 +35,9 @@
  * @package PEL
  */
 
-/** Class definition of {@link PelEntryNumber}. */
+/**#@+ Required class definitions. */
 require_once('PelEntryNumber.php');
+/**#@-*/
 
 
 /**
