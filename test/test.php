@@ -41,6 +41,7 @@ $test->addTestFile('number.php');
 $test->addTestFile('undefined.php');
 $test->addTestFile('sony-dsc-v1.php');
 $test->addTestFile('canon-ixus-ii.php');
+$test->addTestFile('nikon-coolscan-iv.php');
 $test->run(new TextReporter());
 
 ?>
