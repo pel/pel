@@ -5,12 +5,22 @@ Copyright (C) 2004  Martin Geisler <gimpster@users.sourceforge.net>
 Licensed under the GNU GPL, see COPYING for details.
 
 
+PEL Version 0.3  ?th May 2004
+*****************************
+
+Notes:
+
+Changes:
+
+
 PEL Version 0.2  16th May 2004
 ******************************
 
-Notes: This release brings updated documentation and better support
-for the EXIF user comment tag and tags containing version information.
-The code is now tested using SimpleTest.
+Notes:
+
+This release brings updated documentation and better support for the
+EXIF user comment tag and tags containing version information.  The
+code is now tested using SimpleTest.
 
 Changes:
 
@@ -35,11 +45,12 @@ Changes:
 PEL Version 0.1  8th May 2004
 *****************************
 
-Notes: The initial release of PEL.  Most of the functionality is in
-place: JPEG files are parsed, EXIF entries are found and interpreted,
-the entries can be edited and new entries can be added, and finally,
-the whole thing can be turned into bytes and saved as a valid JPEG
-file.
+Notes:
+
+The initial release of PEL.  Most of the functionality is in place:
+JPEG files are parsed, EXIF entries are found and interpreted, the
+entries can be edited and new entries can be added, and finally, the
+whole thing can be turned into bytes and saved as a valid JPEG file.
 
 The API is still subject to change, and will remain so until version
 1.0 is reached.
