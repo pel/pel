@@ -98,7 +98,7 @@ $desc = $ifd0->getEntry(PelTag::IMAGE_DESCRIPTION);
 
 if ($desc == null) {
   println('Added new IMAGE_DESCRIPTION entry with "%s".', $description);
-  $desc = new PelEntryString(PelTag::IMAGE_DESCRIPTION, $description);
+  $desc = new PelEntryAscii(PelTag::IMAGE_DESCRIPTION, $description);
   $ifd0->addEntry($desc);
 } else {
   println('Updating IMAGE_DESCRIPTION entry from "%s" to "%s".',
