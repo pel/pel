@@ -59,8 +59,8 @@ class PelConvert {
    * Little-endian byte order.
    *
    * Data stored in little-endian byte order store the least
-   * significant byte fist, so the number 0x12345678 becomes 0x78 0x56
-   * 0x34 0x12 when stored with little-endian byte order.
+   * significant byte first, so the number 0x12345678 becomes 0x78
+   * 0x56 0x34 0x12 when stored with little-endian byte order.
    */
   const LITTLE_ENDIAN = true;
 
@@ -68,7 +68,7 @@ class PelConvert {
    * Big-endian byte order.
    *
    * Data stored in big-endian byte order store the most significant
-   * byte fist, so the number 0x12345678 becomes 0x12 0x34 0x56 0x78
+   * byte first, so the number 0x12345678 becomes 0x12 0x34 0x56 0x78
    * when stored with big-endian byte order.
    */
   const BIG_ENDIAN = false;
@@ -119,7 +119,7 @@ class PelConvert {
 
 
   /**
-   * Extract an unsigned byte from bytes.
+   * Extract an unsigned byte from a string of bytes.
    *
    * @param string the bytes.
    *
@@ -256,6 +256,7 @@ class PelConvert {
     else
       return $n;
   }
+
 
   /**
    * Extract an unsigned rational from bytes.
