@@ -34,6 +34,7 @@ require_once(SIMPLE_TEST . 'unit_tester.php');
 require_once(SIMPLE_TEST . 'reporter.php');
 
 $test = new GroupTest('All PEL tests');
+$test->addTestFile('exif-entry-ascii.php');
 $test->addTestFile('exif-entry-number.php');
 $test->addTestFile('exif-entry-undefined.php');
 $test->run(new TextReporter());
