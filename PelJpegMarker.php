@@ -35,6 +35,10 @@
  * @package PEL
  */
 
+/**#@+ Required class definitions. */
+require_once('Pel.php');
+/**#@-*/
+
 
 /**
  * Class with static methods for JPEG markers.
@@ -275,7 +279,7 @@ class PelJpegMarker {
     case self::JPG12: return 'JPG12';
     case self::JPG13: return 'JPG13';
     case self::COM:   return 'COM';
-    default:          return sprintf('Unknown marker: 0x%02X', $m);
+    default:          return Pel::fmt('Unknown marker: 0x%02X', $m);
     }
   }
 
@@ -288,71 +292,136 @@ class PelJpegMarker {
    */
   static function getDescription($m) {
     switch ($m) {
-    case self::SOF0:  return 'Encoding (baseline)';
-    case self::SOF1:  return 'Encoding (extended sequential)';
-    case self::SOF2:  return 'Encoding (progressive)';
-    case self::SOF3:  return 'Encoding (lossless)';
-    case self::SOF5:  return 'Encoding (differential sequential)';
-    case self::SOF6:  return 'Encoding (differential progressive)';
-    case self::SOF7:  return 'Encoding (differential lossless)';
-    case self::SOF9:  return 'Encoding (extended sequential, arithmetic)';
-    case self::SOF10: return 'Encoding (progressive, arithmetic)';
-    case self::SOF11: return 'Encoding (lossless, arithmetic)';
-    case self::SOF13: return 'Encoding (differential sequential, arithmetic)';
-    case self::SOF14: return 'Encoding (differential progressive, arithmetic)';
-    case self::SOF15: return 'Encoding (differential lossless, arithmetic)';
-    case self::SOI:   return 'Start of image';
-    case self::EOI:   return 'End of image';
-    case self::SOS:   return 'Start of scan';
-    case self::COM:   return 'Comment';
-    case self::DHT:   return 'Define Huffman table';
-    case self::JPG:   return 'Extension';
-    case self::DAC:   return 'Define arithmetic coding conditioning';
-    case self::RST0:  return 'Restart 0';
-    case self::RST1:  return 'Restart 1';
-    case self::RST2:  return 'Restart 2';
-    case self::RST3:  return 'Restart 3';
-    case self::RST4:  return 'Restart 4';
-    case self::RST5:  return 'Restart 5';
-    case self::RST6:  return 'Restart 6';
-    case self::RST7:  return 'Restart 7';
-    case self::DQT:   return 'Define quantization table';
-    case self::DNL:   return 'Define number of lines';
-    case self::DRI:   return 'Define restart interval';
-    case self::DHP:   return 'Define hierarchical progression';
-    case self::EXP:   return 'Expand reference component';
-    case self::APP0:  return 'Application segment 0';
-    case self::APP1:  return 'Application segment 1';
-    case self::APP2:  return 'Application segment 2';
-    case self::APP3:  return 'Application segment 3';
-    case self::APP4:  return 'Application segment 4';
-    case self::APP5:  return 'Application segment 5';
-    case self::APP6:  return 'Application segment 6';
-    case self::APP7:  return 'Application segment 7';
-    case self::APP8:  return 'Application segment 8';
-    case self::APP9:  return 'Application segment 9';
-    case self::APP10: return 'Application segment 10';
-    case self::APP11: return 'Application segment 11';
-    case self::APP12: return 'Application segment 12';
-    case self::APP13: return 'Application segment 13';
-    case self::APP14: return 'Application segment 14';
-    case self::APP15: return 'Application segment 15';
-    case self::JPG0:  return 'Extension 0';
-    case self::JPG1:  return 'Extension 1';
-    case self::JPG2:  return 'Extension 2';
-    case self::JPG3:  return 'Extension 3';
-    case self::JPG4:  return 'Extension 4';
-    case self::JPG5:  return 'Extension 5';
-    case self::JPG6:  return 'Extension 6';
-    case self::JPG7:  return 'Extension 7';
-    case self::JPG8:  return 'Extension 8';
-    case self::JPG9:  return 'Extension 9';
-    case self::JPG10: return 'Extension 10';
-    case self::JPG11: return 'Extension 11';
-    case self::JPG12: return 'Extension 12';
-    case self::JPG13: return 'Extension 13';
-    case self::COM:   return 'Comment';
-    default:          return sprintf('Unknown marker: 0x%02X', $m);
+    case self::SOF0:
+      return Pel::tra('Encoding (baseline)');
+    case self::SOF1:
+      return Pel::tra('Encoding (extended sequential)');
+    case self::SOF2:
+      return Pel::tra('Encoding (progressive)');
+    case self::SOF3:
+      return Pel::tra('Encoding (lossless)');
+    case self::SOF5:
+      return Pel::tra('Encoding (differential sequential)');
+    case self::SOF6:
+      return Pel::tra('Encoding (differential progressive)');
+    case self::SOF7:
+      return Pel::tra('Encoding (differential lossless)');
+    case self::SOF9:
+      return Pel::tra('Encoding (extended sequential, arithmetic)');
+    case self::SOF10:
+      return Pel::tra('Encoding (progressive, arithmetic)');
+    case self::SOF11:
+      return Pel::tra('Encoding (lossless, arithmetic)');
+    case self::SOF13:
+      return Pel::tra('Encoding (differential sequential, arithmetic)');
+    case self::SOF14:
+      return Pel::tra('Encoding (differential progressive, arithmetic)');
+    case self::SOF15:
+      return Pel::tra('Encoding (differential lossless, arithmetic)');
+    case self::SOI:
+      return Pel::tra('Start of image');
+    case self::EOI:
+      return Pel::tra('End of image');
+    case self::SOS:
+      return Pel::tra('Start of scan');
+    case self::COM:
+      return Pel::tra('Comment');
+    case self::DHT:
+      return Pel::tra('Define Huffman table');
+    case self::JPG:
+      return Pel::tra('Extension');
+    case self::DAC:
+      return Pel::tra('Define arithmetic coding conditioning');
+    case self::RST0:
+      return Pel::tra('Restart 0');
+    case self::RST1:
+      return Pel::tra('Restart 1');
+    case self::RST2:
+      return Pel::tra('Restart 2');
+    case self::RST3:
+      return Pel::tra('Restart 3');
+    case self::RST4:
+      return Pel::tra('Restart 4');
+    case self::RST5:
+      return Pel::tra('Restart 5');
+    case self::RST6:
+      return Pel::tra('Restart 6');
+    case self::RST7:
+      return Pel::tra('Restart 7');
+    case self::DQT:
+      return Pel::tra('Define quantization table');
+    case self::DNL:
+      return Pel::tra('Define number of lines');
+    case self::DRI:
+      return Pel::tra('Define restart interval');
+    case self::DHP:
+      return Pel::tra('Define hierarchical progression');
+    case self::EXP:
+      return Pel::tra('Expand reference component');
+    case self::APP0:
+      return Pel::tra('Application segment 0');
+    case self::APP1:
+      return Pel::tra('Application segment 1');
+    case self::APP2:
+      return Pel::tra('Application segment 2');
+    case self::APP3:
+      return Pel::tra('Application segment 3');
+    case self::APP4:
+      return Pel::tra('Application segment 4');
+    case self::APP5:
+      return Pel::tra('Application segment 5');
+    case self::APP6:
+      return Pel::tra('Application segment 6');
+    case self::APP7:
+      return Pel::tra('Application segment 7');
+    case self::APP8:
+      return Pel::tra('Application segment 8');
+    case self::APP9:
+      return Pel::tra('Application segment 9');
+    case self::APP10:
+      return Pel::tra('Application segment 10');
+    case self::APP11:
+      return Pel::tra('Application segment 11');
+    case self::APP12:
+      return Pel::tra('Application segment 12');
+    case self::APP13:
+      return Pel::tra('Application segment 13');
+    case self::APP14:
+      return Pel::tra('Application segment 14');
+    case self::APP15:
+      return Pel::tra('Application segment 15');
+    case self::JPG0:
+      return Pel::tra('Extension 0');
+    case self::JPG1:
+      return Pel::tra('Extension 1');
+    case self::JPG2:
+      return Pel::tra('Extension 2');
+    case self::JPG3:
+      return Pel::tra('Extension 3');
+    case self::JPG4:
+      return Pel::tra('Extension 4');
+    case self::JPG5:
+      return Pel::tra('Extension 5');
+    case self::JPG6:
+      return Pel::tra('Extension 6');
+    case self::JPG7:
+      return Pel::tra('Extension 7');
+    case self::JPG8:
+      return Pel::tra('Extension 8');
+    case self::JPG9:
+      return Pel::tra('Extension 9');
+    case self::JPG10:
+      return Pel::tra('Extension 10');
+    case self::JPG11:
+      return Pel::tra('Extension 11');
+    case self::JPG12:
+      return Pel::tra('Extension 12');
+    case self::JPG13:
+      return Pel::tra('Extension 13');
+    case self::COM:
+      return Pel::tra('Comment');
+    default:
+      return Pel::fmt('Unknown marker: 0x%02X', $m);
     }
   }
 }
