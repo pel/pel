@@ -150,6 +150,4 @@ class SLongTestCase extends NumberTestCase {
   }
 }
 
-
-
 ?>

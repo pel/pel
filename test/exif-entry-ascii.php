@@ -92,3 +92,5 @@ class AsciiTestCase extends UnitTestCase {
   }
   
 }
+
+?>
