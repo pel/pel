@@ -28,14 +28,27 @@ error_reporting(E_ALL);
 
 if ($argc < 2) {
   print('Usage: ' . $argv[0] . " <filename>\n");
+  print("The <filename> should be a JPEG or TIFF image.\n");
   exit(1);
 }
 
-include_once('../PelJpeg.php');
-include_once('../PelDataWindow.php');
+require_once('../PelDataWindow.php');
+require_once('../PelJpeg.php');
+require_once('../PelTiff.php');
+
+/* We typically need lots of RAM to parse TIFF images since they tend
+ * to be big and uncompressed. */
+ini_set('memory_limit', '32M');
 
 $data = new PelDataWindow(file_get_contents($argv[1]));
-$jpeg = new PelJpeg($data);
 
-print($jpeg);
+if (PelJpeg::isValid($data)) {
+  print(new PelJpeg($data));
+} elseif (PelTiff::isValid($data)) {
+  print(new PelTiff($data));
+} else {
+  print("Unrecognized image format! First 16 bytes:\n");
+  PelConvert::bytesToDump($data->getBytes(0, 16)); 
+}
+
 ?>
