@@ -41,13 +41,16 @@ $test->addTestFile('number.php');
 $test->addTestFile('undefined.php');
 
 
-
-$image_tests = scandir('image-tests');
-
-foreach ($image_tests as $image_test)
-  if (substr($image_test, -4) == '.php')
-    $test->addTestFile('image-tests/' . $image_test);
-
+if (is_dir('image-tests')) {
+  $image_tests = scandir('image-tests');
+  
+  foreach ($image_tests as $image_test)
+    if (substr($image_test, -4) == '.php')
+      $test->addTestFile('image-tests/' . $image_test);
+} else {
+  echo "Found no image tests, only core functionality will be tested.\n";
+  echo "Image tests are available from http://pel.sourceforge.net/.\n";
+}
 
 $test->run(new TextReporter());
 
