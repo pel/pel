@@ -50,3 +50,24 @@ finally save the file again.
 See the test directory for this example and others as PHP files.  You
 may have to adjust the path found in the very first line of the files
 before you can execute them.
+
+
+Changing PEL
+************
+
+If you find a bug in PEL then please send a report back so that it can
+be fixed in the next version.  You can submit your bugs and other
+requests here:
+
+  http://sourceforge.net/tracker/?group_id=108380
+
+If you change the code, then it is highly recommended that you
+download SimpleTest from
+
+  http://sourceforge.net/projects/simpletest
+
+and use it to check that your changes doesn't introduce new bugs.
+Simply place SimpleTest in a directory parallel to the PEL
+installation directory and run the test.php file found in the test
+directory in the PEL.  It should report that all tests have passed, if
+not, then the change has messed something up.
