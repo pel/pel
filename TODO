@@ -20,8 +20,6 @@ attention is needed.
 
 * Test and interpret GPS information.
 
-* Look at using Gettext or some other tool for I18n.
-
 * Document all files, classes, and methods.
 
 * Write functions to replace the built-in PHP EXIF functions.
