@@ -10,10 +10,23 @@ PEL Version 0.3  ?th May 2004
 
 Notes:
 
+The decoding of EXIF data is now tested against known values, this
+lead to the discovery of a couple of subtle bugs.  The documentation
+has been expanded.
+
 Changes:
+
+* Added support for the SCENE_TYPE tag.
+
+* Fixed display of integer version numbers.  Version x.0 would be
+  displayed as just version 'x' before.
+
+* Unit tests for EXIF decoding.
 
 * Changed all occurances of include_once() to require_once() since the
   files are required.
+
+* Updated documentation all over.
 
 
 PEL Version 0.2  16th May 2004
