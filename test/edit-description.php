@@ -82,7 +82,8 @@ println('Reading file "%s".', $input);
 $data = new PelDataWindow(file_get_contents($input));
 
 if (PelJpeg::isValid($data)) {
-  $jpeg = $file = new PelJpeg($data);
+  $jpeg = $file = new PelJpeg();
+  $jpeg->load($data);
   $app1 = $jpeg->getSection(PelJpegMarker::APP1);
   $tiff = $app1->getTiff();
 } elseif (PelTiff::isValid($data)) {
