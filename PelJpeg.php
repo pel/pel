@@ -128,7 +128,14 @@ class PelJpeg {
         $d->setWindowStart(2);
 
         if ($marker == PelJpegMarker::APP1) {
-          $content = new PelExif($d->getClone(0, $len));
+          try {
+            $content = new PelExif($d->getClone(0, $len));
+          } catch (PelExifInvalidDataException $e) {
+            Pel::warning('Found non-EXIF APP1 section.');
+            /* We store the data as normal JPEG content if it could
+             * not be parsed as EXIF data. */
+            $content = new PelJpegContent($d->getClone(0, $len));
+          }
           $section = new PelJpegSection($marker, $content);
           $this->appendSection($section);
         } else {
@@ -212,7 +219,7 @@ class PelJpeg {
           $m == PelJpegMarker::EOI)
         continue;
       
-      if ($m == PelJpegMarker::APP1) {
+      if ($c instanceof PelExif) {
         $str .= Pel::tra("  Content    : EXIF data\n");
         $str .= $c->__toString() . "\n";
       } else {
