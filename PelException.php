@@ -30,7 +30,8 @@
  * @author Martin Geisler <gimpster@users.sourceforge.net>
  * @version $Revision$
  * @date $Date$
- * @license http://www.gnu.org/licenses/gpl.html GNU General Public License (GPL)
+ * @license http://www.gnu.org/licenses/gpl.html GNU General Public
+ * License (GPL)
  * @package PEL
  */
 
@@ -63,5 +64,15 @@ class PelException extends Exception {
     parent::__construct(vsprintf($str, $args));
   }
 }
+
+
+/**
+ * Exception throw if invalid data is found.
+ *
+ * @author Martin Geisler <gimpster@users.sourceforge.net>
+ * @package PEL
+ * @subpackage Exception
+ */
+class PelInvalidDataException extends PelException {}
 
 ?>
