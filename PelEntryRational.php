@@ -96,6 +96,19 @@ class PelEntryRational extends PelEntryLong {
   }
 
 
+  /**
+   * Format a rational number.
+   *
+   * The rational will be returned as a string with a slash '/'
+   * between the enumerator and denominator.
+   *
+   * @param array the rational which will be formatted.
+   *
+   * @param boolean not used.
+   *
+   * @return string the rational formatted as a string suitable for
+   * display.
+   */
   function formatNumber($number, $brief = false) {
     return $number[0] . '/' . $number[1];
   }
@@ -198,6 +211,20 @@ class PelEntrySRational extends PelEntrySLong {
   }
 
 
+  /**
+   * Format a rational number.
+   *
+   * The rational will be returned as a string with a slash '/'
+   * between the enumerator and denominator.  Care is taken to display
+   * '-1/2' instead of the mathematically equivalent '1/-2'.
+   *
+   * @param array the rational which will be formatted.
+   *
+   * @param boolean not used.
+   *
+   * @return string the rational formatted as a string suitable for
+   * display.
+   */
   function formatNumber($number, $brief = false) {
     if ($number[1] < 0)
       /* Turn output like 1/-2 into -1/2. */

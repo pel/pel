@@ -36,7 +36,7 @@
  */
 
 
-/* Initialse Gettext.  This must be done before any part of PEL calls
+/* Initialize Gettext.  This must be done before any part of PEL calls
  * Pel::tra() or Pel::fmt() --- this is ensured if every piece of code
  * using those two functions require() this file.
  *
@@ -57,12 +57,21 @@ bindtextdomain('pel', dirname(__FILE__) . '/locale');
  */
 class Pel {
 
+  /**
+   * Flag for controlling debug information.
+   *
+   * The methods producing debug information ({@link debug()} and
+   * {@link warning()}) will only output something if this variable is
+   * set to true.
+   *
+   * @var boolean
+   */
   static $debug = false;
 
   /**
    * Conditionally output debug information.
    *
-   * This method works just like printf() except that it allways
+   * This method works just like printf() except that it always
    * terminates the output with a newline, and that it only outputs
    * something if the PEL_DEBUG defined to some true value.
    *

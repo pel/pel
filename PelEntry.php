@@ -55,6 +55,14 @@ require_once('Pel.php');
  * @subpackage Exception
  */
 class PelUnexpectedFormatException extends PelException {
+
+  /**
+   * Construct a new exception indicating an invalid format.
+   *
+   * @param PelFormat the format found.
+   *
+   * @param PelFormat the expected format.
+   */
   function __construct($found, $expected) {
     parent::__construct('Unexpected format found: %s. Expected %s instead.',
                         PelFormat::getName($found),
@@ -69,6 +77,19 @@ class PelUnexpectedFormatException extends PelException {
  * @subpackage Exception
  */
 class PelWrongComponentCountException extends PelException {
+
+  /**
+   * Construct a new exception indicating a wrong number of
+   * components.
+   *
+   * Some tags have strict limits as to the allowed number of
+   * components, and this exception is thrown if a tag violates such a
+   * constraint.
+   *
+   * @param int the number of components found.
+   *
+   * @param int the expected number of components.
+   */
   function __construct($found, $expected) {
     parent::__construct('Wrong number of components found: %d. Expected %d.',
                         $found, $expected);
@@ -325,7 +346,6 @@ abstract class PelEntry {
     $str .= Pel::fmt("    Value     : %s\n", $this->getText());
     return $str;
   }
-
 }
 
 ?>
