@@ -1,0 +1,55 @@
+INSTALL file for PEL: PHP EXIF Library.  A library with support for
+reading and writing all EXIF headers of JPEG images using PHP.
+
+Copyright (C) 2004  Martin Geisler <gimpster@users.sourceforge.net>
+Licensed under the GNU GPL, see COPYING for details.
+
+
+                         --------------------
+                             Requirements
+                       ========================
+
+PEL requires PHP 5.  The world is still waiting for the final release
+of this version, but in the mean time the release candidates should be
+used.  PEL was developed with PHP 5 Release Candidate 2.
+
+
+                         --------------------
+                             Installation
+                       ========================
+
+PEL is installed by downloading it and unpacking it in a directory of
+your choice.  Your application can then start using the classed
+defined in PEL, most likely the PelJpegData class which contain an
+entire JPEG image.
+
+
+                         --------------------
+                                Usage
+                       ========================
+
+Your application should include at least the PelDataWindow.php file
+for the definition of the basic PelDataWindow class which is used to
+stored data in.  The PelJpegData class is also needed if PEL should do
+the parsing of JPEG data for you.
+
+This example will load a JPEG file given as a command line argument,
+parse the EXIF data within, change the comment to 'Edited by PEL', and
+finally save the file again.
+
+  <?php
+  include_once('PelJpegData.php');
+  include_once('PelDataWindow.php');
+  
+  $data = new PelDataWindow(file_get_contents($argv[1]));
+  $jpeg = new PelJpegData($data);
+  
+  $ifd0 = $jpeg->getSection(2)->getContent()->getIfd();
+  $entry = $ifd0->getEntry(PelExifTag::IMAGE_DESCRIPTION);
+  $entry->setAscii('Edited by PEL');
+  file_put_contents($argv[1], $jpeg->getBytes());
+  ?>
+
+See the test directory for this example and others as PHP files.  You
+may have to adjust the path found in the very first line of the files
+before you can execute them.
