@@ -287,9 +287,21 @@ class PelJpeg {
   }
 
 
+  /**
+   * Insert a new section.
+   *
+   * @param PelJpegMarker the marker for the new section.
+   *
+   * @param PelJpegContent the content of the new section.
+   *
+   * @param int the offset where the new section will be inserted ---
+   * use 0 to insert it at the very beginning, use 1 to insert it
+   * between sections 1 and 2, etc.
+   */
   function insertSection($marker, PelJpegContent $content, $offset) {
     array_splice($this->sections, $offset, 0, array(array($marker, $content)));
   }
+
 
   /**
    * Get a sections corresponding to a particular marker.
