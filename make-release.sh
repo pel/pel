@@ -42,7 +42,7 @@
 
 
 MAJOR=0
-MINOR=5
+MINOR=6
 VERSION=$MAJOR.$MINOR
 
 # Remove old directory, if present
