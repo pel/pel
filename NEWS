@@ -15,8 +15,11 @@ writing to a file.  The example shell scripts have been updated and
 can now be run from any directory.  New images from Nikon models E950,
 E5000, and Coolscan IV have been added to the test suite.
 
-
 Changes:
+
+* Renamed the isValidMarker() method into just isValid() in
+  PelJpegMarker, so that it matches the other isValid() methods found
+  in PelJpeg and PelTiff.
 
 * Added test images from Nikon models E950, E5000 and the film scanner
   Coolscan IV ED.

@@ -188,7 +188,7 @@ class PelJpegMarker {
    * @return boolean if the byte is recognized true is returned,
    * otherwise false will be returned.
    */
-  static function isValidMarker($m) {
+  static function isValid($m) {
     return ($m >= self::SOF0 && $m <= self::COM);
   }
   
