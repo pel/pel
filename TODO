@@ -22,8 +22,4 @@ attention is needed.
 
 * Document all files, classes, and methods.
 
-* Write functions to replace the built-in PHP EXIF functions.
-   This would make PEL a drop-in replacement for people who cannot use
-   the PHP EXIF extension.
-
 * Handle character encodings of the USER_COMMENT tag.
