@@ -25,10 +25,13 @@
 
 
 /**
+ * Misclanious stuff for the overall behaviour of PEL.
+ *
  * @author Martin Geisler <gimpster@users.sourceforge.net>
  * @version $Revision$
  * @date $Date$
- * @license http://www.gnu.org/licenses/gpl.html GNU General Public License (GPL)
+ * @license http://www.gnu.org/licenses/gpl.html GNU General Public
+ * License (GPL)
  * @package PEL
  */
 
