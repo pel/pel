@@ -36,8 +36,8 @@
  * @subpackage EXIF
  */
 
-/** Class definition of {@link PelExifEntryNumber}. */
-require_once('PelExifEntryNumber.php');
+/** Class definition of {@link PelEntryNumber}. */
+require_once('PelEntryNumber.php');
 
 
 /**
@@ -45,12 +45,12 @@ require_once('PelExifEntryNumber.php');
  *
  * This class can hold longs, either just a single long or an array of
  * longs.  The class will be used to manipulate any of the EXIF tags
- * which can have format {@link PelExifFormat::LONG} like in this
+ * which can have format {@link PelFormat::LONG} like in this
  * example:
  * <code>
- * $w = $ifd->getEntry(PelExifTag::EXIF_IMAGE_WIDTH);
+ * $w = $ifd->getEntry(PelTag::EXIF_IMAGE_WIDTH);
  * $w->setValue($w->getValue() / 2);
- * $h = $ifd->getEntry(PelExifTag::EXIF_IMAGE_HEIGHT);
+ * $h = $ifd->getEntry(PelTag::EXIF_IMAGE_HEIGHT);
  * $h->setValue($h->getValue() / 2);
  * </code>
  * Here the width and height is updated to 50% of their original
@@ -60,7 +60,7 @@ require_once('PelExifEntryNumber.php');
  * @package PEL
  * @subpackage EXIF
  */
-class PelExifEntryLong extends PelExifEntryNumber {
+class PelEntryLong extends PelEntryNumber {
 
   /**
    * Make a new entry that can hold an unsigned long.
@@ -73,17 +73,17 @@ class PelExifEntryLong extends PelExifEntryNumber {
    *
    * This means that one can conveniently use objects like this:
    * <code>
-   * $a = new PelExifEntryLong(PelExifTag::EXIF_IMAGE_WIDTH, 123456);
+   * $a = new PelEntryLong(PelTag::EXIF_IMAGE_WIDTH, 123456);
    * $b = $a->getValue() - 654321;
    * </code>
    * where the call to {@link getValue} will return an integer instead
    * of an array with one integer element, which would then have to be
    * extracted.
    *
-   * @param PelExifTag the tag which this entry represents.  This
-   * should be one of the constants defined in {@link PelExifTag},
-   * e.g., {@link PelExifTag::IMAGE_WIDTH}, or any other tag which can
-   * have format {@link PelExifFormat::LONG}.
+   * @param PelTag the tag which this entry represents.  This
+   * should be one of the constants defined in {@link PelTag},
+   * e.g., {@link PelTag::IMAGE_WIDTH}, or any other tag which can
+   * have format {@link PelFormat::LONG}.
    *
    * @param int $value... the long(s) that this entry will
    * represent or an array of longs.  The argument passed must obey
@@ -96,7 +96,7 @@ class PelExifEntryLong extends PelExifEntryNumber {
     $this->tag    = $tag;
     $this->min    = 0;
     $this->max    = 4294967295;
-    $this->format = PelExifFormat::LONG;
+    $this->format = PelFormat::LONG;
 
     $value = func_get_args();
     array_shift($value);
@@ -125,13 +125,13 @@ class PelExifEntryLong extends PelExifEntryNumber {
  *
  * This class can hold longs, either just a single long or an array of
  * longs.  The class will be used to manipulate any of the EXIF tags
- * which can have format {@link PelExifFormat::SLONG}.
+ * which can have format {@link PelFormat::SLONG}.
  *
  * @author Martin Geisler <gimpster@users.sourceforge.net>
  * @package PEL
  * @subpackage EXIF
  */
-class PelExifEntrySLong extends PelExifEntryNumber {
+class PelEntrySLong extends PelEntryNumber {
 
   /**
    * Make a new entry that can hold a signed long.
@@ -142,9 +142,9 @@ class PelExifEntrySLong extends PelExifEntryNumber {
    * integer argument is given here, or when an array with just a
    * single integer is given.
    *
-   * @param PelExifTag the tag which this entry represents.  This
-   * should be one of the constants defined in {@link PelExifTag}
-   * which have format {@link PelExifFormat::SLONG}.
+   * @param PelTag the tag which this entry represents.  This
+   * should be one of the constants defined in {@link PelTag}
+   * which have format {@link PelFormat::SLONG}.
    *
    * @param int $value... the long(s) that this entry will represent
    * or an array of longs.  The argument passed must obey the same
@@ -157,7 +157,7 @@ class PelExifEntrySLong extends PelExifEntryNumber {
     $this->tag    = $tag;
     $this->min    = -2147483648;
     $this->max    = 2147483647;
-    $this->format = PelExifFormat::SLONG;
+    $this->format = PelFormat::SLONG;
 
     $value = func_get_args();
     array_shift($value);
