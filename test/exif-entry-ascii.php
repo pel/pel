@@ -72,7 +72,8 @@ class AsciiTestCase extends UnitTestCase {
     $this->assertEqual($value[1], '');
     $this->assertEqual($entry->getText(false), 'A (Photographer)');
     $this->assertEqual($entry->getText(true), 'A');
-    $this->assertEqual($entry->getBytes(PelConvert::LITTLE_ENDIAN), 'A' . chr(0));
+    $this->assertEqual($entry->getBytes(PelConvert::LITTLE_ENDIAN),
+                       'A' . chr(0));
 
     $entry->setValue('', 'B');
     $value = $entry->getValue();
@@ -80,7 +81,8 @@ class AsciiTestCase extends UnitTestCase {
     $this->assertEqual($value[1], 'B');
     $this->assertEqual($entry->getText(false), 'B (Editor)');
     $this->assertEqual($entry->getText(true), 'B');
-    $this->assertEqual($entry->getBytes(PelConvert::LITTLE_ENDIAN), ' ' . chr(0) . 'B' . chr(0));
+    $this->assertEqual($entry->getBytes(PelConvert::LITTLE_ENDIAN),
+                       ' ' . chr(0) . 'B' . chr(0));
 
     $entry->setValue('A', 'B');
     $value = $entry->getValue();
@@ -88,7 +90,8 @@ class AsciiTestCase extends UnitTestCase {
     $this->assertEqual($value[1], 'B');
     $this->assertEqual($entry->getText(false), 'A (Photographer) - B (Editor)');
     $this->assertEqual($entry->getText(true), 'A - B');
-    $this->assertEqual($entry->getBytes(PelConvert::LITTLE_ENDIAN), 'A' . chr(0) . 'B' . chr(0));
+    $this->assertEqual($entry->getBytes(PelConvert::LITTLE_ENDIAN),
+                       'A' . chr(0) . 'B' . chr(0));
   }
   
 }
