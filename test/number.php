@@ -82,18 +82,23 @@ abstract class NumberTestCase extends UnitTestCase {
   function testReturnValues() {
     $this->num->setValue(1, 2, 3);
     $this->assertEqual($this->num->getValue(), array(1, 2, 3));
+    $this->assertEqual($this->num->getText(), '1, 2, 3');
     
     $this->num->setValue(1);
     $this->assertEqual($this->num->getValue(), 1);
+    $this->assertEqual($this->num->getText(), '1');
 
     $this->num->setValue();
     $this->assertEqual($this->num->getValue(), array());
+    $this->assertEqual($this->num->getText(), '');
 
     $this->num->setValue($this->max);
     $this->assertEqual($this->num->getValue(), $this->max);
+    $this->assertEqual($this->num->getText(), $this->max);
 
     $this->num->setValue($this->min);
     $this->assertEqual($this->num->getValue(), $this->min);
+    $this->assertEqual($this->num->getText(), $this->min);
   }
 
 }
@@ -148,6 +153,142 @@ class SLongTestCase extends NumberTestCase {
     $this->num = new PelEntrySLong(42);
     parent::__construct(-2147483648, 2147483647);
   }
+}
+
+
+class RationalTestCase extends UnitTestCase {
+
+  function __construct() {
+    require_once('../PelEntryRational.php');
+    parent::__construct('PEL EXIF Rational Tests');
+  }
+
+  function testOverflow() {
+    $entry = new PelEntryRational(42, array(1,2));
+    $this->assertEqual($entry->getValue(), array(1,2));
+
+    $caught = false;
+    try {
+      $entry->setValue(array(3,4), array(-1,2), array(7,8));
+    } catch (PelOverflowException $e) {
+      $caught = true;
+    }
+    $this->assertTrue($caught);
+    $this->assertEqual($entry->getValue(), array(1,2));
+
+    $caught = false;
+    try {
+      $entry->setValue(array(3,4), array(1, 4294967296));
+    } catch (PelOverflowException $e) {
+      $caught = true;
+    }
+    $this->assertTrue($caught);
+    $this->assertEqual($entry->getValue(), array(1,2));
+
+    $caught = false;
+    try {
+      $entry->setValue(array(3,4), array(4294967296, 1));
+    } catch (PelOverflowException $e) {
+      $caught = true;
+    }
+    $this->assertTrue($caught);
+    $this->assertEqual($entry->getValue(), array(1,2));
+  }
+
+  function testReturnValues() {
+    $entry = new PelEntryRational();
+    $this->assertError('Missing argument 1 for PelEntryRational::__construct()');
+
+    $entry = new PelEntryRational(42);
+    $this->assertEqual($entry->getValue(), array());
+    $this->assertEqual($entry->getText(), '');
+    
+    $entry->setValue(array(1,2), array(3,4), array(5,6));
+    $this->assertEqual($entry->getValue(),
+                       array(array(1,2), array(3,4), array(5,6)));
+    $this->assertEqual($entry->getText(), '1/2, 3/4, 5/6');
+    
+    $entry->setValue(array(7,8));
+    $this->assertEqual($entry->getValue(), array(7,8));
+    $this->assertEqual($entry->getText(), '7/8');
+
+    $entry->setValue();
+    $this->assertEqual($entry->getValue(), array());
+    $this->assertEqual($entry->getText(), '');
+
+    $entry->setValue(array(0, 4294967295));
+    $this->assertEqual($entry->getValue(), array(0, 4294967295));
+    $this->assertEqual($entry->getText(), '0/4294967295');
+  }
+
+}
+
+
+
+class SRationalTestCase extends UnitTestCase {
+
+  function __construct() {
+    require_once('../PelEntryRational.php');
+    parent::__construct('PEL EXIF SRational Tests');
+  }
+
+  function testOverflow() {
+    $entry = new PelEntrySRational(42, array(-1,2));
+    $this->assertEqual($entry->getValue(), array(-1,2));
+
+    $caught = false;
+    try {
+      $entry->setValue(array(-10,-20), array(-1,-2147483649));
+    } catch (PelOverflowException $e) {
+      $caught = true;
+    }
+    $this->assertTrue($caught);
+    $this->assertEqual($entry->getValue(), array(-1,2));
+
+    $caught = false;
+    try {
+      $entry->setValue(array(3,4), array(1, 2147483648));
+    } catch (PelOverflowException $e) {
+      $caught = true;
+    }
+    $this->assertTrue($caught);
+    $this->assertEqual($entry->getValue(), array(-1,2));
+
+    $caught = false;
+    try {
+      $entry->setValue(array(3,4), array(4294967296, 1));
+    } catch (PelOverflowException $e) {
+      $caught = true;
+    }
+    $this->assertTrue($caught);
+    $this->assertEqual($entry->getValue(), array(-1,2));
+  }
+
+  function testReturnValues() {
+    $entry = new PelEntrySRational();
+    $this->assertError('Missing argument 1 for PelEntrySRational::__construct()');
+
+    $entry = new PelEntrySRational(42);
+    $this->assertEqual($entry->getValue(), array());
+    
+    $entry->setValue(array(-1,2), array(3,4), array(5,-6));
+    $this->assertEqual($entry->getValue(),
+                       array(array(-1,2), array(3,4), array(5,-6)));
+    $this->assertEqual($entry->getText(), '-1/2, 3/4, -5/6');
+
+    $entry->setValue(array(-7,-8));
+    $this->assertEqual($entry->getValue(), array(-7,-8));
+    $this->assertEqual($entry->getText(), '7/8');
+
+    $entry->setValue();
+    $this->assertEqual($entry->getValue(), array());
+    $this->assertEqual($entry->getText(), '');
+
+    $entry->setValue(array(0, 2147483647));
+    $this->assertEqual($entry->getValue(), array(0, 2147483647));
+    $this->assertEqual($entry->getText(), '0/2147483647');
+  }
+
 }
 
 ?>
