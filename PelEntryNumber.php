@@ -84,7 +84,7 @@ abstract class PelEntryNumber extends PelEntry {
   protected $min;
 
   /**
-   * The maxumum allowed value.
+   * The maximum allowed value.
    *
    * Any attempt to change the value over this variable will result in
    * a {@link PelOverflowException} being thrown.
@@ -117,10 +117,9 @@ abstract class PelEntryNumber extends PelEntry {
    * number is given here.
    *
    * @param int|array $value... the new value(s).  This can be zero or
-   * more numbers, that is, either either integers or arrays.  The
-   * input will be checked to ensure that the numbers are within the
-   * valid range.  If not, then a {@link PelOverflowException} will be
-   * thrown.
+   * more numbers, that is, either integers or arrays.  The input will
+   * be checked to ensure that the numbers are within the valid range.
+   * If not, then a {@link PelOverflowException} will be thrown.
    *
    * @see getValue
    */
@@ -253,7 +252,7 @@ abstract class PelEntryNumber extends PelEntry {
    *
    * This method is called by {@link getText} to format numbers.
    * Subclasses should override this method if they need more
-   * sophisticated behaviour than the default, which is to just return
+   * sophisticated behavior than the default, which is to just return
    * the number as is.
    *
    * @param int the number which will be formatted.
@@ -272,7 +271,7 @@ abstract class PelEntryNumber extends PelEntry {
   /**
    * Get the value of this entry as text.
    *
-   * @param boolean use brief output?  The numbers will be seperated
+   * @param boolean use brief output?  The numbers will be separated
    * by a single space if brief output is requested, otherwise a space
    * and a comma will be used.
    *

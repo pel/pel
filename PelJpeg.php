@@ -29,7 +29,7 @@
  *
  * The {@link PelJpeg} class defined here provides an abstraction
  * for dealing with a JPEG file.  The file will be contain a number of
- * sections indicated by markers, which is modelled with the {@link
+ * sections indicated by markers, which is modeled with the {@link
  * PelJpegSection} and {@link PelJpegMarker} classes.
  *
  * @author Martin Geisler <gimpster@users.sourceforge.net>

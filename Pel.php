@@ -25,7 +25,7 @@
 
 
 /**
- * Misclanious stuff for the overall behaviour of PEL.
+ * Miscellaneous stuff for the overall behavior of PEL.
  *
  * @author Martin Geisler <gimpster@users.sourceforge.net>
  * @version $Revision$
@@ -37,10 +37,10 @@
 
 
 /**
- * Class with misclanious static methods. 
+ * Class with miscellaneous static methods. 
  *
  * This class will contain various methods that govern the overall
- * behaviour of PEL.
+ * behavior of PEL.
  *
  * @author Martin Geisler <gimpster@users.sourceforge.net>
  * @package PEL

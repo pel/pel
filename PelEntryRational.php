@@ -44,9 +44,9 @@ require_once('PelEntryLong.php');
  * Class for holding unsigned rational numbers.
  *
  * This class can hold rational numbers, consisting of a enumerator
- * and denumerator both of which are of type unsigned long.  Each
+ * and denominator both of which are of type unsigned long.  Each
  * rational is represented by an array with just two entries: the
- * enumerator and the denumerator, in that order.
+ * enumerator and the denominator, in that order.
  *
  * The class can hold either just a single rational or an array of
  * rationals.  The class will be used to manipulate any of the EXIF
@@ -156,9 +156,9 @@ class PelEntryRational extends PelEntryLong {
  * Class for holding signed rational numbers.
  *
  * This class can hold rational numbers, consisting of a enumerator
- * and denumerator both of which are of type unsigned long.  Each
+ * and denominator both of which are of type unsigned long.  Each
  * rational is represented by an array with just two entries: the
- * enumerator and the denumerator, in that order.
+ * enumerator and the denominator, in that order.
  *
  * The class can hold either just a single rational or an array of
  * rationals.  The class will be used to manipulate any of the EXIF

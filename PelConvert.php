@@ -303,8 +303,8 @@ class PelConvert {
    * Format bytes for dumping.
    *
    * This method is for debug output, it will format a string as a
-   * hexdump suitable for display on a terminal.  The output is
-   * printed directly to standard out.
+   * hexadecimal dump suitable for display on a terminal.  The output
+   * is printed directly to standard out.
    *
    * @param string the bytes that will be dumped.
    *

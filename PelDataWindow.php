@@ -226,13 +226,13 @@ class PelDataWindow {
    *
    * The new window will read from the same data as this window, so
    * calling this method is significantly faster than using the
-   * builtin clone functionality of PHP.
+   * built-in clone functionality of PHP.
    *
    * @param mixed if an integer is supplied, then it will be the start
    * of the window in the clone.  If left unspecified, then the clone
    * will inherit the start from this object.
    *
-   * @param mixed if an integer is suppied, then it will be the size
+   * @param mixed if an integer is supplied, then it will be the size
    * of the window in the clone.  If left unspecified, then the clone
    * will inherit the size from this object.
    *
@@ -470,7 +470,7 @@ class PelDataWindow {
    *
    * @return array the unsigned rational found at offset.  A rational
    * number is represented as an array of two numbers: the enumerator
-   * and denumerator.  Both of these numbers will be unsigned longs.
+   * and denominator.  Both of these numbers will be unsigned longs.
    */
   function getRational($o = 0) {
     return array($this->getLong($o), $this->getLong($o+4));
@@ -488,7 +488,7 @@ class PelDataWindow {
    *
    * @return array the signed rational found at offset.  A rational
    * number is represented as an array of two numbers: the enumerator
-   * and denumerator.  Both of these numbers will be signed longs.
+   * and denominator.  Both of these numbers will be signed longs.
    */
   function getSRational($o = 0) {
     return array($this->getSLong($o), $this->getSLong($o+4));
@@ -507,7 +507,7 @@ class PelDataWindow {
    * @param string the string to compare with.
    *
    * @return boolean true if the string given matches the data in the
-   * window, at the specifed offset, false otherwise.  The comparison
+   * window, at the specified offset, false otherwise.  The comparison
    * will stop as soon as a mismatch if found.
    */
   function strcmp($o, $str) {
@@ -543,7 +543,7 @@ class PelDataWindow {
    *
    * This method is for debugging only.  It removed the data held by
    * this data window, thereby removing access to it for all clones
-   * too.  This is usefull when a data window object is to be printed
+   * too.  This is useful when a data window object is to be printed
    * with print_r() or a similar function, and the binary output would
    * mess up the terminal or browser.
    */

@@ -363,7 +363,7 @@ class PelEntryShort extends PelEntryNumber {
       case 0x0007:
         return 'Strobe return light detected.';
       case 0x0009:
-        return 'Flash fired, compulsatory flash mode';
+        return 'Flash fired, compulsory flash mode';
       case 0x000d:
         return 'Flash fired, compulsory flash mode, return light ' .
           'not detected.';

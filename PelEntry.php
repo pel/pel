@@ -133,7 +133,7 @@ abstract class PelEntry {
    */
   static function newFromData($tag, $format, $components, $data) {
 
-    /* First handle tags for which we have a speficic PelEntryXXX
+    /* First handle tags for which we have a specific PelEntryXXX
      * class. */
     switch ($tag) {
     case PelTag::DATE_TIME:

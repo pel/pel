@@ -13,7 +13,7 @@ See the file INSTALL for an introduction to how PEL can be used by
 other applications.
 
 Please note that PEL is not mature, the API will probably change
-before version 1.0 is reached.  Go to the PEL development mailinglist
+before version 1.0 is reached.  Go to the PEL development mailing list
 (look below) and share your ideas about how the API should look like.
 
 
@@ -28,6 +28,8 @@ Features
 * Extensible object-oriented design.
 
 * Unit-tested with SimpleTest (http://sf.net/projects/simpletest).
+
+* Documented with PhpDocumentor (http://phpdoc.org/).
 
 
 Getting Support
@@ -46,7 +48,7 @@ phpDocumentor (http://phpdoc.org/) or read it online at
 
 PEL is hosted on SourceForge and uses the tools found there for
 support.  For general discussions about the future development of PEL,
-please use the development mailinglist.  Remember to subscribe before
+please use the development mailing list.  Remember to subscribe before
 you post on the list, you can subscribe here:
 
   http://lists.sourceforge.net/lists/listinfo/pel-devel

@@ -657,7 +657,7 @@ class PelTag {
     case self::INTEROPERABILITY_VERSION:
       return('');
     case self::IMAGE_WIDTH:
-      return('The number of colums of image data, equal to the number of ' .
+      return('The number of columns of image data, equal to the number of ' .
              'pixels per row. In JPEG compressed data a JPEG marker is ' .
              'used instead of this tag.');
     case self::IMAGE_LENGTH:
@@ -704,7 +704,7 @@ class PelTag {
              'data this designation is not needed and is omitted. See also ' .
              '<RowsPerStrip> and <StripByteCounts>.');
     case self::ORIENTATION:
-      return('The image orientation viewed in terms of rows and colums.');
+      return('The image orientation viewed in terms of rows and columns.');
     case self::SAMPLES_PER_PIXEL:
       return('The number of components per pixel. Since this standard ' .
              'applies to RGB and YCbCr images, the value set for this ' .
@@ -890,7 +890,7 @@ class PelTag {
               'respectively. When degrees, minutes and seconds are ' .
               'expressed, the format is dd/1,mm/1,ss/1. When degrees and ' .
               'minutes are used and, for example, fractions of minutes ' .
-              'are given up to two two decimal places, the format is ' .
+              'are given up to two decimal places, the format is ' .
               'dd/1,mmmm/100,0/1.');
     case self::GPS_LONGITUDE_REF:
       return ("Indicates whether the longitude is east or west longitude. ".
@@ -913,7 +913,7 @@ class PelTag {
              'the camera optical input and the image values.');
     case self::EXIF_VERSION:
       return('The version of this standard supported. Nonexistence of this ' .
-             'field is taken to mean nonconformance to the standard.');
+             'field is taken to mean non-conformance to the standard.');
     case self::DATE_TIME_ORIGINAL:
       return('The date and time when the original image data was generated. ' .
              'For a digital still camera ' .
@@ -973,7 +973,7 @@ class PelTag {
              'with NULL ("00.h"). ID codes are assigned by means of ' .
              'registration. The designation method and references for each ' .
              'character code are given in Table 6. The value of CountN ' .
-             'is determinated based on the 8 bytes in the character code ' .
+             'is determined based on the 8 bytes in the character code ' .
              'area and the number of bytes in the user comment part. Since ' .
              'the TYPE is not ASCII, NULL termination is not necessary ' .
              '(see Fig. 9). ' .
