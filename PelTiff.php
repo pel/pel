@@ -61,9 +61,9 @@ require_once('Pel.php');
  * </code>
  *
  * Should one have some image data of an unknown type, then the {@link
- * isValid()} method is handy: it will quickly test if the data could
- * be valid TIFF data.  The {@link PelJpeg::isValid()} method does the
- * same for JPEG images.
+ * PelTiff::isValid()} function is handy: it will quickly test if the
+ * data could be valid TIFF data.  The {@link PelJpeg::isValid()}
+ * function does the same for JPEG images.
  *
  * @author Martin Geisler <gimpster@users.sourceforge.net>
  * @package PEL

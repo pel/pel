@@ -27,30 +27,6 @@
 /**
  * Classes representing JPEG data.
  *
- * The {@link PelJpeg} class defined here provides an abstraction for
- * dealing with a JPEG file.  The file will be contain a number of
- * sections containing some {@link PelJpegContent content} identified
- * by a {@link PelJpegMarker marker}.
- *
- * The {@link getSection()} method is used to pick out a particular
- * section --- the EXIF information is typically stored in the {@link
- * PelJpegMarker::APP1 APP1} section, and so one would get hold of it
- * by saying:
- *
- * <code>
- * $jpeg = new PelJpeg($data);
- * $app1 = $jpeg->getSection(PelJpegMarker::APP1);
- * $tiff = $app1->getTiff();
- * $ifd0 = $tiff->getIfd();
- * $exif = $ifd0->getSubIfd(PelTag::EXIF_IFD_POINTER);
- * $ifd1 = $ifd0->getNextIfd();
- * </code>
- *
- * Should one have some image data of an unknown type, then the {@link
- * isValid()} method is handy: it will quickly test if the data could
- * be valid JPEG data.  The {@link PelTiff::isValid()} method does the
- * same for TIFF images.
- *
  * @author Martin Geisler <gimpster@users.sourceforge.net>
  * @version $Revision$
  * @date $Date$
@@ -97,6 +73,30 @@ class PelJpegInvalidMarkerException extends PelException {
 
 /**
  * Class for handling JPEG data.
+ *
+ * The {@link PelJpeg} class defined here provides an abstraction for
+ * dealing with a JPEG file.  The file will be contain a number of
+ * sections containing some {@link PelJpegContent content} identified
+ * by a {@link PelJpegMarker marker}.
+ *
+ * The {@link getSection()} method is used to pick out a particular
+ * section --- the EXIF information is typically stored in the {@link
+ * PelJpegMarker::APP1 APP1} section, and so one would get hold of it
+ * by saying:
+ *
+ * <code>
+ * $jpeg = new PelJpeg($data);
+ * $app1 = $jpeg->getSection(PelJpegMarker::APP1);
+ * $tiff = $app1->getTiff();
+ * $ifd0 = $tiff->getIfd();
+ * $exif = $ifd0->getSubIfd(PelTag::EXIF_IFD_POINTER);
+ * $ifd1 = $ifd0->getNextIfd();
+ * </code>
+ *
+ * Should one have some image data of an unknown type, then the {@link
+ * PelJpeg::isValid()} function is handy: it will quickly test if the
+ * data could be valid JPEG data.  The {@link PelTiff::isValid()}
+ * function does the same for TIFF images.
  *
  * @author Martin Geisler <gimpster@users.sourceforge.net>
  * @package PEL
