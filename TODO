@@ -14,7 +14,7 @@ attention is needed.
 
 * Add convenience functions.
    It would be nice to have functions that could give you a particular
-   entry with just one function call.
+   entry or the embedded thumbnail with just one function call.
 
 * Interpret the MakerNotes.
 
@@ -24,9 +24,11 @@ attention is needed.
 
 * Document all files, classes, and methods.
 
-* Write test cases for SimpleTest
-   Get it from http://sf.net/projects/simpletest.
-
 * Write functions to replace the builtin PHP EXIF functions.
    This would make PEL a drop-in replacement for people who cannot use
    the PHP EXIF extension.
+
+* Parse TIFF images.
+   If I've understood things correctly, then TIFF images have embedded
+   EXIF information too, so it's should just be a simple matter of
+   parsing the TIFF format and reusing the EXIF code already written.
