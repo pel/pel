@@ -82,8 +82,6 @@ class PelJpegInvalidMarkerException extends PelException {
  */
 class PelJpeg {
 
-  private $count = 0;
-  
   /**
    * The sections in the JPEG data.
    *
@@ -277,9 +275,9 @@ class PelJpeg {
   function getBytes() {
     $bytes = '';
 
-    for ($i = 0; $i < $this->count; $i++) {
-      $m = $this->sections[$i][0];
-      $c = $this->sections[$i][1];
+    foreach ($this->sections as $section) {
+      $m = $sections[0];
+      $c = $sections[1];
 
       /* Write the marker */
       $bytes .= "\xFF" . PelJpegMarker::getBytes($m);
@@ -314,7 +312,7 @@ class PelJpeg {
    */
   function __toString() {
     $str = Pel::tra("Dumping JPEG data...\n");
-    for ($i = 0; $i < $this->count; $i++) {
+    for ($i = 0; $i < count($this->sections); $i++) {
       $m = $this->sections[$i][0];
       $c = $this->sections[$i][1];
       $str .= Pel::fmt("Section %d (marker 0x%02X - %s):\n",
