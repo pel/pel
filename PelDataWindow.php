@@ -171,9 +171,9 @@ class PelDataWindow {
    */
   function setWindowStart($start) {
     if ($start < 0 || $start > $this->size)
-      throw new PelDataWindowWindowException('Window [%d, %d] ' .
-                                          'does not fit in window [0, %d]',
-                                          $start, $this->size, $this->size);
+      throw new PelDataWindowWindowException('Window [%d, %d] does ' .
+                                             'not fit in window [0, %d]',
+                                             $start, $this->size, $this->size);
 
     $this->start += $start;
     $this->size  -= $start;
@@ -237,7 +237,7 @@ class PelDataWindow {
    * will inherit the size from this object.
    *
    * @return PelDataWindow a new window that operates on the same data
-   * as this window.
+   * as this window, but (optionally) with a  smaller size.
    */
   function getClone($start = false, $size = false) {
     $c = new PelDataWindow();
