@@ -41,18 +41,19 @@ PEL', and finally save the file again.
   require_once('PelJpeg.php');
   require_once('PelDataWindow.php');
   
-  $data = new PelDataWindow(file_get_contents($argv[1]));
-  $jpeg = new PelJpeg($data);
+  $jpeg = new PelJpeg();
+  $jpeg->loadFile($argv[1]);
   
-  $ifd0 = $jpeg->getSection(2)->getContent()->getTiff()->getIfd();
+  $ifd0 = $jpeg->getSection(PelJpegMarker::APP1)->getTiff()->getIfd();
   $entry = $ifd0->getEntry(PelTag::IMAGE_DESCRIPTION);
   $entry->setValue('Edited by PEL');
   file_put_contents($argv[1], $jpeg->getBytes());
   ?>
 
-See the test directory for this example and others as PHP files.  You
-may have to adjust the path found in the very first line of the files
-before you can execute them.
+See the test directory for this example (or rather a more elaborate
+version in the file edit-description.php) and others as PHP files.
+You may have to adjust the path to PHP, found in the very first line
+of the files before you can execute them.
 
 
 Changing PEL
