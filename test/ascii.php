@@ -58,7 +58,7 @@ class AsciiTestCase extends UnitTestCase {
   }
 
   function testCopyright() {
-    $entry = new PelCopyright();
+    $entry = new PelEntryCopyright();
     $this->assertEqual($entry->getTag(), PelTag::COPYRIGHT);
     $value = $entry->getValue();
     $this->assertEqual($value[0], '');
