@@ -1,0 +1,24 @@
+README file for PEL Test Images.
+
+Copyright (C) 2004  Martin Geisler <gimpster@users.sourceforge.net>
+Licensed under the GNU GPL, see COPYING for details.
+
+
+PEL Test Images
+***************
+
+The images contained in this directory are test images collected for
+use with PEL: PHP EXIF Library.  One can download PEL from:
+
+  http://pel.sourceforge.net/
+
+All images except no-exif.jpg contain EXIF information, and the
+corresponding PHP files contain SimpleTest (http://simpletest.sf.net/)
+unit tests.
+
+To use those files with PEL, simply place this directory (the
+image-tests directory) under the test directory in an unpacked PEL
+source tree.
+
+The images can be used by anybody, but may only be redistributed under
+the GNU GPL.  See the file COPYING for the details.
