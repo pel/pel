@@ -31,17 +31,17 @@ if ($argc < 2) {
   exit(1);
 }
 
-include_once('../PelJpegData.php');
+include_once('../PelJpeg.php');
 include_once('../PelDataWindow.php');
 
 $data = new PelDataWindow(file_get_contents($argv[1]));
-$jpeg = new PelJpegData($data);
+$jpeg = new PelJpeg($data);
 
 $ifd0 = $jpeg->getSection(2)->getContent()->getIfd();
-$exif = $ifd0->getSubIfd(PelExifTag::EXIF_IFD_POINTER);
+$exif = $ifd0->getSubIfd(PelTag::EXIF_IFD_POINTER);
 $ifd1 = $ifd0->getNextIfd();
 
-$entry = $ifd0->getEntry(PelExifTag::IMAGE_DESCRIPTION);
+$entry = $ifd0->getEntry(PelTag::IMAGE_DESCRIPTION);
 $entry->setAscii('Edited by PEL');
 
 rename($argv[1], $argv[1] . '.' . time());

@@ -31,11 +31,11 @@ if ($argc < 2) {
   exit(1);
 }
 
-include_once('../PelJpegData.php');
+include_once('../PelJpeg.php');
 include_once('../PelDataWindow.php');
 
 $data = new PelDataWindow(file_get_contents($argv[1]));
-$jpeg = new PelJpegData($data);
+$jpeg = new PelJpeg($data);
 
 print($jpeg);
 ?>
