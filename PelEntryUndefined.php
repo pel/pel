@@ -27,10 +27,10 @@
 /**
  * Classes used to hold data for EXIF tags of format undefined.
  *
- * This file contains the base class {@link PelExifEntryUndefined} and
- * the subclasses {@link PelExifEntryUserComment} which should be used
- * to manage the {@link PelExifTag::USER_COMMENT} tag, and {@link
- * PelExifEntryVersion} which is used to manage entries with version
+ * This file contains the base class {@link PelEntryUndefined} and
+ * the subclasses {@link PelEntryUserComment} which should be used
+ * to manage the {@link PelTag::USER_COMMENT} tag, and {@link
+ * PelEntryVersion} which is used to manage entries with version
  * information.
  *
  * @author Martin Geisler <gimpster@users.sourceforge.net>
@@ -44,8 +44,8 @@
 
 /** Class definition of {@link PelException}. */
 require_once('PelException.php');
-/** Class definition of {@link PelExifEntry}. */
-require_once('PelExifEntry.php');
+/** Class definition of {@link PelEntry}. */
+require_once('PelEntry.php');
 
 require_once('Pel.php');
 
@@ -58,23 +58,23 @@ require_once('Pel.php');
  * @package PEL
  * @subpackage EXIF
  */
-class PelExifEntryUndefined extends PelExifEntry {
+class PelEntryUndefined extends PelEntry {
 
   /**
-   * Make a new PelExifEntry that can hold undefined data.
+   * Make a new PelEntry that can hold undefined data.
    *
-   * @param PelExifTag the tag which this entry represents.  This
-   * should be one of the constants defined in {@link PelExifTag},
-   * e.g., {@link PelExifTag::SCENE_TYPE}, {@link
-   * PelExifTag::MAKER_NOTE} or any other tag with format {@link
-   * PelExifFormat::UNDEFINED}.
+   * @param PelTag the tag which this entry represents.  This
+   * should be one of the constants defined in {@link PelTag},
+   * e.g., {@link PelTag::SCENE_TYPE}, {@link
+   * PelTag::MAKER_NOTE} or any other tag with format {@link
+   * PelFormat::UNDEFINED}.
    *
    * @param string the data that this entry will be holding.  Since
    * the format is undefined, no checking will be done on the data.
    */
   function __construct($tag, $data = '') {
     $this->tag        = $tag;
-    $this->format     = PelExifFormat::UNDEFINED;
+    $this->format     = PelFormat::UNDEFINED;
     self::setValue($data);
   }
 
@@ -113,7 +113,7 @@ class PelExifEntryUndefined extends PelExifEntry {
    */
   function getText($brief = false) {
     switch ($this->tag) {
-    case PelExifTag::FILE_SOURCE:
+    case PelTag::FILE_SOURCE:
       //CC (e->components, 1, v);
       switch (ord($this->bytes{0})) {
       case 0x03:
@@ -122,7 +122,7 @@ class PelExifEntryUndefined extends PelExifEntry {
         return sprintf('0x%02X', ord($this->bytes{0}));
       }
    
-    case PelExifTag::SCENE_TYPE:
+    case PelTag::SCENE_TYPE:
       //CC (e->components, 1, v);
       switch (ord($this->bytes{0})) {
       case 0x01:
@@ -131,7 +131,7 @@ class PelExifEntryUndefined extends PelExifEntry {
         return sprintf('0x%02X', ord($this->bytes{0}));
       }
    
-    case PelExifTag::COMPONENTS_CONFIGURATION:
+    case PelTag::COMPONENTS_CONFIGURATION:
       //CC (e->components, 4, v);
       $v = '';
       for ($i = 0; $i < 4; $i++) {
@@ -165,7 +165,7 @@ class PelExifEntryUndefined extends PelExifEntry {
       }
       return $v;
 
-    case PelExifTag::MAKER_NOTE:
+    case PelTag::MAKER_NOTE:
       // TODO: handle maker notes.
       return $this->components . ' bytes unknown MakerNote data';
 
@@ -182,14 +182,14 @@ class PelExifEntryUndefined extends PelExifEntry {
  *
  * This class is used to hold user comments, which can come in several
  * different character encodings.  The EXIF standard specifies a
- * certain format of the {@link PelExifTag::USER_COMMENT user comment
+ * certain format of the {@link PelTag::USER_COMMENT user comment
  * tag}, and this class will make sure that the format is kept.
  *
  * The most basic use of this class simply stores an ASCII encoded
  * string for later retrieval using {@link getValue}:
  *
  * <code>
- * $entry = new PelExifEntryUserComment('An ASCII string');
+ * $entry = new PelEntryUserComment('An ASCII string');
  * echo $entry->getValue();
  * </code>
  *
@@ -205,7 +205,7 @@ class PelExifEntryUndefined extends PelExifEntry {
  * @package PEL
  * @subpackage EXIF
  */
-class PelExifEntryUserComment extends PelExifEntryUndefined {
+class PelEntryUserComment extends PelEntryUndefined {
 
   /**
    * The user comment.
@@ -233,7 +233,7 @@ class PelExifEntryUserComment extends PelExifEntryUndefined {
    * undefined encoding.
    */
   function __construct($comment = '', $encoding = 'ASCII') {
-    parent::__construct(PelExifTag::USER_COMMENT);
+    parent::__construct(PelTag::USER_COMMENT);
     self::setValue($comment, $encoding);
   }
 
@@ -294,20 +294,20 @@ class PelExifEntryUserComment extends PelExifEntryUndefined {
  * Class to hold version information.
  *
  * There are three EXIF entries that hold version information: the
- * {@link PelExifTag::EXIF_VERSION}, {@link
- * PelExifTag::FLASH_PIX_VERSION}, and {@link
- * PelExifTag::INTEROPERABILITY_VERSION} tags.  This class manages
+ * {@link PelTag::EXIF_VERSION}, {@link
+ * PelTag::FLASH_PIX_VERSION}, and {@link
+ * PelTag::INTEROPERABILITY_VERSION} tags.  This class manages
  * those tags.
  *
  * The class is used in a very straight-forward way:
  * <code>
- * $entry = new PelExifEntryVersion(PelExifTag::EXIF_VERSION, 2.2);
+ * $entry = new PelEntryVersion(PelTag::EXIF_VERSION, 2.2);
  * </code>
  * This creates an entry for an file complying to the EXIF 2.2
  * standard.  It is easy to test for standards level of an unknown
  * entry:
  * <code>
- * if ($entry->getTag() == PelExifTag::EXIF_VERSION &&
+ * if ($entry->getTag() == PelTag::EXIF_VERSION &&
  *     $entry->getValue() > 2.0) {
  *   echo 'Recent EXIF version.';
  * }
@@ -317,7 +317,7 @@ class PelExifEntryUserComment extends PelExifEntryUndefined {
  * @package PEL
  * @subpackage EXIF
  */
-class PelExifEntryVersion extends PelExifEntryUndefined {
+class PelEntryVersion extends PelEntryUndefined {
 
   /**
    * The version held by this entry.
@@ -330,9 +330,9 @@ class PelExifEntryVersion extends PelExifEntryUndefined {
   /**
    * Make a new entry for holding a version.
    *
-   * @param PelExifTag the tag.  This should be one of {@link
-   * PelExifTag::EXIF_VERSION}, {@link PelExifTag::FLASH_PIX_VERSION},
-   * or {@link PelExifTag::INTEROPERABILITY_VERSION}.
+   * @param PelTag the tag.  This should be one of {@link
+   * PelTag::EXIF_VERSION}, {@link PelTag::FLASH_PIX_VERSION},
+   * or {@link PelTag::INTEROPERABILITY_VERSION}.
    *
    * @param float the version.  The size of the entries leave room for
    * exactly four digits: two digits on either side of the decimal
@@ -395,13 +395,13 @@ class PelExifEntryVersion extends PelExifEntryUndefined {
     if (floor($this->version) == $this->version)
       $v .= '.0';
 
-    if ($this->tag == PelExifTag::EXIF_VERSION)
+    if ($this->tag == PelTag::EXIF_VERSION)
       return 'Exif ' . $v;
     
-    if ($this->tag == PelExifTag::FLASH_PIX_VERSION)
+    if ($this->tag == PelTag::FLASH_PIX_VERSION)
       return 'FlashPix ' . $v;
 
-    if ($this->tag == PelExifTag::INTEROPERABILITY_VERSION)
+    if ($this->tag == PelTag::INTEROPERABILITY_VERSION)
       return 'Interoperability ' . $v;
 
     return $v;
