@@ -20,7 +20,7 @@ before version 1.0 is reached.  Go to the PEL development mailinglist
 Features
 ********
 
-* Reads JPEG and TIFF images.
+* Reads and parses JPEG and TIFF images.
 
 * Supports reading and writing all tags supported by the C libexif
   (http://sf.net/projects/libexif) library.
