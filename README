@@ -8,9 +8,9 @@ Licensed under the GNU GPL, see COPYING for details.
 Description
 ***********
 
-PEL lets you read and write EXIF headers found in JPEG images easily.
-See the file INSTALL for an introduction to how PEL can be used by
-other applications.
+PEL lets you easily read and write EXIF headers found in JPEG and TIFF
+images.  See the file INSTALL for an introduction to how PEL can be
+used by your application.
 
 Please note that PEL is not mature, the API will probably change
 before version 1.0 is reached.  Go to the PEL development mailing list
@@ -24,6 +24,9 @@ Features
 
 * Supports reading and writing all tags supported by the C libexif
   (http://sf.net/projects/libexif) library.
+
+* Supports internationalisation.  PEL currently speaks English,
+  Danish, German, Spanish, and French.
 
 * Extensible object-oriented design.
 
@@ -62,5 +65,8 @@ request, or maybe a patch, please use the corresponding tracker:
 Credits
 *******
 
-PEL started out as a port of libexif (http://sf.net/projects/libexif)
-from C to PHP.
+PEL is written by Martin Geisler <gimpster@users.sourceforge.net>.
+
+The source started out as a port of the nice, clean C code found in
+libexif.  The German, French, and Spanish translations are also taken
+from the libexif project.
