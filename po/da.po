@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PEL 0.3\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2004-06-04 13:30+0200\n"
-"PO-Revision-Date: 2004-06-04 13:32+0200\n"
+"PO-Revision-Date: 2004-06-04 22:46+0200\n"
 "Last-Translator: Martin Geisler <gimpster@gimpster.com>\n"
 "Language-Team: Danish <dansk@klid.dk>\n"
 "MIME-Version: 1.0\n"
@@ -19,7 +19,7 @@ msgstr ""
 #: PelJpegMarker.php:282 PelJpegMarker.php:359
 #, php-format
 msgid "Unknown marker: 0x%02X"
-msgstr ""
+msgstr "Ukendt markering: 0x%02X"
 
 #: PelJpegMarker.php:295
 msgid "Encoding (baseline)"
@@ -75,7 +75,7 @@ msgstr ""
 
 #: PelJpegMarker.php:308
 msgid "Start of image"
-msgstr "Slutning af billede"
+msgstr "Start af billede"
 
 #: PelJpegMarker.php:309
 msgid "End of image"
@@ -83,19 +83,19 @@ msgstr "Slutning af billede"
 
 #: PelJpegMarker.php:310
 msgid "Start of scan"
-msgstr ""
+msgstr "Start af skan"
 
 #: PelJpegMarker.php:311 PelJpegMarker.php:358
 msgid "Comment"
-msgstr ""
+msgstr "Kommentar"
 
 #: PelJpegMarker.php:312
 msgid "Define Huffman table"
-msgstr ""
+msgstr "Definér Huffman tabel"
 
 #: PelJpegMarker.php:313
 msgid "Extension"
-msgstr ""
+msgstr "Udvidelse"
 
 #: PelJpegMarker.php:314
 msgid "Define arithmetic coding conditioning"
@@ -103,35 +103,35 @@ msgstr ""
 
 #: PelJpegMarker.php:315
 msgid "Restart 0"
-msgstr ""
+msgstr "Genstart 0"
 
 #: PelJpegMarker.php:316
 msgid "Restart 1"
-msgstr ""
+msgstr "Genstart 1"
 
 #: PelJpegMarker.php:317
 msgid "Restart 2"
-msgstr ""
+msgstr "Genstart 2"
 
 #: PelJpegMarker.php:318
 msgid "Restart 3"
-msgstr ""
+msgstr "Genstart 3"
 
 #: PelJpegMarker.php:319
 msgid "Restart 4"
-msgstr ""
+msgstr "Genstart 4"
 
 #: PelJpegMarker.php:320
 msgid "Restart 5"
-msgstr ""
+msgstr "Genstart 5"
 
 #: PelJpegMarker.php:321
 msgid "Restart 6"
-msgstr ""
+msgstr "Genstart 6"
 
 #: PelJpegMarker.php:322
 msgid "Restart 7"
-msgstr ""
+msgstr "Genstart 7"
 
 #: PelJpegMarker.php:323
 msgid "Define quantization table"
@@ -139,11 +139,11 @@ msgstr ""
 
 #: PelJpegMarker.php:324
 msgid "Define number of lines"
-msgstr ""
+msgstr "Definér antal linier"
 
 #: PelJpegMarker.php:325
 msgid "Define restart interval"
-msgstr ""
+msgstr "Definér genstart interval"
 
 #: PelJpegMarker.php:326
 msgid "Define hierarchical progression"
@@ -155,123 +155,123 @@ msgstr ""
 
 #: PelJpegMarker.php:328
 msgid "Application segment 0"
-msgstr ""
+msgstr "Applikationssegment 0"
 
 #: PelJpegMarker.php:329
 msgid "Application segment 1"
-msgstr ""
+msgstr "Applikationssegment 1"
 
 #: PelJpegMarker.php:330
 msgid "Application segment 2"
-msgstr ""
+msgstr "Applikationssegment 2"
 
 #: PelJpegMarker.php:331
 msgid "Application segment 3"
-msgstr ""
+msgstr "Applikationssegment 3"
 
 #: PelJpegMarker.php:332
 msgid "Application segment 4"
-msgstr ""
+msgstr "Applikationssegment 4"
 
 #: PelJpegMarker.php:333
 msgid "Application segment 5"
-msgstr ""
+msgstr "Applikationssegment 5"
 
 #: PelJpegMarker.php:334
 msgid "Application segment 6"
-msgstr ""
+msgstr "Applikationssegment 6"
 
 #: PelJpegMarker.php:335
 msgid "Application segment 7"
-msgstr ""
+msgstr "Applikationssegment 7"
 
 #: PelJpegMarker.php:336
 msgid "Application segment 8"
-msgstr ""
+msgstr "Applikationssegment 8"
 
 #: PelJpegMarker.php:337
 msgid "Application segment 9"
-msgstr ""
+msgstr "Applikationssegment 9"
 
 #: PelJpegMarker.php:338
 msgid "Application segment 10"
-msgstr ""
+msgstr "Applikationssegment 10"
 
 #: PelJpegMarker.php:339
 msgid "Application segment 11"
-msgstr ""
+msgstr "Applikationssegment 11"
 
 #: PelJpegMarker.php:340
 msgid "Application segment 12"
-msgstr ""
+msgstr "Applikationssegment 12"
 
 #: PelJpegMarker.php:341
 msgid "Application segment 13"
-msgstr ""
+msgstr "Applikationssegment 13"
 
 #: PelJpegMarker.php:342
 msgid "Application segment 14"
-msgstr ""
+msgstr "Applikationssegment 14"
 
 #: PelJpegMarker.php:343
 msgid "Application segment 15"
-msgstr ""
+msgstr "Applikationssegment 15"
 
 #: PelJpegMarker.php:344
 msgid "Extension 0"
-msgstr ""
+msgstr "Udvidelse 0"
 
 #: PelJpegMarker.php:345
 msgid "Extension 1"
-msgstr ""
+msgstr "Udvidelse 1"
 
 #: PelJpegMarker.php:346
 msgid "Extension 2"
-msgstr ""
+msgstr "Udvidelse 2"
 
 #: PelJpegMarker.php:347
 msgid "Extension 3"
-msgstr ""
+msgstr "Udvidelse 3"
 
 #: PelJpegMarker.php:348
 msgid "Extension 4"
-msgstr ""
+msgstr "Udvidelse 4"
 
 #: PelJpegMarker.php:349
 msgid "Extension 5"
-msgstr ""
+msgstr "Udvidelse 5"
 
 #: PelJpegMarker.php:350
 msgid "Extension 6"
-msgstr ""
+msgstr "Udvidelse 6"
 
 #: PelJpegMarker.php:351
 msgid "Extension 7"
-msgstr ""
+msgstr "Udvidelse 7"
 
 #: PelJpegMarker.php:352
 msgid "Extension 8"
-msgstr ""
+msgstr "Udvidelse 8"
 
 #: PelJpegMarker.php:353
 msgid "Extension 9"
-msgstr ""
+msgstr "Udvidelse 9"
 
 #: PelJpegMarker.php:354
 msgid "Extension 10"
-msgstr ""
+msgstr "Udvidelse 10"
 
 #: PelJpegMarker.php:355
 msgid "Extension 11"
-msgstr ""
+msgstr "Udvidelse 11"
 
 #: PelJpegMarker.php:356
 msgid "Extension 12"
-msgstr ""
+msgstr "Udvidelse 12"
 
 #: PelJpegMarker.php:357
 msgid "Extension 13"
-msgstr ""
+msgstr "Udvidelse 13"
 
 #: PelTag.php:184 PelTag.php:418
 msgid "InteroperabilityIndex"
@@ -282,23 +282,20 @@ msgid "InteroperabilityVersion"
 msgstr ""
 
 #: PelTag.php:188
-#, fuzzy
 msgid "ImageWidth"
-msgstr "Billedbredde"
+msgstr "BilledBredde"
 
 #: PelTag.php:190
-#, fuzzy
 msgid "ImageLength"
-msgstr "Billedlængde"
+msgstr "BilledLængde"
 
 #: PelTag.php:192
-#, fuzzy
 msgid "BitsPerSample"
-msgstr "Bits pr. prøve"
+msgstr "BitsPrPrøve"
 
 #: PelTag.php:194 PelTag.php:428
 msgid "Compression"
-msgstr ""
+msgstr "Kompression"
 
 #: PelTag.php:196
 msgid "PhotometricInterpretation"
@@ -310,19 +307,19 @@ msgstr ""
 
 #: PelTag.php:200
 msgid "DocumentName"
-msgstr ""
+msgstr "DokumentNavn"
 
 #: PelTag.php:202
 msgid "ImageDescription"
-msgstr ""
+msgstr "BilledBeskrivelse"
 
 #: PelTag.php:204
 msgid "Make"
-msgstr ""
+msgstr "Mærke"
 
 #: PelTag.php:206 PelTag.php:440
 msgid "Model"
-msgstr ""
+msgstr "Model"
 
 #: PelTag.php:208
 msgid "StripOffsets"
@@ -330,15 +327,15 @@ msgstr ""
 
 #: PelTag.php:210 PelTag.php:444
 msgid "Orientation"
-msgstr ""
+msgstr "Orientering"
 
 #: PelTag.php:212
 msgid "SamplesPerPixel"
-msgstr ""
+msgstr "PrøverPrPixel"
 
 #: PelTag.php:214
 msgid "RowsPerStrip"
-msgstr ""
+msgstr "RækkerPrStribe"
 
 #: PelTag.php:216
 msgid "StripByteCounts"
@@ -358,7 +355,7 @@ msgstr ""
 
 #: PelTag.php:224
 msgid "ResolutionUnit"
-msgstr ""
+msgstr "OpløsningsEnhed"
 
 #: PelTag.php:226
 msgid "TransferFunction"
@@ -366,15 +363,15 @@ msgstr ""
 
 #: PelTag.php:228 PelTag.php:462
 msgid "Software"
-msgstr ""
+msgstr "Software"
 
 #: PelTag.php:230
 msgid "DateTime"
-msgstr ""
+msgstr "DatoTid"
 
 #: PelTag.php:232 PelTag.php:466
 msgid "Artist"
-msgstr ""
+msgstr "Kunstner"
 
 #: PelTag.php:234
 msgid "WhitePoint"
@@ -422,11 +419,11 @@ msgstr ""
 
 #: PelTag.php:256 PelTag.php:490
 msgid "RelatedImageWidth"
-msgstr "Relateret billedbredde"
+msgstr "RelateretBilledBredde"
 
 #: PelTag.php:258 PelTag.php:492
 msgid "RelatedImageLength"
-msgstr "Relateret billedlængde"
+msgstr "RelateretBilledLængde"
 
 #: PelTag.php:260 PelTag.php:494
 msgid "CFARepeatPatternDim"
@@ -438,11 +435,11 @@ msgstr ""
 
 #: PelTag.php:264
 msgid "BatteryLevel"
-msgstr ""
+msgstr "BatteriNiveau"
 
 #: PelTag.php:266 PelTag.php:500
 msgid "Copyright"
-msgstr ""
+msgstr "Ophavsret"
 
 #: PelTag.php:268
 msgid "ExposureTime"
@@ -466,7 +463,7 @@ msgstr ""
 
 #: PelTag.php:278 PelTag.php:512
 msgid "ExposureProgram"
-msgstr ""
+msgstr "BelysningsProgram"
 
 #: PelTag.php:280
 msgid "SpectralSensitivity"
@@ -541,9 +538,8 @@ msgid "Flash"
 msgstr ""
 
 #: PelTag.php:326
-#, fuzzy
 msgid "FocalLength"
-msgstr "Billedlængde"
+msgstr "FokusLængde"
 
 #: PelTag.php:328
 msgid "MakerNote"
@@ -650,9 +646,8 @@ msgid "DigitalZoomRatio"
 msgstr ""
 
 #: PelTag.php:382
-#, fuzzy
 msgid "FocalLengthIn35mmFilm"
-msgstr "Billedlængde"
+msgstr "FokusLængdePå35mmFilm"
 
 #: PelTag.php:384
 msgid "SceneCaptureType"
@@ -664,15 +659,15 @@ msgstr ""
 
 #: PelTag.php:388 PelTag.php:622
 msgid "Contrast"
-msgstr ""
+msgstr "Kontrast"
 
 #: PelTag.php:390 PelTag.php:624
 msgid "Saturation"
-msgstr ""
+msgstr "Mætning"
 
 #: PelTag.php:392 PelTag.php:626
 msgid "Sharpness"
-msgstr ""
+msgstr "Skarphed"
 
 #: PelTag.php:394
 msgid "DeviceSettingDescription"
@@ -689,7 +684,7 @@ msgstr ""
 #: PelTag.php:400
 #, php-format
 msgid "Unknown: 0x%02X"
-msgstr ""
+msgstr "Ukendt: 0x%02X"
 
 #: PelTag.php:422
 msgid "Image Width"
