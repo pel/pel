@@ -174,7 +174,7 @@ class PelEntrySLong extends PelEntryNumber {
    * @return string bytes representing the number given.
    */
   function numberToBytes($number, $order) {
-    return PelConvert::longToBytes($number, $order);
+    return PelConvert::sLongToBytes($number, $order);
   }
 }
 

@@ -589,7 +589,7 @@ class PelEntrySShort extends PelEntryNumber {
    * @return string bytes representing the number given.
    */
   function numberToBytes($number, $order) {
-    return PelConvert::shortToBytes($number, $order);
+    return PelConvert::sShortToBytes($number, $order);
   }
 }
 

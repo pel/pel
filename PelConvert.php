@@ -75,15 +75,15 @@ class PelConvert {
 
 
   /**
-   * Convert a short into two bytes.
+   * Convert an unsigned short into two bytes.
    *
-   * @param int the short that will be converted.  The lower two bytes
-   * will be extracted regardless of the actual size passed.
+   * @param int the unsigned short that will be converted.  The lower
+   * two bytes will be extracted regardless of the actual size passed.
    *
    * @param PelByteOrder one of {@link LITTLE_ENDIAN} and {@link
    * BIG_ENDIAN}.
    *
-   * @return string the bytes representing the short.
+   * @return string the bytes representing the unsigned short.
    */
   static function shortToBytes($value, $endian) {
     if ($endian == self::LITTLE_ENDIAN)
@@ -91,20 +91,82 @@ class PelConvert {
     else
       return chr($value >> 8) . chr($value);
   }
-  
+
 
   /**
-   * Convert a long into two bytes.
+   * Convert a signed short into two bytes.
    *
-   * @param int the long that will be converted.  The lower four bytes
-   * will be extracted regardless of the actual size passed.
+   * @param int the signed short that will be converted.  The lower
+   * two bytes will be extracted regardless of the actual size passed.
    *
    * @param PelByteOrder one of {@link LITTLE_ENDIAN} and {@link
    * BIG_ENDIAN}.
    *
-   * @return string the bytes representing the long.
+   * @return string the bytes representing the signed short.
+   */
+  static function sShortToBytes($value, $endian) {
+    /* We can just use shortToBytes, since signed shorts fits well
+     * within the 32 bit signed integers used in PHP. */
+    return self::shortToBytes($value, $endian);
+  }
+  
+
+  /**
+   * Convert an unsigned long into four bytes.
+   *
+   * Because PHP limits the size of integers to 32 bit signed, one
+   * cannot really have an unsigned integer in PHP.  But integers
+   * larger than 2^31-1 will be promoted to 64 bit signed floating
+   * point numbers, and so such large numbers can be handled too.
+   *
+   * @param int the unsigned long that will be converted.  The
+   * argument will be treated as an unsigned 32 bit integer and the
+   * lower four bytes will be extracted.  Treating the argument as an
+   * unsigned integer means that the absolute value will be used.  Use
+   * {@link sLongToBytes} to convert signed integers.
+   *
+   * @param PelByteOrder one of {@link LITTLE_ENDIAN} and {@link
+   * BIG_ENDIAN}.
+   *
+   * @return string the bytes representing the unsigned long.
    */
   static function longToBytes($value, $endian) {
+    /* We cannot convert the number to bytes in the normal way (using
+     * shifts and modulo calculations) because the PHP operator >> and
+     * function chr() clip their arguments to 2^31-1, which is the
+     * largest signed integer known to PHP.  But luckily base_convert
+     * handles such big numbers. */
+    $hex = str_pad(base_convert($value, 10, 16), 8, '0', STR_PAD_LEFT);
+    if ($endian == self::LITTLE_ENDIAN)
+      return (chr(hexdec($hex{6} . $hex{7})) .
+              chr(hexdec($hex{4} . $hex{5})) .
+              chr(hexdec($hex{2} . $hex{3})) .
+              chr(hexdec($hex{0} . $hex{1})));
+    else
+      return (chr(hexdec($hex{0} . $hex{1})) .
+              chr(hexdec($hex{2} . $hex{3})) .
+              chr(hexdec($hex{4} . $hex{5})) .
+              chr(hexdec($hex{6} . $hex{7})));
+  }
+
+
+  /**
+   * Convert a signed long into four bytes.
+   *
+   * @param int the signed long that will be converted.  The argument
+   * will be treated as a signed 32 bit integer, from which the lower
+   * four bytes will be extracted.
+   *
+   * @param PelByteOrder one of {@link LITTLE_ENDIAN} and {@link
+   * BIG_ENDIAN}.
+   *
+   * @return string the bytes representing the signed long.
+   */
+  static function sLongToBytes($value, $endian) {
+    /* We can convert the number into bytes in the normal way using
+     * shifts and modulo calculations here (in contrast with
+     * longToBytes) because PHP automatically handles 32 bit signed
+     * integers for us. */
     if ($endian == self::LITTLE_ENDIAN)
       return (chr($value) .
               chr($value >>  8) .
