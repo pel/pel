@@ -57,11 +57,12 @@ class PelTiff {
    */
   const TIFF_HEADER = 0x002A;
 
-  /* The first PelIfd, if any */
+  /**
+   * The first Image File Directory, if any.
+   *
+   * @var PelIfd
+   */
   private $ifd = null;
-  private $size = 0;
-
-  private $order = PelConvert::LITTLE_ENDIAN;
 
 
   /**
@@ -77,7 +78,6 @@ class PelTiff {
    */
   function __construct(PelDataWindow $d) {
     Pel::debug('Parsing %d bytes of TIFF data...', $d->getSize());
-    $this->size = $d->getSize();
 
     /* There must be at least 8 bytes available: 2 bytes for the byte
      * order, 2 bytes for the TIFF header, and 4 bytes for the offset
@@ -91,11 +91,9 @@ class PelTiff {
     if ($d->strcmp(0, 'II')) {
       Pel::debug('Found Intel byte order');
       $d->setByteOrder(PelConvert::LITTLE_ENDIAN);
-      $this->order = PelConvert::LITTLE_ENDIAN;
     } elseif ($d->strcmp(0, 'MM')) {
       Pel::debug('Found Motorola byte order');
       $d->setByteOrder(PelConvert::BIG_ENDIAN);
-      $this->order = PelConvert::BIG_ENDIAN;
     } else {
       throw new PelInvalidDataException('Unknown byte order found in TIFF ' .
                                         'data: 0x%2X%2X',
@@ -130,29 +128,26 @@ class PelTiff {
 
 
   /**
-   * Returns the byte order.
-   *
-   * @return PelByteOrder the byte order of the data, one of {@link
-   * PelConvert::LITTLE_ENDIAN} and {@link PelConvert::BIG_ENDIAN}.
-   */
-  function getByteOrder() {
-    return $this->order;
-  }
-
-
-  /**
    * Turn this object into bytes.
+   *
+   * TIFF images can have {@link PelConvert::LITTLE_ENDIAN
+   * little-endian} or {@link PelConvert::BIG_ENDIAN big-endian} byte
+   * order, and so this method takes an argument specifying that.
+   *
+   * @param PelByteOrder the desired byte order of the TIFF data.
+   * This should be one of {@link PelConvert::LITTLE_ENDIAN} or {@link
+   * PelConvert::BIG_ENDIAN}.
    *
    * @return string the bytes representing this object.
    */
-  function getBytes() {
-    if ($this->order == PelConvert::LITTLE_ENDIAN)
+  function getBytes($order) {
+    if ($order == PelConvert::LITTLE_ENDIAN)
       $bytes = 'II';
     else
       $bytes = 'MM';
     
     /* TIFF magic number --- fixed value. */
-    $bytes .= PelConvert::shortToBytes(self::TIFF_HEADER, $this->order);
+    $bytes .= PelConvert::shortToBytes(self::TIFF_HEADER, $order);
 
     if ($this->ifd != null) {
       /* IFD 0 offset.  We will always start IDF 0 at an offset of 8
@@ -160,15 +155,15 @@ class PelTiff {
        * header, and 4 bytes for the IFD 0 offset make 8 bytes
        * together).
        */
-      $bytes .= PelConvert::longToBytes(8, $this->order);
+      $bytes .= PelConvert::longToBytes(8, $order);
     
       /* The argument specifies the offset of this IFD.  The IFD will
        * use this to calculate offsets from the entries to their data,
        * all those offsets are absolute offsets counted from the
        * beginning of the data. */
-      $bytes .= $this->ifd->getBytes(8, $this->order);
+      $bytes .= $this->ifd->getBytes(8, $order);
     } else {
-      $bytes .= PelConvert::longToBytes(0, $this->order);
+      $bytes .= PelConvert::longToBytes(0, $order);
     }
 
     return $bytes;
@@ -182,7 +177,7 @@ class PelTiff {
    * for debugging.
    */
   function __toString() {
-    $str = Pel::fmt("Dumping %d bytes of TIFF data...\n", $this->size);
+    $str = Pel::fmt("Dumping TIFF data...\n");
     if ($this->ifd != null)
       $str .= $this->ifd->__toString();
 
@@ -194,11 +189,17 @@ class PelTiff {
    * Check if data is valid TIFF data.
    *
    * This will read just enough data from the data window to determine
-   * if the data is valid TIFF data.
+   * if the data could be a valid TIFF data.  This means that the
+   * check is more like a heuristic than a rigorous check.
    *
-   * @return boolean true if the data is TIFF data, false otherwise.
+   * @param PelDataWindow the bytes that will be examined.
+   *
+   * @return boolean true if the data looks like valid TIFF data,
+   * false otherwise.
+   *
+   * @see PelJpeg::isValid()
    */
-  function isValid(PelDataWindow $d) {
+  static function isValid(PelDataWindow $d) {
     /* First check that we have enough data. */
     if ($d->getSize() < 8)
       return false;
