@@ -349,7 +349,9 @@ abstract class PelEntry {
     $str .= Pel::fmt("    Format    : %d (%s)\n",
                      $this->format, PelFormat::getName($this->format));
     $str .= Pel::fmt("    Components: %d\n", $this->components);
-    $str .= Pel::fmt("    Value     : %s\n", $this->getText());
+    if ($this->getTag() != PelTag::MAKER_NOTE)
+      $str .= Pel::fmt("    Value     : %s\n", print_r($this->getValue(), true));
+    $str .= Pel::fmt("    Text      : %s\n", $this->getText());
     return $str;
   }
 }
