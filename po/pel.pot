@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-06-28 02:15+0200\n"
+"POT-Creation-Date: 2004-07-31 17:46+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -21,32 +21,32 @@ msgstr ""
 msgid "DataWindow: %d bytes in [%d, %d] of %d bytes"
 msgstr ""
 
+#: PelEntry.php:347
+#, php-format
+msgid "  Tag: 0x%04X (%s)\n"
+msgstr ""
+
+#: PelEntry.php:349
+#, php-format
+msgid "    Format    : %d (%s)\n"
+msgstr ""
+
+#: PelEntry.php:351
+#, php-format
+msgid "    Components: %d\n"
+msgstr ""
+
+#: PelEntry.php:352
+#, php-format
+msgid "    Value     : %s\n"
+msgstr ""
+
 #: PelEntryAscii.php:342
 msgid "(Photographer)"
 msgstr ""
 
 #: PelEntryAscii.php:343
 msgid "(Editor)"
-msgstr ""
-
-#: PelEntry.php:341
-#, php-format
-msgid "  Tag: 0x%04X (%s)\n"
-msgstr ""
-
-#: PelEntry.php:343
-#, php-format
-msgid "    Format    : %d (%s)\n"
-msgstr ""
-
-#: PelEntry.php:345
-#, php-format
-msgid "    Components: %d\n"
-msgstr ""
-
-#: PelEntry.php:346
-#, php-format
-msgid "    Value     : %s\n"
 msgstr ""
 
 #: PelEntryRational.php:136 PelEntryRational.php:141
@@ -555,9 +555,8 @@ msgstr ""
 msgid "Version %s"
 msgstr ""
 
-#: PelExif.php:154
-#, php-format
-msgid "Dumping %d bytes of EXIF data...\n"
+#: PelExif.php:164
+msgid "Dumping EXIF data...\n"
 msgstr ""
 
 #: PelFormat.php:163 PelFormat.php:190
@@ -565,14 +564,41 @@ msgstr ""
 msgid "Unknown format: 0x%X"
 msgstr ""
 
-#: PelIfd.php:541
+#: PelIfd.php:555
 #, php-format
 msgid "Dumping EXIF IFD %s with %d entries...\n"
 msgstr ""
 
-#: PelIfd.php:547
+#: PelIfd.php:561
 #, php-format
 msgid "Dumping %d sub IFDs...\n"
+msgstr ""
+
+#: PelJpeg.php:410
+msgid "Dumping JPEG data...\n"
+msgstr ""
+
+#: PelJpeg.php:414
+#, php-format
+msgid "Section %d (marker 0x%02X - %s):\n"
+msgstr ""
+
+#: PelJpeg.php:416
+#, php-format
+msgid "  Description: %s\n"
+msgstr ""
+
+#: PelJpeg.php:424
+msgid "  Content    : EXIF data\n"
+msgstr ""
+
+#: PelJpeg.php:427
+#, php-format
+msgid "  Size       : %d bytes\n"
+msgstr ""
+
+#: PelJpeg.php:428
+msgid "  Content    : Unknown\n"
 msgstr ""
 
 #: PelJpegMarker.php:282 PelJpegMarker.php:424
@@ -830,33 +856,6 @@ msgstr ""
 
 #: PelJpegMarker.php:420
 msgid "Extension 13"
-msgstr ""
-
-#: PelJpeg.php:358
-msgid "Dumping JPEG data...\n"
-msgstr ""
-
-#: PelJpeg.php:362
-#, php-format
-msgid "Section %d (marker 0x%02X - %s):\n"
-msgstr ""
-
-#: PelJpeg.php:364
-#, php-format
-msgid "  Description: %s\n"
-msgstr ""
-
-#: PelJpeg.php:372
-msgid "  Content    : EXIF data\n"
-msgstr ""
-
-#: PelJpeg.php:375
-#, php-format
-msgid "  Size       : %d bytes\n"
-msgstr ""
-
-#: PelJpeg.php:376
-msgid "  Content    : Unknown\n"
 msgstr ""
 
 #: PelTag.php:1234
@@ -1905,7 +1904,7 @@ msgid ""
 "fixed length."
 msgstr ""
 
-#: PelTiff.php:200
+#: PelTiff.php:233
 #, php-format
 msgid "Dumping TIFF data...\n"
 msgstr ""
