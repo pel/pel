@@ -23,7 +23,7 @@ Changes:
 
 * The image tests are now split into their own, separate download.
 
-* Added a test image from a Canon PowerShow S60.
+* Added a test image from a Canon PowerShot S60.
 
 * Fixed a bug caused by a change in the way PHP 5.0.2 handles integers
   larger than 2^31-1.  This change means that one can no longer use
