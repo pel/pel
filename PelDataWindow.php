@@ -514,6 +514,7 @@ class PelDataWindow {
     /* Validate the offset of the final character we might have to
      * check. */
     $s = strlen($str);
+    $this->validateOffset($o);
     $this->validateOffset($o + $s - 1);
 
     /* Translate the offset into an offset into the data. */
