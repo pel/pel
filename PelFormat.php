@@ -41,7 +41,7 @@
  *
  * This class defines the constants that are to be used whenever one
  * has to refer to the format of an EXIF tag.  They will be
- * collectively denoted by the pseudo-type PelExifFormat throughout
+ * collectively denoted by the pseudo-type PelFormat throughout
  * the documentation.
  *
  * All the methods defined here are static, and they all operate on a
@@ -51,7 +51,7 @@
  * @package PEL
  * @subpackage EXIF
  */
-class PelExifFormat {
+class PelFormat {
 
   const BYTE       =  1;
   const ASCII      =  2;
