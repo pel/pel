@@ -155,11 +155,14 @@ class PelExifData extends PelJpegContent {
 //       throw new PelExifInvalidDataException('EXIF marker not found.');
 //     }
 
-    /* Verify the EXIF header */
-    if ($d->getSize() < 6)
+    /* There must be at least 14 bytes available: 6 bytes for the EXIF
+     * header, 2 bytes for the byte order, 2 bytes for the TIFF
+     * header, and 4 bytes for the offset to the first IFD. */
+    if ($d->getSize() < 14)
       throw new PelExifInvalidDataException('Not enough data to be ' .
                                             'valid EXIF data.');
     
+    /* Verify the EXIF header */
     if ($d->strcmp(0, self::EXIF_HEADER)) {
       //printf ("Found EXIF header.\n");
     } else {
@@ -167,24 +170,20 @@ class PelExifData extends PelJpegContent {
     }
     
     /* Byte order */
-    // TODO: redundant check?!
-    if ($d->getSize() < 12)
-      throw new PelExifInvalidDataException('Size too small');
-
     if ($d->strcmp(6, 'II')) {
       $d->setByteOrder(PelConvert::LITTLE_ENDIAN);
       $this->order = PelConvert::LITTLE_ENDIAN;
-      //printf("Found Intel byte order\n");
+      Pel::debug('Found Intel byte order');
     } elseif ($d->strcmp(6, 'MM')) {
       $d->setByteOrder(PelConvert::BIG_ENDIAN);
       $this->order = PelConvert::LITTLE_ENDIAN;
-      //printf("Found Motorola byte order\n");
+      Pel::debug('Found Motorola byte order');
     } else {
-      throw new PelExifInvalidDataException('Unknown byte order: 0x%X 0x%X',
+      throw new PelExifInvalidDataException('Unknown byte order: 0x%2X%2X',
                                             $d->getByte(6), $d->getByte(7));
     }
     
-    /* Fixed value */
+    /* Verify the TIFF header */
     if ($d->getShort(8) != self::TIFF_HEADER)
       throw new PelExifInvalidDataException('Missing TIFF magic value.');
 
