@@ -113,7 +113,7 @@ class PelExif extends PelJpegContent {
     if ($d->strcmp(0, self::EXIF_HEADER)) {
       $d->setWindowStart(6);
     } else {
-      throw new PelExifInvalidDataException('EXIF header not found.');
+      throw new PelInvalidDataException('EXIF header not found.');
     }
 
     /* The rest of the data is TIFF data. */
