@@ -52,15 +52,17 @@ if (function_exists('dgettext')) {
 } else {
 
   /**
-   * Lookup a message in a specific domain.
+   * Pretend to lookup a message in a specific domain.
    *
-   * This is just a stub which will return the message untranslated.
+   * This is just a stub which will return the original message
+   * untranslated.  The function will only be defined if the Gettext
+   * extension has not already defined it.
    *
    * @param string $domain the domain.
    *
    * @param string $str the message to be translated.
    *
-   * @return string the untranslated message.
+   * @return string the original, untranslated message.
    */
   function dgettext($domain, $str) {
     return $str;
@@ -73,6 +75,9 @@ if (function_exists('dgettext')) {
  *
  * This class will contain various methods that govern the overall
  * behavior of PEL.
+ *
+ * Debugging output from PEL can be turned on and off by assigning
+ * true or false to {@link Pel::$debug}.
  *
  * @author Martin Geisler <gimpster@users.sourceforge.net>
  * @package PEL

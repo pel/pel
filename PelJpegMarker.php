@@ -119,7 +119,14 @@ class PelJpegMarker {
   const EXP   = 0xDF;
   /** Application segment 0 */
   const APP0  = 0xE0;
-  /** Application segment 1 */
+  /**
+   * Application segment 1
+   *
+   * When a JPEG image contains EXIF data, the data will normally be
+   * stored in this section.  A call to {@link PelJpeg::getSection()}
+   * with this marker as argument will then return a {@link PelExif}
+   * object.
+   */
   const APP1  = 0xE1;
   /** Application segment 2 */
   const APP2  = 0xE2;

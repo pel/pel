@@ -162,7 +162,7 @@ abstract class PelEntryNumber extends PelEntry {
 
 
   /**
-   * Return the value held.
+   * Return the numeric value held.
    *
    * @return int|array this will either be a single number if there is
    * only one component, or an array of numbers otherwise.
@@ -278,7 +278,7 @@ abstract class PelEntryNumber extends PelEntry {
 
 
   /**
-   * Get the value of this entry as text.
+   * Get the numeric value of this entry as text.
    *
    * @param boolean use brief output?  The numbers will be separated
    * by a single space if brief output is requested, otherwise a space

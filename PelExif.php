@@ -53,6 +53,12 @@ require_once('Pel.php');
  * EXIF data resides as {@link PelJpegContent data} and consists of a
  * header followed by a number of {@link PelJpegIfd IFDs}.
  *
+ * The interesting method in this class is {@link getTiff()} which
+ * will return the {@link PelTiff} object which really holds the data
+ * which one normally think of when talking about EXIF data.  This is
+ * because EXIF data is stored as an extension of the TIFF file
+ * format.
+ *
  * @author Martin Geisler <gimpster@users.sourceforge.net>
  * @package PEL
  */

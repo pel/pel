@@ -36,6 +36,7 @@
 
 /**#@+ Required class definitions. */
 require_once('PelJpegContent.php');
+require_once('PelDataWindow.php');
 require_once('PelJpegMarker.php');
 require_once('PelException.php');
 require_once('PelExif.php');
@@ -81,11 +82,13 @@ class PelJpegInvalidMarkerException extends PelException {
  *
  * The {@link getSection()} method is used to pick out a particular
  * section --- the EXIF information is typically stored in the {@link
- * PelJpegMarker::APP1 APP1} section, and so one would get hold of it
- * by saying:
+ * PelJpegMarker::APP1 APP1} section, and so if the name of the JPEG
+ * file is stored in $filename, then one would get hold of the EXIF
+ * data by saying:
  *
  * <code>
- * $jpeg = new PelJpeg($data);
+ * $jpeg = new PelJpeg();
+ * $jpeg->loadFile($filename);
  * $app1 = $jpeg->getSection(PelJpegMarker::APP1);
  * $tiff = $app1->getTiff();
  * $ifd0 = $tiff->getIfd();
@@ -93,7 +96,12 @@ class PelJpegInvalidMarkerException extends PelException {
  * $ifd1 = $ifd0->getNextIfd();
  * </code>
  *
- * Should one have some image data of an unknown type, then the {@link
+ * The $idf0 and $ifd1 variables will then be two {@link PelTiff TIFF}
+ * {@link PelIfd Image File Directories}, in which the data is stored
+ * under the keys found in {@link PelTag}.
+ *
+ * Should one have some image data (in the form of a {@link
+ * PelDataWindow}) of an unknown type, then the {@link
  * PelJpeg::isValid()} function is handy: it will quickly test if the
  * data could be valid JPEG data.  The {@link PelTiff::isValid()}
  * function does the same for TIFF images.
