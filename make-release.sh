@@ -48,7 +48,7 @@ rm make-release.sh .cvsignore
 echo -n "Running phpDocumentor... "
 ../../phpdocumentor/phpdoc -q on -s on \
     -ti "PEL: PHP EXIF Library Version $VERSION" \
-    -dn PEL -f '*.php' -t doc
+    -ct 'date' -dn PEL -f '*.php' -t doc
 echo "done."
 
 cd ..

@@ -9,7 +9,7 @@ PEL Version 0.2  ? May 2004
 ***************************
 
 Notes: This release brings updated documentation and better support
-for the EXIF user comment tag.
+for the EXIF user comment tag and tags containing version information.
 
 Changes:
 
