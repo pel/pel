@@ -64,7 +64,7 @@ class DataWindowTestCase extends UnitTestCase {
     
     $caught = false;
     try {
-      $this->assertEqual($clone->getBytes(0, 6), 'cdefgh');
+      $clone->getBytes(0, 6);
     } catch (PelDataWindowOffsetException $e) {
       $caught = true;
     }
@@ -73,10 +73,10 @@ class DataWindowTestCase extends UnitTestCase {
   }
 
   function testReadIntegers() {
-    $window = new PelDataWindow("\1\2\3\4", PelConvert::BIG_ENDIAN);
+    $window = new PelDataWindow("\x01\x02\x03\x04", PelConvert::BIG_ENDIAN);
 
     $this->assertEqual($window->getSize(), 4);
-    $this->assertEqual($window->getBytes(), "\1\2\3\4");
+    $this->assertEqual($window->getBytes(), "\x01\x02\x03\x04");
 
     $this->assertEqual($window->getByte(0), 0x01);
     $this->assertEqual($window->getByte(1), 0x02);
@@ -88,7 +88,56 @@ class DataWindowTestCase extends UnitTestCase {
     $this->assertEqual($window->getShort(2), 0x0304);
 
     $this->assertEqual($window->getLong(0), 0x01020304);
-    
+
+    $window->setByteOrder(PelConvert::LITTLE_ENDIAN);
+    $this->assertEqual($window->getSize(), 4);
+    $this->assertEqual($window->getBytes(), "\x01\x02\x03\x04");
+
+    $this->assertEqual($window->getByte(0), 0x01);
+    $this->assertEqual($window->getByte(1), 0x02);
+    $this->assertEqual($window->getByte(2), 0x03);
+    $this->assertEqual($window->getByte(3), 0x04);
+
+    $this->assertEqual($window->getShort(0), 0x0201);
+    $this->assertEqual($window->getShort(1), 0x0302);
+    $this->assertEqual($window->getShort(2), 0x0403);
+
+    $this->assertEqual($window->getLong(0), 0x04030201);
+  }
+
+  function testReadBigIntegers() {
+    $window = new PelDataWindow("\x89\xAB\xCD\xEF", PelConvert::BIG_ENDIAN);
+
+    $this->assertEqual($window->getSize(), 4);
+    $this->assertEqual($window->getBytes(), "\x89\xAB\xCD\xEF");
+
+    $this->assertEqual($window->getByte(0), 0x89);
+    $this->assertEqual($window->getByte(1), 0xAB);
+    $this->assertEqual($window->getByte(2), 0xCD);
+    $this->assertEqual($window->getByte(3), 0xEF);
+
+    $this->assertEqual($window->getShort(0), 0x89AB);
+    $this->assertEqual($window->getShort(1), 0xABCD);
+    $this->assertEqual($window->getShort(2), 0xCDEF);
+
+    $this->assertEqual($window->getLong(0), 0x89ABCDEF);
+
+    $window->setByteOrder(PelConvert::LITTLE_ENDIAN);
+    $this->assertEqual($window->getSize(), 4);
+    $this->assertEqual($window->getBytes(), "\x89\xAB\xCD\xEF");
+
+    $this->assertEqual($window->getByte(0), 0x89);
+    $this->assertEqual($window->getByte(1), 0xAB);
+    $this->assertEqual($window->getByte(2), 0xCD);
+    $this->assertEqual($window->getByte(3), 0xEF);
+
+    $this->assertEqual($window->getShort(0), 0xAB89);
+    $this->assertEqual($window->getShort(1), 0xCDAB);
+    $this->assertEqual($window->getShort(2), 0xEFCD);
+
+    $this->assertEqual($window->getLong(0), 0xEFCDAB89);
+
+
   }
   
 }
