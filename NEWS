@@ -16,6 +16,9 @@ has been expanded.
 
 Changes:
 
+* Fixed offset bug in PelDataWindow::getBytes() which caused the
+  method to return too much data.
+
 * Added support for the SCENE_TYPE tag.
 
 * Fixed display of integer version numbers.  Version x.0 would be

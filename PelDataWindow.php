@@ -275,7 +275,7 @@ class PelDataWindow {
    *
    * This method works just like the standard {@link substr()}
    * function in PHP with the exception that it works within the
-   * window of accible bytes and does strict range checking.
+   * window of accessible bytes and does strict range checking.
    * 
    * @param int the offset to the first byte returned.  If a negative
    * number is given, then the counting will be from the end of the
@@ -304,7 +304,7 @@ class PelDataWindow {
       
       $this->validateOffset($start+$size);
     } else {
-      $size = $this->size;
+      $size = $this->size - $start;
     }
 
     return substr($this->data, $this->start + $start, $size);
