@@ -27,24 +27,24 @@
 class UndefinedTestCase extends UnitTestCase {
 
   function __construct() {
-    require_once('../PelExifEntryUndefined.php');
+    require_once('../PelEntryUndefined.php');
     parent::__construct('PEL EXIF Undefined Tests');
   }
 
   function testReturnValues() {
-    $entry = new PelExifEntryUndefined();
-    $this->assertError('Missing argument 1 for PelExifEntryUndefined::__construct()');
+    $entry = new PelEntryUndefined();
+    $this->assertError('Missing argument 1 for PelEntryUndefined::__construct()');
 
-    $entry = new PelExifEntryUndefined(42);
+    $entry = new PelEntryUndefined(42);
     $this->assertNoErrors();
 
-    $entry = new PelExifEntryUndefined(42, 'foo bar baz');
+    $entry = new PelEntryUndefined(42, 'foo bar baz');
     $this->assertEqual($entry->getComponents(), 11);
     $this->assertEqual($entry->getValue(), 'foo bar baz');
   }
 
   function testUsercomment() {
-    $entry = new PelExifEntryUserComment();
+    $entry = new PelEntryUserComment();
     $this->assertEqual($entry->getComponents(), 8);
     $this->assertEqual($entry->getValue(), '');
     $this->assertEqual($entry->getEncoding(), 'ASCII');
@@ -56,10 +56,10 @@ class UndefinedTestCase extends UnitTestCase {
   }
 
   function testVersion() {
-    $entry = new PelExifEntryVersion();
-    $this->assertError('Missing argument 1 for PelExifEntryVersion::__construct()');
+    $entry = new PelEntryVersion();
+    $this->assertError('Missing argument 1 for PelEntryVersion::__construct()');
 
-    $entry = new PelExifEntryVersion(42);
+    $entry = new PelEntryVersion(42);
     $this->assertNoErrors();
 
     $this->assertEqual($entry->getValue(), 0.0);
