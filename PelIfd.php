@@ -163,34 +163,19 @@ class PelIfd {
         break;
       case PelTag::JPEG_INTERCHANGE_FORMAT:
         $thumb_offset = $d->getLong($offset + 12 * $i + 8);
-        // println('Thumbnail data at %d.', $thumb_offset);
-        
-        /* Load the thumbnail if we've found both the offset and the
-         * length. */
-        if ($thumb_offset > 0 && $thumb_length > 0)
-          $this->thumb_data = $d->getClone($thumb_offset, $thumb_length);
-        
+        $this->loadThumbnail($d, $thumb_offset, $thumb_length);
         break;
       case PelTag::JPEG_INTERCHANGE_FORMAT_LENGTH:
         $thumb_length = $d->getLong($offset + 12 * $i + 8);
-        // println('Thumbnail size: %d.', $thumb_length);
-
-        /* Load the thumbnail if we've found both the offset and the
-         * length. */
-        if ($thumb_offset > 0 && $thumb_length > 0) {
-          $this->thumb_data = $d->getClone($thumb_offset, $thumb_length);
-          // println('Thumbail loaded: ' . $this->thumb_data->__toString());
-        }        
-
+        $this->loadThumbnail($d, $thumb_offset, $thumb_length);
         break;
-
       default:
         $format     = $d->getShort($offset + 12 * $i + 2);
         $components = $d->getLong($offset + 12 * $i + 4);
         
-        /*
-         * Size? If bigger than 4 bytes, the actual data is not in the
-         * entry but somewhere else (offset).
+        /* The data size.  If bigger than 4 bytes, the actual data is
+         * not in the entry but somewhere else, with the offset stored
+         * in the entry.
          */
         $s = PelFormat::getSize($format) * $components;
         if ($s > 0) {    
@@ -199,12 +184,6 @@ class PelIfd {
           else
             $doff = $offset + 12 * $i + 8;
 
-          /* Sanity check */
-          // TODO: remove these checks if PelDataWindow is going to do them
-          // anyway.
-          //if ($d->getSize() < $doff + $s)
-          //  throw new PelEntryException('Not enough data.');
-          
           $data = $d->getClone($doff, $s);
         } else {
           $data = new PelDataWindow();
@@ -244,6 +223,45 @@ class PelIfd {
       $this->next = new PelIfd($d, $o);
     } else {
       // println('That was the last IFD');
+    }
+  }
+
+
+  /**
+   * Extract thumbnail data.
+   *
+   * It is safe to call this method repeatedly with either the offset
+   * or the length set to zero, since it requires both of these
+   * arguments to be positive before the thumbnail is extracted.
+   *
+   * @param PelDataWindow the data from which the thumbnail will be
+   * extracted.
+   *
+   * @param int the offset into the data.
+   *
+   * @param int the length of the thumbnail.
+   */
+  private function loadThumbnail(PelDataWindow $d, $offset, $length) {
+    /* Load the thumbnail if both the offset and the length is
+     * available. */
+    if ($offset > 0 && $length > 0) {
+      
+      /* Some images have a broken length, so we try to carefully
+       * check the length before we store the thumbnail. */
+      if ($offset + $length > $d->getSize()) {
+        Pel::warning('Thumbnail length %d bytes adjusted to %d bytes.',
+                     $length, $d->getSize() - $offset);
+        $length = $d->getSize() - $offset;
+      }
+
+      /* Now move backwards until we find the EOI JPEG marker. */
+      while ($d->getByte($offset+$length-1) != 0xFF ||
+             $d->getByte($offset+$length) != PelJpegMarker::EOI)
+        $length--;
+
+      Pel::debug('Loading %d bytes of thumbnail data from offset %d',
+                 $length, $offset);
+      $this->thumb_data = $d->getClone($offset, $length);
     }
   }
 
