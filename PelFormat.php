@@ -133,6 +133,7 @@ class PelFormat {
 
   /** Floating point number. */
   const FLOAT      = 11;
+
   /** Double precision floating point number. */
   const DOUBLE     = 12;
 
@@ -159,7 +160,7 @@ class PelFormat {
     case self::FLOAT:     return 'Float';
     case self::DOUBLE:    return 'Double';
     case self::UNDEFINED: return 'Undefined';
-    default:              return Pel::fmt('Unknown type: 0x%X', $type);
+    default:              return Pel::fmt('Unknown format: 0x%X', $type);
     }
   }
 
@@ -186,7 +187,7 @@ class PelFormat {
     case self::FLOAT:     return 4;
     case self::DOUBLE:    return 8;
     case self::UNDEFINED: return 1;
-    default:              return Pel::fmt('Unknown type: 0x%X', $type);
+    default:              return Pel::fmt('Unknown format: 0x%X', $type);
     }
   }
 
