@@ -37,9 +37,9 @@ function println(/* fmt, args... */) {
 /* Make PEL speak the users language, if it is available. */
 setlocale(LC_ALL, '');
 
-require_once('../PelDataWindow.php');
-require_once('../PelJpeg.php');
-require_once('../PelTiff.php');
+require_once(dirname(__FILE__) . '/../PelDataWindow.php');
+require_once(dirname(__FILE__) . '/../PelJpeg.php');
+require_once(dirname(__FILE__) . '/../PelTiff.php');
 
 $prog = array_shift($argv);
 $error = false;
