@@ -29,8 +29,8 @@
  *
  * The {@link PelJpeg} class defined here provides an abstraction for
  * dealing with a JPEG file.  The file will be contain a number of
- * sections indicated by markers, which is modeled with the {@link
- * PelJpegSection} and {@link PelJpegMarker} classes.
+ * sections containing some {@link PelJpegContent content} identified
+ * by a {@link PelJpegMarker marker}.
  *
  * The {@link getSection()} method is used to pick out a particular
  * section --- the EXIF information is typically stored in the {@link

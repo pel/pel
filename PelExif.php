@@ -59,9 +59,8 @@ class PelExifInvalidDataException extends PelException {}
 /**
  * Class representing EXIF data.
  *
- * EXIF data resides as {@link PelJpeg data} in a {@link
- * PelJpegSection JPEG section} and consists of a header followed by a
- * number of {@link PelJpegIfd IFDs}.
+ * EXIF data resides as {@link PelJpegContent data} and consists of a
+ * header followed by a number of {@link PelJpegIfd IFDs}.
  *
  * @author Martin Geisler <gimpster@users.sourceforge.net>
  * @package PEL

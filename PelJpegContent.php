@@ -43,12 +43,12 @@ require_once('PelDataWindow.php');
 /**
  * Class representing content in a JPEG file.
  *
- * A JPEG file consists of a sequence of {@link PelJpegSection
- * sections} each of which has an associated {@link PelJpegMarker
- * marker} and some content.  This class represents the content, and
- * this basic type is just a simple holder of such content,
- * represented by a {@link PelDataWindow} object.  The {@link PelExif}
- * class is an example of more specialized JPEG content.
+ * A JPEG file consists of a sequence of each of which has an
+ * associated {@link PelJpegMarker marker} and some content.  This
+ * class represents the content, and this basic type is just a simple
+ * holder of such content, represented by a {@link PelDataWindow}
+ * object.  The {@link PelExif} class is an example of more
+ * specialized JPEG content.
  *
  * @author Martin Geisler <gimpster@users.sourceforge.net>
  * @package PEL
