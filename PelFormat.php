@@ -66,19 +66,19 @@ class PelFormat {
 
   static function getName($type) {
     switch ($type) {
-    case self::ASCII:     return 'Ascii';
-    case self::BYTE:      return 'Byte';
-    case self::SHORT:     return 'Short';
-    case self::LONG:      return 'Long';
-    case self::RATIONAL:  return 'Rational';
-    case self::SBYTE:     return 'SByte';
-    case self::SSHORT:    return 'SShort';
-    case self::SLONG:     return 'SLong';
-    case self::SRATIONAL: return 'SRational';
-    case self::FLOAT:     return 'Float';
-    case self::DOUBLE:    return 'Double';
-    case self::UNDEFINED: return 'Undefined';
-    default:              return sprintf('Unknown type: 0x%X', $type);
+    case self::ASCII:     return Pel::tra('Ascii');
+    case self::BYTE:      return Pel::tra('Byte');
+    case self::SHORT:     return Pel::tra('Short');
+    case self::LONG:      return Pel::tra('Long');
+    case self::RATIONAL:  return Pel::tra('Rational');
+    case self::SBYTE:     return Pel::tra('SByte');
+    case self::SSHORT:    return Pel::tra('SShort');
+    case self::SLONG:     return Pel::tra('SLong');
+    case self::SRATIONAL: return Pel::tra('SRational');
+    case self::FLOAT:     return Pel::tra('Float');
+    case self::DOUBLE:    return Pel::tra('Double');
+    case self::UNDEFINED: return Pel::tra('Undefined');
+    default:              return Pel::fmt('Unknown type: 0x%X', $type);
     }
   }
 
@@ -96,7 +96,7 @@ class PelFormat {
     case self::FLOAT:     return 4;
     case self::DOUBLE:    return 8;
     case self::UNDEFINED: return 1;
-    default:              return sprintf('Unknown type: 0x%X', $type);
+    default:              return Pel::fmt('Unknown type: 0x%X', $type);
     }
   }
 }
