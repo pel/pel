@@ -12,9 +12,17 @@ Notes:
 
 The infrastructure for internationalisation has been put in place.
 Preliminary translations for Danish, German, French, and Spanish is
-included.
+included.  Support for tags with GPS information were disabled due to
+conflicts with a number of normal tags.
 
 Changes:
+
+* Disabled the code that tries to lookup the title and description of
+  the GPS related tags, since those tags have the same hexadecimal
+  value as a number of other normal tags.  This means that there's no
+  support for tags with GPS information.
+
+* Marked all strings for translation.
 
 * Added German, French, and Spanish translations taken from libexif.
   The translations were made by Lutz Müller, Fabian Mandelbaum, and
