@@ -123,12 +123,24 @@ class PelIfd {
   /**
    * Construct a new Image File Directory (IFD).
    *
+   * The IFD will be empty, use the {@link addEntry()} method to add
+   * an {@link PelEntry}.  Use the {@link setNext()} method to link
+   * this IFD to another.
+   */
+  function __construct() {
+
+  }
+
+
+  /**
+   * Load data into a Image File Directory (IFD).
+   *
    * @param PelDataWindow the data window that will provide the data.
    *
    * @param int the offset within the window where the directory will
    * be found.
    */
-  function __construct(PelDataWindow $d, $offset) {
+  function load(PelDataWindow $d, $offset) {
     $thumb_offset = 0;
     $thumb_length = 0;
 
@@ -159,7 +171,8 @@ class PelIfd {
       case PelTag::INTEROPERABILITY_IFD_POINTER:
         $o = $d->getLong($offset + 12 * $i + 8);
         // println('Found sub IFD');
-        $this->sub[$tag] = new PelIfd($d, $o);
+        $this->sub[$tag] = new PelIfd();
+        $this->sub[$tag]->load($d, $o);
         break;
       case PelTag::JPEG_INTERCHANGE_FORMAT:
         $thumb_offset = $d->getLong($offset + 12 * $i + 8);
@@ -220,7 +233,8 @@ class PelIfd {
       if ($o > $d->getSize() - 6)
         throw new PelIfdException('Bogus offset!');
 
-      $this->next = new PelIfd($d, $o);
+      $this->next = new PelIfd();
+      $this->next->load($d, $o);
     } else {
       // println('That was the last IFD');
     }
@@ -285,7 +299,7 @@ class PelIfd {
 
 
   /**
-   * Appends an entry to the directory.
+   * Adds an entry to the directory.
    *
    * @param PelEntry the entry that will be added.
    *

@@ -88,6 +88,18 @@ class PelTiff {
   /**
    * Construct a new object for holding TIFF data.
    *
+   * The new object will be empty, containing no {@link PelIfd}.  Use
+   * the {@link setIfd()} method to set the IFD explictly, or use the
+   * {@link load()} method to load TIFF data from a {@link
+   * PelDataWindow}.
+   */
+  function __construct() {
+
+  }
+
+  /**
+   * Load TIFF data.
+   *
    * The data given will be parsed and an internal tree representation
    * will be built.  If the data cannot be parsed correctly, a {@link
    * PelInvalidDataException} is thrown, explaining the problem.
@@ -96,7 +108,7 @@ class PelTiff {
    * constructed.  This should be valid TIFF data, coming either
    * directly from a TIFF image or from the EXIF data in a JPEG image.
    */
-  function __construct(PelDataWindow $d) {
+  function load(PelDataWindow $d) {
     Pel::debug('Parsing %d bytes of TIFF data...', $d->getSize());
 
     /* There must be at least 8 bytes available: 2 bytes for the byte
@@ -131,8 +143,29 @@ class PelTiff {
     if ($offset > 0) {
       /* Parse the first IFD, this will automatically parse the
        * following IFDs and any sub IFDs. */
-      $this->ifd = new PelIfd($d, $offset);
+      $this->ifd = new PelIfd();
+      $this->ifd->load($d, $offset);
     }
+  }
+
+
+  /**
+   * Load data from a file into a TIFF object.
+   *
+   * @param string the filename.  This must be a readable file.
+   */
+  function loadFile($filename) {
+    $this->load(new PelDataWindow(file_get_contents($filename)));
+  }
+
+
+  /**
+   * Set the first IFD.
+   *
+   * @param PelIfd the new first IFD.
+   */
+  function setIfd(PelIfd $ifd) {
+    $this->ifd = $ifd;
   }
 
 

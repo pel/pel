@@ -127,21 +127,45 @@ class PelJpeg {
    */
   private $jpeg_data = null;
 
-
   /**
    * Construct a new JPEG object.
+   *
+   * The new object will be empty, use the {@link load()} or {@link
+   * loadFile()} methods to load JPEG data from a {@link
+   * PelDataWindow} or a file, respectively.
+   *
+   * Individual sections of JPEG content can be added with the {@link
+   * appendSection()} method --- use this method to add a {@link
+   * PelExif} object as the {@link PelJpegMarker::APP1} section of an
+   * existing file without EXIF information:
+   *
+   * <code>
+   * $jpeg = new PelJpeg();
+   * $jpeg->load($data);
+   * $jpeg->appendSection($exif, PelJpegMarker::APP1);
+   * </code>
+   */
+  function __construct() {
+
+  }
+
+  /**
+   * Load data into a JPEG object.
    *
    * The data supplied will be parsed and turned into an object
    * structure representing the image.  This structure can then be
    * manipulated and later turned back into an string of bytes.
    *
-   * @param PelDataWindow the data that will be used to construct the
-   * object.
+   * This methods can be called at any time after a JPEG object has
+   * been constructed, also after the {@link appendSection()} has been
+   * called to append custom sections.  Loading several JPEG images
+   * into one object will accumulate the sections, but there will only
+   * be one {@link PelJpegMarker::SOS} section at any given time.
    *
-   * @todo Make the constructor take a plain string with bytes instead
-   * of requiring the {@link PelDataWindow} object?
+   * @param PelDataWindow the data that will be turned into JPEG
+   * sections.
    */
-  function __construct(PelDataWindow $d) {
+  function load(PelDataWindow $d) {
 
     Pel::debug('Parsing %d bytes...', $d->getSize());
 
@@ -162,7 +186,7 @@ class PelJpeg {
 
       $marker = $d->getByte($i);
 
-      if (!PelJpegMarker::isValidMarker($marker))
+      if (!PelJpegMarker::isValid($marker))
         throw new PelJpegInvalidMarkerException($marker, $i);
 
       /* Move window so first byte becomes first byte in this
@@ -185,8 +209,9 @@ class PelJpeg {
 
         if ($marker == PelJpegMarker::APP1) {
           try {
-            $content = new PelExif($d->getClone(0, $len));
-          } catch (PelExifInvalidDataException $e) {
+            $content = new PelExif();
+            $content->load($d->getClone(0, $len));
+          } catch (PelInvalidDataException $e) {
             Pel::warning('Found non-EXIF APP1 section.');
             /* We store the data as normal JPEG content if it could
              * not be parsed as EXIF data. */
@@ -238,6 +263,16 @@ class PelJpeg {
       }
     } /* while ($d->getSize() > 0) */
   }
+
+
+  /**
+   * Load data from a file into a JPEG object.
+   *
+   * @param string the filename.  This must be a readable file.
+   */
+  function loadFile($filename) {
+    $this->load(new PelDataWindow(file_get_contents($filename)));
+  }
   
 
   /**
@@ -251,6 +286,10 @@ class PelJpeg {
     $this->sections[] = array($marker, $content);
   }
 
+
+  function insertSection($marker, PelJpegContent $content, $offset) {
+    array_splice($this->sections, $offset, 0, array(array($marker, $content)));
+  }
 
   /**
    * Get a sections corresponding to a particular marker.

@@ -48,15 +48,6 @@ require_once('Pel.php');
 
 
 /**
- * Exception throw if invalid EXIF data is found.
- *
- * @author Martin Geisler <gimpster@users.sourceforge.net>
- * @package PEL
- * @subpackage Exception
- */
-class PelExifInvalidDataException extends PelException {}
-
-/**
  * Class representing EXIF data.
  *
  * EXIF data resides as {@link PelJpegContent data} and consists of a
@@ -82,24 +73,29 @@ class PelExif extends PelJpegContent {
    */
   private $tiff = null;
 
+
   /**
-   * The size of the EXIF data.
+   * Construct a new EXIF object.
    *
-   * @var int
+   * The new object will be empty --- use the {@link load()} method to
+   * load EXIF data from a {@link PelDataWindow} object, or use the
+   * {@link setTiff()} to change the {@link PelTiff} object, which is
+   * the true holder of the EXIF {@link PelEntry entries}.
    */
-  private $size = 0;
+  function __construct() {
+
+  }
 
 
   /**
-   * Parse EXIF data.
+   * Load and parse EXIF data.
    *
-   * This will construct a new object containing EXIF data as a {@link
-   * PelTiff} object.  This object can be accessed with the {@link
-   * getTiff()} method.
+   * This will populate the object with EXIF data, contained as a
+   * {@link PelTiff} object.  This TIFF object can be accessed with
+   * the {@link getTiff()} method.
    */
-  function __construct(PelDataWindow $d) {
+  function load(PelDataWindow $d) {
     Pel::debug('Parsing %d bytes of EXIF data...', $d->getSize());
-    $this->size = $d->getSize();
 
     /* There must be at least 6 bytes for the EXIF header. */
     if ($d->getSize() < 6)
@@ -115,12 +111,24 @@ class PelExif extends PelJpegContent {
     }
 
     /* The rest of the data is TIFF data. */
-    $this->tiff = new PelTiff($d);
+    $this->tiff = new PelTiff();
+    $this->tiff->load($d);
   }
 
-  function getSize() {
-    return $this->size;
+
+  /**
+   * Change the TIFF information.
+   *
+   * EXIF data is really stored as TIFF data, and this method can be
+   * used to change this data from one {@link PelTiff} object to
+   * another.
+   *
+   * @param PelTiff the new TIFF object.
+   */
+  function setTiff(PelTiff $tiff) {
+    $this->tiff = $tiff;
   }
+
 
   /**
    * Get the underlying TIFF object.
@@ -134,6 +142,7 @@ class PelExif extends PelJpegContent {
     return $this->tiff;
   }
 
+
   /**
    * Produce bytes for this object.
    *
@@ -144,6 +153,7 @@ class PelExif extends PelJpegContent {
     return self::EXIF_HEADER . $this->tiff->getbytes();
   }
   
+
   /**
    * Return a string representation of this object.
    *
@@ -151,7 +161,7 @@ class PelExif extends PelJpegContent {
    * useful for debugging.
    */
   function __toString() {
-    return Pel::fmt("Dumping %d bytes of EXIF data...\n", $this->size) .
+    return Pel::tra("Dumping EXIF data...\n") .
       $this->tiff->__toString();
   }
 
