@@ -36,8 +36,8 @@
  * @subpackage EXIF
  */
 
-/** Class definition of {@link PelExifEntryNumber}. */
-require_once('PelExifEntryNumber.php');
+/** Class definition of {@link PelEntryNumber}. */
+require_once('PelEntryNumber.php');
 
 
 /**
@@ -45,13 +45,13 @@ require_once('PelExifEntryNumber.php');
  *
  * This class can hold shorts, either just a single short or an array
  * of shorts.  The class will be used to manipulate any of the EXIF
- * tags which has format {@link PelExifFormat::SHORT} like in this
+ * tags which has format {@link PelFormat::SHORT} like in this
  * example:
  *
  * <code>
- * $w = $ifd->getEntry(PelExifTag::EXIF_IMAGE_WIDTH);
+ * $w = $ifd->getEntry(PelTag::EXIF_IMAGE_WIDTH);
  * $w->setValue($h->getValue() / 2);
- * $h = $ifd->getEntry(PelExifTag::EXIF_IMAGE_HEIGHT);
+ * $h = $ifd->getEntry(PelTag::EXIF_IMAGE_HEIGHT);
  * $h->setValue($h->getValue() / 2);
  * </code>
  *
@@ -62,7 +62,7 @@ require_once('PelExifEntryNumber.php');
  * @package PEL
  * @subpackage EXIF
  */
-class PelExifEntryShort extends PelExifEntryNumber {
+class PelEntryShort extends PelEntryNumber {
 
   /**
    * Make a new entry that can hold an unsigned short.
@@ -73,17 +73,17 @@ class PelExifEntryShort extends PelExifEntryNumber {
    *
    * This means that one can conveniently use objects like this:
    * <code>
-   * $a = new PelExifEntryShort(PelExifTag::EXIF_IMAGE_HEIGHT, 42);
+   * $a = new PelEntryShort(PelTag::EXIF_IMAGE_HEIGHT, 42);
    * $b = $a->getValue() + 314;
    * </code>
    * where the call to {@link getValue} will return an integer
    * instead of an array with one integer element, which would then
    * have to be extracted.
    *
-   * @param PelExifTag the tag which this entry represents.  This should be
-   * one of the constants defined in {@link PelExifTag}, e.g., {@link
-   * PelExifTag::IMAGE_WIDTH}, {@link PelExifTag::ISO_SPEED_RATINGS},
-   * or any other tag with format {@link PelExifFormat::SHORT}.
+   * @param PelTag the tag which this entry represents.  This should be
+   * one of the constants defined in {@link PelTag}, e.g., {@link
+   * PelTag::IMAGE_WIDTH}, {@link PelTag::ISO_SPEED_RATINGS},
+   * or any other tag with format {@link PelFormat::SHORT}.
    *
    * @param int $value... the short(s) that this entry will
    * represent.  The argument passed must obey the same rules as the
@@ -96,7 +96,7 @@ class PelExifEntryShort extends PelExifEntryNumber {
     $this->tag    = $tag;
     $this->min    = 0;
     $this->max    = 65535;
-    $this->format = PelExifFormat::SHORT;
+    $this->format = PelFormat::SHORT;
 
     $value = func_get_args();
     array_shift($value);
@@ -124,7 +124,7 @@ class PelExifEntryShort extends PelExifEntryNumber {
    *
    * The value will be returned in a format suitable for presentation,
    * e.g., instead of returning '2' for a {@link
-   * PelExifTag::METERING_MODE} tag, 'Center-Weighted Average' is
+   * PelTag::METERING_MODE} tag, 'Center-Weighted Average' is
    * returned.
    *
    * @param boolean some values can be returned in a long or more
@@ -134,7 +134,7 @@ class PelExifEntryShort extends PelExifEntryNumber {
    */
   function getText($brief = false) {
     switch ($this->tag) {
-    case PelExifTag::METERING_MODE:
+    case PelTag::METERING_MODE:
       //CC (e->components, 1, v);
       switch ($this->value[0]) {
       case 0:
@@ -157,7 +157,7 @@ class PelExifEntryShort extends PelExifEntryNumber {
         return $this->value[0];
       }
 
-    case PelExifTag::COMPRESSION:
+    case PelTag::COMPRESSION:
       //CC (e->components, 1, v);
       switch ($this->value[0]) {
       case 1:
@@ -169,7 +169,7 @@ class PelExifEntryShort extends PelExifEntryNumber {
       
       }
 
-    case PelExifTag::PLANAR_CONFIGURATION:
+    case PelTag::PLANAR_CONFIGURATION:
       //CC (e->components, 1, v);
       switch ($this->value[0]) {
       case 1:
@@ -180,7 +180,7 @@ class PelExifEntryShort extends PelExifEntryNumber {
         return $this->value[0];
       }
       
-    case PelExifTag::SENSING_METHOD:
+    case PelTag::SENSING_METHOD:
       //CC (e->components, 1, v);
       switch ($this->value[0]) {
       case 1:
@@ -201,7 +201,7 @@ class PelExifEntryShort extends PelExifEntryNumber {
         return $this->value[0];
       }
 
-    case PelExifTag::LIGHT_SOURCE:
+    case PelTag::LIGHT_SOURCE:
       //CC (e->components, 1, v);
       switch ($this->value[0]) {
       case 0:
@@ -248,8 +248,8 @@ class PelExifEntryShort extends PelExifEntryNumber {
         return $this->value[0];
       }
 
-    case PelExifTag::FOCAL_PLANE_RESOLUTION_UNIT:
-    case PelExifTag::RESOLUTION_UNIT:
+    case PelTag::FOCAL_PLANE_RESOLUTION_UNIT:
+    case PelTag::RESOLUTION_UNIT:
       //CC (e->components, 1, v);
       switch ($this->value[0]) {
       case 2:
@@ -260,7 +260,7 @@ class PelExifEntryShort extends PelExifEntryNumber {
         return $this->value[0];
       }
 
-    case PelExifTag::EXPOSURE_PROGRAM:
+    case PelTag::EXPOSURE_PROGRAM:
       //CC (e->components, 1, v);
       switch ($this->value[0]) {
       case 0:
@@ -287,7 +287,7 @@ class PelExifEntryShort extends PelExifEntryNumber {
         return $this->value[0];
       }
    
-    case PelExifTag::ORIENTATION:
+    case PelTag::ORIENTATION:
       //CC (e->components, 1, v);
       switch ($this->value[0]) {
       case 1:
@@ -310,7 +310,7 @@ class PelExifEntryShort extends PelExifEntryNumber {
         return $this->value[0];
       }
 
-    case PelExifTag::YCBCR_POSITIONING:
+    case PelTag::YCBCR_POSITIONING:
       //CC (e->components, 1, v);
       switch ($this->value[0]) {
       case 1:
@@ -321,7 +321,7 @@ class PelExifEntryShort extends PelExifEntryNumber {
         return $this->value[0];
       }
 
-    case PelExifTag::YCBCR_SUB_SAMPLING:
+    case PelTag::YCBCR_SUB_SAMPLING:
       //CC (e->components, 2, v);
       if ($this->value[0] == 2 && $this->value[1] == 1)
         return 'YCbCr4:2:2';
@@ -330,7 +330,7 @@ class PelExifEntryShort extends PelExifEntryNumber {
       
       return $this->value[0] . ', ' . $this->value[1];
    
-    case PelExifTag::PHOTOMETRIC_INTERPRETATION:
+    case PelTag::PHOTOMETRIC_INTERPRETATION:
       //CC (e->components, 1, v);
       switch ($this->value[0]) {
       case 2:
@@ -341,7 +341,7 @@ class PelExifEntryShort extends PelExifEntryNumber {
         return $this->value[0];
       }
    
-    case PelExifTag::COLOR_SPACE:
+    case PelTag::COLOR_SPACE:
       //CC (e->components, 1, v); 
       switch ($this->value[0]) { 
       case 1:
@@ -352,7 +352,7 @@ class PelExifEntryShort extends PelExifEntryNumber {
         return $this->value[0];
       }
 
-    case PelExifTag::FLASH:
+    case PelTag::FLASH:
       //CC (e->components, 1, v);
       switch ($this->value[0]) {
       case 0x0000:
@@ -415,7 +415,7 @@ class PelExifEntryShort extends PelExifEntryNumber {
         return $this->value[0];
       }
 
-    case PelExifTag::CUSTOM_RENDERED:
+    case PelTag::CUSTOM_RENDERED:
       //CC (e->components, 1, v);
       switch ($this->value[0]) {
       case 0:
@@ -426,7 +426,7 @@ class PelExifEntryShort extends PelExifEntryNumber {
         return $this->value[0];
       }
 
-    case PelExifTag::EXPOSURE_MODE:
+    case PelTag::EXPOSURE_MODE:
       //CC (e->components, 1, v);
       switch ($this->value[0]) {
       case 0:
@@ -439,7 +439,7 @@ class PelExifEntryShort extends PelExifEntryNumber {
         return $this->value[0];
       }
    
-    case PelExifTag::WHITE_BALANCE:
+    case PelTag::WHITE_BALANCE:
       //CC (e->components, 1, v);
       switch ($this->value[0]) {
       case 0:
@@ -450,7 +450,7 @@ class PelExifEntryShort extends PelExifEntryNumber {
         return $this->value[0];
       }
 
-    case PelExifTag::SCENE_CAPTURE_TYPE:
+    case PelTag::SCENE_CAPTURE_TYPE:
       //CC (e->components, 1, v);
       switch ($this->value[0]) {
       case 0:
@@ -465,7 +465,7 @@ class PelExifEntryShort extends PelExifEntryNumber {
         return $this->value[0];
       }
 
-    case PelExifTag::GAIN_CONTROL:
+    case PelTag::GAIN_CONTROL:
       //CC (e->components, 1, v);
       switch ($this->value[0]) {
       case 0:
@@ -482,7 +482,7 @@ class PelExifEntryShort extends PelExifEntryNumber {
         return $this->value[0];
       }
 
-    case PelExifTag::SATURATION:
+    case PelTag::SATURATION:
       //CC (e->components, 1, v);
       switch ($this->value[0]) {
       case 0:
@@ -495,8 +495,8 @@ class PelExifEntryShort extends PelExifEntryNumber {
         return $this->value[0];
       }
 
-    case PelExifTag::CONTRAST:
-    case PelExifTag::SHARPNESS:
+    case PelTag::CONTRAST:
+    case PelTag::SHARPNESS:
       //CC (e->components, 1, v);
       switch ($this->value[0]) {
       case 0:
@@ -509,7 +509,7 @@ class PelExifEntryShort extends PelExifEntryNumber {
         return $this->value[0];
       }
 
-    case PelExifTag::SUBJECT_DISTANCE_RANGE:
+    case PelTag::SUBJECT_DISTANCE_RANGE:
       //CC (e->components, 1, v);
       switch ($this->value[0]) {
       case 0:
@@ -524,7 +524,7 @@ class PelExifEntryShort extends PelExifEntryNumber {
         return $this->value[0];
       }
 
-    case PelExifTag::SUBJECT_AREA:
+    case PelTag::SUBJECT_AREA:
       switch ($this->components) {
       case 2:
         return sprintf('(x,y) = (%i,%i)',
@@ -562,13 +562,13 @@ class PelExifEntryShort extends PelExifEntryNumber {
  *
  * This class can hold shorts, either just a single short or an array
  * of shorts.  The class will be used to manipulate any of the EXIF
- * tags which has format {@link PelExifFormat::SSHORT}.
+ * tags which has format {@link PelFormat::SSHORT}.
  *
  * @author Martin Geisler <gimpster@users.sourceforge.net>
  * @package PEL
  * @subpackage EXIF
  */
-class PelExifEntrySShort extends PelExifEntryNumber {
+class PelEntrySShort extends PelEntryNumber {
 
   /**
    * Make a new entry that can hold a signed short.
@@ -577,9 +577,9 @@ class PelExifEntrySShort extends PelExifEntryNumber {
    * getValue} method will always return an array except for when a
    * single integer argument is given here.
    *
-   * @param PelExifTag the tag which this entry represents.  This
-   * should be one of the constants defined in {@link PelExifTag}
-   * which has format {@link PelExifFormat::SSHORT}.
+   * @param PelTag the tag which this entry represents.  This
+   * should be one of the constants defined in {@link PelTag}
+   * which has format {@link PelFormat::SSHORT}.
    *
    * @param int $value... the signed short(s) that this entry will
    * represent.  The argument passed must obey the same rules as the
@@ -592,7 +592,7 @@ class PelExifEntrySShort extends PelExifEntryNumber {
     $this->tag    = $tag;
     $this->min    = -32768;
     $this->max    = 32767;
-    $this->format = PelExifFormat::SSHORT;
+    $this->format = PelFormat::SSHORT;
 
     $value = func_get_args();
     array_shift($value);
