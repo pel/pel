@@ -186,16 +186,22 @@ abstract class PelEntry {
     case PelTag::EXIF_VERSION:
     case PelTag::FLASH_PIX_VERSION:
     case PelTag::INTEROPERABILITY_VERSION:
+      if ($format != PelFormat::UNDEFINED)
+        throw new PelUnexpectedFormatException($format, PelFormat::UNDEFINED);
+
       require_once('PelEntryUndefined.php');
       return new PelEntryVersion($tag, $data->getBytes() / 100);
 
     case PelTag::USER_COMMENT:
+      if ($format != PelFormat::UNDEFINED)
+        throw new PelUnexpectedFormatException($format, PelFormat::UNDEFINED);
+
       require_once('PelEntryUndefined.php');
       if ($data->getSize() < 8) {
         return new PelEntryUserComment();
       } else {
         return new PelEntryUserComment($data->getBytes(8),
-                                           rtrim($data->getBytes(0, 8)));
+                                       rtrim($data->getBytes(0, 8)));
       }
 
     default:
