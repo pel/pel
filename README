@@ -8,9 +8,14 @@ Licensed under the GNU GPL, see COPYING for details.
 Description
 ***********
 
-PEL lets you easily read and write EXIF headers found in JPEG and TIFF
-images.  See the file INSTALL for an introduction to how PEL can be
-used by your application.
+The PHP EXIF Library (PEL) makes it easy to develop programs that will
+read and write EXIF headers found in JPEG and TIFF images.  See the
+file INSTALL for an introduction to how PEL can be used by your
+application.
+
+PEL is a library written entirely in PHP, which means that it doesn't
+have any dependencies outside the core of PHP, it doesn't even use the
+EXIF module available for PHP.
 
 Please note that PEL is not mature, the API will probably change
 before version 1.0 is reached.  Go to the PEL development mailing list
