@@ -379,16 +379,23 @@ class PelExifEntryVersion extends PelExifEntryUndefined {
     else
       $v = 'Version ';
 
+    $v .= $this->version;
+
+    /* Versions numbers like 2.0 would be output as just 2 if we don't
+     * add the '.0' ourselves. */
+    if (floor($this->version) == $this->version)
+      $v .= '.0';
+
     if ($this->tag == PelExifTag::EXIF_VERSION)
-      return 'Exif ' . $v . $this->version;
+      return 'Exif ' . $v;
     
     if ($this->tag == PelExifTag::FLASH_PIX_VERSION)
-      return 'FlashPix ' . $v . $this->version;
+      return 'FlashPix ' . $v;
 
     if ($this->tag == PelExifTag::INTEROPERABILITY_VERSION)
-      return 'Interoperability ' . $v . $this->version;
+      return 'Interoperability ' . $v;
 
-    return $v. $this->version;
+    return $v;
   }
 
 }
