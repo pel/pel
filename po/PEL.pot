@@ -8,13 +8,48 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-06-04 22:51+0200\n"
+"POT-Creation-Date: 2004-06-04 23:06+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
+
+#: PelEntry.php:320
+#, php-format
+msgid "  Tag: 0x%04X (%s)\n"
+msgstr ""
+
+#: PelEntry.php:322
+#, php-format
+msgid "    Format    : %d (%s)\n"
+msgstr ""
+
+#: PelEntry.php:325
+#, php-format
+msgid "    Components: %d\n"
+msgstr ""
+
+#: PelEntry.php:326
+#, php-format
+msgid "    Value     : %s\n"
+msgstr ""
+
+#: PelExif.php:145
+#, php-format
+msgid "Dumping %d bytes of EXIF data...\n"
+msgstr ""
+
+#: PelIfd.php:423
+#, php-format
+msgid "Dumping EXIF IFD %s with %d entries...\n"
+msgstr ""
+
+#: PelIfd.php:429
+#, php-format
+msgid "Dumping %d sub IFDs...\n"
+msgstr ""
 
 #: PelJpegMarker.php:282 PelJpegMarker.php:424
 #, php-format
@@ -1001,7 +1036,12 @@ msgstr ""
 msgid "Image Unique ID"
 msgstr ""
 
-#: PelTag.php:634
+#: PelTag.php:634 PelTag.php:1164
 #, php-format
 msgid "Unknown Tag: 0x%04X"
+msgstr ""
+
+#: PelTiff.php:174
+#, php-format
+msgid "Dumping %d bytes of TIFF data...\n"
 msgstr ""

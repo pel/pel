@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PEL 0.3\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-06-04 13:30+0200\n"
-"PO-Revision-Date: 2004-06-04 22:46+0200\n"
+"POT-Creation-Date: 2004-06-04 23:06+0200\n"
+"PO-Revision-Date: 2004-06-04 23:18+0200\n"
 "Last-Translator: Martin Geisler <gimpster@gimpster.com>\n"
 "Language-Team: Danish <dansk@klid.dk>\n"
 "MIME-Version: 1.0\n"
@@ -16,262 +16,320 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: PelJpegMarker.php:282 PelJpegMarker.php:359
+#: PelEntry.php:320
+#, php-format
+msgid "  Tag: 0x%04X (%s)\n"
+msgstr "  Tag: 0x%04X (%s)\n"
+
+#: PelEntry.php:322
+#, php-format
+msgid "    Format    : %d (%s)\n"
+msgstr "    Format      : %d (%s)\n"
+
+#: PelEntry.php:325
+#, php-format
+msgid "    Components: %d\n"
+msgstr "    Komponenter: %d\n"
+
+#: PelEntry.php:326
+#, php-format
+msgid "    Value     : %s\n"
+msgstr "    Værdi       : %s\n"
+
+#: PelExif.php:145
+#, php-format
+msgid "Dumping %d bytes of EXIF data...\n"
+msgstr "Dumper %d bytes EXIF data...\n"
+
+#: PelIfd.php:423
+#, php-format
+msgid "Dumping EXIF IFD %s with %d entries...\n"
+msgstr "Dumper EXIF IFD %s med %d indgange...\n"
+
+#: PelIfd.php:429
+#, php-format
+msgid "Dumping %d sub IFDs...\n"
+msgstr "Dumper %d under-IFD'er...\n"
+
+#: PelJpegMarker.php:282 PelJpegMarker.php:424
 #, php-format
 msgid "Unknown marker: 0x%02X"
 msgstr "Ukendt markering: 0x%02X"
 
-#: PelJpegMarker.php:295
+#: PelJpegMarker.php:296
 msgid "Encoding (baseline)"
 msgstr "Kodning (baseline)"
 
-#: PelJpegMarker.php:296
+#: PelJpegMarker.php:298
 msgid "Encoding (extended sequential)"
-msgstr ""
+msgstr "Kodning (udvided sekventiel)"
 
-#: PelJpegMarker.php:297
+#: PelJpegMarker.php:300
 msgid "Encoding (progressive)"
 msgstr "Kodning (baseline)"
 
-#: PelJpegMarker.php:298
+#: PelJpegMarker.php:302
 msgid "Encoding (lossless)"
 msgstr "Kodning (baseline)"
 
-#: PelJpegMarker.php:299
+#: PelJpegMarker.php:304
 msgid "Encoding (differential sequential)"
 msgstr "Kodning (differential sekventiel)"
 
-#: PelJpegMarker.php:300
+#: PelJpegMarker.php:306
 msgid "Encoding (differential progressive)"
 msgstr "Kodning (differential progressiv)"
 
-#: PelJpegMarker.php:301
+#: PelJpegMarker.php:308
 msgid "Encoding (differential lossless)"
 msgstr "Kodning (differential tabsfri)"
 
-#: PelJpegMarker.php:302
+#: PelJpegMarker.php:310
 msgid "Encoding (extended sequential, arithmetic)"
-msgstr ""
+msgstr "Kodning (udvided sekventiel, aritmetisk)"
 
-#: PelJpegMarker.php:303
+#: PelJpegMarker.php:312
 msgid "Encoding (progressive, arithmetic)"
-msgstr ""
+msgstr "Kodning (progressiv, aritmetisk)"
 
-#: PelJpegMarker.php:304
+#: PelJpegMarker.php:314
 msgid "Encoding (lossless, arithmetic)"
 msgstr "Kodning (tabsfri, aritmetisk)"
 
-#: PelJpegMarker.php:305
+#: PelJpegMarker.php:316
 msgid "Encoding (differential sequential, arithmetic)"
 msgstr "Kodning (differential sekventiel, aritmetisk)"
 
-#: PelJpegMarker.php:306
+#: PelJpegMarker.php:318
 msgid "Encoding (differential progressive, arithmetic)"
 msgstr ""
 
-#: PelJpegMarker.php:307
+#: PelJpegMarker.php:320
 msgid "Encoding (differential lossless, arithmetic)"
 msgstr ""
 
-#: PelJpegMarker.php:308
+#: PelJpegMarker.php:322
 msgid "Start of image"
 msgstr "Start af billede"
 
-#: PelJpegMarker.php:309
+#: PelJpegMarker.php:324
 msgid "End of image"
 msgstr "Slutning af billede"
 
-#: PelJpegMarker.php:310
+#: PelJpegMarker.php:326
 msgid "Start of scan"
 msgstr "Start af skan"
 
-#: PelJpegMarker.php:311 PelJpegMarker.php:358
+#: PelJpegMarker.php:328 PelJpegMarker.php:422
 msgid "Comment"
 msgstr "Kommentar"
 
-#: PelJpegMarker.php:312
+#: PelJpegMarker.php:330
 msgid "Define Huffman table"
 msgstr "Definér Huffman tabel"
 
-#: PelJpegMarker.php:313
+#: PelJpegMarker.php:332
 msgid "Extension"
 msgstr "Udvidelse"
 
-#: PelJpegMarker.php:314
+#: PelJpegMarker.php:334
 msgid "Define arithmetic coding conditioning"
 msgstr ""
 
-#: PelJpegMarker.php:315
+#: PelJpegMarker.php:336
 msgid "Restart 0"
 msgstr "Genstart 0"
 
-#: PelJpegMarker.php:316
+#: PelJpegMarker.php:338
 msgid "Restart 1"
 msgstr "Genstart 1"
 
-#: PelJpegMarker.php:317
+#: PelJpegMarker.php:340
 msgid "Restart 2"
 msgstr "Genstart 2"
 
-#: PelJpegMarker.php:318
+#: PelJpegMarker.php:342
 msgid "Restart 3"
 msgstr "Genstart 3"
 
-#: PelJpegMarker.php:319
+#: PelJpegMarker.php:344
 msgid "Restart 4"
 msgstr "Genstart 4"
 
-#: PelJpegMarker.php:320
+#: PelJpegMarker.php:346
 msgid "Restart 5"
 msgstr "Genstart 5"
 
-#: PelJpegMarker.php:321
+#: PelJpegMarker.php:348
 msgid "Restart 6"
 msgstr "Genstart 6"
 
-#: PelJpegMarker.php:322
+#: PelJpegMarker.php:350
 msgid "Restart 7"
 msgstr "Genstart 7"
 
-#: PelJpegMarker.php:323
+#: PelJpegMarker.php:352
 msgid "Define quantization table"
 msgstr ""
 
-#: PelJpegMarker.php:324
+#: PelJpegMarker.php:354
 msgid "Define number of lines"
 msgstr "Definér antal linier"
 
-#: PelJpegMarker.php:325
+#: PelJpegMarker.php:356
 msgid "Define restart interval"
 msgstr "Definér genstart interval"
 
-#: PelJpegMarker.php:326
+#: PelJpegMarker.php:358
 msgid "Define hierarchical progression"
 msgstr ""
 
-#: PelJpegMarker.php:327
+#: PelJpegMarker.php:360
 msgid "Expand reference component"
 msgstr ""
 
-#: PelJpegMarker.php:328
+#: PelJpegMarker.php:362
 msgid "Application segment 0"
 msgstr "Applikationssegment 0"
 
-#: PelJpegMarker.php:329
+#: PelJpegMarker.php:364
 msgid "Application segment 1"
 msgstr "Applikationssegment 1"
 
-#: PelJpegMarker.php:330
+#: PelJpegMarker.php:366
 msgid "Application segment 2"
 msgstr "Applikationssegment 2"
 
-#: PelJpegMarker.php:331
+#: PelJpegMarker.php:368
 msgid "Application segment 3"
 msgstr "Applikationssegment 3"
 
-#: PelJpegMarker.php:332
+#: PelJpegMarker.php:370
 msgid "Application segment 4"
 msgstr "Applikationssegment 4"
 
-#: PelJpegMarker.php:333
+#: PelJpegMarker.php:372
 msgid "Application segment 5"
 msgstr "Applikationssegment 5"
 
-#: PelJpegMarker.php:334
+#: PelJpegMarker.php:374
 msgid "Application segment 6"
 msgstr "Applikationssegment 6"
 
-#: PelJpegMarker.php:335
+#: PelJpegMarker.php:376
 msgid "Application segment 7"
 msgstr "Applikationssegment 7"
 
-#: PelJpegMarker.php:336
+#: PelJpegMarker.php:378
 msgid "Application segment 8"
 msgstr "Applikationssegment 8"
 
-#: PelJpegMarker.php:337
+#: PelJpegMarker.php:380
 msgid "Application segment 9"
 msgstr "Applikationssegment 9"
 
-#: PelJpegMarker.php:338
+#: PelJpegMarker.php:382
 msgid "Application segment 10"
 msgstr "Applikationssegment 10"
 
-#: PelJpegMarker.php:339
+#: PelJpegMarker.php:384
 msgid "Application segment 11"
 msgstr "Applikationssegment 11"
 
-#: PelJpegMarker.php:340
+#: PelJpegMarker.php:386
 msgid "Application segment 12"
 msgstr "Applikationssegment 12"
 
-#: PelJpegMarker.php:341
+#: PelJpegMarker.php:388
 msgid "Application segment 13"
 msgstr "Applikationssegment 13"
 
-#: PelJpegMarker.php:342
+#: PelJpegMarker.php:390
 msgid "Application segment 14"
 msgstr "Applikationssegment 14"
 
-#: PelJpegMarker.php:343
+#: PelJpegMarker.php:392
 msgid "Application segment 15"
 msgstr "Applikationssegment 15"
 
-#: PelJpegMarker.php:344
+#: PelJpegMarker.php:394
 msgid "Extension 0"
 msgstr "Udvidelse 0"
 
-#: PelJpegMarker.php:345
+#: PelJpegMarker.php:396
 msgid "Extension 1"
 msgstr "Udvidelse 1"
 
-#: PelJpegMarker.php:346
+#: PelJpegMarker.php:398
 msgid "Extension 2"
 msgstr "Udvidelse 2"
 
-#: PelJpegMarker.php:347
+#: PelJpegMarker.php:400
 msgid "Extension 3"
 msgstr "Udvidelse 3"
 
-#: PelJpegMarker.php:348
+#: PelJpegMarker.php:402
 msgid "Extension 4"
 msgstr "Udvidelse 4"
 
-#: PelJpegMarker.php:349
+#: PelJpegMarker.php:404
 msgid "Extension 5"
 msgstr "Udvidelse 5"
 
-#: PelJpegMarker.php:350
+#: PelJpegMarker.php:406
 msgid "Extension 6"
 msgstr "Udvidelse 6"
 
-#: PelJpegMarker.php:351
+#: PelJpegMarker.php:408
 msgid "Extension 7"
 msgstr "Udvidelse 7"
 
-#: PelJpegMarker.php:352
+#: PelJpegMarker.php:410
 msgid "Extension 8"
 msgstr "Udvidelse 8"
 
-#: PelJpegMarker.php:353
+#: PelJpegMarker.php:412
 msgid "Extension 9"
 msgstr "Udvidelse 9"
 
-#: PelJpegMarker.php:354
+#: PelJpegMarker.php:414
 msgid "Extension 10"
 msgstr "Udvidelse 10"
 
-#: PelJpegMarker.php:355
+#: PelJpegMarker.php:416
 msgid "Extension 11"
 msgstr "Udvidelse 11"
 
-#: PelJpegMarker.php:356
+#: PelJpegMarker.php:418
 msgid "Extension 12"
 msgstr "Udvidelse 12"
 
-#: PelJpegMarker.php:357
+#: PelJpegMarker.php:420
 msgid "Extension 13"
 msgstr "Udvidelse 13"
+
+#: PelJpeg.php:202
+msgid "Dumping JPEG data...\n"
+msgstr "Dumper JPEG data...\n"
+
+#: PelJpeg.php:206
+#, php-format
+msgid "Section %d (marker 0x%02X - %s):\n"
+msgstr "Sektion %d (markering 0x%02X - %s):\n"
+
+#: PelJpeg.php:208
+#, php-format
+msgid "  Description: %s\n"
+msgstr "  Beskrivelse: %s\n"
+
+#: PelJpeg.php:218
+#, php-format
+msgid "  Size: %d bytes\n"
+msgstr "  Størrelse: %d bytes\n"
+
+#: PelJpeg.php:219
+msgid "  Unknown content\n"
+msgstr "  Ukendt indhold\n"
 
 #: PelTag.php:184 PelTag.php:418
 msgid "InteroperabilityIndex"
@@ -415,7 +473,7 @@ msgstr ""
 
 #: PelTag.php:254 PelTag.php:488
 msgid "RelatedImageFileFormat"
-msgstr ""
+msgstr "RelateretBilledFilFormat"
 
 #: PelTag.php:256 PelTag.php:490
 msgid "RelatedImageWidth"
@@ -443,7 +501,7 @@ msgstr "Ophavsret"
 
 #: PelTag.php:268
 msgid "ExposureTime"
-msgstr ""
+msgstr "BelysningsTid"
 
 #: PelTag.php:270 PelTag.php:504
 msgid "FNumber"
@@ -475,7 +533,7 @@ msgstr ""
 
 #: PelTag.php:294
 msgid "ISOSpeedRatings"
-msgstr ""
+msgstr "ISOHastighed"
 
 #: PelTag.php:296 PelTag.php:530
 msgid "OECF"
@@ -483,15 +541,15 @@ msgstr ""
 
 #: PelTag.php:298
 msgid "ExifVersion"
-msgstr ""
+msgstr "ExifVersion"
 
 #: PelTag.php:300
 msgid "DateTimeOriginal"
-msgstr ""
+msgstr "DatoTidOriginal"
 
 #: PelTag.php:302
 msgid "DateTimeDigitized"
-msgstr ""
+msgstr "DatoTidDigitaliseret"
 
 #: PelTag.php:304 PelTag.php:538
 msgid "ComponentsConfiguration"
@@ -503,11 +561,11 @@ msgstr ""
 
 #: PelTag.php:308
 msgid "ShutterSpeedValue"
-msgstr ""
+msgstr "LukketidsVærdi"
 
 #: PelTag.php:310
 msgid "ApertureValue"
-msgstr ""
+msgstr "Blændetal"
 
 #: PelTag.php:312
 msgid "BrightnessValue"
@@ -531,11 +589,11 @@ msgstr ""
 
 #: PelTag.php:322
 msgid "LightSource"
-msgstr ""
+msgstr "Lyskilde"
 
 #: PelTag.php:324 PelTag.php:558
 msgid "Flash"
-msgstr ""
+msgstr "Blitz"
 
 #: PelTag.php:326
 msgid "FocalLength"
@@ -547,7 +605,7 @@ msgstr ""
 
 #: PelTag.php:330
 msgid "UserComment"
-msgstr ""
+msgstr "BrugerKommentar"
 
 #: PelTag.php:332 PelTag.php:566
 msgid "SubsecTime"
@@ -563,7 +621,7 @@ msgstr ""
 
 #: PelTag.php:338 PelTag.php:572
 msgid "FlashPixVersion"
-msgstr ""
+msgstr "FlashPixVersion"
 
 #: PelTag.php:340
 msgid "ColorSpace"
@@ -708,15 +766,15 @@ msgstr ""
 
 #: PelTag.php:434
 msgid "Document Name"
-msgstr ""
+msgstr "Dokumentnavn"
 
 #: PelTag.php:436
 msgid "Image Description"
-msgstr ""
+msgstr "Billedbeskrivelse"
 
 #: PelTag.php:438
 msgid "Manufacturer"
-msgstr ""
+msgstr "Fremstiller"
 
 #: PelTag.php:442
 msgid "Strip Offsets"
@@ -724,11 +782,11 @@ msgstr ""
 
 #: PelTag.php:446
 msgid "Samples per Pixel"
-msgstr ""
+msgstr "Prøver pr. pixel"
 
 #: PelTag.php:448
 msgid "Rows per Strip"
-msgstr ""
+msgstr "Rækker pr. stribe"
 
 #: PelTag.php:450
 msgid "Strip Byte Count"
@@ -736,11 +794,11 @@ msgstr ""
 
 #: PelTag.php:452
 msgid "x-Resolution"
-msgstr ""
+msgstr "x-opløsning"
 
 #: PelTag.php:454
 msgid "y-Resolution"
-msgstr ""
+msgstr "y-opløsning"
 
 #: PelTag.php:456
 msgid "Planar Configuration"
@@ -748,7 +806,7 @@ msgstr ""
 
 #: PelTag.php:458
 msgid "Resolution Unit"
-msgstr ""
+msgstr "Enhed for opløsning"
 
 #: PelTag.php:460
 msgid "Transfer Function"
@@ -756,7 +814,7 @@ msgstr ""
 
 #: PelTag.php:464
 msgid "Date and Time"
-msgstr ""
+msgstr "Dato og tid"
 
 #: PelTag.php:468
 msgid "White Point"
@@ -800,11 +858,11 @@ msgstr ""
 
 #: PelTag.php:498
 msgid "Battery Level"
-msgstr ""
+msgstr "Batteri niveau"
 
 #: PelTag.php:502
 msgid "Exposure Time"
-msgstr ""
+msgstr "Belysningstid"
 
 #: PelTag.php:514
 msgid "Spectral Sensitivity"
@@ -832,31 +890,31 @@ msgstr ""
 
 #: PelTag.php:528
 msgid "ISO Speed Ratings"
-msgstr ""
+msgstr "ISO hastighed"
 
 #: PelTag.php:532
 msgid "Exif Version"
-msgstr ""
+msgstr "Exif version"
 
 #: PelTag.php:534
 msgid "Date and Time (original)"
-msgstr ""
+msgstr "Dato og tid (original)"
 
 #: PelTag.php:536
 msgid "Date and Time (digitized)"
-msgstr ""
+msgstr "Dato og tid (digitaliseret)"
 
 #: PelTag.php:540
 msgid "Compressed Bits per Pixel"
-msgstr ""
+msgstr "Komprimeret antal bits pr. pixel"
 
 #: PelTag.php:542
 msgid "Shutter speed"
-msgstr ""
+msgstr "Lukketid"
 
 #: PelTag.php:544
 msgid "Aperture"
-msgstr ""
+msgstr "Blænde"
 
 #: PelTag.php:546
 msgid "Brightness"
@@ -876,11 +934,11 @@ msgstr ""
 
 #: PelTag.php:556
 msgid "Light Source"
-msgstr ""
+msgstr "Lyskilde"
 
 #: PelTag.php:560
 msgid "Focal Length"
-msgstr "Billedlængde"
+msgstr "Fokuslængde"
 
 #: PelTag.php:562
 msgid "Maker Note"
@@ -888,11 +946,11 @@ msgstr ""
 
 #: PelTag.php:564
 msgid "User Comment"
-msgstr ""
+msgstr "Brugerkommentar"
 
 #: PelTag.php:574
 msgid "Color Space"
-msgstr ""
+msgstr "Farverum"
 
 #: PelTag.php:584
 msgid "Flash Energy"
@@ -932,7 +990,7 @@ msgstr ""
 
 #: PelTag.php:602
 msgid "Scene Type"
-msgstr ""
+msgstr "Scenetype"
 
 #: PelTag.php:606
 msgid "Subject Area"
@@ -940,7 +998,7 @@ msgstr ""
 
 #: PelTag.php:608
 msgid "Custom Rendered"
-msgstr ""
+msgstr "Specialfremstillet"
 
 #: PelTag.php:610
 msgid "Exposure Mode"
@@ -976,9 +1034,14 @@ msgstr ""
 
 #: PelTag.php:632
 msgid "Image Unique ID"
-msgstr ""
+msgstr "Unikt ID for billed"
 
-#: PelTag.php:634
+#: PelTag.php:634 PelTag.php:1164
 #, php-format
 msgid "Unknown Tag: 0x%04X"
-msgstr ""
+msgstr "Ukendt tag: 0x%04X"
+
+#: PelTiff.php:174
+#, php-format
+msgid "Dumping %d bytes of TIFF data...\n"
+msgstr "Dumper %d bytes TIFF data...\n"
