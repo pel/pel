@@ -203,7 +203,7 @@ abstract class PelEntry {
         require_once('PelEntryByte.php');
         $v =  new PelEntryByte($tag);
         for ($i = 0; $i < $components; $i++)
-          $v->addNumber($data->getByte($i*2));
+          $v->addNumber($data->getByte($i));
         return $v;
 
       case PelFormat::SBYTE:
