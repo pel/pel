@@ -44,7 +44,7 @@ include_once('PelDataWindow.php');
 /**
  * @author Martin Geisler <gimpster@users.sourceforge.net>
  * @package PEL
- * @subpackage EXIF
+ * @subpackage Exception
  */
 class PelExifIfdException extends PelException {}
 
@@ -94,24 +94,26 @@ class PelExifIfd {
     $this->order  = $d->getByteOrder();
     $this->offset = $offset;
 
-    // println('Constructing IFD at offset %d from %d bytes...', $offset, $d->getSize());
+    Pel::debug('Constructing IFD at offset %d from %d bytes...',
+               $offset, $d->getSize());
 
     /* Read the number of entries */
     $n = $d->getShort($offset);
-    // println('Loading %d entries...', $n);
+    Pel::debug('Loading %d entries...', $n);
     
     $offset += 2;
 
     /* Check if we have enough data. */
     if ($offset + 12 * $n > $d->getSize()) {
       $n = floor(($offset - $d->getSize()) / 12);
-      // println('Adjusted number of entries to %d.', $n);
+      Pel::warning('Adjusted number of entries to %d.', $n);
     }
 
     for ($i = 0; $i < $n; $i++) {
       // TODO: increment window start instead of using offsets.
       $tag = $d->getShort($offset + 12 * $i);
-      // println('Loading entry %s (%d of %d)...', PelExifTag::getName($tag), $i + 1, $n);
+      Pel::debug('Loading entry %s (%d of %d)...',
+                 PelExifTag::getName($tag), $i + 1, $n);
       
       switch ($tag) {
       case PelExifTag::EXIF_IFD_POINTER:
@@ -192,7 +194,8 @@ class PelExifIfd {
     }
 
     /* Offset to next IFD */
-    // println('Current offset is %d, reading link at %d', $offset,  $offset + 12 * $n);
+    Pel::debug('Current offset is %d, reading link at %d',
+               $offset,  $offset + 12 * $n);
     $o = $d->getLong($offset + 12 * $n);
     if ($o > 0) {
       // println('Next IFD is at offset %d', $o);
@@ -273,20 +276,15 @@ class PelExifIfd {
     $bytes = '';
     $extra_bytes = '';
 
-    // println('Bytes from IDF will start at offset %d within EXIF data', $offset);
-
+    Pel::debug('Bytes from IDF will start at offset %d within EXIF data',
+               $offset);
+    
     $n = count($this->entries) + count($this->sub);
     if ($this->thumb_data != null) {
       /* We need two extra entries for the thumbnail offset and
        * length. */
       $n += 2;
     }
-
-//     println('Writing %d + %d + %d = %d entries to bytes...',
-//             count($this->entries),
-//             count($this->sub),
-//             $this->thumb_data == null ? 0 : 2,
-//             $n);
 
     $bytes .= PelConvert::shortToBytes($n, $this->order);
 
@@ -300,9 +298,6 @@ class PelExifIfd {
     // println('Final byte of this IFD minimum %d.', $end);
 
     foreach ($this->entries as $tag => $entry) {
-      
-      // println('Bytes from tag 0x%04X %s', $tag, PelExifTag::getName($tag));
-
       /* Each entry is 12 bytes long. */
       $bytes .= PelConvert::shortToBytes($entry->getTag(),
                                          $this->order);
@@ -318,12 +313,13 @@ class PelExifIfd {
       $data = $entry->getBytes($order);
       $s = strlen($data);
       if ($s > 4) {
-        // println('Data size %d too big, storing at offset %d instead.', $s, $end);
+        Pel::debug('Data size %d too big, storing at offset %d instead.',
+                   $s, $end);
         $bytes .= PelConvert::longToBytes($end, $this->order);
         $extra_bytes .= $data;
         $end += $s;
       } else {
-        // println('Data size %d fits.', $s);
+        Pel::debug('Data size %d fits.', $s);
         /* Copy data directly, pad with NULL bytes as necessary to
          * fill out the four bytes available.*/
         $bytes .= $data . str_repeat(chr(0), 4 - $s);
@@ -331,16 +327,16 @@ class PelExifIfd {
     }
 
     if ($this->thumb_data != null) {
-//       println('Appending %d bytes of thumbnail data at %d',
-//               $this->thumb_data->getSize(), $end);
+      Pel::debug('Appending %d bytes of thumbnail data at %d',
+                 $this->thumb_data->getSize(), $end);
       // TODO: make PelExifEntry a class that can be constructed with
       // arguments corresponding to the newt four lines.
       $bytes .= PelConvert::shortToBytes(PelExifTag::JPEG_INTERCHANGE_FORMAT_LENGTH,
-                                      $this->order);
+                                         $this->order);
       $bytes .= PelConvert::shortToBytes(PelExifFormat::LONG, $this->order);
       $bytes .= PelConvert::longToBytes(1, $this->order);
       $bytes .= PelConvert::longToBytes($this->thumb_data->getSize(),
-                                     $this->order);
+                                        $this->order);
       
       $bytes .= PelConvert::shortToBytes(PelExifTag::JPEG_INTERCHANGE_FORMAT,
                                       $this->order);
@@ -378,8 +374,8 @@ class PelExifIfd {
       $link = $end;
     }
 
-    // println('Link to next IFD: %d', $link);
-
+    Pel::debug('Link to next IFD: %d', $link);
+    
     $bytes .= PelConvert::longtoBytes($link, $this->order);
 
     $bytes .= $extra_bytes . $sub_bytes;
