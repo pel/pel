@@ -75,8 +75,18 @@ class PelExif extends PelJpegContent {
    */
   const EXIF_HEADER = "Exif\0\0";
 
-  /* The PelTiff contained within. */
+  /**
+   * The PelTiff object contained within.
+   *
+   * @var PelTiff
+   */
   private $tiff = null;
+
+  /**
+   * The size of the EXIF data.
+   *
+   * @var int
+   */
   private $size = 0;
 
 
@@ -146,7 +156,5 @@ class PelExif extends PelJpegContent {
   }
 
 }
-
-
 
 ?>
