@@ -303,20 +303,23 @@ class PelTag {
   /**
    * JPEG Interchange Format
    *
-   * The offset to the start byte (SOI) of JPEG compressed
-   * thumbnail data. This is not used for primary image JPEG data.
+   * The offset to the start byte ({@link PelJpegMarker::SOI SOI}) of
+   * JPEG compressed thumbnail data. This is not used for primary
+   * image JPEG data.
    */
   const JPEG_INTERCHANGE_FORMAT        = 0x0201;
 
   /**
    * JPEG Interchange Format Length
    *
-   * The number of bytes of JPEG compressed thumbnail data. This
-   * is not used for primary image JPEG data. JPEG thumbnails are not
-   * divided but are recorded as a continuous JPEG bitstream from SOI
-   * to EOI. Appn and COM markers should not be recorded. Compressed
-   * thumbnails must be recorded in no more than 64 Kbytes, including
-   * all other data to be recorded in APP1.
+   * The number of bytes of JPEG compressed thumbnail data. This is
+   * not used for primary image JPEG data.  JPEG thumbnails are not
+   * divided but are recorded as a continuous JPEG bitstream from
+   * {@link PelJpegMarker::SOI SOI} to {@link PelJpegMarker::EOI
+   * EOI}. Appn and {@link PelJpegMarker::COM COM} markers should not
+   * be recorded.  Compressed thumbnails must be recorded in no more
+   * than 64 Kbytes, including all other data to be recorded in {@link
+   * PelJpegMarker::APP1 APP1}.
    */
   const JPEG_INTERCHANGE_FORMAT_LENGTH = 0x0202;
 
