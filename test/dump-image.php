@@ -56,12 +56,16 @@ ini_set('memory_limit', '32M');
 $data = new PelDataWindow(file_get_contents($argv[$need-1]));
 
 if (PelJpeg::isValid($data)) {
-  print(new PelJpeg($data));
+  $img = new PelJpeg();
 } elseif (PelTiff::isValid($data)) {
-  print(new PelTiff($data));
+  $img = new PelTiff();
 } else {
   print("Unrecognized image format! The first 16 bytes follow:\n");
-  PelConvert::bytesToDump($data->getBytes(0, 16)); 
+  PelConvert::bytesToDump($data->getBytes(0, 16));
+  exit;
 }
+
+$img->load($data);
+print($img);
 
 ?>
