@@ -42,7 +42,7 @@
 
 
 MAJOR=0
-MINOR=4
+MINOR=5
 VERSION=$MAJOR.$MINOR
 
 # Remove old directory, if present
@@ -81,10 +81,10 @@ Copyright (C) 2004  Martin Geisler <gimpster@users.sourceforge.net>
 Licensed under the GNU GPL, see COPYING for details.
 
 " > pel-$VERSION/ChangeLog
-cvs2cl --global-opts -q            \
-    --tagdates                     \
-    --domain users.sourceforge.net \
-    --utc                          \
+cvs2cl --global-opts -q  \
+    --tagdates           \
+    --usermap users      \
+    --utc                \
     --stdout >> pel-$VERSION/ChangeLog
 echo "done."
 
@@ -95,7 +95,7 @@ cd pel-$VERSION
 ./update-locales.sh
 
 # Cleanup files that aren't needed in the released package
-rm make-release.sh .cvsignore
+rm make-release.sh .cvsignore users
 
 # Generate the API documentation
 echo -n "Running phpDocumentor... "
@@ -145,4 +145,4 @@ else
     echo "Skipping upload."
 fi
 
-# The End --- PEL has now been packaged!
+# The End --- PEL has now been packaged (and maybe even released)!
