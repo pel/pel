@@ -63,6 +63,29 @@ class Pel {
       vprintf($str . "\n", $args);
     }
   }
+
+  
+  /**
+   * Conditionally output a warning.
+   *
+   * This method works just like printf() except that it prepends the
+   * output with the string 'Warning: ', terminates the output with a
+   * newline, and that it only outputs something if the PEL_DEBUG
+   * defined to some true value.
+   *
+   * @param mixed $args,... any number of arguments can be given.  The
+   * first argument must be a string which will be used as a format
+   * string for sprintf() --- the remaining arguments will be
+   * available for the format string as usual with sprintf().
+   */
+  static function warning() {
+    if (defined('PEL_DEBUG') && PEL_DEBUG) {
+      $args = func_get_args();
+      $str = array_shift($args);
+      vprintf('Warning: ' . $str . "\n", $args);
+    }
+  }
+
 }
 
 ?>
