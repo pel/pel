@@ -526,19 +526,19 @@ class PelEntryShort extends PelEntryNumber {
     case PelTag::SUBJECT_AREA:
       switch ($this->components) {
       case 2:
-        return sprintf('(x,y) = (%i,%i)',
+        return sprintf('(x,y) = (%d,%d)',
                        $this->value[0],
                        $this->value[1]);
         
       case 3:
-        return sprintf('Within distance %i of (x,y) = (%i,%i)',
+        return sprintf('Within distance %d of (x,y) = (%d,%d)',
                        $this->value[0],
                        $this->value[1],
                        $this->value[2]);
 
       case 4:
-        return sprintf('Within rectangle (width %i, height %i) around ' .
-                       '(x,y) = (%i,%i)',
+        return sprintf('Within rectangle (width %d, height %d) around ' .
+                       '(x,y) = (%d,%d)',
                        $this->value[0],
                        $this->value[1],
                        $this->value[2],
@@ -546,7 +546,7 @@ class PelEntryShort extends PelEntryNumber {
         
       default:
         return sprintf('Unexpected number of components ' .
-                       '(%li, expected 2, 3, or 4).', $this->components);
+                       '(%d, expected 2, 3, or 4).', $this->components);
       }
 
     default:
