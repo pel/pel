@@ -28,13 +28,13 @@
  * Classes used to hold ASCII strings.
  *
  * The classes defined here are to be used for EXIF entries holding
- * ASCII strings, such as {@link PelExifTag::MAKE}, {@link
- * PelExifTag::SOFTWARE}, and {@link PelExifTag::DATE_TIME}.  For
+ * ASCII strings, such as {@link PelTag::MAKE}, {@link
+ * PelTag::SOFTWARE}, and {@link PelTag::DATE_TIME}.  For
  * entries holding normal textual ASCII strings the class {@link
- * PelExifEntryAscii} should be used, but for entries holding
- * timestamps the class {@link PelExifEntryTime} would be more
+ * PelEntryAscii} should be used, but for entries holding
+ * timestamps the class {@link PelEntryTime} would be more
  * convenient instead.  Copyright information is handled by the {@link
- * PelExifEntryCopyright} class.
+ * PelEntryCopyright} class.
  *
  * @author Martin Geisler <gimpster@users.sourceforge.net>
  * @version $Revision$
@@ -45,15 +45,15 @@
  * @subpackage EXIF
  */
 
-/** Class definition of {@link PelExifEntry}. */
-require_once('PelExifEntry.php');
+/** Class definition of {@link PelEntry}. */
+require_once('PelEntry.php');
 
 /**
  * Class for holding a plain ASCII string.
  *
  * This class can hold a single ASCII string, and it will be used as in
  * <code>
- * $entry = $ifd->getEntry(PelExifTag::IMAGE_DESCRIPTION);
+ * $entry = $ifd->getEntry(PelTag::IMAGE_DESCRIPTION);
  * print($entry->getAscii());
  * $entry->setAscii('This is my image.  I like it.');
  * </code>
@@ -62,7 +62,7 @@ require_once('PelExifEntry.php');
  * @package PEL
  * @subpackage EXIF
  */
-class PelExifEntryAscii extends PelExifEntry {
+class PelEntryAscii extends PelEntry {
 
   /**
    * The string hold by this entry.
@@ -77,12 +77,12 @@ class PelExifEntryAscii extends PelExifEntry {
 
 
   /**
-   * Make a new PelExifEntry that can hold an ASCII string.
+   * Make a new PelEntry that can hold an ASCII string.
    *
    * @param int the tag which this entry represents.  This should be
-   * one of the constants defined in {@link PelExifTag}, e.g., {@link
-   * PelExifTag::IMAGE_DESCRIPTION}, {@link PelExifTag::MODEL}, or any other
-   * tag with format {@link PelExifFormat::ASCII}.
+   * one of the constants defined in {@link PelTag}, e.g., {@link
+   * PelTag::IMAGE_DESCRIPTION}, {@link PelTag::MODEL}, or any other
+   * tag with format {@link PelFormat::ASCII}.
    *
    * @param string the string that this entry will represent.  The
    * string must obey the same rules as the string argument to {@link
@@ -91,7 +91,7 @@ class PelExifEntryAscii extends PelExifEntry {
    */
   function __construct($tag, $str = '') {
     $this->tag    = $tag;
-    $this->format = PelExifFormat::ASCII;
+    $this->format = PelFormat::ASCII;
     self::setValue($str);
   }
 
@@ -151,7 +151,7 @@ class PelExifEntryAscii extends PelExifEntry {
  * This class can hold a single UNIX timestamp, and it will be used as
  * in this example where the time is advanced by one week:
  * <code>
- * $entry = $ifd->getEntry(ExifTag::DATE_TIME_ORIGINAL);
+ * $entry = $ifd->getEntry(PelTag::DATE_TIME_ORIGINAL);
  * $time = $entry->getValue();
  * print('The image was taken on the ' . date($time, 'jS'));
  * $entry->setValue($time + 7 * 24 * 3600);
@@ -161,7 +161,7 @@ class PelExifEntryAscii extends PelExifEntry {
  * @package PEL
  * @subpackage EXIF
  */
-class PelExifEntryTime extends PelExifEntryAscii {
+class PelEntryTime extends PelEntryAscii {
 
   /**
    * The UNIX timestamp held by this entry.
@@ -176,9 +176,9 @@ class PelExifEntryTime extends PelExifEntryAscii {
    *
    * @param int the EXIF tag which this entry represents.  There are
    * only three standard tags which hold timestamp, so this should be
-   * one of the constants {@link PelExifTag::DATE_TIME}, {@link
-   * PelExifTag::DATE_TIME_ORIGINAL}, or {@link
-   * PelExifTag::DATE_TIME_DIGITIZED}.
+   * one of the constants {@link PelTag::DATE_TIME}, {@link
+   * PelTag::DATE_TIME_ORIGINAL}, or {@link
+   * PelTag::DATE_TIME_DIGITIZED}.
    *
    * @param int the UNIX timestamp held by this entry.
    */
@@ -227,7 +227,7 @@ class PelExifEntryTime extends PelExifEntryAscii {
  * Class for holding copyright information.
  *
  * The EXIF standard speficies a certain format for copyright
- * information where the one {@link PelExifTag::COPYRIGHT copyright
+ * information where the one {@link PelTag::COPYRIGHT copyright
  * tag} holds both the photographer and editor copyrights, separated
  * by a NULL character.
  *
@@ -237,7 +237,7 @@ class PelExifEntryTime extends PelExifEntryAscii {
  * This would be done like this:
  *
  * <code>
- * $entry = new PelExifEntryCopyright('Copyright, Martin Geisler, 2004');
+ * $entry = new PelCopyright('Copyright, Martin Geisler, 2004');
  * $ifd0->addEntry($entry);
  * </code>
  *
@@ -250,7 +250,7 @@ class PelExifEntryTime extends PelExifEntryAscii {
  * @package PEL
  * @subpackage EXIF
  */
-class PelExifEntryCopyright extends PelExifEntryAscii {
+class PelCopyright extends PelEntryAscii {
 
   /**
    * The photographer copyright.
@@ -277,7 +277,7 @@ class PelExifEntryCopyright extends PelExifEntryAscii {
    * there's no editor copyright.
    */
   function __construct($photographer = '', $editor = '') {
-    parent::__construct(PelExifTag::COPYRIGHT);
+    parent::__construct(PelTag::COPYRIGHT);
     $this->setValue($photographer, $editor);
   }
   
