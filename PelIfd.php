@@ -255,9 +255,11 @@ class PelIfd {
       }
 
       /* Now move backwards until we find the EOI JPEG marker. */
-      while ($d->getByte($offset+$length-1) != 0xFF ||
-             $d->getByte($offset+$length) != PelJpegMarker::EOI)
+      while ($d->getByte($offset+$length-2) != 0xFF ||
+             $d->getByte($offset+$length-1) != PelJpegMarker::EOI) {
         $length--;
+        Pel::warning('Decrementing thumbnail length to %d bytes', $length);
+      }
 
       Pel::debug('Loading %d bytes of thumbnail data from offset %d',
                  $length, $offset);
