@@ -30,12 +30,13 @@ Changes:
 
 * Added Danish translation.
 
-* Added new static methods Pel::tra and Pel::fmt which are used for
-  interaction with Gettext.  The first function simply translates its
-  argument, the second will in addition function like sprintf() when
-  given several arguments.
+* Added new static methods Pel::tra() and Pel::fmt() which are used
+  for interaction with Gettext.  The first function simply translates
+  its argument, the second will in addition function like sprintf()
+  when given several arguments.
 
-* Updated documentation.
+* Updated documentation, both the doc comments in the code and the
+  README and INSTALL files.
 
 
 PEL Version 0.3  May 25th, 2004
