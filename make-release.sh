@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 #
 #  PEL: PHP EXIF Library.  A library with support for reading and
 #  writing all EXIF headers of JPEG images using PHP.
@@ -32,20 +32,23 @@ MAJOR=0
 MINOR=1
 VERSION=$MAJOR.$MINOR
 
+if test -e pel-$VERSION; then
+    echo "Removing old pel-$VERSION directory"
+    rm -r pel-$VERSION
+fi
+
 echo -n "Retrieving CVS snapshot from SourceForge... "
 cvs -Q -z3 export -kv -r HEAD -d pel-$VERSION pel
 echo "done."
 
 cd pel-$VERSION
 
-rm make-release.sh
+rm make-release.sh .cvsignore
 
 echo -n "Running phpDocumentor... "
 ../../phpdocumentor/phpdoc -q on -s on \
-    -dn PEL                            \
-    -ti 'PEL: PHP EXIF Library'        \
-    -f '*.php'                         \
-    -t doc
+    -ti "PEL: PHP EXIF Library Version $VERSION" \
+    -dn PEL -f '*.php' -t doc
 echo "done."
 
 cd ..
@@ -70,12 +73,17 @@ if [ "x$REPLY" == "xy" -o "x$REPLY" == "xY" ]; then
     echo -n "Tagging CVS with 'release-${MAJOR}_${MINOR}'... "
     cvs -Q tag release-${MAJOR}_${MINOR}
     echo "done."
-
-    echo -n "Uploading files to SourceForge... "
+    
+    echo -n "Uploading files to SourceForge for release... "
     ncftpput upload.sourceforge.net /incoming \
-	pel-$VERSION.tar.gz \
-	pel-$VERSION.tar.bz2 \
-	pel-$VERSION.zip
+        pel-$VERSION.tar.gz \
+        pel-$VERSION.tar.bz2 \
+        pel-$VERSION.zip
+    echo "done."
+
+    echo -n "Uploading API documentation to SourceForge... "
+    scp -C -q -r pel-$VERSION/doc \
+        shell.sourceforge.net:/home/groups/p/pe/pel/htdocs
     echo "done."
 else
     echo "Skipping tagging and upload."
