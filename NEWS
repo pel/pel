@@ -5,20 +5,37 @@ Copyright (C) 2004  Martin Geisler <gimpster@users.sourceforge.net>
 Licensed under the GNU GPL, see COPYING for details.
 
 
-PEL Version 0.7  (not yet released.)
-************************************
+PEL Version 0.7  October 10th 2004
+**********************************
 
 Notes:
 
+Running PEL under PHP version 5.0.2 would produce incorrect EXIF data,
+this was fixed so that PEL works correctly on all versions of PHP 5.
 PEL now runs on installations without support for Gettext, but does so
-with English texts only.  The Danish translation was updated slightly.
-Some tailing newlines were deleted from two files, they could have
-caused problems, if PEL were included in another project.
+with English texts only.  A new example script was added, showing how
+one can mass-rename images based on their timestamps using PEL.  The
+Danish translation was updated slightly.  The collection of test
+images has been split out as a separate download, cutting down on the
+size of a PEL download.
 
 Changes:
 
+* The image tests are now split into their own, separate download.
+
+* Added a test image from a Canon PowerShow S60.
+
+* Fixed a bug caused by a change in the way PHP 5.0.2 handles integers
+  larger than 2^31-1.  This change means that one can no longer use
+  PelConvert::longToBytes() to convert both signed and unsigned bytes,
+  one must now use sLongToBytes() for signed longs and longToBytes()
+  for unsigned bytes.
+
 * Added a work-around, so the PEL will run (with English texts only)
   on installations without support for Gettext.
+
+* Added test/rename.php which shows how one can easily rename images
+  based on their EXIF timestamps.
 
 * Updated the Danish translation.
 
