@@ -144,9 +144,6 @@ class PelJpeg {
       if (!PelJpegMarker::isValidMarker($marker))
         throw new PelJpegInvalidMarkerException($marker, $i);
 
-      Pel::debug('Found marker 0x%X %-4s offset %d',
-                 $marker, PelJpegMarker::getName($marker), $i);
-
       /* Move window so first byte becomes first byte in this
        * section. */
       $d->setWindowStart($i+1);
@@ -175,23 +172,50 @@ class PelJpeg {
             $content = new PelJpegContent($d->getClone(0, $len));
           }
           $this->appendSection($marker, $content);
+          /* Skip past the data. */
+          $d->setWindowStart($len);
         } else {
           $content = new PelJpegContent($d->getClone(0, $len));
           $this->appendSection($marker, $content);
+          /* Skip past the data. */
+          $d->setWindowStart($len);
           
           /* In case of SOS, image data will follow. */
           if ($marker == PelJpegMarker::SOS) {
-            $this->jpeg_data = $d->getClone($len, -2);
+            /* Some images have some trailing (garbage?) following the
+             * EOI marker.  To handle this we seek backwards until we
+             * find the EOI marker.  Any trailing content is stored as
+             * a PelJpegContent object. */
+
+            $length = $d->getSize();
+            while ($d->getByte($length-2) != 0xFF ||
+                   $d->getByte($length-1) != PelJpegMarker::EOI) {
+              $length--;
+            }
+
+            $this->jpeg_data = $d->getClone(0, $length-2);
             Pel::debug('JPEG data: ' . $this->jpeg_data->__toString());
 
-            /* Skip past the JPEG data. */
-            $d->setWindowStart($this->jpeg_data->getSize());
+            /* Append the EOI. */
+            $this->appendSection(PelJpegMarker::EOI,
+                                 new PelJpegContent(new PelDataWindow()));
+
+            /* Now check to see if there are any trailing data. */
+            if ($length != $d->getSize()) {
+              Pel::warning('Found trailing content after EOI: %d bytes',
+                           $d->getSize() - $length);
+              $content = new PelJpegContent($d->getClone($length));
+              /* We don't have a proper JPEG marker for trailing
+               * garbage, so we just use 0x00... */
+              $this->appendSection(0x00, $content);
+            }
+
+            /* Done with the loop. */
+            break;
           }
         }
-        /* Skip past the data from the last marker. */
-        $d->setWindowStart($len);
       }
-    }
+    } /* while ($d->getSize() > 0) */
   }
   
 
