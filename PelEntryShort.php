@@ -363,7 +363,7 @@ class PelEntryShort extends PelEntryNumber {
       case 0x0007:
         return Pel::tra('Strobe return light detected.');
       case 0x0009:
-        return Pel::tra('Flash fired, compulsory flash mode');
+        return Pel::tra('Flash fired, compulsory flash mode.');
       case 0x000d:
         return Pel::tra('Flash fired, compulsory flash mode, return light not detected.');
       case 0x000f:
@@ -393,7 +393,7 @@ class PelEntryShort extends PelEntryNumber {
       case 0x004f:
         return Pel::tra('Flash fired, compulsory flash mode, red-eye reduction mode, return light detected.');
       case 0x0058:
-        return Pel::tra('Flash did not fire, auto mode, red-eye reduction mode');
+        return Pel::tra('Flash did not fire, auto mode, red-eye reduction mode.');
       case 0x0059:
         return Pel::tra('Flash fired, auto mode, red-eye reduction mode.');
       case 0x005d:
