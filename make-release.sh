@@ -29,7 +29,7 @@
 # placed in the current directory.
 
 MAJOR=0
-MINOR=2
+MINOR=3
 VERSION=$MAJOR.$MINOR
 
 if test -e pel-$VERSION; then
