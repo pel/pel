@@ -64,11 +64,11 @@ class PelExifEntryByte extends PelExifEntryNumber {
    * should be one of the constants defined in {@link PelExifTag}
    * which has format {@link PelExifFormat::BYTE}.
    *
-   * @param int|array $value the byte(s) that this entry will
-   * represent.  The argument passed must obey the same rules as the
-   * argument to {@link setValue}, namely that it should be within
-   * range of an unsigned byte, that is between 0 and 255 (inclusive).
-   * If not, then a {@link PelOverflowException} will be thrown.
+   * @param int $value... the byte(s) that this entry will represent.
+   * The argument passed must obey the same rules as the argument to
+   * {@link setValue}, namely that it should be within range of an
+   * unsigned byte, that is between 0 and 255 (inclusive).  If not,
+   * then a {@link PelOverflowException} will be thrown.
    */
   function __construct($tag /* ... */) {
     $this->tag    = $tag;
@@ -82,6 +82,16 @@ class PelExifEntryByte extends PelExifEntryNumber {
   }
 
 
+  /**
+   * Convert a number into bytes.
+   *
+   * @param int the number that should be converted.
+   *
+   * @param PelByteOrder one of {@link PelConvert::LITTLE_ENDIAN} and
+   * {@link PelConvert::BIG_ENDIAN}, specifying the target byte order.
+   *
+   * @return string bytes representing the number given.
+   */
   function numberToBytes($number, $order) {
     return chr($number);
   }
@@ -113,11 +123,11 @@ class PelExifEntrySByte extends PelExifEntryNumber {
    * should be one of the constants defined in {@link PelExifTag}
    * which has format {@link PelExifFormat::BYTE}.
    *
-   * @param int|array $value the byte(s) that this entry will
-   * represent.  The argument passed must obey the same rules as the
-   * argument to {@link setValue}, namely that it should be within
-   * range of a signed byte, that is between -128 and 127 (inclusive).
-   * If not, then a {@link PelOverflowException} will be thrown.
+   * @param int $value... the byte(s) that this entry will represent.
+   * The argument passed must obey the same rules as the argument to
+   * {@link setValue}, namely that it should be within range of a
+   * signed byte, that is between -128 and 127 (inclusive).  If not,
+   * then a {@link PelOverflowException} will be thrown.
    */
   function __construct($tag /* ... */) {
     $this->tag    = $tag;
@@ -131,6 +141,16 @@ class PelExifEntrySByte extends PelExifEntryNumber {
   }
 
 
+  /**
+   * Convert a number into bytes.
+   *
+   * @param int the number that should be converted.
+   *
+   * @param PelByteOrder one of {@link PelConvert::LITTLE_ENDIAN} and
+   * {@link PelConvert::BIG_ENDIAN}, specifying the target byte order.
+   *
+   * @return string bytes representing the number given.
+   */
   function numberToBytes($number, $order) {
     return chr($number);
   }

@@ -50,9 +50,9 @@ include_once('PelExifEntryNumber.php');
  *
  * <code>
  * $w = $ifd->getEntry(PelExifTag::EXIF_IMAGE_WIDTH);
- * $w->setShort($h->getValue() / 2);
+ * $w->setValue($h->getValue() / 2);
  * $h = $ifd->getEntry(PelExifTag::EXIF_IMAGE_HEIGHT);
- * $h->setShort($h->getValue() / 2);
+ * $h->setValue($h->getValue() / 2);
  * </code>
  *
  * Here the width and height is updated to 50% of their original
@@ -85,7 +85,7 @@ class PelExifEntryShort extends PelExifEntryNumber {
    * PelExifTag::IMAGE_WIDTH}, {@link PelExifTag::ISO_SPEED_RATINGS},
    * or any other tag with format {@link PelExifFormat::SHORT}.
    *
-   * @param int|array $value the short(s) that this entry will
+   * @param int $value... the short(s) that this entry will
    * represent.  The argument passed must obey the same rules as the
    * argument to {@link setValue}, namely that it should be within
    * range of an unsigned short, that is between 0 and 65535
@@ -104,6 +104,16 @@ class PelExifEntryShort extends PelExifEntryNumber {
   }
 
 
+  /**
+   * Convert a number into bytes.
+   *
+   * @param int the number that should be converted.
+   *
+   * @param PelByteOrder one of {@link PelConvert::LITTLE_ENDIAN} and
+   * {@link PelConvert::BIG_ENDIAN}, specifying the target byte order.
+   *
+   * @return string bytes representing the number given.
+   */
   function numberToBytes($number, $order) {
     return PelConvert::shortToBytes($number, $order);
   }
@@ -571,7 +581,7 @@ class PelExifEntrySShort extends PelExifEntryNumber {
    * should be one of the constants defined in {@link PelExifTag}
    * which has format {@link PelExifFormat::SSHORT}.
    *
-   * @param int|array $value the signed short(s) that this entry will
+   * @param int $value... the signed short(s) that this entry will
    * represent.  The argument passed must obey the same rules as the
    * argument to {@link setValue}, namely that it should be within
    * range of a signed short, that is between -32768 to 32767
@@ -590,6 +600,16 @@ class PelExifEntrySShort extends PelExifEntryNumber {
   }
 
 
+  /**
+   * Convert a number into bytes.
+   *
+   * @param int the number that should be converted.
+   *
+   * @param PelByteOrder one of {@link PelConvert::LITTLE_ENDIAN} and
+   * {@link PelConvert::BIG_ENDIAN}, specifying the target byte order.
+   *
+   * @return string bytes representing the number given.
+   */
   function numberToBytes($number, $order) {
     return PelConvert::shortToBytes($number, $order);
   }

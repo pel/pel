@@ -93,7 +93,7 @@ abstract class PelExifEntryNumber extends PelExifEntry {
    * getNumber} method will always return an array except for when a
    * single number is given here.
    *
-   * @param int $value the new value(s).  This can be zero or more
+   * @param int $value... the new value(s).  This can be zero or more
    * numbers.  The input will be checked to ensure that the numbers
    * are within the valid range.  If not, then a {@link
    * PelExifEntryOverflowException} will be thrown.
@@ -142,6 +142,21 @@ abstract class PelExifEntryNumber extends PelExifEntry {
   }
 
 
+  /**
+   * Convert a number into bytes.
+   *
+   * The concrete subclasses will have to implement this method so
+   * that the numbers represented can be turned into bytes.
+   *
+   * The method will be called once for each number held by the entry.
+   *
+   * @param int the number that should be converted.
+   *
+   * @param PelByteOrder one of {@link PelConvert::LITTLE_ENDIAN} and
+   * {@link PelConvert::BIG_ENDIAN}, specifying the target byte order.
+   *
+   * @return string bytes representing the number given.
+   */
   abstract function numberToBytes($number, $order);
 
   
@@ -169,6 +184,22 @@ abstract class PelExifEntryNumber extends PelExifEntry {
   }
 
 
+  /**
+   * Format a number.
+   *
+   * This method is called by {@link getText} to format numbers.
+   * Subclasses should override this method if they need more
+   * sophisticated behaviour than the default, which is to just return
+   * the number as is.
+   *
+   * @param int the number which will be formatted.
+   *
+   * @param boolean it could be that there is both a verbose and a
+   * brief formatting available, and this argument controls that.
+   *
+   * @return string the number formatted as a string suitable for
+   * display.
+   */
   function formatNumber($number, $brief = false) {
     return $number;
   }

@@ -41,7 +41,7 @@ include_once('PelExifEntryNumber.php');
 
 
 /**
- * Class for holding signed longs.
+ * Class for holding unsigned longs.
  *
  * This class can hold longs, either just a single long or an array of
  * longs.  The class will be used to manipulate any of the EXIF tags
@@ -49,14 +49,12 @@ include_once('PelExifEntryNumber.php');
  * example:
  * <code>
  * $w = $ifd->getEntry(PelExifTag::EXIF_IMAGE_WIDTH);
- * $w->setValue($h->getValue() / 2);
+ * $w->setValue($w->getValue() / 2);
  * $h = $ifd->getEntry(PelExifTag::EXIF_IMAGE_HEIGHT);
  * $h->setValue($h->getValue() / 2);
  * </code>
  * Here the width and height is updated to 50% of their original
  * values.
- *
- * @todo distinguish between signed and unsigned longs.
  *
  * @author Martin Geisler <gimpster@users.sourceforge.net>
  * @package PEL
@@ -65,20 +63,20 @@ include_once('PelExifEntryNumber.php');
 class PelExifEntryLong extends PelExifEntryNumber {
 
   /**
-   * Make a new entry that can hold a long.
+   * Make a new entry that can hold an unsigned long.
    *
    * The method accept it's arguments in two forms: several integer
-   * arguments or a single array argument.  The {@link getLong} method
-   * will always return an array except for when a single long
-   * argument is given here, or when an array with just a single
-   * integer is given.
+   * arguments or a single array argument.  The {@link getValue}
+   * method will always return an array except for when a single
+   * integer argument is given here, or when an array with just a
+   * single integer is given.
    *
    * This means that one can conveniently use objects like this:
    * <code>
    * $a = new PelExifEntryLong(PelExifTag::EXIF_IMAGE_WIDTH, 123456);
-   * $b = $a->getLong() - 654321;
+   * $b = $a->getValue() - 654321;
    * </code>
-   * where the call to {@link getLong} will return an integer instead
+   * where the call to {@link getValue} will return an integer instead
    * of an array with one integer element, which would then have to be
    * extracted.
    *
@@ -87,12 +85,12 @@ class PelExifEntryLong extends PelExifEntryNumber {
    * e.g., {@link PelExifTag::IMAGE_WIDTH}, or any other tag which can
    * have format {@link PelExifFormat::LONG}.
    *
-   * @param int|array $value the long(s) that this entry will
+   * @param int $value... the long(s) that this entry will
    * represent or an array of longs.  The argument passed must obey
-   * the same rules as the argument to {@link setLong}, namely that it
-   * should be within range of a signed long (32 bit), that is between
-   * -2147483648 and 2147483647 (inclusive).  If not, then a {@link
-   * PelExifEntryShortException} will be thrown.
+   * the same rules as the argument to {@link setValue}, namely that
+   * it should be within range of an unsigned long (32 bit), that is
+   * between 0 and 4294967295 (inclusive).  If not, then a {@link
+   * PelExifOverflowException} will be thrown.
    */
   function __construct($tag /* ... */) {
     $this->tag    = $tag;
@@ -106,14 +104,56 @@ class PelExifEntryLong extends PelExifEntryNumber {
   }
 
 
+  /**
+   * Convert a number into bytes.
+   *
+   * @param int the number that should be converted.
+   *
+   * @param PelByteOrder one of {@link PelConvert::LITTLE_ENDIAN} and
+   * {@link PelConvert::BIG_ENDIAN}, specifying the target byte order.
+   *
+   * @return string bytes representing the number given.
+   */
   function numberToBytes($number, $order) {
     return PelConvert::longToBytes($number, $order);
   }
 }
 
+
+/**
+ * Class for holding signed longs.
+ *
+ * This class can hold longs, either just a single long or an array of
+ * longs.  The class will be used to manipulate any of the EXIF tags
+ * which can have format {@link PelExifFormat::SLONG}.
+ *
+ * @author Martin Geisler <gimpster@users.sourceforge.net>
+ * @package PEL
+ * @subpackage EXIF
+ */
 class PelExifEntrySLong extends PelExifEntryNumber {
 
- function __construct($tag /* ... */) {
+  /**
+   * Make a new entry that can hold a signed long.
+   *
+   * The method accept it's arguments in two forms: several integer
+   * arguments or a single array argument.  The {@link getValue}
+   * method will always return an array except for when a single
+   * integer argument is given here, or when an array with just a
+   * single integer is given.
+   *
+   * @param PelExifTag the tag which this entry represents.  This
+   * should be one of the constants defined in {@link PelExifTag}
+   * which have format {@link PelExifFormat::SLONG}.
+   *
+   * @param int $value... the long(s) that this entry will represent
+   * or an array of longs.  The argument passed must obey the same
+   * rules as the argument to {@link setValue}, namely that it should
+   * be within range of a signed long (32 bit), that is between
+   * -2147483648 and 2147483647 (inclusive).  If not, then a {@link
+   * PelOverflowException} will be thrown.
+   */
+  function __construct($tag /* ... */) {
     $this->tag    = $tag;
     $this->min    = -2147483648;
     $this->max    = 2147483647;
@@ -126,7 +166,14 @@ class PelExifEntrySLong extends PelExifEntryNumber {
 
 
   /**
-   * @todo Use a PelConvert::slongToBytes method?
+   * Convert a number into bytes.
+   *
+   * @param int the number that should be converted.
+   *
+   * @param PelByteOrder one of {@link PelConvert::LITTLE_ENDIAN} and
+   * {@link PelConvert::BIG_ENDIAN}, specifying the target byte order.
+   *
+   * @return string bytes representing the number given.
    */
   function numberToBytes($number, $order) {
     return PelConvert::longToBytes($number, $order);
