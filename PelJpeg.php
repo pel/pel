@@ -213,10 +213,11 @@ class PelJpeg {
         continue;
       
       if ($m == PelJpegMarker::APP1) {
+        $str .= Pel::tra("  Content    : EXIF data\n");
         $str .= $c->__toString() . "\n";
       } else {
-        $str .= Pel::fmt("  Size: %d bytes\n", $c->getSize()); 
-        $str .= Pel::tra("  Unknown content\n");
+        $str .= Pel::fmt("  Size       : %d bytes\n", $c->getSize()); 
+        $str .= Pel::tra("  Content    : Unknown\n");
       }
     }
 

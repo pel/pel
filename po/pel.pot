@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-06-09 14:49+0200\n"
+"POT-Creation-Date: 2004-06-09 14:59+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -846,13 +846,17 @@ msgstr ""
 msgid "  Description: %s\n"
 msgstr ""
 
-#: PelJpeg.php:218
-#, php-format
-msgid "  Size: %d bytes\n"
+#: PelJpeg.php:216
+msgid "  Content    : EXIF data\n"
 msgstr ""
 
 #: PelJpeg.php:219
-msgid "  Unknown content\n"
+#, php-format
+msgid "  Size       : %d bytes\n"
+msgstr ""
+
+#: PelJpeg.php:220
+msgid "  Content    : Unknown\n"
 msgstr ""
 
 #: PelTag.php:1231
