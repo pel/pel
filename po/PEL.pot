@@ -1,0 +1,984 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2004-06-04 13:30+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=CHARSET\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: PelJpegMarker.php:282 PelJpegMarker.php:359
+#, php-format
+msgid "Unknown marker: 0x%02X"
+msgstr ""
+
+#: PelJpegMarker.php:295
+msgid "Encoding (baseline)"
+msgstr ""
+
+#: PelJpegMarker.php:296
+msgid "Encoding (extended sequential)"
+msgstr ""
+
+#: PelJpegMarker.php:297
+msgid "Encoding (progressive)"
+msgstr ""
+
+#: PelJpegMarker.php:298
+msgid "Encoding (lossless)"
+msgstr ""
+
+#: PelJpegMarker.php:299
+msgid "Encoding (differential sequential)"
+msgstr ""
+
+#: PelJpegMarker.php:300
+msgid "Encoding (differential progressive)"
+msgstr ""
+
+#: PelJpegMarker.php:301
+msgid "Encoding (differential lossless)"
+msgstr ""
+
+#: PelJpegMarker.php:302
+msgid "Encoding (extended sequential, arithmetic)"
+msgstr ""
+
+#: PelJpegMarker.php:303
+msgid "Encoding (progressive, arithmetic)"
+msgstr ""
+
+#: PelJpegMarker.php:304
+msgid "Encoding (lossless, arithmetic)"
+msgstr ""
+
+#: PelJpegMarker.php:305
+msgid "Encoding (differential sequential, arithmetic)"
+msgstr ""
+
+#: PelJpegMarker.php:306
+msgid "Encoding (differential progressive, arithmetic)"
+msgstr ""
+
+#: PelJpegMarker.php:307
+msgid "Encoding (differential lossless, arithmetic)"
+msgstr ""
+
+#: PelJpegMarker.php:308
+msgid "Start of image"
+msgstr ""
+
+#: PelJpegMarker.php:309
+msgid "End of image"
+msgstr ""
+
+#: PelJpegMarker.php:310
+msgid "Start of scan"
+msgstr ""
+
+#: PelJpegMarker.php:311 PelJpegMarker.php:358
+msgid "Comment"
+msgstr ""
+
+#: PelJpegMarker.php:312
+msgid "Define Huffman table"
+msgstr ""
+
+#: PelJpegMarker.php:313
+msgid "Extension"
+msgstr ""
+
+#: PelJpegMarker.php:314
+msgid "Define arithmetic coding conditioning"
+msgstr ""
+
+#: PelJpegMarker.php:315
+msgid "Restart 0"
+msgstr ""
+
+#: PelJpegMarker.php:316
+msgid "Restart 1"
+msgstr ""
+
+#: PelJpegMarker.php:317
+msgid "Restart 2"
+msgstr ""
+
+#: PelJpegMarker.php:318
+msgid "Restart 3"
+msgstr ""
+
+#: PelJpegMarker.php:319
+msgid "Restart 4"
+msgstr ""
+
+#: PelJpegMarker.php:320
+msgid "Restart 5"
+msgstr ""
+
+#: PelJpegMarker.php:321
+msgid "Restart 6"
+msgstr ""
+
+#: PelJpegMarker.php:322
+msgid "Restart 7"
+msgstr ""
+
+#: PelJpegMarker.php:323
+msgid "Define quantization table"
+msgstr ""
+
+#: PelJpegMarker.php:324
+msgid "Define number of lines"
+msgstr ""
+
+#: PelJpegMarker.php:325
+msgid "Define restart interval"
+msgstr ""
+
+#: PelJpegMarker.php:326
+msgid "Define hierarchical progression"
+msgstr ""
+
+#: PelJpegMarker.php:327
+msgid "Expand reference component"
+msgstr ""
+
+#: PelJpegMarker.php:328
+msgid "Application segment 0"
+msgstr ""
+
+#: PelJpegMarker.php:329
+msgid "Application segment 1"
+msgstr ""
+
+#: PelJpegMarker.php:330
+msgid "Application segment 2"
+msgstr ""
+
+#: PelJpegMarker.php:331
+msgid "Application segment 3"
+msgstr ""
+
+#: PelJpegMarker.php:332
+msgid "Application segment 4"
+msgstr ""
+
+#: PelJpegMarker.php:333
+msgid "Application segment 5"
+msgstr ""
+
+#: PelJpegMarker.php:334
+msgid "Application segment 6"
+msgstr ""
+
+#: PelJpegMarker.php:335
+msgid "Application segment 7"
+msgstr ""
+
+#: PelJpegMarker.php:336
+msgid "Application segment 8"
+msgstr ""
+
+#: PelJpegMarker.php:337
+msgid "Application segment 9"
+msgstr ""
+
+#: PelJpegMarker.php:338
+msgid "Application segment 10"
+msgstr ""
+
+#: PelJpegMarker.php:339
+msgid "Application segment 11"
+msgstr ""
+
+#: PelJpegMarker.php:340
+msgid "Application segment 12"
+msgstr ""
+
+#: PelJpegMarker.php:341
+msgid "Application segment 13"
+msgstr ""
+
+#: PelJpegMarker.php:342
+msgid "Application segment 14"
+msgstr ""
+
+#: PelJpegMarker.php:343
+msgid "Application segment 15"
+msgstr ""
+
+#: PelJpegMarker.php:344
+msgid "Extension 0"
+msgstr ""
+
+#: PelJpegMarker.php:345
+msgid "Extension 1"
+msgstr ""
+
+#: PelJpegMarker.php:346
+msgid "Extension 2"
+msgstr ""
+
+#: PelJpegMarker.php:347
+msgid "Extension 3"
+msgstr ""
+
+#: PelJpegMarker.php:348
+msgid "Extension 4"
+msgstr ""
+
+#: PelJpegMarker.php:349
+msgid "Extension 5"
+msgstr ""
+
+#: PelJpegMarker.php:350
+msgid "Extension 6"
+msgstr ""
+
+#: PelJpegMarker.php:351
+msgid "Extension 7"
+msgstr ""
+
+#: PelJpegMarker.php:352
+msgid "Extension 8"
+msgstr ""
+
+#: PelJpegMarker.php:353
+msgid "Extension 9"
+msgstr ""
+
+#: PelJpegMarker.php:354
+msgid "Extension 10"
+msgstr ""
+
+#: PelJpegMarker.php:355
+msgid "Extension 11"
+msgstr ""
+
+#: PelJpegMarker.php:356
+msgid "Extension 12"
+msgstr ""
+
+#: PelJpegMarker.php:357
+msgid "Extension 13"
+msgstr ""
+
+#: PelTag.php:184 PelTag.php:418
+msgid "InteroperabilityIndex"
+msgstr ""
+
+#: PelTag.php:186 PelTag.php:420
+msgid "InteroperabilityVersion"
+msgstr ""
+
+#: PelTag.php:188
+msgid "ImageWidth"
+msgstr ""
+
+#: PelTag.php:190
+msgid "ImageLength"
+msgstr ""
+
+#: PelTag.php:192
+msgid "BitsPerSample"
+msgstr ""
+
+#: PelTag.php:194 PelTag.php:428
+msgid "Compression"
+msgstr ""
+
+#: PelTag.php:196
+msgid "PhotometricInterpretation"
+msgstr ""
+
+#: PelTag.php:198
+msgid "FillOrder"
+msgstr ""
+
+#: PelTag.php:200
+msgid "DocumentName"
+msgstr ""
+
+#: PelTag.php:202
+msgid "ImageDescription"
+msgstr ""
+
+#: PelTag.php:204
+msgid "Make"
+msgstr ""
+
+#: PelTag.php:206 PelTag.php:440
+msgid "Model"
+msgstr ""
+
+#: PelTag.php:208
+msgid "StripOffsets"
+msgstr ""
+
+#: PelTag.php:210 PelTag.php:444
+msgid "Orientation"
+msgstr ""
+
+#: PelTag.php:212
+msgid "SamplesPerPixel"
+msgstr ""
+
+#: PelTag.php:214
+msgid "RowsPerStrip"
+msgstr ""
+
+#: PelTag.php:216
+msgid "StripByteCounts"
+msgstr ""
+
+#: PelTag.php:218
+msgid "XResolution"
+msgstr ""
+
+#: PelTag.php:220
+msgid "YResolution"
+msgstr ""
+
+#: PelTag.php:222
+msgid "PlanarConfiguration"
+msgstr ""
+
+#: PelTag.php:224
+msgid "ResolutionUnit"
+msgstr ""
+
+#: PelTag.php:226
+msgid "TransferFunction"
+msgstr ""
+
+#: PelTag.php:228 PelTag.php:462
+msgid "Software"
+msgstr ""
+
+#: PelTag.php:230
+msgid "DateTime"
+msgstr ""
+
+#: PelTag.php:232 PelTag.php:466
+msgid "Artist"
+msgstr ""
+
+#: PelTag.php:234
+msgid "WhitePoint"
+msgstr ""
+
+#: PelTag.php:236
+msgid "PrimaryChromaticities"
+msgstr ""
+
+#: PelTag.php:238
+msgid "TransferRange"
+msgstr ""
+
+#: PelTag.php:240 PelTag.php:474
+msgid "JPEGProc"
+msgstr ""
+
+#: PelTag.php:242
+msgid "JPEGInterchangeFormat"
+msgstr ""
+
+#: PelTag.php:244
+msgid "JPEGInterchangeFormatLength"
+msgstr ""
+
+#: PelTag.php:246
+msgid "YCbCrCoefficients"
+msgstr ""
+
+#: PelTag.php:248
+msgid "YCbCrSubSampling"
+msgstr ""
+
+#: PelTag.php:250
+msgid "YCbCrPositioning"
+msgstr ""
+
+#: PelTag.php:252
+msgid "ReferenceBlackWhite"
+msgstr ""
+
+#: PelTag.php:254 PelTag.php:488
+msgid "RelatedImageFileFormat"
+msgstr ""
+
+#: PelTag.php:256 PelTag.php:490
+msgid "RelatedImageWidth"
+msgstr ""
+
+#: PelTag.php:258 PelTag.php:492
+msgid "RelatedImageLength"
+msgstr ""
+
+#: PelTag.php:260 PelTag.php:494
+msgid "CFARepeatPatternDim"
+msgstr ""
+
+#: PelTag.php:262 PelTag.php:370
+msgid "CFAPattern"
+msgstr ""
+
+#: PelTag.php:264
+msgid "BatteryLevel"
+msgstr ""
+
+#: PelTag.php:266 PelTag.php:500
+msgid "Copyright"
+msgstr ""
+
+#: PelTag.php:268
+msgid "ExposureTime"
+msgstr ""
+
+#: PelTag.php:270 PelTag.php:504
+msgid "FNumber"
+msgstr ""
+
+#: PelTag.php:272 PelTag.php:506
+msgid "IPTC/NAA"
+msgstr ""
+
+#: PelTag.php:274 PelTag.php:508
+msgid "ExifIFDPointer"
+msgstr ""
+
+#: PelTag.php:276 PelTag.php:510
+msgid "InterColorProfile"
+msgstr ""
+
+#: PelTag.php:278 PelTag.php:512
+msgid "ExposureProgram"
+msgstr ""
+
+#: PelTag.php:280
+msgid "SpectralSensitivity"
+msgstr ""
+
+#: PelTag.php:282 PelTag.php:516
+msgid "GPSInfoIFDPointer"
+msgstr ""
+
+#: PelTag.php:294
+msgid "ISOSpeedRatings"
+msgstr ""
+
+#: PelTag.php:296 PelTag.php:530
+msgid "OECF"
+msgstr ""
+
+#: PelTag.php:298
+msgid "ExifVersion"
+msgstr ""
+
+#: PelTag.php:300
+msgid "DateTimeOriginal"
+msgstr ""
+
+#: PelTag.php:302
+msgid "DateTimeDigitized"
+msgstr ""
+
+#: PelTag.php:304 PelTag.php:538
+msgid "ComponentsConfiguration"
+msgstr ""
+
+#: PelTag.php:306
+msgid "CompressedBitsPerPixel"
+msgstr ""
+
+#: PelTag.php:308
+msgid "ShutterSpeedValue"
+msgstr ""
+
+#: PelTag.php:310
+msgid "ApertureValue"
+msgstr ""
+
+#: PelTag.php:312
+msgid "BrightnessValue"
+msgstr ""
+
+#: PelTag.php:314
+msgid "ExposureBiasValue"
+msgstr ""
+
+#: PelTag.php:316 PelTag.php:550
+msgid "MaxApertureValue"
+msgstr ""
+
+#: PelTag.php:318
+msgid "SubjectDistance"
+msgstr ""
+
+#: PelTag.php:320
+msgid "MeteringMode"
+msgstr ""
+
+#: PelTag.php:322
+msgid "LightSource"
+msgstr ""
+
+#: PelTag.php:324 PelTag.php:558
+msgid "Flash"
+msgstr ""
+
+#: PelTag.php:326
+msgid "FocalLength"
+msgstr ""
+
+#: PelTag.php:328
+msgid "MakerNote"
+msgstr ""
+
+#: PelTag.php:330
+msgid "UserComment"
+msgstr ""
+
+#: PelTag.php:332 PelTag.php:566
+msgid "SubsecTime"
+msgstr ""
+
+#: PelTag.php:334 PelTag.php:568
+msgid "SubSecTimeOriginal"
+msgstr ""
+
+#: PelTag.php:336 PelTag.php:570
+msgid "SubSecTimeDigitized"
+msgstr ""
+
+#: PelTag.php:338 PelTag.php:572
+msgid "FlashPixVersion"
+msgstr ""
+
+#: PelTag.php:340
+msgid "ColorSpace"
+msgstr ""
+
+#: PelTag.php:342 PelTag.php:576
+msgid "PixelXDimension"
+msgstr ""
+
+#: PelTag.php:344 PelTag.php:578
+msgid "PixelYDimension"
+msgstr ""
+
+#: PelTag.php:346 PelTag.php:580
+msgid "RelatedSoundFile"
+msgstr ""
+
+#: PelTag.php:348 PelTag.php:582
+msgid "InteroperabilityIFDPointer"
+msgstr ""
+
+#: PelTag.php:350
+msgid "FlashEnergy"
+msgstr ""
+
+#: PelTag.php:352
+msgid "SpatialFrequencyResponse"
+msgstr ""
+
+#: PelTag.php:354
+msgid "FocalPlaneXResolution"
+msgstr ""
+
+#: PelTag.php:356
+msgid "FocalPlaneYResolution"
+msgstr ""
+
+#: PelTag.php:358
+msgid "FocalPlaneResolutionUnit"
+msgstr ""
+
+#: PelTag.php:360
+msgid "SubjectLocation"
+msgstr ""
+
+#: PelTag.php:362
+msgid "ExposureIndex"
+msgstr ""
+
+#: PelTag.php:364
+msgid "SensingMethod"
+msgstr ""
+
+#: PelTag.php:366
+msgid "FileSource"
+msgstr ""
+
+#: PelTag.php:368
+msgid "SceneType"
+msgstr ""
+
+#: PelTag.php:372
+msgid "SubjectArea"
+msgstr ""
+
+#: PelTag.php:374
+msgid "CustomRendered"
+msgstr ""
+
+#: PelTag.php:376
+msgid "ExposureMode"
+msgstr ""
+
+#: PelTag.php:378
+msgid "WhiteBalance"
+msgstr ""
+
+#: PelTag.php:380
+msgid "DigitalZoomRatio"
+msgstr ""
+
+#: PelTag.php:382
+msgid "FocalLengthIn35mmFilm"
+msgstr ""
+
+#: PelTag.php:384
+msgid "SceneCaptureType"
+msgstr ""
+
+#: PelTag.php:386
+msgid "GainControl"
+msgstr ""
+
+#: PelTag.php:388 PelTag.php:622
+msgid "Contrast"
+msgstr ""
+
+#: PelTag.php:390 PelTag.php:624
+msgid "Saturation"
+msgstr ""
+
+#: PelTag.php:392 PelTag.php:626
+msgid "Sharpness"
+msgstr ""
+
+#: PelTag.php:394
+msgid "DeviceSettingDescription"
+msgstr ""
+
+#: PelTag.php:396
+msgid "SubjectDistanceRange"
+msgstr ""
+
+#: PelTag.php:398
+msgid "ImageUniqueID"
+msgstr ""
+
+#: PelTag.php:400
+#, php-format
+msgid "Unknown: 0x%02X"
+msgstr ""
+
+#: PelTag.php:422
+msgid "Image Width"
+msgstr ""
+
+#: PelTag.php:424
+msgid "Image Length"
+msgstr ""
+
+#: PelTag.php:426
+msgid "Bits per Sample"
+msgstr ""
+
+#: PelTag.php:430
+msgid "Photometric Interpretation"
+msgstr ""
+
+#: PelTag.php:432
+msgid "Fill Order"
+msgstr ""
+
+#: PelTag.php:434
+msgid "Document Name"
+msgstr ""
+
+#: PelTag.php:436
+msgid "Image Description"
+msgstr ""
+
+#: PelTag.php:438
+msgid "Manufacturer"
+msgstr ""
+
+#: PelTag.php:442
+msgid "Strip Offsets"
+msgstr ""
+
+#: PelTag.php:446
+msgid "Samples per Pixel"
+msgstr ""
+
+#: PelTag.php:448
+msgid "Rows per Strip"
+msgstr ""
+
+#: PelTag.php:450
+msgid "Strip Byte Count"
+msgstr ""
+
+#: PelTag.php:452
+msgid "x-Resolution"
+msgstr ""
+
+#: PelTag.php:454
+msgid "y-Resolution"
+msgstr ""
+
+#: PelTag.php:456
+msgid "Planar Configuration"
+msgstr ""
+
+#: PelTag.php:458
+msgid "Resolution Unit"
+msgstr ""
+
+#: PelTag.php:460
+msgid "Transfer Function"
+msgstr ""
+
+#: PelTag.php:464
+msgid "Date and Time"
+msgstr ""
+
+#: PelTag.php:468
+msgid "White Point"
+msgstr ""
+
+#: PelTag.php:470
+msgid "Primary Chromaticities"
+msgstr ""
+
+#: PelTag.php:472
+msgid "Transfer Range"
+msgstr ""
+
+#: PelTag.php:476
+msgid "JPEG Interchange Format"
+msgstr ""
+
+#: PelTag.php:478
+msgid "JPEG Interchange Format Length"
+msgstr ""
+
+#: PelTag.php:480
+msgid "YCbCr Coefficients"
+msgstr ""
+
+#: PelTag.php:482
+msgid "YCbCr Sub-Sampling"
+msgstr ""
+
+#: PelTag.php:484
+msgid "YCbCr Positioning"
+msgstr ""
+
+#: PelTag.php:486
+msgid "Reference Black/White"
+msgstr ""
+
+#: PelTag.php:496 PelTag.php:604
+msgid "CFA Pattern"
+msgstr ""
+
+#: PelTag.php:498
+msgid "Battery Level"
+msgstr ""
+
+#: PelTag.php:502
+msgid "Exposure Time"
+msgstr ""
+
+#: PelTag.php:514
+msgid "Spectral Sensitivity"
+msgstr ""
+
+#: PelTag.php:518
+msgid "GPSVersionId"
+msgstr ""
+
+#: PelTag.php:520
+msgid "GPSLatitudeRef"
+msgstr ""
+
+#: PelTag.php:522
+msgid "GPSLatitude"
+msgstr ""
+
+#: PelTag.php:524
+msgid "GPSLongitudeRef"
+msgstr ""
+
+#: PelTag.php:526
+msgid "GPSLongitude"
+msgstr ""
+
+#: PelTag.php:528
+msgid "ISO Speed Ratings"
+msgstr ""
+
+#: PelTag.php:532
+msgid "Exif Version"
+msgstr ""
+
+#: PelTag.php:534
+msgid "Date and Time (original)"
+msgstr ""
+
+#: PelTag.php:536
+msgid "Date and Time (digitized)"
+msgstr ""
+
+#: PelTag.php:540
+msgid "Compressed Bits per Pixel"
+msgstr ""
+
+#: PelTag.php:542
+msgid "Shutter speed"
+msgstr ""
+
+#: PelTag.php:544
+msgid "Aperture"
+msgstr ""
+
+#: PelTag.php:546
+msgid "Brightness"
+msgstr ""
+
+#: PelTag.php:548
+msgid "Exposure Bias"
+msgstr ""
+
+#: PelTag.php:552
+msgid "Subject Distance"
+msgstr ""
+
+#: PelTag.php:554
+msgid "Metering Mode"
+msgstr ""
+
+#: PelTag.php:556
+msgid "Light Source"
+msgstr ""
+
+#: PelTag.php:560
+msgid "Focal Length"
+msgstr ""
+
+#: PelTag.php:562
+msgid "Maker Note"
+msgstr ""
+
+#: PelTag.php:564
+msgid "User Comment"
+msgstr ""
+
+#: PelTag.php:574
+msgid "Color Space"
+msgstr ""
+
+#: PelTag.php:584
+msgid "Flash Energy"
+msgstr ""
+
+#: PelTag.php:586
+msgid "Spatial Frequency Response"
+msgstr ""
+
+#: PelTag.php:588
+msgid "Focal Plane x-Resolution"
+msgstr ""
+
+#: PelTag.php:590
+msgid "Focal Plane y-Resolution"
+msgstr ""
+
+#: PelTag.php:592
+msgid "Focal Plane Resolution Unit"
+msgstr ""
+
+#: PelTag.php:594
+msgid "Subject Location"
+msgstr ""
+
+#: PelTag.php:596
+msgid "Exposure index"
+msgstr ""
+
+#: PelTag.php:598
+msgid "Sensing Method"
+msgstr ""
+
+#: PelTag.php:600
+msgid "File Source"
+msgstr ""
+
+#: PelTag.php:602
+msgid "Scene Type"
+msgstr ""
+
+#: PelTag.php:606
+msgid "Subject Area"
+msgstr ""
+
+#: PelTag.php:608
+msgid "Custom Rendered"
+msgstr ""
+
+#: PelTag.php:610
+msgid "Exposure Mode"
+msgstr ""
+
+#: PelTag.php:612
+msgid "White Balance"
+msgstr ""
+
+#: PelTag.php:614
+msgid "Digital Zoom Ratio"
+msgstr ""
+
+#: PelTag.php:616
+msgid "Focal Length In 35mm Film"
+msgstr ""
+
+#: PelTag.php:618
+msgid "Scene Capture Type"
+msgstr ""
+
+#: PelTag.php:620
+msgid "Gain Control"
+msgstr ""
+
+#: PelTag.php:628
+msgid "Device Setting Description"
+msgstr ""
+
+#: PelTag.php:630
+msgid "Subject Distance Range"
+msgstr ""
+
+#: PelTag.php:632
+msgid "Image Unique ID"
+msgstr ""
+
+#: PelTag.php:634
+#, php-format
+msgid "Unknown Tag: 0x%04X"
+msgstr ""
