@@ -222,14 +222,14 @@ class PelConvert {
    */
   static function bytesToLong(&$bytes, $offset, $endian) {
     if ($endian == self::LITTLE_ENDIAN)
-      return (ord($bytes{$offset+3}) << 24 |
-              ord($bytes{$offset+2}) << 16 |
-              ord($bytes{$offset+1}) <<  8 |
+      return (ord($bytes{$offset+3}) * 16777216 +
+              ord($bytes{$offset+2}) * 65536    +
+              ord($bytes{$offset+1}) * 256      +
               ord($bytes{$offset}));
     else
-      return (ord($bytes{$offset})   << 24 |
-              ord($bytes{$offset+1}) << 16 |
-              ord($bytes{$offset+2}) <<  8 |
+      return (ord($bytes{$offset})   * 16777216 +
+              ord($bytes{$offset+1}) * 65536    +
+              ord($bytes{$offset+2}) * 256      +
               ord($bytes{$offset+3}));
   }
 
@@ -252,7 +252,7 @@ class PelConvert {
   static function bytesToSLong(&$bytes, $offset, $endian) {
     $n = self::bytesToLong($bytes, $offset, $endian);
     if ($n > 2147483647)
-      return $n - 4294967295;
+      return $n - 4294967296;
     else
       return $n;
   }
