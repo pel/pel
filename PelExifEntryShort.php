@@ -353,6 +353,8 @@ class PelExifEntryShort extends PelExifEntryNumber {
         return 'Strobe return light not detected.';
       case 0x0007:
         return 'Strobe return light detected.';
+      case 0x0009:
+        return 'Flash fired, compulsatory flash mode';
       case 0x000d:
         return 'Flash fired, compulsory flash mode, return light ' .
           'not detected.';
@@ -388,6 +390,9 @@ class PelExifEntryShort extends PelExifEntryNumber {
       case 0x004f:
         return 'Flash fired, compulsory flash mode, red-eye ' .
           'reduction mode, return light detected.';
+      case 0x0058:
+        return 'Flash did not fire, auto mode, red-eye ' .
+          'reduction mode';
       case 0x0059:
         return 'Flash fired, auto mode, red-eye reduction mode.';
       case 0x005d:
