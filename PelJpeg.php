@@ -27,10 +27,23 @@
 /**
  * Classes representing JPEG data.
  *
- * The {@link PelJpeg} class defined here provides an abstraction
- * for dealing with a JPEG file.  The file will be contain a number of
+ * The {@link PelJpeg} class defined here provides an abstraction for
+ * dealing with a JPEG file.  The file will be contain a number of
  * sections indicated by markers, which is modeled with the {@link
  * PelJpegSection} and {@link PelJpegMarker} classes.
+ *
+ * The {@link getSection()} method is used to pick out a particular
+ * section --- the EXIF information is typically stored in the {@link
+ * PelJpegMarker::APP1 APP1} section, and so one would get hold of it
+ * by saying:
+ *
+ * <code>
+ * $jpeg = new PelJpeg($data);
+ * $tiff = $jpeg->getSection(PelJpegMarker::APP1);
+ * $ifd0 = $tiff->getIfd();
+ * $exif = $ifd0->getSubIfd(PelTag::EXIF_IFD_POINTER);
+ * $ifd1 = $ifd0->getNextIfd();
+ * </code>
  *
  * @author Martin Geisler <gimpster@users.sourceforge.net>
  * @version $Revision$
@@ -42,7 +55,6 @@
 /**#@+ Required class definitions. */
 require_once('PelJpegContent.php');
 require_once('PelJpegMarker.php');
-require_once('PelJpegSection.php');
 require_once('PelException.php');
 require_once('PelExif.php');
 require_once('Pel.php');
@@ -71,13 +83,42 @@ class PelJpegInvalidMarkerException extends PelException {
 class PelJpeg {
 
   private $count = 0;
+  
+  /**
+   * The sections in the JPEG data.
+   *
+   * A JPEG file is built up as a sequence of sections, each section
+   * is identified with a {@link PelJpegMarker}.  Some sections can
+   * occur more than once in the JPEG stream (the {@link
+   * PelJpegMarker::DQT DQT} and {@link PelJpegMarker::DHT DTH}
+   * markers for example) and so this is an array of ({@link
+   * PelJpegMarker}, {@link PelJpegContent}) pairs.
+   *
+   * The content can be either generic {@link PelJpegContent JPEG
+   * content} or {@link PelExif EXIF data}.
+   *
+   * @var array
+   */
   private $sections = array();
 
-  /* Just JPEG image data */
+  /**
+   * The JPEG image data.
+   *
+   * @var PelDataWindow
+   */
   private $jpeg_data = null;
 
 
   /**
+   * Construct a new JPEG object.
+   *
+   * The data supplied will be parsed and turned into an object
+   * structure representing the image.  This structure can then be
+   * manipulated and later turned back into an string of bytes.
+   *
+   * @param PelDataWindow the data that will be used to construct the
+   * object.
+   *
    * @todo Make the constructor take a plain string with bytes instead
    * of requiring the {@link PelDataWindow} object?
    */
@@ -85,7 +126,7 @@ class PelJpeg {
 
     Pel::debug('Parsing %d bytes...', $d->getSize());
 
-    /* JPEG data is stored in little-endian format. */
+    /* JPEG data is stored in big-endian format. */
     $d->setByteOrder(PelConvert::BIG_ENDIAN);
     
     /* Run through the data to read the sections in the image.  After
@@ -114,8 +155,7 @@ class PelJpeg {
 
       if ($marker == PelJpegMarker::SOI || $marker == PelJpegMarker::EOI) {
         $content = new PelJpegContent(new PelDataWindow());
-        $section = new PelJpegSection($marker, $content);
-        $this->appendSection($section);
+        $this->appendSection($marker, $content);
       } else {
         /* Read the length of the section.  The length includes the
          * two bytes used to store the length. */
@@ -136,12 +176,10 @@ class PelJpeg {
              * not be parsed as EXIF data. */
             $content = new PelJpegContent($d->getClone(0, $len));
           }
-          $section = new PelJpegSection($marker, $content);
-          $this->appendSection($section);
+          $this->appendSection($marker, $content);
         } else {
           $content = new PelJpegContent($d->getClone(0, $len));
-          $section = new PelJpegSection($marker, $content);
-          $this->appendSection($section);
+          $this->appendSection($marker, $content);
           
           /* In case of SOS, image data will follow. */
           if ($marker == PelJpegMarker::SOS) {
@@ -159,28 +197,89 @@ class PelJpeg {
   }
   
 
-  function appendSection(PelJpegSection $s) {
-    $this->sections[] = $s;
-    $this->count++;
+  /**
+   * Add a new section.
+   *
+   * @param PelJpegMarker the marker identifying the new section.
+   *
+   * @param PelJpegContent the content of the new section.
+   */
+  function appendSection($marker, PelJpegContent $content) {
+    $this->sections[] = array($marker, $content);
   }
 
 
-  function getSection($i) {
-    return $this->sections[$i];
+  /**
+   * Get a sections corresponding to a particular marker.
+   *
+   * This will search through the sections of this JPEG object,
+   * looking for a section identified with the specified {@link
+   * PelJpegMarker marker}.  The {@link PelJpegContent content} will
+   * then be returned.  The optional argument can be used to skip over
+   * some of the sections.  So if one is looking for the, say, third
+   * {@link PelJpegMarker::DHT DHT} section one would do:
+   *
+   * <code>
+   * $dht3 = $jpeg->getSection(PelJpegMarker::DHT, 2);
+   * </code>
+   *
+   * whereas one can just do:
+   *
+   * <code>
+   * $app1 = $jpeg->getSection(PelJpegMarker::APP1);
+   * </code>
+   *
+   * to get hold of the first (and normally only) {@link
+   * PelJpegMarker::APP1 APP1} section, which would hold the EXIF
+   * data.
+   *
+   * @param PelJpegMarker the marker identifying the section.
+   *
+   * @param int the number of sections to be skipped.  This must be a
+   * non-negative integer.
+   *
+   * @return PelJpegContent the content found, or null if there is no
+   * content available.
+   */
+  function getSection($marker, $skip = 0) {
+    foreach ($this->sections as $s) {
+      if ($s[0] == $marker)
+        if ($skip > 0)
+          $skip--;
+        else
+          return $s[1];
+    }
+
+    return null;        
   }
 
 
+  /**
+   * Get all sections.
+   *
+   * @return array an array of ({@link PelJpegMarker}, {@link
+   * PelJpegContent}) pairs.
+   */
   function getSections() {
     return $this->sections;
   }
 
+
+  /**
+   * Turn this JPEG object into bytes.
+   *
+   * The bytes returned by this method is ready to be stored in a file
+   * as a valid JPEG image.
+   *
+   * @return string bytes representing this JPEG object, including all
+   * its sections and their associated data.
+   */
   function getBytes() {
     $bytes = '';
 
     for ($i = 0; $i < $this->count; $i++) {
-      $s = $this->sections[$i];
-      $m = $s->getMarker();
-      //printf ("Writing marker 0x%X...\n", $m);
+      $m = $this->sections[$i][0];
+      $c = $this->sections[$i][1];
 
       /* Write the marker */
       $bytes .= "\xFF" . PelJpegMarker::getBytes($m);
@@ -188,7 +287,7 @@ class PelJpeg {
           $m == PelJpegMarker::EOI)
         continue;
 
-      $data = $s->getContent()->getBytes();
+      $data = $c->getBytes();
       $size = strlen($data);
       
       $bytes .= chr(($size + 2) >> 8);
@@ -200,16 +299,24 @@ class PelJpeg {
         $bytes .= $this->jpeg_data->getBytes();
     }
 
-    return $bytes;    
+    return $bytes;
 
   }
 
 
+  /**
+   * Make a string representation of this JPEG object.
+   *
+   * This is mainly usefull for debugging.  It will show the structure
+   * of the image, and its sections.
+   *
+   * @return string debugging information about this JPEG object.
+   */
   function __toString() {
     $str = Pel::tra("Dumping JPEG data...\n");
     for ($i = 0; $i < $this->count; $i++) {
-      $m = $this->sections[$i]->getMarker();
-      $c = $this->sections[$i]->getContent();
+      $m = $this->sections[$i][0];
+      $c = $this->sections[$i][1];
       $str .= Pel::fmt("Section %d (marker 0x%02X - %s):\n",
                        $i, $m, PelJpegMarker::getName($m));
       $str .= Pel::fmt("  Description: %s\n",
@@ -232,8 +339,23 @@ class PelJpeg {
   }
 
 
-  function isValid(PelDataWindow $d) {
-    /* JPEG data is stored in little-endian format. */
+  /**
+   * Test data to see if it could be a valid JPEG image.
+   *
+   * The function will only look at the first few bytes of the data,
+   * and try to determine if it could be a valid JPEG image based on
+   * those bytes.  This means that the check is more like a heuristic
+   * than a rigorous check.
+   *
+   * @param PelDataWindow the bytes that will be checked.
+   *
+   * @return boolean true if the bytes look like the beginning of a
+   * JPEG image, false otherwise.
+   *
+   * @see PelTiff::isValid()
+   */
+  static function isValid(PelDataWindow $d) {
+    /* JPEG data is stored in big-endian format. */
     $d->setByteOrder(PelConvert::BIG_ENDIAN);
     
     for ($i = 0; $i < 7; $i++)
