@@ -24,3 +24,7 @@ attention is needed.
 
 * Write test cases for SimpleTest
    Get it from http://sf.net/projects/simpletest.
+
+* Write functions to replace the builtin PHP EXIF functions.
+   This would make PEL a drop-in replacement for people who cannot use
+   the PHP EXIF extension.
