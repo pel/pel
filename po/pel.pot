@@ -8,13 +8,18 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-06-09 00:28+0200\n"
+"POT-Creation-Date: 2004-06-09 14:49+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
+
+#: PelDataWindow.php:535
+#, php-format
+msgid "DataWindow: %d bytes in [%d, %d] of %d bytes"
+msgstr ""
 
 #: PelEntryAscii.php:342
 msgid "(Photographer)"
@@ -34,12 +39,12 @@ msgstr ""
 msgid "    Format    : %d (%s)\n"
 msgstr ""
 
-#: PelEntry.php:325
+#: PelEntry.php:324
 #, php-format
 msgid "    Components: %d\n"
 msgstr ""
 
-#: PelEntry.php:326
+#: PelEntry.php:325
 #, php-format
 msgid "    Value     : %s\n"
 msgstr ""
@@ -555,9 +560,9 @@ msgstr ""
 msgid "Dumping %d bytes of EXIF data...\n"
 msgstr ""
 
-#: PelFormat.php:162 PelFormat.php:189
+#: PelFormat.php:163 PelFormat.php:190
 #, php-format
-msgid "Unknown type: 0x%X"
+msgid "Unknown format: 0x%X"
 msgstr ""
 
 #: PelIfd.php:423
