@@ -10,9 +10,9 @@ PEL Version 0.3  ?th May 2004
 
 Notes:
 
-The decoding of EXIF data is now tested against known values, this
-lead to the discovery of a couple of subtle bugs.  The documentation
-has been expanded.
+The decoding of EXIF data is now tested against known values (over 400
+individual tests).  This lead to the discovery of a couple of subtle
+bugs.  The documentation has been updated.
 
 Changes:
 
@@ -24,7 +24,8 @@ Changes:
 * Fixed display of integer version numbers.  Version x.0 would be
   displayed as just version 'x' before.
 
-* Unit tests for EXIF decoding.
+* Unit tests for EXIF decoding.  PEL is now tested with an image from
+  a Sony DSC V1 and one from a Canon IXUS II.
 
 * Changed all occurances of include_once() to require_once() since the
   files are required.
