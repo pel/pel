@@ -71,7 +71,7 @@ then it is highly recommended that you download SimpleTest from
 
   http://sourceforge.net/projects/simpletest
 
-and use it to check that your changes doesn't introduce new bugs.
+and use it to check that your changes does not introduce new bugs.
 Simply place SimpleTest in a directory parallel to the PEL
 installation directory and run the test.php file found in the test
 directory in the PEL.  It should report that all tests have passed, if

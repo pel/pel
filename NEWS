@@ -50,7 +50,7 @@ Changes:
 
 * Disabled the code that tries to lookup the title and description of
   the GPS related tags, since those tags have the same hexadecimal
-  value as a number of other normal tags.  This means that there's no
+  value as a number of other normal tags.  This means that there is no
   support for tags with GPS information.
 
 * Marked strings for translation throughout the source code.
@@ -85,7 +85,7 @@ Changes:
 
 * Renamed all files and classes so that only EXIF specific code is
   labeled with Exif.  So, for example, PelExifIfd is now PelIfd, since
-  the IFD structure isn't specific to EXIF but rather to TIFF images.
+  the IFD structure is not specific to EXIF but rather to TIFF images.
   The same applies to the former PelExifEntry* classes.
 
 * Fixed offset bug in PelDataWindow::getBytes() which caused the
