@@ -43,10 +43,10 @@
 
 
 MAJOR=0
-MINOR=6
+MINOR=7
 VERSION=$MAJOR.$MINOR
 
-# Remove old directory, if present
+# Remove old directories, if present
 if test -e pel-$VERSION; then
     echo "Removing old pel-$VERSION directory"
     rm -r pel-$VERSION       \
@@ -54,6 +54,15 @@ if test -e pel-$VERSION; then
         pel-$VERSION.tar.gz  \
         pel-$VERSION.zip
 fi
+
+if test -e image-tests; then
+    echo "Removing old pel-image-tests directory"
+    rm -r image-tests                    \
+        pel-image-tests-$VERSION.tar.bz2 \
+        pel-image-tests-$VERSION.tar.gz  \
+        pel-image-tests-$VERSION.zip
+fi
+
 
 # Determine if this is the final run or just a trial
 read -p "Tag CVS with 'release-${MAJOR}_${MINOR}' and upload files to SourceForge? [y/N] " -n 1
@@ -115,6 +124,19 @@ perl -p -i -e 's|^\d{4}-\d\d-\d\d \d\d:\d\d  tag release-(\d)_(\d)$|</pre>\n\n<d
 # Leave the package directory
 cd ..
 
+mv pel-$VERSION/test/image-tests image-tests
+
+echo -n "Creating pel-image-tests-$VERSION.tar.gz... "
+tar -cz image-tests -f pel-image-tests-$VERSION.tar.gz
+echo "done."
+
+echo -n "Creating pel-image-tests-$VERSION.tar.bz2... "
+tar -cj image-tests -f pel-image-tests-$VERSION.tar.bz2
+echo "done."
+
+echo -n "Creating pel-images-$VERSION.zip... "
+zip -qr pel-image-tests-$VERSION.zip image-tests
+echo "done."
 
 echo -n "Creating pel-$VERSION.tar.gz... "
 tar -cz pel-$VERSION -f pel-$VERSION.tar.gz
@@ -133,9 +155,12 @@ echo "done."
 if [ "$REPLY" == "y" -o "$REPLY" == "Y" ]; then
     echo -n "Uploading files to SourceForge for release... "
     ncftpput upload.sourceforge.net /incoming \
-        pel-$VERSION.tar.gz \
-        pel-$VERSION.tar.bz2 \
-        pel-$VERSION.zip
+        pel-$VERSION.tar.gz                   \
+        pel-$VERSION.tar.bz2                  \
+        pel-$VERSION.zip                      \
+        pel-image-tests-$VERSION.tar.gz       \
+        pel-image-tests-$VERSION.tar.bz2      \
+        pel-image-tests-$VERSION.zip
     echo "done."
 
     echo -n "Uploading API documentation to SourceForge... "
