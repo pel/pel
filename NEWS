@@ -22,11 +22,13 @@ Changes:
   value as a number of other normal tags.  This means that there's no
   support for tags with GPS information.
 
-* Marked all strings for translation.
+* Marked strings for translation throughout the source code.
 
 * Added German, French, and Spanish translations taken from libexif.
   The translations were made by Lutz Müller, Fabian Mandelbaum, and
   Arnaud Launay, respectively.
+
+* Added Danish translation.
 
 * Added new static methods Pel::tra and Pel::fmt which are used for
   interaction with Gettext.  The first function simply translates its
