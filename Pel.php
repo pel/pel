@@ -56,10 +56,11 @@ class Pel {
    * terminates the output with a newline, and that it only outputs
    * something if the PEL_DEBUG defined to some true value.
    *
+   * @param string $format the format string.
+   *
    * @param mixed $args,... any number of arguments can be given.  The
-   * first argument must be a string which will be used as a format
-   * string for sprintf() --- the remaining arguments will be
-   * available for the format string as usual with sprintf().
+   * arguments will be available for the format string as usual with
+   * sprintf().
    */
   static function debug() {
     if (self::$debug) {
@@ -78,10 +79,11 @@ class Pel {
    * newline, and that it only outputs something if the PEL_DEBUG
    * defined to some true value.
    *
+   * @param string $format the format string.
+   *
    * @param mixed $args,... any number of arguments can be given.  The
-   * first argument must be a string which will be used as a format
-   * string for sprintf() --- the remaining arguments will be
-   * available for the format string as usual with sprintf().
+   * arguments will be available for the format string as usual with
+   * sprintf().
    */
   static function warning() {
     if (self::$debug) {

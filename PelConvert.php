@@ -41,8 +41,8 @@
  * The functions found in this class are used to convert bytes into
  * integers of several sizes ({@link bytesToShort}, {@link
  * bytesToLong}, and {@link bytesToRational}) and convert integers of
- * several sizes into bytes ({@link shortToBytes}, {@link
- * longToBytes}, and {@link rationalToBytes}).
+ * several sizes into bytes ({@link shortToBytes} and {@link
+ * longToBytes}).
  *
  * All the methods are static and they all rely on an argument that
  * specifies the byte order to be used, this must be one of the class
