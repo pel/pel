@@ -5,6 +5,20 @@ Copyright (C) 2004  Martin Geisler <gimpster@users.sourceforge.net>
 Licensed under the GNU GPL, see COPYING for details.
 
 
+PEL Version 0.7  (not yet released.)
+************************************
+
+Notes:
+
+The Danish translation was updated slightly.
+
+Changes:
+
+* Updated the Danish translation.
+
+* Removed trailing newlines at the end of Pel.php and PelConvert.php.
+
+
 PEL Version 0.6  July 21st 2004
 *******************************
 
@@ -187,6 +201,7 @@ Changes:
   INTEROPERABILITY_VERSION tags.
 
 * Updated doc comments all over.
+
 
 PEL Version 0.1  May 8th, 2004
 ******************************
