@@ -244,7 +244,6 @@ class PelExifEntrySRational extends PelExifEntrySLong {
 
     case PelExifTag::EXPOSURE_BIAS_VALUE:
       //CC (e->components, 1, v);
-      // TODO: is getRational as good as getSRational?
       //if (!v_srat.denominator) return (NULL);
       return sprintf('%s%.01f', $v[0]*$v[1] > 0 ? '+' : '', $v[0]/$v[1]);
 
