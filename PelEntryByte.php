@@ -36,8 +36,8 @@
  * @subpackage EXIF
  */
 
-/** Class definition of {@link PelExifEntryNumber}. */
-require_once('PelExifEntryNumber.php');
+/** Class definition of {@link PelEntryNumber}. */
+require_once('PelEntryNumber.php');
 
 
 /**
@@ -45,13 +45,13 @@ require_once('PelExifEntryNumber.php');
  *
  * This class can hold bytes, either just a single byte or an array of
  * bytes.  The class will be used to manipulate any of the EXIF tags
- * which has format {@link PelExifFormat::BYTE}.
+ * which has format {@link PelFormat::BYTE}.
  *
  * @author Martin Geisler <gimpster@users.sourceforge.net>
  * @package PEL
  * @subpackage EXIF
  */
-class PelExifEntryByte extends PelExifEntryNumber {
+class PelEntryByte extends PelEntryNumber {
 
   /**
    * Make a new entry that can hold an unsigned byte.
@@ -60,9 +60,9 @@ class PelExifEntryByte extends PelExifEntryNumber {
    * getValue} method will always return an array except for when a
    * single integer argument is given here.
    *
-   * @param PelExifTag the tag which this entry represents.  This
-   * should be one of the constants defined in {@link PelExifTag}
-   * which has format {@link PelExifFormat::BYTE}.
+   * @param PelTag the tag which this entry represents.  This
+   * should be one of the constants defined in {@link PelTag}
+   * which has format {@link PelFormat::BYTE}.
    *
    * @param int $value... the byte(s) that this entry will represent.
    * The argument passed must obey the same rules as the argument to
@@ -74,7 +74,7 @@ class PelExifEntryByte extends PelExifEntryNumber {
     $this->tag    = $tag;
     $this->min    = 0;
     $this->max    = 255;
-    $this->format = PelExifFormat::BYTE;
+    $this->format = PelFormat::BYTE;
 
     $value = func_get_args();
     array_shift($value);
@@ -104,13 +104,13 @@ class PelExifEntryByte extends PelExifEntryNumber {
  *
  * This class can hold bytes, either just a single byte or an array of
  * bytes.  The class will be used to manipulate any of the EXIF tags
- * which has format {@link PelExifFormat::BYTE}.
+ * which has format {@link PelFormat::BYTE}.
  *
  * @author Martin Geisler <gimpster@users.sourceforge.net>
  * @package PEL
  * @subpackage EXIF
  */
-class PelExifEntrySByte extends PelExifEntryNumber {
+class PelEntrySByte extends PelEntryNumber {
 
   /**
    * Make a new entry that can hold a signed byte.
@@ -119,9 +119,9 @@ class PelExifEntrySByte extends PelExifEntryNumber {
    * method will always return an array except for when a single
    * integer argument is given here.
    *
-   * @param PelExifTag the tag which this entry represents.  This
-   * should be one of the constants defined in {@link PelExifTag}
-   * which has format {@link PelExifFormat::BYTE}.
+   * @param PelTag the tag which this entry represents.  This
+   * should be one of the constants defined in {@link PelTag}
+   * which has format {@link PelFormat::BYTE}.
    *
    * @param int $value... the byte(s) that this entry will represent.
    * The argument passed must obey the same rules as the argument to
@@ -133,7 +133,7 @@ class PelExifEntrySByte extends PelExifEntryNumber {
     $this->tag    = $tag;
     $this->min    = -128;
     $this->max    = 127;
-    $this->format = PelExifFormat::SBYTE;
+    $this->format = PelFormat::SBYTE;
 
     $value = func_get_args();
     array_shift($value);
