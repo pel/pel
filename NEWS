@@ -10,11 +10,28 @@ PEL Version 0.5 (not yet released)
 
 Notes:
 
+This release has been tested with images from a number of different
+camera models (from Fujifilm, Nikon, Ricoh, Sony, and Canon), leading
+to the discovery and fixing of a number of bugs.  The API for PelJpeg
+was changed slightly, making it more convenient to use.
 
 Changes:
 
-* Fixed #976782.  If an image contains two APP1 sections, PEL would
-  crash trying to parse the second non-EXIF section.
+* Fixed a number of bugs regarding the conversion back and forth
+  between integers and bytes.  These bugs affected the parsing of
+  large integers that would overflow a signed 32 bit integer.
+
+* Fixed bug #976782.  If an image contains two APP1 sections, PEL
+  would crash trying to parse the second non-EXIF section.  PEL will
+  now just store a non-EXIF APP1 section as a generic PelJpegContent
+  object.
+
+* Removed the PelJpegSection class.  This lead to a rewrite of the
+  PelJpeg::getSection() method, so that it now takes a PelJpegMarker
+  as argument instead of the section number.
+
+* The byte order can now be specified when a PelTiff object is
+  converted into bytes.
 
 * Updated documentation.
 
