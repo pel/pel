@@ -4,7 +4,7 @@
 /*  PEL: PHP EXIF Library.  A library with support for reading and
  *  writing all EXIF headers in JPEG and TIFF images using PHP.
  *
- *  Copyright (C) 2004  Martin Geisler <gimpster@users.sourceforge.net>
+ *  Copyright (C) 2004, 2005  Martin Geisler.
  *
  *  This program is free software; you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
@@ -42,11 +42,13 @@ $test->addTestFile('undefined.php');
 
 
 if (is_dir('image-tests')) {
-  $image_tests = scandir('image-tests');
-  
+  $image_tests = glob('image-tests/*.php');
   foreach ($image_tests as $image_test)
-    if (substr($image_test, -4) == '.php')
-      $test->addTestFile('image-tests/' . $image_test);
+    /* This will skip the make-image-test.php file (and other scripts
+     * like it), which starts with '#!/usr/bin/php5'. */
+    if (reset(file($image_test)) == "<?php\n")
+      $test->addTestFile($image_test);
+
 } else {
   echo "Found no image tests, only core functionality will be tested.\n";
   echo "Image tests are available from http://pel.sourceforge.net/.\n";
