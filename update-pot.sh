@@ -23,13 +23,11 @@
 # $Id$
 
 
-# This small script will update the main PEL.pot template file in the
-# po directory so that it contains the all the strings currently used
-# in PEL.
+# This small script will update the pel.pot template file in the po
+# directory so that it contains the all the strings used in PEL.
 
-xgettext --output=po/PEL.pot \
+xgettext --output=po/pel.pot \
     --keyword=tra            \
     --keyword=fmt            \
     --flag=fmt:1:php-format  \
     Pel*.php
-
