@@ -5,6 +5,20 @@ Copyright (C) 2004  Martin Geisler <gimpster@users.sourceforge.net>
 Licensed under the GNU GPL, see COPYING for details.
 
 
+PEL Version 0.5 (not yet released)
+**********************************
+
+Notes:
+
+
+Changes:
+
+* Fixed #976782.  If an image contains two APP1 sections, PEL would
+  crash trying to parse the second non-EXIF section.
+
+* Updated documentation.
+
+
 PEL Version 0.4  June 9th, 2004
 *******************************
 
