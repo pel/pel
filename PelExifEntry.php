@@ -25,6 +25,13 @@
 
 
 /**
+ * Classes for dealing with EXIF entries.
+ *
+ * This file defines two exception classes and the abstract class
+ * {@link PelExifEntry} which provides the basic methods that all EXIF
+ * entries will have.  All EXIF entries will be represented by
+ * descendants of the {@link PelExifEntry} class.
+ *
  * @author Martin Geisler <gimpster@users.sourceforge.net>
  * @version $Revision$
  * @date $Date$
