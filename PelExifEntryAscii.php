@@ -92,7 +92,7 @@ class PelExifEntryAscii extends PelExifEntry {
   function __construct($tag, $str = '') {
     $this->tag    = $tag;
     $this->format = PelExifFormat::ASCII;
-    $this->setAscii($str);
+    self::setValue($str);
   }
 
 
@@ -100,16 +100,15 @@ class PelExifEntryAscii extends PelExifEntry {
    * Give the entry a new ASCII value.
    *
    * This will overwrite the previous value.  The value can be
-   * retrieved later with the {@link getAscii} method.
+   * retrieved later with the {@link getValue} method.
    *
    * @param string the new value of the entry.  This should be given
    * without any trailing NULL character.  The string must be plain
    * 7-bit ASCII, the string should contain no high bytes.
+   *
+   * @todo Implement check for high bytes?
    */
-  function setAscii($str) {
-    // TODO: check that we always use a NULL character to terminate
-    // ASCII strings.
-    // TODO: check for ASCII string.
+  function setValue($str) {
     $this->components = strlen($str)+1;
     $this->str        = $str;
     $this->bytes      = $str . chr(0);
@@ -120,10 +119,10 @@ class PelExifEntryAscii extends PelExifEntry {
    * Return the ASCII string of the entry.
    *
    * @return string the string held, without any final NULL character.
-   * The string will be the same as the one given to {@link setAscii}
+   * The string will be the same as the one given to {@link setValue}
    * or to the {@link __construct constructor}.
    */
-  function getAscii() {
+  function getValue() {
     return $this->str;
   }
 
@@ -131,12 +130,12 @@ class PelExifEntryAscii extends PelExifEntry {
   /**
    * Return the ASCII string of the entry.
    *
-   * This methods returns the same as {@link getAscii}.
+   * This methods returns the same as {@link getValue}.
    *
    * @param boolean not used with ASCII entries.
    *
    * @return string the string held, without any final NULL character.
-   * The string will be the same as the one given to {@link setAscii}
+   * The string will be the same as the one given to {@link setValue}
    * or to the {@link __construct constructor}.
    */
   function getText($brief = false) {
@@ -153,9 +152,9 @@ class PelExifEntryAscii extends PelExifEntry {
  * in this example where the time is advanced by one week:
  * <code>
  * $entry = $ifd->getEntry(ExifTag::DATE_TIME_ORIGINAL);
- * $time = $entry->getTime();
+ * $time = $entry->getValue();
  * print('The image was taken on the ' . date($time, 'jS'));
- * $entry->setTime($time + 7 * 24 * 3600);
+ * $entry->setValue($time + 7 * 24 * 3600);
  * </code>
  *
  * @author Martin Geisler <gimpster@users.sourceforge.net>
@@ -187,10 +186,8 @@ class PelExifEntryTime extends PelExifEntryAscii {
     if (!is_int($timestamp))
       $timestamp = time();
 
-    // TODO: use gmdate() instead, or how to deal with timezones? Use
-    // the TimeZoneOffset tag 0x882A?
     parent::__construct($tag);
-    $this->setTime($timestamp);
+    $this->setValue($timestamp);
   }
 
   
@@ -202,7 +199,7 @@ class PelExifEntryTime extends PelExifEntryAscii {
    * 1st, 1970 UTC).  This will be the same as the one given to {@link
    * setTime} or to the {@link __construct constructor}.
    */
-  function getTime() {
+  function getValue() {
     return $this->timestamp;
   }
 
@@ -213,12 +210,15 @@ class PelExifEntryTime extends PelExifEntryAscii {
    * @param int the new timestamp to be held by this entry.  This
    * should be a standard UNIX timestamp (counting the number of
    * seconds since 00:00:00 January 1st, 1970 UTC).  The old timestamp
-   * will be overwritten, retrive it first with {@link getTime} if
+   * will be overwritten, retrive it first with {@link getValue} if
    * necessary.
+   *
+   * @todo How to deal with timezones? Use the TimeZoneOffset tag
+   * 0x882A?
    */
-  function setTime($timestamp) {
+  function setValue($timestamp) {
     $this->timestamp = $timestamp;
-    $this->setAscii(date('Y:m:d H:i:s', $timestamp));
+    parent::setValue(gmdate('Y:m:d H:i:s', $timestamp));
   }
 }
 
@@ -278,7 +278,7 @@ class PelExifEntryCopyright extends PelExifEntryAscii {
    */
   function __construct($photographer = '', $editor = '') {
     parent::__construct(PelExifTag::COPYRIGHT);
-    $this->setCopyright($photographer, $editor);
+    $this->setValue($photographer, $editor);
   }
   
 
@@ -291,7 +291,7 @@ class PelExifEntryCopyright extends PelExifEntryAscii {
    * @param string the editor copyright.  Use the empty string if
    * there's no editor copyright.
    */
-  function setCopyright($photographer = '', $editor = '') {
+  function setValue($photographer = '', $editor = '') {
     $this->photographer = $photographer;
     $this->editor       = $editor;
 
@@ -299,9 +299,9 @@ class PelExifEntryCopyright extends PelExifEntryAscii {
       $photographer = ' ';
 
     if ($editor == '')
-      $this->setAscii($photographer);
+      parent::setValue($photographer);
     else
-      $this->setAscii($photographer . chr(0x00) . $editor);
+      parent::setValue($photographer . chr(0x00) . $editor);
   }
 
 
@@ -310,14 +310,14 @@ class PelExifEntryCopyright extends PelExifEntryAscii {
    *
    * The strings returned will be the same as the one used previously
    * with either {@link __construct the constructor} or with {@link
-   * setCopyright}.
+   * setValue}.
    *
    * @return array an array with two strings, the photographer and
    * editor copyrights.  The two fields will be returned in that
    * order, so that the first array index will be the photographer
    * copyright, and the second will be the editor copyright.
    */
-  function getCopyright() {
+  function getValue() {
     return array($this->photographer, $this->editor);
   }
 
