@@ -43,8 +43,9 @@ please contribute one.  The image should
   using an image manipulation program, for then it is this program
   that will be tested, not the camera that took the image,
 
-* be of something neutral --- a flower, a mountain or something like
-  that, and not be a shot from a private party,
+* be of something which wont protest to be widely published on the
+  net.  Things like a flower, a mountain, or a cat springs to mind,
+  whereas pictures from a private party are no good,
 
 * licensed under the GNU GPL as the rest of PEL, so that it can be
   redistributed as part of the test suite.
