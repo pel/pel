@@ -167,7 +167,9 @@ abstract class PelEntry {
       if ($components != 20)
         throw new PelWrongComponentsCountException($components, 20);
 
-      $d = explode('-', strtr($data->getBytes(0, -1), ': ', '--'));
+      /* Split the string into year, month, date, hour, minute, and
+       * second components. */
+      $d = explode('-', strtr($data->getBytes(0, -1), '.: ', '---'));
       // TODO: handle timezones.
       require_once('PelEntryAscii.php');
       return new PelEntryTime($tag, mktime($d[3], $d[4], $d[5],
