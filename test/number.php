@@ -104,48 +104,48 @@ SimpleTestOptions::ignore('NumberTestCase');
 
 class ByteTestCase extends NumberTestCase {
   function __construct() {
-    require_once('../PelExifEntryByte.php');
-    $this->num = new PelExifEntryByte(42);
+    require_once('../PelEntryByte.php');
+    $this->num = new PelEntryByte(42);
     parent::__construct(0, 255);
   }
 }
 
 class SByteTestCase extends NumberTestCase {
   function __construct() {
-    require_once('../PelExifEntryByte.php');
-    $this->num = new PelExifEntrySByte(42);
+    require_once('../PelEntryByte.php');
+    $this->num = new PelEntrySByte(42);
     parent::__construct(-128, 127);
   }
 }
 
 class ShortTestCase extends NumberTestCase {
   function __construct() {
-    require_once('../PelExifEntryShort.php');
-    $this->num = new PelExifEntryShort(42);
+    require_once('../PelEntryShort.php');
+    $this->num = new PelEntryShort(42);
     parent::__construct(0, 65535);
   }
 }
 
 class SShortTestCase extends NumberTestCase {
   function __construct() {
-    require_once('../PelExifEntryShort.php');
-    $this->num = new PelExifEntrySShort(42);
+    require_once('../PelEntryShort.php');
+    $this->num = new PelEntrySShort(42);
     parent::__construct(-32768, 32767);
   }
 }
 
 class LongTestCase extends NumberTestCase {
   function __construct() {
-    require_once('../PelExifEntryLong.php');
-    $this->num = new PelExifEntryLong(42);
+    require_once('../PelEntryLong.php');
+    $this->num = new PelEntryLong(42);
     parent::__construct(0, 4294967295);
   }
 }
 
 class SLongTestCase extends NumberTestCase {
   function __construct() {
-    require_once('../PelExifEntryLong.php');
-    $this->num = new PelExifEntrySLong(42);
+    require_once('../PelEntryLong.php');
+    $this->num = new PelEntrySLong(42);
     parent::__construct(-2147483648, 2147483647);
   }
 }
