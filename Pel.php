@@ -36,14 +36,24 @@
  */
 
 
-/* Initialize Gettext.  This must be done before any part of PEL calls
- * Pel::tra() or Pel::fmt() --- this is ensured if every piece of code
- * using those two functions require() this file.
+/* Initialize Gettext, if available.  This must be done before any
+ * part of PEL calls Pel::tra() or Pel::fmt() --- this is ensured if
+ * every piece of code using those two functions require() this file.
+ *
+ * If Gettext is not available, wrapper functions will be created,
+ * allowing PEL to function, but without any translations.
  *
  * The PEL translations are stored in './locale'.  It is important to
  * use an absolute path here because the lookups will be relative to
  * the current directory. */
-bindtextdomain('pel', dirname(__FILE__) . '/locale');
+
+if (function_exists('dgettext')) {
+  bindtextdomain('pel', dirname(__FILE__) . '/locale');
+} else {
+  function dgettext($domain, $str) {
+    return $str;
+  }
+}
 
 
 /**
