@@ -35,20 +35,16 @@
  * @package PEL
  */
 
-/** Class definition of {@link PelException}. */
-require_once('PelException.php');
-/** Class definition of {@link PelJpegContent}. */
+/**#@+ Required class definitions. */
 require_once('PelJpegContent.php');
-/** Class definition of {@link PelIfd}. */
-require_once('PelIfd.php');
-/** Class definition of {@link PelTag}. */
-require_once('PelTag.php');
-/** Class definition of {@link PelEntry}. */
-require_once('PelEntry.php');
-/** Class definition of {@link PelFormat}. */
+require_once('PelException.php');
 require_once('PelFormat.php');
-
+require_once('PelEntry.php');
 require_once('PelTiff.php');
+require_once('PelIfd.php');
+require_once('PelTag.php');
+/**#@-*/
+
 
 /**
  * Exception throw if invalid EXIF data is found.
@@ -141,8 +137,8 @@ class PelExif extends PelJpegContent {
   /**
    * Return a string representation of this object.
    *
-   * @string a string describing this object.  This is mostly useful
-   * for debugging.
+   * @return string a string describing this object.  This is mostly
+   * useful for debugging.
    */
   function __toString() {
     return sprintf("Dumping %d bytes of EXIF data...\n%s",

@@ -35,13 +35,14 @@
  * @package PEL
  */
 
-/** Class definition of {@link PelException}. */
-require_once('PelException.php');
-/** Class definition of {@link PelDataWindow}. */
+/**#@+ Required class definitions. */
 require_once('PelDataWindow.php');
-require_once('PelTag.php');
+require_once('PelException.php');
 require_once('PelFormat.php');
 require_once('PelEntry.php');
+require_once('PelTag.php');
+/**#@-*/
+
 
 /**
  * @author Martin Geisler <gimpster@users.sourceforge.net>

@@ -34,10 +34,10 @@
  * @package PEL
  */
 
-/** Class definition of {@link PelException}. */
+/**#@+ Required class definitions. */
 require_once('PelException.php');
-/** Class definition of {@link PelConvert}. */
 require_once('PelConvert.php');
+/**#@-*/
 
 
 /**
