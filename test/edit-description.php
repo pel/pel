@@ -26,24 +26,87 @@
 
 error_reporting(E_ALL);
 
-if ($argc < 2) {
-  print('Usage: ' . $argv[0] . " <filename>\n");
+/* a printf() variant that appends a newline to the output. */
+function println(/* fmt, args... */) {
+    $args = func_get_args();
+    $fmt = array_shift($args);
+    vprintf($fmt . "\n", $args);
+}
+
+
+/* Make PEL speak the users language, if it is available. */
+setlocale(LC_ALL, '');
+
+require_once('../PelDataWindow.php');
+require_once('../PelJpeg.php');
+require_once('../PelTiff.php');
+
+$prog = array_shift($argv);
+$error = false;
+
+if (isset($argv[0]) && $argv[0] == '-d') {
+  Pel::$debug = true;
+  array_shift($argv);
+}
+
+if (isset($argv[0])) {
+  $input = array_shift($argv);
+} else {
+  $error = true;
+}
+
+if (isset($argv[0])) {
+  $output = array_shift($argv);
+} else {
+  $error = true;
+}
+
+if ($error) {
+  println('Usage: %s [-d] <input> <output> [desc]', $prog);
+  println('Optional arguments:');
+  println('  -d    turn debug output on.');
+  println('  desc  the new description.');
+  println('Mandatory arguments:');
+  println('  input   the input file, a JPEG or TIFF image.');
+  println('  output  the output file for the changed image.');
   exit(1);
 }
 
-include_once('../PelJpeg.php');
-include_once('../PelDataWindow.php');
+$description = implode(' ', $argv);
 
-$data = new PelDataWindow(file_get_contents($argv[1]));
-$jpeg = new PelJpeg($data);
+/* We typically need lots of RAM to parse TIFF images since they tend
+ * to be big and uncompressed. */
+ini_set('memory_limit', '32M');
 
-$ifd0 = $jpeg->getSection(2)->getContent()->getIfd();
-$exif = $ifd0->getSubIfd(PelTag::EXIF_IFD_POINTER);
-$ifd1 = $ifd0->getNextIfd();
+println('Reading file "%s".', $input);
+$data = new PelDataWindow(file_get_contents($input));
 
-$entry = $ifd0->getEntry(PelTag::IMAGE_DESCRIPTION);
-$entry->setAscii('Edited by PEL');
+if (PelJpeg::isValid($data)) {
+  $jpeg = $file = new PelJpeg($data);
+  $app1 = $jpeg->getSection(PelJpegMarker::APP1);
+  $tiff = $app1->getTiff();
+} elseif (PelTiff::isValid($data)) {
+  $tiff = $file = new PelTiff($data);
+} else {
+  println('Unrecognized image format! The first 16 bytes follow:');
+  PelConvert::bytesToDump($data->getBytes(0, 16)); 
+}
 
-rename($argv[1], $argv[1] . '.' . time());
-file_put_contents($argv[1], $jpeg->getBytes());
+$ifd0 = $tiff->getIfd();
+$desc = $ifd0->getEntry(PelTag::IMAGE_DESCRIPTION);
+
+if ($desc == null) {
+  println('Added new IMAGE_DESCRIPTION entry with "%s".', $description);
+  $desc = new PelEntryString(PelTag::IMAGE_DESCRIPTION, $description);
+  $ifd0->addEntry($desc);
+} else {
+  println('Updating IMAGE_DESCRIPTION entry from "%s" to "%s".',
+          $desc->getValue(), $description);
+  $desc->setValue($description);
+}
+
+println('Writing file "%s".', $output);
+file_put_contents($output, $file->getBytes());
+
+
 ?>
