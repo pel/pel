@@ -51,6 +51,11 @@ class SonyDscV1 extends UnitTestCase {
     $this->assertEqual($entry->getValue(), 'SONY');
     $this->assertEqual($entry->getText(), 'SONY');
 
+    $entry = $ifd0->getEntry(PelExifTag::MODEL);
+    $this->assertIsA($entry, 'PelExifEntryAscii');
+    $this->assertEqual($entry->getValue(), 'DSC-V1');
+    $this->assertEqual($entry->getText(), 'DSC-V1');
+
     $entry = $ifd0->getEntry(PelExifTag::ORIENTATION);
     $this->assertIsA($entry, 'PelExifEntryShort');
     $this->assertEqual($entry->getValue(), 1);
