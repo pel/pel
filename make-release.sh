@@ -42,7 +42,14 @@ cvs -Q -z3 export -kv -r HEAD -d pel-$VERSION pel
 echo "done."
 
 echo -n "Generating CVS ChangeLog... "
-cvs2cl --domain users.sourceforge.net --utc --file pel-$VERSION/ChangeLog
+echo "ChangeLog file for PEL: PHP EXIF Library.  A library with support for
+reading and writing all EXIF headers of JPEG images using PHP.
+
+Copyright (C) 2004  Martin Geisler <gimpster@users.sourceforge.net>
+Licensed under the GNU GPL, see COPYING for details.
+
+" > pel-$VERSION/ChangeLog
+cvs2cl --domain users.sourceforge.net --utc --stdout >> pel-$VERSION/ChangeLog
 echo "done."
 
 
