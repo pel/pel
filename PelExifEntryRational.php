@@ -43,24 +43,26 @@ include_once('PelExifEntryLong.php');
 
 
 /**
- * Class for holding signed rational numbers.
+ * Class for holding unsigned rational numbers.
  *
  * This class can hold rational numbers, consisting of a enumerator
- * and denumerator both of which are of type long.  The class can hold
- * either just a single rational or an array of rationals.  The class
- * will be used to manipulate any of the EXIF tags which can have
- * format {@link PelExifFormat::RATIONAL} like in this example:
+ * and denumerator both of which are of type unsigned long.  Each
+ * rational is represented by an array with just two entries: the
+ * enumerator and the denumerator, in that order.
+ *
+ * The class can hold either just a single rational or an array of
+ * rationals.  The class will be used to manipulate any of the EXIF
+ * tags which can have format {@link PelExifFormat::RATIONAL} like in
+ * this example:
  *
  * <code>
  * $resolution = $ifd->getEntry(PelExifTag::X_RESOLUTION);
- * $resolution->setRational(1, 300);
+ * $resolution->setValue(array(1, 300));
  * </code>
  *
  * Here the x-resolution is adjusted to 1/300, which will be 300 DPI,
  * unless the {@link PelExifTag::RESOLUTION_UNIT resolution unit} is
  * set to something different than 2 which means inches.
- *
- * @todo distinguish between signed and unsigned rationals.
  *
  * @author Martin Geisler <gimpster@users.sourceforge.net>
  * @package PEL
@@ -68,31 +70,32 @@ include_once('PelExifEntryLong.php');
  */
 class PelExifEntryRational extends PelExifEntryLong {
 
-
   /**
-   * Make a new entry that can hold a rational.
-   *
-   * The {@link getLong} method will always return an array of
-   * two-element arrays.
+   * Make a new entry that can hold an unsigned rational.
    *
    * @param PelExifTag the tag which this entry represents.  This
    * should be one of the constants defined in {@link PelExifTag},
-   * e.g., {@link PelExifTag::IMAGE_WIDTH}, or any other tag which can
-   * have format {@link PelExifFormat::LONG}.
+   * e.g., {@link PelExifTag::X_RESOLUTION}, or any other tag which can
+   * have format {@link PelExifFormat::RATIONAL}.
    *
-   * @param int|array $value the long(s) that this entry will
-   * represent or an array of longs.  The argument passed must obey
-   * the same rules as the argument to {@link setLong}, namely that it
-   * should be within range of a signed long (32 bit), that is between
-   * -2147483648 and 2147483647 (inclusive).  If not, then a {@link
-   * PelExifEntryShortException} will be thrown.
+   * @param array $value... the rational(s) that this entry will
+   * represent.  The arguments passed must obey the same rules as the
+   * argument to {@link setValue}, namely that each argument should be
+   * an array with two entries, both of which must be within range of
+   * an unsigned long (32 bit), that is between 0 and 4294967295
+   * (inclusive).  If not, then a {@link PelOverflowException} will be
+   * thrown.
    */
-  function __construct($tag) {
+  function __construct($tag /* ... */) {
     $this->tag       = $tag;
     $this->format    = PelExifFormat::RATIONAL;
     $this->dimension = 2;
     $this->min       = 0;
     $this->max       = 4294967295;
+
+    $value = func_get_args();
+    array_shift($value);
+    $this->setValueArray($value);
   }
 
 
@@ -153,15 +156,36 @@ class PelExifEntryRational extends PelExifEntryLong {
 
 
 class PelExifEntrySRational extends PelExifEntrySLong {
+
+  /**
+   * Make a new entry that can hold a signed rational.
+   *
+   * @param PelExifTag the tag which this entry represents.  This
+   * should be one of the constants defined in {@link PelExifTag},
+   * e.g., {@link PelExifTag::X_RESOLUTION}, or any other tag which can
+   * have format {@link PelExifFormat::RATIONAL}.
+   *
+   * @param array $value... the rational(s) that this entry will
+   * represent.  The arguments passed must obey the same rules as the
+   * argument to {@link setValue}, namely that each argument should be
+   * an array with two entries, both of which must be within range of
+   * a signed long (32 bit), that is between -2147483648 and
+   * 2147483647 (inclusive).  If not, then a {@link
+   * PelOverflowException} will be thrown.
+   */
   function __construct($tag) {
     $this->tag       = $tag;
     $this->format    = PelExifFormat::SRATIONAL;
     $this->dimension = 2;
     $this->min       = -2147483648;
     $this->max       = 2147483647;
+
+    $value = func_get_args();
+    array_shift($value);
+    $this->setValueArray($value);
   }
 
-  
+
   function formatNumber($number, $brief = false) {
     if ($number[1] < 0)
       /* Turn output like 1/-2 into -1/2. */
@@ -213,8 +237,6 @@ class PelExifEntrySRational extends PelExifEntrySLong {
     }
   }
 
-
 }
-
 
 ?>
