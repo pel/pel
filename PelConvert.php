@@ -54,7 +54,7 @@
  * @author Martin Geisler <gimpster@users.sourceforge.net>
  * @package PEL
  */
- class PelConvert {
+class PelConvert {
 
   /**
    * Little-endian byte order.
@@ -89,6 +89,7 @@
     else
       return chr($value >> 8) . chr($value);
   }
+  
 
   static function longToBytes($value, $endian) {
     if ($endian == self::LITTLE_ENDIAN)
@@ -102,6 +103,40 @@
               chr($value >>  8) .
               chr($value));
   }
+
+
+  static function bytesToByte(&$bytes, $offset) {
+    return ord($bytes{$offset});
+  }
+
+
+  static function bytesToSByte(&$bytes, $offset) {
+    $n = self::bytesToByte($bytes, $offset);
+    if ($n > 127)
+      return $n - 255;
+    else
+      return $n;
+  }
+
+
+  static function bytesToShort(&$bytes, $offset, $endian) {
+    if ($endian == self::LITTLE_ENDIAN)
+      return (ord($bytes{$offset+1}) << 8 |
+              ord($bytes{$offset}));
+    else
+      return (ord($bytes{$offset})   << 8 |
+              ord($bytes{$offset+1}));
+  }
+
+
+  static function bytesToSShort(&$bytes, $offset, $endian) {
+    $n = self::bytesToShort($bytes, $offset, $endian);
+    if ($n > 32768)
+      return $n - 65536;
+    else
+      return $n;
+  }
+
 
   static function bytesToLong(&$bytes, $offset, $endian) {
     if ($endian == self::LITTLE_ENDIAN)
@@ -117,15 +152,13 @@
   }
 
 
-  static function bytesToShort(&$bytes, $offset, $endian) {
-    if ($endian == self::LITTLE_ENDIAN)
-      return (ord($bytes{$offset+1}) << 8 |
-              ord($bytes{$offset}));
+  static function bytesToSLong(&$bytes, $offset, $endian) {
+    $n = self::bytesToLong($bytes, $offset, $endian);
+    if ($n > 2147483647)
+      return $n - 4294967295;
     else
-      return (ord($bytes{$offset})   << 8 |
-              ord($bytes{$offset+1}));
+      return $n;
   }
-
 
   static function bytesToRational(&$bytes, $offset, $endian) {
     return array(self::bytesToLong($bytes, $offset, $endian),
@@ -133,8 +166,8 @@
   }
 
   static function bytesToSRational(&$bytes, $offset, $endian) {
-    return array(self::bytesToLong($bytes, $offset, $endian),
-                 self::bytesToLong($bytes, $offset+4, $endian));
+    return array(self::bytesToSLong($bytes, $offset, $endian),
+                 self::bytesToSLong($bytes, $offset+4, $endian));
   }
 
 
