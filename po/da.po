@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PEL 0.3\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2004-06-09 14:59+0200\n"
-"PO-Revision-Date: 2004-06-09 15:02+0200\n"
+"PO-Revision-Date: 2004-06-09 16:32+0200\n"
 "Last-Translator: Martin Geisler <gimpster@gimpster.com>\n"
 "Language-Team: Danish <dansk@klid.dk>\n"
 "MIME-Version: 1.0\n"
@@ -856,7 +856,7 @@ msgid "  Content    : EXIF data\n"
 msgstr "  Indhold    : EXIF data\n"
 
 #: PelJpeg.php:219
-#, fuzzy, php-format
+#, php-format
 msgid "  Size       : %d bytes\n"
 msgstr "  Størrelse  : %d bytes\n"
 
@@ -995,15 +995,15 @@ msgstr ""
 
 #: PelTag.php:1311
 msgid "YCbCr Coefficients"
-msgstr ""
+msgstr "YCbCr koefficienter"
 
 #: PelTag.php:1313
 msgid "YCbCr Sub-Sampling"
-msgstr ""
+msgstr "YCbCr del-prøvning"
 
 #: PelTag.php:1315
 msgid "YCbCr Positioning"
-msgstr ""
+msgstr "YCbCr placering"
 
 #: PelTag.php:1317
 msgid "Reference Black/White"
@@ -1027,7 +1027,7 @@ msgstr ""
 
 #: PelTag.php:1327 PelTag.php:1435
 msgid "CFA Pattern"
-msgstr ""
+msgstr "CFA mønster"
 
 #: PelTag.php:1329
 msgid "Battery Level"
@@ -1075,7 +1075,7 @@ msgstr "ISO hastighed"
 
 #: PelTag.php:1361
 msgid "OECF"
-msgstr ""
+msgstr "OECF"
 
 #: PelTag.php:1363
 msgid "Exif Version"
@@ -1091,7 +1091,7 @@ msgstr "Dato og tid (digitaliseret)"
 
 #: PelTag.php:1369
 msgid "Components Configuration"
-msgstr ""
+msgstr "Komponent konfiguration"
 
 #: PelTag.php:1371
 msgid "Compressed Bits per Pixel"
@@ -1107,7 +1107,7 @@ msgstr "Blænde"
 
 #: PelTag.php:1377
 msgid "Brightness"
-msgstr ""
+msgstr "Lysstyrke"
 
 #: PelTag.php:1379
 msgid "Exposure Bias"
@@ -1119,11 +1119,11 @@ msgstr "Maksimal blændetal"
 
 #: PelTag.php:1383
 msgid "Subject Distance"
-msgstr ""
+msgstr "Motivafstand"
 
 #: PelTag.php:1385
 msgid "Metering Mode"
-msgstr ""
+msgstr "Målemetode"
 
 #: PelTag.php:1387
 msgid "Light Source"
@@ -1179,7 +1179,7 @@ msgstr ""
 
 #: PelTag.php:1415
 msgid "Flash Energy"
-msgstr ""
+msgstr "Blitzenergi"
 
 #: PelTag.php:1417
 msgid "Spatial Frequency Response"
@@ -1211,7 +1211,7 @@ msgstr ""
 
 #: PelTag.php:1431
 msgid "File Source"
-msgstr ""
+msgstr "Fil kilde"
 
 #: PelTag.php:1433
 msgid "Scene Type"
@@ -1227,7 +1227,7 @@ msgstr "Specialfremstillet"
 
 #: PelTag.php:1441
 msgid "Exposure Mode"
-msgstr ""
+msgstr "Belysnings indstilling"
 
 #: PelTag.php:1443
 msgid "White Balance"
@@ -1235,7 +1235,7 @@ msgstr "Hvidbalance"
 
 #: PelTag.php:1445
 msgid "Digital Zoom Ratio"
-msgstr ""
+msgstr "Digital zoomforhold"
 
 #: PelTag.php:1447
 msgid "Focal Length In 35mm Film"
@@ -1267,7 +1267,7 @@ msgstr ""
 
 #: PelTag.php:1461
 msgid "Subject Distance Range"
-msgstr ""
+msgstr "Afstanden til motivet"
 
 #: PelTag.php:1463
 msgid "Image Unique ID"
