@@ -80,7 +80,7 @@ class PelExifEntryRational extends PelExifEntryLong {
    * e.g., {@link PelExifTag::IMAGE_WIDTH}, or any other tag which can
    * have format {@link PelExifFormat::LONG}.
    *
-   * @param long|array $value the long(s) that this entry will
+   * @param int|array $value the long(s) that this entry will
    * represent or an array of longs.  The argument passed must obey
    * the same rules as the argument to {@link setLong}, namely that it
    * should be within range of a signed long (32 bit), that is between
