@@ -109,7 +109,7 @@ echo "done."
 
 # Add anchors and headers to the HTML ChangeLog so that each release
 # notices can link back to it
-perl -p -i -e 's|^\d{4}-\d\d-\d\d \d\d:\d\d  tag release-(\d)_(\d)$|</pre>\n\n<div align="center"><h2><a id="v\2.\3"></a>PEL Version \2.\3</h2></div>\n<pre>\n|' doc/ric_ChangeLog.html
+perl -p -i -e 's|^\d{4}-\d\d-\d\d \d\d:\d\d  tag release-(\d)_(\d)$|</pre>\n\n<div align="center"><h2><a id="v\1.\2"></a>PEL Version \1.\2</h2></div>\n<pre>\n|' doc/ric_ChangeLog.html
 
 # Leave the package directory
 cd ..
