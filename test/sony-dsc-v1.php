@@ -59,8 +59,8 @@ class SonyDscV1 extends UnitTestCase {
 
     $entry = $ifd0->getEntry(PelTag::ORIENTATION);
     $this->assertIsA($entry, 'PelEntryShort');
-    $this->assertEqual($entry->getValue(), 1);
-    $this->assertEqual($entry->getText(), 'top - left');
+    $this->assertEqual($entry->getValue(), 6);
+    $this->assertEqual($entry->getText(), 'right - top');
 
     $entry = $ifd0->getEntry(PelTag::X_RESOLUTION);
     $this->assertIsA($entry, 'PelEntryRational');
@@ -79,8 +79,8 @@ class SonyDscV1 extends UnitTestCase {
 
     $entry = $ifd0->getEntry(PelTag::DATE_TIME);
     $this->assertIsA($entry, 'PelEntryTime');
-    $this->assertEqual($entry->getValue(), gmmktime(13, 39, 11, 5, 6, 2004));
-    $this->assertEqual($entry->getText(), '2004:05:06 13:39:11');
+    $this->assertEqual($entry->getValue(), gmmktime(16, 9, 53, 7, 10, 2004));
+    $this->assertEqual($entry->getText(), '2004:07:10 16:09:53');
     
     $entry = $ifd0->getEntry(PelTag::YCBCR_POSITIONING);
     $this->assertIsA($entry, 'PelEntryShort');
@@ -97,13 +97,13 @@ class SonyDscV1 extends UnitTestCase {
 
     $entry = $exif->getEntry(PelTag::EXPOSURE_TIME);
     $this->assertIsA($entry, 'PelEntryRational');
-    $this->assertEqual($entry->getValue(), array(10, 2500));
-    $this->assertEqual($entry->getText(), '1/250 sec.');
+    $this->assertEqual($entry->getValue(), array(10, 600));
+    $this->assertEqual($entry->getText(), '1/60 sec.');
 
     $entry = $exif->getEntry(PelTag::FNUMBER);
     $this->assertIsA($entry, 'PelEntryRational');
-    $this->assertEqual($entry->getValue(), array(40, 10));
-    $this->assertEqual($entry->getText(), 'f/4.0');
+    $this->assertEqual($entry->getValue(), array(32, 10));
+    $this->assertEqual($entry->getText(), 'f/3.2');
 
     $entry = $exif->getEntry(PelTag::EXPOSURE_PROGRAM);
     $this->assertIsA($entry, 'PelEntryShort');
@@ -122,13 +122,13 @@ class SonyDscV1 extends UnitTestCase {
 
     $entry = $exif->getEntry(PelTag::DATE_TIME_ORIGINAL);
     $this->assertIsA($entry, 'PelEntryTime');
-    $this->assertEqual($entry->getValue(), gmmktime(13, 39, 11, 5, 6, 2004));
-    $this->assertEqual($entry->getText(), '2004:05:06 13:39:11');
+    $this->assertEqual($entry->getValue(), gmmktime(16, 9, 53, 7, 10, 2004));
+    $this->assertEqual($entry->getText(), '2004:07:10 16:09:53');
     
     $entry = $exif->getEntry(PelTag::DATE_TIME_DIGITIZED);
     $this->assertIsA($entry, 'PelEntryTime');
-    $this->assertEqual($entry->getValue(), gmmktime(13, 39, 11, 5, 6, 2004));
-    $this->assertEqual($entry->getText(), '2004:05:06 13:39:11');
+    $this->assertEqual($entry->getValue(), gmmktime(16, 9, 53, 7, 10, 2004));
+    $this->assertEqual($entry->getText(), '2004:07:10 16:09:53');
     
     $entry = $exif->getEntry(PelTag::COMPONENTS_CONFIGURATION);
     $this->assertIsA($entry, 'PelEntryUndefined');
@@ -137,13 +137,13 @@ class SonyDscV1 extends UnitTestCase {
 
     $entry = $exif->getEntry(PelTag::COMPRESSED_BITS_PER_PIXEL);
     $this->assertIsA($entry, 'PelEntryRational');
-    $this->assertEqual($entry->getValue(), array(4, 1));
-    $this->assertEqual($entry->getText(), '4/1');
+    $this->assertEqual($entry->getValue(), array(2, 1));
+    $this->assertEqual($entry->getText(), '2/1');
 
     $entry = $exif->getEntry(PelTag::EXPOSURE_BIAS_VALUE);
     $this->assertIsA($entry, 'PelEntrySRational');
-    $this->assertEqual($entry->getValue(), array(0, 10));
-    $this->assertEqual($entry->getText(), '0');
+    $this->assertEqual($entry->getValue(), array(7, 10));
+    $this->assertEqual($entry->getText(), '+0.7');
 
     $entry = $exif->getEntry(PelTag::MAX_APERTURE_VALUE);
     $this->assertIsA($entry, 'PelEntryRational');
@@ -152,8 +152,8 @@ class SonyDscV1 extends UnitTestCase {
 
     $entry = $exif->getEntry(PelTag::METERING_MODE);
     $this->assertIsA($entry, 'PelEntryShort');
-    $this->assertEqual($entry->getValue(), 5);
-    $this->assertEqual($entry->getText(), 'Pattern');
+    $this->assertEqual($entry->getValue(), 2);
+    $this->assertEqual($entry->getText(), 'Center-Weighted Average');
 
     $entry = $exif->getEntry(PelTag::LIGHT_SOURCE);
     $this->assertIsA($entry, 'PelEntryShort');
@@ -162,13 +162,14 @@ class SonyDscV1 extends UnitTestCase {
 
     $entry = $exif->getEntry(PelTag::FLASH);
     $this->assertIsA($entry, 'PelEntryShort');
-    $this->assertEqual($entry->getValue(), 0);
-    $this->assertEqual($entry->getText(), 'Flash did not fire.');
+    $this->assertEqual($entry->getValue(), 31);
+    $this->assertEqual($entry->getText(),
+                       'Flash fired, auto mode, return light detected.');
 
     $entry = $exif->getEntry(PelTag::FOCAL_LENGTH);
     $this->assertIsA($entry, 'PelEntryRational');
-    $this->assertEqual($entry->getValue(), array(70, 10));
-    $this->assertEqual($entry->getText(), '7.0 mm');
+    $this->assertEqual($entry->getValue(), array(139, 10));
+    $this->assertEqual($entry->getText(), '13.9 mm');
 
     $entry = $exif->getEntry(PelTag::MAKER_NOTE);
     $this->assertIsA($entry, 'PelEntryUndefined');
@@ -186,13 +187,13 @@ class SonyDscV1 extends UnitTestCase {
 
     $entry = $exif->getEntry(PelTag::PIXEL_X_DIMENSION);
     $this->assertIsA($entry, 'PelEntryLong');
-    $this->assertEqual($entry->getValue(), 400);
-    $this->assertEqual($entry->getText(), '400');
+    $this->assertEqual($entry->getValue(), 640);
+    $this->assertEqual($entry->getText(), '640');
 
     $entry = $exif->getEntry(PelTag::PIXEL_Y_DIMENSION);
     $this->assertIsA($entry, 'PelEntryLong');
-    $this->assertEqual($entry->getValue(), 300);
-    $this->assertEqual($entry->getText(), '300');
+    $this->assertEqual($entry->getValue(), 480);
+    $this->assertEqual($entry->getText(), '480');
 
     $entry = $exif->getEntry(PelTag::FILE_SOURCE);
     $this->assertIsA($entry, 'PelEntryUndefined');
@@ -211,8 +212,8 @@ class SonyDscV1 extends UnitTestCase {
 
     $entry = $exif->getEntry(PelTag::EXPOSURE_MODE);
     $this->assertIsA($entry, 'PelEntryShort');
-    $this->assertEqual($entry->getValue(), 0);
-    $this->assertEqual($entry->getText(), 'Auto exposure');
+    $this->assertEqual($entry->getValue(), 1);
+    $this->assertEqual($entry->getText(), 'Manual exposure');
 
     $entry = $exif->getEntry(PelTag::WHITE_BALANCE);
     $this->assertIsA($entry, 'PelEntryShort');
@@ -261,8 +262,8 @@ class SonyDscV1 extends UnitTestCase {
 
     $entry = $ifd1->getEntry(PelTag::ORIENTATION);
     $this->assertIsA($entry, 'PelEntryShort');
-    $this->assertEqual($entry->getValue(), '1');
-    $this->assertEqual($entry->getText(), 'top - left');
+    $this->assertEqual($entry->getValue(), '6');
+    $this->assertEqual($entry->getText(), 'right - top');
 
     $entry = $ifd1->getEntry(PelTag::X_RESOLUTION);
     $this->assertIsA($entry, 'PelEntryRational');
@@ -281,8 +282,8 @@ class SonyDscV1 extends UnitTestCase {
 
     $entry = $ifd1->getEntry(PelTag::DATE_TIME);
     $this->assertIsA($entry, 'PelEntryTime');
-    $this->assertEqual($entry->getValue(), gmmktime(13, 39, 11, 5, 6, 2004));
-    $this->assertEqual($entry->getText(), '2004:05:06 13:39:11');
+    $this->assertEqual($entry->getValue(), gmmktime(16, 9, 53, 7, 10, 2004));
+    $this->assertEqual($entry->getText(), '2004:07:10 16:09:53');
     
     $thumb = $ifd1->getThumbnailData();
     $this->assertEqual($thumb,
