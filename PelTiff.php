@@ -160,7 +160,7 @@ class PelTiff {
    *
    * @return string the bytes representing this object.
    */
-  function getBytes($order) {
+  function getBytes($order = PelConvert::LITTLE_ENDIAN) {
     if ($order == PelConvert::LITTLE_ENDIAN)
       $bytes = 'II';
     else
