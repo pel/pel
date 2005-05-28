@@ -3,7 +3,7 @@
 /*  PEL: PHP EXIF Library.  A library with support for reading and
  *  writing all EXIF headers in JPEG and TIFF images using PHP.
  *
- *  Copyright (C) 2004  Martin Geisler.
+ *  Copyright (C) 2004, 2005  Martin Geisler.
  *
  *  This program is free software; you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
@@ -27,7 +27,7 @@
 /**
  * Classes used to hold longs, both signed and unsigned.
  *
- * @author Martin Geisler <gimpster@users.sourceforge.net>
+ * @author Martin Geisler <mgeisler@users.sourceforge.net>
  * @version $Revision$
  * @date $Date$
  * @license http://www.gnu.org/licenses/gpl.html GNU General Public
@@ -56,7 +56,7 @@ require_once('PelEntryNumber.php');
  * Here the width and height is updated to 50% of their original
  * values.
  *
- * @author Martin Geisler <gimpster@users.sourceforge.net>
+ * @author Martin Geisler <mgeisler@users.sourceforge.net>
  * @package PEL
  */
 class PelEntryLong extends PelEntryNumber {
@@ -126,7 +126,7 @@ class PelEntryLong extends PelEntryNumber {
  * longs.  The class will be used to manipulate any of the EXIF tags
  * which can have format {@link PelFormat::SLONG}.
  *
- * @author Martin Geisler <gimpster@users.sourceforge.net>
+ * @author Martin Geisler <mgeisler@users.sourceforge.net>
  * @package PEL
  */
 class PelEntrySLong extends PelEntryNumber {

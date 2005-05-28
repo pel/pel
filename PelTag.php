@@ -27,7 +27,7 @@
 /**
  * Namespace for functions operating on EXIF tags.
  *
- * @author Martin Geisler <gimpster@users.sourceforge.net>
+ * @author Martin Geisler <mgeisler@users.sourceforge.net>
  * @version $Revision$
  * @date $Date$
  * @license http://www.gnu.org/licenses/gpl.html GNU General Public
@@ -51,7 +51,7 @@ require_once('Pel.php');
  * All the methods in this class are static and should be called with
  * the EXIF tag on which they should operate.
  *
- * @author Martin Geisler <gimpster@users.sourceforge.net>
+ * @author Martin Geisler <mgeisler@users.sourceforge.net>
  * @package PEL
  */
 class PelTag {

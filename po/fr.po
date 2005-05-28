@@ -1,6 +1,6 @@
 # French translations for PEL package
 # Originally from the libexif package
-# Copyright (C) 2004 Martin Geisler <gimpster@users.sourceforge.net>
+# Copyright (C) 2004, 2005 Martin Geisler
 # This file is distributed under the same license as the PEL package.
 # Arnaud Launay <asl@launay.org>, 2002.
 #
@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: PEL 0.3\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2004-06-05 00:30+0200\n"
-"PO-Revision-Date: 2004-06-04 13:26+0200\n"
+"PO-Revision-Date: 2005-05-28 12:36+0200\n"
 "Last-Translator: Arnaud Launay <asl@launay.org>\n"
 "Language-Team: Français <traduc@traduc.org>\n"
 "MIME-Version: 1.0\n"

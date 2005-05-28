@@ -27,7 +27,7 @@
 /**
  * Classes for dealing with EXIF IFDs.
  *
- * @author Martin Geisler <gimpster@users.sourceforge.net>
+ * @author Martin Geisler <mgeisler@users.sourceforge.net>
  * @version $Revision$
  * @date $Date$
  * @license http://www.gnu.org/licenses/gpl.html GNU General Public
@@ -48,7 +48,7 @@ require_once('Pel.php');
 /**
  * Exception indicating a general problem with the IFD.
  *
- * @author Martin Geisler <gimpster@users.sourceforge.net>
+ * @author Martin Geisler <mgeisler@users.sourceforge.net>
  * @package PEL
  * @subpackage Exception
  */
@@ -61,7 +61,7 @@ class PelIfdException extends PelException {}
  * Directories, IFDs for short.  Each IFD contains a number of {@link
  * PelEntry entries}, some data and finally a link to the next IFD.
  *
- * @author Martin Geisler <gimpster@users.sourceforge.net>
+ * @author Martin Geisler <mgeisler@users.sourceforge.net>
  * @package PEL
  */
 class PelIfd {

@@ -32,7 +32,7 @@
  * entries will have.  All EXIF entries will be represented by
  * descendants of the {@link PelEntry} class.
  *
- * @author Martin Geisler <gimpster@users.sourceforge.net>
+ * @author Martin Geisler <mgeisler@users.sourceforge.net>
  * @version $Revision$
  * @date $Date$
  * @license http://www.gnu.org/licenses/gpl.html GNU General Public
@@ -52,7 +52,7 @@ require_once('Pel.php');
 /**
  * Exception indicating a problem with the entry.
  *
- * @author Martin Geisler <gimpster@users.sourceforge.net>
+ * @author Martin Geisler <mgeisler@users.sourceforge.net>
  * @package PEL
  * @subpackage Exception
  */
@@ -62,7 +62,7 @@ class PelEntryException extends PelException {}
 /**
  * Exception indicating that an unexpected format was found.
  *
- * @author Martin Geisler <gimpster@users.sourceforge.net>
+ * @author Martin Geisler <mgeisler@users.sourceforge.net>
  * @package PEL
  * @subpackage Exception
  */
@@ -91,7 +91,7 @@ class PelUnexpectedFormatException extends PelEntryException {
  * Exception indicating that an unexpected number of components was
  * found.
  *
- * @author Martin Geisler <gimpster@users.sourceforge.net>
+ * @author Martin Geisler <mgeisler@users.sourceforge.net>
  * @package PEL
  * @subpackage Exception
  */
@@ -120,7 +120,7 @@ class PelWrongComponentCountException extends PelEntryException {
 
 
 /**
- * @author Martin Geisler <gimpster@users.sourceforge.net>
+ * @author Martin Geisler <mgeisler@users.sourceforge.net>
  * @package PEL
  */
 abstract class PelEntry {

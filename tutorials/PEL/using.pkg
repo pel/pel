@@ -10,8 +10,8 @@
           <firstname>Martin</firstname>
           <surname>Geisler</surname>
         </author>
-        {@link mailto:gimpster@users.sourceforge.net
-        gimpster@users.sourceforge.net}
+        {@link mailto:mgeisler@users.sourceforge.net
+        mgeisler@users.sourceforge.net}
       </para>
     </authorblurb>
   </refsynopsisdiv>

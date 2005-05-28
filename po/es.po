@@ -1,6 +1,6 @@
 # Spanish translations for PEL package
 # Originally from the libexif package
-# Copyright (C) 2004 Martin Geisler <gimpster@users.sourceforge.net>
+# Copyright (C) 2004, 2005 Martin Geisler
 # This file is distributed under the same license as the PEL package.
 # Fabian Mandelbaum <fabman@mandrakesoft.com>, 2002.
 #
@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: PEL 0.3\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2004-06-05 00:30+0200\n"
-"PO-Revision-Date: 2004-06-04 14:03+0200\n"
+"PO-Revision-Date: 2005-05-28 12:35+0200\n"
 "Last-Translator: Fabian Mandelbaum <fabman@mandrakesoft.com>\n"
 "Language-Team: Spanish <es@li.org>\n"
 "MIME-Version: 1.0\n"

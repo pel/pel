@@ -3,7 +3,7 @@
 /*  PEL: PHP EXIF Library.  A library with support for reading and
  *  writing all EXIF headers in JPEG and TIFF images using PHP.
  *
- *  Copyright (C) 2004  Martin Geisler.
+ *  Copyright (C) 2004, 2005  Martin Geisler.
  *
  *  This program is free software; you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
@@ -27,7 +27,7 @@
 /**
  * Routines for converting back and forth between bytes and integers.
  *
- * @author Martin Geisler <gimpster@users.sourceforge.net>
+ * @author Martin Geisler <mgeisler@users.sourceforge.net>
  * @version $Revision$
  * @date $Date$
  * @license http://www.gnu.org/licenses/gpl.html GNU General Public
@@ -50,7 +50,7 @@
  * constants will be referred to as the pseudo type PelByteOrder
  * throughout the documentation.
  *
- * @author Martin Geisler <gimpster@users.sourceforge.net>
+ * @author Martin Geisler <mgeisler@users.sourceforge.net>
  * @package PEL
  */
 class PelConvert {
