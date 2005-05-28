@@ -52,7 +52,7 @@ require_once('Pel.php');
  *
  * <code>
  * $w = $ifd->getEntry(PelTag::EXIF_IMAGE_WIDTH);
- * $w->setValue($h->getValue() / 2);
+ * $w->setValue($w->getValue() / 2);
  * $h = $ifd->getEntry(PelTag::EXIF_IMAGE_HEIGHT);
  * $h->setValue($h->getValue() / 2);
  * </code>
