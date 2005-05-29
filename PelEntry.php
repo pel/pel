@@ -30,7 +30,8 @@
  * This file defines two exception classes and the abstract class
  * {@link PelEntry} which provides the basic methods that all EXIF
  * entries will have.  All EXIF entries will be represented by
- * descendants of the {@link PelEntry} class.
+ * descendants of the {@link PelEntry} class --- the class itself is
+ * abstract and so it cannot be instantiated.
  *
  * @author Martin Geisler <mgeisler@users.sourceforge.net>
  * @version $Revision$
@@ -62,6 +63,9 @@ class PelEntryException extends PelException {}
 /**
  * Exception indicating that an unexpected format was found.
  *
+ * The documentation for each tag in {@link PelTag} will detail any
+ * constrains.
+ *
  * @author Martin Geisler <mgeisler@users.sourceforge.net>
  * @package PEL
  * @subpackage Exception
@@ -91,6 +95,11 @@ class PelUnexpectedFormatException extends PelEntryException {
  * Exception indicating that an unexpected number of components was
  * found.
  *
+ * Some tags have strict limits as to the allowed number of
+ * components, and this exception is thrown if the data violates such
+ * a constraint.  The documentation for each tag in {@link PelTag}
+ * explains the expected number of components.
+ *
  * @author Martin Geisler <mgeisler@users.sourceforge.net>
  * @package PEL
  * @subpackage Exception
@@ -100,10 +109,6 @@ class PelWrongComponentCountException extends PelEntryException {
   /**
    * Construct a new exception indicating a wrong number of
    * components.
-   *
-   * Some tags have strict limits as to the allowed number of
-   * components, and this exception is thrown if the data violates
-   * such a constraint.
    *
    * @param PelTag the tag for which the violation was found.
    *
@@ -120,6 +125,25 @@ class PelWrongComponentCountException extends PelEntryException {
 
 
 /**
+ * Common ancestor class of all {@link PelIfd} entries.
+ *
+ * As this class is abstract you cannot instantiate objects from it.
+ * It only serves as a common ancestor to define the methods common to
+ * all entries.  The most important methods are {@link getValue()} and
+ * {@link setValue()}, both of which is abstract in this class.  The
+ * descendants will give concrete implementations for them.
+ *
+ * If you have some data coming from an image (some raw bytes), then
+ * the static method {@link newFromData()} is helpful --- it will look
+ * at the data and give you a proper decendent of {@link PelEntry}
+ * back.
+ *
+ * If you instead want to have an entry for some data which take the
+ * form of an integer, a string, a byte, or some other PHP type, then
+ * don't use this class.  You should instead create an object of the
+ * right subclass ({@link PelEntryShort} for short integers, {@link
+ * PelEntryAscii} for strings, and so on) directly.
+ *
  * @author Martin Geisler <mgeisler@users.sourceforge.net>
  * @package PEL
  */
@@ -163,7 +187,14 @@ abstract class PelEntry {
    *
    * This factory method will create the proper subclass of {@link
    * PelEntry} corresponding to the {@link PelTag} and {@link
-   * PelFormat} given.
+   * PelFormat} given.  The entry will be initialized with the data
+   * given.
+   *
+   * Please note that the data you pass to this method should come
+   * from an image, that is, it should be raw bytes.  If instead you
+   * want to create an entry for holding, say, an short integer, then
+   * create a {@link PelEntryShort} object directly and load the data
+   * into it.
    *
    * A {@link PelUnexpectedFormatException} is thrown if a mismatch is
    * discovered between the tag and format, and likewise a {@link
@@ -183,7 +214,8 @@ abstract class PelEntry {
    *
    * @return PelEntry a newly created entry, holding the data given.
    */
-  static function newFromData($tag, $format, $components, $data) {
+  static function newFromData($tag, $format, $components,
+                              PelDataWindow $data) {
 
     /* First handle tags for which we have a specific PelEntryXXX
      * class. */
