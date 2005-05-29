@@ -45,8 +45,15 @@ require_once('Pel.php');
  *
  * This class defines the constants that represents the EXIF tags
  * known to PEL.  They are supposed to be used whenever one needs to
- * specify an EXIF tag, and they will be denoted by the pseudo type
+ * specify an EXIF tag, and they will be denoted by the pseudo-type
  * {@link PelTag} throughout the documentation.
+ *
+ * Please note that the constrains on the format and number of
+ * components given here are advisory only.  To follow the EXIF
+ * specification one should obey them, but there is nothing that
+ * prevents you from creating an {@link IMAGE_LENGTH} entry with two
+ * or more components, even though the standard says that there should
+ * be exactly one component.
  *
  * All the methods in this class are static and should be called with
  * the EXIF tag on which they should operate.
@@ -64,13 +71,19 @@ class PelTag {
    * the termination code (NULL). see the separate volume of
    * Recommended Exif Interoperability Rules (ExifR98) for other tags
    * used for ExifR98.
+   *
+   * Format: {@link PelFormat::ASCII}.
+   *
+   * Components: 4.
    */
   const INTEROPERABILITY_INDEX         = 0x0001;
 
-  /** Interoperability Version
+  /**
+   * Interoperability Version
    *
-   * An entry holding this tag must have format {@link
-   * PelFormat::UNDEFINED}.
+   * Format: {@link PelFormat::UNDEFINED}.
+   *
+   * Components: 4.
    */
   const INTEROPERABILITY_VERSION       = 0x0002;
 
@@ -80,6 +93,10 @@ class PelTag {
    * The number of columns of image data, equal to the number of
    * pixels per row. In JPEG compressed data a JPEG marker is used
    * instead of this tag.
+   *
+   * Format: {@link PelFormat::SHORT} or {@link PelFormat::LONG}.
+   *
+   * Components: 1.
    */
   const IMAGE_WIDTH                    = 0x0100;
 
@@ -88,6 +105,10 @@ class PelTag {
    *
    * The number of rows of image data. In JPEG compressed data a
    * JPEG marker is used instead of this tag.
+   *
+   * Format: {@link PelFormat::SHORT} or a {@link PelFormat::LONG}.
+   *
+   * Components: 1.
    */
   const IMAGE_LENGTH                   = 0x0101;
 
@@ -98,6 +119,10 @@ class PelTag {
    * each component of the image is 8 bits, so the value for this tag
    * is 9. See also {@link SAMPLES_PER_PIXEL}. In JPEG compressed data
    * a JPEG marker is used instead of this tag.
+   *
+   * Format: {@link PelFormat::SHORT}.
+   *
+   * Components: 3.
    */
   const BITS_PER_SAMPLE                = 0x0102;
 
@@ -108,6 +133,10 @@ class PelTag {
    * primary image is JPEG compressed, this designation is not
    * necessary and is omitted. When thumbnails use JPEG compression,
    * this tag value is set to 6.
+   *
+   * Format: {@link PelFormat::SHORT}.
+   *
+   * Components: 1.
    */
   const COMPRESSION                    = 0x0103;
 
@@ -116,6 +145,10 @@ class PelTag {
    *
    * The pixel composition. In JPEG compressed data a JPEG marker
    * is used instead of this tag.
+   *
+   * Format: {@link PelFormat::SHORT}.
+   *
+   * Components: 1.
    */
   const PHOTOMETRIC_INTERPRETATION     = 0x0106;
 
@@ -132,6 +165,10 @@ class PelTag {
    * a comment such as "1988 company picnic" or the like. Two-bytes
    * character codes cannot be used. When a 2-bytes code is necessary,
    * the Exif Private tag {@link USER_COMMENT} is to be used.
+   *
+   * Format: {@link PelEntryAscii}.
+   *
+   * Components: any number.
    */
   const IMAGE_DESCRIPTION              = 0x010E;
 
@@ -142,6 +179,10 @@ class PelTag {
    * manufacturer of the DSC, scanner, video digitizer or other
    * equipment that generated the image. When the field is left blank,
    * it is treated as unknown.
+   *
+   * Format: {@link PelEntryAscii}.
+   *
+   * Components: any number.
    */
   const MAKE                           = 0x010F;
 
@@ -152,6 +193,10 @@ class PelTag {
    * model name or number of the DSC, scanner, video digitizer or
    * other equipment that generated the image. When the field is left
    * blank, it is treated as unknown.
+   *
+   * Format: {@link PelFormat::ASCII}.
+   *
+   * Components: any number.
    */
   const MODEL                          = 0x0110;
 
@@ -163,6 +208,10 @@ class PelTag {
    * does not exceed 64 Kbytes. With JPEG compressed data this
    * designation is not needed and is omitted. See also {@link
    * ROWS_PER_STRIP} and {@link STRIP_BYTE_COUNTS}.
+   *
+   * Format: {@link PelFormat::SHORT} or {@link PelFormat::LONG}.
+   *
+   * Components: any number.
    */
   const STRIP_OFFSETS                  = 0x0111;
 
@@ -170,6 +219,10 @@ class PelTag {
    * Orientation
    *
    * The image orientation viewed in terms of rows and columns.
+   *
+   * Format: {@link PelFormat::SHORT}.
+   *
+   * Components: 1.
    */
   const ORIENTATION                    = 0x0112;
 
@@ -180,6 +233,10 @@ class PelTag {
    * applies to RGB and YCbCr images, the value set for this tag is 3.
    * In JPEG compressed data a JPEG marker is used instead of this
    * tag.
+   *
+   * Format: {@link PelFormat::SHORT}.
+   *
+   * Components: 1.
    */
   const SAMPLES_PER_PIXEL              = 0x0115;
 
@@ -191,6 +248,10 @@ class PelTag {
    * JPEG compressed data this designation is not needed and is
    * omitted. See also {@link ROWS_PER_STRIP} and {@link
    * STRIP_BYTE_COUNTS}.
+   *
+   * Format: {@link PelFormat::SHORT} or {@link PelFormat::LONG}.
+   *
+   * Components: 1.
    */
   const ROWS_PER_STRIP                 = 0x0116;
 
@@ -199,6 +260,10 @@ class PelTag {
    *
    * The total number of bytes in each strip. With JPEG
    * compressed data this designation is not needed and is omitted.
+   *
+   * Format: {@link PelFormat::SHORT} or {@link PelFormat::LONG}.
+   *
+   * Components: any number.
    */
   const STRIP_BYTE_COUNTS              = 0x0117;
 
@@ -208,6 +273,10 @@ class PelTag {
    * The number of pixels per {@link RESOLUTION_UNIT} in the
    * {@link IMAGE_WIDTH} direction. When the image resolution is
    * unknown, 72 [dpi] is designated.
+   *
+   * Format: {@link PelFormat::RATIONAL}.
+   *
+   * Components: 1.
    */
   const X_RESOLUTION                   = 0x011A;
 
@@ -217,6 +286,10 @@ class PelTag {
    * The number of pixels per {@link RESOLUTION_UNIT} in the
    * {@link IMAGE_LENGTH} direction. The same value as {@link
    * X_RESOLUTION} is designated.
+   *
+   * Format: {@link PelFormat::RATIONAL}.
+   *
+   * Components: 1.
    */
   const Y_RESOLUTION                   = 0x011B;
 
@@ -227,6 +300,10 @@ class PelTag {
    * or planar format. In JPEG compressed files a JPEG marker is used
    * instead of this tag. If this field does not exist, the TIFF
    * default of 1 (chunky) is assumed.
+   *
+   * Format: {@link PelFormat::SHORT}.
+   *
+   * Components: 1.
    */
   const PLANAR_CONFIGURATION           = 0x011C;
 
@@ -237,6 +314,10 @@ class PelTag {
    * Y_RESOLUTION}. The same unit is used for both {@link X_RESOLUTION}
    * and {@link Y_RESOLUTION}. If the image resolution is unknown, 2
    * (inches) is designated.
+   *
+   * Format: {@link PelFormat::SHORT}.
+   *
+   * Components: 1.
    */
   const RESOLUTION_UNIT                = 0x0128;
 
@@ -247,6 +328,10 @@ class PelTag {
    * style. Normally this tag is not necessary, since color space is
    * specified in the color space information tag ({@link
    * COLOR_SPACE}).
+   *
+   * Format: {@link PelFormat::SHORT}.
+   *
+   * Components: 3.
    */
   const TRANSFER_FUNCTION              = 0x012D;
 
@@ -258,6 +343,10 @@ class PelTag {
    * image. The detailed format is not specified, but it is
    * recommended that the example shown below be followed. When the
    * field is left blank, it is treated as unknown.
+   *
+   * Format: {@link PelFormat::ASCII}.
+   *
+   * Components: any number.
    */
   const SOFTWARE                       = 0x0131;
 
@@ -269,17 +358,26 @@ class PelTag {
    *
    * An entry holding this tag must have format {@link
    * PelFormat::ASCII} and a component count of exactly 20.
+   *
+   * Format: {@link PelFormat::ASCII}, modelled by the {@link
+   * PelEntryTime} class.
+   *
+   * Components: 20.
    */
   const DATE_TIME                      = 0x0132;
 
   /**
    * Artist
    *
-   * This tag records the name of the camera owner, photographer
-   * or image creator. The detailed format is not specified, but it is
+   * This tag records the name of the camera owner, photographer or
+   * image creator. The detailed format is not specified, but it is
    * recommended that the information be written as in the example
    * below for ease of Interoperability. When the field is left blank,
    * it is treated as unknown.
+   *
+   * Format: {@link PelFormat::ASCII}.
+   *
+   * Components: any number.
    */
   const ARTIST                         = 0x013B;
 
@@ -289,6 +387,10 @@ class PelTag {
    * The chromaticity of the white point of the image. Normally
    * this tag is not necessary, since color space is specified in the
    * colorspace information tag ({@link COLOR_SPACE}).
+   *
+   * Format: {@link PelFormat::RATIONAL}.
+   *
+   * Components: 2.
    */
   const WHITE_POINT                    = 0x013E;
 
@@ -298,6 +400,10 @@ class PelTag {
    * The chromaticity of the three primary colors of the image.
    * Normally this tag is not necessary, since colorspace is specified
    * in the colorspace information tag ({@link COLOR_SPACE}).
+   *
+   * Format: {@link PelFormat::RATIONAL}.
+   *
+   * Components: 6.
    */
   const PRIMARY_CHROMATICITIES         = 0x013F;
 
@@ -313,6 +419,10 @@ class PelTag {
    * The offset to the start byte ({@link PelJpegMarker::SOI SOI}) of
    * JPEG compressed thumbnail data. This is not used for primary
    * image JPEG data.
+   *
+   * Format: {@link PelFormat::LONG}.
+   *
+   * Components: 1.
    */
   const JPEG_INTERCHANGE_FORMAT        = 0x0201;
 
@@ -327,6 +437,10 @@ class PelTag {
    * be recorded.  Compressed thumbnails must be recorded in no more
    * than 64 Kbytes, including all other data to be recorded in {@link
    * PelJpegMarker::APP1 APP1}.
+   *
+   * Format: {@link PelFormat::LONG}.
+   *
+   * Components: 1.
    */
   const JPEG_INTERCHANGE_FORMAT_LENGTH = 0x0202;
 
@@ -339,6 +453,10 @@ class PelTag {
    * The color space is declared in a color space information tag,
    * with the default being the value that gives the optimal image
    * characteristics Interoperability this condition.
+   *
+   * Format: {@link PelFormat::RATIONAL}.
+   *
+   * Components: 3.
    */
   const YCBCR_COEFFICIENTS             = 0x0211;
 
@@ -348,6 +466,10 @@ class PelTag {
    * The sampling ratio of chrominance components in relation to
    * the luminance component. In JPEG compressed data a JPEG marker is
    * used instead of this tag.
+   *
+   * Format: {@link PelFormat::SHORT}.
+   *
+   * Components: 2.
    */
   const YCBCR_SUB_SAMPLING             = 0x0212;
 
@@ -367,6 +489,10 @@ class PelTag {
    * follow the TIFF default regardless of the value in this field. It
    * is preferable that readers be able to support both centered and
    * co-sited positioning.
+   *
+   * Format: {@link PelFormat::SHORT}.
+   *
+   * Components: 1.
    */
   const YCBCR_POSITIONING              = 0x0213;
 
@@ -379,6 +505,10 @@ class PelTag {
    * space information tag, with the default being the value that
    * gives the optimal image characteristics Interoperability these
    * conditions.
+   *
+   * Format: {@link PelFormat::RATIONAL}.
+   *
+   * Components: 6.
    */
   const REFERENCE_BLACK_WHITE          = 0x0214;
 
@@ -400,6 +530,10 @@ class PelTag {
    * Indicates the color filter array (CFA) geometric pattern of
    * the image sensor when a one-chip color area sensor is used. It
    * does not apply to all sensing methods.
+   *
+   * Format: {@link PelFormat::BYTE}.
+   *
+   * Components: 1.
    */
   const CFA_PATTERN                    = 0x828E;
 
@@ -429,15 +563,21 @@ class PelTag {
    * example 3). When the field is left blank, it is treated as
    * unknown.
    *
-   * An entry holding this tag must have format {@link
-   * PelFormat::ASCII}.
+   * Format: {@link PelFormat::ASCII}, modelled by the {@link
+   * PelEntryCopyright} class.
+   *
+   * Components: any number.
    */
   const COPYRIGHT                      = 0x8298;
 
   /**
    * Exposure Time
    *
-   * Exposure time, given in seconds (sec).
+   * Exposure time (reciprocal of shutter speed), given in seconds.
+   *
+   * Format: {@link PelFormat::RATIONAL}.
+   *
+   * Components: 1.
    */
   const EXPOSURE_TIME                  = 0x829A;
 
@@ -445,23 +585,42 @@ class PelTag {
    * FNumber
    *
    * The F number.
+   *
+   * Format: {@link PelFormat::RATIONAL}.
+   *
+   * Components: 1.
    */
   const FNUMBER                        = 0x829D;
 
-  /** IPTC/NAA */
+  /**
+   * IPTC/NAA
+   *
+   * Format: {@link PelFormat::LONG}.
+   *
+   * Components: any number.
+   */
   const IPTC_NAA                       = 0x83BB;
 
   /**
    * Exif IFD Pointer
    *
-   * A pointer to the Exif IFD. Interoperability, Exif IFD has
-   * the same structure as that of the IFD specified in TIFF.
-   * ordinarily, however, it does not contain image data as in the
-   * case of TIFF.
+   * A pointer to the Exif IFD. Interoperability, Exif IFD has the
+   * same structure as that of the IFD specified in TIFF.  ordinarily,
+   * however, it does not contain image data as in the case of TIFF.
+   *
+   * Format: {@link PelFormat::LONG}.
+   *
+   * Components: 1.
    */
   const EXIF_IFD_POINTER               = 0x8769;
 
-  /** Inter Color Profile */
+  /**
+   * Inter Color Profile
+   *
+   * Format: {@link PelFormat::UNDEFINED}.
+   *
+   * Components: any number.
+   */
   const INTER_COLOR_PROFILE            = 0x8773;
 
   /**
@@ -469,15 +628,23 @@ class PelTag {
    *
    * The class of the program used by the camera to set exposure
    * when the picture is taken.
+   *
+   * Format: {@link PelFormat::SHORT}.
+   *
+   * Components: 1.
    */
   const EXPOSURE_PROGRAM               = 0x8822;
 
   /**
    * Spectral Sensitivity
    *
-   * Indicates the spectral sensitivity of each channel of the
-   * camera used. The tag value is an ASCII string compatible with the
+   * Indicates the spectral sensitivity of each channel of the camera
+   * used. The tag value is an ASCII string compatible with the
    * standard developed by the ASTM Technical committee.
+   *
+   * Format: {@link PelFormat::ASCII}.
+   *
+   * Components: any number.
    */
   const SPECTRAL_SENSITIVITY           = 0x8824;
 
@@ -487,6 +654,10 @@ class PelTag {
    * A pointer to the GPS Info IFD. The Interoperability
    * structure of the GPS Info IFD, like that of Exif IFD, has no
    * image data.
+   *
+   * Format: {@link PelFormat::LONG}.
+   *
+   * Components: 1.
    */
   const GPS_INFO_IFD_POINTER           = 0x8825;
 
@@ -495,6 +666,10 @@ class PelTag {
    *
    * Indicates the ISO Speed and ISO Latitude of the camera or
    * input device as specified in ISO 12232.
+   *
+   * Format: {@link PelFormat::SHORT}.
+   *
+   * Components: 2.
    */
   const ISO_SPEED_RATINGS              = 0x8827;
 
@@ -504,6 +679,10 @@ class PelTag {
    * Indicates the Opto-Electoric Conversion Function (OECF)
    * specified in ISO 14524. OECF is the relationship between the
    * camera optical input and the image values.
+   *
+   * Format: {@link PelFormat::UNDEFINED}.
+   *
+   * Components: any number.
    */
   const OECF                           = 0x8828;
 
@@ -513,8 +692,10 @@ class PelTag {
    * The version of this standard supported. Nonexistence of this
    * field is taken to mean non-conformance to the standard.
    *
-   * An entry holding this tag must have format {@link
-   * PelFormat::UNDEFINED}.
+   * Format: {@link PelFormat::UNDEFINED}, modelled by the {@link
+   * PelEntryVersion} class.
+   *
+   * Components: 4.
    */
   const EXIF_VERSION                   = 0x9000;
 
@@ -525,8 +706,10 @@ class PelTag {
    * generated. For a digital still camera the date and time the
    * picture was taken are recorded.
    *
-   * An entry holding this tag must have format {@link
-   * PelFormat::ASCII} and a component count of exactly 20.
+   * Format: {@link PelFormat::ASCII}, modelled by the {@link
+   * PelEntryTime} class.
+   *
+   * Components: 20.
    */
   const DATE_TIME_ORIGINAL             = 0x9003;
 
@@ -534,9 +717,11 @@ class PelTag {
    * Date and Time (digitized)
    *
    * The date and time when the image was stored as digital data.
-   * 
-   * An entry holding this tag must have format {@link
-   * PelFormat::ASCII} and a component count of exactly 20.
+   *
+   * Format: {@link PelFormat::ASCII}, modelled by the {@link
+   * PelEntryTime} class.
+   *
+   * Components: 20.
    */
   const DATE_TIME_DIGITIZED            = 0x9004;
 
@@ -551,6 +736,10 @@ class PelTag {
    * and Cr, this tag is provided for cases when compressed data uses
    * components other than Y, Cb, and Cr and to enable support of
    * other sequences.
+   *
+   * Format: {@link PelFormat::UNDEFINED}.
+   *
+   * Components: 4.
    */
   const COMPONENTS_CONFIGURATION       = 0x9101;
 
@@ -560,6 +749,10 @@ class PelTag {
    * Information specific to compressed data. The compression
    * mode used for a compressed image is indicated in unit bits per
    * pixel.
+   *
+   * Format: {@link PelFormat::RATIONAL}.
+   *
+   * Components: 1.
    */
   const COMPRESSED_BITS_PER_PIXEL      = 0x9102;
 
@@ -568,6 +761,10 @@ class PelTag {
    *
    * Shutter speed. The unit is the APEX (Additive System of
    * Photographic Exposure) setting (see Appendix C).
+   *
+   * Format: {@link PelFormat::SRATIONAL}.
+   *
+   * Components: 1.
    */
   const SHUTTER_SPEED_VALUE            = 0x9201;
 
@@ -575,6 +772,10 @@ class PelTag {
    * Aperture
    *
    * The lens aperture. The unit is the APEX value.
+   *
+   * Format: {@link PelFormat::RATIONAL}.
+   *
+   * Components: 1.
    */
   const APERTURE_VALUE                 = 0x9202;
 
@@ -583,6 +784,10 @@ class PelTag {
    *
    * The value of brightness. The unit is the APEX value.
    * Ordinarily it is given in the range of -99.99 to 99.99.
+   *
+   * Format: {@link PelFormat::SRATIONAL}.
+   *
+   * Components: 1.
    */
   const BRIGHTNESS_VALUE               = 0x9203;
 
@@ -591,6 +796,10 @@ class PelTag {
    *
    * The exposure bias. The units is the APEX value. Ordinarily
    * it is given in the range of -99.99 to 99.99.
+   *
+   * Format: {@link PelFormat::SRATIONAL}.
+   *
+   * Components: 1.
    */
   const EXPOSURE_BIAS_VALUE            = 0x9204;
 
@@ -600,6 +809,10 @@ class PelTag {
    * The smallest F number of the lens. The unit is the APEX
    * value. Ordinarily it is given in the range of 00.00 to 99.99, but
    * it is not limited to this range.
+   *
+   * Format: {@link PelFormat::RATIONAL}.
+   *
+   * Components: 1.
    */
   const MAX_APERTURE_VALUE             = 0x9205;
 
@@ -607,6 +820,10 @@ class PelTag {
    * Subject Distance
    *
    * The distance to the subject, given in meters.
+   *
+   * Format: {@link PelFormat::SRATIONAL}.
+   *
+   * Components: 1.
    */
   const SUBJECT_DISTANCE               = 0x9206;
 
@@ -614,6 +831,10 @@ class PelTag {
    * Metering Mode
    *
    * The metering mode.
+   *
+   * Format: {@link PelFormat::SHORT}.
+   *
+   * Components: 1.
    */
   const METERING_MODE                  = 0x9207;
 
@@ -621,6 +842,10 @@ class PelTag {
    * Light Source
    *
    * The kind of light source.
+   *
+   * Format: {@link PelFormat::SHORT}.
+   *
+   * Components: 1.
    */
   const LIGHT_SOURCE                   = 0x9208;
 
@@ -629,6 +854,10 @@ class PelTag {
    *
    * This tag is recorded when an image is taken using a strobe
    * light (flash).
+   *
+   * Format: {@link PelFormat::SHORT}.
+   *
+   * Components: 1.
    */
   const FLASH                          = 0x9209;
 
@@ -638,6 +867,10 @@ class PelTag {
    * The actual focal length of the lens, in mm. Conversion is not
    * made to the focal length of a 35 mm film camera, see the {@link
    * FOCAL_LENGTH_IN_35MM_FILM} tag for this information.
+   *
+   * Format: {@link PelFormat::RATIONAL}.
+   *
+   * Components: 1.
    */
   const FOCAL_LENGTH                   = 0x920A;
 
@@ -646,6 +879,10 @@ class PelTag {
    *
    * This tag indicates the location and area of the main subject
    * in the overall scene.
+   *
+   * Format: {@link PelFormat::SHORT}.
+   *
+   * Components: 4.
    */
   const SUBJECT_AREA                   = 0x9214;
 
@@ -654,6 +891,10 @@ class PelTag {
    *
    * A tag for manufacturers of Exif writers to record any
    * desired information. The contents are up to the manufacturer.
+   *
+   * Format: {@link PelFormat::UNDEFINED}.
+   *
+   * Components: any number.
    */
   const MAKER_NOTE                     = 0x927C;
 
@@ -683,8 +924,10 @@ class PelTag {
    * code be ASCII and that the following user comment part be filled
    * with blank characters [20.H].
    *
-   * An entry holding this tag must have format {@link
-   * PelFormat::UNDEFINED}.
+   * Format: {@link PelFormat::UNDEFINED}, modelled by the {@link
+   * PelEntryUserComment} class.
+   *
+   * Components: any number.
    */
   const USER_COMMENT                   = 0x9286;
 
@@ -693,6 +936,10 @@ class PelTag {
    *
    * A tag used to record fractions of seconds for the {@link
    * DATE_TIME} tag.
+   *
+   * Format: {@link PelFormat::ASCII}.
+   *
+   * Components: any number.
    */
   const SUB_SEC_TIME                   = 0x9290;
 
@@ -701,6 +948,10 @@ class PelTag {
    *
    * A tag used to record fractions of seconds for the {@link
    * DATE_TIME_ORIGINAL} tag.
+   *
+   * Format: {@link PelFormat::ASCII}.
+   *
+   * Components: any number.
    */
   const SUB_SEC_TIME_ORIGINAL          = 0x9291;
 
@@ -709,6 +960,10 @@ class PelTag {
    *
    * A tag used to record fractions of seconds for the {@link
    * DATE_TIME_DIGITIZED} tag.
+   *
+   * Format: {@link PelFormat::ASCII}.
+   *
+   * Components: any number.
    */
   const SUB_SEC_TIME_DIGITIZED         = 0x9292;
 
@@ -719,6 +974,11 @@ class PelTag {
    *
    * An entry holding this tag must have format {@link
    * PelFormat::UNDEFINED}.
+   *
+   * Format: {@link PelFormat::UNDEFINED}, modelled by the {@link
+   * PelEntryVersion} class.
+   *
+   * Components: 4.
    */
   const FLASH_PIX_VERSION              = 0xA000;
 
@@ -731,6 +991,10 @@ class PelTag {
    * If a color space other than sRGB is used, Uncalibrated (=FFFF.H)
    * is set. Image data recorded as Uncalibrated can be treated as
    * sRGB when it is converted to FlashPix. On sRGB see Appendix E.
+   *
+   * Format: {@link PelFormat::SHORT}.
+   *
+   * Components: 1.
    */
   const COLOR_SPACE                    = 0xA001;
 
@@ -742,6 +1006,10 @@ class PelTag {
    * recorded in this tag, whether or not there is padding data or a
    * restart marker. This tag should not exist in an uncompressed
    * file. For details see section 2.8.1 and Appendix F.
+   *
+   * Format: {@link PelFormat::SHORT} or {@link PelFormat::LONG}.
+   *
+   * Components: 1.
    */
   const PIXEL_X_DIMENSION              = 0xA002;
 
@@ -756,6 +1024,10 @@ class PelTag {
    * padding is unnecessary in the vertical direction, the number of
    * lines recorded in this valid image height tag will in fact be the
    * same as that recorded in the SOF.
+   *
+   * Format: {@link PelFormat::SHORT} or {@link PelFormat::LONG}.
+   *
+   * Components: 1.
    */
   const PIXEL_Y_DIMENSION              = 0xA003;
 
@@ -788,6 +1060,10 @@ class PelTag {
    * is an ASCII character string, it is terminated by NULL. When this
    * tag is used to map audio files, the relation of the audio file to
    * image data must also be indicated on the audio file end.
+   *
+   * Format: {@link PelFormat::ASCII}.
+   *
+   * Components: any number.
    */
   const RELATED_SOUND_FILE             = 0xA004;
 
@@ -800,6 +1076,10 @@ class PelTag {
    * of Interoperability IFD is the same as TIFF defined IFD structure
    * but does not contain the image data characteristically compared
    * with normal TIFF IFD.
+   *
+   * Format: {@link PelFormat::LONG}.
+   *
+   * Components: 1.
    */
   const INTEROPERABILITY_IFD_POINTER   = 0xA005;
 
@@ -808,6 +1088,10 @@ class PelTag {
    *
    * Indicates the strobe energy at the time the image is
    * captured, as measured in Beam Candle Power Seconds (BCPS).
+   *
+   * Format: {@link PelFormat::RATIONAL}.
+   *
+   * Components: 1.
    */
   const FLASH_ENERGY                   = 0xA20B;
 
@@ -817,6 +1101,10 @@ class PelTag {
    * This tag records the camera or input device spatial
    * frequency table and SFR values in the direction of image width,
    * image height, and diagonal direction, as specified in ISO 12233.
+   *
+   * Format: {@link PelFormat::UNDEFINED}.
+   *
+   * Components: any number.
    */
   const SPATIAL_FREQUENCY_RESPONSE     = 0xA20C;
 
@@ -826,6 +1114,10 @@ class PelTag {
    * Indicates the number of pixels in the image width (X)
    * direction per {@link FOCAL_PLANE_RESOLUTION_UNIT} on the camera
    * focal plane.
+   *
+   * Format: {@link PelFormat::RATIONAL}.
+   *
+   * Components: 1.
    */
   const FOCAL_PLANE_X_RESOLUTION       = 0xA20E;
 
@@ -835,6 +1127,10 @@ class PelTag {
    * Indicates the number of pixels in the image height (V)
    * direction per {@link FOCAL_PLANE_RESOLUTION_UNIT} on the camera
    * focal plane.
+   *
+   * Format: {@link PelFormat::RATIONAL}.
+   *
+   * Components: 1.
    */
   const FOCAL_PLANE_Y_RESOLUTION       = 0xA20F;
 
@@ -844,6 +1140,10 @@ class PelTag {
    * Indicates the unit for measuring {@link
    * FOCAL_PLANE_X_RESOLUTION} and {@link FOCAL_PLANE_Y_RESOLUTION}.
    * This value is the same as the {@link RESOLUTION_UNIT}.
+   *
+   * Format: {@link PelFormat::SHORT}.
+   *
+   * Components: 1.
    */
   const FOCAL_PLANE_RESOLUTION_UNIT    = 0xA210;
 
@@ -855,6 +1155,10 @@ class PelTag {
    * subject relative to the left edge, prior to rotation processing
    * as per the {@link ROTATION} tag. The first value indicates the X
    * column number and second indicates the Y row number.
+   *
+   * Format: {@link PelFormat::SHORT}.
+   *
+   * Components: 1.
    */
   const SUBJECT_LOCATION               = 0xA214;
 
@@ -863,6 +1167,10 @@ class PelTag {
    *
    * Indicates the exposure index selected on the camera or input
    * device at the time the image is captured.
+   *
+   * Format: {@link PelFormat::RATIONAL}.
+   *
+   * Components: 1.
    */
   const EXPOSURE_INDEX                 = 0xA215;
 
@@ -871,6 +1179,10 @@ class PelTag {
    *
    * Indicates the image sensor type on the camera or input
    * device.
+   *
+   * Format: {@link PelFormat::SHORT}.
+   *
+   * Components: 1.
    */
   const SENSING_METHOD                 = 0xA217;
 
@@ -880,6 +1192,10 @@ class PelTag {
    * Indicates the image source. If a DSC recorded the image,
    * this tag value of this tag always be set to 3, indicating that
    * the image was recorded on a DSC.
+   *
+   * Format: {@link PelFormat::UNDEFINED}.
+   *
+   * Components: 1.
    */
   const FILE_SOURCE                    = 0xA300;
 
@@ -889,6 +1205,10 @@ class PelTag {
    * Indicates the type of scene. If a DSC recorded the image,
    * this tag value must always be set to 1, indicating that the image
    * was directly photographed.
+   *
+   * Format: {@link PelFormat::UNDEFINED}.
+   *
+   * Components: 1.
    */
   const SCENE_TYPE                     = 0xA301;
 
@@ -898,6 +1218,10 @@ class PelTag {
    * Indicates the color filter array (CFA) geometric pattern of
    * the image sensor when a one-chip color area sensor is used. It
    * does not apply to all sensing methods.
+   *
+   * Format: {@link PelFormat::UNDEFINED}.
+   *
+   * Components: any number.
    */
   const NEW_CFA_PATTERN                = 0xA302;
 
@@ -908,6 +1232,10 @@ class PelTag {
    * data, such as rendering geared to output. When special processing
    * is performed, the reader is expected to disable or minimize any
    * further processing.
+   *
+   * Format: {@link PelFormat::SHORT}.
+   *
+   * Components: 1.
    */
   const CUSTOM_RENDERED                = 0xA401;
 
@@ -917,6 +1245,10 @@ class PelTag {
    * This tag indicates the exposure mode set when the image was
    * shot. In auto-bracketing mode, the camera shoots a series of
    * frames of the same scene at different exposure settings.
+   *
+   * Format: {@link PelFormat::SHORT}.
+   *
+   * Components: 1.
    */
   const EXPOSURE_MODE                  = 0xA402;
 
@@ -925,6 +1257,10 @@ class PelTag {
    *
    * This tag indicates the white balance mode set when the image
    * was shot.
+   *
+   * Format: {@link PelFormat::SHORT}.
+   *
+   * Components: 1.
    */
   const WHITE_BALANCE                  = 0xA403;
 
@@ -934,6 +1270,10 @@ class PelTag {
    * This tag indicates the digital zoom ratio when the image was
    * shot. If the numerator of the recorded value is 0, this indicates
    * that digital zoom was not used.
+   *
+   * Format: {@link PelFormat::RATIONAL}.
+   *
+   * Components: 1.
    */
   const DIGITAL_ZOOM_RATIO             = 0xA404;
 
@@ -944,6 +1284,10 @@ class PelTag {
    * 35mm film camera, in mm. A value of 0 means the focal length is
    * unknown. Note that this tag differs from the {@link FOCAL_LENGTH}
    * tag.
+   *
+   * Format: {@link PelFormat::RATIONAL}.
+   *
+   * Components: 1.
    */
   const FOCAL_LENGTH_IN_35MM_FILM      = 0xA405;
 
@@ -953,6 +1297,10 @@ class PelTag {
    * This tag indicates the type of scene that was shot. It can
    * also be used to record the mode in which the image was shot. Note
    * that this differs from the {@link SCENE_TYPE} tag.
+   *
+   * Format: {@link PelFormat::SHORT}.
+   *
+   * Components: 1.
    */
   const SCENE_CAPTURE_TYPE             = 0xA406;
 
@@ -961,6 +1309,10 @@ class PelTag {
    *
    * This tag indicates the degree of overall image gain
    * adjustment.
+   *
+   * Format: {@link PelFormat::SHORT}.
+   *
+   * Components: 1.
    */
   const GAIN_CONTROL                   = 0xA407;
 
@@ -969,6 +1321,10 @@ class PelTag {
    *
    * This tag indicates the direction of contrast processing
    * applied by the camera when the image was shot.
+   *
+   * Format: {@link PelFormat::SHORT}.
+   *
+   * Components: 1.
    */
   const CONTRAST                       = 0xA408;
 
@@ -977,6 +1333,10 @@ class PelTag {
    *
    * This tag indicates the direction of saturation processing
    * applied by the camera when the image was shot.
+   *
+   * Format: {@link PelFormat::SHORT}.
+   *
+   * Components: 1.
    */
   const SATURATION                     = 0xA409;
 
@@ -985,6 +1345,10 @@ class PelTag {
    *
    * This tag indicates the direction of sharpness processing
    * applied by the camera when the image was shot.
+   *
+   * Format: {@link PelFormat::SHORT}.
+   *
+   * Components: 1.
    */
   const SHARPNESS                      = 0xA40A;
 
@@ -1001,6 +1365,10 @@ class PelTag {
    * Subject Distance Range
    *
    * This tag indicates the distance to the subject.
+   *
+   * Format: {@link PelFormat::SHORT}.
+   *
+   * Components: 1.
    */
   const SUBJECT_DISTANCE_RANGE         = 0xA40C;
 
@@ -1010,6 +1378,10 @@ class PelTag {
    * This tag indicates an identifier assigned uniquely to each
    * image. It is recorded as an ASCII string equivalent to
    * hexadecimal notation and 128-bit fixed length.
+   *
+   * Format: {@link PelFormat::ASCII}.
+   *
+   * Components: 32.
    */
   const IMAGE_UNIQUE_ID                = 0xA420;
 
