@@ -5,6 +5,33 @@ Copyright (C) 2004, 2005  Martin Geisler.
 Licensed under the GNU GPL, see COPYING for details.
 
 
+PEL Version 0.9  (Not released)
+***********************************
+
+Notes:
+
+The API documentation was updated so as to clarify some confusion
+about the use of PelEntry::newFromData(), and to detail the constrains
+on format and number of components for each tag in PelTag.
+
+Changes:
+
+* Updated the documentation on PelEntry::newFromData() to indicate
+  that one shouldn't use this method unless the data comes directly
+  from an image.  The method signature was corrected with a type hint,
+  so that $data really is a PelDataWindow.
+
+* Updated the documentation in PelTag.  All tags now details their
+  expected format and the expected number of components.  One can
+  still freely choose to obey or disregard these constrains, but doing
+  so will lead to non-compliant images.
+
+* Updated the documentation in PelFormat with links to the PelEntry
+  classes corresponding to each format.
+
+* Updated the make-release.sh script to use a run-phpdoc.sh script.
+
+
 PEL Version 0.8  February 18th 2005
 ***********************************
 
