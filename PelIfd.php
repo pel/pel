@@ -178,11 +178,11 @@ class PelIfd {
         break;
       case PelTag::JPEG_INTERCHANGE_FORMAT:
         $thumb_offset = $d->getLong($offset + 12 * $i + 8);
-        $this->loadThumbnail($d, $thumb_offset, $thumb_length);
+        $this->safeSetThumbnail($d, $thumb_offset, $thumb_length);
         break;
       case PelTag::JPEG_INTERCHANGE_FORMAT_LENGTH:
         $thumb_length = $d->getLong($offset + 12 * $i + 8);
-        $this->loadThumbnail($d, $thumb_offset, $thumb_length);
+        $this->safeSetThumbnail($d, $thumb_offset, $thumb_length);
         break;
       default:
         $format     = $d->getShort($offset + 12 * $i + 2);
@@ -248,11 +248,15 @@ class PelIfd {
 
 
   /**
-   * Extract thumbnail data.
+   * Extract thumbnail data safely.
    *
    * It is safe to call this method repeatedly with either the offset
    * or the length set to zero, since it requires both of these
    * arguments to be positive before the thumbnail is extracted.
+   *
+   * When both parameters are set it will check the length against the
+   * available data and adjust as necessary. Only then is the
+   * thumbnail data loaded.
    *
    * @param PelDataWindow the data from which the thumbnail will be
    * extracted.
@@ -261,11 +265,10 @@ class PelIfd {
    *
    * @param int the length of the thumbnail.
    */
-  private function loadThumbnail(PelDataWindow $d, $offset, $length) {
+  private function safeSetThumbnail(PelDataWindow $d, $offset, $length) {
     /* Load the thumbnail if both the offset and the length is
      * available. */
     if ($offset > 0 && $length > 0) {
-      
       /* Some images have a broken length, so we try to carefully
        * check the length before we store the thumbnail. */
       if ($offset + $length > $d->getSize()) {
@@ -274,17 +277,34 @@ class PelIfd {
         $length = $d->getSize() - $offset;
       }
 
-      /* Now move backwards until we find the EOI JPEG marker. */
-      while ($d->getByte($offset+$length-2) != 0xFF ||
-             $d->getByte($offset+$length-1) != PelJpegMarker::EOI) {
-        $length--;
-        Pel::warning('Decrementing thumbnail length to %d bytes', $length);
-      }
-
-      Pel::debug('Loading %d bytes of thumbnail data from offset %d',
-                 $length, $offset);
-      $this->thumb_data = $d->getClone($offset, $length);
+      /* Now set the thumbnail normally. */
+      $this->setThumbnail($d->getClone($offset, $length));
     }
+  }
+
+  
+  /**
+   * Set thumbnail data.
+   *
+   * Use this to embed an arbitrary JPEG image within this IFD. The
+   * data will be checked to ensure that it has a proper {@link
+   * PelJpegMarker::EOI} at the end.  If not, then the length is
+   * adjusted until one if found.  A warning is issued in this case.
+   *
+   * @param PelDataWindow the thumbnail data.
+   */
+  function setThumbnail(PelDataWindow $d) {
+    $size = $d->getSize();
+    /* Now move backwards until we find the EOI JPEG marker. */
+    while ($d->getByte($size - 2) != 0xFF ||
+           $d->getByte($size - 1) != PelJpegMarker::EOI) {
+      $size--;
+    }
+
+    if ($size != $d->getSize())
+      Pel::warning('Decrementing thumbnail size to %d bytes', $size);
+    
+    $this->thumb_data = $d->getClone(0, $size);
   }
 
 
