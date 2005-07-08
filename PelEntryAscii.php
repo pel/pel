@@ -92,7 +92,7 @@ class PelEntryAscii extends PelEntry {
   function __construct($tag, $str = '') {
     $this->tag    = $tag;
     $this->format = PelFormat::ASCII;
-    self::setValue($str);
+    $this->setValue($str);
   }
 
 

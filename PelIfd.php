@@ -552,7 +552,7 @@ class PelIfd {
     }
 
     /* Make link to next IFD, if any*/
-    if (self::isLastIFD()) {
+    if ($this->isLastIFD()) {
       $link = 0;
     } else {
       $link = $end;
@@ -564,7 +564,7 @@ class PelIfd {
 
     $bytes .= $extra_bytes . $sub_bytes;
 
-    if (!self::isLastIfd())
+    if (!$this->isLastIfd())
       $bytes .= $this->next->getBytes($end, $order);
 
     return $bytes;
@@ -579,7 +579,7 @@ class PelIfd {
    */
   function __toString() {
     $str = Pel::fmt("Dumping EXIF IFD %s with %d entries...\n",
-                    self::getName(), count($this->entries));
+                    $this->getName(), count($this->entries));
     
     foreach ($this->entries as $entry)
       $str .= $entry->__toString();

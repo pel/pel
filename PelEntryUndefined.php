@@ -71,7 +71,7 @@ class PelEntryUndefined extends PelEntry {
   function __construct($tag, $data = '') {
     $this->tag        = $tag;
     $this->format     = PelFormat::UNDEFINED;
-    self::setValue($data);
+    $this->setValue($data);
   }
 
 
@@ -229,7 +229,7 @@ class PelEntryUserComment extends PelEntryUndefined {
    */
   function __construct($comment = '', $encoding = 'ASCII') {
     parent::__construct(PelTag::USER_COMMENT);
-    self::setValue($comment, $encoding);
+    $this->setValue($comment, $encoding);
   }
 
   
