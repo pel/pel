@@ -216,7 +216,7 @@ class PelEntrySRational extends PelEntrySLong {
    *
    * The rational will be returned as a string with a slash '/'
    * between the enumerator and denominator.  Care is taken to display
-   * '-1/2' instead of the mathematically equivalent '1/-2'.
+   * '-1/2' instead of the ugly but mathematically equivalent '1/-2'.
    *
    * @param array the rational which will be formatted.
    *
@@ -260,7 +260,7 @@ class PelEntrySRational extends PelEntrySLong {
     case PelTag::BRIGHTNESS_VALUE:
       //CC (e->components, 1, v);
       //
-      // TODO: figure out the APEX thing, or remove this so that it's
+      // TODO: figure out the APEX thing, or remove this so that it is
       // handled by the default clause at the bottom.
       return sprintf('%d/%d', $v[0], $v[1]);
       //FIXME: How do I calculate the APEX value?

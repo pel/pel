@@ -260,7 +260,7 @@ class PelDataWindow {
    * or if it is greater than or equal to the current window size,
    * then a {@link PelDataWindowOffsetException} is thrown.
    *
-   * @return void if the offset is valid nothing is returned, if it's
+   * @return void if the offset is valid nothing is returned, if it is
    * invalid a new {@link PelDataWindowOffsetException} is thrown.
    */
   private function validateOffset($o) {

@@ -329,7 +329,7 @@ class PelIfd {
    *
    * @param PelEntry the entry that will be added.
    *
-   * @todo The entry will be identified with it's tag, so each
+   * @todo The entry will be identified with its tag, so each
    * directory can only contain one entry with each tag.  Is this a
    * bug?
    */
@@ -372,7 +372,8 @@ class PelIfd {
    * Returns available thumbnail data.
    *
    * @return string the bytes in the thumbnail, if any.  If the IFD
-   * doesn't contain any thumbnail data, the empty string is returned.
+   * does not contain any thumbnail data, the empty string is
+   * returned.
    *
    * @todo Throw an exception instead when no data is available?
    *
@@ -427,7 +428,7 @@ class PelIfd {
    * PelTag::INTEROPERABILITY_IFD_POINTER}.
    *
    * @return PelIfd the IFD associated with the tag, or null if
-   * that sub IFD doesn't exist.
+   * that sub IFD does not exist.
    */
   function getSubIfd($tag) {
     if (isset($this->sub[$tag]))
@@ -540,7 +541,7 @@ class PelIfd {
       $bytes .= PelConvert::shortToBytes($tag, $order);
       /* Next the format, which is always unsigned long. */
       $bytes .= PelConvert::shortToBytes(PelFormat::LONG, $order);
-      /* There's only one component. */
+      /* There is only one component. */
       $bytes .= PelConvert::longToBytes(1, $order);
 
       $data = $sub->getBytes($end, $order);

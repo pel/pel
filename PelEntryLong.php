@@ -64,7 +64,7 @@ class PelEntryLong extends PelEntryNumber {
   /**
    * Make a new entry that can hold an unsigned long.
    *
-   * The method accept it's arguments in two forms: several integer
+   * The method accept its arguments in two forms: several integer
    * arguments or a single array argument.  The {@link getValue}
    * method will always return an array except for when a single
    * integer argument is given here, or when an array with just a
@@ -134,7 +134,7 @@ class PelEntrySLong extends PelEntryNumber {
   /**
    * Make a new entry that can hold a signed long.
    *
-   * The method accept it's arguments in two forms: several integer
+   * The method accept its arguments in two forms: several integer
    * arguments or a single array argument.  The {@link getValue}
    * method will always return an array except for when a single
    * integer argument is given here, or when an array with just a

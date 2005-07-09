@@ -1387,7 +1387,7 @@ class PelTag {
 
 
   /**
-   * Check a short value to see if it's a valid EXIF tag.
+   * Check a short value to see if it is a valid EXIF tag.
    *
    * @param PelTag the tag.
    *
@@ -1404,7 +1404,7 @@ class PelTag {
    * @param PelTag the tag.
    *
    * @return string the short name of the tag, e.g., 'ImageWidth' for
-   * the {@link IMAGE_WIDTH} tag.  If the tag isn't known, the string
+   * the {@link IMAGE_WIDTH} tag.  If the tag is not known, the string
    * 'Unknown:0xTT' will be returned where 'TT' is the hexadecimal
    * representation of the tag.
    */
@@ -1873,7 +1873,7 @@ class PelTag {
    *
    * @return string the description of the tag which generally
    * explains how the tag is supposed to be used or interpreted.  If
-   * the tag isn't known, the string 'Unknown Tag :0xTT' will be
+   * the tag is not known, the string 'Unknown Tag :0xTT' will be
    * returned where 'TT' is the hexadecimal representation of the tag.
    */
   function getDescription($tag) {

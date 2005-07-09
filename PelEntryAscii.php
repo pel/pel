@@ -232,7 +232,7 @@ class PelEntryTime extends PelEntryAscii {
  *
  * This class is used to manipulate that tag so that the format is
  * kept to the standard.  A common use would be to add a new copyright
- * tag to an image, since most cameras don't add this tag themselves.
+ * tag to an image, since most cameras do not add this tag themselves.
  * This would be done like this:
  *
  * <code>
@@ -241,7 +241,7 @@ class PelEntryTime extends PelEntryAscii {
  * </code>
  *
  * Here we only set the photographer copyright, use the optional
- * second argument to specify the editor copyright.  If there's only
+ * second argument to specify the editor copyright.  If there is only
  * an editor copyright, then let the first argument be the empty
  * string.
  *
@@ -269,10 +269,10 @@ class PelEntryCopyright extends PelEntryAscii {
    * Make a new entry for holding copyright information.
    *
    * @param string the photographer copyright.  Use the empty string
-   * if there's no photographer copyright.
+   * if there is no photographer copyright.
    *
    * @param string the editor copyright.  Use the empty string if
-   * there's no editor copyright.
+   * there is no editor copyright.
    */
   function __construct($photographer = '', $editor = '') {
     parent::__construct(PelTag::COPYRIGHT);
@@ -284,10 +284,10 @@ class PelEntryCopyright extends PelEntryAscii {
    * Update the copyright information.
    *
    * @param string the photographer copyright.  Use the empty string
-   * if there's no photographer copyright.
+   * if there is no photographer copyright.
    *
    * @param string the editor copyright.  Use the empty string if
-   * there's no editor copyright.
+   * there is no editor copyright.
    */
   function setValue($photographer = '', $editor = '') {
     $this->photographer = $photographer;
