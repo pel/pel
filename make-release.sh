@@ -106,18 +106,8 @@ cd pel-$VERSION
 
 
 # Generate the API documentation
-echo -n "Running phpDocumentor... "
-../../phpdocumentor/phpdoc                                          \
-    --quiet               "on"                                      \
-    --sourcecode          "on"                                      \
-    --title               "PEL: PHP EXIF Library Version $VERSION"  \
-    --output              "HTML:frames:earthli"                     \
-    --customtags          "date"                                    \
-    --defaultpackagename  "PEL"                                     \
-    --directory           "tutorials"                               \
-    --filename            "Pel*.php,README,INSTALL,NEWS,ChangeLog"  \
-    --target              "doc"
-echo "done."
+./run-phpdoc.sh $VERSION '../../phpdocumentor/phpdoc'
+
 
 # Cleanup files that aren't needed in the released package
 rm make-release.sh .cvsignore users
