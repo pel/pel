@@ -69,20 +69,12 @@ class PelJpegContent {
   /**
    * Return the bytes of the content.
    *
-   * @return string the content.  
+   * @return string bytes representing this JPEG content.  These bytes
+   * will match the bytes given to {@link __construct the
+   * constructor}.
    */
   function getBytes() {
     return $this->data->getBytes();
-  }
-  
-
-  /**
-   * Return the size of the content.
-   *
-   * @return int the size.  
-   */
-  function getSize() {
-    return $this->data->getSize();
   }
 
 }
