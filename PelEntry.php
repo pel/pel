@@ -42,7 +42,13 @@
  */
 
 /**#@+ Required class definitions. */
+require_once('PelEntryUndefined.php');
+require_once('PelEntryRational.php');
 require_once('PelDataWindow.php');
+require_once('PelEntryAscii.php');
+require_once('PelEntryShort.php');
+require_once('PelEntryByte.php');
+require_once('PelEntryLong.php');
 require_once('PelException.php');
 require_once('PelFormat.php');
 require_once('PelTag.php');
@@ -218,7 +224,13 @@ abstract class PelEntry {
                               PelDataWindow $data) {
 
     /* First handle tags for which we have a specific PelEntryXXX
-     * class. */
+     * class.
+     *
+     * The necessary class definitions have already been pulled in via
+     * require_once() at the top of the file.  Doing this
+     * conditionally as different types of entries were needed sounded
+     * like a good idea, but that broke things in PelIfd which just
+     * includes this file. */
     switch ($tag) {
     case PelTag::DATE_TIME:
     case PelTag::DATE_TIME_ORIGINAL:
@@ -234,7 +246,6 @@ abstract class PelEntry {
        * second components. */
       $d = explode('-', strtr($data->getBytes(0, -1), '.: ', '---'));
       // TODO: handle timezones.
-      require_once('PelEntryAscii.php');
       return new PelEntryTime($tag, gmmktime($d[3], $d[4], $d[5],
                                              $d[1], $d[2], $d[0]));
 
@@ -244,7 +255,6 @@ abstract class PelEntry {
                                                PelFormat::ASCII);
       
       $v = explode("\0", trim($data->getBytes(), ' '));
-      require_once('PelEntryAscii.php');
       return new PelEntryCopyright($v[0], $v[1]);
 
     case PelTag::EXIF_VERSION:
@@ -254,15 +264,12 @@ abstract class PelEntry {
         throw new PelUnexpectedFormatException($tag, $format,
                                                PelFormat::UNDEFINED);
 
-      require_once('PelEntryUndefined.php');
       return new PelEntryVersion($tag, $data->getBytes() / 100);
 
     case PelTag::USER_COMMENT:
       if ($format != PelFormat::UNDEFINED)
         throw new PelUnexpectedFormatException($tag, $format,
                                                PelFormat::UNDEFINED);
-
-      require_once('PelEntryUndefined.php');
       if ($data->getSize() < 8) {
         return new PelEntryUserComment();
       } else {
@@ -274,67 +281,57 @@ abstract class PelEntry {
       /* Then handle the formats. */
       switch ($format) {
       case PelFormat::BYTE:
-        require_once('PelEntryByte.php');
         $v =  new PelEntryByte($tag);
         for ($i = 0; $i < $components; $i++)
           $v->addNumber($data->getByte($i));
         return $v;
 
       case PelFormat::SBYTE:
-        require_once('PelEntryByte.php');
         $v =  new PelEntrySByte($tag);
         for ($i = 0; $i < $components; $i++)
           $v->addNumber($data->getSByte($i));
         return $v;
 
       case PelFormat::ASCII:
-        require_once('PelEntryAscii.php');
         return new PelEntryAscii($tag, $data->getBytes(0, -1));
 
       case PelFormat::SHORT:
-        require_once('PelEntryShort.php');
         $v =  new PelEntryShort($tag);
         for ($i = 0; $i < $components; $i++)
           $v->addNumber($data->getShort($i*2));
         return $v;
 
       case PelFormat::SSHORT:
-        require_once('PelEntryShort.php');
         $v =  new PelEntrySShort($tag);
         for ($i = 0; $i < $components; $i++)
           $v->addNumber($data->getSShort($i*2));
         return $v;
 
       case PelFormat::LONG:
-        require_once('PelEntryLong.php');
         $v =  new PelEntryLong($tag);
         for ($i = 0; $i < $components; $i++)
           $v->addNumber($data->getLong($i*4));
         return $v;
 
       case PelFormat::SLONG:
-        require_once('PelEntryLong.php');
         $v =  new PelEntrySLong($tag);
         for ($i = 0; $i < $components; $i++)
           $v->addNumber($data->getSLong($i*4));
         return $v;
 
       case PelFormat::RATIONAL:
-        require_once('PelEntryRational.php');
         $v =  new PelEntryRational($tag);
         for ($i = 0; $i < $components; $i++)
           $v->addNumber($data->getRational($i*8));
         return $v;
 
       case PelFormat::SRATIONAL:
-        require_once('PelEntryRational.php');
         $v =  new PelEntrySRational($tag);
         for ($i = 0; $i < $components; $i++)
           $v->addNumber($data->getSRational($i*8));
         return $v;
 
       case PelFormat::UNDEFINED:
-        require_once('PelEntryUndefined.php');
         return new PelEntryUndefined($tag, $data->getBytes());
 
       default:
