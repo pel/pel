@@ -16,6 +16,19 @@ on format and number of components for each tag in PelTag.
 
 Changes:
 
+* Removed PelJpegContent::getSize() method.  Calling this method in
+  the PelExif subclass resulted in an error, and overriding it
+  correctly in PelExif would have required too much code to justify
+  the effort.
+
+* Better doc comments and small code cleanups in PelJpeg.php,
+  PelExif.php, and PelIfd.php.
+
+* PelEntry.php now unconditionally includes the class definitions of
+  all the entry types.  The conditionally loading only worked when one
+  created a new PelJpeg object, but not when one had stored such an
+  object in, say, a session.
+
 * Updated the documentation on PelEntry::newFromData() to indicate
   that one shouldn't use this method unless the data comes directly
   from an image.  The method signature was corrected with a type hint,
@@ -29,7 +42,8 @@ Changes:
 * Updated the documentation in PelFormat with links to the PelEntry
   classes corresponding to each format.
 
-* Updated the make-release.sh script to use a run-phpdoc.sh script.
+* Updated the make-release.sh script to use a run-phpdoc.sh script for
+  generating the API documentation.
 
 
 PEL Version 0.8  February 18th 2005
@@ -132,7 +146,7 @@ Changes:
 
 * Changed the constructors in PelJpeg, PelExif, PelTiff, and PelIfd so
   that one can now make new objects without filling them with data
-  immediatly.  This makes it possible to add, say, a new APP1 section
+  immediately.  This makes it possible to add, say, a new APP1 section
   with EXIF to a JPEG image lacking such information.
 
 * Fixed loading of signed bytes and shorts in PelConvert.
@@ -199,14 +213,14 @@ PEL Version 0.4  June 9th, 2004
 
 Notes:
 
-The infrastructure for internationalisation has been put in place.
+The infrastructure for internationalization has been put in place.
 Preliminary translations for Danish, German, French, and Spanish is
 included.  Support for tags with GPS information were disabled due to
 conflicts with a number of normal tags.
 
 Changes:
 
-* Disabled the code that tries to lookup the title and description of
+* Disabled the code that tries to look up the title and description of
   the GPS related tags, since those tags have the same hexadecimal
   value as a number of other normal tags.  This means that there is no
   support for tags with GPS information.
