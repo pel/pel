@@ -149,7 +149,12 @@ class PelJpeg {
    *
    * <code>
    * $jpeg = new PelJpeg();
+   * // Initialize $jpeg with some data:
    * $jpeg->load($data);
+   * // Create container for the EXIF information:
+   * $exif = new PelExif();
+   * // Now Add a PelTiff object with a PelIfd object with one or more
+   * // PelEntry objects to $exif.  Finally add $exif to $jpeg:
    * $jpeg->appendSection($exif, PelJpegMarker::APP1);
    * </code>
    */
@@ -360,7 +365,32 @@ class PelJpeg {
    * Get all sections.
    *
    * @return array an array of ({@link PelJpegMarker}, {@link
-   * PelJpegContent}) pairs.
+   * PelJpegContent}) pairs.  Each pair is an array with the {@link
+   * PelJpegMarker} as the first element and the {@link
+   * PelJpegContent} as the second element, so the return type is an
+   * array of arrays.
+   *
+   * So to loop through all the sections in a given JPEG image do
+   * this:
+   *
+   * <code>
+   * foreach ($jpeg->getSections() as $section) {
+   *   $marker = $section[0];
+   *   $content = $section[1];
+   *   // Use $marker and $content here.
+   * }
+   * </code>
+   *
+   * instead of this:
+   *
+   * <code>
+   * foreach ($jpeg->getSections() as $marker => $content) {
+   *   // Does not work.
+   * }
+   * </code>
+   *
+   * The problem is that there could be several sections with the same
+   * marker, and thsu a simple associative array does not suffice.
    */
   function getSections() {
     return $this->sections;

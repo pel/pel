@@ -441,8 +441,8 @@ class PelIfd {
   /**
    * Get all sub IFDs.
    *
-   * @return array an array with ({@link PelTag}, {@link PelIfd})
-   * pairs.
+   * @return array an associative array with ({@link PelTag}, {@link
+   * PelIfd}) pairs.
    */
   function getSubIfds() {
     return $this->sub;

@@ -111,7 +111,7 @@ class PelExif extends PelJpegContent {
     
     /* Verify the EXIF header */
     if ($d->strcmp(0, self::EXIF_HEADER)) {
-      $d->setWindowStart(6);
+      $d->setWindowStart(strlen(self::EXIF_HEADER));
     } else {
       throw new PelInvalidDataException('EXIF header not found.');
     }
@@ -150,16 +150,15 @@ class PelExif extends PelJpegContent {
 
 
   /**
-   * Produce bytes for this object.
+   * Produce bytes for the EXIF data.
    *
-   * @return string bytes representing this object.  These bytes will
-   * match the bytes given to {@link __construct the constructor}.
+   * @return string bytes representing this object.
    */
   function getBytes() {
-    return self::EXIF_HEADER . $this->tiff->getbytes();
+    return self::EXIF_HEADER . $this->tiff->getBytes();
   }
-  
 
+  
   /**
    * Return a string representation of this object.
    *
