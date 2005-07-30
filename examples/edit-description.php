@@ -122,9 +122,25 @@ if (PelJpeg::isValid($data)) {
    * will normally contain the EXIF data.  */
   $app1 = $jpeg->getSection(PelJpegMarker::APP1);
 
-  /* Surprice, surprice: EXIF data is really just TIFF data!  So we
-   * extract the PelTiff object for later use. */
-  $tiff = $app1->getTiff();
+  if ($app1 == null) {
+    /* Ups, there is no APP1 section in the JPEG file.  This is where
+     * the EXIF data should be. */
+    println('No APP1 section found, added new.');
+
+    /* In this case we simply create a new APP1 section (a PelExif
+     * object) and adds it to the PelJpeg object. */
+    $app1 = new PelExif();
+    $jpeg->insertSection(PelJpegMarker::APP1, $app1, 2);
+
+    /* We then create an empty TIFF structure in the APP1 section. */
+    $tiff = new PelTiff();
+    $app1->setTiff($tiff);
+  } else {
+    /* Surprice, surprice: EXIF data is really just TIFF data!  So we
+     * extract the PelTiff object for later use. */
+    println('Found existing APP1 section.');
+    $tiff = $app1->getTiff();
+  }
 } elseif (PelTiff::isValid($data)) {
   /* The data was recognized as TIFF data.  We prepare a PelTiff
    * object to hold it, and record in $file that the PelTiff object is
@@ -146,6 +162,16 @@ if (PelJpeg::isValid($data)) {
  * sub-IFDs.  For our purpose we only need the first IFD, for this is
  * where the image description should be stored. */
 $ifd0 = $tiff->getIfd();
+
+if ($ifd0 == null) {
+  /* No IFD in the TIFF data?  This probably means that the image
+   * didn't have any EXIF information to start with, and so an empty
+   * PelTiff object was inserted by the code above.  But this is no
+   * problem, we just create and inserts an empty PelIfd object. */
+  println('No IFD found, adding new.');
+  $ifd0 = new PelIfd();
+  $tiff->setIfd($ifd0);
+}
 
 /* Each entry in an IFD is identified with a tag.  This will load the
  * ImageDescription entry if it is present.  If the IFD does not

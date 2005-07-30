@@ -12,9 +12,14 @@ Notes:
 
 The API documentation was updated so as to clarify some confusion
 about the use of PelEntry::newFromData(), and to detail the constrains
-on format and number of components for each tag in PelTag.
+on format and number of components for each tag in PelTag.  The
+edit-description.php example now deals correctly with images with no
+previous EXIF data.
 
 Changes:
+
+* Made edit-description.php correctly add an empty EXIF structure in
+  case the original image has none.
 
 * Removed PelJpegContent::getSize() method.  Calling this method in
   the PelExif subclass resulted in an error, and overriding it
