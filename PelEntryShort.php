@@ -345,6 +345,8 @@ class PelEntryShort extends PelEntryNumber {
       switch ($this->value[0]) { 
       case 1:
         return 'sRGB';
+      case 2:
+        return 'Adobe RGB';
       case 0xffff:
         return Pel::tra('Uncalibrated');
       default:
