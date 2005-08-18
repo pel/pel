@@ -11,8 +11,8 @@ Credits
 PEL is written by Martin Geisler <mgeisler@users.sourceforge.net>.
 
 The source started out as a port of the nice, clean C code found in
-libexif.  The German, French, and Spanish translations are also taken
-from the libexif project.
+libexif.  Most of the translations included with PEL also originates
+from the libexif project, see below for details.
 
 
 Test Image Contributors
@@ -43,3 +43,5 @@ French: Arnaud Launay (for libexif).
 Danish: Martin Geisler.
 
 Spanish: Fabian Mandelbaum (for libexif).
+
+Polish: Jakub Bogusz (for libexif).

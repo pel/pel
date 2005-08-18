@@ -14,9 +14,18 @@ The API documentation was updated so as to clarify some confusion
 about the use of PelEntry::newFromData(), and to detail the constrains
 on format and number of components for each tag in PelTag.  The
 edit-description.php example now deals correctly with images with no
-previous EXIF data.
+previous EXIF data.  A Polish translation was added and the other
+translations were updated.
 
 Changes:
+
+* A number of translations in the German, French, and Spanish
+  translations were inactive because of small differences between PHP
+  and C (such as using %d and %i in format strings).
+
+* Added Polish translation by Jakub Bogusz from the libexif project.
+
+* Corrected tag documentation in PelTag.
 
 * Made edit-description.php correctly add an empty EXIF structure in
   case the original image has none.
