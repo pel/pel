@@ -340,21 +340,21 @@ class PelJpegMarker {
     case self::DAC:
       return Pel::tra('Define arithmetic coding conditioning');
     case self::RST0:
-      return Pel::tra('Restart 0');
+      return Pel::fmt('Restart %d', 0);
     case self::RST1:
-      return Pel::tra('Restart 1');
+      return Pel::fmt('Restart %d', 1);
     case self::RST2:
-      return Pel::tra('Restart 2');
+      return Pel::fmt('Restart %d', 2);
     case self::RST3:
-      return Pel::tra('Restart 3');
+      return Pel::fmt('Restart %d', 3);
     case self::RST4:
-      return Pel::tra('Restart 4');
+      return Pel::fmt('Restart %d', 4);
     case self::RST5:
-      return Pel::tra('Restart 5');
+      return Pel::fmt('Restart %d', 5);
     case self::RST6:
-      return Pel::tra('Restart 6');
+      return Pel::fmt('Restart %d', 6);
     case self::RST7:
-      return Pel::tra('Restart 7');
+      return Pel::fmt('Restart %d', 7);
     case self::DQT:
       return Pel::tra('Define quantization table');
     case self::DNL:
@@ -366,65 +366,65 @@ class PelJpegMarker {
     case self::EXP:
       return Pel::tra('Expand reference component');
     case self::APP0:
-      return Pel::tra('Application segment 0');
+      return Pel::fmt('Application segment %d', 0);
     case self::APP1:
-      return Pel::tra('Application segment 1');
+      return Pel::fmt('Application segment %d', 1);
     case self::APP2:
-      return Pel::tra('Application segment 2');
+      return Pel::fmt('Application segment %d', 2);
     case self::APP3:
-      return Pel::tra('Application segment 3');
+      return Pel::fmt('Application segment %d', 3);
     case self::APP4:
-      return Pel::tra('Application segment 4');
+      return Pel::fmt('Application segment %d', 4);
     case self::APP5:
-      return Pel::tra('Application segment 5');
+      return Pel::fmt('Application segment %d', 5);
     case self::APP6:
-      return Pel::tra('Application segment 6');
+      return Pel::fmt('Application segment %d', 6);
     case self::APP7:
-      return Pel::tra('Application segment 7');
+      return Pel::fmt('Application segment %d', 7);
     case self::APP8:
-      return Pel::tra('Application segment 8');
+      return Pel::fmt('Application segment %d', 8);
     case self::APP9:
-      return Pel::tra('Application segment 9');
+      return Pel::fmt('Application segment %d', 9);
     case self::APP10:
-      return Pel::tra('Application segment 10');
+      return Pel::fmt('Application segment %d', 10);
     case self::APP11:
-      return Pel::tra('Application segment 11');
+      return Pel::fmt('Application segment %d', 11);
     case self::APP12:
-      return Pel::tra('Application segment 12');
+      return Pel::fmt('Application segment %d', 12);
     case self::APP13:
-      return Pel::tra('Application segment 13');
+      return Pel::fmt('Application segment %d', 13);
     case self::APP14:
-      return Pel::tra('Application segment 14');
+      return Pel::fmt('Application segment %d', 14);
     case self::APP15:
-      return Pel::tra('Application segment 15');
+      return Pel::fmt('Application segment %d', 15);
     case self::JPG0:
-      return Pel::tra('Extension 0');
+      return Pel::fmt('Extension %d', 0);
     case self::JPG1:
-      return Pel::tra('Extension 1');
+      return Pel::fmt('Extension %d', 1);
     case self::JPG2:
-      return Pel::tra('Extension 2');
+      return Pel::fmt('Extension %d', 2);
     case self::JPG3:
-      return Pel::tra('Extension 3');
+      return Pel::fmt('Extension %d', 3);
     case self::JPG4:
-      return Pel::tra('Extension 4');
+      return Pel::fmt('Extension %d', 4);
     case self::JPG5:
-      return Pel::tra('Extension 5');
+      return Pel::fmt('Extension %d', 5);
     case self::JPG6:
-      return Pel::tra('Extension 6');
+      return Pel::fmt('Extension %d', 6);
     case self::JPG7:
-      return Pel::tra('Extension 7');
+      return Pel::fmt('Extension %d', 7);
     case self::JPG8:
-      return Pel::tra('Extension 8');
+      return Pel::fmt('Extension %d', 8);
     case self::JPG9:
-      return Pel::tra('Extension 9');
+      return Pel::fmt('Extension %d', 9);
     case self::JPG10:
-      return Pel::tra('Extension 10');
+      return Pel::fmt('Extension %d', 10);
     case self::JPG11:
-      return Pel::tra('Extension 11');
+      return Pel::fmt('Extension %d', 11);
     case self::JPG12:
-      return Pel::tra('Extension 12');
+      return Pel::fmt('Extension %d', 12);
     case self::JPG13:
-      return Pel::tra('Extension 13');
+      return Pel::fmt('Extension %d', 13);
     case self::COM:
       return Pel::tra('Comment');
     default:
