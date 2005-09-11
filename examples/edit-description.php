@@ -150,9 +150,10 @@ if (PelJpeg::isValid($data)) {
   $tiff->load($data);
 } else {
   /* The data was not recognized as either JPEG or TIFF data.
-   * Complain loudly and dump the first 16 bytes. */
+   * Complain loudly, dump the first 16 bytes, and exit. */
   println('Unrecognized image format! The first 16 bytes follow:');
   PelConvert::bytesToDump($data->getBytes(0, 16)); 
+  exit(1);
 }
 
 /* TIFF data has a tree structure much like a file system.  There is a
