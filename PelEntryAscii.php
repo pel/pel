@@ -68,7 +68,7 @@ class PelEntryAscii extends PelEntry {
    * The string hold by this entry.
    *
    * This is the string that was given to the {@link __construct
-   * constructor} or later to {@link setAscii}, without any final NULL
+   * constructor} or later to {@link setValue}, without any final NULL
    * character.
    *
    * @var string
@@ -86,7 +86,7 @@ class PelEntryAscii extends PelEntry {
    *
    * @param string the string that this entry will represent.  The
    * string must obey the same rules as the string argument to {@link
-   * setAscii}, namely that it should be given without any trailing
+   * setValue}, namely that it should be given without any trailing
    * NULL character and that it must be plain 7-bit ASCII.
    */
   function __construct($tag, $str = '') {
