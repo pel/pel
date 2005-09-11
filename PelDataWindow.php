@@ -145,7 +145,8 @@ class PelDataWindow {
    * Change the byte order of the data.
    *
    * @param PelByteOrder the new byte order.  This must be either
-   * {@link Convert::LITTLE_ENDIAN} or {@link Convert::BIG_ENDIAN}.
+   * {@link PelConvert::LITTLE_ENDIAN} or {@link
+   * PelConvert::BIG_ENDIAN}.
    */
   function setByteOrder($o) {
     $this->order = $o;
@@ -156,7 +157,7 @@ class PelDataWindow {
    * Get the currently used byte order.
    *
    * @return PelByteOrder this will be either {@link
-   * Convert::LITTLE_ENDIAN} or {@link Convert::BIG_ENDIAN}.
+   * PelConvert::LITTLE_ENDIAN} or {@link PelConvert::BIG_ENDIAN}.
    */
   function getByteOrder() {
     return $this->order;
