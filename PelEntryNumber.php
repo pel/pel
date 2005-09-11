@@ -184,17 +184,22 @@ abstract class PelEntryNumber extends PelEntry {
    *
    * @param int|array the number in question.
    *
-   * @return void nothing, but throws a {@link PelOverflowException}
-   * if the number is found to be outside the legal range.
+   * @return void nothing, but will throw a {@link
+   * PelOverflowException} if the number is found to be outside the
+   * legal range and {@link Pel::$strict} is true.
    */
   function validateNumber($n) {
     if ($this->dimension == 1) {
       if ($n < $this->min || $n > $this->max)
-        throw new PelOverflowException($n, $this->min, $this->max);
+        Pel::maybeThrow(new PelOverflowException($n,
+                                                 $this->min,
+                                                 $this->max));
     } else {
       for ($i = 0; $i < $this->dimension; $i++)
         if ($n[$i] < $this->min || $n[$i] > $this->max)
-          throw new PelOverflowException($n[$i], $this->min, $this->max);
+          Pel::maybeThrow(new PelOverflowException($n[$i],
+                                                   $this->min,
+                                                   $this->max));
     }
   }
 

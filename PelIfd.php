@@ -158,7 +158,7 @@ class PelIfd {
     /* Check if we have enough data. */
     if ($offset + 12 * $n > $d->getSize()) {
       $n = floor(($offset - $d->getSize()) / 12);
-      Pel::warning('Adjusted number of entries to %d.', $n);
+      Pel::maybeThrow(new PelIfdException('Adjusted to: %d.', $n));
     }
 
     for ($i = 0; $i < $n; $i++) {
@@ -206,8 +206,10 @@ class PelIfd {
         try {
           $entry = PelEntry::newFromData($tag, $format, $components, $data);
           $this->entries[$tag] = $entry;
-        } catch (PelEntryException $e) {
-          Pel::warning('Could not load entry %d: %s', $i, $e->getMessage());
+        } catch (PelException $e) {
+          /* Throw the exception is running in strict mode, store
+           * otherwise. */
+          Pel::maybeThrow($e);
         }
 
         /* The format of the thumbnail is stored in this tag. */
@@ -226,12 +228,14 @@ class PelIfd {
 
     if ($o > 0) {
       /* Sanity check: we need 6 bytes  */
-      if ($o > $d->getSize() - 6)
-        throw new PelIfdException('Bogus offset to next IFD: %d > %d',
-                                  $o, $d->getSize() - 6);
-
-      $this->next = new PelIfd();
-      $this->next->load($d, $o);
+      if ($o > $d->getSize() - 6) {
+        Pel::maybeThrow(new PelIfdException('Bogus offset to next IFD: ' .
+                                            '%d > %d!',
+                                            $o, $d->getSize() - 6));
+      } else {
+        $this->next = new PelIfd();
+        $this->next->load($d, $o);
+      }
     } else {
       Pel::debug('Last IFD.');
     }
@@ -263,8 +267,10 @@ class PelIfd {
       /* Some images have a broken length, so we try to carefully
        * check the length before we store the thumbnail. */
       if ($offset + $length > $d->getSize()) {
-        Pel::warning('Thumbnail length %d bytes adjusted to %d bytes.',
-                     $length, $d->getSize() - $offset);
+        Pel::maybeThrow(new PelIfdException('Thumbnail length %d bytes ' .
+                                            'adjusted to %d bytes.',
+                                            $length,
+                                            $d->getSize() - $offset));
         $length = $d->getSize() - $offset;
       }
 
@@ -280,7 +286,8 @@ class PelIfd {
    * Use this to embed an arbitrary JPEG image within this IFD. The
    * data will be checked to ensure that it has a proper {@link
    * PelJpegMarker::EOI} at the end.  If not, then the length is
-   * adjusted until one if found.  A warning is issued in this case.
+   * adjusted until one if found.  An {@link PelIfdException} might be
+   * thrown (depending on {@link Pel::$strict}) this case.
    *
    * @param PelDataWindow the thumbnail data.
    */
@@ -293,7 +300,8 @@ class PelIfd {
     }
 
     if ($size != $d->getSize())
-      Pel::warning('Decrementing thumbnail size to %d bytes', $size);
+      Pel::maybeThrow(new PelIfdException('Decrementing thumbnail size ' .
+                                          'to %d bytes', $size));
     
     $this->thumb_data = $d->getClone(0, $size);
   }

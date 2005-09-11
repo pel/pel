@@ -96,11 +96,95 @@ class Pel {
   static $debug = false;
 
   /**
+   * Flag for strictness of parsing.
+   *
+   * If this variable is set to true, then most errors while loading
+   * images will result in exceptions being thrown.  Otherwise a
+   * warning will be emitted (using {@link Pel::warning}) and the
+   * exceptions will be appended to {@link Pel::$exceptions}.
+   *
+   * Some errors will still be fatal and result in thrown exceptions,
+   * but an effort will be made to skip over as much garbage as
+   * possible.
+   *
+   * @var boolean
+   */
+  static $strict = false;
+  
+  /**
+   * Stored exceptions.
+   *
+   * When {@link Pel::$strict} is set to false exceptions will be
+   * accumulated here instead of being thrown.  Inspect this array to
+   * get hold of them when a call returns.
+   *
+   * Code for using this could look like this:
+   *
+   * <code>
+   * Pel::$strict = false;
+   * Pel::clearExceptions();
+   *
+   * $jpeg = new PelJpeg();
+   * $jpeg->loadFile($file);
+   *
+   * // Check for exceptions.
+   * if (!empty(Pel::$exceptions)) {
+   *   foreach (Pel::$exceptions as $e) {
+   *     printf("Exception: %s\n", $e->getMessage());
+   *     if ($e instanceof PelEntryException) {
+   *       // Warn about entries that couldn't be loaded.
+   *       printf("Warning: Problem with %s.\n",
+   *              PelTag::getName($e->getTag()));
+   *     }
+   *   }
+   * }
+   * </code>
+   *
+   * This gives applications total control over the amount of error
+   * messages shown and (hopefully) provides the necessary information
+   * for proper error recovery.
+   */
+  static $exceptions = array();
+
+
+  /**
+   * Clear list of stored exceptions.
+   *
+   * Use this function before a call to some method if you intend to
+   * check for exceptions afterwards.
+   */
+  static function clearExceptions() {
+    self::$exceptions = array();
+  }
+
+
+  /**
+   * Conditionally throw an exception.
+   *
+   * This method will throw the passed exception when {@link
+   * Pel::$strict} is true.  Otherwise the exception is appended to
+   * the {@link Pel::$exceptions} array and a warning is issued (with
+   * {@link Pel::warning}).
+   *
+   * @param PelException $e the exceptions.
+   */
+  static function maybeThrow(PelException $e) {
+    if (self::$strict) {
+      throw $e;
+    } else {
+      Pel::$exceptions[] = $e;
+      Pel::warning('%s (%s:%s)', $e->getMessage(),
+                   basename($e->getFile()), $e->getLine());
+    }
+  }
+
+
+  /**
    * Conditionally output debug information.
    *
    * This method works just like printf() except that it always
    * terminates the output with a newline, and that it only outputs
-   * something if the PEL_DEBUG defined to some true value.
+   * something if the {@link Pel::$debug} is true.
    *
    * @param string $format the format string.
    *

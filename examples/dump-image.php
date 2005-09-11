@@ -33,27 +33,44 @@ require_once(dirname(__FILE__) . '/../PelDataWindow.php');
 require_once(dirname(__FILE__) . '/../PelJpeg.php');
 require_once(dirname(__FILE__) . '/../PelTiff.php');
 
-$need = 2;
-if ($argv[1] == '-d') {
-  Pel::$debug = true;
-  $need = 3;
+$prog = array_shift($argv);
+$file = '';
+
+while (!empty($argv)) {
+  switch ($argv[0]) {
+  case '-d':
+    Pel::$debug = true;
+    break;
+  case '-s':
+    Pel::$strict = true;
+    break;
+  default:
+    $file = $argv[0];
+    break;
+  }
+  array_shift($argv);
 }
 
-if ($argc < $need) {
-  printf("Usage: %s [-d] <filename>\n", $argv[0]);
+if (empty($file)) {
+  printf("Usage: %s [-d] [-s] <filename>\n", $prog);
   print("Optional arguments:\n");
   print("  -d        turn debug output on.\n");
+  print("  -s        turn strict parsing on (halt on errors).\n");
   print("Mandatory arguments:\n");
   print("  filename  a JPEG or TIFF image.\n");
   exit(1);
 }
 
+if (!is_readable($file)) {
+  printf("Unable to read %s!\n", $file);
+  exit(1);
+}
 
 /* We typically need lots of RAM to parse TIFF images since they tend
  * to be big and uncompressed. */
 ini_set('memory_limit', '32M');
 
-$data = new PelDataWindow(file_get_contents($argv[$need-1]));
+$data = new PelDataWindow(file_get_contents($file));
 
 if (PelJpeg::isValid($data)) {
   $img = new PelJpeg();
@@ -62,10 +79,20 @@ if (PelJpeg::isValid($data)) {
 } else {
   print("Unrecognized image format! The first 16 bytes follow:\n");
   PelConvert::bytesToDump($data->getBytes(0, 16));
-  exit;
+  exit(1);
 }
 
+
+/* Try loading the data. */
 $img->load($data);
+
 print($img);
+
+/* Deal with any exceptions: */
+if (!empty(Pel::$exceptions)) {
+  print("\nThe following errors were encountered while loading the image:\n");
+  foreach (Pel::$exceptions as $e)
+    print("\n" . $e->__toString());
+}
 
 ?>
