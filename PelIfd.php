@@ -164,15 +164,15 @@ class PelIfd {
     for ($i = 0; $i < $n; $i++) {
       // TODO: increment window start instead of using offsets.
       $tag = $d->getShort($offset + 12 * $i);
-      Pel::debug('Loading entry %s (%d of %d)...',
-                 PelTag::getName($tag), $i + 1, $n);
+      Pel::debug('Loading entry with tag 0x%04X: %s (%d of %d)...',
+                 $tag, PelTag::getName($tag), $i + 1, $n);
       
       switch ($tag) {
       case PelTag::EXIF_IFD_POINTER:
       case PelTag::GPS_INFO_IFD_POINTER:
       case PelTag::INTEROPERABILITY_IFD_POINTER:
         $o = $d->getLong($offset + 12 * $i + 8);
-        // println('Found sub IFD');
+        Pel::debug('Found sub IFD at offset %d', $o);
         $this->sub[$tag] = new PelIfd();
         $this->sub[$tag]->load($d, $o);
         break;
@@ -194,10 +194,9 @@ class PelIfd {
          */
         $s = PelFormat::getSize($format) * $components;
         if ($s > 0) {    
+          $doff = $offset + 12 * $i + 8;
           if ($s > 4)
-            $doff = $d->getLong($offset + 12 * $i + 8);
-          else
-            $doff = $offset + 12 * $i + 8;
+            $doff = $d->getLong($doff);
 
           $data = $d->getClone($doff, $s);
         } else {
@@ -216,33 +215,25 @@ class PelIfd {
 //         if ($tag == PelTag::COMPRESSION) {
 //           $this->thumb_format = $data->getShort();
 //         }
-        
-        
-//         if (ExifTag::isKnownTag($tag)) {
-//           $this->entries[] = new PelEntry($data, $offset + 12 * $i, $order);
-//         } else {
-//           // TODO: should we bail out completely like libexif does
-//           // because we claim to know all EXIF tags?
-//           printf("Unknown EXIF tag: 0x%02X\n", $tag);
-//         }
         break;
       }
     }
 
     /* Offset to next IFD */
-    Pel::debug('Current offset is %d, reading link at %d',
-               $offset,  $offset + 12 * $n);
     $o = $d->getLong($offset + 12 * $n);
+    Pel::debug('Current offset is %d, link at %d points to %d.',
+               $offset,  $offset + 12 * $n, $o);
+
     if ($o > 0) {
-      // println('Next IFD is at offset %d', $o);
-      /* Sanity check. */
+      /* Sanity check: we need 6 bytes  */
       if ($o > $d->getSize() - 6)
-        throw new PelIfdException('Bogus offset!');
+        throw new PelIfdException('Bogus offset to next IFD: %d > %d',
+                                  $o, $d->getSize() - 6);
 
       $this->next = new PelIfd();
       $this->next->load($d, $o);
     } else {
-      // println('That was the last IFD');
+      Pel::debug('Last IFD.');
     }
   }
 
