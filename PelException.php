@@ -51,17 +51,17 @@ class PelException extends Exception {
    * Construct a new PEL exception.
    *
    * @param string $fmt an optional format string can be given.  It
-   * will be used as a format string for sprintf().  The remaining
+   * will be used as a format string for vprintf().  The remaining
    * arguments will be available for the format string as usual with
-   * sprintf().
+   * vprintf().
    *
    * @param mixed $args,... any number of arguments to be used with
    * the format string.
    */
   function __construct(/* fmt, args... */) {
     $args = func_get_args();
-    $str = array_shift($args);
-    parent::__construct(vsprintf($str, $args));
+    $fmt = array_shift($args);
+    parent::__construct(vsprintf($fmt, $args));
   }
 }
 
