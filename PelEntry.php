@@ -57,13 +57,32 @@ require_once('Pel.php');
 
 
 /**
- * Exception indicating a problem with the entry.
+ * Exception indicating a problem with an entry.
  *
  * @author Martin Geisler <mgeisler@users.sourceforge.net>
  * @package PEL
  * @subpackage Exception
  */
-class PelEntryException extends PelException {}
+class PelEntryException extends PelException {
+
+  /**
+   * The tag of the entry (if known).
+   *
+   * @var PelTag
+   */
+  protected $tag;
+
+  
+  /**
+   * Get the tag associated with the exception.
+   *
+   * @return PelTag the tag.  If no tag is set null is returned.
+   */
+  function getTag() {
+    return $this->tag;
+  }
+
+}
 
 
 /**
@@ -93,6 +112,7 @@ class PelUnexpectedFormatException extends PelEntryException {
                         PelTag::getName($tag),
                         strtoupper(PelFormat::getName($found)),
                         strtoupper(PelFormat::getName($expected)));
+    $this->tag = $tag;
   }
 }
 
@@ -126,6 +146,7 @@ class PelWrongComponentCountException extends PelEntryException {
     parent::__construct('Wrong number of components found for %s tag: %d. ' .
                         'Expected %d.',
                         PelTag::getName($tag), $found, $expected);
+    $this->tag = $tag;
   }
 }
 
