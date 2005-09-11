@@ -276,6 +276,29 @@ abstract class PelEntry {
         return new PelEntryUserComment($data->getBytes(8),
                                        rtrim($data->getBytes(0, 8)));
       }
+      
+    case PelTag::XP_TITLE:
+    case PelTag::XP_COMMENT:
+    case PelTag::XP_AUTHOR:
+    case PelTag::XP_KEYWORDS:
+    case PelTag::XP_SUBJECT:
+      if ($format != PelFormat::BYTE)
+        throw new PelUnexpectedFormatException($tag, $format,
+                                               PelFormat::BYTE);
+      
+      $v = '';
+      for ($i = 0; $i < $components; $i++) {
+        $b = $data->getByte($i);
+        /* Convert the byte to a character if it is non-null ---
+         * information about the character encoding of these entries
+         * would be very nice to have!  So far my tests have shown
+         * that characters in the Latin-1 character set are stored in
+         * a single byte followed by a NULL byte. */
+        if ($b != 0)
+          $v .= chr($b);
+      }
+
+      return new PelEntryWindowsString($tag, $v);
 
     default:
       /* Then handle the formats. */

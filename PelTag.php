@@ -982,7 +982,7 @@ class PelTag {
   const USER_COMMENT                   = 0x9286;
 
   /**
-   * Subsec Time
+   * SubSec Time
    *
    * A tag used to record fractions of seconds for the {@link
    * DATE_TIME} tag.
@@ -1017,6 +1017,79 @@ class PelTag {
    */
   const SUB_SEC_TIME_DIGITIZED         = 0x9292;
 
+  /**
+   * Windows XP Title
+   *
+   * The image title as defined by the user in Windows XP.
+   *
+   * Format: {@link PelFormat::BYTE}.
+   *
+   * Components: any number.
+   */
+  const XP_TITLE                      = 0x9C9B;
+
+
+  /**
+   * Windows XP Comment
+   *
+   * The image comment as defined by the user in Windows XP.
+   *
+   * Format: {@link PelFormat::BYTE}.
+   *
+   * Components: any number.
+   */
+  const XP_COMMENT                    = 0x9C9C;
+
+
+  /**
+   * Windows XP Author
+   *
+   * The image author as defined by the user in Windows XP.
+   *
+   * Format: {@link PelFormat::BYTE}.
+   *
+   * Components: any number.
+   */
+  const XP_AUTHOR                    = 0x9C9D;
+
+
+  /**
+   * Windows XP Keywords
+   *
+   * The image keywords as defined by the user in Windows XP.
+   *
+   * Format: {@link PelFormat::BYTE}.
+   *
+   * Components: any number.
+   */
+  const XP_KEYWORDS                  = 0x9C9E;
+
+
+  /**
+   * Windows XP Subject
+   *
+   * The image subject as defined by the user in Windows XP.
+   *
+   * Format: {@link PelFormat::BYTE}.
+   *
+   * Components: any number.
+   */
+  const XP_SUBJECT                   = 0x9C9F;
+
+
+  /**
+   * Windows XP Comment
+   *
+   * The image comment as defined by the user in Windows XP.
+   *
+   * Format: {@link PelFormat::BYTE}.
+   *
+   * Components: any number.
+   */
+  const XP_COMMENT                    = 0x9C9C;
+
+
+  
   /**
    * FlashPix Version
    *
@@ -1610,11 +1683,21 @@ class PelTag {
     case self::USER_COMMENT:
       return 'UserComment';
     case self::SUB_SEC_TIME:
-      return 'SubsecTime';
+      return 'SubSecTime';
     case self::SUB_SEC_TIME_ORIGINAL:
       return 'SubSecTimeOriginal';
     case self::SUB_SEC_TIME_DIGITIZED:
       return 'SubSecTimeDigitized';
+    case self::XP_TITLE:
+      return 'WindowsXPTitle';
+    case self::XP_COMMENT:
+      return 'WindowsXPComment';
+    case self::XP_AUTHOR:
+      return 'WindowsXPAuthor';
+    case self::XP_KEYWORDS:
+      return 'WindowsXPKeywords';
+    case self::XP_SUBJECT:
+      return 'WindowsXPSubject';
     case self::FLASH_PIX_VERSION:
       return 'FlashPixVersion';
     case self::COLOR_SPACE:
@@ -1844,11 +1927,21 @@ class PelTag {
     case self::USER_COMMENT:
       return Pel::tra('User Comment');
     case self::SUB_SEC_TIME:
-      return Pel::tra('Subsec Time');
+      return Pel::tra('SubSec Time');
     case self::SUB_SEC_TIME_ORIGINAL:
       return Pel::tra('SubSec Time Original');
     case self::SUB_SEC_TIME_DIGITIZED:
       return Pel::tra('SubSec Time Digitized');
+    case self::XP_TITLE:
+      return 'Windows XP Title';
+    case self::XP_COMMENT:
+      return 'Windows XP Comment';
+    case self::XP_AUTHOR:
+      return 'Windows XP Author';
+    case self::XP_KEYWORDS:
+      return 'Windows XP Keywords';
+    case self::XP_SUBJECT:
+      return 'Windows XP Subject';
     case self::FLASH_PIX_VERSION:
       return Pel::tra('FlashPix Version');
     case self::COLOR_SPACE:
@@ -2084,6 +2177,16 @@ class PelTag {
       return Pel::tra('A tag used to record fractions of seconds for the <DateTimeOriginal> tag.');
     case self::SUB_SEC_TIME_DIGITIZED:
       return Pel::tra('A tag used to record fractions of seconds for the <DateTimeDigitized> tag.');
+    case self::XP_TITLE:
+      return Pel::tra('The image title as defined by the user in Windows XP.');
+    case self::XP_COMMENT:
+      return Pel::tra('The image comment as defined by the user in Windows XP.');
+    case self::XP_AUTHOR:
+      return Pel::tra('The image author as defined by the user in Windows XP.');
+    case self::XP_KEYWORDS:
+      return Pel::tra('The image keywords as defined by the user in Windows XP.');
+    case self::XP_SUBJECT:
+      return Pel::tra('The image subject as defined by the user in Windows XP.');
     case self::FLASH_PIX_VERSION:
       return Pel::tra('The FlashPix format version supported by a FPXR file.');
     case self::COLOR_SPACE:
