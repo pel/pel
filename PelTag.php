@@ -1026,7 +1026,7 @@ class PelTag {
    *
    * Components: any number.
    */
-  const XP_TITLE                      = 0x9C9B;
+  const XP_TITLE                       = 0x9C9B;
 
 
   /**
@@ -1038,7 +1038,7 @@ class PelTag {
    *
    * Components: any number.
    */
-  const XP_COMMENT                    = 0x9C9C;
+  const XP_COMMENT                     = 0x9C9C;
 
 
   /**
@@ -1050,7 +1050,7 @@ class PelTag {
    *
    * Components: any number.
    */
-  const XP_AUTHOR                    = 0x9C9D;
+  const XP_AUTHOR                      = 0x9C9D;
 
 
   /**
@@ -1062,7 +1062,7 @@ class PelTag {
    *
    * Components: any number.
    */
-  const XP_KEYWORDS                  = 0x9C9E;
+  const XP_KEYWORDS                    = 0x9C9E;
 
 
   /**
@@ -1074,7 +1074,7 @@ class PelTag {
    *
    * Components: any number.
    */
-  const XP_SUBJECT                   = 0x9C9F;
+  const XP_SUBJECT                     = 0x9C9F;
 
 
   /**
@@ -1086,7 +1086,7 @@ class PelTag {
    *
    * Components: any number.
    */
-  const XP_COMMENT                    = 0x9C9C;
+  const XP_COMMENT                     = 0x9C9C;
 
 
   
@@ -1529,7 +1529,7 @@ class PelTag {
    *
    * @return string the short name of the tag, e.g., 'ImageWidth' for
    * the {@link IMAGE_WIDTH} tag.  If the tag is not known, the string
-   * 'Unknown:0xTT' will be returned where 'TT' is the hexadecimal
+   * 'Unknown:0xTTTT' will be returned where 'TTTT' is the hexadecimal
    * representation of the tag.
    */
   static function getName($tag) {
@@ -1761,7 +1761,7 @@ class PelTag {
     case self::IMAGE_UNIQUE_ID:
       return 'ImageUniqueID';
     default:
-      return Pel::fmt('Unknown: 0x%02X', $tag);
+      return Pel::fmt('Unknown: 0x%04X', $tag);
     }
   }
 
