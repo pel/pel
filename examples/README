@@ -8,7 +8,16 @@ PEL Examples
 ************
 
 This directory contains various examples of how PEL can be used in
-small scripts.
+small scripts.  The scripts are meant to be executed from the command
+line and they assume that you have PHP installed as /usr/bin/php.  If
+that is not the case, then please adjust the first line before
+executing the scripts, or simply execute them as
+
+  % php <script> <arguments>
+
+and let your shell find the PHP executable.
+
+The examples are:
 
 * dirsort.php: an example of how to use PEL to automatically sort a
   collection of photos into different folders.

@@ -1,4 +1,4 @@
-#!/usr/bin/php5
+#!/usr/bin/php
 <?php
 
 /*  PEL: PHP EXIF Library.  A library with support for reading and
