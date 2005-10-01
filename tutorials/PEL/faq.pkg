@@ -71,6 +71,75 @@ if ($app1 instanceof PelExif) {
 
 </refsect1>
 
+<refsect1 id="{@id missing-Gettext}">
+
+  <title>Why does Gettext not work?</title>
+
+  <para>PEL uses Gettext for localization, and thus your system must
+  fulfill a few requirements:</para>
+
+  <orderedlist>
+
+    <listitem>
+      <para>PHP must have support for the {@link
+      http://www.php.net/manual/en/ref.gettext.php Gettext extension}.
+      Most installations of PHP already has this, but please
+      double-check with <function>{@link
+      http://www.php.net/manual/en/function.phpinfo.php
+      phpinfo()}</function> before asking for help on the
+      mailinglist.</para>
+    </listitem>
+
+    <listitem>
+      <para>The system must be setup to generate locales for the
+      languages into which PEL has been translated.  Again, most
+      commercial webhosts would have their systems configured to deal
+      with all locales, but if you're installing PEL on your own
+      server you'll probably have to reconfigure it.</para>
+
+      <para>How to configure the locales differ from system to system.
+      With the Debian GNU/Linux distribution you should run
+      <programlisting>dpkg-reconfigure locales</programlisting> and
+      then select all locales that you want your system to
+      support.</para>
+
+      <para>Restart your webserver after changing the locale setup to
+      make the changes effective.</para>
+
+    </listitem>
+
+  </orderedlist>
+
+</refsect1>
+
+<refsect1 id="{@id error-handling}">
+
+  <title>How to deal with broken images?</title>
+
+  <para>By default PEL will try to load as much from an image as
+  possible and continue dispite any errors found.  The EXIF standard
+  mandates certain formats and lengths for some entries, and sometimes
+  these requirements are violated.</para>
+
+  <para>The strictness of PEL is controlled by the boolean {@link
+  Pel::strict}, which by default is set to <literal>false</literal>.
+  In this non-strict ode, PEL will not throw exceptions for parse
+  errors but instead store them in the {@link Pel::exceptions} array
+  for later inspection.</para>
+
+  <para>Setting {@link Pel::strict} to <literal>true</literal> will
+  make PEL throw exceptions upon parse errors.</para>
+
+  <para>This may all sound very complex, but it is actually fairly
+  simple for most uses: have PEL load your images in non-strict mode
+  and check for errors afterwards, if necessary.</para>
+
+  <para>Please note that even if PEL is in non-strict mode it might
+  throw exceptions while parsing an image, for example if the image
+  cannot be recognized a JPEG or TIFF image.  So it is always
+  necessary to wrap calls to PEL in a try-catch block.</para>
+
+</refsect1>
 
 <refsect1 id="{@id unanswered-question}">
 
