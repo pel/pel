@@ -1,4 +1,4 @@
-#!/usr/bin/php5
+#!/usr/bin/php
 <?php
 
 /*  PEL: PHP EXIF Library.  A library with support for reading and
@@ -44,9 +44,7 @@ $test->addTestFile('undefined.php');
 if (is_dir('image-tests')) {
   $image_tests = glob('image-tests/*.php');
   foreach ($image_tests as $image_test)
-    /* This will skip the make-image-test.php file (and other scripts
-     * like it), which starts with '#!/usr/bin/php5'. */
-    if (reset(file($image_test)) == "<?php\n")
+    if ($image_test != 'image-tests/make-image-test.php')
       $test->addTestFile($image_test);
 
 } else {
