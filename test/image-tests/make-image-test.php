@@ -58,29 +58,8 @@ function quote($str) {
 
 
 function entryToTest($name, PelEntry $entry) {
-
-  switch ($entry->getTag()) {
-  case PelTag::DATE_TIME:
-  case PelTag::DATE_TIME_ORIGINAL:
-  case PelTag::DATE_TIME_DIGITIZED:
-    $format = 'Time';
-    break;
-  case PelTag::COPYRIGHT:
-    $format = 'Copyright';
-    break;
-  case PelTag::EXIF_VERSION:
-  case PelTag::FLASH_PIX_VERSION:
-  case PelTag::INTEROPERABILITY_VERSION:
-    $format = 'Version';
-    break;
-  case PelTag::USER_COMMENT:
-    $format = 'UserComment';
-  default:
-    $format = PelFormat::getName($entry->getFormat());
-  }
-
-  println('$this->assertIsA(%s, \'PelEntry%s\');',
-          $name, $format);
+  println('$this->assertIsA(%s, \'%s\');',
+          $name, get_class($entry));
 
   println('$this->assertEqual(%s->getValue(), %s);',
           $name, var_export($entry->getValue(), true));
@@ -101,7 +80,8 @@ function ifdToTest($name, $number, PelIfd $ifd) {
   foreach ($entries as $tag => $entry) {
     println();
     println('$entry = %s%d->getEntry(%d); // %s',
-            $name, $number, $tag, PelTag::getName($tag));
+            $name, $number, $tag,
+            PelTag::getName($ifd->getType(), $tag));
     print(entryToTest('$entry', $entry));
   }
 
@@ -116,7 +96,8 @@ function ifdToTest($name, $number, PelIfd $ifd) {
   $sub_name = $name . $number . '_';
   foreach ($sub_ifds as $tag => $sub_ifd) {
     println('%s%d = %s%d->getSubIfd(%d); // %s',
-            $sub_name, $n, $name, $number, $tag, PelTag::getName($tag));
+            $sub_name, $n, $name, $number, $tag,
+            PelTag::getName($ifd->getType(), $tag));
     println('$this->assertIsA(%s%d, \'PelIfd\');', $sub_name, $n);
     ifdToTest($sub_name, $n, $sub_ifd);
     $n++;
@@ -265,9 +246,5 @@ println('
 }
 
 ?>');
-
-//$test_code = ob_get_clean();
-//file_put_contents($test_filename, $test_code);
-
 
 ?>
