@@ -29,8 +29,9 @@ abstract class WriteEntryTestCase extends UnitTestCase {
   protected $entries = array();
 
   function testWriteRead() {
+    Pel::$strict = true;
 
-    $ifd = new PelIfd();
+    $ifd = new PelIfd(PelIfd::IFD0);
     $this->assertTrue($ifd->isLastIfd());
 
     foreach ($this->entries as $entry) {
@@ -63,11 +64,17 @@ abstract class WriteEntryTestCase extends UnitTestCase {
 
     $jpeg = new PelJpeg();
     $jpeg->loadFile('test-output.jpg');
-    
+
     $app1 = $jpeg->getSection(PelJpegMarker::APP1);
+    $this->assertNotNull($app1);
+
     $tiff = $app1->getTiff();
+    $this->assertNotNull($tiff);
 
     $ifd = $tiff->getIfd();
+    $this->assertNotNull($ifd);
+
+    $this->assertEqual($ifd->getType(), PelIfd::IFD0);
     $this->assertTrue($ifd->isLastIfd());
 
     foreach ($this->entries as $entry) {
