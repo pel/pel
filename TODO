@@ -9,13 +9,27 @@ TODO List for PEL
 *****************
 
 In addition to the following list, then the source contains a number
-of comments beginning with 'TODO' which marks extra places where
-attention is needed.
-   
-* Handle broken images better.
-   PEL now ignores entries which cannot be loaded --- this behavious
-   should probably be configurable.
+of comments beginning with `TODO' and `FIXME' which marks extra places
+where attention is needed.
 
+* Restructure information about tags.
+   Currently information about the tags are stored in several places
+   around the code, making updates difficult.  All information about a
+   tag should be stored at one place, maybe by having a class per tag
+   (how well does PHP handle 142 small classes?).
+
+   The information in question is:
+
+   - hex code,
+   - title,
+   - name,
+   - description
+   - format,
+   - components,
+   - valid IFD types,
+   - how to load data,
+   - how to display (the getText() method)
+   
 * Add convenience functions.
    It would be nice to have functions that could give you a particular
    entry or the embedded thumbnail with just one function call.
@@ -26,9 +40,6 @@ attention is needed.
 * Interpret the MakerNotes.
    The libexif project already has code for interpretating the
    MakerNotes for a number of different camera models.
-
-* Test and interpret tags with GPS information.
-   This basically waits until I get a picture with GPS information.
 
 * Handle character encodings of the USER_COMMENT tag.
    The first eight bytes store the character encoding, but PEL ignores

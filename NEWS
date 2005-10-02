@@ -10,14 +10,48 @@ PEL Version 0.9  (Not released)
 
 Notes:
 
-The API documentation was updated so as to clarify some confusion
-about the use of PelEntry::newFromData(), and to detail the constrains
-on format and number of components for each tag in PelTag.  The
-edit-description.php example now deals correctly with images with no
-previous EXIF data.  A Polish translation was added and the other
-translations were updated.
+Added full support for GPS information (this breaks API compatability
+with version 0.8), the Gamma tag, and Windows XP specific title,
+comment, author, keywords, and subject tags.  Implemented a non-strict
+mode for broken images where most errors wont result in visible
+exceptions.  The edit-description.php example now correctly deals with
+images with no previous EXIF data.  A Polish translation was
+added. The API documentation was updated with details about the
+constrains on format and number of components for each tag.
 
 Changes:
+
+* Added support for the GPS IFD.  This meant a couple of changes which
+  break compability with version 0.8.  The problem is that the GPS
+  related tags have the same value as some other tags, and so the
+  function PelTag::getName(), PelTag::getTitle(), and
+  PelTag::getDescription() has been changed to take an extra argument
+  specifying which type of IFD the tag belongs to.
+
+  This might change very well further in the future.
+
+* Added PelIfd::getValidTags() which return an array of tags valid for
+  the IFD in question.  Using this, PEL now reject entries in wrong
+  IFDs.  For example, you cannot have a UserComment tag in a IFD for
+  GPS information.
+
+* Added a new concept of strict/non-strict mode.  The old behaviour
+  was strict mode where an errors would abort the loading of an image
+  because of exceptions --- in non-strict mode most exceptions will be
+  trapped and broken images can still be loaded.  See the description
+  in Pel.php and the answer in the FAQ for more information.
+
+* Added support for the 0xA500 Gamma tag.
+
+* Changed paths in example shell scripts to /usr/bin/php and explained
+  in the README how to execute them.
+
+* Updated FAQ with information about making Gettext work and the new
+  strict/non-strict mode.
+
+* Added support for Windows XP specific title, comment, author,
+  keywords, and subject tags.  These tags can be edited in Windows XP
+  in the Properties dialog found by right-clicking on an image.
 
 * A number of translations in the German, French, and Spanish
   translations were inactive because of small differences between PHP
@@ -43,15 +77,17 @@ Changes:
   created a new PelJpeg object, but not when one had stored such an
   object in, say, a session.
 
-* Updated the documentation on PelEntry::newFromData() to indicate
-  that one shouldn't use this method unless the data comes directly
-  from an image.  The method signature was corrected with a type hint,
-  so that $data really is a PelDataWindow.
+* Moved PelEntry::newFromData() to PelIfd::newEntryFromData() since it
+  needs knowledge about PelIfd::$type.  Updated the documentation it
+  to indicate that one shouldn't use this method unless the data comes
+  directly from an image.  The method signature was corrected with a
+  type hint, so that $data really is a PelDataWindow.
 
 * Updated the documentation in PelTag.  All tags now details their
   expected format and the expected number of components.  One can
   still freely choose to obey or disregard these constrains, but doing
-  so will lead to non-compliant images.
+  so will lead to non-compliant images, which might cause PEL to throw
+  exceptions when reloading.
 
 * Updated the documentation in PelFormat with links to the PelEntry
   classes corresponding to each format.
