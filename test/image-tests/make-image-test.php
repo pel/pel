@@ -94,10 +94,9 @@ function ifdToTest($name, $number, PelIfd $ifd) {
 
   $n = 0;
   $sub_name = $name . $number . '_';
-  foreach ($sub_ifds as $tag => $sub_ifd) {
-    println('%s%d = %s%d->getSubIfd(%d); // %s',
-            $sub_name, $n, $name, $number, $tag,
-            PelTag::getName($ifd->getType(), $tag));
+  foreach ($sub_ifds as $type => $sub_ifd) {
+    println('%s%d = %s%d->getSubIfd(%d); // IFD %s',
+            $sub_name, $n, $name, $number, $type, $sub_ifd->getName());
     println('$this->assertIsA(%s%d, \'PelIfd\');', $sub_name, $n);
     ifdToTest($sub_name, $n, $sub_ifd);
     $n++;
