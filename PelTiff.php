@@ -80,6 +80,8 @@ class PelTiff {
   /**
    * The first Image File Directory, if any.
    *
+   * If set, then the type of the IFD must be {@link PelIfd::IFD0}.
+   *
    * @var PelIfd
    */
   private $ifd = null;
@@ -143,7 +145,7 @@ class PelTiff {
     if ($offset > 0) {
       /* Parse the first IFD, this will automatically parse the
        * following IFDs and any sub IFDs. */
-      $this->ifd = new PelIfd();
+      $this->ifd = new PelIfd(PelIfd::IFD0);
       $this->ifd->load($d, $offset);
     }
   }
@@ -162,9 +164,14 @@ class PelTiff {
   /**
    * Set the first IFD.
    *
-   * @param PelIfd the new first IFD.
+   * @param PelIfd the new first IFD, which must be of type {@link
+   * PelIfd::IFD0}.
    */
   function setIfd(PelIfd $ifd) {
+    if ($ifd->getType() != PelIfd::IFD0)
+      throw new PelInvalidDataException('Invalid type of IFD: %d, expected %d.',
+                                        $ifd->getType(), PelIfd::IFD0);
+
     $this->ifd = $ifd;
   }
 
