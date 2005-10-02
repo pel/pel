@@ -225,7 +225,6 @@ class PelJpeg {
             $content = new PelExif();
             $content->load($d->getClone(0, $len));
           } catch (PelInvalidDataException $e) {
-            Pel::warning('Found non-EXIF APP1 section.');
             /* We store the data as normal JPEG content if it could
              * not be parsed as EXIF data. */
             $content = new PelJpegContent($d->getClone(0, $len));
