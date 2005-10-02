@@ -21,6 +21,9 @@ constrains on format and number of components for each tag.
 
 Changes:
 
+* Changed PelIfd::getSubIfd() to take an IFD type as argument instead
+  of a PelTag.  Added PelIfd::addSubIfd().
+
 * Added support for the GPS IFD.  This meant a couple of changes which
   break compability with version 0.8.  The problem is that the GPS
   related tags have the same value as some other tags, and so the

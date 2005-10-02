@@ -236,8 +236,8 @@ class PelIfd {
         elseif ($tag == PelTag::INTEROPERABILITY_IFD_POINTER)
           $type = PelIfd::INTEROPERABILITY;
 
-        $this->sub[$tag] = new PelIfd($type);
-        $this->sub[$tag]->load($d, $o);
+        $this->sub[$type] = new PelIfd($type);
+        $this->sub[$type]->load($d, $o);
         break;
       case PelTag::JPEG_INTERCHANGE_FORMAT:
         $thumb_offset = $d->getLong($offset + 12 * $i + 8);
@@ -864,19 +864,32 @@ PelTag::CFA_REPEAT_PATTERN_DIM,
 
 
   /**
+   * Add a sub-IFD.
+   *
+   * Any previous sub-IFD of the same type will be overwritten.
+   *
+   * @param PelIfd the sub IFD.  The type of must be one of {@link
+   * PelIfd::EXIF}, {@link PelIfd::GPS}, or {@link
+   * PelIfd::INTEROPERABILITY}.
+   */
+  function addSubIfd(PelIfd $sub) {
+    $this->sub[$sub->type] = $sub;
+  }
+
+
+  /**
    * Return a sub IFD.
    *
-   * @param PelTag the tag of the sub IFD.  This should be one of
-   * {@link PelTag::EXIF_IFD_POINTER}, {@link
-   * PelTag::GPS_INFO_IFD_POINTER}, or {@link
-   * PelTag::INTEROPERABILITY_IFD_POINTER}.
+   * @param int the type of the sub IFD.  This must be one of {@link
+   * PelIfd::EXIF}, {@link PelIfd::GPS}, or {@link
+   * PelIfd::INTEROPERABILITY}.
    *
-   * @return PelIfd the IFD associated with the tag, or null if
-   * that sub IFD does not exist.
+   * @return PelIfd the IFD associated with the type, or null if that
+   * sub IFD does not exist.
    */
-  function getSubIfd($tag) {
-    if (isset($this->sub[$tag]))
-      return $this->sub[$tag];
+  function getSubIfd($type) {
+    if (isset($this->sub[$type]))
+      return $this->sub[$type];
     else
       return null;
   }
@@ -885,7 +898,7 @@ PelTag::CFA_REPEAT_PATTERN_DIM,
   /**
    * Get all sub IFDs.
    *
-   * @return array an associative array with ({@link PelTag}, {@link
+   * @return array an associative array with (IFD-type, {@link
    * PelIfd}) pairs.
    */
   function getSubIfds() {
@@ -980,7 +993,14 @@ PelTag::CFA_REPEAT_PATTERN_DIM,
     
     /* Find bytes from sub IFDs. */
     $sub_bytes = '';
-    foreach ($this->sub as $tag => $sub) {
+    foreach ($this->sub as $type => $sub) {
+      if ($type == PelIfd::EXIF)
+        $tag = PelTag::EXIF_IFD_POINTER;
+      elseif ($type == PelIfd::GPS)
+        $tag = PelTag::GPS_INFO_IFD_POINTER;
+      elseif ($type == PelIfd::INTEROPERABILITY)
+        $tag = PelTag::INTEROPERABILITY_IFD_POINTER;
+
       /* Make an aditional entry with the pointer. */
       $bytes .= PelConvert::shortToBytes($tag, $order);
       /* Next the format, which is always unsigned long. */
@@ -1031,7 +1051,7 @@ PelTag::CFA_REPEAT_PATTERN_DIM,
 
     $str .= Pel::fmt("Dumping %d sub IFDs...\n", count($this->sub));
 
-    foreach ($this->sub as $tag => $ifd)
+    foreach ($this->sub as $type => $ifd)
       $str .= $ifd->__toString();
 
     if ($this->next != null)

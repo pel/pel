@@ -92,7 +92,7 @@ class PelJpegInvalidMarkerException extends PelException {
  * $app1 = $jpeg->getSection(PelJpegMarker::APP1);
  * $tiff = $app1->getTiff();
  * $ifd0 = $tiff->getIfd();
- * $exif = $ifd0->getSubIfd(PelTag::EXIF_IFD_POINTER);
+ * $exif = $ifd0->getSubIfd(PelIfd::EXIF);
  * $ifd1 = $ifd0->getNextIfd();
  * </code>
  *
