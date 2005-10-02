@@ -129,7 +129,7 @@ class PelEntryRational extends PelEntryLong {
   function getText($brief = false) {
     if (isset($this->value[0]))
       $v = $this->value[0];
-    
+
     switch ($this->tag) {
     case PelTag::FNUMBER:
       //CC (e->components, 1, v);
@@ -144,7 +144,7 @@ class PelEntryRational extends PelEntryLong {
       //CC (e->components, 1, v);
       //if (!v_rat.denominator) return (NULL);
       return Pel::fmt('%.1f mm', $v[0]/$v[1]);
-      
+
     case PelTag::SUBJECT_DISTANCE:
       //CC (e->components, 1, v);
       //if (!v_rat.denominator) return (NULL);
@@ -157,7 +157,17 @@ class PelEntryRational extends PelEntryLong {
         return Pel::fmt('1/%d sec.', $v[1]/$v[0]);
       else
         return Pel::fmt('%d sec.', $v[0]/$v[1]);
-      
+
+    case PelTag::GPS_LATITUDE:
+    case PelTag::GPS_LONGITUDE:
+      $degrees = $this->value[0][0]/$this->value[0][1];
+      $minutes = $this->value[1][0]/$this->value[1][1];
+      $seconds = $this->value[2][0]/$this->value[2][1];
+
+      return sprintf('%s° %s\' %s" (%.2f°)',
+                     $degrees, $minutes, $seconds,
+                     $degrees + $minutes/60 + $seconds/3600);
+
     default:
       return parent::getText($brief);
     }
