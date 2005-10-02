@@ -36,7 +36,13 @@
  */
 
 /**#@+ Required class definitions. */
+require_once('PelEntryUndefined.php');
+require_once('PelEntryRational.php');
 require_once('PelDataWindow.php');
+require_once('PelEntryAscii.php');
+require_once('PelEntryShort.php');
+require_once('PelEntryByte.php');
+require_once('PelEntryLong.php');
 require_once('PelException.php');
 require_once('PelFormat.php');
 require_once('PelEntry.php');
@@ -66,10 +72,44 @@ class PelIfdException extends PelException {}
  */
 class PelIfd {
 
+  /**
+   * Main image IFD.
+   *
+   * Pass this to the constructor when creating an IFD which will be
+   * the IFD of the main image.
+   */
   const IFD0 = 0;
+
+  /**
+   * Thumbnail image IFD.
+   *
+   * Pass this to the constructor when creating an IFD which will be
+   * the IFD of the thumbnail image.
+   */
   const IFD1 = 1;
+
+  /**
+   * EXIF IFD.
+   *
+   * Pass this to the constructor when creating an IFD which will be
+   * the EXIF sub-IFD.
+   */
   const EXIF = 2;
+
+  /**
+   * GPS IFD.
+   *
+   * Pass this to the constructor when creating an IFD which will be
+   * the GPS sub-IFD.
+   */
   const GPS  = 3;
+
+  /**
+   * Interoperability IFD.
+   *
+   * Pass this to the constructor when creating an IFD which will be
+   * the interoperability sub-IFD.
+   */
   const INTEROPERABILITY = 4;
 
   /**
@@ -83,7 +123,11 @@ class PelIfd {
   private $entries = array();
 
   /**
-   * The type of this directory (not currently used).
+   * The type of this directory.
+   *
+   * Initialized in the constructor.  Must be one of {@link IFD0},
+   * {@link IFD1}, {@link EXIF}, {@link GPS}, or {@link
+   * INTEROPERABILITY}.
    *
    * @var int
    */
@@ -128,9 +172,19 @@ class PelIfd {
    * The IFD will be empty, use the {@link addEntry()} method to add
    * an {@link PelEntry}.  Use the {@link setNext()} method to link
    * this IFD to another.
+   *
+   * @param int type the type of this IFD.  Must be one of {@link
+   * IFD0}, {@link IFD1}, {@link EXIF}, {@link GPS}, or {@link
+   * INTEROPERABILITY}.  An {@link PelIfdException} will be thrown
+   * otherwise.
    */
-  function __construct() {
+  function __construct($type) {
+    if ($type != PelIfd::IFD0 && $type != PelIfd::IFD1 &&
+        $type != PelIfd::EXIF && $type != PelIfd::GPS &&
+        $type != PelIfd::INTEROPERABILITY)
+      throw new PelIfdException('Unknown IFD type: %d', $type);
 
+    $this->type = $type;
   }
 
 
@@ -165,7 +219,7 @@ class PelIfd {
       // TODO: increment window start instead of using offsets.
       $tag = $d->getShort($offset + 12 * $i);
       Pel::debug('Loading entry with tag 0x%04X: %s (%d of %d)...',
-                 $tag, PelTag::getName($tag), $i + 1, $n);
+                 $tag, PelTag::getName($this->type, $tag), $i + 1, $n);
       
       switch ($tag) {
       case PelTag::EXIF_IFD_POINTER:
@@ -173,7 +227,16 @@ class PelIfd {
       case PelTag::INTEROPERABILITY_IFD_POINTER:
         $o = $d->getLong($offset + 12 * $i + 8);
         Pel::debug('Found sub IFD at offset %d', $o);
-        $this->sub[$tag] = new PelIfd();
+
+        /* Map tag to IFD type. */
+        if ($tag == PelTag::EXIF_IFD_POINTER)
+          $type = PelIfd::EXIF;
+        elseif ($tag == PelTag::GPS_INFO_IFD_POINTER)
+          $type = PelIfd::GPS;
+        elseif ($tag == PelTag::INTEROPERABILITY_IFD_POINTER)
+          $type = PelIfd::INTEROPERABILITY;
+
+        $this->sub[$tag] = new PelIfd($type);
         $this->sub[$tag]->load($d, $o);
         break;
       case PelTag::JPEG_INTERCHANGE_FORMAT:
@@ -204,13 +267,22 @@ class PelIfd {
         }
 
         try {
-          $entry = PelEntry::newFromData($tag, $format, $components, $data);
-          $this->entries[$tag] = $entry;
-        } catch (PelException $e) {
-          /* Throw the exception is running in strict mode, store
-           * otherwise. */
-          Pel::maybeThrow($e);
-        }
+            $entry = $this->newEntryFromData($tag, $format, $components, $data);
+
+            if (in_array($tag, $this->getValidTags())) {
+              /* FIXME: not so nice... */
+              $entry->ifd_type = $this->type;
+              $this->entries[$tag] = $entry;
+            } else {
+              Pel::maybeThrow(new PelInvalidDataException("IFD %s cannot hold\n%s",
+                                                          $this->getName(),
+                                                          $entry->__toString()));
+            }
+          } catch (PelException $e) {
+            /* Throw the exception is running in strict mode, store
+             * otherwise. */
+            Pel::maybeThrow($e);
+          }
 
         /* The format of the thumbnail is stored in this tag. */
 //         TODO: handle TIFF thumbnail.
@@ -233,13 +305,198 @@ class PelIfd {
                                             '%d > %d!',
                                             $o, $d->getSize() - 6));
       } else {
-        $this->next = new PelIfd();
+        if ($this->type == PelIfd::IFD1) // IFD1 shouldn't link further...
+          Pel::maybeThrow(new PelIfdException('IFD1 links to another IFD!'));
+
+        $this->next = new PelIfd(PelIfd::IFD1);
         $this->next->load($d, $o);
       }
     } else {
       Pel::debug('Last IFD.');
     }
   }
+
+
+  /**
+   * Make a new entry from a bunch of bytes.
+   *
+   * This method will create the proper subclass of {@link PelEntry}
+   * corresponding to the {@link PelTag} and {@link PelFormat} given.
+   * The entry will be initialized with the data given.
+   *
+   * Please note that the data you pass to this method should come
+   * from an image, that is, it should be raw bytes.  If instead you
+   * want to create an entry for holding, say, an short integer, then
+   * create a {@link PelEntryShort} object directly and load the data
+   * into it.
+   *
+   * A {@link PelUnexpectedFormatException} is thrown if a mismatch is
+   * discovered between the tag and format, and likewise a {@link
+   * PelWrongComponentCountException} is thrown if the number of
+   * components does not match the requirements of the tag.  The
+   * requirements for a given tag (if any) can be found in the
+   * documentation for {@link PelTag}.
+   *
+   * @param PelTag the tag of the entry.
+   *
+   * @param PelFormat the format of the entry.
+   *
+   * @param int the components in the entry.
+   *
+   * @param PelDataWindow the data which will be used to construct the
+   * entry.
+   *
+   * @return PelEntry a newly created entry, holding the data given.
+   */
+  function newEntryFromData($tag, $format, $components, PelDataWindow $data) {
+
+    /* First handle tags for which we have a specific PelEntryXXX
+     * class. */
+
+    switch ($this->type) {
+
+    case self::IFD0:
+    case self::IFD1:
+    case self::EXIF:
+    case self::INTEROPERABILITY:
+
+      switch ($tag) {
+      case PelTag::DATE_TIME:
+      case PelTag::DATE_TIME_ORIGINAL:
+      case PelTag::DATE_TIME_DIGITIZED:
+        if ($format != PelFormat::ASCII)
+          throw new PelUnexpectedFormatException($this->type, $tag, $format,
+                                               PelFormat::ASCII);
+
+        if ($components != 20)
+          throw new PelWrongComponentCountException($this->type, $tag, $components, 20);
+
+        /* Split the string into year, month, date, hour, minute, and
+         * second components. */
+        $d = explode('-', strtr($data->getBytes(0, -1), '.: ', '---'));
+        // TODO: handle timezones.
+        return new PelEntryTime($tag, gmmktime($d[3], $d[4], $d[5],
+                                             $d[1], $d[2], $d[0]));
+
+      case PelTag::COPYRIGHT:
+        if ($format != PelFormat::ASCII)
+          throw new PelUnexpectedFormatException($this->type, $tag, $format,
+                                                 PelFormat::ASCII);
+
+        $v = explode("\0", trim($data->getBytes(), ' '));
+        return new PelEntryCopyright($v[0], $v[1]);
+
+      case PelTag::EXIF_VERSION:
+      case PelTag::FLASH_PIX_VERSION:
+      case PelTag::INTEROPERABILITY_VERSION:
+        if ($format != PelFormat::UNDEFINED)
+          throw new PelUnexpectedFormatException($this->type, $tag, $format,
+                                               PelFormat::UNDEFINED);
+
+        return new PelEntryVersion($tag, $data->getBytes() / 100);
+
+      case PelTag::USER_COMMENT:
+        if ($format != PelFormat::UNDEFINED)
+          throw new PelUnexpectedFormatException($this->type, $tag, $format,
+                                                 PelFormat::UNDEFINED);
+        if ($data->getSize() < 8) {
+          return new PelEntryUserComment();
+        } else {
+          return new PelEntryUserComment($data->getBytes(8),
+                                       rtrim($data->getBytes(0, 8)));
+        }
+
+      case PelTag::XP_TITLE:
+      case PelTag::XP_COMMENT:
+      case PelTag::XP_AUTHOR:
+      case PelTag::XP_KEYWORDS:
+      case PelTag::XP_SUBJECT:
+        if ($format != PelFormat::BYTE)
+          throw new PelUnexpectedFormatException($this->type, $tag, $format,
+                                               PelFormat::BYTE);
+
+        $v = '';
+        for ($i = 0; $i < $components; $i++) {
+          $b = $data->getByte($i);
+          /* Convert the byte to a character if it is non-null ---
+           * information about the character encoding of these entries
+           * would be very nice to have!  So far my tests have shown
+           * that characters in the Latin-1 character set are stored in
+           * a single byte followed by a NULL byte. */
+          if ($b != 0)
+            $v .= chr($b);
+        }
+
+        return new PelEntryWindowsString($tag, $v);
+      }
+
+    case self::GPS:
+      
+    default:
+      /* Then handle the basic formats. */
+      switch ($format) {
+      case PelFormat::BYTE:
+        $v =  new PelEntryByte($tag);
+        for ($i = 0; $i < $components; $i++)
+          $v->addNumber($data->getByte($i));
+        return $v;
+
+      case PelFormat::SBYTE:
+        $v =  new PelEntrySByte($tag);
+        for ($i = 0; $i < $components; $i++)
+          $v->addNumber($data->getSByte($i));
+        return $v;
+
+      case PelFormat::ASCII:
+        return new PelEntryAscii($tag, $data->getBytes(0, -1));
+
+      case PelFormat::SHORT:
+        $v =  new PelEntryShort($tag);
+        for ($i = 0; $i < $components; $i++)
+          $v->addNumber($data->getShort($i*2));
+        return $v;
+
+      case PelFormat::SSHORT:
+        $v =  new PelEntrySShort($tag);
+        for ($i = 0; $i < $components; $i++)
+          $v->addNumber($data->getSShort($i*2));
+        return $v;
+
+      case PelFormat::LONG:
+        $v =  new PelEntryLong($tag);
+        for ($i = 0; $i < $components; $i++)
+          $v->addNumber($data->getLong($i*4));
+        return $v;
+
+      case PelFormat::SLONG:
+        $v =  new PelEntrySLong($tag);
+        for ($i = 0; $i < $components; $i++)
+          $v->addNumber($data->getSLong($i*4));
+        return $v;
+
+      case PelFormat::RATIONAL:
+        $v =  new PelEntryRational($tag);
+        for ($i = 0; $i < $components; $i++)
+          $v->addNumber($data->getRational($i*8));
+        return $v;
+
+      case PelFormat::SRATIONAL:
+        $v =  new PelEntrySRational($tag);
+        for ($i = 0; $i < $components; $i++)
+          $v->addNumber($data->getSRational($i*8));
+        return $v;
+
+      case PelFormat::UNDEFINED:
+        return new PelEntryUndefined($tag, $data->getBytes());
+
+      default:
+        throw new PelException('Unsupported format: %s',
+                               PelFormat::getName($format));
+      }
+    }
+  }
+
+
 
 
   /**
@@ -308,18 +565,206 @@ class PelIfd {
 
 
   /**
-   * Get the name of this directory (not currently used).
+   * Get the type of this directory.
+   *
+   * @return int of {@link PelIfd::IFD0}, {@link PelIfd::IFD1}, {@link PelIfd::EXIF}, {@link
+   * PelIfd::GPS}, or {@link PelIfd::INTEROPERABILITY}.
+   */
+  function getType() {
+    return $this->type;
+  }
+
+
+  function getValidTags() {
+    switch ($this->type) {
+    case PelIfd::IFD0:
+    case PelIfd::IFD1:
+      return array(PelTag::IMAGE_WIDTH,
+                   PelTag::IMAGE_LENGTH,
+                   PelTag::BITS_PER_SAMPLE,
+                   PelTag::COMPRESSION,
+                   PelTag::PHOTOMETRIC_INTERPRETATION,
+                   PelTag::IMAGE_DESCRIPTION,
+                   PelTag::MAKE,
+                   PelTag::MODEL,
+                   PelTag::STRIP_OFFSETS,
+                   PelTag::ORIENTATION,
+                   PelTag::SAMPLES_PER_PIXEL,
+                   PelTag::ROWS_PER_STRIP,
+                   PelTag::STRIP_BYTE_COUNTS,
+                   PelTag::X_RESOLUTION,
+                   PelTag::Y_RESOLUTION,
+                   PelTag::PLANAR_CONFIGURATION,
+                   PelTag::RESOLUTION_UNIT,
+                   PelTag::TRANSFER_FUNCTION,
+                   PelTag::SOFTWARE,
+                   PelTag::DATE_TIME,
+                   PelTag::ARTIST,
+                   PelTag::WHITE_POINT,
+                   PelTag::PRIMARY_CHROMATICITIES,
+                   PelTag::JPEG_INTERCHANGE_FORMAT,
+                   PelTag::JPEG_INTERCHANGE_FORMAT_LENGTH,
+                   PelTag::YCBCR_COEFFICIENTS,
+                   PelTag::YCBCR_SUB_SAMPLING,
+                   PelTag::YCBCR_POSITIONING,
+                   PelTag::REFERENCE_BLACK_WHITE,
+                   PelTag::COPYRIGHT,
+                   PelTag::EXIF_IFD_POINTER,
+                   PelTag::GPS_INFO_IFD_POINTER,
+                   PelTag::PRINT_IM);
+
+    case PelIfd::EXIF:
+      return array(PelTag::EXPOSURE_TIME,
+                   PelTag::FNUMBER,
+                   PelTag::EXPOSURE_PROGRAM,
+                   PelTag::SPECTRAL_SENSITIVITY,
+                   PelTag::ISO_SPEED_RATINGS,
+                   PelTag::OECF,
+                   PelTag::EXIF_VERSION,
+                   PelTag::DATE_TIME_ORIGINAL,
+                   PelTag::DATE_TIME_DIGITIZED,
+                   PelTag::COMPONENTS_CONFIGURATION,
+                   PelTag::COMPRESSED_BITS_PER_PIXEL,
+                   PelTag::SHUTTER_SPEED_VALUE,
+                   PelTag::APERTURE_VALUE,
+                   PelTag::BRIGHTNESS_VALUE,
+                   PelTag::EXPOSURE_BIAS_VALUE,
+                   PelTag::MAX_APERTURE_VALUE,
+                   PelTag::SUBJECT_DISTANCE,
+                   PelTag::METERING_MODE,
+                   PelTag::LIGHT_SOURCE,
+                   PelTag::FLASH,
+                   PelTag::FOCAL_LENGTH,
+                   PelTag::MAKER_NOTE,
+                   PelTag::USER_COMMENT,
+                   PelTag::SUB_SEC_TIME,
+                   PelTag::SUB_SEC_TIME_ORIGINAL,
+                   PelTag::SUB_SEC_TIME_DIGITIZED,
+                   PelTag::XP_TITLE,
+                   PelTag::XP_COMMENT,
+                   PelTag::XP_AUTHOR,
+                   PelTag::XP_KEYWORDS,
+                   PelTag::XP_SUBJECT,
+                   PelTag::FLASH_PIX_VERSION,
+                   PelTag::COLOR_SPACE,
+                   PelTag::PIXEL_X_DIMENSION,
+                   PelTag::PIXEL_Y_DIMENSION,
+                   PelTag::RELATED_SOUND_FILE,
+                   PelTag::FLASH_ENERGY,
+                   PelTag::SPATIAL_FREQUENCY_RESPONSE,
+                   PelTag::FOCAL_PLANE_X_RESOLUTION,
+                   PelTag::FOCAL_PLANE_Y_RESOLUTION,
+                   PelTag::FOCAL_PLANE_RESOLUTION_UNIT,
+                   PelTag::SUBJECT_LOCATION,
+                   PelTag::EXPOSURE_INDEX,
+                   PelTag::SENSING_METHOD,
+                   PelTag::FILE_SOURCE,
+                   PelTag::SCENE_TYPE,
+                   PelTag::CFA_PATTERN,
+                   PelTag::CUSTOM_RENDERED,
+                   PelTag::EXPOSURE_MODE,
+                   PelTag::WHITE_BALANCE,
+                   PelTag::DIGITAL_ZOOM_RATIO,
+                   PelTag::FOCAL_LENGTH_IN_35MM_FILM,
+                   PelTag::SCENE_CAPTURE_TYPE,
+                   PelTag::GAIN_CONTROL,
+                   PelTag::CONTRAST,
+                   PelTag::SATURATION,
+                   PelTag::SHARPNESS,
+                   PelTag::DEVICE_SETTING_DESCRIPTION,
+                   PelTag::SUBJECT_DISTANCE_RANGE,
+                   PelTag::IMAGE_UNIQUE_ID,
+                   PelTag::INTEROPERABILITY_IFD_POINTER,
+                   PelTag::GAMMA);
+
+    case PelIfd::GPS:
+      return array(PelTag::GPS_VERSION_ID, 
+                   PelTag::GPS_LATITUDE_REF, 
+                   PelTag::GPS_LATITUDE, 
+                   PelTag::GPS_LONGITUDE_REF, 
+                   PelTag::GPS_LONGITUDE, 
+                   PelTag::GPS_ALTITUDE_REF,
+                   PelTag::GPS_ALTITUDE,
+                   PelTag::GPS_TIME_STAMP,
+                   PelTag::GPS_SATELLITES,
+                   PelTag::GPS_STATUS,
+                   PelTag::GPS_MEASURE_MODE,
+                   PelTag::GPS_DOP,
+                   PelTag::GPS_SPEED_REF,
+                   PelTag::GPS_SPEED,
+                   PelTag::GPS_TRACK_REF,
+                   PelTag::GPS_TRACK,
+                   PelTag::GPS_IMG_DIRECTION_REF,
+                   PelTag::GPS_IMG_DIRECTION,
+                   PelTag::GPS_MAP_DATUM,
+                   PelTag::GPS_DEST_LATITUDE_REF,
+                   PelTag::GPS_DEST_LATITUDE,
+                   PelTag::GPS_DEST_LONGITUDE_REF,
+                   PelTag::GPS_DEST_LONGITUDE,
+                   PelTag::GPS_DEST_BEARING_REF,
+                   PelTag::GPS_DEST_BEARING,
+                   PelTag::GPS_DEST_DISTANCE_REF,
+                   PelTag::GPS_DEST_DISTANCE,
+                   PelTag::GPS_PROCESSING_METHOD,
+                   PelTag::GPS_AREA_INFORMATION,
+                   PelTag::GPS_DATE_STAMP,
+                   PelTag::GPS_DIFFERENTIAL);
+
+    case PelIfd::INTEROPERABILITY:
+      return array(PelTag::INTEROPERABILITY_INDEX, 
+                   PelTag::INTEROPERABILITY_VERSION,
+                   PelTag::RELATED_IMAGE_FILE_FORMAT, 
+                   PelTag::RELATED_IMAGE_WIDTH, 
+                   PelTag::RELATED_IMAGE_LENGTH);
+
+      /* TODO: Where do these tags belong?
+PelTag::FILL_ORDER,
+PelTag::DOCUMENT_NAME, 
+PelTag::TRANSFER_RANGE, 
+PelTag::JPEG_PROC, 
+PelTag::BATTERY_LEVEL, 
+PelTag::IPTC_NAA, 
+PelTag::INTER_COLOR_PROFILE, 
+PelTag::CFA_REPEAT_PATTERN_DIM, 
+      */
+    }
+  }
+
+
+  /**
+   * Get the name of an IFD type.
+   *
+   * @param int one of {@link PelIfd::IFD0}, {@link PelIfd::IFD1},
+   * {@link PelIfd::EXIF}, {@link PelIfd::GPS}, or {@link
+   * PelIfd::INTEROPERABILITY}.
+   *
+   * @return string the name of type.
+   */
+  static function getTypeName($type) {
+    switch ($type) {
+    case self::IFD0:
+      return '0';
+    case self::IFD1:
+      return '1';
+    case self::EXIF:
+      return 'EXIF';
+    case self::GPS:
+      return 'GPS';
+    case self::INTEROPERABILITY:
+      return 'Interoperability';
+    default:
+      throw new PelIfdException('Unknown IFD type: %d', $type);
+    }
+  }
+
+
+  /**
+   * Get the name of this directory.
    *
    * @return string the name of this directory.
    */
   function getName() {
-    switch ($this->type) {
-    case self::IFD0: return '0';
-    case self::IFD1: return '1';
-    case self::EXIF: return 'EXIF';
-    case self::GPS:  return 'GPS';
-    case self::INTEROPERABILITY: return 'Interoperability';
-    }
+    return $this->getTypeName($this->type);
   }
 
 
@@ -578,7 +1023,7 @@ class PelIfd {
    * debugging.
    */
   function __toString() {
-    $str = Pel::fmt("Dumping EXIF IFD %s with %d entries...\n",
+    $str = Pel::fmt("Dumping IFD %s with %d entries...\n",
                     $this->getName(), count($this->entries));
     
     foreach ($this->entries as $entry)
