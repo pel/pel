@@ -17,8 +17,8 @@
  *
  *  You should have received a copy of the GNU General Public License
  *  along with this program in the file COPYING; if not, write to the
- *  Free Software Foundation, Inc., 59 Temple Place, Suite 330,
- *  Boston, MA 02111-1307 USA
+ *  Free Software Foundation, Inc., 51 Franklin St, Fifth Floor,
+ *  Boston, MA 02110-1301 USA
  */
 
 /* $Id$ */
@@ -567,8 +567,9 @@ class PelIfd {
   /**
    * Get the type of this directory.
    *
-   * @return int of {@link PelIfd::IFD0}, {@link PelIfd::IFD1}, {@link PelIfd::EXIF}, {@link
-   * PelIfd::GPS}, or {@link PelIfd::INTEROPERABILITY}.
+   * @return int of {@link PelIfd::IFD0}, {@link PelIfd::IFD1}, {@link
+   * PelIfd::EXIF}, {@link PelIfd::GPS}, or {@link
+   * PelIfd::INTEROPERABILITY}.
    */
   function getType() {
     return $this->type;
