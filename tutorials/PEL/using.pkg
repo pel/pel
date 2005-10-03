@@ -43,13 +43,13 @@ $jpeg->loadFile($filename);
     </programlisting>
 
     <para>If this succeeded without any exceptions being thrown, one
-    can proceed to find the EXIF data itself.  Some knowledge about
+    can proceed to find the Exif data itself.  Some knowledge about
     the structure of a JPEG file is in order: JPEG files consist of a
     number sections containing {@link PelJpegContent content}
-    identified by a {@link PelJpegMarker marker}.  The EXIF data is
+    identified by a {@link PelJpegMarker marker}.  The Exif data is
     normally stored in the {@link PelJpegMarker::APP1 APP1} marker, so
     using the {@link PelJpeg::getSection()} method like this retrieves
-    the EXIF information:</para>
+    the Exif information:</para>
 
     <programlisting role="php">
       <![CDATA[
@@ -61,7 +61,7 @@ $exif = $jpeg->getSection(PelJpegMarker::APP1);
     {@link PelExif} object.</para>
 
     <warning>
-      <para>If the JPEG image does not contain EXIF information, then
+      <para>If the JPEG image does not contain Exif information, then
       the <varname>$exif</varname> variable will either be
       <literal>null</literal> or a generic {@link PelJpegContent}
       object representing some other kind of data.</para>
@@ -76,7 +76,7 @@ $exif = $jpeg->getSection(PelJpegMarker::APP1);
   <refsect1 id="{@id tiff}">
     <title>Obtaining the TIFF data</title>
 
-    <para>The EXIF data is not stored directly in this object, instead
+    <para>The Exif data is not stored directly in this object, instead
     it is stored in a {@link PelTiff} object, which can be retrieved
     using the {@link PelExif::getTiff() getTiff()} method:</para>
 
@@ -87,7 +87,7 @@ $tiff = $exif->getTiff();
     </programlisting>
 
     <para>This peculiar step is necessary because what one normally
-    thinks of as EXIF data is really just an extension of the TIFF
+    thinks of as Exif data is really just an extension of the TIFF
     standard.  PEL models this by having the {@link PelExif} object
     contain a {@link PelTiff} object.</para>
 

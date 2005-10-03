@@ -1,7 +1,7 @@
 <?php
 
-/*  PEL: PHP EXIF Library.  A library with support for reading and
- *  writing all EXIF headers in JPEG and TIFF images using PHP.
+/*  PEL: PHP Exif Library.  A library with support for reading and
+ *  writing all Exif headers in JPEG and TIFF images using PHP.
  *
  *  Copyright (C) 2004, 2005  Martin Geisler.
  *
@@ -25,11 +25,11 @@
 
 
 /**
- * Classes for dealing with EXIF entries.
+ * Classes for dealing with Exif entries.
  *
  * This file defines two exception classes and the abstract class
- * {@link PelEntry} which provides the basic methods that all EXIF
- * entries will have.  All EXIF entries will be represented by
+ * {@link PelEntry} which provides the basic methods that all Exif
+ * entries will have.  All Exif entries will be represented by
  * descendants of the {@link PelEntry} class --- the class itself is
  * abstract and so it cannot be instantiated.
  *

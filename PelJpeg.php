@@ -1,7 +1,7 @@
 <?php
 
-/*  PEL: PHP EXIF Library.  A library with support for reading and
- *  writing all EXIF headers in JPEG and TIFF images using PHP.
+/*  PEL: PHP Exif Library.  A library with support for reading and
+ *  writing all Exif headers in JPEG and TIFF images using PHP.
  *
  *  Copyright (C) 2004, 2005  Martin Geisler.
  *
@@ -81,9 +81,9 @@ class PelJpegInvalidMarkerException extends PelException {
  * by a {@link PelJpegMarker marker}.
  *
  * The {@link getSection()} method is used to pick out a particular
- * section --- the EXIF information is typically stored in the {@link
+ * section --- the Exif information is typically stored in the {@link
  * PelJpegMarker::APP1 APP1} section, and so if the name of the JPEG
- * file is stored in $filename, then one would get hold of the EXIF
+ * file is stored in $filename, then one would get hold of the Exif
  * data by saying:
  *
  * <code>
@@ -122,7 +122,7 @@ class PelJpeg {
    * PelJpegMarker}, {@link PelJpegContent}) pairs.
    *
    * The content can be either generic {@link PelJpegContent JPEG
-   * content} or {@link PelExif EXIF data}.
+   * content} or {@link PelExif Exif data}.
    *
    * @var array
    */
@@ -145,13 +145,13 @@ class PelJpeg {
    * Individual sections of JPEG content can be added with the {@link
    * appendSection()} method --- use this method to add a {@link
    * PelExif} object as the {@link PelJpegMarker::APP1} section of an
-   * existing file without EXIF information:
+   * existing file without Exif information:
    *
    * <code>
    * $jpeg = new PelJpeg();
    * // Initialize $jpeg with some data:
    * $jpeg->load($data);
-   * // Create container for the EXIF information:
+   * // Create container for the Exif information:
    * $exif = new PelExif();
    * // Now Add a PelTiff object with a PelIfd object with one or more
    * // PelEntry objects to $exif.  Finally add $exif to $jpeg:
@@ -226,7 +226,7 @@ class PelJpeg {
             $content->load($d->getClone(0, $len));
           } catch (PelInvalidDataException $e) {
             /* We store the data as normal JPEG content if it could
-             * not be parsed as EXIF data. */
+             * not be parsed as Exif data. */
             $content = new PelJpegContent($d->getClone(0, $len));
           }
           $this->appendSection($marker, $content);
@@ -337,7 +337,7 @@ class PelJpeg {
    * </code>
    *
    * to get hold of the first (and normally only) {@link
-   * PelJpegMarker::APP1 APP1} section, which would hold the EXIF
+   * PelJpegMarker::APP1 APP1} section, which would hold the Exif
    * data.
    *
    * @param PelJpegMarker the marker identifying the section.
@@ -459,7 +459,7 @@ class PelJpeg {
         continue;
       
       if ($c instanceof PelExif) {
-        $str .= Pel::tra("  Content    : EXIF data\n");
+        $str .= Pel::tra("  Content    : Exif data\n");
         $str .= $c->__toString() . "\n";
       } else {
         $str .= Pel::tra("  Content    : Unknown\n");

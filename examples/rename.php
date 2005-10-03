@@ -1,8 +1,8 @@
 #!/usr/bin/php
 <?php
 
-/*  PEL: PHP EXIF Library.  A library with support for reading and
- *  writing all EXIF headers in JPEG and TIFF images using PHP.
+/*  PEL: PHP Exif Library.  A library with support for reading and
+ *  writing all Exif headers in JPEG and TIFF images using PHP.
  *
  *  Copyright (C) 2004, 2005  Martin Geisler.
  *
@@ -24,10 +24,10 @@
 
 /* $Id$ */
 
-/* An example of how PEL can be used.  The script will read the EXIF
+/* An example of how PEL can be used.  The script will read the Exif
  * timestamps in the files given, and rename the files based on that.
  * Should there be several files with the same timestamp --- the
- * resolution of the EXIF timestamp is one second, so a burst of
+ * resolution of the Exif timestamp is one second, so a burst of
  * images will typically have identical timestamps --- then the next
  * available time will be used. */
 
@@ -67,7 +67,7 @@ if (empty($argv)) {
   println('Mandatory arguments:');
   println('  file ...  one or more file names.');
   println();
-  println('The files will be renamed based on their EXIF timestamp.');
+  println('The files will be renamed based on their Exif timestamp.');
   exit(1);
 }
 

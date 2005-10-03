@@ -46,9 +46,9 @@
     <![CDATA[
 $app1 = $jpeg->getSection(PelJpegMarker::APP1);
 if ($app1 instanceof PelExif) {
-  /* Do something with the EXIF data. */
+  /* Do something with the Exif data. */
 } else {
-  /* Sorry --- no EXIF data found. */
+  /* Sorry --- no Exif data found. */
 }
     ]]>
   </programlisting>
@@ -63,7 +63,7 @@ if ($app1 instanceof PelExif) {
 
   <title>Does PEL handle IPTC entries?</title>
 
-  <para>No, PEL only deals with EXIF data, and no such extension is
+  <para>No, PEL only deals with Exif data, and no such extension is
   planned.  Try taking at look at the <!-- /////////////////////// -->
   {@link http://www.ozhiker.com/electronics/pjmt/ PHP JPEG Metadata
   Toolkit} which should handle IPTC along with a huge number of other
@@ -117,7 +117,7 @@ if ($app1 instanceof PelExif) {
   <title>How to deal with broken images?</title>
 
   <para>By default PEL will try to load as much from an image as
-  possible and continue dispite any errors found.  The EXIF standard
+  possible and continue dispite any errors found.  The Exif standard
   mandates certain formats and lengths for some entries, and sometimes
   these requirements are violated.</para>
 

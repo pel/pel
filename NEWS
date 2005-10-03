@@ -1,5 +1,5 @@
-NEWS file for PEL: PHP EXIF Library.  A library with support for
-reading and writing EXIF headers in JPEG and TIFF images using PHP.
+NEWS file for PEL: PHP Exif Library.  A library with support for
+reading and writing Exif headers in JPEG and TIFF images using PHP.
 
 Copyright (C) 2004, 2005  Martin Geisler.
 Licensed under the GNU GPL, see COPYING for details.
@@ -15,7 +15,7 @@ with version 0.8), the Gamma tag, and Windows XP specific title,
 comment, author, keywords, and subject tags.  Implemented a non-strict
 mode for broken images where most errors wont result in visible
 exceptions.  The edit-description.php example now correctly deals with
-images with no previous EXIF data.  A Polish translation was
+images with no previous Exif data.  A Polish translation was
 added. The API documentation was updated with details about the
 constrains on format and number of components for each tag.
 
@@ -64,7 +64,7 @@ Changes:
 
 * Corrected tag documentation in PelTag.
 
-* Made edit-description.php correctly add an empty EXIF structure in
+* Made edit-description.php correctly add an empty Exif structure in
   case the original image has none.
 
 * Removed PelJpegContent::getSize() method.  Calling this method in
@@ -131,7 +131,7 @@ Changes:
   the class name was misspelled.
 
 * Added abstract getValue() and setValue() methods to PelEntry, to
-  better describe that all objects representing EXIF entries have
+  better describe that all objects representing Exif entries have
   those two methods.
 
 * Updated copyright statements throughout the source to year 2005.
@@ -144,7 +144,7 @@ PEL Version 0.7  October 10th 2004
 
 Notes:
 
-Running PEL under PHP version 5.0.2 would produce incorrect EXIF data,
+Running PEL under PHP version 5.0.2 would produce incorrect Exif data,
 this was fixed so that PEL works correctly on all versions of PHP 5.
 PEL now runs on installations without support for Gettext, but does so
 with English texts only.  A new example script was added, showing how
@@ -169,7 +169,7 @@ Changes:
   on installations without support for Gettext.
 
 * Added test/rename.php which shows how one can easily rename images
-  based on their EXIF timestamps.
+  based on their Exif timestamps.
 
 * Updated the Danish translation.
 
@@ -200,7 +200,7 @@ Changes:
 * Changed the constructors in PelJpeg, PelExif, PelTiff, and PelIfd so
   that one can now make new objects without filling them with data
   immediately.  This makes it possible to add, say, a new APP1 section
-  with EXIF to a JPEG image lacking such information.
+  with Exif to a JPEG image lacking such information.
 
 * Fixed loading of signed bytes and shorts in PelConvert.
 
@@ -247,8 +247,8 @@ Changes:
   large integers that would overflow a signed 32 bit integer.
 
 * Fixed bug #976782.  If an image contains two APP1 sections, PEL
-  would crash trying to parse the second non-EXIF section.  PEL will
-  now just store a non-EXIF APP1 section as a generic PelJpegContent
+  would crash trying to parse the second non-Exif section.  PEL will
+  now just store a non-Exif APP1 section as a generic PelJpegContent
   object.
 
 * Removed the PelJpegSection class.  This lead to a rewrite of the
@@ -302,15 +302,15 @@ Notes:
 
 Support was added for parsing TIFF images, leading to a mass renaming
 of files and classes to cleanup the class hierarchy.  The decoding of
-EXIF data is now tested against known values (over 400 individual
+Exif data is now tested against known values (over 400 individual
 tests), this lead to the discovery of a couple of subtle bugs.  The
 documentation has been updated and expanded.
 
 Changes:
 
-* Renamed all files and classes so that only EXIF specific code is
+* Renamed all files and classes so that only Exif specific code is
   labeled with Exif.  So, for example, PelExifIfd is now PelIfd, since
-  the IFD structure is not specific to EXIF but rather to TIFF images.
+  the IFD structure is not specific to Exif but rather to TIFF images.
   The same applies to the former PelExifEntry* classes.
 
 * Fixed offset bug in PelDataWindow::getBytes() which caused the
@@ -321,7 +321,7 @@ Changes:
 * Fixed display of integer version numbers.  Version x.0 would be
   displayed as just version 'x' before.
 
-* Unit tests for EXIF decoding.  PEL is now tested with an image from
+* Unit tests for Exif decoding.  PEL is now tested with an image from
   a Sony DSC V1 and one from a Canon IXUS II.
 
 * Changed all occurrences of include_once() to require_once() since
@@ -336,7 +336,7 @@ PEL Version 0.2  May 16th, 2004
 Notes:
 
 This release brings updated documentation and better support for the
-EXIF user comment tag and tags containing version information.  The
+Exif user comment tag and tags containing version information.  The
 code is now tested using SimpleTest.
 
 Changes:
@@ -350,10 +350,10 @@ Changes:
 * The SimpleTest (http://sf.net/projects/simpletest) framework is used
   for regression testing.
 
-* Added new PelExifEntryUserComment class to better support the EXIF
+* Added new PelExifEntryUserComment class to better support the Exif
   user comment tag.
 
-* Added new PelExifEntryVersion class to support the EXIF tags with
+* Added new PelExifEntryVersion class to support the Exif tags with
   version information, namely the EXIF_VERSION, FLASH_PIX_VERSION, and
   INTEROPERABILITY_VERSION tags.
 
@@ -366,7 +366,7 @@ PEL Version 0.1  May 8th, 2004
 Notes:
 
 The initial release of PEL.  Most of the functionality is in place:
-JPEG files are parsed, EXIF entries are found and interpreted, the
+JPEG files are parsed, Exif entries are found and interpreted, the
 entries can be edited and new entries can be added, and finally, the
 whole thing can be turned into bytes and saved as a valid JPEG file.
 

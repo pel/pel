@@ -1,7 +1,7 @@
 <?php
 
-/*  PEL: PHP EXIF Library.  A library with support for reading and
- *  writing all EXIF headers in JPEG and TIFF images using PHP.
+/*  PEL: PHP Exif Library.  A library with support for reading and
+ *  writing all Exif headers in JPEG and TIFF images using PHP.
  *
  *  Copyright (C) 2004, 2005  Martin Geisler.
  *
@@ -46,7 +46,7 @@ require_once('PelEntryNumber.php');
  * Class for holding unsigned bytes.
  *
  * This class can hold bytes, either just a single byte or an array of
- * bytes.  The class will be used to manipulate any of the EXIF tags
+ * bytes.  The class will be used to manipulate any of the Exif tags
  * which has format {@link PelFormat::BYTE}.
  *
  * @author Martin Geisler <mgeisler@users.sourceforge.net>
@@ -104,7 +104,7 @@ class PelEntryByte extends PelEntryNumber {
  * Class for holding signed bytes.
  *
  * This class can hold bytes, either just a single byte or an array of
- * bytes.  The class will be used to manipulate any of the EXIF tags
+ * bytes.  The class will be used to manipulate any of the Exif tags
  * which has format {@link PelFormat::BYTE}.
  *
  * @author Martin Geisler <mgeisler@users.sourceforge.net>
@@ -164,7 +164,7 @@ class PelEntrySByte extends PelEntryNumber {
  * When examining the file properties of an image in Windows XP one
  * can fill in title, comment, author, keyword, and subject fields.
  * Filling those fields and pressing OK will result in the data being
- * written into the EXIF data in the image.
+ * written into the Exif data in the image.
  *
  * The data is written in a non-standard format and can thus not be
  * loaded directly --- this class is needed to translate it into

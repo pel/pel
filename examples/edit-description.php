@@ -1,8 +1,8 @@
 #!/usr/bin/php
 <?php
 
-/*  PEL: PHP EXIF Library.  A library with support for reading and
- *  writing all EXIF headers in JPEG and TIFF images using PHP.
+/*  PEL: PHP Exif Library.  A library with support for reading and
+ *  writing all Exif headers in JPEG and TIFF images using PHP.
  *
  *  Copyright (C) 2004, 2005  Martin Geisler.
  *
@@ -119,12 +119,12 @@ if (PelJpeg::isValid($data)) {
    * are identified by a PelJpegMarker.  The APP0 to APP15 markers are
    * set aside for application specific data (that is, these sections
    * are not significant to the JPEG compression) and the APP1 section
-   * will normally contain the EXIF data.  */
+   * will normally contain the Exif data.  */
   $app1 = $jpeg->getSection(PelJpegMarker::APP1);
 
   if ($app1 == null) {
     /* Ups, there is no APP1 section in the JPEG file.  This is where
-     * the EXIF data should be. */
+     * the Exif data should be. */
     println('No APP1 section found, added new.');
 
     /* In this case we simply create a new APP1 section (a PelExif
@@ -136,7 +136,7 @@ if (PelJpeg::isValid($data)) {
     $tiff = new PelTiff();
     $app1->setTiff($tiff);
   } else {
-    /* Surprice, surprice: EXIF data is really just TIFF data!  So we
+    /* Surprice, surprice: Exif data is really just TIFF data!  So we
      * extract the PelTiff object for later use. */
     println('Found existing APP1 section.');
     $tiff = $app1->getTiff();
@@ -166,7 +166,7 @@ $ifd0 = $tiff->getIfd();
 
 if ($ifd0 == null) {
   /* No IFD in the TIFF data?  This probably means that the image
-   * didn't have any EXIF information to start with, and so an empty
+   * didn't have any Exif information to start with, and so an empty
    * PelTiff object was inserted by the code above.  But this is no
    * problem, we just create and inserts an empty PelIfd object. */
   println('No IFD found, adding new.');

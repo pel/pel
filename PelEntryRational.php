@@ -1,7 +1,7 @@
 <?php
 
-/*  PEL: PHP EXIF Library.  A library with support for reading and
- *  writing all EXIF headers in JPEG and TIFF images using PHP.
+/*  PEL: PHP Exif Library.  A library with support for reading and
+ *  writing all Exif headers in JPEG and TIFF images using PHP.
  *
  *  Copyright (C) 2004, 2005  Martin Geisler.
  *
@@ -49,7 +49,7 @@ require_once('PelEntryLong.php');
  * enumerator and the denominator, in that order.
  *
  * The class can hold either just a single rational or an array of
- * rationals.  The class will be used to manipulate any of the EXIF
+ * rationals.  The class will be used to manipulate any of the Exif
  * tags which can have format {@link PelFormat::RATIONAL} like in
  * this example:
  *
@@ -184,7 +184,7 @@ class PelEntryRational extends PelEntryLong {
  * enumerator and the denominator, in that order.
  *
  * The class can hold either just a single rational or an array of
- * rationals.  The class will be used to manipulate any of the EXIF
+ * rationals.  The class will be used to manipulate any of the Exif
  * tags which can have format {@link PelFormat::SRATIONAL}.
  *
  * @author Martin Geisler <mgeisler@users.sourceforge.net>

@@ -1,7 +1,7 @@
 <?php
 
-/*  PEL: PHP EXIF Library.  A library with support for reading and
- *  writing all EXIF headers in JPEG and TIFF images using PHP.
+/*  PEL: PHP Exif Library.  A library with support for reading and
+ *  writing all Exif headers in JPEG and TIFF images using PHP.
  *
  *  Copyright (C) 2004, 2005  Martin Geisler.
  *
@@ -25,7 +25,7 @@
 
 
 /**
- * Classes for dealing with EXIF IFDs.
+ * Classes for dealing with Exif IFDs.
  *
  * @author Martin Geisler <mgeisler@users.sourceforge.net>
  * @version $Revision$
@@ -89,10 +89,10 @@ class PelIfd {
   const IFD1 = 1;
 
   /**
-   * EXIF IFD.
+   * Exif IFD.
    *
    * Pass this to the constructor when creating an IFD which will be
-   * the EXIF sub-IFD.
+   * the Exif sub-IFD.
    */
   const EXIF = 2;
 
@@ -748,7 +748,7 @@ PelTag::CFA_REPEAT_PATTERN_DIM,
     case self::IFD1:
       return '1';
     case self::EXIF:
-      return 'EXIF';
+      return 'Exif';
     case self::GPS:
       return 'GPS';
     case self::INTEROPERABILITY:
@@ -924,7 +924,7 @@ PelTag::CFA_REPEAT_PATTERN_DIM,
     $bytes = '';
     $extra_bytes = '';
 
-    Pel::debug('Bytes from IDF will start at offset %d within EXIF data',
+    Pel::debug('Bytes from IDF will start at offset %d within Exif data',
                $offset);
     
     $n = count($this->entries) + count($this->sub);

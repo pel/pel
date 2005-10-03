@@ -1,7 +1,7 @@
 <?php
 
-/*  PEL: PHP EXIF Library.  A library with support for reading and
- *  writing all EXIF headers in JPEG and TIFF images using PHP.
+/*  PEL: PHP Exif Library.  A library with support for reading and
+ *  writing all Exif headers in JPEG and TIFF images using PHP.
  *
  *  Copyright (C) 2004, 2005  Martin Geisler.
  *
@@ -25,7 +25,7 @@
 
 
 /**
- * Classes used to hold data for EXIF tags of format undefined.
+ * Classes used to hold data for Exif tags of format undefined.
  *
  * This file contains the base class {@link PelEntryUndefined} and
  * the subclasses {@link PelEntryUserComment} which should be used
@@ -177,7 +177,7 @@ class PelEntryUndefined extends PelEntry {
  * Class for a user comment.
  *
  * This class is used to hold user comments, which can come in several
- * different character encodings.  The EXIF standard specifies a
+ * different character encodings.  The Exif standard specifies a
  * certain format of the {@link PelTag::USER_COMMENT user comment
  * tag}, and this class will make sure that the format is kept.
  *
@@ -190,7 +190,7 @@ class PelEntryUndefined extends PelEntry {
  * </code>
  *
  * The string can be encoded with a different encoding, and if so, the
- * encoding must be given using the second argument.  The EXIF
+ * encoding must be given using the second argument.  The Exif
  * standard specifies three known encodings: 'ASCII', 'JIS', and
  * 'Unicode'.  If the user comment is encoded using a character
  * encoding different from the tree known encodings, then the empty
@@ -288,7 +288,7 @@ class PelEntryUserComment extends PelEntryUndefined {
 /**
  * Class to hold version information.
  *
- * There are three EXIF entries that hold version information: the
+ * There are three Exif entries that hold version information: the
  * {@link PelTag::EXIF_VERSION}, {@link
  * PelTag::FLASH_PIX_VERSION}, and {@link
  * PelTag::INTEROPERABILITY_VERSION} tags.  This class manages
@@ -298,13 +298,13 @@ class PelEntryUserComment extends PelEntryUndefined {
  * <code>
  * $entry = new PelEntryVersion(PelTag::EXIF_VERSION, 2.2);
  * </code>
- * This creates an entry for an file complying to the EXIF 2.2
+ * This creates an entry for an file complying to the Exif 2.2
  * standard.  It is easy to test for standards level of an unknown
  * entry:
  * <code>
  * if ($entry->getTag() == PelTag::EXIF_VERSION &&
  *     $entry->getValue() > 2.0) {
- *   echo 'Recent EXIF version.';
+ *   echo 'Recent Exif version.';
  * }
  * </code>
  *
@@ -371,7 +371,7 @@ class PelEntryVersion extends PelEntryUndefined {
    * @param boolean controls if the output should be brief.  Brief
    * output omits the word 'Version' so the result is just 'Exif x.y'
    * instead of 'Exif Version x.y' if the entry holds information
-   * about the EXIF version --- the output for FlashPix is similar.
+   * about the Exif version --- the output for FlashPix is similar.
    *
    * @return string the version number with the type of the tag,
    * either 'Exif' or 'FlashPix'.

@@ -1,7 +1,7 @@
 <?php
 
-/*  PEL: PHP EXIF Library.  A library with support for reading and
- *  writing all EXIF headers in JPEG and TIFF images using PHP.
+/*  PEL: PHP Exif Library.  A library with support for reading and
+ *  writing all Exif headers in JPEG and TIFF images using PHP.
  *
  *  Copyright (C) 2004, 2005  Martin Geisler.
  *
@@ -25,7 +25,7 @@
 
 
 /**
- * Classes for dealing with EXIF data.
+ * Classes for dealing with Exif data.
  *
  * @author Martin Geisler <mgeisler@users.sourceforge.net>
  * @version $Revision$
@@ -48,15 +48,15 @@ require_once('Pel.php');
 
 
 /**
- * Class representing EXIF data.
+ * Class representing Exif data.
  *
- * EXIF data resides as {@link PelJpegContent data} and consists of a
+ * Exif data resides as {@link PelJpegContent data} and consists of a
  * header followed by a number of {@link PelJpegIfd IFDs}.
  *
  * The interesting method in this class is {@link getTiff()} which
  * will return the {@link PelTiff} object which really holds the data
- * which one normally think of when talking about EXIF data.  This is
- * because EXIF data is stored as an extension of the TIFF file
+ * which one normally think of when talking about Exif data.  This is
+ * because Exif data is stored as an extension of the TIFF file
  * format.
  *
  * @author Martin Geisler <mgeisler@users.sourceforge.net>
@@ -65,9 +65,9 @@ require_once('Pel.php');
 class PelExif extends PelJpegContent {
 
   /**
-   * EXIF header.
+   * Exif header.
    *
-   * The EXIF data must start with these six bytes to be considered
+   * The Exif data must start with these six bytes to be considered
    * valid.
    */
   const EXIF_HEADER = "Exif\0\0";
@@ -81,12 +81,12 @@ class PelExif extends PelJpegContent {
 
 
   /**
-   * Construct a new EXIF object.
+   * Construct a new Exif object.
    *
    * The new object will be empty --- use the {@link load()} method to
-   * load EXIF data from a {@link PelDataWindow} object, or use the
+   * load Exif data from a {@link PelDataWindow} object, or use the
    * {@link setTiff()} to change the {@link PelTiff} object, which is
-   * the true holder of the EXIF {@link PelEntry entries}.
+   * the true holder of the Exif {@link PelEntry entries}.
    */
   function __construct() {
 
@@ -94,26 +94,26 @@ class PelExif extends PelJpegContent {
 
 
   /**
-   * Load and parse EXIF data.
+   * Load and parse Exif data.
    *
-   * This will populate the object with EXIF data, contained as a
+   * This will populate the object with Exif data, contained as a
    * {@link PelTiff} object.  This TIFF object can be accessed with
    * the {@link getTiff()} method.
    */
   function load(PelDataWindow $d) {
-    Pel::debug('Parsing %d bytes of EXIF data...', $d->getSize());
+    Pel::debug('Parsing %d bytes of Exif data...', $d->getSize());
 
-    /* There must be at least 6 bytes for the EXIF header. */
+    /* There must be at least 6 bytes for the Exif header. */
     if ($d->getSize() < 6)
-      throw new PelInvalidDataException('Expected at least 6 bytes of EXIF ' .
+      throw new PelInvalidDataException('Expected at least 6 bytes of Exif ' .
                                         'data, found just %d bytes.',
                                         $d->getSize());
     
-    /* Verify the EXIF header */
+    /* Verify the Exif header */
     if ($d->strcmp(0, self::EXIF_HEADER)) {
       $d->setWindowStart(strlen(self::EXIF_HEADER));
     } else {
-      throw new PelInvalidDataException('EXIF header not found.');
+      throw new PelInvalidDataException('Exif header not found.');
     }
 
     /* The rest of the data is TIFF data. */
@@ -125,7 +125,7 @@ class PelExif extends PelJpegContent {
   /**
    * Change the TIFF information.
    *
-   * EXIF data is really stored as TIFF data, and this method can be
+   * Exif data is really stored as TIFF data, and this method can be
    * used to change this data from one {@link PelTiff} object to
    * another.
    *
@@ -139,10 +139,10 @@ class PelExif extends PelJpegContent {
   /**
    * Get the underlying TIFF object.
    *
-   * The actual EXIF data is stored in a {@link PelTiff} object, and
+   * The actual Exif data is stored in a {@link PelTiff} object, and
    * this method provides access to it.
    *
-   * @return PelTiff the TIFF object with the EXIF data.
+   * @return PelTiff the TIFF object with the Exif data.
    */
   function getTiff() {
     return $this->tiff;
@@ -150,7 +150,7 @@ class PelExif extends PelJpegContent {
 
 
   /**
-   * Produce bytes for the EXIF data.
+   * Produce bytes for the Exif data.
    *
    * @return string bytes representing this object.
    */
@@ -166,7 +166,7 @@ class PelExif extends PelJpegContent {
    * useful for debugging.
    */
   function __toString() {
-    return Pel::tra("Dumping EXIF data...\n") .
+    return Pel::tra("Dumping Exif data...\n") .
       $this->tiff->__toString();
   }
 

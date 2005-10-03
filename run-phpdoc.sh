@@ -1,7 +1,7 @@
 #!/bin/sh
 #
-#  PEL: PHP EXIF Library.  A library with support for reading and
-#  writing all EXIF headers of JPEG images using PHP.
+#  PEL: PHP Exif Library.  A library with support for reading and
+#  writing all Exif headers of JPEG images using PHP.
 #
 #  Copyright (C) 2004  Martin Geisler <gimpster@users.sourceforge.net>
 #
@@ -44,7 +44,7 @@ echo -n "Running phpDocumentor... "
 $PHPDOC                                                             \
     --quiet               "on"                                      \
     --sourcecode          "on"                                      \
-    --title               "PEL: PHP EXIF Library$VERSION"           \
+    --title               "PEL: PHP Exif Library$VERSION"           \
     --output              "HTML:frames:earthli"                     \
     --customtags          "date"                                    \
     --defaultpackagename  "PEL"                                     \

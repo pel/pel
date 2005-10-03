@@ -1,7 +1,7 @@
 <?php
 
-/*  PEL: PHP EXIF Library.  A library with support for reading and
- *  writing all EXIF headers in JPEG and TIFF images using PHP.
+/*  PEL: PHP Exif Library.  A library with support for reading and
+ *  writing all Exif headers in JPEG and TIFF images using PHP.
  *
  *  Copyright (C) 2004, 2005  Martin Geisler.
  *
@@ -25,7 +25,7 @@
 
 
 /**
- * Namespace for functions operating on EXIF formats.
+ * Namespace for functions operating on Exif formats.
  *
  * @author Martin Geisler <mgeisler@users.sourceforge.net>
  * @version $Revision$
@@ -36,10 +36,10 @@
  */
 
 /**
- * Namespace for functions operating on EXIF formats.
+ * Namespace for functions operating on Exif formats.
  *
  * This class defines the constants that are to be used whenever one
- * has to refer to the format of an EXIF tag.  They will be
+ * has to refer to the format of an Exif tag.  They will be
  * collectively denoted by the pseudo-type PelFormat throughout the
  * documentation.
  *

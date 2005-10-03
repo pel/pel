@@ -8,11 +8,11 @@ PEL Test Images
 ***************
 
 The images contained in this directory are test images collected for
-use with PEL: PHP EXIF Library.  One can download PEL from:
+use with PEL: PHP Exif Library.  One can download PEL from:
 
   http://pel.sourceforge.net/
 
-All images except no-exif.jpg contain EXIF information, and the
+All images except no-exif.jpg contain Exif information, and the
 corresponding PHP files contain SimpleTest (http://simpletest.sf.net/)
 unit tests.
 
@@ -31,7 +31,7 @@ Contributing Test Images
 If you own a camera model from which there are no test image, then
 please contribute one.  The image should
 
-* contain as much interesting EXIF tags as possible.  The camera
+* contain as much interesting Exif tags as possible.  The camera
   should therefore be set to a manual mode, and the settings should be
   changed from their defaults,
 

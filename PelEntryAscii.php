@@ -1,7 +1,7 @@
 <?php
 
-/*  PEL: PHP EXIF Library.  A library with support for reading and
- *  writing all EXIF headers in JPEG and TIFF images using PHP.
+/*  PEL: PHP Exif Library.  A library with support for reading and
+ *  writing all Exif headers in JPEG and TIFF images using PHP.
  *
  *  Copyright (C) 2004, 2005  Martin Geisler.
  *
@@ -27,7 +27,7 @@
 /**
  * Classes used to hold ASCII strings.
  *
- * The classes defined here are to be used for EXIF entries holding
+ * The classes defined here are to be used for Exif entries holding
  * ASCII strings, such as {@link PelTag::MAKE}, {@link
  * PelTag::SOFTWARE}, and {@link PelTag::DATE_TIME}.  For
  * entries holding normal textual ASCII strings the class {@link
@@ -173,7 +173,7 @@ class PelEntryTime extends PelEntryAscii {
   /**
    * Make a new entry for holding a timestamp.
    *
-   * @param int the EXIF tag which this entry represents.  There are
+   * @param int the Exif tag which this entry represents.  There are
    * only three standard tags which hold timestamp, so this should be
    * one of the constants {@link PelTag::DATE_TIME}, {@link
    * PelTag::DATE_TIME_ORIGINAL}, or {@link
@@ -225,7 +225,7 @@ class PelEntryTime extends PelEntryAscii {
 /**
  * Class for holding copyright information.
  *
- * The EXIF standard specifies a certain format for copyright
+ * The Exif standard specifies a certain format for copyright
  * information where the one {@link PelTag::COPYRIGHT copyright
  * tag} holds both the photographer and editor copyrights, separated
  * by a NULL character.

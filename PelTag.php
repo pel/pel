@@ -1,7 +1,7 @@
 <?php
 
-/*  PEL: PHP EXIF Library.  A library with support for reading and
- *  writing all EXIF headers in JPEG and TIFF images using PHP.
+/*  PEL: PHP Exif Library.  A library with support for reading and
+ *  writing all Exif headers in JPEG and TIFF images using PHP.
  *
  *  Copyright (C) 2004, 2005  Martin Geisler.
  *
@@ -25,7 +25,7 @@
 
 
 /**
- * Namespace for functions operating on EXIF tags.
+ * Namespace for functions operating on Exif tags.
  *
  * @author Martin Geisler <mgeisler@users.sourceforge.net>
  * @version $Revision$
@@ -41,22 +41,22 @@ require_once('Pel.php');
 
 
 /**
- * Class with static methods for EXIF tags.
+ * Class with static methods for Exif tags.
  *
- * This class defines the constants that represents the EXIF tags
+ * This class defines the constants that represents the Exif tags
  * known to PEL.  They are supposed to be used whenever one needs to
- * specify an EXIF tag, and they will be denoted by the pseudo-type
+ * specify an Exif tag, and they will be denoted by the pseudo-type
  * {@link PelTag} throughout the documentation.
  *
  * Please note that the constrains on the format and number of
- * components given here are advisory only.  To follow the EXIF
+ * components given here are advisory only.  To follow the Exif
  * specification one should obey them, but there is nothing that
  * prevents you from creating an {@link IMAGE_LENGTH} entry with two
  * or more components, even though the standard says that there should
  * be exactly one component.
  *
  * All the methods in this class are static and should be called with
- * the EXIF tag on which they should operate.
+ * the Exif tag on which they should operate.
  *
  * @author Martin Geisler <mgeisler@users.sourceforge.net>
  * @package PEL
@@ -365,7 +365,7 @@ class PelTag {
   /**
    * Date and Time
    *
-   * The date and time of image creation.  In this standard (EXIF-2.1)
+   * The date and time of image creation.  In this standard (Exif-2.1)
    * it is the date and time the file was changed.
    *
    * An entry holding this tag must have format {@link
@@ -1114,7 +1114,7 @@ class PelTag {
    * color space other than sRGB is used, Uncalibrated (=FFFF.H) is
    * set.  Image data recorded as Uncalibrated can be treated as sRGB
    * when it is converted to FlashPix.  On sRGB see Appendix E of the
-   * EXIF 2.2 standard.
+   * Exif 2.2 standard.
    *
    * Format: {@link PelFormat::SHORT}.
    *
@@ -1129,7 +1129,7 @@ class PelTag {
    * is recorded, the valid width of the meaningful image must be
    * recorded in this tag, whether or not there is padding data or a
    * restart marker.  This tag should not exist in an uncompressed
-   * file.  For details see section 2.8.1 and Appendix F of the EXIF
+   * file.  For details see section 2.8.1 and Appendix F of the Exif
    * 2.2 standard.
    *
    * Format: {@link PelFormat::SHORT} or {@link PelFormat::LONG}.
@@ -1145,7 +1145,7 @@ class PelTag {
    * is recorded, the valid height of the meaningful image must be
    * recorded in this tag, whether or not there is padding data or a
    * restart marker.  This tag should not exist in an uncompressed
-   * file.  For details see section 2.8.1 and Appendix F of the EXIF
+   * file.  For details see section 2.8.1 and Appendix F of the Exif
    * 2.2 standard.  Since data padding is unnecessary in the vertical
    * direction, the number of lines recorded in this valid image
    * height tag will in fact be the same as that recorded in the SOF.
@@ -1164,7 +1164,7 @@ class PelTag {
    * the Exif audio file name and extension (an ASCII string
    * consisting of 8 characters + '.' + 3 characters).  The path is
    * not recorded.  Stipulations on audio are given in section 3.6.3
-   * of the EXIF 2.2 standard.  File naming conventions are given in
+   * of the Exif 2.2 standard.  File naming conventions are given in
    * section 3.7.1.  When using this tag, audio files must be recorded
    * in conformance to the Exif audio format.  Writers are also
    * allowed to store the data such as Audio within APP2 as FlashPix
@@ -1992,7 +1992,7 @@ class PelTag {
 
 
   /**
-   * Returns a short name for an EXIF tag.
+   * Returns a short name for an Exif tag.
    *
    * @param int the IFD type of the tag, one of {@link PelIfd::IFD0},
    * {@link PelIfd::IFD1}, {@link PelIfd::EXIF}, {@link PelIfd::GPS},
@@ -2257,7 +2257,7 @@ class PelTag {
 
 
   /**
-   * Returns a title for an EXIF tag.
+   * Returns a title for an Exif tag.
    *
    * @param int the IFD type of the tag, one of {@link PelIfd::IFD0},
    * {@link PelIfd::IFD1}, {@link PelIfd::EXIF}, {@link PelIfd::GPS},
@@ -2521,7 +2521,7 @@ class PelTag {
 
 
   /**
-   * Returns a description of an EXIF tag.
+   * Returns a description of an Exif tag.
    *
    * @param int the IFD type of the tag, one of {@link PelIfd::IFD0},
    * {@link PelIfd::IFD1}, {@link PelIfd::EXIF}, {@link PelIfd::GPS},
@@ -2611,7 +2611,7 @@ class PelTag {
         return Pel::tra('This tag records the name and version of the software or firmware of the camera or image input device used to generate the image. The detailed format is not specified, but it is recommended that the example shown below be followed. When the field is left blank, it is treated as unknown.');
 
       case self::DATE_TIME:
-        return Pel::tra('The date and time of image creation. In this standard (EXIF-2.1) it is the date and time the file was changed.');
+        return Pel::tra('The date and time of image creation. In this standard (Exif-2.1) it is the date and time the file was changed.');
 
       case self::ARTIST:
         return Pel::tra('This tag records the name of the camera owner, photographer or image creator. The detailed format is not specified, but it is recommended that the information be written as in the example below for ease of Interoperability. When the field is left blank, it is treated as unknown.');
@@ -2779,13 +2779,13 @@ class PelTag {
         return Pel::tra('The color space information tag is always recorded as the color space specifier. Normally sRGB (=1) is used to define the color space based on the PC monitor conditions and environment. If a color space other than sRGB is used, Uncalibrated (=FFFF.H) is set. Image data recorded as Uncalibrated can be treated as sRGB when it is converted to FlashPix. On sRGB see Appendix E.');
 
       case self::PIXEL_X_DIMENSION:
-        return Pel::tra('Information specific to compressed data. When a compressed file is recorded, the valid width of the meaningful image must be recorded in this tag, whether or not there is padding data or a restart marker. This tag should not exist in an uncompressed file. For details see section 2.8.1 and Appendix F of the EXIF 2.2 standard.');
+        return Pel::tra('Information specific to compressed data. When a compressed file is recorded, the valid width of the meaningful image must be recorded in this tag, whether or not there is padding data or a restart marker. This tag should not exist in an uncompressed file. For details see section 2.8.1 and Appendix F of the Exif 2.2 standard.');
 
       case self::PIXEL_Y_DIMENSION:
-        return Pel::tra('Information specific to compressed data. When a compressed file is recorded, the valid height of the meaningful image must be recorded in this tag, whether or not there is padding data or a restart marker. This tag should not exist in an uncompressed file. For details see section 2.8.1 and Appendix F of the EXIF 2.2 standard. Since data padding is unnecessary in the vertical direction, the number of lines recorded in this valid image height tag will in fact be the same as that recorded in the SOF.');
+        return Pel::tra('Information specific to compressed data. When a compressed file is recorded, the valid height of the meaningful image must be recorded in this tag, whether or not there is padding data or a restart marker. This tag should not exist in an uncompressed file. For details see section 2.8.1 and Appendix F of the Exif 2.2 standard. Since data padding is unnecessary in the vertical direction, the number of lines recorded in this valid image height tag will in fact be the same as that recorded in the SOF.');
 
       case self::RELATED_SOUND_FILE:
-        return Pel::tra('This tag is used to record the name of an audio file related to the image data. The only relational information recorded here is the Exif audio file name and extension (an ASCII string consisting of 8 characters + \'.\' + 3 characters). The path is not recorded. Stipulations on audio are given in  section 3.6.3 of the EXIF 2.2 standard. File naming conventions are given in section 3.7.1. When using this tag, audio files must be recorded in conformance to the Exif audio format. Writers are also allowed to store the data such as Audio within APP2 as FlashPix extension stream data. Audio files must be recorded in conformance to the Exif audio format. The mapping of Exif image files and audio files is done in any of the three ways shown in Table 8. If multiple files are mapped to one file as in [2] or [3] of this table, the above format is used to record just one audio file name. If there are multiple audio files, the first recorded file is given. In the case of [3] in Table 8, for example, for the Exif image file "DSC00001.JPG" only  "SND00001.WAV" is given as the related Exif audio file. When there are three Exif audio files "SND00001.WAV", "SND00002.WAV" and "SND00003.WAV", the Exif image file name for each of them, "DSC00001.JPG", is indicated. By combining multiple relational information, a variety of playback possibilities can be supported. The method of using relational information is left to the implementation on the playback side. Since this information is an ASCII character string, it is terminated by NULL. When this tag is used to map audio files, the relation of the audio file to image data must also be indicated on the audio file end.');
+        return Pel::tra('This tag is used to record the name of an audio file related to the image data. The only relational information recorded here is the Exif audio file name and extension (an ASCII string consisting of 8 characters + \'.\' + 3 characters). The path is not recorded. Stipulations on audio are given in  section 3.6.3 of the Exif 2.2 standard. File naming conventions are given in section 3.7.1. When using this tag, audio files must be recorded in conformance to the Exif audio format. Writers are also allowed to store the data such as Audio within APP2 as FlashPix extension stream data. Audio files must be recorded in conformance to the Exif audio format. The mapping of Exif image files and audio files is done in any of the three ways shown in Table 8. If multiple files are mapped to one file as in [2] or [3] of this table, the above format is used to record just one audio file name. If there are multiple audio files, the first recorded file is given. In the case of [3] in Table 8, for example, for the Exif image file "DSC00001.JPG" only  "SND00001.WAV" is given as the related Exif audio file. When there are three Exif audio files "SND00001.WAV", "SND00002.WAV" and "SND00003.WAV", the Exif image file name for each of them, "DSC00001.JPG", is indicated. By combining multiple relational information, a variety of playback possibilities can be supported. The method of using relational information is left to the implementation on the playback side. Since this information is an ASCII character string, it is terminated by NULL. When this tag is used to map audio files, the relation of the audio file to image data must also be indicated on the audio file end.');
 
       case self::INTEROPERABILITY_IFD_POINTER:
         return Pel::tra('Interoperability IFD is composed of tags which stores the information to ensure the Interoperability and pointed by the following tag located in Exif IFD. The Interoperability structure of Interoperability IFD is the same as TIFF defined IFD structure but does not contain the image data characteristically compared with normal TIFF IFD.');

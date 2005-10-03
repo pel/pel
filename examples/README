@@ -33,14 +33,14 @@ The examples are:
   image.
 
 * edit-description.php: a big example showing how to update the
-  ImageDescription EXIF tag using PEL.
+  ImageDescription Exif tag using PEL.
 
   The script is heavely commented, and should be used as a good
   reference as to how PEL works and how it should be used.
 
 * rename.php: a script similar to dirsort.php, only that this one will
   rename photos to a filename containing the full date and time taken
-  from the DateTime EXIF tag.
+  from the DateTime Exif tag.
 
 
 Contributing New Examples

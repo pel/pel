@@ -1,6 +1,6 @@
 <refentry id="{@id}">                            <!-- -*- nxml -*- -->
   <refnamediv>
-    <refname>PHP EXIF Library</refname>
+    <refname>PHP Exif Library</refname>
     <refpurpose>Overview of PEL</refpurpose>
   </refnamediv>
   <refsynopsisdiv>
@@ -24,15 +24,15 @@
 -->
 
   <refsect1 id="{@id intro}">
-    <title>What is the PHP EXIF Library?</title>
+    <title>What is the PHP Exif Library?</title>
 
-    <para>The PHP EXIF Library (called PEL for short) is a library
+    <para>The PHP Exif Library (called PEL for short) is a library
     written in {@link http://www.php.net/ PHP} which will allow you to
     manipulate {@link http://www.exif.org/ EXIF} data.  This is the
     data that digital cameras place in their images, such as the date
     and time, shutter speed, ISO value and so on.</para>
 
-    <para>PEL makes it easy to parse EXIF data stored in JPEG and TIFF
+    <para>PEL makes it easy to parse Exif data stored in JPEG and TIFF
     images.  Once an image has been loaded, the data can be changed at
     will by manipulating the objects representing the data.  The
     objects can be saved again to produce a valid image.</para>

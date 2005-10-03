@@ -1,7 +1,7 @@
 <?php
 
-/*  PEL: PHP EXIF Library.  A library with support for reading and
- *  writing all EXIF headers in JPEG and TIFF images using PHP.
+/*  PEL: PHP Exif Library.  A library with support for reading and
+ *  writing all Exif headers in JPEG and TIFF images using PHP.
  *
  *  Copyright (C) 2004, 2005  Martin Geisler.
  *
@@ -46,7 +46,7 @@ require_once('Pel.php');
  * Class for holding signed shorts.
  *
  * This class can hold shorts, either just a single short or an array
- * of shorts.  The class will be used to manipulate any of the EXIF
+ * of shorts.  The class will be used to manipulate any of the Exif
  * tags which has format {@link PelFormat::SHORT} like in this
  * example:
  *
@@ -542,7 +542,7 @@ class PelEntryShort extends PelEntryNumber {
  * Class for holding signed shorts.
  *
  * This class can hold shorts, either just a single short or an array
- * of shorts.  The class will be used to manipulate any of the EXIF
+ * of shorts.  The class will be used to manipulate any of the Exif
  * tags which has format {@link PelFormat::SSHORT}.
  *
  * @author Martin Geisler <mgeisler@users.sourceforge.net>

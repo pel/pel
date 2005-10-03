@@ -1,7 +1,7 @@
 #!/bin/sh
 #
-#  PEL: PHP EXIF Library.  A library with support for reading and
-#  writing all EXIF headers in JPEG and TIFF images using PHP.
+#  PEL: PHP Exif Library.  A library with support for reading and
+#  writing all Exif headers in JPEG and TIFF images using PHP.
 #
 #  Copyright (C) 2004, 2005  Martin Geisler.
 #
@@ -84,8 +84,8 @@ echo "done."
 
 # Generate the ChangeLog, prefixed with a standard header
 echo -n "Generating CVS ChangeLog... "
-echo "ChangeLog file for PEL: PHP EXIF Library.  A library with support for
-reading and writing EXIF headers in JPEG and TIFF images using PHP.
+echo "ChangeLog file for PEL: PHP Exif Library.  A library with support for
+reading and writing Exif headers in JPEG and TIFF images using PHP.
 
 Copyright (C) 2004, 2005  Martin Geisler.
 Licensed under the GNU GPL, see COPYING for details.

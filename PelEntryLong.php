@@ -1,7 +1,7 @@
 <?php
 
-/*  PEL: PHP EXIF Library.  A library with support for reading and
- *  writing all EXIF headers in JPEG and TIFF images using PHP.
+/*  PEL: PHP Exif Library.  A library with support for reading and
+ *  writing all Exif headers in JPEG and TIFF images using PHP.
  *
  *  Copyright (C) 2004, 2005  Martin Geisler.
  *
@@ -44,7 +44,7 @@ require_once('PelEntryNumber.php');
  * Class for holding unsigned longs.
  *
  * This class can hold longs, either just a single long or an array of
- * longs.  The class will be used to manipulate any of the EXIF tags
+ * longs.  The class will be used to manipulate any of the Exif tags
  * which can have format {@link PelFormat::LONG} like in this
  * example:
  * <code>
@@ -123,7 +123,7 @@ class PelEntryLong extends PelEntryNumber {
  * Class for holding signed longs.
  *
  * This class can hold longs, either just a single long or an array of
- * longs.  The class will be used to manipulate any of the EXIF tags
+ * longs.  The class will be used to manipulate any of the Exif tags
  * which can have format {@link PelFormat::SLONG}.
  *
  * @author Martin Geisler <mgeisler@users.sourceforge.net>

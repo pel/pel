@@ -1,7 +1,7 @@
 <?php
 
-/*  PEL: PHP EXIF Library.  A library with support for reading and
- *  writing all EXIF headers in JPEG and TIFF images using PHP.
+/*  PEL: PHP Exif Library.  A library with support for reading and
+ *  writing all Exif headers in JPEG and TIFF images using PHP.
  *
  *  Copyright (C) 2004, 2005  Martin Geisler.
  *
@@ -45,13 +45,13 @@ require_once('Pel.php');
 /**
  * Class for handling TIFF data.
  *
- * EXIF data is actually an extension of the TIFF file format.  TIFF
+ * Exif data is actually an extension of the TIFF file format.  TIFF
  * images consist of a number of {@link PelIfd Image File Directories}
  * (IFDs), each containing a number of {@link PelEntry entries}.  The
  * IFDs are linked to each other --- one can get hold of the first one
  * with the {@link getIfd()} method.
  *
- * To parse a TIFF image for EXIF data one would do:
+ * To parse a TIFF image for Exif data one would do:
  *
  * <code> 
  * $tiff = new PelTiff($data);
@@ -108,7 +108,7 @@ class PelTiff {
    *
    * @param PelDataWindow the data from which the object will be
    * constructed.  This should be valid TIFF data, coming either
-   * directly from a TIFF image or from the EXIF data in a JPEG image.
+   * directly from a TIFF image or from the Exif data in a JPEG image.
    */
   function load(PelDataWindow $d) {
     Pel::debug('Parsing %d bytes of TIFF data...', $d->getSize());

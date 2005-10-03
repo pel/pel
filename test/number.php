@@ -1,7 +1,7 @@
 <?php
 
-/*  PEL: PHP EXIF Library.  A library with support for reading and
- *  writing all EXIF headers in JPEG and TIFF images using PHP.
+/*  PEL: PHP Exif Library.  A library with support for reading and
+ *  writing all Exif headers in JPEG and TIFF images using PHP.
  *
  *  Copyright (C) 2004  Martin Geisler.
  *
@@ -160,7 +160,7 @@ class RationalTestCase extends UnitTestCase {
 
   function __construct() {
     require_once('../PelEntryRational.php');
-    parent::__construct('PEL EXIF Rational Tests');
+    parent::__construct('PEL Exif Rational Tests');
   }
 
   function testOverflow() {
@@ -229,7 +229,7 @@ class SRationalTestCase extends UnitTestCase {
 
   function __construct() {
     require_once('../PelEntryRational.php');
-    parent::__construct('PEL EXIF SRational Tests');
+    parent::__construct('PEL Exif SRational Tests');
   }
 
   function testOverflow() {
