@@ -81,12 +81,12 @@ if ($app1 instanceof PelExif) {
   <orderedlist>
 
     <listitem>
-      <para>PHP must have support for the {@link
-      http://www.php.net/manual/en/ref.gettext.php Gettext extension}.
-      Most installations of PHP already has this, but please
-      double-check with <function>{@link
-      http://www.php.net/manual/en/function.phpinfo.php
-      phpinfo()}</function> before asking for help on the
+      <para>PHP must have support for the <!-- /////////////////// -->
+      {@link http://www.php.net/manual/en/ref.gettext.php Gettext
+      extension}.  Most installations of PHP already has this, but
+      please double-check with <function> <!-- /////////////////// -->
+      {@link http://www.php.net/manual/en/function.phpinfo.php
+      phpinfo}</function> before asking for help on the
       mailinglist.</para>
     </listitem>
 
@@ -98,9 +98,14 @@ if ($app1 instanceof PelExif) {
       server you'll probably have to reconfigure it.</para>
 
       <para>How to configure the locales differ from system to system.
-      With the Debian GNU/Linux distribution you should run
-      <programlisting>dpkg-reconfigure locales</programlisting> and
-      then select all locales that you want your system to
+      With the {@link http://www.debian.net/ Debian GNU/Linux}
+      distribution you should run</para>
+
+      <programlisting>
+        dpkg-reconfigure locales
+      </programlisting>
+
+      <para>and then select all locales that you want your system to
       support.</para>
 
       <para>Restart your webserver after changing the locale setup to
@@ -122,12 +127,12 @@ if ($app1 instanceof PelExif) {
   these requirements are violated.</para>
 
   <para>The strictness of PEL is controlled by the boolean {@link
-  Pel::strict}, which by default is set to <literal>false</literal>.
+  Pel::$strict}, which by default is set to <literal>false</literal>.
   In this non-strict ode, PEL will not throw exceptions for parse
-  errors but instead store them in the {@link Pel::exceptions} array
+  errors but instead store them in the {@link Pel::$exceptions} array
   for later inspection.</para>
 
-  <para>Setting {@link Pel::strict} to <literal>true</literal> will
+  <para>Setting {@link Pel::$strict} to <literal>true</literal> will
   make PEL throw exceptions upon parse errors.</para>
 
   <para>This may all sound very complex, but it is actually fairly
@@ -145,7 +150,7 @@ if ($app1 instanceof PelExif) {
 
   <title>My question is not answered here</title>
 
-  <para>Please ask your questions on the <!-- /////////////// -->
+  <para>Please ask your questions on the <!-- //////////////////// -->
   {@link http://lists.sourceforge.net/lists/listinfo/pel-devel PEL
   Development List}.  If an answer is found, then the FAQ will be
   updated.</para>

@@ -28,7 +28,7 @@
 
     <para>The PHP Exif Library (called PEL for short) is a library
     written in {@link http://www.php.net/ PHP} which will allow you to
-    manipulate {@link http://www.exif.org/ EXIF} data.  This is the
+    manipulate {@link http://www.exif.org/ Exif} data.  This is the
     data that digital cameras place in their images, such as the date
     and time, shutter speed, ISO value and so on.</para>
 
