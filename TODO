@@ -12,6 +12,53 @@ In addition to the following list, then the source contains a number
 of comments beginning with `TODO' and `FIXME' which marks extra places
 where attention is needed.
 
+The list has been roughly ordered by priority and the release
+targeted.
+
+
+PEL Version 1.0
+---------------
+
+* Add convenience functions.
+   It would be nice to have functions that could give you a particular
+   entry or the embedded thumbnail with just one function call.
+   Manually traversing the directory structure (and repeatedly
+   checking for null pointers) requires too big a knowledge of the
+   structure of JPEG, TIFF, and Exif formats.
+
+* Fix read-write.php test case
+   It is currently broken because it tries to write entries with
+   made-up tags into IFD0.  The new strict PEL wont allow that.
+
+* Make PelIfd an iterator over PelEntry
+   The IFD could be turned into an iterator, iterating over the
+   entries it contain.
+
+
+PEL Version 1.x
+---------------
+
+* Only load necessary data.
+   SF #1210126: instead of parsing the entire JPEG/TIFF image, then we
+   should load data as necessary.
+
+* Interpret the MakerNotes.
+   The libexif project already has code for interpretating the
+   MakerNotes for a number of different camera models.
+
+* Handle character encodings of the USER_COMMENT tag.
+   The first eight bytes store the character encoding, but PEL ignores
+   them for now.  Using the Multibyte String PHP extension we should
+   be able to convert the data.
+
+* Deal with characters outside Latin-1 in PelEntryWindowsString.
+   This needs testing from people running Windows XP set to a locale
+   different from Latin-1.
+
+
+PEL Version 2.0
+---------------
+
 * Restructure information about tags.
    Currently information about the tags are stored in several places
    around the code, making updates difficult.  All information about a
@@ -29,29 +76,8 @@ where attention is needed.
    - valid IFD types,
    - how to load data,
    - how to display (the getText() method)
-   
-* Add convenience functions.
-   It would be nice to have functions that could give you a particular
-   entry or the embedded thumbnail with just one function call.
-   Manually traversing the directory structure (and repeatedly
-   checking for null pointers) requires too big a knowledge of the
-   structure of JPEG, TIFF, and Exif formats.
 
-* Fix read-write.php test case
-   It is currently broken because it tries to write entries with
-   made-up tags into IFD0.  The new strict PEL wont allow that.
-
-* Interpret the MakerNotes.
-   The libexif project already has code for interpretating the
-   MakerNotes for a number of different camera models.
-
-* Handle character encodings of the USER_COMMENT tag.
-   The first eight bytes store the character encoding, but PEL ignores
-   them for now.  Using the Multibyte String PHP extension we should
-   be able to convert the data.
-
-* Deal with characters outside Latin-1 in PelEntryWindowsString.
-   This needs testing from people running Windows XP set to a locale
-   different from Latin-1.
+   This will most likely break API compatability and is delayed for
+   PEL 2.
 
 * Investigate the JPEG comment section.
