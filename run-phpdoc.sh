@@ -40,15 +40,18 @@ else
     PHPDOC=$2
 fi    
 
+# The ChangeLog file might not be here yet, but phpDocumentor fails if
+# it is missing...
+touch ChangeLog
+
 echo -n "Running phpDocumentor... "
 $PHPDOC                                                             \
-    --quiet               "on"                                      \
     --sourcecode          "on"                                      \
     --title               "PEL: PHP Exif Library$VERSION"           \
     --output              "HTML:frames:earthli"                     \
     --customtags          "date"                                    \
     --defaultpackagename  "PEL"                                     \
     --directory           "tutorials"                               \
-    --filename            "Pel*.php,README,INSTALL,NEWS,ChangeLog"  \
+    --filename            "Pel*.php,README,INSTALL,NEWS,TODO,ChangeLog"  \
     --target              "doc"
 echo "done."
