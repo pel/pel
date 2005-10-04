@@ -64,7 +64,7 @@ require_once('Pel.php');
 class PelTag {
 
   /**
-   * Interoperability Index
+   * Interoperability index.
    *
    * Indicates the identification of the Interoperability rule.  Use
    * "R98" for stating ExifR98 Rules. Four bytes used including the
@@ -79,7 +79,7 @@ class PelTag {
   const INTEROPERABILITY_INDEX                            = 0x0001;
 
   /**
-   * Interoperability Version
+   * Interoperability version.
    *
    * Format: {@link PelFormat::UNDEFINED}.
    *
@@ -88,7 +88,7 @@ class PelTag {
   const INTEROPERABILITY_VERSION                          = 0x0002;
 
   /**
-   * Image Width
+   * Image width.
    *
    * The number of columns of image data, equal to the number of
    * pixels per row.  In JPEG compressed data a JPEG marker is used
@@ -101,7 +101,7 @@ class PelTag {
   const IMAGE_WIDTH                                       = 0x0100;
 
   /**
-   * Image Length
+   * Image length.
    *
    * The number of rows of image data.  In JPEG compressed data a JPEG
    * marker is used instead of this tag.
@@ -113,7 +113,7 @@ class PelTag {
   const IMAGE_LENGTH                                      = 0x0101;
 
   /**
-   * Bits per Sample
+   * Number of bits per component.
    *
    * The number of bits per image component.  In this standard each
    * component of the image is 8 bits, so the value for this tag is 8.
@@ -127,7 +127,7 @@ class PelTag {
   const BITS_PER_SAMPLE                                   = 0x0102;
 
   /**
-   * Compression
+   * Compression scheme.
    *
    * The compression scheme used for the image data.  When a primary
    * image is JPEG compressed, this designation is not necessary and
@@ -141,7 +141,7 @@ class PelTag {
   const COMPRESSION                                       = 0x0103;
 
   /**
-   * Photometric Interpretation
+   * Pixel composition.
    *
    * The pixel composition.  In JPEG compressed data a JPEG marker is
    * used instead of this tag.
@@ -229,7 +229,7 @@ class PelTag {
   const STRIP_OFFSETS                                     = 0x0111;
 
   /**
-   * Orientation
+   * Orientation of image.
    *
    * The image orientation viewed in terms of rows and columns.
    *
@@ -240,7 +240,7 @@ class PelTag {
   const ORIENTATION                                       = 0x0112;
 
   /**
-   * Samples per Pixel
+   * Number of components.
    *
    * The number of components per pixel.  Since this standard applies
    * to RGB and YCbCr images, the value set for this tag is 3.  In
@@ -280,7 +280,7 @@ class PelTag {
   const STRIP_BYTE_COUNTS                                 = 0x0117;
 
   /**
-   * x-Resolution
+   * Image resolution in width direction.
    *
    * The number of pixels per {@link RESOLUTION_UNIT} in the {@link
    * IMAGE_WIDTH} direction.  When the image resolution is unknown, 72
@@ -293,7 +293,7 @@ class PelTag {
   const X_RESOLUTION                                      = 0x011A;
 
   /**
-   * y-Resolution
+   * Image resolution in height direction.
    *
    * The number of pixels per {@link RESOLUTION_UNIT} in the {@link
    * IMAGE_LENGTH} direction.  The same value as {@link X_RESOLUTION}
@@ -306,7 +306,7 @@ class PelTag {
   const Y_RESOLUTION                                      = 0x011B;
 
   /**
-   * Planar Configuration
+   * Image data arrangement.
    *
    * Indicates whether pixel components are recorded in a chunky or
    * planar format.  In JPEG compressed files a JPEG marker is used
@@ -320,7 +320,7 @@ class PelTag {
   const PLANAR_CONFIGURATION                              = 0x011C;
 
   /**
-   * Resolution Unit
+   * Unit of X and Y resolution.
    *
    * The unit for measuring {@link X_RESOLUTION} and {@link
    * Y_RESOLUTION}.  The same unit is used for both {@link
@@ -334,7 +334,7 @@ class PelTag {
   const RESOLUTION_UNIT                                   = 0x0128;
 
   /**
-   * Transfer Function
+   * Transfer function.
    *
    * A transfer function for the image, described in tabular style.
    * Normally this tag is not necessary, since color space is
@@ -348,7 +348,7 @@ class PelTag {
   const TRANSFER_FUNCTION                                 = 0x012D;
 
   /**
-   * Software
+   * Software used.
    *
    * This tag records the name and version of the software or firmware
    * of the camera or image input device used to generate the image.
@@ -363,13 +363,10 @@ class PelTag {
   const SOFTWARE                                          = 0x0131;
 
   /**
-   * Date and Time
+   * File change date and time.
    *
    * The date and time of image creation.  In this standard (Exif-2.1)
    * it is the date and time the file was changed.
-   *
-   * An entry holding this tag must have format {@link
-   * PelFormat::ASCII} and a component count of exactly 20.
    *
    * Format: {@link PelFormat::ASCII}, modelled by the {@link
    * PelEntryTime} class.
@@ -379,7 +376,7 @@ class PelTag {
   const DATE_TIME                                         = 0x0132;
 
   /**
-   * Artist
+   * Person who created the image.
    *
    * This tag records the name of the camera owner, photographer or
    * image creator.  The detailed format is not specified, but it is
@@ -394,7 +391,7 @@ class PelTag {
   const ARTIST                                            = 0x013B;
 
   /**
-   * White Point
+   * White point chromaticity.
    *
    * The chromaticity of the white point of the image.  Normally this
    * tag is not necessary, since color space is specified in the
@@ -407,7 +404,7 @@ class PelTag {
   const WHITE_POINT                                       = 0x013E;
 
   /**
-   * Primary Chromaticities
+   * Chromaticities of primaries.
    *
    * The chromaticity of the three primary colors of the image.
    * Normally this tag is not necessary, since colorspace is specified
@@ -438,7 +435,7 @@ class PelTag {
   const JPEG_PROC                                         = 0x0200;
 
   /**
-   * JPEG Interchange Format
+   * Offset to JPEG SOI.
    *
    * The offset to the start byte ({@link PelJpegMarker::SOI SOI}) of
    * JPEG compressed thumbnail data.  This is not used for primary
@@ -451,7 +448,7 @@ class PelTag {
   const JPEG_INTERCHANGE_FORMAT                           = 0x0201;
 
   /**
-   * JPEG Interchange Format Length
+   * Bytes of JPEG data.
    *
    * The number of bytes of JPEG compressed thumbnail data.  This is
    * not used for primary image JPEG data.  JPEG thumbnails are not
@@ -469,7 +466,7 @@ class PelTag {
   const JPEG_INTERCHANGE_FORMAT_LENGTH                    = 0x0202;
 
   /**
-   * YCbCr Coefficients
+   * Color space transformation matrix coefficients.
    *
    * The matrix coefficients for transformation from RGB to YCbCr
    * image data.  No default is given in TIFF; but here the value
@@ -485,7 +482,7 @@ class PelTag {
   const YCBCR_COEFFICIENTS                                = 0x0211;
 
   /**
-   * YCbCr Sub-Sampling
+   * Subsampling ratio of Y to C.
    *
    * The sampling ratio of chrominance components in relation to the
    * luminance component.  In JPEG compressed data a JPEG marker is
@@ -498,7 +495,7 @@ class PelTag {
   const YCBCR_SUB_SAMPLING                                = 0x0212;
 
   /**
-   * YCbCr Positioning
+   * Y and C positioning.
    *
    * The position of chrominance components in relation to the
    * luminance component.  This field is designated only for JPEG
@@ -521,7 +518,7 @@ class PelTag {
   const YCBCR_POSITIONING                                 = 0x0213;
 
   /**
-   * Reference Black/White
+   * Pair of black and white reference values.
    *
    * The reference black point value and reference white point value.
    * No defaults are given in TIFF, but the values below are given as
@@ -584,7 +581,7 @@ class PelTag {
   const CFA_PATTERN                                       = 0x828E;
 
   /**
-   * Battery Level
+   * Battery level.
    *
    * Format: Unknown.
    *
@@ -593,7 +590,7 @@ class PelTag {
   const BATTERY_LEVEL                                     = 0x828F;
 
   /**
-   * Copyright
+   * Copyright holder.
    *
    * Copyright information.  In this standard the tag is used to
    * indicate both the photographer and editor copyrights.  It is the
@@ -738,7 +735,7 @@ class PelTag {
   const OECF                                              = 0x8828;
 
   /**
-   * Exif Version
+   * Exif version.
    *
    * The version of this standard supported.  Nonexistence of this
    * field is taken to mean non-conformance to the standard.
@@ -751,7 +748,7 @@ class PelTag {
   const EXIF_VERSION                                      = 0x9000;
 
   /**
-   * Date and Time (original)
+   * Date and time of original data generation.
    *
    * The date and time when the original image data was generated.
    * For a digital still camera the date and time the picture was
@@ -765,7 +762,7 @@ class PelTag {
   const DATE_TIME_ORIGINAL                                = 0x9003;
 
   /**
-   * Date and Time (digitized)
+   * Date and time of digital data generation.
    *
    * The date and time when the image was stored as digital data.
    *
@@ -777,7 +774,7 @@ class PelTag {
   const DATE_TIME_DIGITIZED                               = 0x9004;
 
   /**
-   * Components Configuration
+   * Meaning of each component.
    *
    * Information specific to compressed data.  The channels of each
    * component are arranged in order from the 1st component to the
@@ -795,7 +792,7 @@ class PelTag {
   const COMPONENTS_CONFIGURATION                          = 0x9101;
 
   /**
-   * Compressed Bits per Pixel
+   * Image compression mode.
    *
    * Information specific to compressed data.  The compression mode
    * used for a compressed image is indicated in unit bits per pixel.
@@ -1091,7 +1088,7 @@ class PelTag {
 
 
   /**
-   * FlashPix Version
+   * Supported Flashpix version
    *
    * The FlashPix format version supported by a FPXR file.
    *
@@ -1106,7 +1103,7 @@ class PelTag {
   const FLASH_PIX_VERSION                                 = 0xA000;
 
   /**
-   * Color Space
+   * Color space information.
    *
    * The color space information tag is always recorded as the color
    * space specifier.  Normally sRGB (=1) is used to define the color
@@ -1123,7 +1120,7 @@ class PelTag {
   const COLOR_SPACE                                       = 0xA001;
 
   /**
-   * Pixel x-Dimension
+   * Valid image width.
    *
    * Information specific to compressed data.  When a compressed file
    * is recorded, the valid width of the meaningful image must be
@@ -1139,7 +1136,7 @@ class PelTag {
   const PIXEL_X_DIMENSION                                 = 0xA002;
 
   /**
-   * Pixel y-Dimension
+   * Valid image height.
    *
    * Information specific to compressed data.  When a compressed file
    * is recorded, the valid height of the meaningful image must be
@@ -1157,7 +1154,7 @@ class PelTag {
   const PIXEL_Y_DIMENSION                                 = 0xA003;
 
   /**
-   * Related Sound File
+   * Related audio file.
    *
    * This tag is used to record the name of an audio file related to
    * the image data.  The only relational information recorded here is
@@ -1210,7 +1207,7 @@ class PelTag {
   const INTEROPERABILITY_IFD_POINTER                      = 0xA005;
 
   /**
-   * Flash Energy
+   * Flash energy.
    *
    * Indicates the strobe energy at the time the image is captured, as
    * measured in Beam Candle Power Seconds (BCPS).
@@ -1222,7 +1219,7 @@ class PelTag {
   const FLASH_ENERGY                                      = 0xA20B;
 
   /**
-   * Spatial Frequency Response
+   * Spatial frequency response.
    *
    * This tag records the camera or input device spatial frequency
    * table and SFR values in the direction of image width, image
@@ -1235,7 +1232,7 @@ class PelTag {
   const SPATIAL_FREQUENCY_RESPONSE                        = 0xA20C;
 
   /**
-   * Focal Plane x-Resolution
+   * Focal plane X resolution.
    *
    * Indicates the number of pixels in the image width (X) direction
    * per {@link FOCAL_PLANE_RESOLUTION_UNIT} on the camera focal
@@ -1248,7 +1245,7 @@ class PelTag {
   const FOCAL_PLANE_X_RESOLUTION                          = 0xA20E;
 
   /**
-   * Focal Plane y-Resolution
+   * Focal plane Y resolution.
    *
    * Indicates the number of pixels in the image height (V) direction
    * per {@link FOCAL_PLANE_RESOLUTION_UNIT} on the camera focal
@@ -1261,7 +1258,7 @@ class PelTag {
   const FOCAL_PLANE_Y_RESOLUTION                          = 0xA20F;
 
   /**
-   * Focal Plane Resolution Unit
+   * Focal plane resolution unit.
    *
    * Indicates the unit for measuring {@link FOCAL_PLANE_X_RESOLUTION}
    * and {@link FOCAL_PLANE_Y_RESOLUTION}.  This value is the same as
@@ -1274,7 +1271,7 @@ class PelTag {
   const FOCAL_PLANE_RESOLUTION_UNIT                       = 0xA210;
 
   /**
-   * Subject Location
+   * Subject location.
    *
    * Indicates the location of the main subject in the scene.  The
    * value of this tag represents the pixel at the center of the main
@@ -1289,7 +1286,7 @@ class PelTag {
   const SUBJECT_LOCATION                                  = 0xA214;
 
   /**
-   * Exposure index
+   * Exposure index.
    *
    * Indicates the exposure index selected on the camera or input
    * device at the time the image is captured.
@@ -1301,7 +1298,7 @@ class PelTag {
   const EXPOSURE_INDEX                                    = 0xA215;
 
   /**
-   * Sensing Method
+   * Sensing method.
    *
    * Indicates the image sensor type on the camera or input device.
    *
@@ -1312,7 +1309,7 @@ class PelTag {
   const SENSING_METHOD                                    = 0xA217;
 
   /**
-   * File Source
+   * File source.
    *
    * Indicates the image source.  If a DSC recorded the image, this
    * tag value of this tag always be set to 3, indicating that the
@@ -1325,7 +1322,7 @@ class PelTag {
   const FILE_SOURCE                                       = 0xA300;
 
   /**
-   * Scene Type
+   * Scene type.
    *
    * Indicates the type of scene.  If a DSC recorded the image, this
    * tag value must always be set to 1, indicating that the image was
@@ -1338,7 +1335,7 @@ class PelTag {
   const SCENE_TYPE                                        = 0xA301;
 
   /**
-   * CFA Pattern
+   * CFA pattern.
    *
    * Indicates the color filter array (CFA) geometric pattern of the
    * image sensor when a one-chip color area sensor is used.  It does
@@ -1351,7 +1348,7 @@ class PelTag {
   const CFA_PATTERN                                       = 0xA302;
 
   /**
-   * Custom Rendered
+   * Custom image processing.
    *
    * This tag indicates the use of special processing on image data,
    * such as rendering geared to output.  When special processing is
@@ -1365,7 +1362,7 @@ class PelTag {
   const CUSTOM_RENDERED                                   = 0xA401;
 
   /**
-   * Exposure Mode
+   * Exposure mode.
    *
    * This tag indicates the exposure mode set when the image was shot.
    * In auto-bracketing mode, the camera shoots a series of frames of
@@ -1378,7 +1375,7 @@ class PelTag {
   const EXPOSURE_MODE                                     = 0xA402;
 
   /**
-   * White Balance
+   * White balance.
    *
    * This tag indicates the white balance mode set when the image was
    * shot.
@@ -1390,7 +1387,7 @@ class PelTag {
   const WHITE_BALANCE                                     = 0xA403;
 
   /**
-   * Digital Zoom Ratio
+   * Digital zoom ratio.
    *
    * This tag indicates the digital zoom ratio when the image was
    * shot.  If the numerator of the recorded value is 0, this
@@ -1403,7 +1400,7 @@ class PelTag {
   const DIGITAL_ZOOM_RATIO                                = 0xA404;
 
   /**
-   * Focal Length In 35mm Film
+   * Focal length in 35mm film.
    *
    * This tag indicates the equivalent focal length assuming a 35mm
    * film camera, in mm.  A value of 0 means the focal length is
@@ -1417,7 +1414,7 @@ class PelTag {
   const FOCAL_LENGTH_IN_35MM_FILM      = 0xA405;
 
   /**
-   * Scene Capture Type
+   * Scene capture type.
    *
    * This tag indicates the type of scene that was shot.  It can also
    * be used to record the mode in which the image was shot.  Note
@@ -1430,7 +1427,7 @@ class PelTag {
   const SCENE_CAPTURE_TYPE                                = 0xA406;
 
   /**
-   * Gain Control
+   * Gain control.
    *
    * This tag indicates the degree of overall image gain adjustment.
    *
@@ -1441,7 +1438,7 @@ class PelTag {
   const GAIN_CONTROL                                      = 0xA407;
 
   /**
-   * Contrast
+   * Contrast.
    *
    * This tag indicates the direction of contrast processing applied
    * by the camera when the image was shot.
@@ -1453,7 +1450,7 @@ class PelTag {
   const CONTRAST                                          = 0xA408;
 
   /**
-   * Saturation
+   * Saturation.
    *
    * This tag indicates the direction of saturation processing applied
    * by the camera when the image was shot.
@@ -1465,7 +1462,7 @@ class PelTag {
   const SATURATION                                        = 0xA409;
 
   /**
-   * Sharpness
+   * Sharpness.
    *
    * This tag indicates the direction of sharpness processing applied
    * by the camera when the image was shot.
@@ -1477,7 +1474,7 @@ class PelTag {
   const SHARPNESS                                         = 0xA40A;
 
   /**
-   * Device Setting Description
+   * Device settings description.
    *
    * This tag indicates information on the picture-taking conditions
    * of a particular camera model.  The tag is used only to indicate
@@ -1486,7 +1483,7 @@ class PelTag {
   const DEVICE_SETTING_DESCRIPTION                        = 0xA40B;
 
   /**
-   * Subject Distance Range
+   * Subject distance range.
    *
    * This tag indicates the distance to the subject.
    *
@@ -1497,7 +1494,7 @@ class PelTag {
   const SUBJECT_DISTANCE_RANGE                            = 0xA40C;
 
   /**
-   * Image Unique ID
+   * Image unique ID.
    *
    * This tag indicates an identifier assigned uniquely to each image.
    * It is recorded as an ASCII string equivalent to hexadecimal
@@ -1510,7 +1507,7 @@ class PelTag {
   const IMAGE_UNIQUE_ID                                   = 0xA420;
 
   /**
-   * Gamma
+   * Gamma.
    *
    * Indicates the value of the gamma coefficient. The formula of
    * transfer function used for image reproduction is expressed as
@@ -1535,11 +1532,8 @@ class PelTag {
    */
   const PRINT_IM                                          = 0xC4A5;
 
-
-
-
   /**
-   * GPS tag version
+   * GPS tag version.
    *
    * Indicates the version of GPSInfoIFD. The version is given as
    * 2.2.0.0. This tag is mandatory when GPSInfo tag is present. Note
@@ -1552,9 +1546,8 @@ class PelTag {
    */
   const GPS_VERSION_ID                                    = 0x0000;
 
-
   /**
-   * North or South Latitude
+   * North or South Latitude.
    *
    * Indicates whether the latitude is north or south latitude. The
    * ASCII value 'N' indicates north latitude, and 'S' is south
@@ -1566,9 +1559,8 @@ class PelTag {
    */
   const GPS_LATITUDE_REF                                  = 0x0001;
 
-
   /**
-   * Latitude
+   * Latitude.
    *
    * Indicates the latitude. The latitude is expressed as three
    * RATIONAL values giving the degrees, minutes, and seconds,
@@ -1584,9 +1576,8 @@ class PelTag {
    */
   const GPS_LATITUDE                                      = 0x0002;
 
-
   /**
-   * East or West Longitude
+   * East or West Longitude.
    *
    * Indicates whether the longitude is east or west longitude. ASCII
    * 'E' indicates east longitude, and 'W' is west longitude.
@@ -1597,9 +1588,8 @@ class PelTag {
    */
   const GPS_LONGITUDE_REF                                 = 0x0003;
 
-
   /**
-   * Longitude
+   * Longitude.
    *
    * Indicates the longitude. The longitude is expressed as three
    * RATIONAL values giving the degrees, minutes, and seconds,
@@ -1615,9 +1605,8 @@ class PelTag {
    */
   const GPS_LONGITUDE                                     = 0x0004;
 
-
   /**
-   * Altitude reference
+   * Altitude reference.
    *
    * Indicates the altitude used as the reference altitude. If the
    * reference is sea level and the altitude is above sea level, 0 is
@@ -1632,9 +1621,8 @@ class PelTag {
    */
   const GPS_ALTITUDE_REF                                  = 0x0005;
 
-
   /**
-   * Altitude
+   * Altitude.
    *
    * Indicates the altitude based on the reference in
    * GPSAltitudeRef. Altitude is expressed as one RATIONAL value. The
@@ -1646,9 +1634,8 @@ class PelTag {
    */
   const GPS_ALTITUDE                                      = 0x0006;
 
-
   /**
-   * GPS time (atomic clock)
+   * GPS time (atomic clock).
    *
    * Indicates the time as UTC (Coordinated Universal Time). TimeStamp
    * is expressed as three RATIONAL values giving the hour, minute,
@@ -1660,9 +1647,8 @@ class PelTag {
    */
   const GPS_TIME_STAMP                                    = 0x0007;
 
-
   /**
-   * GPS satellites used for measurement
+   * GPS satellites used for measurement.
    *
    * Indicates the GPS satellites used for measurements. This tag can
    * be used to describe the number of satellites, their ID number,
@@ -1677,9 +1663,8 @@ class PelTag {
    */
   const GPS_SATELLITES                                    = 0x0008;
 
-
   /**
-   * GPS receiver status
+   * GPS receiver status.
    *
    * Indicates the status of the GPS receiver when the image is
    * recorded. 'A' means measurement is in progress, and 'V' means the
@@ -1691,9 +1676,8 @@ class PelTag {
    */
   const GPS_STATUS                                        = 0x0009;
 
-
   /**
-   * GPS measurement mode
+   * GPS measurement mode.
    *
    * Indicates the GPS measurement mode. '2' means two-dimensional
    * measurement and '3' means three-dimensional measurement is in
@@ -1705,9 +1689,8 @@ class PelTag {
    */
   const GPS_MEASURE_MODE                                  = 0x000A;
 
-
   /**
-   * Measurement precision
+   * Measurement precision.
    *
    * Indicates the GPS DOP (data degree of precision). An HDOP value
    * is written during two-dimensional measurement, and PDOP during
@@ -1719,9 +1702,8 @@ class PelTag {
    */
   const GPS_DOP                                           = 0x000B;
 
-
   /**
-   * Speed unit
+   * Speed unit.
    *
    * Indicates the unit used to express the GPS receiver speed of
    * movement. 'K' 'M' and 'N' represents kilometers per hour, miles
@@ -1733,9 +1715,8 @@ class PelTag {
    */
   const GPS_SPEED_REF                                     = 0x000C;
 
-
   /**
-   * Speed of GPS receiver
+   * Speed of GPS receiver.
    *
    * Indicates the speed of GPS receiver movement.
    *
@@ -1745,9 +1726,8 @@ class PelTag {
    */
   const GPS_SPEED                                         = 0x000D;
 
-
   /**
-   * Reference for direction of movement
+   * Reference for direction of movement.
    *
    * Indicates the reference for giving the direction of GPS receiver
    * movement. 'T' denotes true direction and 'M' is magnetic
@@ -1759,9 +1739,8 @@ class PelTag {
    */
   const GPS_TRACK_REF                                     = 0x000E;
 
-
   /**
-   * Direction of movement
+   * Direction of movement.
    *
    * Indicates the direction of GPS receiver movement. The range of
    * values is from 0.00 to 359.99.
@@ -1772,9 +1751,8 @@ class PelTag {
    */
   const GPS_TRACK                                         = 0x000F;
 
-
   /**
-   * Reference for direction of image
+   * Reference for direction of image.
    *
    * Indicates the reference for giving the direction of the image
    * when it is captured. 'T' denotes true direction and 'M' is
@@ -1786,9 +1764,8 @@ class PelTag {
    */
   const GPS_IMG_DIRECTION_REF                             = 0x0010;
 
-
   /**
-   * Direction of image
+   * Direction of image.
    *
    * Indicates the direction of the image when it was captured. The
    * range of values is from 0.00 to 359.99.
@@ -1799,9 +1776,8 @@ class PelTag {
    */
   const GPS_IMG_DIRECTION                                 = 0x0011;
 
-
   /**
-   * Geodetic survey data used
+   * Geodetic survey data used.
    *
    * Indicates the geodetic survey data used by the GPS receiver. If
    * the survey data is restricted to Japan, the value of this tag is
@@ -1814,9 +1790,8 @@ class PelTag {
    */
   const GPS_MAP_DATUM                                     = 0x0012;
 
-
   /**
-   * Reference for latitude of destination
+   * Reference for latitude of destination.
    *
    * Indicates whether the latitude of the destination point is north
    * or south latitude. The ASCII value 'N' indicates north latitude,
@@ -1828,9 +1803,8 @@ class PelTag {
    */
   const GPS_DEST_LATITUDE_REF                             = 0x0013;
 
-
   /**
-   * Latitude of destination
+   * Latitude of destination.
    *
    * Indicates the latitude of the destination point. The latitude is
    * expressed as three RATIONAL values giving the degrees, minutes,
@@ -1846,9 +1820,8 @@ class PelTag {
    */
   const GPS_DEST_LATITUDE                                 = 0x0014;
 
-
   /**
-   * Reference for longitude of destination
+   * Reference for longitude of destination.
    *
    * Indicates whether the longitude of the destination point is east
    * or west longitude. ASCII 'E' indicates east longitude, and 'W' is
@@ -1860,9 +1833,8 @@ class PelTag {
    */
   const GPS_DEST_LONGITUDE_REF                            = 0x0015;
 
-
   /**
-   * Longitude of destination
+   * Longitude of destination.
    *
    * Indicates the longitude of the destination point. The longitude
    * is expressed as three RATIONAL values giving the degrees,
@@ -1878,9 +1850,8 @@ class PelTag {
    */
   const GPS_DEST_LONGITUDE                                = 0x0016;
 
-
   /**
-   * Reference for bearing of destination
+   * Reference for bearing of destination.
    *
    * Indicates the reference used for giving the bearing to the
    * destination point. 'T' denotes true direction and 'M' is magnetic
@@ -1892,9 +1863,8 @@ class PelTag {
    */
   const GPS_DEST_BEARING_REF                              = 0x0017;
 
-
   /**
-   * Bearing of destination
+   * Bearing of destination.
    *
    * Indicates the bearing to the destination point. The range of
    * values is from 0.00 to 359.99.
@@ -1905,9 +1875,8 @@ class PelTag {
    */
   const GPS_DEST_BEARING                                  = 0x0018;
 
-
   /**
-   * Reference for distance to destination
+   * Reference for distance to destination.
    *
    * Indicates the unit used to express the distance to the
    * destination point. 'K', 'M' and 'N' represent kilometers, miles
@@ -1919,9 +1888,8 @@ class PelTag {
    */
   const GPS_DEST_DISTANCE_REF                             = 0x0019;
 
-
   /**
-   * Distance to destination
+   * Distance to destination.
    *
    * Indicates the distance to the destination point.
    *
@@ -1931,9 +1899,8 @@ class PelTag {
    */
   const GPS_DEST_DISTANCE                                 = 0x001A;
 
-
   /**
-   * Name of GPS processing method
+   * Name of GPS processing method.
    *
    * A character string recording the name of the method used for
    * location finding. The first byte indicates the character code
@@ -1947,9 +1914,8 @@ class PelTag {
    */
   const GPS_PROCESSING_METHOD                             = 0x001B;
 
-
   /**
-   * Name of GPS area
+   * Name of GPS area.
    *
    * A character string recording the name of the GPS area.  The first
    * byte indicates the character code used (Table 6, Table 7), and
@@ -1962,9 +1928,8 @@ class PelTag {
    */
   const GPS_AREA_INFORMATION                              = 0x001C;
 
-
   /**
-   * GPS date
+   * GPS date.
    *
    * A character string recording the date and time information
    * relative to UTC (Coordinated Universal Time). The format is
@@ -1977,9 +1942,8 @@ class PelTag {
    */
   const GPS_DATE_STAMP                                    = 0x001D;
 
-
   /**
-   * GPS differential correction
+   * GPS differential correction.
    *
    * Indicates whether differential correction is applied to the GPS
    * receiver.
@@ -2232,11 +2196,9 @@ class PelTag {
         return 'Gamma';
       case self::PRINT_IM:
         return 'PrintIM';
-
       }
 
     case PelIfd::GPS:
-
       switch ($tag) {
       case self::GPS_VERSION_ID:
         return 'GPSVersionID';
@@ -2248,6 +2210,58 @@ class PelTag {
         return 'GPSLongitudeRef';
       case self::GPS_LONGITUDE:
         return 'GPSLongitude';
+      case self::GPS_ALTITUDE_REF:
+        return 'GPSAltitudeRef';
+      case self::GPS_ALTITUDE:
+        return 'GPSAltitude';
+      case self::GPS_TIME_STAMP:
+        return 'GPSTimeStamp';
+      case self::GPS_SATELLITES:
+        return 'GPSSatellites';
+      case self::GPS_STATUS:
+        return 'GPSStatus';
+      case self::GPS_MEASURE_MODE:
+        return 'GPSMeasureMode';
+      case self::GPS_DOP:
+        return 'GPSDOP';
+      case self::GPS_SPEED_REF:
+        return 'GPSSpeedRef';
+      case self::GPS_SPEED:
+        return 'GPSSpeed';
+      case self::GPS_TRACK_REF:
+        return 'GPSTrackRef';
+      case self::GPS_TRACK:
+        return 'GPSTrack';
+      case self::GPS_IMG_DIRECTION_REF:
+        return 'GPSImgDirectionRef';
+      case self::GPS_IMG_DIRECTION:
+        return 'GPSImgDirection';
+      case self::GPS_MAP_DATUM:
+        return 'GPSMapDatum';
+      case self::GPS_DEST_LATITUDE_REF:
+        return 'GPSDestLatitudeRef';
+      case self::GPS_DEST_LATITUDE:
+        return 'GPSDestLatitude';
+      case self::GPS_DEST_LONGITUDE_REF:
+        return 'GPSDestLongitudeRef';
+      case self::GPS_DEST_LONGITUDE:
+        return 'GPSDestLongitude';
+      case self::GPS_DEST_BEARING_REF:
+        return 'GPSDestBearingRef';
+      case self::GPS_DEST_BEARING:
+        return 'GPSDestBearing';
+      case self::GPS_DEST_DISTANCE_REF:
+        return 'GPSDestDistanceRef';
+      case self::GPS_DEST_DISTANCE:
+        return 'GPSDestDistance';
+      case self::GPS_PROCESSING_METHOD:
+        return 'GPSProcessingMethod';
+      case self::GPS_AREA_INFORMATION:
+        return 'GPSAreaInformation';
+      case self::GPS_DATE_STAMP:
+        return 'GPSDateStamp';
+      case self::GPS_DIFFERENTIAL:
+        return 'GPSDifferential';
       }
 
     default:
@@ -2500,18 +2514,69 @@ class PelTag {
       }
 
     case PelIfd::GPS:
-
       switch ($tag) {
       case self::GPS_VERSION_ID:
-        return 'GPS Version ID';
+        return 'GPSVersionID';
       case self::GPS_LATITUDE_REF:
-        return 'GPS Latitude Reference';
+        return 'GPSLatitudeRef';
       case self::GPS_LATITUDE:
-        return 'GPS Latitude';
+        return 'GPSLatitude';
       case self::GPS_LONGITUDE_REF:
-        return 'GPS Longitude Reference';
+        return 'GPSLongitudeRef';
       case self::GPS_LONGITUDE:
-        return 'GPS Longitude';
+        return 'GPSLongitude';
+      case self::GPS_ALTITUDE_REF:
+        return 'GPSAltitudeRef';
+      case self::GPS_ALTITUDE:
+        return 'GPSAltitude';
+      case self::GPS_TIME_STAMP:
+        return 'GPSTimeStamp';
+      case self::GPS_SATELLITES:
+        return 'GPSSatellites';
+      case self::GPS_STATUS:
+        return 'GPSStatus';
+      case self::GPS_MEASURE_MODE:
+        return 'GPSMeasureMode';
+      case self::GPS_DOP:
+        return 'GPSDOP';
+      case self::GPS_SPEED_REF:
+        return 'GPSSpeedRef';
+      case self::GPS_SPEED:
+        return 'GPSSpeed';
+      case self::GPS_TRACK_REF:
+        return 'GPSTrackRef';
+      case self::GPS_TRACK:
+        return 'GPSTrack';
+      case self::GPS_IMG_DIRECTION_REF:
+        return 'GPSImgDirectionRef';
+      case self::GPS_IMG_DIRECTION:
+        return 'GPSImgDirection';
+      case self::GPS_MAP_DATUM:
+        return 'GPSMapDatum';
+      case self::GPS_DEST_LATITUDE_REF:
+        return 'GPSDestLatitudeRef';
+      case self::GPS_DEST_LATITUDE:
+        return 'GPSDestLatitude';
+      case self::GPS_DEST_LONGITUDE_REF:
+        return 'GPSDestLongitudeRef';
+      case self::GPS_DEST_LONGITUDE:
+        return 'GPSDestLongitude';
+      case self::GPS_DEST_BEARING_REF:
+        return 'GPSDestBearingRef';
+      case self::GPS_DEST_BEARING:
+        return 'GPSDestBearing';
+      case self::GPS_DEST_DISTANCE_REF:
+        return 'GPSDestDistanceRef';
+      case self::GPS_DEST_DISTANCE:
+        return 'GPSDestDistance';
+      case self::GPS_PROCESSING_METHOD:
+        return 'GPSProcessingMethod';
+      case self::GPS_AREA_INFORMATION:
+        return 'GPSAreaInformation';
+      case self::GPS_DATE_STAMP:
+        return 'GPSDateStamp';
+      case self::GPS_DIFFERENTIAL:
+        return 'GPSDifferential';
       }
 
     default:
@@ -2869,23 +2934,68 @@ class PelTag {
 
     case PelIfd::GPS:
       switch ($tag) {
-
       case self::GPS_VERSION_ID:
-        return Pel::tra('Indicates the version of <GPSInfoIFD>. The version is given as 2.0.0.0. This tag is mandatory when <GPSInfo> tag is present. (Note: The <GPSVersionID> tag is given in bytes, unlike the <ExifVersion> tag. When the version is 2.0.0.0, the tag value is 02000000.H).');
-
+        return Pel::tra('Indicates the version of GPSInfoIFD. The version is given as 2.2.0.0. This tag is mandatory when GPSInfo tag is present. Note that the GPSVersionID tag is written as a different byte than the Exif Version tag.');
       case self::GPS_LATITUDE_REF:
-        return ('Indicates whether the latitude is north or south latitude. The ASCII value \'N\' indicates north latitude, and \'S\' is south latitude.');
-
+        return Pel::tra('Indicates whether the latitude is north or south latitude. The ASCII value \'N\' indicates north latitude, and \'S\' is south latitude.');
       case self::GPS_LATITUDE:
-        return ('Indicates the latitude. The latitude is expressed as three RATIONAL values giving the degrees, minutes, and seconds, respectively. When degrees, minutes and seconds are expressed, the format is dd/1,mm/1,ss/1. When degrees and minutes are used and, for example, fractions of minutes are given up to two decimal places, the format is dd/1,mmmm/100,0/1.');
-
+        return Pel::tra('Indicates the latitude. The latitude is expressed as three RATIONAL values giving the degrees, minutes, and seconds, respectively. If latitude is expressed as degrees, minutes and seconds, a typical format would be dd/1,mm/1,ss/1. When degrees and minutes are used and, for example, fractions of minutes are given up to two decimal places, the format would be dd/1,mmmm/100,0/1.');
       case self::GPS_LONGITUDE_REF:
-        return ("Indicates whether the longitude is east or west longitude. ".
-                'ASCII \'E\' indicates east longitude, and \'W\' is west longitude.');
-
+        return Pel::tra('Indicates whether the longitude is east or west longitude. ASCII \'E\' indicates east longitude, and \'W\' is west longitude.');
       case self::GPS_LONGITUDE:
-        return ('Indicates the longitude. The longitude is expressed as three RATIONAL values giving the degrees, minutes, and seconds, respectively. When degrees, minutes and seconds are expressed, the format is ddd/1,mm/1,ss/1. When degrees and minutes are used and, for example, fractions of minutes are given up to two decimal places, the format is ddd/1,mmmm/100,0/1.');
-
+        return Pel::tra('Indicates the longitude. The longitude is expressed as three RATIONAL values giving the degrees, minutes, and seconds, respectively. If longitude is expressed as degrees, minutes and seconds, a typical format would be ddd/1,mm/1,ss/1. When degrees and minutes are used and, for example, fractions of minutes are given up to two decimal places, the format would be ddd/1,mmmm/100,0/1.');
+      case self::GPS_ALTITUDE_REF:
+        return Pel::tra('Indicates the altitude used as the reference altitude. If the reference is sea level and the altitude is above sea level, 0 is given. If the altitude is below sea level, a value of 1 is given and the altitude is indicated as an absolute value in the GPSAltitude tag. The reference unit is meters. Note that this tag is BYTE type, unlike other reference tags.');
+      case self::GPS_ALTITUDE:
+        return Pel::tra('Indicates the altitude based on the reference in GPSAltitudeRef. Altitude is expressed as one RATIONAL value. The reference unit is meters.');
+      case self::GPS_TIME_STAMP:
+        return Pel::tra('Indicates the time as UTC (Coordinated Universal Time). TimeStamp is expressed as three RATIONAL values giving the hour, minute, and second.');
+      case self::GPS_SATELLITES:
+        return Pel::tra('Indicates the GPS satellites used for measurements. This tag can be used to describe the number of satellites, their ID number, angle of elevation, azimuth, SNR and other information in ASCII notation. The format is not specified. If the GPS receiver is incapable of taking measurements, value of the tag shall be set to NULL.');
+      case self::GPS_STATUS:
+        return Pel::tra('Indicates the status of the GPS receiver when the image is recorded. \'A\' means measurement is in progress, and \'V\' means the measurement is Interoperability.');
+      case self::GPS_MEASURE_MODE:
+        return Pel::tra('Indicates the GPS measurement mode. \'2\' means two-dimensional measurement and \'3\' means three-dimensional measurement is in progress.');
+      case self::GPS_DOP:
+        return Pel::tra('Indicates the GPS DOP (data degree of precision). An HDOP value is written during two-dimensional measurement, and PDOP during three-dimensional measurement.');
+      case self::GPS_SPEED_REF:
+        return Pel::tra('Indicates the unit used to express the GPS receiver speed of movement. \'K\' \'M\' and \'N\' represents kilometers per hour, miles per hour, and knots.');
+      case self::GPS_SPEED:
+        return Pel::tra('Indicates the speed of GPS receiver movement.');
+      case self::GPS_TRACK_REF:
+        return Pel::tra('Indicates the reference for giving the direction of GPS receiver movement. \'T\' denotes true direction and \'M\' is magnetic direction.');
+      case self::GPS_TRACK:
+        return Pel::tra('Indicates the direction of GPS receiver movement. The range of values is from 0.00 to 359.99.');
+      case self::GPS_IMG_DIRECTION_REF:
+        return Pel::tra('Indicates the reference for giving the direction of the image when it is captured. \'T\' denotes true direction and \'M\' is magnetic direction.');
+      case self::GPS_IMG_DIRECTION:
+        return Pel::tra('Indicates the direction of the image when it was captured. The range of values is from 0.00 to 359.99.');
+      case self::GPS_MAP_DATUM:
+        return Pel::tra('Indicates the geodetic survey data used by the GPS receiver. If the survey data is restricted to Japan, the value of this tag is \'TOKYO\' or \'WGS-84\'. If a GPS Info tag is recorded, it is strongly recommended that this tag be recorded.');
+      case self::GPS_DEST_LATITUDE_REF:
+        return Pel::tra('Indicates whether the latitude of the destination point is north or south latitude. The ASCII value \'N\' indicates north latitude, and \'S\' is south latitude.');
+      case self::GPS_DEST_LATITUDE:
+        return Pel::tra('Indicates the latitude of the destination point. The latitude is expressed as three RATIONAL values giving the degrees, minutes, and seconds, respectively. If latitude is expressed as degrees, minutes and seconds, a typical format would be dd/1,mm/1,ss/1. When degrees and minutes are used and, for example, fractions of minutes are given up to two decimal places, the format would be dd/1,mmmm/100,0/1.');
+      case self::GPS_DEST_LONGITUDE_REF:
+        return Pel::tra('Indicates whether the longitude of the destination point is east or west longitude. ASCII \'E\' indicates east longitude, and \'W\' is west longitude.');
+      case self::GPS_DEST_LONGITUDE:
+        return Pel::tra('Indicates the longitude of the destination point. The longitude is expressed as three RATIONAL values giving the degrees, minutes, and seconds, respectively. If longitude is expressed as degrees, minutes and seconds, a typical format would be ddd/1,mm/1,ss/1. When degrees and minutes are used and, for example, fractions of minutes are given up to two decimal places, the format would be ddd/1,mmmm/100,0/1.');
+      case self::GPS_DEST_BEARING_REF:
+        return Pel::tra('Indicates the reference used for giving the bearing to the destination point. \'T\' denotes true direction and \'M\' is magnetic direction.');
+      case self::GPS_DEST_BEARING:
+        return Pel::tra('Indicates the bearing to the destination point. The range of values is from 0.00 to 359.99.');
+      case self::GPS_DEST_DISTANCE_REF:
+        return Pel::tra('Indicates the unit used to express the distance to the destination point. \'K\', \'M\' and \'N\' represent kilometers, miles and knots.');
+      case self::GPS_DEST_DISTANCE:
+        return Pel::tra('Indicates the distance to the destination point.');
+      case self::GPS_PROCESSING_METHOD:
+        return Pel::tra('A character string recording the name of the method used for location finding. The first byte indicates the character code used (Table 6, Table 7), and this is followed by the name of the method. Since the type is not ASCII, NULL termination is not necessary.');
+      case self::GPS_AREA_INFORMATION:
+        return Pel::tra('A character string recording the name of the GPS area.  The first byte indicates the character code used (Table 6, Table 7), and this is followed by the name of the method. Since the type is not ASCII, NULL termination is not necessary.');
+      case self::GPS_DATE_STAMP:
+        return Pel::tra('A character string recording the date and time information relative to UTC (Coordinated Universal Time). The format is "YYYY:MM:DD." The elngth of the string is 11 bytes including NULL.');
+      case self::GPS_DIFFERENTIAL:
+        return Pel::tra('Indicates whether differential correction is applied to the GPS receiver.');
       }
 
     default:
