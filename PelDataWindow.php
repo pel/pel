@@ -202,32 +202,7 @@ class PelDataWindow {
   
 
   /**
-   * Initialize a copy with data.
-   *
-   * This is used internally by {@link getClone} to make return a copy
-   * with the proper initialization.
-   *
-   * @param string a reference to the data this copy will hold.
-   * @param int the start of the data window.
-   * @param int the size of the data window.
-   * @param PelByteOrder the byte order of the data.
-   *
-   * @see getClone
-   */
-  protected function initializeClone(&$data, $start, $size, $order) {
-    $this->data  = &$data;
-    $this->start = $start;
-    $this->size  = $size;
-    $this->order = $order;
-  }
-
-
-  /**
    * Make a new data window with the same data as the this window.
-   *
-   * The new window will read from the same data as this window, so
-   * calling this method is significantly faster than using the
-   * built-in clone functionality of PHP.
    *
    * @param mixed if an integer is supplied, then it will be the start
    * of the window in the clone.  If left unspecified, then the clone
@@ -238,11 +213,10 @@ class PelDataWindow {
    * will inherit the size from this object.
    *
    * @return PelDataWindow a new window that operates on the same data
-   * as this window, but (optionally) with a  smaller size.
+   * as this window, but (optionally) with a smaller window size.
    */
   function getClone($start = false, $size = false) {
-    $c = new PelDataWindow();
-    $c->initializeClone($this->data, $this->start, $this->size, $this->order);
+    $c = clone $this;
     
     if (is_int($start))
       $c->setWindowStart($start);
@@ -544,20 +518,6 @@ class PelDataWindow {
                     $this->size,
                     $this->start, $this->start + $this->size,
                     strlen($this->data));
-  }
-
-
-  /**
-   * Clear the data.
-   *
-   * This method is for debugging only.  It removed the data held by
-   * this data window, thereby removing access to it for all clones
-   * too.  This is useful when a data window object is to be printed
-   * with print_r() or a similar function, and the binary output would
-   * mess up the terminal or browser.
-   */
-  function clear() {
-    $this->data = '(cleared)';
   }
 
 }

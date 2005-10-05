@@ -192,7 +192,7 @@ class PelConvert {
    * @return int the unsigned byte found at offset, e.g., an integer
    * in the range 0 to 255.
    */
-  static function bytesToByte(&$bytes, $offset) {
+  static function bytesToByte($bytes, $offset) {
     return ord($bytes{$offset});
   }
 
@@ -209,7 +209,7 @@ class PelConvert {
    * @return int the signed byte found at offset, e.g., an integer in
    * the range -128 to 127.
    */
-  static function bytesToSByte(&$bytes, $offset) {
+  static function bytesToSByte($bytes, $offset) {
     $n = self::bytesToByte($bytes, $offset);
     if ($n > 127)
       return $n - 256;
@@ -233,12 +233,12 @@ class PelConvert {
    * @param PelByteOrder one of {@link LITTLE_ENDIAN} and {@link
    * BIG_ENDIAN}.
    */
-  static function bytesToShort(&$bytes, $offset, $endian) {
+  static function bytesToShort($bytes, $offset, $endian) {
     if ($endian == self::LITTLE_ENDIAN)
-      return (ord($bytes{$offset+1}) << 8 |
+      return (ord($bytes{$offset+1}) * 256 +
               ord($bytes{$offset}));
     else
-      return (ord($bytes{$offset})   << 8 |
+      return (ord($bytes{$offset})   * 256 +
               ord($bytes{$offset+1}));
   }
 
@@ -258,7 +258,7 @@ class PelConvert {
    * @param PelByteOrder one of {@link LITTLE_ENDIAN} and {@link
    * BIG_ENDIAN}.
    */
-  static function bytesToSShort(&$bytes, $offset, $endian) {
+  static function bytesToSShort($bytes, $offset, $endian) {
     $n = self::bytesToShort($bytes, $offset, $endian);
     if ($n > 32767)
       return $n - 65536;
@@ -282,7 +282,7 @@ class PelConvert {
    * @param PelByteOrder one of {@link LITTLE_ENDIAN} and {@link
    * BIG_ENDIAN}.
    */
-  static function bytesToLong(&$bytes, $offset, $endian) {
+  static function bytesToLong($bytes, $offset, $endian) {
     if ($endian == self::LITTLE_ENDIAN)
       return (ord($bytes{$offset+3}) * 16777216 +
               ord($bytes{$offset+2}) * 65536    +
@@ -311,7 +311,7 @@ class PelConvert {
    * @param PelByteOrder one of {@link LITTLE_ENDIAN} and {@link
    * BIG_ENDIAN}.
    */
-  static function bytesToSLong(&$bytes, $offset, $endian) {
+  static function bytesToSLong($bytes, $offset, $endian) {
     $n = self::bytesToLong($bytes, $offset, $endian);
     if ($n > 2147483647)
       return $n - 4294967296;
@@ -335,7 +335,7 @@ class PelConvert {
    * @param PelByteOrder one of {@link LITTLE_ENDIAN} and {@link
    * BIG_ENDIAN}.
    */
-  static function bytesToRational(&$bytes, $offset, $endian) {
+  static function bytesToRational($bytes, $offset, $endian) {
     return array(self::bytesToLong($bytes, $offset, $endian),
                  self::bytesToLong($bytes, $offset+4, $endian));
   }
@@ -356,7 +356,7 @@ class PelConvert {
    * @param PelByteOrder one of {@link LITTLE_ENDIAN} and {@link
    * BIG_ENDIAN}.
    */
-  static function bytesToSRational(&$bytes, $offset, $endian) {
+  static function bytesToSRational($bytes, $offset, $endian) {
     return array(self::bytesToSLong($bytes, $offset, $endian),
                  self::bytesToSLong($bytes, $offset+4, $endian));
   }
