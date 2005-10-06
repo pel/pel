@@ -70,7 +70,7 @@ class PelIfdException extends PelException {}
  * @author Martin Geisler <mgeisler@users.sourceforge.net>
  * @package PEL
  */
-class PelIfd {
+class PelIfd implements IteratorAggregate {
 
   /**
    * Main image IFD.
@@ -807,9 +807,29 @@ PelTag::CFA_REPEAT_PATTERN_DIM,
    * and the entries as values.
    *
    * @see getEntry
+   * @see getIterator
    */
   function getEntries() {
     return $this->entries;
+  }
+
+  
+  /**
+   * Return an iterator for all entries contained in this IFD.
+   *
+   * Used with foreach as in
+   *
+   * <code>
+   * foreach ($ifd as $tag => $entry) {
+   *   // $tag is now a PelTag and $entry is a PelEntry object.
+   * }
+   * </code>
+   *
+   * @return Iterator an iterator using the {@link PelTag tags} as
+   * keys and the entries as values.
+   */
+  function getIterator() {
+    return new ArrayIterator($this->entries);
   }
 
 

@@ -21,6 +21,9 @@ constrains on format and number of components for each tag.
 
 Changes:
 
+* Enabled iterating a PelIfd object with foreach().  It will iterate
+  over (PelTag, PelEntry) pairs.
+
 * Changed PelIfd::getSubIfd() to take an IFD type as argument instead
   of a PelTag.  Added PelIfd::addSubIfd().
 

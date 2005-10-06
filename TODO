@@ -30,10 +30,6 @@ PEL Version 1.0
    It is currently broken because it tries to write entries with
    made-up tags into IFD0.  The new strict PEL wont allow that.
 
-* Make PelIfd an iterator over PelEntry
-   The IFD could be turned into an iterator, iterating over the
-   entries it contain.
-
 
 PEL Version 1.x
 ---------------
