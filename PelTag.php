@@ -106,7 +106,7 @@ class PelTag {
    * The number of rows of image data.  In JPEG compressed data a JPEG
    * marker is used instead of this tag.
    *
-   * Format: {@link PelFormat::SHORT} or a {@link PelFormat::LONG}.
+   * Format: {@link PelFormat::SHORT} or {@link PelFormat::LONG}.
    *
    * Components: 1.
    */

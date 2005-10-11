@@ -385,12 +385,12 @@ class PelJpeg {
    *
    * <code>
    * foreach ($jpeg->getSections() as $marker => $content) {
-   *   // Does not work.
+   *   // Does not work the way you would think...
    * }
    * </code>
    *
    * The problem is that there could be several sections with the same
-   * marker, and thsu a simple associative array does not suffice.
+   * marker, and thus a simple associative array does not suffice.
    */
   function getSections() {
     return $this->sections;

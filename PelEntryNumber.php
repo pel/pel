@@ -289,9 +289,7 @@ abstract class PelEntryNumber extends PelEntry {
    * by a single space if brief output is requested, otherwise a space
    * and a comma will be used.
    *
-   * @return string the long(s) held by this entry.  If there's more
-   * than one long stored, then they will be returned with commas in
-   * between.
+   * @return string the numbers(s) held by this entry.
    */
   function getText($brief = false) {
     if ($this->components == 0)
