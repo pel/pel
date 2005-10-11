@@ -35,14 +35,14 @@ class no_exif extends UnitTestCase {
 
   function testRead() {
     Pel::clearExceptions();
-    Pel::$strict = false;
+    Pel::setStrictParsing(false);
     $jpeg = new PelJpeg();
     $jpeg->loadFile(dirname(__FILE__) . '/no-exif.jpg');
 
     $app1 = $jpeg->getSection(PelJpegMarker::APP1);
     $this->assertNull($app1);
     
-    $this->assertTrue(empty(Pel::$exceptions));
+    $this->assertTrue(count(Pel::getExceptions()) == 0);
     
   }
 }

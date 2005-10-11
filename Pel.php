@@ -93,7 +93,7 @@ class Pel {
    *
    * @var boolean
    */
-  static $debug = false;
+  private static $debug = false;
 
   /**
    * Flag for strictness of parsing.
@@ -109,42 +109,53 @@ class Pel {
    *
    * @var boolean
    */
-  static $strict = false;
+  private static $strict = false;
   
   /**
    * Stored exceptions.
    *
    * When {@link Pel::$strict} is set to false exceptions will be
-   * accumulated here instead of being thrown.  Inspect this array to
-   * get hold of them when a call returns.
+   * accumulated here instead of being thrown.
+   */
+  private static $exceptions = array();
+
+
+  /**
+   * Return list of stored exceptions.
+   *
+   * When PEL is parsing in non-strict mode, it will store most
+   * exceptions instead of throwing them.  Use this method to get hold
+   * of them when a call returns.
    *
    * Code for using this could look like this:
    *
    * <code>
-   * Pel::$strict = false;
+   * Pel::setStrictParsing(true);
    * Pel::clearExceptions();
    *
    * $jpeg = new PelJpeg();
    * $jpeg->loadFile($file);
    *
    * // Check for exceptions.
-   * if (!empty(Pel::$exceptions)) {
-   *   foreach (Pel::$exceptions as $e) {
+   * foreach (Pel::getExceptions() as $e) {
    *     printf("Exception: %s\n", $e->getMessage());
    *     if ($e instanceof PelEntryException) {
    *       // Warn about entries that couldn't be loaded.
    *       printf("Warning: Problem with %s.\n",
    *              PelTag::getName($e->getType(), $e->getTag()));
    *     }
-   *   }
    * }
    * </code>
    *
    * This gives applications total control over the amount of error
    * messages shown and (hopefully) provides the necessary information
    * for proper error recovery.
+   *
+   * @return array the exceptions.
    */
-  static $exceptions = array();
+  static function getExceptions() {
+    return self::$exceptions;
+  }
 
 
   /**
@@ -161,10 +172,11 @@ class Pel {
   /**
    * Conditionally throw an exception.
    *
-   * This method will throw the passed exception when {@link
-   * Pel::$strict} is true.  Otherwise the exception is appended to
-   * the {@link Pel::$exceptions} array and a warning is issued (with
-   * {@link Pel::warning}).
+   * This method will throw the passed exception when strict parsing
+   * in effect (see {@link setStrictParsing()}).  Otherwise the
+   * exception is stored (it can be accessed with {@link
+   * getExceptions()}) and a warning is issued (with {@link
+   * Pel::warning}).
    *
    * @param PelException $e the exceptions.
    */
@@ -172,10 +184,63 @@ class Pel {
     if (self::$strict) {
       throw $e;
     } else {
-      Pel::$exceptions[] = $e;
-      Pel::warning('%s (%s:%s)', $e->getMessage(),
+      self::$exceptions[] = $e;
+      self::warning('%s (%s:%s)', $e->getMessage(),
                    basename($e->getFile()), $e->getLine());
     }
+  }
+
+
+  /**
+   * Enable/disable debugging output.
+   *
+   * @param boolean $flag use true to enable debug output, false to
+   * diable.
+   */
+  function setDebug($flag) {
+    self::$debug = $flag;
+  }
+
+
+  /**
+   * Enable/disable strict parsing.
+   *
+   * If strict parsing is enabled, then most errors while loading
+   * images will result in exceptions being thrown.  Otherwise a
+   * warning will be emitted (using {@link Pel::warning}) and the
+   * exceptions will be stored for later use via {@link
+   * getExceptions()}.
+   *
+   * Some errors will still be fatal and result in thrown exceptions,
+   * but an effort will be made to skip over as much garbage as
+   * possible.
+   *
+   * @param boolean $flag use true to enable strict parsing, false to
+   * diable.
+   */
+  function setStrictParsing($flag) {
+    self::$strict = $flag;
+  }
+
+
+  /**
+   * Get current setting for strict parsing.
+   *
+   * @return boolean true if strict parsing is in effect, false
+   * otherwise.
+   */
+  function getStrictParsing() {
+    return self::$strict;
+  }
+
+
+  /**
+   * Get current setting for debug output.
+   *
+   * @return boolean true if debug is enabled, false otherwise.
+   */
+  function getDebug() {
+    return self::$debug;
   }
 
 

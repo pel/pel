@@ -89,9 +89,9 @@ $img->load($data);
 print($img);
 
 /* Deal with any exceptions: */
-if (!empty(Pel::$exceptions)) {
+if (count(Pel::getExceptions()) > 0) {
   print("\nThe following errors were encountered while loading the image:\n");
-  foreach (Pel::$exceptions as $e)
+  foreach (Pel::getExceptions() as $e)
     print("\n" . $e->__toString());
 }
 

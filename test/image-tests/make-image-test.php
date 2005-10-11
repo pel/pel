@@ -212,7 +212,7 @@ class %s extends UnitTestCase {
 
   function testRead() {
     Pel::clearExceptions();
-    Pel::$strict = false;
+    Pel::setStrictParsing(false);
     $jpeg = new PelJpeg();
     $jpeg->loadFile(dirname(__FILE__) . \'/%s\');
 ', $test_name, $image_filename, $image_filename);
@@ -226,17 +226,19 @@ jpegToTest('$jpeg', $jpeg);
 
 println();
 
-if (empty(Pel::$exceptions)) {
-  println('$this->assertTrue(empty(Pel::$exceptions));');
+$exceptions = Pel::getExceptions();
+
+if (count($exceptions) == 0) {
+  println('$this->assertTrue(count(Pel::getExceptions()) == 0);');
 } else {
-  for ($i = 0; $i < count(Pel::$exceptions); $i++) {
-    println('$this->assertIsA(Pel::$exceptions[%d], \'%s\');',
-            $i, get_class(Pel::$exceptions[$i]));
+  println('$exceptions = Pel::getExceptions();');
+  for ($i = 0; $i < count($exceptions); $i++) {
+    println('$this->assertIsA($exceptions[%d], \'%s\');',
+            $i, get_class($exceptions[$i]));
     
-    println('$this->assertEqual(Pel::$exceptions[%d]->getMessage(),', $i);
+    println('$this->assertEqual($exceptions[%d]->getMessage(),', $i);
     println('                   \'%s\');',
-            quote(Pel::$exceptions[$i]->getMessage()));
-    
+            quote($exceptions[$i]->getMessage()));
   }
 }
 

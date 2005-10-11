@@ -31,7 +31,7 @@ abstract class NumberTestCase extends UnitTestCase {
   protected $num;
 
   function __construct($min, $max) {
-    Pel::$strict = true;
+    Pel::setStrictParsing(true);
     $this->min = $min;
     $this->max = $max;
     parent::__construct('PEL Exif Number Tests');

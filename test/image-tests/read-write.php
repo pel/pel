@@ -29,7 +29,7 @@ abstract class WriteEntryTestCase extends UnitTestCase {
   protected $entries = array();
 
   function testWriteRead() {
-    Pel::$strict = true;
+    Pel::setStrictParsing(true);
 
     $ifd = new PelIfd(PelIfd::IFD0);
     $this->assertTrue($ifd->isLastIfd());
