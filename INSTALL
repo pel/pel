@@ -1,7 +1,7 @@
 INSTALL file for PEL: PHP Exif Library.  A library with support for
 reading and writing Exif headers in JPEG and TIFF images using PHP.
 
-Copyright (C) 2004  Martin Geisler.
+Copyright (C) 2004, 2005  Martin Geisler.
 Licensed under the GNU GPL, see COPYING for details.
 
 
@@ -12,7 +12,8 @@ PEL requires PHP version 5, which was released on July the 13rd, 2004.
 If your provider still uses PHP 4, then ask them politely to upgrade.
 
 People using Debian GNU/Linux can easily install PHP 5 using the
-packages found at http://dotdeb.org/.
+packages found at http://people.debian.org/~dexter/dists/all/ or those
+at http://dotdeb.org/.
 
 Binaries for Windows are available from http://php.net/, where one
 also finds the source code for those who want to build PHP 5
@@ -32,15 +33,24 @@ application with a pretty interface --- PEL is a collection of classes
 that can be used to parse, read, and write Exif headers.
 
 
+Upgrading
+*********
+
+If you have already been using a previous version of PEL, then be sure
+to read the NEWS file before starting with a new version.  The goal of
+the NEWS file is to list the important changes in a more concise way
+that the ChangeLog file (which lists *every* little change).
+
+
 Using PEL
 *********
 
 Your application should include PelJpeg.php or PelTiff.php for working
 with JPEG or TIFF files.  The files will define the PelJpeg and
 PelTiff classes, which can hold a JPEG or TIFF image, respectively.
-Both of these classes has a loadFile() method that will load, and
-parse, a file --- see the API documentation found in the doc directory
-or online at
+Both of these classes has a loadFile() method that will load and parse
+a file --- see the API documentation found in the doc directory or
+online at
 
   http://pel.sourceforge.net/doc/
 
