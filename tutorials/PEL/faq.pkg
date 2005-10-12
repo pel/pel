@@ -25,6 +25,37 @@
     cannot handle linebreaks in that construct.
 -->
 
+<refsect1>
+
+  <title>What does PEL stand for?</title>
+
+  <para>PEL is an acronym for "PHP Exif Library".  Sound simple
+  enough, doesn't it?</para>
+
+  <para>But did you realise that PEL is an acronym consisting of two
+  acronyms, one of which is recursive!  So "PEL" actually stands for
+  "PHP Hypertext Preprocessor Exchangeable image file format Library".
+  Pyh!</para>
+</refsect1>
+
+
+<refsect1>
+
+  <title>What's the business with EXIF vs. Exif?</title>
+
+  <para>Well, since Exif is an acronym for "Exchangeable image file
+  format" and thus you would expect it to be spelled "EXIF", just like
+  "JPEG" which is an acronym for Joint Photographic Experts
+  Group.</para>
+
+  <para>But the Exif standards spell Exif as "Exif" and so does PEL,
+  at least since version 0.9.  But should they ever decide to update
+  their acronym to "EXIF" then PEL will revert...  Luckily it does not
+  affect the acronym PEL itself :-)</para>
+
+</refsect1>
+
+
 <refsect1 id="{@id setValue-on-non-object}">
   <title>What does "<literal>Call to a member function
   setValue() on a non-object</literal>" mean?</title>
@@ -59,6 +90,7 @@ if ($app1 instanceof PelExif) {
 
 </refsect1>
 
+
 <refsect1 id="{@id IPTC-entries}">
 
   <title>Does PEL handle IPTC entries?</title>
@@ -70,6 +102,7 @@ if ($app1 instanceof PelExif) {
   metadata formats.</para>
 
 </refsect1>
+
 
 <refsect1 id="{@id missing-Gettext}">
 
@@ -117,6 +150,7 @@ if ($app1 instanceof PelExif) {
 
 </refsect1>
 
+
 <refsect1 id="{@id error-handling}">
 
   <title>How to deal with broken images?</title>
@@ -126,14 +160,15 @@ if ($app1 instanceof PelExif) {
   mandates certain formats and lengths for some entries, and sometimes
   these requirements are violated.</para>
 
-  <para>The strictness of PEL is controlled by the boolean {@link
-  Pel::$strict}, which by default is set to <literal>false</literal>.
-  In this non-strict ode, PEL will not throw exceptions for parse
-  errors but instead store them in the {@link Pel::$exceptions} array
-  for later inspection.</para>
+  <para>The strictness of PEL is controlled by the the method {@link
+  Pel::setStrictParsing()}.  The default is non-strict parsing.  In
+  this mode, PEL will not throw exceptions for parse errors but
+  instead store them for later inspection via the {@link
+  Pel::getExceptions()} method.</para>
 
-  <para>Setting {@link Pel::$strict} to <literal>true</literal> will
-  make PEL throw exceptions upon parse errors.</para>
+  <para>With an argument of <literal>true</literal> to {@link
+  Pel::setStrictParsing()} you make PEL throw exceptions upon parse
+  errors.</para>
 
   <para>This may all sound very complex, but it is actually fairly
   simple for most uses: have PEL load your images in non-strict mode
@@ -146,9 +181,10 @@ if ($app1 instanceof PelExif) {
 
 </refsect1>
 
+
 <refsect1 id="{@id unanswered-question}">
 
-  <title>My question is not answered here</title>
+  <title>My question is not answered here!</title>
 
   <para>Please ask your questions on the <!-- //////////////////// -->
   {@link http://lists.sourceforge.net/lists/listinfo/pel-devel PEL
