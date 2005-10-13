@@ -25,7 +25,7 @@
     cannot handle linebreaks in that construct.
 -->
 
-<refsect1>
+<refsect1 id="{@id pel-acronym}">
 
   <title>What does PEL stand for?</title>
 
@@ -39,7 +39,7 @@
 </refsect1>
 
 
-<refsect1>
+<refsect1 id="{@id exif-vs-exif}">
 
   <title>What's the business with EXIF vs. Exif?</title>
 
@@ -52,6 +52,65 @@
   at least since version 0.9.  But should they ever decide to update
   their acronym to "EXIF" then PEL will revert...  Luckily it does not
   affect the acronym PEL itself :-)</para>
+
+</refsect1>
+
+
+<refsect1 id="{@id why-php5}">
+  <title>Why does PEL require PHP version 5?</title>
+
+  <para>The support for object-oriented programming was completely
+  overhauled with the introduction of PHP 5 in July 2004.  The changes
+  included both semantic changes and syntaxtical changes to the PHP
+  language.</para>
+
+  <para>The semantic change was the use of object references per
+  default.  This change means that when you do</para>
+  
+  <programlisting role="php">
+    <![CDATA[
+$object_a = $ifd->getEntry(PelTag::IMAGE_DESCRIPTION);
+$object_a->setValue('This is my new description.');
+$object_b = $ifd->getEntry(PelTag::IMAGE_DESCRIPTION);
+    ]]>
+  </programlisting>
+
+  <para>then <literal>$object_a</literal> and
+  <literal>$object_b</literal> will both reference <emphasis>the
+  same</emphasis> element.  In particular, you will see that
+  <literal>$object_b->getValue()</literal> returns the string just
+  stored in <literal>$object_a</literal> (since they are the same
+  object).  With PHP 4 you would have gotten two different objects,
+  which is generally not what you want.</para>
+
+  <para>The syntaxtical changes from PHP 5 to PHP 4 include the
+  addition of access modifiers to object fields (the private,
+  protected, and public keywords), object constants, constructors
+  named <literal>__construct()</literal>, interfaces and abstract
+  classes, and exceptions.  PEL uses all these new features to the
+  fullest, which means that PHP 4 doesn't understand the code.</para>
+
+  <para>If your provider is still using PHP 4, then you should ask
+  them to upgrade.  PHP 5 has been declared stable since July 2004 and
+  all major PHP applications <!-- //////////////////////////////// -->
+  ({@link http://www.wordpress.org WordPress}, <!-- ////////////// -->
+  {@link http://gallery.menalto.com/ Gallery}, <!-- ////////////// -->
+  {@link http://phpwiki.sourceforge.net/ PhpWiki}, <!-- ////////// -->
+  {@link http://www.phpmyadmin.net/ phpMyAdmin}, etc...), have been
+  upgraded to work with PHP 5, so an upgrade should not bring you any
+  problems, just more features and better performance.</para>
+
+</refsect1>
+
+
+<refsect1 id="{@id fatal-php4-errors}">
+
+  <title>Why do I get fatal errors from PHP?</title>
+
+  <para>If you get a fatal error when trying to use PEL, then your
+  installation of PHP might be too old.  PEL requires PHP version 5.
+  Please see the question "{@tutorial faq.pkg#why-php5}" for more
+  information.</para>
 
 </refsect1>
 

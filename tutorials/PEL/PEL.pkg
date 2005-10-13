@@ -55,6 +55,13 @@
 
     </itemizedlist>
 
+    <warning>
+      <para>Please note that PEL <emphasis>requires</emphasis> PHP
+      version 5.  It will not run on PHP 4.  See <!-- /////////// -->
+      {@tutorial faq.pkg#why-php5 the FAQ} for more
+      information.</para>
+    </warning>
+
   </refsect1>
 
 </refentry>

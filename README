@@ -13,9 +13,9 @@ read and write the Exif metadata headers found in JPEG and TIFF
 images.  See the file INSTALL for an introduction to how PEL can be
 used by your application.
 
-PEL is a library written entirely in PHP, which means that it does not
-have any dependencies outside the core of PHP, it does not even use
-the Exif module available for PHP.
+PEL is a library written entirely in PHP 5, which means that it does
+not have any dependencies outside the core of PHP, it does not even
+use the Exif module available for PHP.
 
 Please note that the API for PEL is not yet frozen, and it will remain
 changeable until version 1.0 is reached.  Go to the PEL development
@@ -52,8 +52,7 @@ of information.
 
 PEL is hosted on SourceForge and uses the tools found there for
 support.  For general discussions about the future development of PEL,
-please use the development mailing list.  Remember to subscribe before
-you post on the list, you can subscribe here:
+please use the development mailing list:
 
   http://lists.sourceforge.net/lists/listinfo/pel-devel
 
