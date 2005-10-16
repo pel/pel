@@ -70,7 +70,7 @@ class PelIfdException extends PelException {}
  * @author Martin Geisler <mgeisler@users.sourceforge.net>
  * @package PEL
  */
-class PelIfd implements IteratorAggregate {
+class PelIfd implements IteratorAggregate, ArrayAccess {
 
   /**
    * Main image IFD.
@@ -782,6 +782,27 @@ PelTag::CFA_REPEAT_PATTERN_DIM,
     $this->entries[$e->getTag()] = $e;
   }
 
+  function offsetExists($tag) {
+    return isset($this->entries[$tag]);
+  }
+
+  function offsetGet($tag) {
+    return $this->entries[$tag];
+  }
+
+  function offsetSet($tag, $e) {
+    if ($e instanceof PelEntry) {
+      $tag = $e->getTag();
+      $this->entries[$tag] = $e;
+    } else {
+      throw new PelInvalidArgumentException('Argument "%s" must be a PelEntry.', $e);
+    }
+  }
+
+  function offsetUnset($tag) {
+    unset($this->entries[$tag]);
+  }
+
 
   /**
    * Retrieve an entry.
@@ -831,7 +852,7 @@ PelTag::CFA_REPEAT_PATTERN_DIM,
   function getIterator() {
     return new ArrayIterator($this->entries);
   }
-
+  
 
   /**
    * Returns available thumbnail data.
