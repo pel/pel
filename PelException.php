@@ -75,4 +75,13 @@ class PelException extends Exception {
  */
 class PelInvalidDataException extends PelException {}
 
+/**
+ * Exception throw if an invalid argument is passed.
+ *
+ * @author Martin Geisler <mgeisler@users.sourceforge.net>
+ * @package PEL
+ * @subpackage Exception
+ */
+class PelInvalidArgumentException extends PelException {}
+
 ?>
