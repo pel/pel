@@ -35,6 +35,7 @@
  */
 
 /**#@+ Required class definitions. */
+require_once('PelJpegComment.php');
 require_once('PelJpegContent.php');
 require_once('PelDataWindow.php');
 require_once('PelJpegMarker.php');
@@ -221,6 +222,7 @@ class PelJpeg {
         $d->setWindowStart(2);
 
         if ($marker == PelJpegMarker::APP1) {
+
           try {
             $content = new PelExif();
             $content->load($d->getClone(0, $len));
@@ -229,10 +231,20 @@ class PelJpeg {
              * not be parsed as Exif data. */
             $content = new PelJpegContent($d->getClone(0, $len));
           }
+
           $this->appendSection($marker, $content);
           /* Skip past the data. */
           $d->setWindowStart($len);
+
+        } elseif ($marker == PelJpegMarker::COM) {
+
+          $content = new PelJpegComment();
+          $content->load($d->getClone(0, $len));
+          $this->appendSection($marker, $content);
+          $d->setWindowStart($len);
+
         } else {
+
           $content = new PelJpegContent($d->getClone(0, $len));
           $this->appendSection($marker, $content);
           /* Skip past the data. */
@@ -415,15 +427,14 @@ class PelJpeg {
 
       /* Write the marker */
       $bytes .= "\xFF" . PelJpegMarker::getBytes($m);
-      if ($m == PelJpegMarker::SOI ||
-          $m == PelJpegMarker::EOI)
+      /* Skip over empty markers. */
+      if ($m == PelJpegMarker::SOI || $m == PelJpegMarker::EOI)
         continue;
 
       $data = $c->getBytes();
-      $size = strlen($data);
+      $size = strlen($data) + 2;
       
-      $bytes .= chr(($size + 2) >> 8);
-      $bytes .= chr($size + 2);
+      $bytes .= PelConvert::shortToBytes($size, PelConvert::BIG_ENDIAN);
       $bytes .= $data;
       
       /* In case of SOS, we need to write the JPEG data. */
@@ -461,6 +472,8 @@ class PelJpeg {
       if ($c instanceof PelExif) {
         $str .= Pel::tra("  Content    : Exif data\n");
         $str .= $c->__toString() . "\n";
+      } elseif ($c instanceof PelJpegComment) {
+        $str .= Pel::fmt("  Content    : %s\n", $c->getValue());
       } else {
         $str .= Pel::tra("  Content    : Unknown\n");
       }

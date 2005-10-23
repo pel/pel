@@ -11,15 +11,20 @@ PEL Version 0.9  (Not released)
 Notes:
 
 Added full support for GPS information (this breaks API compatability
-with version 0.8), the Gamma tag, and Windows XP specific title,
-comment, author, keywords, and subject tags.  Implemented a non-strict
-mode for broken images where most errors wont result in visible
-exceptions.  The edit-description.php example now correctly deals with
-images with no previous Exif data.  A Polish translation was
-added. The API documentation was updated with details about the
-constrains on format and number of components for each tag.
+with version 0.8), JPEG comments, the Gamma tag, and Windows XP
+specific title, comment, author, keywords, and subject tags.
+Implemented a non-strict mode for broken images where most errors wont
+result in visible exceptions.  The edit-description.php example now
+correctly deals with images with no previous Exif data.  A partial
+Polish translation was added. The API documentation was updated with
+details about the constrains on format and number of components for
+each tag.
 
 Changes:
+
+* Added support for JPEG comments through the PelJpegComment class
+  which works almost like PelEntry (use getValue() and setValue() to
+  read and write the comment).
 
 * Enabled iterating a PelIfd object with foreach().  It will iterate
   over (PelTag, PelEntry) pairs.
