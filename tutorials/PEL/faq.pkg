@@ -115,9 +115,12 @@ $object_b = $ifd->getEntry(PelTag::IMAGE_DESCRIPTION);
 </refsect1>
 
 
-<refsect1 id="{@id setValue-on-non-object}">
+<refsect1 id="{@id call-on-non-object}">
   <title>What does "<literal>Call to a member function
-  setValue() on a non-object</literal>" mean?</title>
+  <function>f</function> on a non-object</literal>" (where
+  <function>f</function> is <literal>getSection()</literal>,
+  <literal>getTiff()</literal>, or <literal>setValue()</literal>)
+  mean?</title>
 
   <para>This is the error PHP gives when you call a method on a
   variable which is not an object.</para>
