@@ -1,7 +1,7 @@
 NEWS file for PEL: PHP Exif Library.  A library with support for
 reading and writing Exif headers in JPEG and TIFF images using PHP.
 
-Copyright (C) 2004, 2005  Martin Geisler.
+Copyright (C) 2004, 2005, 2006  Martin Geisler.
 Licensed under the GNU GPL, see COPYING for details.
 
 
@@ -10,7 +10,7 @@ PEL Version 0.9  (Not released)
 
 Notes:
 
-Added full support for GPS information (this breaks API compatability
+Added full support for GPS information (this breaks API compatibility
 with version 0.8), JPEG comments, the Gamma tag, and Windows XP
 specific title, comment, author, keywords, and subject tags.
 Implemented a non-strict mode for broken images where most errors wont
@@ -33,7 +33,7 @@ Changes:
   of a PelTag.  Added PelIfd::addSubIfd().
 
 * Added support for the GPS IFD.  This meant a couple of changes which
-  break compability with version 0.8.  The problem is that the GPS
+  break compatibility with version 0.8.  The problem is that the GPS
   related tags have the same value as some other tags, and so the
   function PelTag::getName(), PelTag::getTitle(), and
   PelTag::getDescription() has been changed to take an extra argument
@@ -46,7 +46,7 @@ Changes:
   IFDs.  For example, you cannot have a UserComment tag in a IFD for
   GPS information.
 
-* Added a new concept of strict/non-strict mode.  The old behaviour
+* Added a new concept of strict/non-strict mode.  The old behavior
   was strict mode where an errors would abort the loading of an image
   because of exceptions --- in non-strict mode most exceptions will be
   trapped and broken images can still be loaded.  See the description
@@ -289,8 +289,8 @@ Changes:
 * Marked strings for translation throughout the source code.
 
 * Added German, French, and Spanish translations taken from libexif.
-  The translations were made by Lutz Müller, Fabian Mandelbaum, and
-  Arnaud Launay, respectively.
+  The translations were made by Lutz Müller, Arnaud Launay, and Fabian
+  Mandelbaum, respectively.
 
 * Added Danish translation.
 
@@ -380,3 +380,17 @@ whole thing can be turned into bytes and saved as a valid JPEG file.
 
 The API is still subject to change, and will remain so until version
 1.0 is reached.
+
+
+
+ LocalWords:  PEL PelExifEntryVersion PelExifEntryUserComment SimpleTest IXUS
+ LocalWords:  getValue setValue PelExifEntry DSC getBytes PelDataWindow IFD EOI
+ LocalWords:  PelIfd PelExifIfd sprintf Gettext Launay Arnaud Mandelbaum Lutz
+ LocalWords:  libexif PelTiff PelJpegMarker getSection PelJpeg PelJpegSection
+ LocalWords:  PelJpegContent getText Ricoh Fujifilm PelEntryRationals Coolscan
+ LocalWords:  isValid isValidMarker PelConvert PelExif PelEntry PelEntryTime XP
+ LocalWords:  php longToBytes sLongToBytes PowerShot phpDocumentor Achim PelTag
+ LocalWords:  PelWrongComponentCountException PelEntryAscii PelEntryString LUX
+ LocalWords:  newFromData PelEntryException Olympos Leica PelFormat getSize
+ LocalWords:  newEntryFromData Bogusz Jakub UserComment IFDs getValidTags
+ LocalWords:  getTitle getName getDescription getSubIfd foreach
