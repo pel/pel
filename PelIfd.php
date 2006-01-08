@@ -3,7 +3,7 @@
 /*  PEL: PHP Exif Library.  A library with support for reading and
  *  writing all Exif headers in JPEG and TIFF images using PHP.
  *
- *  Copyright (C) 2004, 2005  Martin Geisler.
+ *  Copyright (C) 2004, 2005, 2006  Martin Geisler.
  *
  *  This program is free software; you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
@@ -269,9 +269,8 @@ class PelIfd implements IteratorAggregate, ArrayAccess {
         try {
             $entry = $this->newEntryFromData($tag, $format, $components, $data);
 
-            if (in_array($tag, $this->getValidTags())) {
-              /* FIXME: not so nice... */
-              $entry->ifd_type = $this->type;
+            if ($this->isValidTag($tag)) {
+              $entry->setIfdType($this->type);
               $this->entries[$tag] = $entry;
             } else {
               Pel::maybeThrow(new PelInvalidDataException("IFD %s cannot hold\n%s",
@@ -279,7 +278,7 @@ class PelIfd implements IteratorAggregate, ArrayAccess {
                                                           $entry->__toString()));
             }
           } catch (PelException $e) {
-            /* Throw the exception is running in strict mode, store
+            /* Throw the exception when running in strict mode, store
              * otherwise. */
             Pel::maybeThrow($e);
           }
@@ -576,6 +575,35 @@ class PelIfd implements IteratorAggregate, ArrayAccess {
   }
 
 
+  /**
+   * Is a given tag valid for this IFD?
+   *
+   * Different types of IFDs can contain different kinds of tags ---
+   * the {@link IFD0} type, for example, cannot contain a {@link
+   * PelTag::GPS_LONGITUDE} tag.
+   *
+   * A special exception is tags with values above 0xF000.  They are
+   * treated as private tags and will be allowed everywhere (use this
+   * for testing or for implementing your own types of tags).
+   *
+   * @param PelTag the tag.
+   *
+   * @return boolean true if the tag is considered valid in this IFD,
+   * false otherwise.
+   *
+   * @see getValidTags()
+   */
+  function isValidTag($tag) {
+    return $tag > 0xF000 || in_array($tag, $this->getValidTags());
+  }
+
+
+  /**
+   * Returns a list of valid tags for this IFD.
+   *
+   * @return array an array of {@link PelTag}s which are valid for
+   * this IFD.
+   */
   function getValidTags() {
     switch ($this->type) {
     case PelIfd::IFD0:

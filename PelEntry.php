@@ -3,7 +3,7 @@
 /*  PEL: PHP Exif Library.  A library with support for reading and
  *  writing all Exif headers in JPEG and TIFF images using PHP.
  *
- *  Copyright (C) 2004, 2005  Martin Geisler.
+ *  Copyright (C) 2004, 2005, 2006  Martin Geisler.
  *
  *  This program is free software; you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
@@ -63,7 +63,7 @@ class PelEntryException extends PelException {
    *
    * @var int
    */
-  protected $ifd_type;
+  protected $type;
 
   /**
    * The tag of the entry (if known).
@@ -125,7 +125,8 @@ class PelUnexpectedFormatException extends PelEntryException {
                         PelTag::getName($type, $tag),
                         strtoupper(PelFormat::getName($found)),
                         strtoupper(PelFormat::getName($expected)));
-    $this->tag = $tag;
+    $this->tag  = $tag;
+    $this->type = $type;
   }
 }
 
@@ -161,7 +162,8 @@ class PelWrongComponentCountException extends PelEntryException {
     parent::__construct('Wrong number of components found for %s tag: %d. ' .
                         'Expected %d.',
                         PelTag::getName($type, $tag), $found, $expected);
-    $this->tag = $tag;
+    $this->tag  = $tag;
+    $this->type = $type;
   }
 }
 
@@ -191,8 +193,18 @@ class PelWrongComponentCountException extends PelEntryException {
  */
 abstract class PelEntry {
 
-  /* FIXME: Must the entry really know the type of its parent IFD? */
-  public $ifd_type;
+  /**
+   * Type of IFD containing this tag.
+   *
+   * This must be one of the constants defined in {@link PelIfd}:
+   * {@link PelIfd::IFD0} for the main image IFD, {@link PelIfd::IFD1}
+   * for the thumbnail image IFD, {@link PelIfd::EXIF} for the Exif
+   * sub-IFD, {@link PelIfd::GPS} for the GPS sub-IFD, or {@link
+   * PelIfd::INTEROPERABILITY} for the interoperability sub-IFD.
+   *
+   * @var int
+   */
+  protected $ifd_type;
 
   /**
    * The bytes representing this entry.
@@ -234,6 +246,35 @@ abstract class PelEntry {
    */
   function getTag() {
     return $this->tag;
+  }
+
+
+  /**
+   * Return the type of IFD which holds this entry.
+   *
+   * @return int one of the constants defined in {@link PelIfd}:
+   * {@link PelIfd::IFD0} for the main image IFD, {@link PelIfd::IFD1}
+   * for the thumbnail image IFD, {@link PelIfd::EXIF} for the Exif
+   * sub-IFD, {@link PelIfd::GPS} for the GPS sub-IFD, or {@link
+   * PelIfd::INTEROPERABILITY} for the interoperability sub-IFD.
+   */
+  function getIfdType() {
+    return $this->ifd_type;
+  }
+
+
+  /**
+   * Update the IFD type.
+   *
+   * @param int must be one of the constants defined in {@link
+   * PelIfd}: {@link PelIfd::IFD0} for the main image IFD, {@link
+   * PelIfd::IFD1} for the thumbnail image IFD, {@link PelIfd::EXIF}
+   * for the Exif sub-IFD, {@link PelIfd::GPS} for the GPS sub-IFD, or
+   * {@link PelIfd::INTEROPERABILITY} for the interoperability
+   * sub-IFD.
+   */
+  function setIfdType($type) {
+    $this->ifd_type = $type;
   }
 
 
