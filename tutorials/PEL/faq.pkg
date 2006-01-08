@@ -222,15 +222,15 @@ if ($app1 instanceof PelExif) {
   mandates certain formats and lengths for some entries, and sometimes
   these requirements are violated.</para>
 
-  <para>The strictness of PEL is controlled by the the method {@link
-  Pel::setStrictParsing()}.  The default is non-strict parsing.  In
-  this mode, PEL will not throw exceptions for parse errors but
-  instead store them for later inspection via the {@link
-  Pel::getExceptions()} method.</para>
+  <para>The strictness of PEL is controlled by the the method <!-- -->
+  {@link Pel::setStrictParsing()}.  The default is non-strict parsing.
+  In this mode, PEL will not throw exceptions for parse errors but
+  instead store them for later inspection via the <!-- /////////// -->
+  {@link Pel::getExceptions()} method.</para>
 
-  <para>With an argument of <literal>true</literal> to {@link
-  Pel::setStrictParsing()} you make PEL throw exceptions upon parse
-  errors.</para>
+  <para>With an argument of <literal>true</literal> to <!-- ////// -->
+  {@link Pel::setStrictParsing()} you make PEL throw exceptions upon
+  parse errors.</para>
 
   <para>This may all sound very complex, but it is actually fairly
   simple for most uses: have PEL load your images in non-strict mode
