@@ -116,7 +116,14 @@ rm -r tutorials
 
 # Add anchors and headers to the HTML ChangeLog so that each release
 # notices can link back to it
-perl -pie 's|^\d{4}-\d\d-\d\d \d\d:\d\d  tag release-(\d)_(\d)$|</pre>\n\n<div align="center"><h2 id="v\1.\2">PEL Version \1.\2</h2></div>\n<pre>\n|' doc/ric_ChangeLog.html
+
+# My perl started to claim that it could not find the ChangeLog file?!
+# Use sed instead then...
+#
+#perl -pie 's|^\d{4}-\d\d-\d\d \d\d:\d\d  tag release-(\d)_(\d)$|</pre>\n\n<div align="center"><h2 id="v\1.\2">PEL Version \1.\2</h2></div>\n<pre>\n|' doc/ric_ChangeLog.html
+
+sed -i -re 's|^[0-9]{4}-[0-9]{2}-[0-9]{2} [0-9]{2}:[0-9]{2}  tag release-([0-9])_([0-9])$|</pre>\n\n<div align="center"><h2 id="v\1.\2">PEL Version \1.\2</h2></div>\n\n<pre>\n|g' doc/ric_ChangeLog.html
+
 
 # Leave the package directory
 cd ..
