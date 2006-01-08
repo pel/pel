@@ -65,14 +65,14 @@ abstract class WriteEntryTestCase extends UnitTestCase {
     $jpeg = new PelJpeg();
     $jpeg->loadFile('test-output.jpg');
 
-    $app1 = $jpeg->getSection(PelJpegMarker::APP1);
-    $this->assertNotNull($app1);
+    $exif = $jpeg->getSection(PelJpegMarker::APP1);
+    $this->assertIsA($exif, 'PelExif');
 
-    $tiff = $app1->getTiff();
-    $this->assertNotNull($tiff);
+    $tiff = $exif->getTiff();
+    $this->assertIsA($tiff, 'PelTiff');
 
     $ifd = $tiff->getIfd();
-    $this->assertNotNull($ifd);
+    $this->assertIsA($ifd, 'PelIfd');
 
     $this->assertEqual($ifd->getType(), PelIfd::IFD0);
     $this->assertTrue($ifd->isLastIfd());
@@ -210,18 +210,10 @@ class WriteAsciiTestCase extends WriteEntryTestCase {
     $this->entries[] = new PelEntryAscii(0xF601);
     $this->entries[] = new PelEntryAscii(0xF602, '');
     $this->entries[] = new PelEntryAscii(0xF603, 'Hello World!');
-
-    $this->entries[] = new PelEntryTime(PelTag::DATE_TIME);
-    $this->entries[] = new PelEntryTime(PelTag::DATE_TIME_ORIGINAL, 0);
-    $this->entries[] = new PelEntryTime(PelTag::DATE_TIME_DIGITIZED,
-                                        123456789);
-
-    $this->entries[] = new PelEntryCopyright(PelTag::COPYRIGHT, 'Foo', 'Bar');
+    $this->entries[] = new PelEntryAscii(0xF604, "\x00\x01\x02...\xFD\xFE\xFF");
 
     parent::__construct('PEL Ascii Read/Write Tests');
   }
 }
-
-
 
 ?>
