@@ -5,6 +5,21 @@ Copyright (C) 2004, 2005, 2006  Martin Geisler.
 Licensed under the GNU GPL, see COPYING for details.
 
 
+PEL Version 0.9.1
+*****************
+
+Notes:
+
+Added a Japanese translation.
+
+Changes:
+
+* Added Japanese translation by Tadashi Jokagi.
+
+* Rewrote entry for version 0.9 in NEWS to highlight the API
+  incompatible changes made from version 0.8.
+
+
 PEL Version 0.9  January 8th 2006
 *********************************
 
@@ -20,6 +35,27 @@ Polish translation was added. The API documentation was updated with
 details about the constrains on format and number of components for
 each tag.
 
+API incompatible changes:
+
+* Changed PelIfd::getSubIfd() to take an IFD type as argument instead
+  of a PelTag.  The IFD types are constants in PelIfd.  So use
+
+    $exif = $ifd0->getSubIfd(PelIfd::EXIF);
+
+  instead of
+
+    $exif = $ifd0->getSubIfd(PelTag::EXIF_IFD_POINTER);
+
+  in your code.
+
+* Added support for the GPS IFD.  This API break compatibility with
+  version 0.8.  The problem is that the GPS related tags have the same
+  value as some other tags, and so the function PelTag::getName(),
+  PelTag::getTitle(), and PelTag::getDescription() has been changed to
+  take an extra argument specifying IFD type of the tag.
+
+  This might change very well further in the future.
+
 Changes:
 
 * Added support for JPEG comments through the PelJpegComment class
@@ -28,18 +64,6 @@ Changes:
 
 * Enabled iterating a PelIfd object with foreach().  It will iterate
   over (PelTag, PelEntry) pairs.
-
-* Changed PelIfd::getSubIfd() to take an IFD type as argument instead
-  of a PelTag.  Added PelIfd::addSubIfd().
-
-* Added support for the GPS IFD.  This meant a couple of changes which
-  break compatibility with version 0.8.  The problem is that the GPS
-  related tags have the same value as some other tags, and so the
-  function PelTag::getName(), PelTag::getTitle(), and
-  PelTag::getDescription() has been changed to take an extra argument
-  specifying which type of IFD the tag belongs to.
-
-  This might change very well further in the future.
 
 * Added PelIfd::getValidTags() which return an array of tags valid for
   the IFD in question.  Using this, PEL now reject entries in wrong
