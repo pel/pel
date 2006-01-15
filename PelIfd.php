@@ -373,9 +373,10 @@ class PelIfd implements IteratorAggregate, ArrayAccess {
         /* Split the string into year, month, date, hour, minute, and
          * second components. */
         $d = explode('-', strtr($data->getBytes(0, -1), '.: ', '---'));
+
         // TODO: handle timezones.
         return new PelEntryTime($tag, gmmktime($d[3], $d[4], $d[5],
-                                             $d[1], $d[2], $d[0]));
+                                               $d[1], $d[2], $d[0]));
 
       case PelTag::COPYRIGHT:
         if ($format != PelFormat::ASCII)

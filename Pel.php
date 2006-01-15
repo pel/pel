@@ -3,7 +3,7 @@
 /*  PEL: PHP Exif Library.  A library with support for reading and
  *  writing all Exif headers in JPEG and TIFF images using PHP.
  *
- *  Copyright (C) 2004, 2005  Martin Geisler.
+ *  Copyright (C) 2004, 2005, 2006  Martin Geisler.
  *
  *  This program is free software; you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
@@ -192,17 +192,6 @@ class Pel {
 
 
   /**
-   * Enable/disable debugging output.
-   *
-   * @param boolean $flag use true to enable debug output, false to
-   * diable.
-   */
-  function setDebug($flag) {
-    self::$debug = $flag;
-  }
-
-
-  /**
    * Enable/disable strict parsing.
    *
    * If strict parsing is enabled, then most errors while loading
@@ -231,6 +220,17 @@ class Pel {
    */
   function getStrictParsing() {
     return self::$strict;
+  }
+
+
+  /**
+   * Enable/disable debugging output.
+   *
+   * @param boolean $flag use true to enable debug output, false to
+   * diable.
+   */
+  function setDebug($flag) {
+    self::$debug = $flag;
   }
 
 
