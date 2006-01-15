@@ -33,7 +33,9 @@ class AsciiTestCase extends UnitTestCase {
 
   function testReturnValues() {
     $entry = new PelEntryAscii();
-    $this->assertError('Missing argument 1 for PelEntryAscii::__construct()');
+    $pattern = new WantedPatternExpectation('/Missing argument 1 for ' .
+                                            'PelEntryAscii::__construct()/');
+    $this->assertError($pattern);
 
     $entry = new PelEntryAscii(42);
     $this->assertNoErrors();
@@ -45,7 +47,10 @@ class AsciiTestCase extends UnitTestCase {
 
   function testTime() {
     $entry = new PelEntryTime();
-    $this->assertError('Missing argument 1 for PelEntryTime::__construct()');
+
+    $pattern = new WantedPatternExpectation('/Missing argument 1 for ' .
+                                            'PelEntryTime::__construct()/');
+    $this->assertError($pattern);
 
     $entry = new PelEntryTime(42);
     $this->assertNoErrors();

@@ -3,7 +3,7 @@
 /*  PEL: PHP Exif Library.  A library with support for reading and
  *  writing all Exif headers in JPEG and TIFF images using PHP.
  *
- *  Copyright (C) 2004  Martin Geisler.
+ *  Copyright (C) 2004, 2005, 2006  Martin Geisler.
  *
  *  This program is free software; you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
@@ -33,7 +33,9 @@ class UndefinedTestCase extends UnitTestCase {
 
   function testReturnValues() {
     $entry = new PelEntryUndefined();
-    $this->assertError('Missing argument 1 for PelEntryUndefined::__construct()');
+    $pattern = new WantedPatternExpectation('/Missing argument 1 for ' .
+                                            'PelEntryUndefined::__construct()/');
+    $this->assertError($pattern);
 
     $entry = new PelEntryUndefined(42);
     $this->assertNoErrors();
@@ -57,7 +59,9 @@ class UndefinedTestCase extends UnitTestCase {
 
   function testVersion() {
     $entry = new PelEntryVersion();
-    $this->assertError('Missing argument 1 for PelEntryVersion::__construct()');
+    $pattern = new WantedPatternExpectation('/Missing argument 1 for ' .
+                                            'PelEntryVersion::__construct()/');
+    $this->assertError($pattern);
 
     $entry = new PelEntryVersion(42);
     $this->assertNoErrors();
