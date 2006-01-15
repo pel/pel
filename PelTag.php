@@ -3,7 +3,7 @@
 /*  PEL: PHP Exif Library.  A library with support for reading and
  *  writing all Exif headers in JPEG and TIFF images using PHP.
  *
- *  Copyright (C) 2004, 2005  Martin Geisler.
+ *  Copyright (C) 2004, 2005, 2006  Martin Geisler.
  *
  *  This program is free software; you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
@@ -37,6 +37,7 @@
 
 /**#@+ Required class definitions. */
 require_once('Pel.php');
+require_once('PelIfd.php');
 /**#@-*/
 
 
@@ -559,26 +560,13 @@ class PelTag {
   const RELATED_IMAGE_LENGTH                              = 0x1002;
 
   /**
-   * CFA Repeat Pattern Dim
+   * CFA Repeat Pattern Dim.
    *
    * Format: {@link PelFormat::SHORT}.
    *
    * Components: 2.
    */
   const CFA_REPEAT_PATTERN_DIM                            = 0x828D;
-
-  /**
-   * CFA Pattern
-   *
-   * Indicates the color filter array (CFA) geometric pattern of the
-   * image sensor when a one-chip color area sensor is used.  It does
-   * not apply to all sensing methods.
-   *
-   * Format: {@link PelFormat::BYTE}.
-   *
-   * Components: 1.
-   */
-  const CFA_PATTERN                                       = 0x828E;
 
   /**
    * Battery level.
@@ -1072,19 +1060,6 @@ class PelTag {
    * Components: any number.
    */
   const XP_SUBJECT                                        = 0x9C9F;
-
-
-  /**
-   * Windows XP Comment
-   *
-   * The image comment as defined by the user in Windows XP.
-   *
-   * Format: {@link PelFormat::BYTE}.
-   *
-   * Components: any number.
-   */
-  const XP_COMMENT                                        = 0x9C9C;
-
 
 
   /**
