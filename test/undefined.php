@@ -36,6 +36,7 @@ class UndefinedTestCase extends UnitTestCase {
     $pattern = new WantedPatternExpectation('/Missing argument 1 for ' .
                                             'PelEntryUndefined::__construct()/');
     $this->assertError($pattern);
+    $this->assertError('Undefined variable: tag');
 
     $entry = new PelEntryUndefined(42);
     $this->assertNoErrors();
@@ -62,6 +63,7 @@ class UndefinedTestCase extends UnitTestCase {
     $pattern = new WantedPatternExpectation('/Missing argument 1 for ' .
                                             'PelEntryVersion::__construct()/');
     $this->assertError($pattern);
+    $this->assertError('Undefined variable: tag');
 
     $entry = new PelEntryVersion(42);
     $this->assertNoErrors();
