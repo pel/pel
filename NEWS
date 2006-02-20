@@ -14,6 +14,10 @@ Added a Japanese translation.
 
 Changes:
 
+* Updated documentation of PelIfd to make it clearer that it can be
+  used as an array because it implements the ArrayAccess SPL
+  interface.
+
 * Added Japanese translation by Tadashi Jokagi.
 
 * Rewrote entry for version 0.9 in NEWS to highlight the API
