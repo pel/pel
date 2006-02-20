@@ -811,14 +811,68 @@ PelTag::CFA_REPEAT_PATTERN_DIM,
     $this->entries[$e->getTag()] = $e;
   }
 
+
+  /**
+   * Does a given tag exist in this IFD?
+   *
+   * This methods is part of the ArrayAccess SPL interface for
+   * overriding array access of objects, it allows you to check for
+   * existance of an entry in the IFD:
+   *
+   * <code>
+   * if (isset($ifd[PelTag::FNUMBER]))
+   *   // ... do something with the F-number.
+   * </code>
+   *
+   * @param PelTag the offset to check.
+   *
+   * @return boolean whether the tag exists.
+   */
   function offsetExists($tag) {
     return isset($this->entries[$tag]);
   }
 
+
+  /**
+   * Retrieve a given tag from this IFD.
+   *
+   * This methods is part of the ArrayAccess SPL interface for
+   * overriding array access of objects, it allows you to read entries
+   * from the IFD the same was as for an array:
+   *
+   * <code>
+   * $entry = $ifd[PelTag::FNUMBER];
+   * </code>
+   *
+   * @param PelTag the tag to return.  It is an error to ask for a tag
+   * which is not in the IFD, just like asking for a non-existant
+   * array entry.
+   *
+   * @return PelEntry the entry.
+   */
   function offsetGet($tag) {
     return $this->entries[$tag];
   }
 
+
+  /**
+   * Set or update a given tag in this IFD.
+   *
+   * This methods is part of the ArrayAccess SPL interface for
+   * overriding array access of objects, it allows you to add new
+   * entries or replace esisting entries by doing:
+   *
+   * <code>
+   * $ifd[PelTag::EXPOSURE_BIAS_VALUE] = $entry;
+   * </code>
+   *
+   * Note that the actual array index passed is ignored!  Instead the
+   * {@link PelTag} from the entry is used.
+   *
+   * @param PelTag the offset to update.
+   *
+   * @param PelEntry the new value.
+   */
   function offsetSet($tag, $e) {
     if ($e instanceof PelEntry) {
       $tag = $e->getTag();
@@ -828,6 +882,20 @@ PelTag::CFA_REPEAT_PATTERN_DIM,
     }
   }
 
+
+  /**
+   * Unset a given tag in this IFD.
+   *
+   * This methods is part of the ArrayAccess SPL interface for
+   * overriding array access of objects, it allows you to delete
+   * entries in the IFD by doing:
+   *
+   * <code>
+   * unset($ifd[PelTag::EXPOSURE_BIAS_VALUE])
+   * </code>
+   *
+   * @param PelTag the offset to delete.
+   */
   function offsetUnset($tag) {
     unset($this->entries[$tag]);
   }
