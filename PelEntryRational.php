@@ -3,7 +3,7 @@
 /*  PEL: PHP Exif Library.  A library with support for reading and
  *  writing all Exif headers in JPEG and TIFF images using PHP.
  *
- *  Copyright (C) 2004, 2005  Martin Geisler.
+ *  Copyright (C) 2004, 2005, 2006  Martin Geisler.
  *
  *  This program is free software; you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
@@ -43,15 +43,15 @@ require_once('PelEntryLong.php');
 /**
  * Class for holding unsigned rational numbers.
  *
- * This class can hold rational numbers, consisting of a enumerator
- * and denominator both of which are of type unsigned long.  Each
- * rational is represented by an array with just two entries: the
- * enumerator and the denominator, in that order.
+ * This class can hold rational numbers, consisting of a numerator and
+ * denominator both of which are of type unsigned long.  Each rational
+ * is represented by an array with just two entries: the numerator and
+ * the denominator, in that order.
  *
  * The class can hold either just a single rational or an array of
  * rationals.  The class will be used to manipulate any of the Exif
- * tags which can have format {@link PelFormat::RATIONAL} like in
- * this example:
+ * tags which can have format {@link PelFormat::RATIONAL} like in this
+ * example:
  *
  * <code>
  * $resolution = $ifd->getEntry(PelTag::X_RESOLUTION);
@@ -59,8 +59,8 @@ require_once('PelEntryLong.php');
  * </code>
  *
  * Here the x-resolution is adjusted to 1/300, which will be 300 DPI,
- * unless the {@link PelTag::RESOLUTION_UNIT resolution unit} is
- * set to something different than 2 which means inches.
+ * unless the {@link PelTag::RESOLUTION_UNIT resolution unit} is set
+ * to something different than 2 which means inches.
  *
  * @author Martin Geisler <mgeisler@users.sourceforge.net>
  * @package PEL
@@ -70,10 +70,10 @@ class PelEntryRational extends PelEntryLong {
   /**
    * Make a new entry that can hold an unsigned rational.
    *
-   * @param PelTag the tag which this entry represents.  This
-   * should be one of the constants defined in {@link PelTag},
-   * e.g., {@link PelTag::X_RESOLUTION}, or any other tag which can
-   * have format {@link PelFormat::RATIONAL}.
+   * @param PelTag the tag which this entry represents.  This should
+   * be one of the constants defined in {@link PelTag}, e.g., {@link
+   * PelTag::X_RESOLUTION}, or any other tag which can have format
+   * {@link PelFormat::RATIONAL}.
    *
    * @param array $value... the rational(s) that this entry will
    * represent.  The arguments passed must obey the same rules as the
@@ -100,7 +100,7 @@ class PelEntryRational extends PelEntryLong {
    * Format a rational number.
    *
    * The rational will be returned as a string with a slash '/'
-   * between the enumerator and denominator.
+   * between the numerator and denominator.
    *
    * @param array the rational which will be formatted.
    *
@@ -178,10 +178,10 @@ class PelEntryRational extends PelEntryLong {
 /**
  * Class for holding signed rational numbers.
  *
- * This class can hold rational numbers, consisting of a enumerator
- * and denominator both of which are of type unsigned long.  Each
- * rational is represented by an array with just two entries: the
- * enumerator and the denominator, in that order.
+ * This class can hold rational numbers, consisting of a numerator and
+ * denominator both of which are of type unsigned long.  Each rational
+ * is represented by an array with just two entries: the numerator and
+ * the denominator, in that order.
  *
  * The class can hold either just a single rational or an array of
  * rationals.  The class will be used to manipulate any of the Exif
@@ -195,10 +195,10 @@ class PelEntrySRational extends PelEntrySLong {
   /**
    * Make a new entry that can hold a signed rational.
    *
-   * @param PelTag the tag which this entry represents.  This
-   * should be one of the constants defined in {@link PelTag},
-   * e.g., {@link PelTag::SHUTTER_SPEED_VALUE}, or any other tag
-   * which can have format {@link PelFormat::SRATIONAL}.
+   * @param PelTag the tag which this entry represents.  This should
+   * be one of the constants defined in {@link PelTag}, e.g., {@link
+   * PelTag::SHUTTER_SPEED_VALUE}, or any other tag which can have
+   * format {@link PelFormat::SRATIONAL}.
    *
    * @param array $value... the rational(s) that this entry will
    * represent.  The arguments passed must obey the same rules as the
@@ -225,7 +225,7 @@ class PelEntrySRational extends PelEntrySLong {
    * Format a rational number.
    *
    * The rational will be returned as a string with a slash '/'
-   * between the enumerator and denominator.  Care is taken to display
+   * between the numerator and denominator.  Care is taken to display
    * '-1/2' instead of the ugly but mathematically equivalent '1/-2'.
    *
    * @param array the rational which will be formatted.
