@@ -83,7 +83,7 @@ class PelEntryRational extends PelEntryLong {
    * (inclusive).  If not, then a {@link PelOverflowException} will be
    * thrown.
    */
-  function __construct($tag /* ... */) {
+  function __construct($tag /* $value... */) {
     $this->tag       = $tag;
     $this->format    = PelFormat::RATIONAL;
     $this->dimension = 2;
@@ -208,7 +208,7 @@ class PelEntrySRational extends PelEntrySLong {
    * 2147483647 (inclusive).  If not, then a {@link
    * PelOverflowException} will be thrown.
    */
-  function __construct($tag) {
+  function __construct($tag /* $value... */) {
     $this->tag       = $tag;
     $this->format    = PelFormat::SRATIONAL;
     $this->dimension = 2;

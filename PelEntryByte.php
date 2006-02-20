@@ -3,7 +3,7 @@
 /*  PEL: PHP Exif Library.  A library with support for reading and
  *  writing all Exif headers in JPEG and TIFF images using PHP.
  *
- *  Copyright (C) 2004, 2005  Martin Geisler.
+ *  Copyright (C) 2004, 2005, 2006  Martin Geisler.
  *
  *  This program is free software; you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
@@ -71,7 +71,7 @@ class PelEntryByte extends PelEntryNumber {
    * unsigned byte, that is between 0 and 255 (inclusive).  If not,
    * then a {@link PelOverflowException} will be thrown.
    */
-  function __construct($tag /* ... */) {
+  function __construct($tag /* $value... */) {
     $this->tag    = $tag;
     $this->min    = 0;
     $this->max    = 255;
@@ -129,7 +129,7 @@ class PelEntrySByte extends PelEntryNumber {
    * signed byte, that is between -128 and 127 (inclusive).  If not,
    * then a {@link PelOverflowException} will be thrown.
    */
-  function __construct($tag /* ... */) {
+  function __construct($tag /* $value... */) {
     $this->tag    = $tag;
     $this->min    = -128;
     $this->max    = 127;
