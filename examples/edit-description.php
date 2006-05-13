@@ -4,7 +4,7 @@
 /*  PEL: PHP Exif Library.  A library with support for reading and
  *  writing all Exif headers in JPEG and TIFF images using PHP.
  *
- *  Copyright (C) 2004, 2005  Martin Geisler.
+ *  Copyright (C) 2004, 2005, 2006  Martin Geisler.
  *
  *  This program is free software; you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
@@ -170,7 +170,7 @@ if ($ifd0 == null) {
    * PelTiff object was inserted by the code above.  But this is no
    * problem, we just create and inserts an empty PelIfd object. */
   println('No IFD found, adding new.');
-  $ifd0 = new PelIfd();
+  $ifd0 = new PelIfd(PelIfd::IFD0);
   $tiff->setIfd($ifd0);
 }
 
