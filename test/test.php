@@ -30,29 +30,44 @@ error_reporting(E_ALL);
  * to the PEL directory. */
 define('SIMPLE_TEST', '../../simpletest/');
 
+if (!is_dir(SIMPLE_TEST)) {
+  printf("The directory SimpleTest directory (%s) does not exist \n" .
+         "and so no tests can be made.\n" .
+         "Please download SimpleTest from http://simpletest.sf.net/\n" .
+         "and unpack it in the directory mentioned above.\n", SIMPLE_TEST);
+  exit(1);
+}
+
 require_once(SIMPLE_TEST . 'unit_tester.php');
 require_once(SIMPLE_TEST . 'reporter.php');
 
-$test = new GroupTest('All PEL tests');
-$test->addTestFile('data-window.php');
-$test->addTestFile('convert.php');
-$test->addTestFile('ascii.php');
-$test->addTestFile('number.php');
-$test->addTestFile('undefined.php');
-
-
-if (is_dir('image-tests')) {
-  $image_tests = glob('image-tests/*.php');
-  foreach ($image_tests as $image_test)
-    if ($image_test != 'image-tests/make-image-test.php')// &&
-      //$image_test != 'image-tests/read-write.php') // read-write is broken right now
-      $test->addTestFile($image_test);
-
+if ($argc > 1) {
+  array_shift($argv);
+  $tests = $argv;
+  $group = new GroupTest('Selected PEL tests');
 } else {
-  echo "Found no image tests, only core functionality will be tested.\n";
-  echo "Image tests are available from http://pel.sourceforge.net/.\n";
+  $tests = array_diff(glob('*.php'), array('test.php'));
+  $group = new GroupTest('All PEL tests');
 }
 
-$test->run(new TextReporter());
+foreach ($tests as $test)
+  $group->addTestFile($test);
+
+if ($argc == 1) {
+  if (is_dir('image-tests')) {
+    $image_tests = array_diff(glob('image-tests/*.php'),
+                              array('image-tests/make-image-test.php'));
+    $image_group = new GroupTest('Image Tests');
+    foreach ($image_tests as $image_test)
+      $image_group->addTestFile($image_test);
+    
+    $group->addTestCase($image_group);
+  } else {
+    echo "Found no image tests, only core functionality will be tested.\n";
+    echo "Image tests are available from http://pel.sourceforge.net/.\n";
+  }
+}
+
+$group->run(new TextReporter());
 
 ?>
