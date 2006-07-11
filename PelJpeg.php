@@ -333,6 +333,19 @@ class PelJpeg {
 
 
   /**
+   * Get Exif data.
+   *
+   * Use this to get the @{link PelExif Exif data} stored.
+   *
+   * @return PelExif the Exif data found or null if the image has no
+   * Exif data.
+   */
+  function getExif() {
+    return $this->getSection(PelJpegMarker::APP1);
+  }
+
+
+  /**
    * Append a new section.
    *
    * Used only when loading an image. If it used again later, then the

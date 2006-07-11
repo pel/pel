@@ -10,13 +10,25 @@ PEL Version 0.9.1
 
 Notes:
 
-Added a Japanese translation.
+Added setExif() and getExif() functions as a convenient way of getting
+and setting the Exif data in a PelJpeg object. Added a Japanese
+translation.
 
 Changes:
 
+* Added PelJpeg::setExif(). This method should always be used in
+  preference to PelJpeg::insertSection() and PelJpeg::appendSection().
+  One should actually not be using appendSection() unless one is very
+  sure that the image has not been ended by a EOI marker.
+
+* Added PelJpeg::getExif() method.
+
+* Fixed bug in edit-description.php which still called the constructor
+  of PelIfd in the old pre-0.9 way.
+
 * Updated documentation of PelIfd to make it clearer that it can be
-  used as an array because it implements the ArrayAccess SPL
-  interface.
+  used as an array because it implements the ArrayAccess SPL (Standard
+  PHP Library) interface.
 
 * Added Japanese translation by Tadashi Jokagi.
 

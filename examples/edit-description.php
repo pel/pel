@@ -115,31 +115,29 @@ if (PelJpeg::isValid($data)) {
    * required. */
   $jpeg->load($data);
 
-  /* The PelJpeg object contains a number of sections, each of which
-   * are identified by a PelJpegMarker.  The APP0 to APP15 markers are
-   * set aside for application specific data (that is, these sections
-   * are not significant to the JPEG compression) and the APP1 section
-   * will normally contain the Exif data.  */
-  $app1 = $jpeg->getSection(PelJpegMarker::APP1);
+  /* The PelJpeg object contains a number of sections, one of which
+   * might be our Exif data. The getExif() method is a convenient way
+   * of getting the right section with a minimum of fuzz. */
+  $exif = $jpeg->getExif();
 
-  if ($app1 == null) {
+  if ($exif == null) {
     /* Ups, there is no APP1 section in the JPEG file.  This is where
      * the Exif data should be. */
     println('No APP1 section found, added new.');
 
     /* In this case we simply create a new APP1 section (a PelExif
      * object) and adds it to the PelJpeg object. */
-    $app1 = new PelExif();
-    $jpeg->setExif($app1);
+    $exif = new PelExif();
+    $jpeg->setExif($exif);
 
     /* We then create an empty TIFF structure in the APP1 section. */
     $tiff = new PelTiff();
-    $app1->setTiff($tiff);
+    $exif->setTiff($tiff);
   } else {
     /* Surprice, surprice: Exif data is really just TIFF data!  So we
      * extract the PelTiff object for later use. */
     println('Found existing APP1 section.');
-    $tiff = $app1->getTiff();
+    $tiff = $exif->getTiff();
   }
 } elseif (PelTiff::isValid($data)) {
   /* The data was recognized as TIFF data.  We prepare a PelTiff
