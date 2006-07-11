@@ -3,7 +3,7 @@
 /*  PEL: PHP Exif Library.  A library with support for reading and
  *  writing all Exif headers in JPEG and TIFF images using PHP.
  *
- *  Copyright (C) 2004  Martin Geisler.
+ *  Copyright (C) 2004, 2006  Martin Geisler.
  *
  *  This program is free software; you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
@@ -89,7 +89,8 @@ abstract class WriteEntryTestCase extends UnitTestCase {
 
 /* The just defined class should be ignored by SimpleTest since it's
  * an abstract base class for the real tests defined below. */
-SimpleTestOptions::ignore('WriteEntryTestCase');
+$t = new SimpleTest();
+$t->ignore('WriteEntryTestCase');
 
 
 class WriteByteTestCase extends WriteEntryTestCase {

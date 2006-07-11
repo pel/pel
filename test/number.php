@@ -105,7 +105,8 @@ abstract class NumberTestCase extends UnitTestCase {
 
 /* The just defined class should be ignored by SimpleTest since it's
  * an abstract base class for the real tests defined below. */
-SimpleTestOptions::ignore('NumberTestCase');
+$t = new SimpleTest();
+$t->ignore('NumberTestCase');
 
 class ByteTestCase extends NumberTestCase {
   function __construct() {
