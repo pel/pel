@@ -130,7 +130,7 @@ if (PelJpeg::isValid($data)) {
     /* In this case we simply create a new APP1 section (a PelExif
      * object) and adds it to the PelJpeg object. */
     $app1 = new PelExif();
-    $jpeg->insertSection(PelJpegMarker::APP1, $app1, 2);
+    $jpeg->setExif($app1);
 
     /* We then create an empty TIFF structure in the APP1 section. */
     $tiff = new PelTiff();
