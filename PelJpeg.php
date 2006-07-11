@@ -3,7 +3,7 @@
 /*  PEL: PHP Exif Library.  A library with support for reading and
  *  writing all Exif headers in JPEG and TIFF images using PHP.
  *
- *  Copyright (C) 2004, 2005  Martin Geisler.
+ *  Copyright (C) 2004, 2005, 2006  Martin Geisler.
  *
  *  This program is free software; you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
@@ -156,7 +156,7 @@ class PelJpeg {
    * $exif = new PelExif();
    * // Now Add a PelTiff object with a PelIfd object with one or more
    * // PelEntry objects to $exif.  Finally add $exif to $jpeg:
-   * $jpeg->appendSection($exif, PelJpegMarker::APP1);
+   * $jpeg->setExif($exif);
    * </code>
    */
   function __construct() {
@@ -301,7 +301,47 @@ class PelJpeg {
   
 
   /**
-   * Add a new section.
+   * Set Exif data.
+   *
+   * Use this to set the Exif data in the image. This will overwrite
+   * any old Exif information in the image.
+   *
+   * @param PelExif the Exif data.
+   */
+  function setExif(PelExif $exif) {
+    $app0_offset = 1;
+    $app1_offset = -1;
+
+    /* Search through all sections looking for APP0 or APP1. */
+    for ($i = 0; $i < count($this->sections); $i++) {
+      if ($this->sections[$i][0] == PelJpegMarker::APP0) {
+        $app0_offset = $i;
+      } elseif ($this->sections[$i][0] == PelJpegMarker::APP1) {
+        $app1_offset = $i;
+        break;
+      }
+    }
+
+    /* Store the Exif data at the appropriate place, either where the
+     * old Exif data was stored ($app1_offset) or right after APP0
+     * ($app0_offset+1). */
+    if ($app1_offset > 0)
+      $this->sections[$app1_offset][1] = $exif;
+    else
+      $this->insertSection(PelJpegMarker::APP1, $exif, $app0_offset+1);
+  }
+
+
+  /**
+   * Append a new section.
+   *
+   * Used only when loading an image. If it used again later, then the
+   * section will end up after the @{link PelJpegMarker::EOI EOI
+   * marker} and will probably not be useful.
+   *
+   * Please use @{link setExif()} instead if you intend to add Exif
+   * information to an image as that function will know the right
+   * place to insert the data.
    *
    * @param PelJpegMarker the marker identifying the new section.
    *
@@ -314,6 +354,10 @@ class PelJpeg {
 
   /**
    * Insert a new section.
+   *
+   * Please use @{link setExif()} instead if you intend to add Exif
+   * information to an image as that function will know the right
+   * place to insert the data.
    *
    * @param PelJpegMarker the marker for the new section.
    *
