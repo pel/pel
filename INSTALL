@@ -1,7 +1,7 @@
 INSTALL file for PEL: PHP Exif Library.  A library with support for
 reading and writing Exif headers in JPEG and TIFF images using PHP.
 
-Copyright (C) 2004, 2005  Martin Geisler.
+Copyright (C) 2004, 2005, 2006  Martin Geisler.
 Licensed under the GNU GPL, see COPYING for details.
 
 
@@ -68,7 +68,7 @@ save the file again.  All in just seven lines:
   $jpeg = new PelJpeg();
   $jpeg->loadFile($argv[1]);
   
-  $ifd0 = $jpeg->getSection(PelJpegMarker::APP1)->getTiff()->getIfd();
+  $ifd0 = $jpeg->getExif()->getTiff()->getIfd();
   $entry = $ifd0->getEntry(PelTag::IMAGE_DESCRIPTION);
   $entry->setValue('Edited by PEL');
   file_put_contents($argv[1], $jpeg->getBytes());
@@ -89,20 +89,7 @@ requests here:
 
   http://sourceforge.net/tracker/?group_id=108380
 
-If you change the code (to fix bugs or to implement enhancements),
-then it is highly recommended that you test your changes against known
-good data.  To do this, first download the image tests available from
-the PEL homepage:
-
-  http://pel.sourceforge.net/
-
-Unpack this in the test directory, thereby creating an image-tests
-directory there.  Then download SimpleTest from
-
-  http://sourceforge.net/projects/simpletest
-
-and use it to check that your changes does not introduce new bugs.
-Simply place SimpleTest in a directory parallel to the PEL
-installation directory and run the test.php file found in the test
-directory in the PEL.  It should report that all tests have passed, if
-not, then the change has messed something up.
+If you change the code (to fix bugs or to implement enhancements), it
+is highly recommended that you test your changes against known good
+data.  Please see the test/README file for more information about
+running the PEL test suite.

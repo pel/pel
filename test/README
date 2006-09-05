@@ -1,6 +1,6 @@
 README file for PEL Test Suite.
 
-Copyright (C) 2005  Martin Geisler.
+Copyright (C) 2005, 2006  Martin Geisler.
 Licensed under the GNU GPL, see COPYING for details.
 
 
@@ -14,7 +14,7 @@ functionality of PEL.
 In addition to the core tests, one can download a set of image tests.
 These consist of example images taken from as many different camera
 models as possible together with a test case that will ensure that PEL
-can read the data in the image, and that it keeps interpretating the
+can read the data in the image, and that it keeps interpreting the
 data in the same way.  This ensures stability in the development
 process by making sure that PEL keeps reading images in the same way.
 
@@ -33,11 +33,18 @@ First the SimpleTest framework has to be downloaded from
 Unpack it in a directory called 'simpletest' placed alongside the PEL
 directory, that is, in '../../simpletest' relative to this directory.
 
-Now run the test.php script and observe the results --- it should tell
-you that all tests were executed succesfully.
+Now run the run-tests.php script and observe the results --- it should
+tell you that all tests were executed successfully.
+
+You can run a subset of the available tests by giving the file names
+as command line arguments to run-tests.php.
+
+
+Failing Tests
+*************
 
 Should one or more of the tests fail, then first ensure that
-SimpleTest is placed correctly so that test.php can find it.  If
+SimpleTest is placed correctly so that run-tests.php can find it. If
 everything seems correct, then please report the error to the PEL
 Development List:
 

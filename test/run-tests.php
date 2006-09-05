@@ -57,13 +57,13 @@ require_once(SIMPLE_TEST . 'unit_tester.php');
 require_once(SIMPLE_TEST . 'reporter.php');
 
 if ($argc > 1) { 
-  /* If  commandline arguments are given, then only test those. */
+  /* If command line arguments are given, then only test those. */
   array_shift($argv);
   $tests = $argv;
   $group = new GroupTest('Selected PEL tests');
 } else {
-  /* otherwive test all .php files, except this file (test.php). */
-  $tests = array_diff(glob('*.php'), array('test.php'));
+  /* otherwive test all .php files, except this file (run-tests.php). */
+  $tests = array_diff(glob('*.php'), array('run-tests.php'));
   $group = new GroupTest('All PEL tests');
 
   /* Also test all image tests (if they are available). */
