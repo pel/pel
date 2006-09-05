@@ -87,11 +87,6 @@ abstract class WriteEntryTestCase extends UnitTestCase {
 
 }
 
-/* The just defined class should be ignored by SimpleTest since it's
- * an abstract base class for the real tests defined below. */
-$t = new SimpleTest();
-$t->ignore('WriteEntryTestCase');
-
 
 class WriteByteTestCase extends WriteEntryTestCase {
   function __construct() {
