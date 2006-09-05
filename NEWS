@@ -21,7 +21,9 @@ Changes:
   One should actually not be using appendSection() unless one is very
   sure that the image has not been ended by a EOI marker.
 
-* Added PelJpeg::getExif() method.
+* Added PelJpeg::getExif().  This method is the new preferred way of
+  obtaining the PelExif object from a PelJpeg object.  Updated the
+  examples and code to make use of it.
 
 * Fixed bug in edit-description.php which still called the constructor
   of PelIfd in the old pre-0.9 way.
@@ -34,6 +36,9 @@ Changes:
 
 * Rewrote entry for version 0.9 in NEWS to highlight the API
   incompatible changes made from version 0.8.
+
+* Renamed test.php to run-tests.php and implemented a simple search
+  functionality for finding the SimpleTest installation.
 
 
 PEL Version 0.9  January 8th 2006
