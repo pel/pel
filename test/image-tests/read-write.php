@@ -43,18 +43,18 @@ abstract class WriteEntryTestCase extends UnitTestCase {
     $tiff->setIfd($ifd);
     $this->assertNotNull($tiff->getIfd());
 
-    $app1 = new PelExif();
-    $this->assertNull($app1->getTiff());
-    $app1->setTiff($tiff);
-    $this->assertNotNull($app1->getTiff());
+    $exif = new PelExif();
+    $this->assertNull($exif->getTiff());
+    $exif->setTiff($tiff);
+    $this->assertNotNull($exif->getTiff());
 
 
     $jpeg = new PelJpeg();
     $jpeg->loadFile(dirname(__FILE__) . '/no-exif.jpg');
 
-    $this->assertNull($jpeg->getSection(PelJpegMarker::APP1));
-    $jpeg->insertSection(PelJpegMarker::APP1, $app1, 2);
-    $this->assertNotNull($jpeg->getSection(PelJpegMarker::APP1));
+    $this->assertNull($jpeg->getExif());
+    $jpeg->setExif($exif);
+    $this->assertNotNull($jpeg->getExif());
 
     file_put_contents('test-output.jpg', $jpeg->getBytes());
     $this->assertTrue(file_exists('test-output.jpg'));
@@ -65,7 +65,7 @@ abstract class WriteEntryTestCase extends UnitTestCase {
     $jpeg = new PelJpeg();
     $jpeg->loadFile('test-output.jpg');
 
-    $exif = $jpeg->getSection(PelJpegMarker::APP1);
+    $exif = $jpeg->getExif();
     $this->assertIsA($exif, 'PelExif');
 
     $tiff = $exif->getTiff();

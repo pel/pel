@@ -3,7 +3,7 @@
 /*  PEL: PHP Exif Library.  A library with support for reading and
  *  writing all Exif headers in JPEG and TIFF images using PHP.
  *
- *  Copyright (C) 2004, 2005  Martin Geisler.
+ *  Copyright (C) 2004, 2005, 2006  Martin Geisler.
  *
  *  This program is free software; you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
@@ -123,9 +123,8 @@ class PelJpegMarker {
    * Application segment 1
    *
    * When a JPEG image contains Exif data, the data will normally be
-   * stored in this section.  A call to {@link PelJpeg::getSection()}
-   * with this marker as argument will then return a {@link PelExif}
-   * object.
+   * stored in this section and a call to {@link PelJpeg::getExif()}
+   * will return a {@link PelExif} object representing it.
    */
   const APP1  = 0xE1;
   /** Application segment 2 */

@@ -81,17 +81,16 @@ class PelJpegInvalidMarkerException extends PelException {
  * sections containing some {@link PelJpegContent content} identified
  * by a {@link PelJpegMarker marker}.
  *
- * The {@link getSection()} method is used to pick out a particular
- * section --- the Exif information is typically stored in the {@link
- * PelJpegMarker::APP1 APP1} section, and so if the name of the JPEG
- * file is stored in $filename, then one would get hold of the Exif
- * data by saying:
+ * The {@link getExif()} method is used get hold of the {@link
+ * PelJpegMarker::APP1 APP1} section which stores Exif data.  So if
+ * the name of the JPEG file is stored in $filename, then one would
+ * get hold of the Exif data by saying:
  *
  * <code>
  * $jpeg = new PelJpeg();
  * $jpeg->loadFile($filename);
- * $app1 = $jpeg->getSection(PelJpegMarker::APP1);
- * $tiff = $app1->getTiff();
+ * $exif = $jpeg->getExif();
+ * $tiff = $exif->getTiff();
  * $ifd0 = $tiff->getIfd();
  * $exif = $ifd0->getSubIfd(PelIfd::EXIF);
  * $ifd1 = $ifd0->getNextIfd();
@@ -143,10 +142,8 @@ class PelJpeg {
    * loadFile()} methods to load JPEG data from a {@link
    * PelDataWindow} or a file, respectively.
    *
-   * Individual sections of JPEG content can be added with the {@link
-   * appendSection()} method --- use this method to add a {@link
-   * PelExif} object as the {@link PelJpegMarker::APP1} section of an
-   * existing file without Exif information:
+   * New Exif data (in the form of a {@link PelExif} object) be
+   * inserted with the {@link setExif()} method:
    *
    * <code>
    * $jpeg = new PelJpeg();
@@ -155,7 +152,7 @@ class PelJpeg {
    * // Create container for the Exif information:
    * $exif = new PelExif();
    * // Now Add a PelTiff object with a PelIfd object with one or more
-   * // PelEntry objects to $exif.  Finally add $exif to $jpeg:
+   * // PelEntry objects to $exif... Finally add $exif to $jpeg:
    * $jpeg->setExif($exif);
    * </code>
    */
@@ -386,7 +383,9 @@ class PelJpeg {
 
 
   /**
-   * Get a sections corresponding to a particular marker.
+   * Get a section corresponding to a particular marker.
+   *
+   * Please use the {@link getExif()} if you just need the Exif data.
    *
    * This will search through the sections of this JPEG object,
    * looking for a section identified with the specified {@link
@@ -398,16 +397,6 @@ class PelJpeg {
    * <code>
    * $dht3 = $jpeg->getSection(PelJpegMarker::DHT, 2);
    * </code>
-   *
-   * whereas one can just do:
-   *
-   * <code>
-   * $app1 = $jpeg->getSection(PelJpegMarker::APP1);
-   * </code>
-   *
-   * to get hold of the first (and normally only) {@link
-   * PelJpegMarker::APP1 APP1} section, which would hold the Exif
-   * data.
    *
    * @param PelJpegMarker the marker identifying the section.
    *
