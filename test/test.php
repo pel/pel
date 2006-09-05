@@ -26,34 +26,47 @@
 
 error_reporting(E_ALL);
 
-/* This assumes that SimpleTest is installed in a directory parallel
- * to the PEL directory. */
-define('SIMPLE_TEST', '../../simpletest/');
+/* You can define the path to SimpleTest here, or you can let PEL
+ * search for it by walking up the directory tree. */
+//define('SIMPLE_TEST', '../simpletest/');
 
-if (!is_dir(SIMPLE_TEST)) {
-  printf("The directory SimpleTest directory (%s) does not exist \n" .
-         "and so no tests can be made.\n" .
-         "Please download SimpleTest from http://simpletest.sf.net/\n" .
-         "and unpack it in the directory mentioned above.\n", SIMPLE_TEST);
+if (!defined('SIMPLE_TEST')) {
+  /* Search for a directory named 'simpletest' upwards in the
+   * directory tree. */
+  $dir = 'simpletest/';
+  while (!is_file($dir . 'unit_tester.php')) {
+    print "Looking for SimpleTest in $dir...\n";
+    $dir = '../' . $dir;
+  }
+
+  define('SIMPLE_TEST', $dir);
+}
+
+if (is_dir(SIMPLE_TEST)) {
+  printf("Found SimpleTest version %s in %s!\n",
+         file_get_contents(SIMPLE_TEST . 'VERSION'),
+         SIMPLE_TEST);
+} else {
+  print "SimpleTest could not be found and so no tests can be made.\n";
+  print "Please download SimpleTest from http://simpletest.sf.net/\n";
+  print "and unpack it in as one of the directories mentioned above.\n";
   exit(1);
 }
 
 require_once(SIMPLE_TEST . 'unit_tester.php');
 require_once(SIMPLE_TEST . 'reporter.php');
 
-if ($argc > 1) {
+if ($argc > 1) { 
+  /* If  commandline arguments are given, then only test those. */
   array_shift($argv);
   $tests = $argv;
   $group = new GroupTest('Selected PEL tests');
 } else {
+  /* otherwive test all .php files, except this file (test.php). */
   $tests = array_diff(glob('*.php'), array('test.php'));
   $group = new GroupTest('All PEL tests');
-}
 
-foreach ($tests as $test)
-  $group->addTestFile($test);
-
-if ($argc == 1) {
+  /* Also test all image tests (if they are available). */
   if (is_dir('image-tests')) {
     $image_tests = array_diff(glob('image-tests/*.php'),
                               array('image-tests/make-image-test.php'));
@@ -66,7 +79,11 @@ if ($argc == 1) {
     echo "Found no image tests, only core functionality will be tested.\n";
     echo "Image tests are available from http://pel.sourceforge.net/.\n";
   }
+
 }
+
+foreach ($tests as $test)
+  $group->addTestFile($test);
 
 $group->run(new TextReporter());
 
