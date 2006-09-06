@@ -1,7 +1,7 @@
 README file for PEL: PHP Exif Library.  A library with support for
 reading and writing Exif headers in JPEG and TIFF images using PHP.
 
-Copyright (C) 2004, 2005  Martin Geisler.
+Copyright (C) 2004, 2005, 2006  Martin Geisler.
 Licensed under the GNU GPL, see COPYING for details.
 
 
@@ -44,22 +44,36 @@ Getting Support
 
 The first place you should consult for support is the documentation
 supplied with PEL, found in the 'doc' directory.  There you will find
-a complete API documentation which describes all the classes and files
-in PEL, and their use.
+a complete API documentation with descriptions of all classes and
+files in PEL.
 
 The scripts found in the 'examples' directory are also a good source
-of information.
+of information, especially the 'edit-description.php' file which has
+tons of comments.
 
 PEL is hosted on SourceForge and uses the tools found there for
-support.  For general discussions about the future development of PEL,
-please use the development mailing list:
+support.  This means that all questions, bug reports, etc. should be
+directed there (and not directly to Martin Geisler).
+
+The preferred way of getting support is the development mailing list:
 
   http://lists.sourceforge.net/lists/listinfo/pel-devel
+
+After you have subscribed (do not worry, it is a low volume list) you
+can post by sending your question to
+
+  <pel-devel@lists.sourceforge.net>
 
 If you have a specific support request, a bug report, a feature
 request, or maybe a patch, please use the corresponding tracker:
 
   http://sourceforge.net/tracker/?group_id=108380
+
+Please try the latest version before reporting bugs --- it might have
+been fixed already.  The latest code can be found in the Subversion
+repository, please see this SourceForge page for more information:
+
+  http://sourceforge.net/svn/?group_id=108380
 
 
 Contributing Test Images
