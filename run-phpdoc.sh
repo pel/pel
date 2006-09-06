@@ -3,7 +3,7 @@
 #  PEL: PHP Exif Library.  A library with support for reading and
 #  writing all Exif headers of JPEG images using PHP.
 #
-#  Copyright (C) 2004  Martin Geisler <gimpster@users.sourceforge.net>
+#  Copyright (C) 2004, 2006  Martin Geisler
 #
 #  This program is free software; you can redistribute it and/or modify
 #  it under the terms of the GNU General Public License as published by
@@ -35,7 +35,7 @@ else
 fi
 
 if [[ -z $2 ]]; then
-    PHPDOC="../phpdocumentor/phpdoc"
+    PHPDOC="../../PhpDocumentor/phpdoc"
 else
     PHPDOC=$2
 fi    
@@ -44,7 +44,7 @@ fi
 # it is missing...
 touch ChangeLog
 
-echo -n "Running phpDocumentor... "
+echo "Running phpDocumentor... "
 $PHPDOC                                                             \
     --sourcecode          "on"                                      \
     --title               "PEL: PHP Exif Library$VERSION"           \
@@ -54,4 +54,4 @@ $PHPDOC                                                             \
     --directory           "tutorials"                               \
     --filename            "Pel*.php,README,INSTALL,NEWS,TODO,ChangeLog"  \
     --target              "doc"
-echo "done."
+
