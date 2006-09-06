@@ -1,4 +1,4 @@
-<refentry id="{@id}">                            <!-- -*- nxml -*- -->
+<refentry id="{@id}">
   <refnamediv>
     <refname>Frequently Asked Questions (FAQ)</refname>
     <refpurpose>Quick answers to common questions</refpurpose>
@@ -17,13 +17,6 @@
   </refsynopsisdiv>
 
   {@toc}
-
-<!--
-    One will find lots of seeminly unnecessary comments in this file,
-    but they are there to keep link constructs on one line.  This is
-    necessary because the phpDocumentor 1.3.0RC3 parser apparently
-    cannot handle linebreaks in that construct.
--->
 
 <refsect1 id="{@id pel-acronym}">
 
@@ -92,10 +85,9 @@ $object_b = $ifd->getEntry(PelTag::IMAGE_DESCRIPTION);
 
   <para>If your provider is still using PHP 4, then you should ask
   them to upgrade.  PHP 5 has been declared stable since July 2004 and
-  all major PHP applications <!-- //////////////////////////////// -->
-  ({@link http://www.wordpress.org WordPress}, <!-- ////////////// -->
-  {@link http://gallery.menalto.com/ Gallery}, <!-- ////////////// -->
-  {@link http://phpwiki.sourceforge.net/ PhpWiki}, <!-- ////////// -->
+  all major PHP applications ({@link http://www.wordpress.org
+  WordPress}, {@link http://gallery.menalto.com/ Gallery},
+  {@link http://phpwiki.sourceforge.net/ PhpWiki},
   {@link http://www.phpmyadmin.net/ phpMyAdmin}, etc...), have been
   upgraded to work with PHP 5, so an upgrade should not bring you any
   problems, just more features and better performance.</para>
@@ -118,18 +110,17 @@ $object_b = $ifd->getEntry(PelTag::IMAGE_DESCRIPTION);
 <refsect1 id="{@id call-on-non-object}">
   <title>What does "<literal>Call to a member function
   <function>f</function> on a non-object</literal>" (where
-  <function>f</function> is <literal>getSection()</literal>,
-  <literal>getTiff()</literal>, or <literal>setValue()</literal>)
-  mean?</title>
+  <function>f</function> is <literal>getTiff()</literal> or
+  <literal>setValue()</literal>) mean?</title>
 
   <para>This is the error PHP gives when you call a method on a
   variable which is not an object.</para>
 
   <para>PEL uses objects to represent the entire structure of a JPEG
   image, and many of the methods defined on those objects return other
-  objects.  In particular, the method {@link PelJpeg::getSection()}
-  returns a {@link PelJpegContent} object and <!-- /////////////// -->
-  {@link PelIfd::getEntry()} returns a {@link PelEntry} object.</para>
+  objects.  In particular, the method {@link PelJpeg::getExif()}
+  returns a {@link PelExif} object and {@link PelIfd::getEntry()}
+  returns a {@link PelEntry} object.</para>
 
   <para>But both methods can return <literal>null</literal> if no such
   section or entry exist.  The correct way to use them is thus
@@ -137,16 +128,17 @@ $object_b = $ifd->getEntry(PelTag::IMAGE_DESCRIPTION);
 
   <programlisting role="php">
     <![CDATA[
-$app1 = $jpeg->getSection(PelJpegMarker::APP1);
-if ($app1 instanceof PelExif) {
-  /* Do something with the Exif data. */
+$exif = $jpeg->getExif();
+if ($exif != null) {
+  $tiff = $exif->getTiff();
+  /* Do something with the TIFF data. */
 } else {
   /* Sorry --- no Exif data found. */
 }
     ]]>
   </programlisting>
   
-  <para>The same principle applies to the return values of <!-- // -->
+  <para>The same principle applies to the return values of
   {@link PelIfd::getEntry()} and all other methods which return
   objects.</para>
 
@@ -158,7 +150,7 @@ if ($app1 instanceof PelExif) {
   <title>Does PEL handle IPTC entries?</title>
 
   <para>No, PEL only deals with Exif data, and no such extension is
-  planned.  Try taking at look at the <!-- /////////////////////// -->
+  planned.  Try taking at look at the
   {@link http://www.ozhiker.com/electronics/pjmt/ PHP JPEG Metadata
   Toolkit} which should handle IPTC along with a huge number of other
   metadata formats.</para>
@@ -176,10 +168,10 @@ if ($app1 instanceof PelExif) {
   <orderedlist>
 
     <listitem>
-      <para>PHP must have support for the <!-- /////////////////// -->
+      <para>PHP must have support for the
       {@link http://www.php.net/manual/en/ref.gettext.php Gettext
       extension}.  Most installations of PHP already has this, but
-      please double-check with <function> <!-- /////////////////// -->
+      please double-check with <function>
       {@link http://www.php.net/manual/en/function.phpinfo.php
       phpinfo}</function> before asking for help on the
       mailinglist.</para>
@@ -222,13 +214,13 @@ if ($app1 instanceof PelExif) {
   mandates certain formats and lengths for some entries, and sometimes
   these requirements are violated.</para>
 
-  <para>The strictness of PEL is controlled by the the method <!-- -->
+  <para>The strictness of PEL is controlled by the the method
   {@link Pel::setStrictParsing()}.  The default is non-strict parsing.
   In this mode, PEL will not throw exceptions for parse errors but
-  instead store them for later inspection via the <!-- /////////// -->
+  instead store them for later inspection via the
   {@link Pel::getExceptions()} method.</para>
 
-  <para>With an argument of <literal>true</literal> to <!-- ////// -->
+  <para>With an argument of <literal>true</literal> to
   {@link Pel::setStrictParsing()} you make PEL throw exceptions upon
   parse errors.</para>
 
@@ -259,7 +251,7 @@ if ($app1 instanceof PelExif) {
 
   <para>So if you do not distribute your code, then you can use it for
   whatever you want, including writing a website (commercial or not)
-  that integrates PEL.  Please see <!-- ////////////////////////// -->
+  that integrates PEL.  Please see
   {@link http://www.gnu.org/licenses/gpl-faq.html#GPLRequireSourcePostedPublic
   this question} in the GPL FAQ.</para>
 
@@ -270,7 +262,7 @@ if ($app1 instanceof PelExif) {
 
   <title>My question is not answered here!</title>
 
-  <para>Please ask your questions on the <!-- //////////////////// -->
+  <para>Please ask your questions on the
   {@link http://lists.sourceforge.net/lists/listinfo/pel-devel PEL
   Development List}.  If an answer is found, then the FAQ will be
   updated.</para>

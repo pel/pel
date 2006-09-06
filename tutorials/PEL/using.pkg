@@ -1,4 +1,4 @@
-<refentry id="{@id}">                            <!-- -*- nxml -*- -->
+<refentry id="{@id}">
   <refnamediv>
     <refname>Using PEL in applications</refname>
     <refpurpose>Learn how to load, edit, and save images</refpurpose>
@@ -18,13 +18,6 @@
 
   {@toc}
 
-<!--
-    One will find lots of seeminly unnecessary comments in this file,
-    but they are there to keep link constructs on one line.  This is
-    necessary because the phpDocumentor 1.3.0RC3 parser apparently
-    cannot handle linebreaks in that construct.
--->
-
   <refsect1 id="{@id jpeg}">
     <title>Loading a JPEG image</title>
 
@@ -43,17 +36,12 @@ $jpeg->loadFile($filename);
     </programlisting>
 
     <para>If this succeeded without any exceptions being thrown, one
-    can proceed to find the Exif data itself.  Some knowledge about
-    the structure of a JPEG file is in order: JPEG files consist of a
-    number sections containing {@link PelJpegContent content}
-    identified by a {@link PelJpegMarker marker}.  The Exif data is
-    normally stored in the {@link PelJpegMarker::APP1 APP1} marker, so
-    using the {@link PelJpeg::getSection()} method like this retrieves
-    the Exif information:</para>
+    can proceed to find the Exif data itself. The Exif data is
+    retrieved using the {@link PelJpeg::getExif()} method:</para>
 
     <programlisting role="php">
       <![CDATA[
-$exif = $jpeg->getSection(PelJpegMarker::APP1);
+$exif = $jpeg->getExif();
       ]]>
     </programlisting>
 
@@ -62,12 +50,8 @@ $exif = $jpeg->getSection(PelJpegMarker::APP1);
 
     <warning>
       <para>If the JPEG image does not contain Exif information, then
-      the <varname>$exif</varname> variable will either be
-      <literal>null</literal> or a generic {@link PelJpegContent}
-      object representing some other kind of data.</para>
-
-      <para>So remember to test the return value, and use
-      <literal>instanceof</literal> for extra safety.</para>
+      the <varname>$exif</varname> variable will be
+      <literal>null</literal>.</para>
     </warning>
 
   </refsect1>
@@ -97,8 +81,8 @@ $tiff = $exif->getTiff();
     hold of using the {@link PelIfd::getEntry() getEntry()}
     method.</para>
 
-    <para>The first IFD, number zero, will normally contain the <!--
-    --> {@link PelTag::IMAGE_DESCRIPTION IMAGE_DESCRIPTION} tag.  The
+    <para>The first IFD, number zero, will normally contain the
+    {@link PelTag::IMAGE_DESCRIPTION IMAGE_DESCRIPTION} tag. The
     following code will initialize <varname>$ifd0</varname> with the
     first IFD, and <varname>$desc</varname> with the
     description:</para>
@@ -110,12 +94,12 @@ $desc = $ifd0->getEntry(PelTag::IMAGE_DESCRIPTION);
       ]]>
     </programlisting>
 
-    <para>Now <varname>$desc</varname> will contain a <!-- /////// -->
+    <para>Now <varname>$desc</varname> will contain a
     {@link PelEntryAscii} object holding the description.  Each entry
-    is represented using an object of a class descendent of <!-- / -->
-    {@link PelEntry}.  There are classes for numbers such as <!-- -->
+    is represented using an object of a class descendent of
+    {@link PelEntry}.  There are classes for numbers such as
     {@link PelEntryShort} for small numbers and {@link PelEntryLong}
-    for big numbers, and more specialized classes, such as <!-- // -->
+    for big numbers, and more specialized classes, such as
     {@link PelEntryVersion} for version numbers, {@link PelEntryTime}
     for date and time, and so on.</para>
   
@@ -124,8 +108,8 @@ $desc = $ifd0->getEntry(PelTag::IMAGE_DESCRIPTION);
   <refsect1 id="{@id reading}">
     <title>Reading Values</title>
 
-    <para>The value of any entry can be retrieved by calling the <!--
-    --> {@link PelEntry::getValue() getValue()} method on the object.
+    <para>The value of any entry can be retrieved by calling the
+    {@link PelEntry::getValue() getValue()} method on the object.
     Doing this on <varname>$desc</varname> will return a string, while
     doing it on a {@link PelEntryShort} will normally return an
     integer (see {@link PelEntryNumber::getValue() the documentation}
@@ -145,7 +129,7 @@ echo 'The description: ' . $desc->getValue();
     <title>Writing Values</title>
 
     <para>Writing new values (changing values) to an entry is just as
-    easy as reading values, one just uses the <!-- /////////////// -->
+    easy as reading values, one just uses the
     {@link PelEntry::setValue() setValue()} method on the entry in
     question.</para>
 
