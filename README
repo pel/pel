@@ -26,11 +26,11 @@ should look like.
 Features
 ********
 
-* Reads and and writes Exif metadata from both JPEG and TIFF images.
+* Reads and writes Exif metadata from both JPEG and TIFF images.
 
 * Supports reading and writing all Exif tags.
 
-* Supports internationalisation.
+* Supports internationalization.
 
 * Extensible object-oriented design.
 
