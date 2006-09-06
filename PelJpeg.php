@@ -338,7 +338,11 @@ class PelJpeg {
    * Exif data.
    */
   function getExif() {
-    return $this->getSection(PelJpegMarker::APP1);
+    $exif = $this->getSection(PelJpegMarker::APP1);
+    if ($exif instanceof PelExif)
+      return $exif;
+    else
+      return null;
   }
 
 
