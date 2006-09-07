@@ -5,14 +5,14 @@ Copyright (C) 2004, 2005, 2006  Martin Geisler.
 Licensed under the GNU GPL, see COPYING for details.
 
 
-PEL Version 0.9.1
-*****************
+PEL Version 0.9.1  (not released yet)
+*************************************
 
 Notes:
 
-Added setExif() and getExif() functions as a convenient way of getting
-and setting the Exif data in a PelJpeg object. Added a Japanese
-translation.
+Added setExif() and getExif() methods as a convenient and recommended
+way of getting and setting the Exif data in a PelJpeg object. Added a
+Japanese translation.
 
 Changes:
 
