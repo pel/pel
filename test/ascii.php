@@ -3,7 +3,7 @@
 /*  PEL: PHP Exif Library.  A library with support for reading and
  *  writing all Exif headers in JPEG and TIFF images using PHP.
  *
- *  Copyright (C) 2004  Martin Geisler.
+ *  Copyright (C) 2004, 2006  Martin Geisler.
  *
  *  This program is free software; you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
@@ -47,21 +47,60 @@ class AsciiTestCase extends UnitTestCase {
   }
 
   function testTime() {
-    $entry = new PelEntryTime();
+    $arg1 = new WantedPatternExpectation('/Missing argument 1 for ' .
+                                         'PelEntryTime::__construct()/');
+    $arg2 = new WantedPatternExpectation('/Missing argument 2 for ' .
+                                         'PelEntryTime::__construct()/');
 
-    $pattern = new WantedPatternExpectation('/Missing argument 1 for ' .
-                                            'PelEntryTime::__construct()/');
-    $this->assertError($pattern);
+    $entry = new PelEntryTime();
+    $this->assertError($arg1);
+    $this->assertError($arg2);
     $this->assertError('Undefined variable: tag');
+    $this->assertError('Undefined variable: timestamp');
 
     $entry = new PelEntryTime(42);
-    $this->assertNoErrors();
-    $this->assertEqual($entry->getValue(), time());
-    $this->assertEqual($entry->getComponents(), 20);
+    $this->assertError($arg2);
+    $this->assertError('Undefined variable: timestamp');
 
     $entry = new PelEntryTime(42, 10);
+    $this->assertNoErrors();
+    $this->assertEqual($entry->getComponents(), 20);
     $this->assertEqual($entry->getValue(), 10);
+    $this->assertEqual($entry->getValue(PelEntryTime::UNIX_TIMESTAMP), 10);
+    $this->assertEqual($entry->getValue(PelEntryTime::EXIF_STRING),
+                       '1970:01:01 00:00:10');
+    $this->assertEqual($entry->getValue(PelEntryTime::JULIAN_DAY_COUNT),
+                       2440588 + 10/86400);
     $this->assertEqual($entry->getText(), '1970:01:01 00:00:10');
+
+    // Malformed Exif timestamp.
+    $entry->setValue('1970!01-01 00 00 30', PelEntryTime::EXIF_STRING);
+    $this->assertEqual($entry->getValue(), 30);
+
+    $entry->setValue(2415021.75, PelEntryTime::JULIAN_DAY_COUNT);
+    // This is Jan 1st 1900 at 18:00, outside the range of a UNIX
+    // timestamp:
+    $this->assertEqual($entry->getValue(), false);
+    $this->assertEqual($entry->getValue(PelEntryTime::EXIF_STRING),
+                       '1900:01:01 18:00:00');
+    $this->assertEqual($entry->getValue(PelEntryTime::JULIAN_DAY_COUNT),
+                       2415021.75);
+
+    $entry->setValue('0000:00:00 00:00:00', PelEntryTime::EXIF_STRING);
+
+    $this->assertEqual($entry->getValue(), false);
+    $this->assertEqual($entry->getValue(PelEntryTime::EXIF_STRING),
+                       '0000:00:00 00:00:00');
+    $this->assertEqual($entry->getValue(PelEntryTime::JULIAN_DAY_COUNT),
+                       0);
+
+    $entry->setValue('9999:12:31 23:59:59', PelEntryTime::EXIF_STRING);
+
+    $this->assertEqual($entry->getValue(), false);
+    $this->assertEqual($entry->getValue(PelEntryTime::EXIF_STRING),
+                       '9999:12:31 23:59:59');
+    $this->assertEqual($entry->getValue(PelEntryTime::JULIAN_DAY_COUNT),
+                       5373484 + 86399/86400);
   }
 
   function testCopyright() {
