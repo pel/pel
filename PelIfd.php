@@ -370,13 +370,8 @@ class PelIfd implements IteratorAggregate, ArrayAccess {
         if ($components != 20)
           throw new PelWrongComponentCountException($this->type, $tag, $components, 20);
 
-        /* Split the string into year, month, date, hour, minute, and
-         * second components. */
-        $d = explode('-', strtr($data->getBytes(0, -1), '.: ', '---'));
-
         // TODO: handle timezones.
-        return new PelEntryTime($tag, gmmktime($d[3], $d[4], $d[5],
-                                               $d[1], $d[2], $d[0]));
+        return new PelEntryTime($tag, $data->getBytes(0, -1), PelEntryTime::EXIF_STRING);
 
       case PelTag::COPYRIGHT:
         if ($format != PelFormat::ASCII)
