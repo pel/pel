@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PEL\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-01-11 19:36+0100\n"
+"POT-Creation-Date: 2006-11-04 20:42+0100\n"
 "PO-Revision-Date: 2005-10-03 13:39+0200\n"
 "Last-Translator: Hans Ulrich Niedermann <gp@n-dimensional.de>\n"
 "Language-Team: Deutsch\n"
@@ -20,6 +20,14 @@ msgstr ""
 #: PelDataWindow.php:517
 #, php-format
 msgid "DataWindow: %d bytes in [%d, %d] of %d bytes"
+msgstr ""
+
+#: PelEntryAscii.php:465
+msgid "(Photographer)"
+msgstr ""
+
+#: PelEntryAscii.php:466
+msgid "(Editor)"
 msgstr ""
 
 #: PelEntry.php:369
@@ -37,22 +45,14 @@ msgstr ""
 msgid "    Components: %d\n"
 msgstr ""
 
-#: PelEntry.php:375
+#: PelEntry.php:376
 #, php-format
 msgid "    Value     : %s\n"
 msgstr ""
 
-#: PelEntry.php:376
+#: PelEntry.php:377
 #, php-format
 msgid "    Text      : %s\n"
-msgstr ""
-
-#: PelEntryAscii.php:342
-msgid "(Photographer)"
-msgstr ""
-
-#: PelEntryAscii.php:343
-msgid "(Editor)"
 msgstr ""
 
 #: PelEntryRational.php:136 PelEntryRational.php:141
@@ -176,7 +176,7 @@ msgstr "Dateiquelle"
 msgid "Tungsten (incandescent light)"
 msgstr ""
 
-#: PelEntryShort.php:217 PelTag.php:2427
+#: PelEntryShort.php:217 PelTag.php:2402
 msgid "Flash"
 msgstr "Blitz"
 
@@ -588,605 +588,605 @@ msgstr ""
 msgid "Unknown format: 0x%X"
 msgstr "Unbekannt 0x%04X"
 
-#: PelIfd.php:1116
+#: PelIfd.php:1180
 #, php-format
 msgid "Dumping IFD %s with %d entries...\n"
 msgstr ""
 
-#: PelIfd.php:1122
+#: PelIfd.php:1186
 #, php-format
 msgid "Dumping %d sub IFDs...\n"
 msgstr ""
 
-#: PelJpeg.php:459
-msgid "Dumping JPEG data...\n"
-msgstr ""
-
-#: PelJpeg.php:463
-#, php-format
-msgid "Section %d (marker 0x%02X - %s):\n"
-msgstr ""
-
-#: PelJpeg.php:465
-#, php-format
-msgid "  Description: %s\n"
-msgstr "Beschreibung: %s\n"
-
-#: PelJpeg.php:473
-msgid "  Content    : Exif data\n"
-msgstr ""
-
-#: PelJpeg.php:476
-#, fuzzy, php-format
-msgid "  Content    : %s\n"
-msgstr "Kontrast"
-
-#: PelJpeg.php:478
-msgid "  Content    : Unknown\n"
-msgstr ""
-
-#: PelJpegMarker.php:289 PelJpegMarker.php:431
+#: PelJpegMarker.php:288 PelJpegMarker.php:430
 #, php-format
 msgid "Unknown marker: 0x%02X"
 msgstr ""
 
-#: PelJpegMarker.php:303
+#: PelJpegMarker.php:302
 msgid "Encoding (baseline)"
 msgstr ""
 
-#: PelJpegMarker.php:305
+#: PelJpegMarker.php:304
 msgid "Encoding (extended sequential)"
 msgstr ""
 
-#: PelJpegMarker.php:307
+#: PelJpegMarker.php:306
 msgid "Encoding (progressive)"
 msgstr ""
 
-#: PelJpegMarker.php:309
+#: PelJpegMarker.php:308
 msgid "Encoding (lossless)"
 msgstr ""
 
-#: PelJpegMarker.php:311
+#: PelJpegMarker.php:310
 msgid "Encoding (differential sequential)"
 msgstr ""
 
-#: PelJpegMarker.php:313
+#: PelJpegMarker.php:312
 msgid "Encoding (differential progressive)"
 msgstr ""
 
-#: PelJpegMarker.php:315
+#: PelJpegMarker.php:314
 msgid "Encoding (differential lossless)"
 msgstr ""
 
-#: PelJpegMarker.php:317
+#: PelJpegMarker.php:316
 msgid "Encoding (extended sequential, arithmetic)"
 msgstr ""
 
-#: PelJpegMarker.php:319
+#: PelJpegMarker.php:318
 msgid "Encoding (progressive, arithmetic)"
 msgstr ""
 
-#: PelJpegMarker.php:321
+#: PelJpegMarker.php:320
 msgid "Encoding (lossless, arithmetic)"
 msgstr ""
 
-#: PelJpegMarker.php:323
+#: PelJpegMarker.php:322
 msgid "Encoding (differential sequential, arithmetic)"
 msgstr ""
 
-#: PelJpegMarker.php:325
+#: PelJpegMarker.php:324
 msgid "Encoding (differential progressive, arithmetic)"
 msgstr ""
 
-#: PelJpegMarker.php:327
+#: PelJpegMarker.php:326
 msgid "Encoding (differential lossless, arithmetic)"
 msgstr ""
 
-#: PelJpegMarker.php:329
+#: PelJpegMarker.php:328
 msgid "Start of image"
 msgstr ""
 
-#: PelJpegMarker.php:331
+#: PelJpegMarker.php:330
 msgid "End of image"
 msgstr ""
 
-#: PelJpegMarker.php:333
+#: PelJpegMarker.php:332
 msgid "Start of scan"
 msgstr ""
 
-#: PelJpegMarker.php:335 PelJpegMarker.php:429
+#: PelJpegMarker.php:334 PelJpegMarker.php:428
 msgid "Comment"
 msgstr "Anmerkung des Nutzers"
 
-#: PelJpegMarker.php:337
+#: PelJpegMarker.php:336
 msgid "Define Huffman table"
 msgstr ""
 
-#: PelJpegMarker.php:339
+#: PelJpegMarker.php:338
 #, fuzzy
 msgid "Extension"
 msgstr "Exif Version"
 
-#: PelJpegMarker.php:341
+#: PelJpegMarker.php:340
 msgid "Define arithmetic coding conditioning"
 msgstr ""
 
-#: PelJpegMarker.php:343 PelJpegMarker.php:345 PelJpegMarker.php:347
-#: PelJpegMarker.php:349 PelJpegMarker.php:351 PelJpegMarker.php:353
-#: PelJpegMarker.php:355 PelJpegMarker.php:357
+#: PelJpegMarker.php:342 PelJpegMarker.php:344 PelJpegMarker.php:346
+#: PelJpegMarker.php:348 PelJpegMarker.php:350 PelJpegMarker.php:352
+#: PelJpegMarker.php:354 PelJpegMarker.php:356
 #, php-format
 msgid "Restart %d"
 msgstr ""
 
-#: PelJpegMarker.php:359
+#: PelJpegMarker.php:358
 msgid "Define quantization table"
 msgstr ""
 
-#: PelJpegMarker.php:361
+#: PelJpegMarker.php:360
 msgid "Define number of lines"
 msgstr ""
 
-#: PelJpegMarker.php:363
+#: PelJpegMarker.php:362
 msgid "Define restart interval"
 msgstr ""
 
-#: PelJpegMarker.php:365
+#: PelJpegMarker.php:364
 msgid "Define hierarchical progression"
 msgstr ""
 
-#: PelJpegMarker.php:367
+#: PelJpegMarker.php:366
 msgid "Expand reference component"
 msgstr ""
 
-#: PelJpegMarker.php:369 PelJpegMarker.php:371 PelJpegMarker.php:373
-#: PelJpegMarker.php:375 PelJpegMarker.php:377 PelJpegMarker.php:379
-#: PelJpegMarker.php:381 PelJpegMarker.php:383 PelJpegMarker.php:385
-#: PelJpegMarker.php:387 PelJpegMarker.php:389 PelJpegMarker.php:391
-#: PelJpegMarker.php:393 PelJpegMarker.php:395 PelJpegMarker.php:397
-#: PelJpegMarker.php:399
+#: PelJpegMarker.php:368 PelJpegMarker.php:370 PelJpegMarker.php:372
+#: PelJpegMarker.php:374 PelJpegMarker.php:376 PelJpegMarker.php:378
+#: PelJpegMarker.php:380 PelJpegMarker.php:382 PelJpegMarker.php:384
+#: PelJpegMarker.php:386 PelJpegMarker.php:388 PelJpegMarker.php:390
+#: PelJpegMarker.php:392 PelJpegMarker.php:394 PelJpegMarker.php:396
+#: PelJpegMarker.php:398
 #, php-format
 msgid "Application segment %d"
 msgstr ""
 
-#: PelJpegMarker.php:401 PelJpegMarker.php:403 PelJpegMarker.php:405
-#: PelJpegMarker.php:407 PelJpegMarker.php:409 PelJpegMarker.php:411
-#: PelJpegMarker.php:413 PelJpegMarker.php:415 PelJpegMarker.php:417
-#: PelJpegMarker.php:419 PelJpegMarker.php:421 PelJpegMarker.php:423
-#: PelJpegMarker.php:425 PelJpegMarker.php:427
+#: PelJpegMarker.php:400 PelJpegMarker.php:402 PelJpegMarker.php:404
+#: PelJpegMarker.php:406 PelJpegMarker.php:408 PelJpegMarker.php:410
+#: PelJpegMarker.php:412 PelJpegMarker.php:414 PelJpegMarker.php:416
+#: PelJpegMarker.php:418 PelJpegMarker.php:420 PelJpegMarker.php:422
+#: PelJpegMarker.php:424 PelJpegMarker.php:426
 #, fuzzy, php-format
 msgid "Extension %d"
 msgstr "Exif Version"
 
-#: PelTag.php:2268
+#: PelJpeg.php:509
+msgid "Dumping JPEG data...\n"
+msgstr ""
+
+#: PelJpeg.php:513
+#, php-format
+msgid "Section %d (marker 0x%02X - %s):\n"
+msgstr ""
+
+#: PelJpeg.php:515
+#, php-format
+msgid "  Description: %s\n"
+msgstr "Beschreibung: %s\n"
+
+#: PelJpeg.php:523
+msgid "  Content    : Exif data\n"
+msgstr ""
+
+#: PelJpeg.php:526
+#, fuzzy, php-format
+msgid "  Content    : %s\n"
+msgstr "Kontrast"
+
+#: PelJpeg.php:528
+msgid "  Content    : Unknown\n"
+msgstr ""
+
+#: PelTag.php:2243
 #, php-format
 msgid "Unknown: 0x%04X"
 msgstr "Unbekannt 0x%04X"
 
-#: PelTag.php:2297
+#: PelTag.php:2272
 msgid "Interoperability Index"
 msgstr ""
 
-#: PelTag.php:2299
+#: PelTag.php:2274
 msgid "Interoperability Version"
 msgstr ""
 
-#: PelTag.php:2301
+#: PelTag.php:2276
 msgid "Image Width"
 msgstr "Bildbreite"
 
-#: PelTag.php:2303
+#: PelTag.php:2278
 msgid "Image Length"
 msgstr "Bildlänge"
 
-#: PelTag.php:2305
+#: PelTag.php:2280
 msgid "Bits per Sample"
 msgstr ""
 
-#: PelTag.php:2307
+#: PelTag.php:2282
 msgid "Compression"
 msgstr "Kompression"
 
-#: PelTag.php:2309
+#: PelTag.php:2284
 msgid "Photometric Interpretation"
 msgstr "Fotometrische Interpretation"
 
-#: PelTag.php:2311
+#: PelTag.php:2286
 msgid "Fill Order"
 msgstr ""
 
-#: PelTag.php:2313
+#: PelTag.php:2288
 msgid "Document Name"
 msgstr "Dokumentenname"
 
-#: PelTag.php:2315
+#: PelTag.php:2290
 msgid "Image Description"
 msgstr "Bildbeschreibung"
 
-#: PelTag.php:2317
+#: PelTag.php:2292
 msgid "Manufacturer"
 msgstr "Hersteller"
 
-#: PelTag.php:2319
+#: PelTag.php:2294
 msgid "Model"
 msgstr "Modell"
 
-#: PelTag.php:2321
+#: PelTag.php:2296
 msgid "Strip Offsets"
 msgstr ""
 
-#: PelTag.php:2323
+#: PelTag.php:2298
 msgid "Orientation"
 msgstr "Orientierung"
 
-#: PelTag.php:2325
+#: PelTag.php:2300
 msgid "Samples per Pixel"
 msgstr ""
 
-#: PelTag.php:2327
+#: PelTag.php:2302
 msgid "Rows per Strip"
 msgstr ""
 
-#: PelTag.php:2329
+#: PelTag.php:2304
 msgid "Strip Byte Count"
 msgstr ""
 
-#: PelTag.php:2331
+#: PelTag.php:2306
 msgid "x-Resolution"
 msgstr "Auflösung in x-Richtung"
 
-#: PelTag.php:2333
+#: PelTag.php:2308
 msgid "y-Resolution"
 msgstr "Auflösung in y-Richtung"
 
-#: PelTag.php:2335
+#: PelTag.php:2310
 msgid "Planar Configuration"
 msgstr ""
 
-#: PelTag.php:2337
+#: PelTag.php:2312
 msgid "Resolution Unit"
 msgstr "Maßeinheit der Auflösung"
 
-#: PelTag.php:2339
+#: PelTag.php:2314
 msgid "Transfer Function"
 msgstr ""
 
-#: PelTag.php:2341
+#: PelTag.php:2316
 msgid "Software"
 msgstr "Software"
 
-#: PelTag.php:2343
+#: PelTag.php:2318
 msgid "Date and Time"
 msgstr "Datum und Uhrzeit"
 
-#: PelTag.php:2345
+#: PelTag.php:2320
 msgid "Artist"
 msgstr "Künstler"
 
-#: PelTag.php:2347
+#: PelTag.php:2322
 msgid "White Point"
 msgstr ""
 
-#: PelTag.php:2349
+#: PelTag.php:2324
 msgid "Primary Chromaticities"
 msgstr ""
 
-#: PelTag.php:2351
+#: PelTag.php:2326
 msgid "Transfer Range"
 msgstr ""
 
-#: PelTag.php:2353
+#: PelTag.php:2328
 msgid "JPEGProc"
 msgstr ""
 
-#: PelTag.php:2355
+#: PelTag.php:2330
 msgid "JPEG Interchange Format"
 msgstr ""
 
-#: PelTag.php:2357
+#: PelTag.php:2332
 msgid "JPEG Interchange Format Length"
 msgstr ""
 
-#: PelTag.php:2359
+#: PelTag.php:2334
 msgid "YCbCr Coefficients"
 msgstr "YCbCr Koeffizienten"
 
-#: PelTag.php:2361
+#: PelTag.php:2336
 msgid "YCbCr Sub-Sampling"
 msgstr ""
 
-#: PelTag.php:2363
+#: PelTag.php:2338
 msgid "YCbCr Positioning"
 msgstr "YCbCr Positionierung"
 
-#: PelTag.php:2365
+#: PelTag.php:2340
 msgid "Reference Black/White"
 msgstr ""
 
-#: PelTag.php:2367
+#: PelTag.php:2342
 #, fuzzy
 msgid "Related Image File Format"
 msgstr "Bildbreite"
 
-#: PelTag.php:2369
+#: PelTag.php:2344
 #, fuzzy
 msgid "Related Image Width"
 msgstr "Bildbreite"
 
-#: PelTag.php:2371
+#: PelTag.php:2346
 #, fuzzy
 msgid "Related Image Length"
 msgstr "Bildlänge"
 
-#: PelTag.php:2373
+#: PelTag.php:2348
 msgid "CFA Repeat Pattern Dim"
 msgstr ""
 
-#: PelTag.php:2375
+#: PelTag.php:2350
 msgid "CFA Pattern"
 msgstr ""
 
-#: PelTag.php:2377
+#: PelTag.php:2352
 msgid "Battery Level"
 msgstr "Batteriestatus"
 
-#: PelTag.php:2379
+#: PelTag.php:2354
 msgid "Copyright"
 msgstr "Copyright"
 
-#: PelTag.php:2381
+#: PelTag.php:2356
 msgid "Exposure Time"
 msgstr "Belichtungszeit"
 
-#: PelTag.php:2383
+#: PelTag.php:2358
 msgid "FNumber"
 msgstr ""
 
-#: PelTag.php:2385
+#: PelTag.php:2360
 msgid "IPTC/NAA"
 msgstr ""
 
-#: PelTag.php:2387
+#: PelTag.php:2362
 msgid "Exif IFD Pointer"
 msgstr ""
 
-#: PelTag.php:2389
+#: PelTag.php:2364
 msgid "Inter Color Profile"
 msgstr ""
 
-#: PelTag.php:2391
+#: PelTag.php:2366
 #, fuzzy
 msgid "Exposure Program"
 msgstr "Belichtungszeit"
 
-#: PelTag.php:2393
+#: PelTag.php:2368
 msgid "Spectral Sensitivity"
 msgstr ""
 
-#: PelTag.php:2395
+#: PelTag.php:2370
 msgid "GPS Info IFD Pointer"
 msgstr ""
 
-#: PelTag.php:2397
+#: PelTag.php:2372
 msgid "ISO Speed Ratings"
 msgstr ""
 
-#: PelTag.php:2399
+#: PelTag.php:2374
 msgid "OECF"
 msgstr ""
 
-#: PelTag.php:2401
+#: PelTag.php:2376
 msgid "Exif Version"
 msgstr "Exif Version"
 
-#: PelTag.php:2403
+#: PelTag.php:2378
 msgid "Date and Time (original)"
 msgstr "Datum und Uhrzeit (original)"
 
-#: PelTag.php:2405
+#: PelTag.php:2380
 msgid "Date and Time (digitized)"
 msgstr "Datum und Uhrzeit (digitalisiert)"
 
-#: PelTag.php:2407
+#: PelTag.php:2382
 msgid "Components Configuration"
 msgstr ""
 
-#: PelTag.php:2409
+#: PelTag.php:2384
 msgid "Compressed Bits per Pixel"
 msgstr ""
 
-#: PelTag.php:2411
+#: PelTag.php:2386
 msgid "Shutter speed"
 msgstr ""
 
-#: PelTag.php:2413
+#: PelTag.php:2388
 msgid "Aperture"
 msgstr ""
 
-#: PelTag.php:2415
+#: PelTag.php:2390
 msgid "Brightness"
 msgstr "Helligkeit"
 
-#: PelTag.php:2417
+#: PelTag.php:2392
 msgid "Exposure Bias"
 msgstr ""
 
-#: PelTag.php:2419
+#: PelTag.php:2394
 msgid "Max Aperture Value"
 msgstr ""
 
-#: PelTag.php:2421
+#: PelTag.php:2396
 msgid "Subject Distance"
 msgstr "Entfernung des Objekts"
 
-#: PelTag.php:2423
+#: PelTag.php:2398
 msgid "Metering Mode"
 msgstr ""
 
-#: PelTag.php:2425
+#: PelTag.php:2400
 msgid "Light Source"
 msgstr "Lichtquelle"
 
-#: PelTag.php:2429
+#: PelTag.php:2404
 msgid "Focal Length"
 msgstr ""
 
-#: PelTag.php:2431
+#: PelTag.php:2406
 msgid "Maker Note"
 msgstr "Anmerkungen des Herstellers"
 
-#: PelTag.php:2433
+#: PelTag.php:2408
 msgid "User Comment"
 msgstr "Anmerkung des Nutzers"
 
-#: PelTag.php:2435
+#: PelTag.php:2410
 #, fuzzy
 msgid "SubSec Time"
 msgstr "Datum und Uhrzeit (original)"
 
-#: PelTag.php:2437
+#: PelTag.php:2412
 #, fuzzy
 msgid "SubSec Time Original"
 msgstr "Datum und Uhrzeit (original)"
 
-#: PelTag.php:2439
+#: PelTag.php:2414
 #, fuzzy
 msgid "SubSec Time Digitized"
 msgstr "Datum und Uhrzeit (digitalisiert)"
 
-#: PelTag.php:2451
+#: PelTag.php:2426
 msgid "FlashPix Version"
 msgstr "FlashPix Version"
 
-#: PelTag.php:2453
+#: PelTag.php:2428
 msgid "Color Space"
 msgstr ""
 
-#: PelTag.php:2455
+#: PelTag.php:2430
 msgid "Pixel x-Dimension"
 msgstr ""
 
-#: PelTag.php:2457
+#: PelTag.php:2432
 msgid "Pixel y-Dimension"
 msgstr ""
 
-#: PelTag.php:2459
+#: PelTag.php:2434
 msgid "Related Sound File"
 msgstr ""
 
-#: PelTag.php:2461
+#: PelTag.php:2436
 msgid "Interoperability IFD Pointer"
 msgstr ""
 
-#: PelTag.php:2463
+#: PelTag.php:2438
 msgid "Flash Energy"
 msgstr "Energie des Blitzes"
 
-#: PelTag.php:2465
+#: PelTag.php:2440
 msgid "Spatial Frequency Response"
 msgstr ""
 
-#: PelTag.php:2467
+#: PelTag.php:2442
 msgid "Focal Plane x-Resolution"
 msgstr ""
 
-#: PelTag.php:2469
+#: PelTag.php:2444
 msgid "Focal Plane y-Resolution"
 msgstr ""
 
-#: PelTag.php:2471
+#: PelTag.php:2446
 msgid "Focal Plane Resolution Unit"
 msgstr ""
 
-#: PelTag.php:2473
+#: PelTag.php:2448
 msgid "Subject Location"
 msgstr "Ort des Objektes"
 
-#: PelTag.php:2475
+#: PelTag.php:2450
 msgid "Exposure index"
 msgstr "Belichtungsart"
 
-#: PelTag.php:2477
+#: PelTag.php:2452
 msgid "Sensing Method"
 msgstr ""
 
-#: PelTag.php:2479
+#: PelTag.php:2454
 msgid "File Source"
 msgstr "Dateiquelle"
 
-#: PelTag.php:2481
+#: PelTag.php:2456
 msgid "Scene Type"
 msgstr ""
 
-#: PelTag.php:2483
+#: PelTag.php:2458
 msgid "Subject Area"
 msgstr ""
 
-#: PelTag.php:2485
+#: PelTag.php:2460
 msgid "Custom Rendered"
 msgstr ""
 
-#: PelTag.php:2487
+#: PelTag.php:2462
 msgid "Exposure Mode"
 msgstr "Belichtungsart"
 
-#: PelTag.php:2489
+#: PelTag.php:2464
 msgid "White Balance"
 msgstr ""
 
-#: PelTag.php:2491
+#: PelTag.php:2466
 msgid "Digital Zoom Ratio"
 msgstr ""
 
-#: PelTag.php:2493
+#: PelTag.php:2468
 msgid "Focal Length In 35mm Film"
 msgstr ""
 
-#: PelTag.php:2495
+#: PelTag.php:2470
 msgid "Scene Capture Type"
 msgstr ""
 
-#: PelTag.php:2497
+#: PelTag.php:2472
 msgid "Gain Control"
 msgstr ""
 
-#: PelTag.php:2499
+#: PelTag.php:2474
 msgid "Contrast"
 msgstr "Kontrast"
 
-#: PelTag.php:2501
+#: PelTag.php:2476
 msgid "Saturation"
 msgstr "Sättigung"
 
-#: PelTag.php:2503
+#: PelTag.php:2478
 msgid "Sharpness"
 msgstr "Schärfe"
 
-#: PelTag.php:2505
+#: PelTag.php:2480
 msgid "Device Setting Description"
 msgstr ""
 
-#: PelTag.php:2507
+#: PelTag.php:2482
 msgid "Subject Distance Range"
 msgstr ""
 
-#: PelTag.php:2509
+#: PelTag.php:2484
 msgid "Image Unique ID"
 msgstr "Eindeutige Bildnummer"
 
-#: PelTag.php:2511
+#: PelTag.php:2486
 msgid "Gamma"
 msgstr ""
 
-#: PelTag.php:2513
+#: PelTag.php:2488
 msgid "Print IM"
 msgstr ""
 
-#: PelTag.php:2583
+#: PelTag.php:2558
 #, php-format
 msgid "Unknown Tag: 0x%04X"
 msgstr "Unbekannt 0x%04X"
 
-#: PelTag.php:2611
+#: PelTag.php:2586
 msgid ""
 "Indicates the identification of the Interoperability rule. Use \"R98\" for "
 "stating ExifR98 Rules. Four bytes used including the termination code "
@@ -1194,19 +1194,19 @@ msgid ""
 "(ExifR98) for other tags used for ExifR98."
 msgstr ""
 
-#: PelTag.php:2617
+#: PelTag.php:2592
 msgid ""
 "The number of columns of image data, equal to the number of pixels per row. "
 "In JPEG compressed data a JPEG marker is used instead of this tag."
 msgstr ""
 
-#: PelTag.php:2620
+#: PelTag.php:2595
 msgid ""
 "The number of rows of image data. In JPEG compressed data a JPEG marker is "
 "used instead of this tag."
 msgstr ""
 
-#: PelTag.php:2623
+#: PelTag.php:2598
 msgid ""
 "The number of bits per image component. In this standard each component of "
 "the image is 8 bits, so the value for this tag is 8. See also "
@@ -1214,20 +1214,20 @@ msgid ""
 "this tag."
 msgstr ""
 
-#: PelTag.php:2626
+#: PelTag.php:2601
 msgid ""
 "The compression scheme used for the image data. When a primary image is JPEG "
 "compressed, this designation is not necessary and is omitted. When "
 "thumbnails use JPEG compression, this tag value is set to 6."
 msgstr ""
 
-#: PelTag.php:2629
+#: PelTag.php:2604
 msgid ""
 "The pixel composition. In JPEG compressed data a JPEG marker is used instead "
 "of this tag."
 msgstr ""
 
-#: PelTag.php:2637
+#: PelTag.php:2612
 msgid ""
 "A character string giving the title of the image. It may be a comment such "
 "as \"1988 company picnic\" or the like. Two-bytes character codes cannot be "
@@ -1235,21 +1235,21 @@ msgid ""
 "is to be used."
 msgstr ""
 
-#: PelTag.php:2640
+#: PelTag.php:2615
 msgid ""
 "The manufacturer of the recording equipment. This is the manufacturer of the "
 "DSC, scanner, video digitizer or other equipment that generated the image. "
 "When the field is left blank, it is treated as unknown."
 msgstr ""
 
-#: PelTag.php:2643
+#: PelTag.php:2618
 msgid ""
 "The model name or model number of the equipment. This is the model name or "
 "number of the DSC, scanner, video digitizer or other equipment that "
 "generated the image. When the field is left blank, it is treated as unknown."
 msgstr ""
 
-#: PelTag.php:2646
+#: PelTag.php:2621
 msgid ""
 "For each strip, the byte offset of that strip. It is recommended that this "
 "be selected so the number of strip bytes does not exceed 64 Kbytes. With "
@@ -1257,18 +1257,18 @@ msgid ""
 "<RowsPerStrip> and <StripByteCounts>."
 msgstr ""
 
-#: PelTag.php:2649
+#: PelTag.php:2624
 msgid "The image orientation viewed in terms of rows and columns."
 msgstr ""
 
-#: PelTag.php:2652
+#: PelTag.php:2627
 msgid ""
 "The number of components per pixel. Since this standard applies to RGB and "
 "YCbCr images, the value set for this tag is 3. In JPEG compressed data a "
 "JPEG marker is used instead of this tag."
 msgstr ""
 
-#: PelTag.php:2655
+#: PelTag.php:2630
 msgid ""
 "The number of rows per strip. This is the number of rows in the image of one "
 "strip when an image is divided into strips. With JPEG compressed data this "
@@ -1276,46 +1276,46 @@ msgid ""
 "<StripByteCounts>."
 msgstr ""
 
-#: PelTag.php:2658
+#: PelTag.php:2633
 msgid ""
 "The total number of bytes in each strip. With JPEG compressed data this "
 "designation is not needed and is omitted."
 msgstr ""
 
-#: PelTag.php:2661
+#: PelTag.php:2636
 msgid ""
 "The number of pixels per <ResolutionUnit> in the <ImageWidth> direction. "
 "When the image resolution is unknown, 72 [dpi] is designated."
 msgstr ""
 
-#: PelTag.php:2664
+#: PelTag.php:2639
 msgid ""
 "The number of pixels per <ResolutionUnit> in the <ImageLength> direction. "
 "The same value as <XResolution> is designated."
 msgstr ""
 
-#: PelTag.php:2667
+#: PelTag.php:2642
 msgid ""
 "Indicates whether pixel components are recorded in a chunky or planar "
 "format. In JPEG compressed files a JPEG marker is used instead of this tag. "
 "If this field does not exist, the TIFF default of 1 (chunky) is assumed."
 msgstr ""
 
-#: PelTag.php:2670
+#: PelTag.php:2645
 msgid ""
 "The unit for measuring <XResolution> and <YResolution>. The same unit is "
 "used for both <XResolution> and <YResolution>. If the image resolution is "
 "unknown, 2 (inches) is designated."
 msgstr ""
 
-#: PelTag.php:2673
+#: PelTag.php:2648
 msgid ""
 "A transfer function for the image, described in tabular style. Normally this "
 "tag is not necessary, since color space is specified in the color space "
 "information tag (<ColorSpace>)."
 msgstr ""
 
-#: PelTag.php:2676
+#: PelTag.php:2651
 msgid ""
 "This tag records the name and version of the software or firmware of the "
 "camera or image input device used to generate the image. The detailed format "
@@ -1323,13 +1323,13 @@ msgid ""
 "followed. When the field is left blank, it is treated as unknown."
 msgstr ""
 
-#: PelTag.php:2679
+#: PelTag.php:2654
 msgid ""
 "The date and time of image creation. In this standard (Exif-2.1) it is the "
 "date and time the file was changed."
 msgstr ""
 
-#: PelTag.php:2682
+#: PelTag.php:2657
 msgid ""
 "This tag records the name of the camera owner, photographer or image "
 "creator. The detailed format is not specified, but it is recommended that "
@@ -1337,27 +1337,27 @@ msgid ""
 "Interoperability. When the field is left blank, it is treated as unknown."
 msgstr ""
 
-#: PelTag.php:2685
+#: PelTag.php:2660
 msgid ""
 "The chromaticity of the white point of the image. Normally this tag is not "
 "necessary, since color space is specified in the colorspace information tag "
 "(<ColorSpace>)."
 msgstr ""
 
-#: PelTag.php:2688
+#: PelTag.php:2663
 msgid ""
 "The chromaticity of the three primary colors of the image. Normally this tag "
 "is not necessary, since colorspace is specified in the colorspace "
 "information tag (<ColorSpace>)."
 msgstr ""
 
-#: PelTag.php:2697
+#: PelTag.php:2672
 msgid ""
 "The offset to the start byte (SOI) of JPEG compressed thumbnail data. This "
 "is not used for primary image JPEG data."
 msgstr ""
 
-#: PelTag.php:2700
+#: PelTag.php:2675
 msgid ""
 "The number of bytes of JPEG compressed thumbnail data. This is not used for "
 "primary image JPEG data. JPEG thumbnails are not divided but are recorded as "
@@ -1366,7 +1366,7 @@ msgid ""
 "Kbytes, including all other data to be recorded in APP1."
 msgstr ""
 
-#: PelTag.php:2703
+#: PelTag.php:2678
 msgid ""
 "The matrix coefficients for transformation from RGB to YCbCr image data. No "
 "default is given in TIFF; but here the value given in Appendix E, \"Color "
@@ -1375,13 +1375,13 @@ msgid ""
 "optimal image characteristics Interoperability this condition."
 msgstr ""
 
-#: PelTag.php:2706
+#: PelTag.php:2681
 msgid ""
 "The sampling ratio of chrominance components in relation to the luminance "
 "component. In JPEG compressed data a JPEG marker is used instead of this tag."
 msgstr ""
 
-#: PelTag.php:2709
+#: PelTag.php:2684
 msgid ""
 "The position of chrominance components in relation to the luminance "
 "component. This field is designated only for JPEG compressed data or "
@@ -1396,7 +1396,7 @@ msgid ""
 "both centered and co-sited positioning."
 msgstr ""
 
-#: PelTag.php:2712
+#: PelTag.php:2687
 msgid ""
 "The reference black point value and reference white point value. No defaults "
 "are given in TIFF, but the values below are given as defaults here. The "
@@ -1405,14 +1405,14 @@ msgid ""
 "Interoperability these conditions."
 msgstr ""
 
-#: PelTag.php:2727
+#: PelTag.php:2702
 msgid ""
 "Indicates the color filter array (CFA) geometric pattern of the image sensor "
 "when a one-chip color area sensor is used. It does not apply to all sensing "
 "methods."
 msgstr ""
 
-#: PelTag.php:2733
+#: PelTag.php:2708
 msgid ""
 "Copyright information. In this standard the tag is used to indicate both the "
 "photographer and editor copyrights. It is the copyright notice of the person "
@@ -1431,71 +1431,71 @@ msgid ""
 "When the field is left blank, it is treated as unknown."
 msgstr ""
 
-#: PelTag.php:2736
+#: PelTag.php:2711
 msgid "Exposure time, given in seconds (sec)."
 msgstr "Belichtungszeit in Sekunden."
 
-#: PelTag.php:2739
+#: PelTag.php:2714
 #, fuzzy
 msgid "The F number."
 msgstr "Eindeutige Bildnummer"
 
-#: PelTag.php:2745
+#: PelTag.php:2720
 msgid ""
 "A pointer to the Exif IFD. Interoperability, Exif IFD has the same structure "
 "as that of the IFD specified in TIFF. ordinarily, however, it does not "
 "contain image data as in the case of TIFF."
 msgstr ""
 
-#: PelTag.php:2751
+#: PelTag.php:2726
 msgid ""
 "The class of the program used by the camera to set exposure when the picture "
 "is taken."
 msgstr ""
 
-#: PelTag.php:2754
+#: PelTag.php:2729
 msgid ""
 "Indicates the spectral sensitivity of each channel of the camera used. The "
 "tag value is an ASCII string compatible with the standard developed by the "
 "ASTM Technical Committee."
 msgstr ""
 
-#: PelTag.php:2757
+#: PelTag.php:2732
 msgid ""
 "A pointer to the GPS Info IFD. The Interoperability structure of the GPS "
 "Info IFD, like that of Exif IFD, has no image data."
 msgstr ""
 
-#: PelTag.php:2760
+#: PelTag.php:2735
 msgid ""
 "Indicates the ISO Speed and ISO Latitude of the camera or input device as "
 "specified in ISO 12232."
 msgstr ""
 
-#: PelTag.php:2763
+#: PelTag.php:2738
 msgid ""
 "Indicates the Opto-Electoric Conversion Function (OECF) specified in ISO "
 "14524. <OECF> is the relationship between the camera optical input and the "
 "image values."
 msgstr ""
 
-#: PelTag.php:2766
+#: PelTag.php:2741
 msgid ""
 "The version of this standard supported. Nonexistence of this field is taken "
 "to mean non-conformance to the standard."
 msgstr ""
 
-#: PelTag.php:2769
+#: PelTag.php:2744
 msgid ""
 "The date and time when the original image data was generated. For a digital "
 "still camera the date and time the picture was taken are recorded."
 msgstr ""
 
-#: PelTag.php:2772
+#: PelTag.php:2747
 msgid "The date and time when the image was stored as digital data. "
 msgstr "Das Datum und die Uhrzeit der Speicherung als digitale Daten."
 
-#: PelTag.php:2775
+#: PelTag.php:2750
 msgid ""
 "Information specific to compressed data. The channels of each component are "
 "arranged in order from the 1st component to the 4th. For uncompressed data "
@@ -1505,72 +1505,72 @@ msgid ""
 "components other than Y, Cb, and Cr and to enable support of other sequences."
 msgstr ""
 
-#: PelTag.php:2778
+#: PelTag.php:2753
 msgid ""
 "Information specific to compressed data. The compression mode used for a "
 "compressed image is indicated in unit bits per pixel."
 msgstr ""
 
-#: PelTag.php:2781
+#: PelTag.php:2756
 msgid ""
 "Shutter speed. The unit is the APEX (Additive System of Photographic "
 "Exposure) setting (see Appendix C)."
 msgstr ""
 
-#: PelTag.php:2784
+#: PelTag.php:2759
 msgid "The lens aperture. The unit is the APEX value."
 msgstr ""
 
-#: PelTag.php:2787
+#: PelTag.php:2762
 msgid ""
 "The value of brightness. The unit is the APEX value. Ordinarily it is given "
 "in the range of -99.99 to 99.99."
 msgstr ""
 
-#: PelTag.php:2790
+#: PelTag.php:2765
 msgid ""
 "The exposure bias. The units is the APEX value. Ordinarily it is given in "
 "the range of -99.99 to 99.99."
 msgstr ""
 
-#: PelTag.php:2793
+#: PelTag.php:2768
 msgid ""
 "The smallest F number of the lens. The unit is the APEX value. Ordinarily it "
 "is given in the range of 00.00 to 99.99, but it is not limited to this range."
 msgstr ""
 
-#: PelTag.php:2796
+#: PelTag.php:2771
 msgid "The distance to the subject, given in meters."
 msgstr "Die Entfernung zum Objekt (in Metern)."
 
-#: PelTag.php:2799
+#: PelTag.php:2774
 msgid "The metering mode."
 msgstr ""
 
-#: PelTag.php:2802
+#: PelTag.php:2777
 msgid "The kind of light source."
 msgstr "Die Art der Lichtquelle."
 
-#: PelTag.php:2805
+#: PelTag.php:2780
 msgid ""
 "This tag is recorded when an image is taken using a strobe light (flash)."
 msgstr ""
 "Dieser Eintrag wird aufgezeichnet, wenn das Bild mit einem Blitz gemacht "
 "wurde."
 
-#: PelTag.php:2808
+#: PelTag.php:2783
 msgid ""
 "The actual focal length of the lens, in mm. Conversion is not made to the "
 "focal length of a 35 mm film camera."
 msgstr ""
 
-#: PelTag.php:2811
+#: PelTag.php:2786
 msgid ""
 "A tag for manufacturers of Exif writers to record any desired information. "
 "The contents are up to the manufacturer."
 msgstr ""
 
-#: PelTag.php:2814
+#: PelTag.php:2789
 msgid ""
 "A tag for Exif users to write keywords or comments on the image besides "
 "those in <ImageDescription>, and without the character code limitations of "
@@ -1592,45 +1592,45 @@ msgid ""
 "characters [20.H]."
 msgstr ""
 
-#: PelTag.php:2817
+#: PelTag.php:2792
 msgid "A tag used to record fractions of seconds for the <DateTime> tag."
 msgstr ""
 
-#: PelTag.php:2820
+#: PelTag.php:2795
 msgid ""
 "A tag used to record fractions of seconds for the <DateTimeOriginal> tag."
 msgstr ""
 
-#: PelTag.php:2823
+#: PelTag.php:2798
 msgid ""
 "A tag used to record fractions of seconds for the <DateTimeDigitized> tag."
 msgstr ""
 
-#: PelTag.php:2826
+#: PelTag.php:2801
 msgid "The image title as defined by the user in Windows XP."
 msgstr ""
 
-#: PelTag.php:2829
+#: PelTag.php:2804
 msgid "The image comment as defined by the user in Windows XP."
 msgstr ""
 
-#: PelTag.php:2832
+#: PelTag.php:2807
 msgid "The image author as defined by the user in Windows XP."
 msgstr ""
 
-#: PelTag.php:2835
+#: PelTag.php:2810
 msgid "The image keywords as defined by the user in Windows XP."
 msgstr ""
 
-#: PelTag.php:2838
+#: PelTag.php:2813
 msgid "The image subject as defined by the user in Windows XP."
 msgstr ""
 
-#: PelTag.php:2841
+#: PelTag.php:2816
 msgid "The FlashPix format version supported by a FPXR file."
 msgstr ""
 
-#: PelTag.php:2844
+#: PelTag.php:2819
 msgid ""
 "The color space information tag is always recorded as the color space "
 "specifier. Normally sRGB (=1) is used to define the color space based on the "
@@ -1639,7 +1639,7 @@ msgid ""
 "be treated as sRGB when it is converted to FlashPix. On sRGB see Appendix E."
 msgstr ""
 
-#: PelTag.php:2847
+#: PelTag.php:2822
 msgid ""
 "Information specific to compressed data. When a compressed file is recorded, "
 "the valid width of the meaningful image must be recorded in this tag, "
@@ -1648,7 +1648,7 @@ msgid ""
 "Appendix F of the Exif 2.2 standard."
 msgstr ""
 
-#: PelTag.php:2850
+#: PelTag.php:2825
 msgid ""
 "Information specific to compressed data. When a compressed file is recorded, "
 "the valid height of the meaningful image must be recorded in this tag, "
@@ -1659,7 +1659,7 @@ msgid ""
 "height tag will in fact be the same as that recorded in the SOF."
 msgstr ""
 
-#: PelTag.php:2853
+#: PelTag.php:2828
 msgid ""
 "This tag is used to record the name of an audio file related to the image "
 "data. The only relational information recorded here is the Exif audio file "
@@ -1686,7 +1686,7 @@ msgid ""
 "data must also be indicated on the audio file end."
 msgstr ""
 
-#: PelTag.php:2856
+#: PelTag.php:2831
 msgid ""
 "Interoperability IFD is composed of tags which stores the information to "
 "ensure the Interoperability and pointed by the following tag located in Exif "
@@ -1695,38 +1695,38 @@ msgid ""
 "characteristically compared with normal TIFF IFD."
 msgstr ""
 
-#: PelTag.php:2859
+#: PelTag.php:2834
 msgid ""
 "Indicates the strobe energy at the time the image is captured, as measured "
 "in Beam Candle Power Seconds (BCPS)."
 msgstr ""
 
-#: PelTag.php:2862
+#: PelTag.php:2837
 msgid ""
 "This tag records the camera or input device spatial frequency table and SFR "
 "values in the direction of image width, image height, and diagonal "
 "direction, as specified in ISO 12233."
 msgstr ""
 
-#: PelTag.php:2865
+#: PelTag.php:2840
 msgid ""
 "Indicates the number of pixels in the image width (X) direction per "
 "<FocalPlaneResolutionUnit> on the camera focal plane."
 msgstr ""
 
-#: PelTag.php:2868
+#: PelTag.php:2843
 msgid ""
 "Indicates the number of pixels in the image height (V) direction per "
 "<FocalPlaneResolutionUnit> on the camera focal plane."
 msgstr ""
 
-#: PelTag.php:2871
+#: PelTag.php:2846
 msgid ""
 "Indicates the unit for measuring <FocalPlaneXResolution> and "
 "<FocalPlaneYResolution>. This value is the same as the <ResolutionUnit>."
 msgstr ""
 
-#: PelTag.php:2874
+#: PelTag.php:2849
 msgid ""
 "Indicates the location of the main subject in the scene. The value of this "
 "tag represents the pixel at the center of the main subject relative to the "
@@ -1734,115 +1734,115 @@ msgid ""
 "value indicates the X column number and second indicates the Y row number."
 msgstr ""
 
-#: PelTag.php:2877
+#: PelTag.php:2852
 msgid ""
 "Indicates the exposure index selected on the camera or input device at the "
 "time the image is captured."
 msgstr ""
 
-#: PelTag.php:2880
+#: PelTag.php:2855
 msgid "Indicates the image sensor type on the camera or input device."
 msgstr ""
 
-#: PelTag.php:2883
+#: PelTag.php:2858
 msgid ""
 "Indicates the image source. If a DSC recorded the image, this tag value of "
 "this tag always be set to 3, indicating that the image was recorded on a DSC."
 msgstr ""
 
-#: PelTag.php:2886
+#: PelTag.php:2861
 msgid ""
 "Indicates the type of scene. If a DSC recorded the image, this tag value "
 "must always be set to 1, indicating that the image was directly photographed."
 msgstr ""
 
-#: PelTag.php:2889
+#: PelTag.php:2864
 msgid ""
 "This tag indicates the location and area of the main subject in the overall "
 "scene."
 msgstr ""
 
-#: PelTag.php:2892
+#: PelTag.php:2867
 msgid ""
 "This tag indicates the use of special processing on image data, such as "
 "rendering geared to output. When special processing is performed, the reader "
 "is expected to disable or minimize any further processing."
 msgstr ""
 
-#: PelTag.php:2895
+#: PelTag.php:2870
 msgid ""
 "This tag indicates the exposure mode set when the image was shot. In auto-"
 "bracketing mode, the camera shoots a series of frames of the same scene at "
 "different exposure settings."
 msgstr ""
 
-#: PelTag.php:2898
+#: PelTag.php:2873
 msgid "This tag indicates the white balance mode set when the image was shot."
 msgstr ""
 
-#: PelTag.php:2901
+#: PelTag.php:2876
 msgid ""
 "This tag indicates the digital zoom ratio when the image was shot. If the "
 "numerator of the recorded value is 0, this indicates that digital zoom was "
 "not used."
 msgstr ""
 
-#: PelTag.php:2904
+#: PelTag.php:2879
 msgid ""
 "This tag indicates the equivalent focal length assuming a 35mm film camera, "
 "in mm. A value of 0 means the focal length is unknown. Note that this tag "
 "differs from the FocalLength tag."
 msgstr ""
 
-#: PelTag.php:2907
+#: PelTag.php:2882
 msgid ""
 "This tag indicates the type of scene that was shot. It can also be used to "
 "record the mode in which the image was shot. Note that this differs from the "
 "scene type (SceneType) tag."
 msgstr ""
 
-#: PelTag.php:2910
+#: PelTag.php:2885
 msgid "This tag indicates the degree of overall image gain adjustment."
 msgstr ""
 
-#: PelTag.php:2913
+#: PelTag.php:2888
 msgid ""
 "This tag indicates the direction of contrast processing applied by the "
 "camera when the image was shot."
 msgstr ""
 
-#: PelTag.php:2916
+#: PelTag.php:2891
 msgid ""
 "This tag indicates the direction of saturation processing applied by the "
 "camera when the image was shot."
 msgstr ""
 
-#: PelTag.php:2919
+#: PelTag.php:2894
 msgid ""
 "This tag indicates the direction of sharpness processing applied by the "
 "camera when the image was shot."
 msgstr ""
 
-#: PelTag.php:2922
+#: PelTag.php:2897
 msgid ""
 "This tag indicates information on the picture-taking conditions of a "
 "particular camera model. The tag is used only to indicate the picture-taking "
 "conditions in the reader."
 msgstr ""
 
-#: PelTag.php:2925
+#: PelTag.php:2900
 #, fuzzy
 msgid "This tag indicates the distance to the subject."
 msgstr "Die Entfernung zum Objekt (in Metern)."
 
-#: PelTag.php:2928
+#: PelTag.php:2903
 msgid ""
 "This tag indicates an identifier assigned uniquely to each image. It is "
 "recorded as an ASCII string equivalent to hexadecimal notation and 128-bit "
 "fixed length."
 msgstr ""
 
-#: PelTag.php:2931
+#: PelTag.php:2906
 msgid ""
 "Indicates the value of the gamma coefficient. The formula of transfer "
 "function used for image reproduction is expressed as follows: (Reproduced "
@@ -1850,20 +1850,20 @@ msgid ""
 "normalized value, whose minimum value is 0 and maximum value is 1."
 msgstr ""
 
-#: PelTag.php:2938
+#: PelTag.php:2913
 msgid ""
 "Indicates the version of GPSInfoIFD. The version is given as 2.2.0.0. This "
 "tag is mandatory when GPSInfo tag is present. Note that the GPSVersionID tag "
 "is written as a different byte than the Exif Version tag."
 msgstr ""
 
-#: PelTag.php:2940
+#: PelTag.php:2915
 msgid ""
 "Indicates whether the latitude is north or south latitude. The ASCII value "
 "'N' indicates north latitude, and 'S' is south latitude."
 msgstr ""
 
-#: PelTag.php:2942
+#: PelTag.php:2917
 msgid ""
 "Indicates the latitude. The latitude is expressed as three RATIONAL values "
 "giving the degrees, minutes, and seconds, respectively. If latitude is "
@@ -1873,13 +1873,13 @@ msgid ""
 "mmmm/100,0/1."
 msgstr ""
 
-#: PelTag.php:2944
+#: PelTag.php:2919
 msgid ""
 "Indicates whether the longitude is east or west longitude. ASCII 'E' "
 "indicates east longitude, and 'W' is west longitude."
 msgstr ""
 
-#: PelTag.php:2946
+#: PelTag.php:2921
 msgid ""
 "Indicates the longitude. The longitude is expressed as three RATIONAL values "
 "giving the degrees, minutes, and seconds, respectively. If longitude is "
@@ -1889,7 +1889,7 @@ msgid ""
 "mmmm/100,0/1."
 msgstr ""
 
-#: PelTag.php:2948
+#: PelTag.php:2923
 msgid ""
 "Indicates the altitude used as the reference altitude. If the reference is "
 "sea level and the altitude is above sea level, 0 is given. If the altitude "
@@ -1898,19 +1898,19 @@ msgid ""
 "that this tag is BYTE type, unlike other reference tags."
 msgstr ""
 
-#: PelTag.php:2950
+#: PelTag.php:2925
 msgid ""
 "Indicates the altitude based on the reference in GPSAltitudeRef. Altitude is "
 "expressed as one RATIONAL value. The reference unit is meters."
 msgstr ""
 
-#: PelTag.php:2952
+#: PelTag.php:2927
 msgid ""
 "Indicates the time as UTC (Coordinated Universal Time). TimeStamp is "
 "expressed as three RATIONAL values giving the hour, minute, and second."
 msgstr ""
 
-#: PelTag.php:2954
+#: PelTag.php:2929
 msgid ""
 "Indicates the GPS satellites used for measurements. This tag can be used to "
 "describe the number of satellites, their ID number, angle of elevation, "
@@ -1919,61 +1919,61 @@ msgid ""
 "the tag shall be set to NULL."
 msgstr ""
 
-#: PelTag.php:2956
+#: PelTag.php:2931
 msgid ""
 "Indicates the status of the GPS receiver when the image is recorded. 'A' "
 "means measurement is in progress, and 'V' means the measurement is "
 "Interoperability."
 msgstr ""
 
-#: PelTag.php:2958
+#: PelTag.php:2933
 msgid ""
 "Indicates the GPS measurement mode. '2' means two-dimensional measurement "
 "and '3' means three-dimensional measurement is in progress."
 msgstr ""
 
-#: PelTag.php:2960
+#: PelTag.php:2935
 msgid ""
 "Indicates the GPS DOP (data degree of precision). An HDOP value is written "
 "during two-dimensional measurement, and PDOP during three-dimensional "
 "measurement."
 msgstr ""
 
-#: PelTag.php:2962
+#: PelTag.php:2937
 msgid ""
 "Indicates the unit used to express the GPS receiver speed of movement. 'K' "
 "'M' and 'N' represents kilometers per hour, miles per hour, and knots."
 msgstr ""
 
-#: PelTag.php:2964
+#: PelTag.php:2939
 msgid "Indicates the speed of GPS receiver movement."
 msgstr ""
 
-#: PelTag.php:2966
+#: PelTag.php:2941
 msgid ""
 "Indicates the reference for giving the direction of GPS receiver movement. "
 "'T' denotes true direction and 'M' is magnetic direction."
 msgstr ""
 
-#: PelTag.php:2968
+#: PelTag.php:2943
 msgid ""
 "Indicates the direction of GPS receiver movement. The range of values is "
 "from 0.00 to 359.99."
 msgstr ""
 
-#: PelTag.php:2970
+#: PelTag.php:2945
 msgid ""
 "Indicates the reference for giving the direction of the image when it is "
 "captured. 'T' denotes true direction and 'M' is magnetic direction."
 msgstr ""
 
-#: PelTag.php:2972
+#: PelTag.php:2947
 msgid ""
 "Indicates the direction of the image when it was captured. The range of "
 "values is from 0.00 to 359.99."
 msgstr ""
 
-#: PelTag.php:2974
+#: PelTag.php:2949
 msgid ""
 "Indicates the geodetic survey data used by the GPS receiver. If the survey "
 "data is restricted to Japan, the value of this tag is 'TOKYO' or 'WGS-84'. "
@@ -1981,14 +1981,14 @@ msgid ""
 "recorded."
 msgstr ""
 
-#: PelTag.php:2976
+#: PelTag.php:2951
 msgid ""
 "Indicates whether the latitude of the destination point is north or south "
 "latitude. The ASCII value 'N' indicates north latitude, and 'S' is south "
 "latitude."
 msgstr ""
 
-#: PelTag.php:2978
+#: PelTag.php:2953
 msgid ""
 "Indicates the latitude of the destination point. The latitude is expressed "
 "as three RATIONAL values giving the degrees, minutes, and seconds, "
@@ -1998,13 +1998,13 @@ msgid ""
 "the format would be dd/1,mmmm/100,0/1."
 msgstr ""
 
-#: PelTag.php:2980
+#: PelTag.php:2955
 msgid ""
 "Indicates whether the longitude of the destination point is east or west "
 "longitude. ASCII 'E' indicates east longitude, and 'W' is west longitude."
 msgstr ""
 
-#: PelTag.php:2982
+#: PelTag.php:2957
 msgid ""
 "Indicates the longitude of the destination point. The longitude is expressed "
 "as three RATIONAL values giving the degrees, minutes, and seconds, "
@@ -2014,30 +2014,30 @@ msgid ""
 "the format would be ddd/1,mmmm/100,0/1."
 msgstr ""
 
-#: PelTag.php:2984
+#: PelTag.php:2959
 msgid ""
 "Indicates the reference used for giving the bearing to the destination "
 "point. 'T' denotes true direction and 'M' is magnetic direction."
 msgstr ""
 
-#: PelTag.php:2986
+#: PelTag.php:2961
 msgid ""
 "Indicates the bearing to the destination point. The range of values is from "
 "0.00 to 359.99."
 msgstr ""
 
-#: PelTag.php:2988
+#: PelTag.php:2963
 msgid ""
 "Indicates the unit used to express the distance to the destination point. "
 "'K', 'M' and 'N' represent kilometers, miles and knots."
 msgstr ""
 
-#: PelTag.php:2990
+#: PelTag.php:2965
 #, fuzzy
 msgid "Indicates the distance to the destination point."
 msgstr "Die Entfernung zum Objekt (in Metern)."
 
-#: PelTag.php:2992
+#: PelTag.php:2967
 msgid ""
 "A character string recording the name of the method used for location "
 "finding. The first byte indicates the character code used (Table 6, Table "
@@ -2045,7 +2045,7 @@ msgid ""
 "ASCII, NULL termination is not necessary."
 msgstr ""
 
-#: PelTag.php:2994
+#: PelTag.php:2969
 msgid ""
 "A character string recording the name of the GPS area.  The first byte "
 "indicates the character code used (Table 6, Table 7), and this is followed "
@@ -2053,14 +2053,14 @@ msgid ""
 "not necessary."
 msgstr ""
 
-#: PelTag.php:2996
+#: PelTag.php:2971
 msgid ""
 "A character string recording the date and time information relative to UTC "
 "(Coordinated Universal Time). The format is \"YYYY:MM:DD.\" The elngth of "
 "the string is 11 bytes including NULL."
 msgstr ""
 
-#: PelTag.php:2998
+#: PelTag.php:2973
 msgid ""
 "Indicates whether differential correction is applied to the GPS receiver."
 msgstr ""
