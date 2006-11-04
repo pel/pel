@@ -11,8 +11,10 @@ PEL Version 0.9.1  (not released yet)
 Notes:
 
 Added setExif() and getExif() methods as a convenient and recommended
-way of getting and setting the Exif data in a PelJpeg object. Added a
-Japanese translation.
+way of getting and setting the Exif data in a PelJpeg object. Improved
+PelEntryTime to deal with timestamps in the full range from year 0 to
+year 9999. Added a Japanese and updated the French and Danish
+translations.
 
 Changes:
 
@@ -33,6 +35,8 @@ Changes:
   PHP Library) interface.
 
 * Added Japanese translation by Tadashi Jokagi.
+
+* Update by David Lesieur of the French translation.
 
 * Rewrote entry for version 0.9 in NEWS to highlight the API
   incompatible changes made from version 0.8.
