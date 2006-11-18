@@ -82,7 +82,7 @@ function ifdToTest($name, $number, PelIfd $ifd) {
     println('$entry = %s%d->getEntry(%d); // %s',
             $name, $number, $tag,
             PelTag::getName($ifd->getType(), $tag));
-    print(entryToTest('$entry', $entry));
+    entryToTest('$entry', $entry);
   }
 
   println();
@@ -156,7 +156,7 @@ function jpegContentToTest($name, PelJpegContent $content) {
     println('$tiff = %s->getTiff();', $name);
     if ($tiff instanceof PelTiff) {
       println('$this->assertIsA($tiff, \'PelTiff\');');
-      print(tiffToTest('$tiff', $tiff));
+      tiffToTest('$tiff', $tiff);
     }
   }
 }
@@ -168,11 +168,14 @@ function jpegToTest($name, PelJpeg $jpeg) {
   if ($exif == null) {
     println('$this->assertNull($exif);');
   } else {
-    print(jpegContentToTest('$exif', $app1));
+    jpegContentToTest('$exif', $exif);
   }
 }
 
 
+/* All output is buffered so that we can dump it in $test_filename at
+ * the end. */
+ob_start();
 
 println('<?php
 
@@ -212,13 +215,11 @@ class %s extends UnitTestCase {
   function testRead() {
     Pel::clearExceptions();
     Pel::setStrictParsing(false);
-    $jpeg = new PelJpeg();
-    $jpeg->loadFile(dirname(__FILE__) . \'/%s\');
+    $jpeg = new PelJpeg(dirname(__FILE__) . \'/%s\');
 ', $test_name, $image_filename, $image_filename);
 
 require_once('../../PelJpeg.php');
-$jpeg = new PelJpeg();
-$jpeg->loadFile($image_filename);
+$jpeg = new PelJpeg($image_filename);
 
 $indent = 2;
 jpegToTest('$jpeg', $jpeg);
@@ -246,5 +247,8 @@ println('
 }
 
 ?>');
+
+/* The test case is finished -- now dump the output as a PHP file. */
+file_put_contents($test_filename, ob_get_clean());
 
 ?>
