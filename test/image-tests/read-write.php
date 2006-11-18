@@ -49,8 +49,7 @@ abstract class WriteEntryTestCase extends UnitTestCase {
     $this->assertNotNull($exif->getTiff());
 
 
-    $jpeg = new PelJpeg();
-    $jpeg->loadFile(dirname(__FILE__) . '/no-exif.jpg');
+    $jpeg = new PelJpeg(dirname(__FILE__) . '/no-exif.jpg');
 
     $this->assertNull($jpeg->getExif());
     $jpeg->setExif($exif);
@@ -62,8 +61,7 @@ abstract class WriteEntryTestCase extends UnitTestCase {
 
     /* Now read the file and see if the entries are still there. */
 
-    $jpeg = new PelJpeg();
-    $jpeg->loadFile('test-output.jpg');
+    $jpeg = new PelJpeg('test-output.jpg');
 
     $exif = $jpeg->getExif();
     $this->assertIsA($exif, 'PelExif');
