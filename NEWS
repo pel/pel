@@ -10,13 +10,19 @@ PEL Version 0.9.1  (not released yet)
 
 Notes:
 
-Added setExif() and getExif() methods as a convenient and recommended
-way of getting and setting the Exif data in a PelJpeg object. Improved
-PelEntryTime to deal with timestamps in the full range from year 0 to
-year 9999. Added a Japanese and updated the French and Danish
-translations.
+Added setExif(), getExif(), and clearExif() methods as a convenient
+and recommended way of manipulating the Exif data in a PelJpeg object.
+Improved PelEntryTime to deal with timestamps in the full range from
+year 0 to year 9999. A new example demonstrates how to resize images
+while keeping the Exif data intact. Added a Japanese and updated the
+French and Danish translations.
 
 Changes:
+
+* The constructors of PelJpeg and PelTiff can now take an argument
+  which is used for initialization. This can be a filename (equivalent
+  to calling loadFromFile()), a PelDataWindow (equivalent to load()).
+  The PelJpeg constructor will also accept an image resource.
 
 * Added PelJpeg::setExif(). This method should always be used in
   preference to PelJpeg::insertSection() and PelJpeg::appendSection().
@@ -26,6 +32,9 @@ Changes:
 * Added PelJpeg::getExif().  This method is the new preferred way of
   obtaining the PelExif object from a PelJpeg object.  Updated the
   examples and code to make use of it.
+
+* An example of how to resize images while keeping the Exif data
+  intact is given in resize.php.
 
 * Fixed bug in edit-description.php which still called the constructor
   of PelIfd in the old pre-0.9 way.

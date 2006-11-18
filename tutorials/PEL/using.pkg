@@ -25,13 +25,12 @@
     images.  Such an image is represented in PEL using an object of
     the <classname>PelJpeg</classname> class.  With the filename of a
     JPEG image stored in the variable <varname>$filename</varname>,
-    then it is a simple matter of creating a {@link PelJpeg} object,
-    and then load the image:</para>
+    then it is a simple matter of creating a {@link PelJpeg}
+    object:</para>
 
     <programlisting role="php">
       <![CDATA[
-$jpeg = new PelJpeg();
-$jpeg->loadFile($filename);
+$jpeg = new PelJpeg($filename);
       ]]>
     </programlisting>
 

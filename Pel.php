@@ -133,8 +133,7 @@ class Pel {
    * Pel::setStrictParsing(true);
    * Pel::clearExceptions();
    *
-   * $jpeg = new PelJpeg();
-   * $jpeg->loadFile($file);
+   * $jpeg = new PelJpeg($file);
    *
    * // Check for exceptions.
    * foreach (Pel::getExceptions() as $e) {
