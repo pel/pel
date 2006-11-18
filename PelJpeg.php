@@ -87,8 +87,7 @@ class PelJpegInvalidMarkerException extends PelException {
  * get hold of the Exif data by saying:
  *
  * <code>
- * $jpeg = new PelJpeg();
- * $jpeg->loadFile($filename);
+ * $jpeg = new PelJpeg($filename);
  * $exif = $jpeg->getExif();
  * $tiff = $exif->getTiff();
  * $ifd0 = $tiff->getIfd();
@@ -138,17 +137,16 @@ class PelJpeg {
   /**
    * Construct a new JPEG object.
    *
-   * The new object will be empty, use the {@link load()} or {@link
-   * loadFile()} methods to load JPEG data from a {@link
-   * PelDataWindow} or a file, respectively.
+   * The new object will be empty unless an argument is given from
+   * which it can initialize itself. This can either be the filename
+   * of a JPEG image, a {@link PelDataWindow} object or a PHP image
+   * resource handle.
    *
-   * New Exif data (in the form of a {@link PelExif} object) be
+   * New Exif data (in the form of a {@link PelExif} object) can be
    * inserted with the {@link setExif()} method:
    *
    * <code>
-   * $jpeg = new PelJpeg();
-   * // Initialize $jpeg with some data:
-   * $jpeg->load($data);
+   * $jpeg = new PelJpeg($data);
    * // Create container for the Exif information:
    * $exif = new PelExif();
    * // Now Add a PelTiff object with a PelIfd object with one or more
@@ -156,8 +154,28 @@ class PelJpeg {
    * $jpeg->setExif($exif);
    * </code>
    */
-  function __construct() {
+  function __construct($data = false) {
+    if ($data === false)
+      return;
 
+    if (is_string($data)) {
+      Pel::debug('Initializing PelJpeg object from %s', $data);
+      $this->loadFile($data);
+    } elseif ($data instanceof PelDataWindow) {
+      Pel::debug('Initializing PelJpeg object from PelDataWindow.');
+      $this->load($data);
+    } elseif (is_resource($data) && get_resource_type($data) == 'gd') {
+      /* The ImageJpeg() function insists on printing the bytes
+       * instead of returning them in a more civil way as a string, so
+       * we have to buffer the output... */
+      ob_start();
+      ImageJpeg($data);
+      $bytes = ob_get_clean();
+      $this->load(new PelDataWindow($bytes));
+    } else {
+      throw new PelInvalidArgumentException('Bad type for $data: %s', 
+                                            gettype($data));
+    }
   }
 
   /**
@@ -343,6 +361,22 @@ class PelJpeg {
       return $exif;
     else
       return null;
+  }
+
+
+  /**
+   * Clear any Exif data.
+   *
+   * This method will only clear the first @{link PelJpegMarker::APP1}
+   * section found (there should normally be just one).
+   */
+  function clearExif() {
+    for ($i = 0; $i < count($this->sections); $i++) {
+      if ($this->sections[$i][0] == PelJpegMarker::APP1) {
+        unset($this->sections[$i]);
+        return;
+      }
+    }
   }
 
 

@@ -3,7 +3,7 @@
 /*  PEL: PHP Exif Library.  A library with support for reading and
  *  writing all Exif headers in JPEG and TIFF images using PHP.
  *
- *  Copyright (C) 2004, 2005  Martin Geisler.
+ *  Copyright (C) 2004, 2005, 2006  Martin Geisler.
  *
  *  This program is free software; you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
@@ -90,14 +90,29 @@ class PelTiff {
   /**
    * Construct a new object for holding TIFF data.
    *
-   * The new object will be empty, containing no {@link PelIfd}.  Use
-   * the {@link setIfd()} method to set the IFD explictly, or use the
-   * {@link load()} method to load TIFF data from a {@link
-   * PelDataWindow}.
+   * The new object will be empty (with no {@link PelIfd}) unless an
+   * argument is given from which it can initialize itself. This can
+   * either be the filename of a TIFF image or a {@link PelDataWindow}
+   * object.
+   *
+   * Use {@link setIfd()} to explicitly set the IFD.
    */
-  function __construct() {
+  function __construct($data = false) {
+    if ($data === false)
+      return;
 
+    if (is_string($data)) {
+      Pel::debug('Initializing PelTiff object from %s', $data);
+      $this->loadFile($data);
+    } elseif ($data instanceof PelDataWindow) {
+      Pel::debug('Initializing PelTiff object from PelDataWindow.');
+      $this->load($data);
+    } else {
+      throw new PelInvalidArgumentException('Bad type for $data: %s', 
+                                            gettype($data));
+    }
   }
+
 
   /**
    * Load TIFF data.
