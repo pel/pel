@@ -67,12 +67,6 @@ class PelTag {
   /**
    * Interoperability index.
    *
-   * Indicates the identification of the Interoperability rule.  Use
-   * "R98" for stating ExifR98 Rules. Four bytes used including the
-   * termination code (NULL).  See the separate volume of Recommended
-   * Exif Interoperability Rules (ExifR98) for other tags used for
-   * ExifR98.
-   *
    * Format: {@link PelFormat::ASCII}.
    *
    * Components: 4.
@@ -91,10 +85,6 @@ class PelTag {
   /**
    * Image width.
    *
-   * The number of columns of image data, equal to the number of
-   * pixels per row.  In JPEG compressed data a JPEG marker is used
-   * instead of this tag.
-   *
    * Format: {@link PelFormat::SHORT} or {@link PelFormat::LONG}.
    *
    * Components: 1.
@@ -103,9 +93,6 @@ class PelTag {
 
   /**
    * Image length.
-   *
-   * The number of rows of image data.  In JPEG compressed data a JPEG
-   * marker is used instead of this tag.
    *
    * Format: {@link PelFormat::SHORT} or {@link PelFormat::LONG}.
    *
@@ -116,11 +103,6 @@ class PelTag {
   /**
    * Number of bits per component.
    *
-   * The number of bits per image component.  In this standard each
-   * component of the image is 8 bits, so the value for this tag is 8.
-   * See also {@link SAMPLES_PER_PIXEL}.  In JPEG compressed data a
-   * JPEG marker is used instead of this tag.
-   *
    * Format: {@link PelFormat::SHORT}.
    *
    * Components: 3.
@@ -130,11 +112,6 @@ class PelTag {
   /**
    * Compression scheme.
    *
-   * The compression scheme used for the image data.  When a primary
-   * image is JPEG compressed, this designation is not necessary and
-   * is omitted.  When thumbnails use JPEG compression, this tag value
-   * is set to 6.
-   *
    * Format: {@link PelFormat::SHORT}.
    *
    * Components: 1.
@@ -143,9 +120,6 @@ class PelTag {
 
   /**
    * Pixel composition.
-   *
-   * The pixel composition.  In JPEG compressed data a JPEG marker is
-   * used instead of this tag.
    *
    * Format: {@link PelFormat::SHORT}.
    *
@@ -174,12 +148,6 @@ class PelTag {
   /**
    * Image Description
    *
-   * A character string giving the title of the image.  It may be a
-   * comment such as "1988 company picnic" or the like.  Two-bytes
-   * character codes cannot be used.  When a 2-bytes code is
-   * necessary, the Exif Private tag {@link USER_COMMENT} is to be
-   * used.
-   *
    * Format: {@link PelEntryAscii}.
    *
    * Components: any number.
@@ -188,11 +156,6 @@ class PelTag {
 
   /**
    * Manufacturer
-   *
-   * The manufacturer of the recording equipment.  This is the
-   * manufacturer of the DSC, scanner, video digitizer or other
-   * equipment that generated the image.  When the field is left
-   * blank, it is treated as unknown.
    *
    * Format: {@link PelEntryAscii}.
    *
@@ -203,11 +166,6 @@ class PelTag {
   /**
    * Model
    *
-   * The model name or model number of the equipment.  This is the
-   * model name or number of the DSC, scanner, video digitizer or
-   * other equipment that generated the image.  When the field is left
-   * blank, it is treated as unknown.
-   *
    * Format: {@link PelFormat::ASCII}.
    *
    * Components: any number.
@@ -216,12 +174,6 @@ class PelTag {
 
   /**
    * Strip Offsets
-   *
-   * For each strip, the byte offset of that strip.  It is recommended
-   * that this be selected so the number of strip bytes does not
-   * exceed 64 Kbytes.  With JPEG compressed data this designation is
-   * not needed and is omitted.  See also {@link ROWS_PER_STRIP} and
-   * {@link STRIP_BYTE_COUNTS}.
    *
    * Format: {@link PelFormat::SHORT} or {@link PelFormat::LONG}.
    *
@@ -232,8 +184,6 @@ class PelTag {
   /**
    * Orientation of image.
    *
-   * The image orientation viewed in terms of rows and columns.
-   *
    * Format: {@link PelFormat::SHORT}.
    *
    * Components: 1.
@@ -242,10 +192,6 @@ class PelTag {
 
   /**
    * Number of components.
-   *
-   * The number of components per pixel.  Since this standard applies
-   * to RGB and YCbCr images, the value set for this tag is 3.  In
-   * JPEG compressed data a JPEG marker is used instead of this tag.
    *
    * Format: {@link PelFormat::SHORT}.
    *
@@ -256,12 +202,6 @@ class PelTag {
   /**
    * Rows per Strip
    *
-   * The number of rows per strip.  This is the number of rows in the
-   * image of one strip when an image is divided into strips.  With
-   * JPEG compressed data this designation is not needed and is
-   * omitted.  See also {@link STRIP_OFFSETS} and {@link
-   * STRIP_BYTE_COUNTS}.
-   *
    * Format: {@link PelFormat::SHORT} or {@link PelFormat::LONG}.
    *
    * Components: 1.
@@ -270,9 +210,6 @@ class PelTag {
 
   /**
    * Strip Byte Count
-   *
-   * The total number of bytes in each strip.  With JPEG compressed
-   * data this designation is not needed and is omitted.
    *
    * Format: {@link PelFormat::SHORT} or {@link PelFormat::LONG}.
    *
@@ -283,10 +220,6 @@ class PelTag {
   /**
    * Image resolution in width direction.
    *
-   * The number of pixels per {@link RESOLUTION_UNIT} in the {@link
-   * IMAGE_WIDTH} direction.  When the image resolution is unknown, 72
-   * [dpi] is designated.
-   *
    * Format: {@link PelFormat::RATIONAL}.
    *
    * Components: 1.
@@ -295,10 +228,6 @@ class PelTag {
 
   /**
    * Image resolution in height direction.
-   *
-   * The number of pixels per {@link RESOLUTION_UNIT} in the {@link
-   * IMAGE_LENGTH} direction.  The same value as {@link X_RESOLUTION}
-   * is designated.
    *
    * Format: {@link PelFormat::RATIONAL}.
    *
@@ -309,11 +238,6 @@ class PelTag {
   /**
    * Image data arrangement.
    *
-   * Indicates whether pixel components are recorded in a chunky or
-   * planar format.  In JPEG compressed files a JPEG marker is used
-   * instead of this tag.  If this field does not exist, the TIFF
-   * default of 1 (chunky) is assumed.
-   *
    * Format: {@link PelFormat::SHORT}.
    *
    * Components: 1.
@@ -322,11 +246,6 @@ class PelTag {
 
   /**
    * Unit of X and Y resolution.
-   *
-   * The unit for measuring {@link X_RESOLUTION} and {@link
-   * Y_RESOLUTION}.  The same unit is used for both {@link
-   * X_RESOLUTION} and {@link Y_RESOLUTION}.  If the image resolution
-   * is unknown, 2 (inches) is designated.
    *
    * Format: {@link PelFormat::SHORT}.
    *
@@ -337,11 +256,6 @@ class PelTag {
   /**
    * Transfer function.
    *
-   * A transfer function for the image, described in tabular style.
-   * Normally this tag is not necessary, since color space is
-   * specified in the color space information tag ({@link
-   * COLOR_SPACE}).
-   *
    * Format: {@link PelFormat::SHORT}.
    *
    * Components: 3.
@@ -351,12 +265,6 @@ class PelTag {
   /**
    * Software used.
    *
-   * This tag records the name and version of the software or firmware
-   * of the camera or image input device used to generate the image.
-   * The detailed format is not specified, but it is recommended that
-   * the example shown below be followed.  When the field is left
-   * blank, it is treated as unknown.
-   *
    * Format: {@link PelFormat::ASCII}.
    *
    * Components: any number.
@@ -365,9 +273,6 @@ class PelTag {
 
   /**
    * File change date and time.
-   *
-   * The date and time of image creation.  In this standard (Exif-2.1)
-   * it is the date and time the file was changed.
    *
    * Format: {@link PelFormat::ASCII}, modelled by the {@link
    * PelEntryTime} class.
@@ -379,12 +284,6 @@ class PelTag {
   /**
    * Person who created the image.
    *
-   * This tag records the name of the camera owner, photographer or
-   * image creator.  The detailed format is not specified, but it is
-   * recommended that the information be written as in the example
-   * below for ease of Interoperability.  When the field is left
-   * blank, it is treated as unknown.
-   *
    * Format: {@link PelFormat::ASCII}.
    *
    * Components: any number.
@@ -394,10 +293,6 @@ class PelTag {
   /**
    * White point chromaticity.
    *
-   * The chromaticity of the white point of the image.  Normally this
-   * tag is not necessary, since color space is specified in the
-   * colorspace information tag ({@link COLOR_SPACE}).
-   *
    * Format: {@link PelFormat::RATIONAL}.
    *
    * Components: 2.
@@ -406,10 +301,6 @@ class PelTag {
 
   /**
    * Chromaticities of primaries.
-   *
-   * The chromaticity of the three primary colors of the image.
-   * Normally this tag is not necessary, since colorspace is specified
-   * in the colorspace information tag ({@link COLOR_SPACE}).
    *
    * Format: {@link PelFormat::RATIONAL}.
    *
@@ -438,10 +329,6 @@ class PelTag {
   /**
    * Offset to JPEG SOI.
    *
-   * The offset to the start byte ({@link PelJpegMarker::SOI SOI}) of
-   * JPEG compressed thumbnail data.  This is not used for primary
-   * image JPEG data.
-   *
    * Format: {@link PelFormat::LONG}.
    *
    * Components: 1.
@@ -450,15 +337,6 @@ class PelTag {
 
   /**
    * Bytes of JPEG data.
-   *
-   * The number of bytes of JPEG compressed thumbnail data.  This is
-   * not used for primary image JPEG data.  JPEG thumbnails are not
-   * divided but are recorded as a continuous JPEG bitstream from
-   * {@link PelJpegMarker::SOI SOI} to {@link PelJpegMarker::EOI EOI}.
-   * Appn and {@link PelJpegMarker::COM COM} markers should not be
-   * recorded.  Compressed thumbnails must be recorded in no more than
-   * 64 Kbytes, including all other data to be recorded in {@link
-   * PelJpegMarker::APP1 APP1}.
    *
    * Format: {@link PelFormat::LONG}.
    *
@@ -469,13 +347,6 @@ class PelTag {
   /**
    * Color space transformation matrix coefficients.
    *
-   * The matrix coefficients for transformation from RGB to YCbCr
-   * image data.  No default is given in TIFF; but here the value
-   * given in Appendix E, "Color Space Guidelines", is used as the
-   * default.  The color space is declared in a color space
-   * information tag, with the default being the value that gives the
-   * optimal image characteristics Interoperability this condition.
-   *
    * Format: {@link PelFormat::RATIONAL}.
    *
    * Components: 3.
@@ -484,10 +355,6 @@ class PelTag {
 
   /**
    * Subsampling ratio of Y to C.
-   *
-   * The sampling ratio of chrominance components in relation to the
-   * luminance component.  In JPEG compressed data a JPEG marker is
-   * used instead of this tag.
    *
    * Format: {@link PelFormat::SHORT}.
    *
@@ -498,20 +365,6 @@ class PelTag {
   /**
    * Y and C positioning.
    *
-   * The position of chrominance components in relation to the
-   * luminance component.  This field is designated only for JPEG
-   * compressed data or uncompressed YCbCr data.  The TIFF default is
-   * 1 (centered); but when Y:Cb:Cr = 4:2:2 it is recommended in this
-   * standard that 2 (co-sited) be used to record data, in order to
-   * improve the image quality when viewed on TV systems.  When this
-   * field does not exist, the reader shall assume the TIFF default.
-   * In the case of Y:Cb:Cr = 4:2:0, the TIFF default (centered) is
-   * recommended.  If the reader does not have the capability of
-   * supporting both kinds of {@link YCB_CR_POSITIONING}, it shall
-   * follow the TIFF default regardless of the value in this field.
-   * It is preferable that readers be able to support both centered
-   * and co-sited positioning.
-   *
    * Format: {@link PelFormat::SHORT}.
    *
    * Components: 1.
@@ -520,12 +373,6 @@ class PelTag {
 
   /**
    * Pair of black and white reference values.
-   *
-   * The reference black point value and reference white point value.
-   * No defaults are given in TIFF, but the values below are given as
-   * defaults here.  The color space is declared in a color space
-   * information tag, with the default being the value that gives the
-   * optimal image characteristics Interoperability these conditions.
    *
    * Format: {@link PelFormat::RATIONAL}.
    *
@@ -580,26 +427,6 @@ class PelTag {
   /**
    * Copyright holder.
    *
-   * Copyright information.  In this standard the tag is used to
-   * indicate both the photographer and editor copyrights.  It is the
-   * copyright notice of the person or organization claiming rights to
-   * the image.  The Interoperability copyright statement including
-   * date and rights should be written in this field; e.g.,
-   * "Copyright, John Smith, 19xx.  All rights reserved.".  In this
-   * standard the field records both the photographer and editor
-   * copyrights, with each recorded in a separate part of the
-   * statement.  When there is a clear distinction between the
-   * photographer and editor copyrights, these are to be written in
-   * the order of photographer followed by editor copyright, separated
-   * by NULL (in this case, since the statement also ends with a NULL,
-   * there are two NULL codes) (see example 1).  When only the
-   * photographer is given, it is terminated by one NULL code (see
-   * example 2).  When only the editor copyright is given, the
-   * photographer copyright part consists of one space followed by a
-   * terminating NULL code, then the editor copyright is given (see
-   * example 3).  When the field is left blank, it is treated as
-   * unknown.
-   *
    * Format: {@link PelFormat::ASCII}, modelled by the {@link
    * PelEntryCopyright} class.
    *
@@ -610,8 +437,6 @@ class PelTag {
   /**
    * Exposure Time
    *
-   * Exposure time (reciprocal of shutter speed), given in seconds.
-   *
    * Format: {@link PelFormat::RATIONAL}.
    *
    * Components: 1.
@@ -620,8 +445,6 @@ class PelTag {
 
   /**
    * FNumber
-   *
-   * The F number.
    *
    * Format: {@link PelFormat::RATIONAL}.
    *
@@ -641,10 +464,6 @@ class PelTag {
   /**
    * Exif IFD Pointer
    *
-   * A pointer to the Exif IFD.  Interoperability, Exif IFD has the
-   * same structure as that of the IFD specified in TIFF.  ordinarily,
-   * however, it does not contain image data as in the case of TIFF.
-   *
    * Format: {@link PelFormat::LONG}.
    *
    * Components: 1.
@@ -663,9 +482,6 @@ class PelTag {
   /**
    * Exposure Program
    *
-   * The class of the program used by the camera to set exposure when
-   * the picture is taken.
-   *
    * Format: {@link PelFormat::SHORT}.
    *
    * Components: 1.
@@ -674,10 +490,6 @@ class PelTag {
 
   /**
    * Spectral Sensitivity
-   *
-   * Indicates the spectral sensitivity of each channel of the camera
-   * used.  The tag value is an ASCII string compatible with the
-   * standard developed by the ASTM Technical Committee.
    *
    * Format: {@link PelFormat::ASCII}.
    *
@@ -688,9 +500,6 @@ class PelTag {
   /**
    * GPS Info IFD Pointer
    *
-   * A pointer to the GPS Info IFD.  The Interoperability structure of
-   * the GPS Info IFD, like that of Exif IFD, has no image data.
-   *
    * Format: {@link PelFormat::LONG}.
    *
    * Components: 1.
@@ -699,9 +508,6 @@ class PelTag {
 
   /**
    * ISO Speed Ratings
-   *
-   * Indicates the ISO Speed and ISO Latitude of the camera or input
-   * device as specified in ISO 12232.
    *
    * Format: {@link PelFormat::SHORT}.
    *
@@ -712,10 +518,6 @@ class PelTag {
   /**
    * OECF
    *
-   * Indicates the Opto-Electoric Conversion Function (OECF) specified
-   * in ISO 14524.  OECF is the relationship between the camera
-   * optical input and the image values.
-   *
    * Format: {@link PelFormat::UNDEFINED}.
    *
    * Components: any number.
@@ -724,9 +526,6 @@ class PelTag {
 
   /**
    * Exif version.
-   *
-   * The version of this standard supported.  Nonexistence of this
-   * field is taken to mean non-conformance to the standard.
    *
    * Format: {@link PelFormat::UNDEFINED}, modelled by the {@link
    * PelEntryVersion} class.
@@ -738,10 +537,6 @@ class PelTag {
   /**
    * Date and time of original data generation.
    *
-   * The date and time when the original image data was generated.
-   * For a digital still camera the date and time the picture was
-   * taken are recorded.
-   *
    * Format: {@link PelFormat::ASCII}, modelled by the {@link
    * PelEntryTime} class.
    *
@@ -751,8 +546,6 @@ class PelTag {
 
   /**
    * Date and time of digital data generation.
-   *
-   * The date and time when the image was stored as digital data.
    *
    * Format: {@link PelFormat::ASCII}, modelled by the {@link
    * PelEntryTime} class.
@@ -764,15 +557,6 @@ class PelTag {
   /**
    * Meaning of each component.
    *
-   * Information specific to compressed data.  The channels of each
-   * component are arranged in order from the 1st component to the
-   * 4th.  For uncompressed data the data arrangement is given in the
-   * {@link PHOTOMETRIC_INTERPRETATION} tag.  However, since {@link
-   * PHOTOMETRIC_INTERPRETATION} can only express the order of Y, Cb
-   * and Cr, this tag is provided for cases when compressed data uses
-   * components other than Y, Cb, and Cr and to enable support of
-   * other sequences.
-   *
    * Format: {@link PelFormat::UNDEFINED}.
    *
    * Components: 4.
@@ -781,9 +565,6 @@ class PelTag {
 
   /**
    * Image compression mode.
-   *
-   * Information specific to compressed data.  The compression mode
-   * used for a compressed image is indicated in unit bits per pixel.
    *
    * Format: {@link PelFormat::RATIONAL}.
    *
@@ -794,9 +575,6 @@ class PelTag {
   /**
    * Shutter speed
    *
-   * Shutter speed.  The unit is the APEX (Additive System of
-   * Photographic Exposure) setting (see Appendix C).
-   *
    * Format: {@link PelFormat::SRATIONAL}.
    *
    * Components: 1.
@@ -805,8 +583,6 @@ class PelTag {
 
   /**
    * Aperture
-   *
-   * The lens aperture.  The unit is the APEX value.
    *
    * Format: {@link PelFormat::RATIONAL}.
    *
@@ -817,9 +593,6 @@ class PelTag {
   /**
    * Brightness
    *
-   * The value of brightness.  The unit is the APEX value.  Ordinarily
-   * it is given in the range of -99.99 to 99.99.
-   *
    * Format: {@link PelFormat::SRATIONAL}.
    *
    * Components: 1.
@@ -828,9 +601,6 @@ class PelTag {
 
   /**
    * Exposure Bias
-   *
-   * The exposure bias.  The units is the APEX value.  Ordinarily it
-   * is given in the range of -99.99 to 99.99.
    *
    * Format: {@link PelFormat::SRATIONAL}.
    *
@@ -841,10 +611,6 @@ class PelTag {
   /**
    * Max Aperture Value
    *
-   * The smallest F number of the lens.  The unit is the APEX value.
-   * Ordinarily it is given in the range of 00.00 to 99.99, but it is
-   * not limited to this range.
-   *
    * Format: {@link PelFormat::RATIONAL}.
    *
    * Components: 1.
@@ -853,8 +619,6 @@ class PelTag {
 
   /**
    * Subject Distance
-   *
-   * The distance to the subject, given in meters.
    *
    * Format: {@link PelFormat::SRATIONAL}.
    *
@@ -865,8 +629,6 @@ class PelTag {
   /**
    * Metering Mode
    *
-   * The metering mode.
-   *
    * Format: {@link PelFormat::SHORT}.
    *
    * Components: 1.
@@ -875,8 +637,6 @@ class PelTag {
 
   /**
    * Light Source
-   *
-   * The kind of light source.
    *
    * Format: {@link PelFormat::SHORT}.
    *
@@ -887,9 +647,6 @@ class PelTag {
   /**
    * Flash
    *
-   * This tag is recorded when an image is taken using a strobe light
-   * (flash).
-   *
    * Format: {@link PelFormat::SHORT}.
    *
    * Components: 1.
@@ -898,10 +655,6 @@ class PelTag {
 
   /**
    * Focal Length
-   *
-   * The actual focal length of the lens, in mm.  Conversion is not
-   * made to the focal length of a 35 mm film camera, see the {@link
-   * FOCAL_LENGTH_IN_35MM_FILM} tag for this information.
    *
    * Format: {@link PelFormat::RATIONAL}.
    *
@@ -912,9 +665,6 @@ class PelTag {
   /**
    * Subject Area
    *
-   * This tag indicates the location and area of the main subject in
-   * the overall scene.
-   *
    * Format: {@link PelFormat::SHORT}.
    *
    * Components: 4.
@@ -924,9 +674,6 @@ class PelTag {
   /**
    * Maker Note
    *
-   * A tag for manufacturers of Exif writers to record any desired
-   * information.  The contents are up to the manufacturer.
-   *
    * Format: {@link PelFormat::UNDEFINED}.
    *
    * Components: any number.
@@ -935,29 +682,6 @@ class PelTag {
 
   /**
    * User Comment
-   *
-   * A tag for Exif users to write keywords or comments on the image
-   * besides those in {@link IMAGE_DESCRIPTION}, and without the
-   * character code limitations of the {@link IMAGE_DESCRIPTION} tag.
-   * The character code used in the {@link USER_COMMENT} tag is
-   * identified based on an ID code in a fixed 8-byte area at the
-   * start of the tag data area.  The unused portion of the area is
-   * padded with NULL ("00.h").  ID codes are assigned by means of
-   * registration.  The designation method and references for each
-   * character code are given in Table 6.  The value of CountN is
-   * determined based on the 8 bytes in the character code area and
-   * the number of bytes in the user comment part.  Since the TYPE is
-   * not ASCII, NULL termination is not necessary (see Fig. 9).  The
-   * ID code for the {@link USER_COMMENT} area may be a Defined code
-   * such as JIS or ASCII, or may be Undefined.  The Undefined name is
-   * UndefinedText, and the ID code is filled with 8 bytes of all
-   * "NULL" ("00.H").  An Exif reader that reads the {@link
-   * USER_COMMENT} tag must have a function for determining the ID
-   * code.  This function is not required in Exif readers that do not
-   * use the {@link USER_COMMENT} tag (see Table 7).  When a {@link
-   * USER_COMMENT} area is set aside, it is recommended that the ID
-   * code be ASCII and that the following user comment part be filled
-   * with blank characters [20.H].
    *
    * Format: {@link PelFormat::UNDEFINED}, modelled by the {@link
    * PelEntryUserComment} class.
@@ -969,9 +693,6 @@ class PelTag {
   /**
    * SubSec Time
    *
-   * A tag used to record fractions of seconds for the {@link
-   * DATE_TIME} tag.
-   *
    * Format: {@link PelFormat::ASCII}.
    *
    * Components: any number.
@@ -980,9 +701,6 @@ class PelTag {
 
   /**
    * SubSec Time Original
-   *
-   * A tag used to record fractions of seconds for the {@link
-   * DATE_TIME_ORIGINAL} tag.
    *
    * Format: {@link PelFormat::ASCII}.
    *
@@ -993,9 +711,6 @@ class PelTag {
   /**
    * SubSec Time Digitized
    *
-   * A tag used to record fractions of seconds for the {@link
-   * DATE_TIME_DIGITIZED} tag.
-   *
    * Format: {@link PelFormat::ASCII}.
    *
    * Components: any number.
@@ -1004,8 +719,6 @@ class PelTag {
 
   /**
    * Windows XP Title
-   *
-   * The image title as defined by the user in Windows XP.
    *
    * Format: {@link PelFormat::BYTE}.
    *
@@ -1017,8 +730,6 @@ class PelTag {
   /**
    * Windows XP Comment
    *
-   * The image comment as defined by the user in Windows XP.
-   *
    * Format: {@link PelFormat::BYTE}.
    *
    * Components: any number.
@@ -1028,8 +739,6 @@ class PelTag {
 
   /**
    * Windows XP Author
-   *
-   * The image author as defined by the user in Windows XP.
    *
    * Format: {@link PelFormat::BYTE}.
    *
@@ -1041,8 +750,6 @@ class PelTag {
   /**
    * Windows XP Keywords
    *
-   * The image keywords as defined by the user in Windows XP.
-   *
    * Format: {@link PelFormat::BYTE}.
    *
    * Components: any number.
@@ -1052,8 +759,6 @@ class PelTag {
 
   /**
    * Windows XP Subject
-   *
-   * The image subject as defined by the user in Windows XP.
    *
    * Format: {@link PelFormat::BYTE}.
    *
@@ -1065,11 +770,6 @@ class PelTag {
   /**
    * Supported Flashpix version
    *
-   * The FlashPix format version supported by a FPXR file.
-   *
-   * An entry holding this tag must have format {@link
-   * PelFormat::UNDEFINED}.
-   *
    * Format: {@link PelFormat::UNDEFINED}, modelled by the {@link
    * PelEntryVersion} class.
    *
@@ -1080,14 +780,6 @@ class PelTag {
   /**
    * Color space information.
    *
-   * The color space information tag is always recorded as the color
-   * space specifier.  Normally sRGB (=1) is used to define the color
-   * space based on the PC monitor conditions and environment.  If a
-   * color space other than sRGB is used, Uncalibrated (=FFFF.H) is
-   * set.  Image data recorded as Uncalibrated can be treated as sRGB
-   * when it is converted to FlashPix.  On sRGB see Appendix E of the
-   * Exif 2.2 standard.
-   *
    * Format: {@link PelFormat::SHORT}.
    *
    * Components: 1.
@@ -1096,13 +788,6 @@ class PelTag {
 
   /**
    * Valid image width.
-   *
-   * Information specific to compressed data.  When a compressed file
-   * is recorded, the valid width of the meaningful image must be
-   * recorded in this tag, whether or not there is padding data or a
-   * restart marker.  This tag should not exist in an uncompressed
-   * file.  For details see section 2.8.1 and Appendix F of the Exif
-   * 2.2 standard.
    *
    * Format: {@link PelFormat::SHORT} or {@link PelFormat::LONG}.
    *
@@ -1113,15 +798,6 @@ class PelTag {
   /**
    * Valid image height.
    *
-   * Information specific to compressed data.  When a compressed file
-   * is recorded, the valid height of the meaningful image must be
-   * recorded in this tag, whether or not there is padding data or a
-   * restart marker.  This tag should not exist in an uncompressed
-   * file.  For details see section 2.8.1 and Appendix F of the Exif
-   * 2.2 standard.  Since data padding is unnecessary in the vertical
-   * direction, the number of lines recorded in this valid image
-   * height tag will in fact be the same as that recorded in the SOF.
-   *
    * Format: {@link PelFormat::SHORT} or {@link PelFormat::LONG}.
    *
    * Components: 1.
@@ -1130,34 +806,6 @@ class PelTag {
 
   /**
    * Related audio file.
-   *
-   * This tag is used to record the name of an audio file related to
-   * the image data.  The only relational information recorded here is
-   * the Exif audio file name and extension (an ASCII string
-   * consisting of 8 characters + '.' + 3 characters).  The path is
-   * not recorded.  Stipulations on audio are given in section 3.6.3
-   * of the Exif 2.2 standard.  File naming conventions are given in
-   * section 3.7.1.  When using this tag, audio files must be recorded
-   * in conformance to the Exif audio format.  Writers are also
-   * allowed to store the data such as Audio within APP2 as FlashPix
-   * extension stream data.  Audio files must be recorded in
-   * conformance to the Exif audio format.  The mapping of Exif image
-   * files and audio files is done in any of the three ways shown in
-   * Table 8.  If multiple files are mapped to one file as in [2] or
-   * [3] of this table, the above format is used to record just one
-   * audio file name.  If there are multiple audio files, the first
-   * recorded file is given.  In the case of [3] in Table 8, for
-   * example, for the Exif image file "DSC00001.JPG" only
-   * "SND00001.WAV" is given as the related Exif audio file.  When
-   * there are three Exif audio files "SND00001.WAV", "SND00002.WAV"
-   * and "SND00003.WAV", the Exif image file name for each of them,
-   * "DSC00001.JPG", is indicated.  By combining multiple relational
-   * information, a variety of playback possibilities can be
-   * supported.  The method of using relational information is left to
-   * the implementation on the playback side.  Since this information
-   * is an ASCII character string, it is terminated by NULL.  When
-   * this tag is used to map audio files, the relation of the audio
-   * file to image data must also be indicated on the audio file end.
    *
    * Format: {@link PelFormat::ASCII}.
    *
@@ -1168,13 +816,6 @@ class PelTag {
   /**
    * Interoperability IFD Pointer
    *
-   * Interoperability IFD is composed of tags which stores the
-   * information to ensure the Interoperability and pointed by the
-   * following tag located in Exif IFD.  The Interoperability
-   * structure of Interoperability IFD is the same as TIFF defined IFD
-   * structure but does not contain the image data characteristically
-   * compared with normal TIFF IFD.
-   *
    * Format: {@link PelFormat::LONG}.
    *
    * Components: 1.
@@ -1183,9 +824,6 @@ class PelTag {
 
   /**
    * Flash energy.
-   *
-   * Indicates the strobe energy at the time the image is captured, as
-   * measured in Beam Candle Power Seconds (BCPS).
    *
    * Format: {@link PelFormat::RATIONAL}.
    *
@@ -1196,10 +834,6 @@ class PelTag {
   /**
    * Spatial frequency response.
    *
-   * This tag records the camera or input device spatial frequency
-   * table and SFR values in the direction of image width, image
-   * height, and diagonal direction, as specified in ISO 12233.
-   *
    * Format: {@link PelFormat::UNDEFINED}.
    *
    * Components: any number.
@@ -1208,10 +842,6 @@ class PelTag {
 
   /**
    * Focal plane X resolution.
-   *
-   * Indicates the number of pixels in the image width (X) direction
-   * per {@link FOCAL_PLANE_RESOLUTION_UNIT} on the camera focal
-   * plane.
    *
    * Format: {@link PelFormat::RATIONAL}.
    *
@@ -1222,10 +852,6 @@ class PelTag {
   /**
    * Focal plane Y resolution.
    *
-   * Indicates the number of pixels in the image height (V) direction
-   * per {@link FOCAL_PLANE_RESOLUTION_UNIT} on the camera focal
-   * plane.
-   *
    * Format: {@link PelFormat::RATIONAL}.
    *
    * Components: 1.
@@ -1234,10 +860,6 @@ class PelTag {
 
   /**
    * Focal plane resolution unit.
-   *
-   * Indicates the unit for measuring {@link FOCAL_PLANE_X_RESOLUTION}
-   * and {@link FOCAL_PLANE_Y_RESOLUTION}.  This value is the same as
-   * the {@link RESOLUTION_UNIT}.
    *
    * Format: {@link PelFormat::SHORT}.
    *
@@ -1248,12 +870,6 @@ class PelTag {
   /**
    * Subject location.
    *
-   * Indicates the location of the main subject in the scene.  The
-   * value of this tag represents the pixel at the center of the main
-   * subject relative to the left edge, prior to rotation processing
-   * as per the {@link ROTATION} tag.  The first value indicates the X
-   * column number and second indicates the Y row number.
-   *
    * Format: {@link PelFormat::SHORT}.
    *
    * Components: 1.
@@ -1262,9 +878,6 @@ class PelTag {
 
   /**
    * Exposure index.
-   *
-   * Indicates the exposure index selected on the camera or input
-   * device at the time the image is captured.
    *
    * Format: {@link PelFormat::RATIONAL}.
    *
@@ -1275,8 +888,6 @@ class PelTag {
   /**
    * Sensing method.
    *
-   * Indicates the image sensor type on the camera or input device.
-   *
    * Format: {@link PelFormat::SHORT}.
    *
    * Components: 1.
@@ -1285,10 +896,6 @@ class PelTag {
 
   /**
    * File source.
-   *
-   * Indicates the image source.  If a DSC recorded the image, this
-   * tag value of this tag always be set to 3, indicating that the
-   * image was recorded on a DSC.
    *
    * Format: {@link PelFormat::UNDEFINED}.
    *
@@ -1299,10 +906,6 @@ class PelTag {
   /**
    * Scene type.
    *
-   * Indicates the type of scene.  If a DSC recorded the image, this
-   * tag value must always be set to 1, indicating that the image was
-   * directly photographed.
-   *
    * Format: {@link PelFormat::UNDEFINED}.
    *
    * Components: 1.
@@ -1311,10 +914,6 @@ class PelTag {
 
   /**
    * CFA pattern.
-   *
-   * Indicates the color filter array (CFA) geometric pattern of the
-   * image sensor when a one-chip color area sensor is used.  It does
-   * not apply to all sensing methods.
    *
    * Format: {@link PelFormat::UNDEFINED}.
    *
@@ -1325,11 +924,6 @@ class PelTag {
   /**
    * Custom image processing.
    *
-   * This tag indicates the use of special processing on image data,
-   * such as rendering geared to output.  When special processing is
-   * performed, the reader is expected to disable or minimize any
-   * further processing.
-   *
    * Format: {@link PelFormat::SHORT}.
    *
    * Components: 1.
@@ -1338,10 +932,6 @@ class PelTag {
 
   /**
    * Exposure mode.
-   *
-   * This tag indicates the exposure mode set when the image was shot.
-   * In auto-bracketing mode, the camera shoots a series of frames of
-   * the same scene at different exposure settings.
    *
    * Format: {@link PelFormat::SHORT}.
    *
@@ -1352,9 +942,6 @@ class PelTag {
   /**
    * White balance.
    *
-   * This tag indicates the white balance mode set when the image was
-   * shot.
-   *
    * Format: {@link PelFormat::SHORT}.
    *
    * Components: 1.
@@ -1363,10 +950,6 @@ class PelTag {
 
   /**
    * Digital zoom ratio.
-   *
-   * This tag indicates the digital zoom ratio when the image was
-   * shot.  If the numerator of the recorded value is 0, this
-   * indicates that digital zoom was not used.
    *
    * Format: {@link PelFormat::RATIONAL}.
    *
@@ -1377,11 +960,6 @@ class PelTag {
   /**
    * Focal length in 35mm film.
    *
-   * This tag indicates the equivalent focal length assuming a 35mm
-   * film camera, in mm.  A value of 0 means the focal length is
-   * unknown.  Note that this tag differs from the {@link
-   * FOCAL_LENGTH} tag.
-   *
    * Format: {@link PelFormat::RATIONAL}.
    *
    * Components: 1.
@@ -1390,10 +968,6 @@ class PelTag {
 
   /**
    * Scene capture type.
-   *
-   * This tag indicates the type of scene that was shot.  It can also
-   * be used to record the mode in which the image was shot.  Note
-   * that this differs from the {@link SCENE_TYPE} tag.
    *
    * Format: {@link PelFormat::SHORT}.
    *
@@ -1404,8 +978,6 @@ class PelTag {
   /**
    * Gain control.
    *
-   * This tag indicates the degree of overall image gain adjustment.
-   *
    * Format: {@link PelFormat::SHORT}.
    *
    * Components: 1.
@@ -1414,9 +986,6 @@ class PelTag {
 
   /**
    * Contrast.
-   *
-   * This tag indicates the direction of contrast processing applied
-   * by the camera when the image was shot.
    *
    * Format: {@link PelFormat::SHORT}.
    *
@@ -1427,9 +996,6 @@ class PelTag {
   /**
    * Saturation.
    *
-   * This tag indicates the direction of saturation processing applied
-   * by the camera when the image was shot.
-   *
    * Format: {@link PelFormat::SHORT}.
    *
    * Components: 1.
@@ -1438,9 +1004,6 @@ class PelTag {
 
   /**
    * Sharpness.
-   *
-   * This tag indicates the direction of sharpness processing applied
-   * by the camera when the image was shot.
    *
    * Format: {@link PelFormat::SHORT}.
    *
@@ -1460,8 +1023,6 @@ class PelTag {
   /**
    * Subject distance range.
    *
-   * This tag indicates the distance to the subject.
-   *
    * Format: {@link PelFormat::SHORT}.
    *
    * Components: 1.
@@ -1470,10 +1031,6 @@ class PelTag {
 
   /**
    * Image unique ID.
-   *
-   * This tag indicates an identifier assigned uniquely to each image.
-   * It is recorded as an ASCII string equivalent to hexadecimal
-   * notation and 128-bit fixed length.
    *
    * Format: {@link PelFormat::ASCII}.
    *
@@ -1484,12 +1041,6 @@ class PelTag {
   /**
    * Gamma.
    *
-   * Indicates the value of the gamma coefficient. The formula of
-   * transfer function used for image reproduction is expressed as
-   * follows: (Reproduced value) = (Input value)^gamma. Both
-   * reproduced value and input value indicate normalized value, whose
-   * minimum value is 0 and maximum value is 1.
-   *
    * Format: {@link PelFormat::RATIONAL}.
    *
    * Components: 1.
@@ -1498,8 +1049,6 @@ class PelTag {
 
   /**
    * PrintIM
-   *
-   * What is stored in this tag?
    *
    * Format: {@link PelFormat::UNDEFINED}.
    *
@@ -1510,11 +1059,6 @@ class PelTag {
   /**
    * GPS tag version.
    *
-   * Indicates the version of GPSInfoIFD. The version is given as
-   * 2.2.0.0. This tag is mandatory when GPSInfo tag is present. Note
-   * that the GPSVersionID tag is written as a different byte than the
-   * Exif Version tag.
-   *
    * Format: {@link PelFormat::BYTE}.
    *
    * Components: 4.
@@ -1523,10 +1067,6 @@ class PelTag {
 
   /**
    * North or South Latitude.
-   *
-   * Indicates whether the latitude is north or south latitude. The
-   * ASCII value 'N' indicates north latitude, and 'S' is south
-   * latitude.
    *
    * Format: {@link PelFormat::ASCII}.
    *
@@ -1537,14 +1077,6 @@ class PelTag {
   /**
    * Latitude.
    *
-   * Indicates the latitude. The latitude is expressed as three
-   * RATIONAL values giving the degrees, minutes, and seconds,
-   * respectively. If latitude is expressed as degrees, minutes and
-   * seconds, a typical format would be dd/1,mm/1,ss/1. When degrees
-   * and minutes are used and, for example, fractions of minutes are
-   * given up to two decimal places, the format would be
-   * dd/1,mmmm/100,0/1.
-   *
    * Format: {@link PelFormat::RATIONAL}.
    *
    * Components: 3.
@@ -1553,9 +1085,6 @@ class PelTag {
 
   /**
    * East or West Longitude.
-   *
-   * Indicates whether the longitude is east or west longitude. ASCII
-   * 'E' indicates east longitude, and 'W' is west longitude.
    *
    * Format: {@link PelFormat::ASCII}.
    *
@@ -1566,14 +1095,6 @@ class PelTag {
   /**
    * Longitude.
    *
-   * Indicates the longitude. The longitude is expressed as three
-   * RATIONAL values giving the degrees, minutes, and seconds,
-   * respectively. If longitude is expressed as degrees, minutes and
-   * seconds, a typical format would be ddd/1,mm/1,ss/1. When degrees
-   * and minutes are used and, for example, fractions of minutes are
-   * given up to two decimal places, the format would be
-   * ddd/1,mmmm/100,0/1.
-   *
    * Format: {@link PelFormat::RATIONAL}.
    *
    * Components: 3.
@@ -1582,13 +1103,6 @@ class PelTag {
 
   /**
    * Altitude reference.
-   *
-   * Indicates the altitude used as the reference altitude. If the
-   * reference is sea level and the altitude is above sea level, 0 is
-   * given. If the altitude is below sea level, a value of 1 is given
-   * and the altitude is indicated as an absolute value in the
-   * GPSAltitude tag. The reference unit is meters. Note that this tag
-   * is BYTE type, unlike other reference tags.
    *
    * Format: {@link PelFormat::BYTE}.
    *
@@ -1599,10 +1113,6 @@ class PelTag {
   /**
    * Altitude.
    *
-   * Indicates the altitude based on the reference in
-   * GPSAltitudeRef. Altitude is expressed as one RATIONAL value. The
-   * reference unit is meters.
-   *
    * Format: {@link PelFormat::RATIONAL}.
    *
    * Components: 1.
@@ -1611,10 +1121,6 @@ class PelTag {
 
   /**
    * GPS time (atomic clock).
-   *
-   * Indicates the time as UTC (Coordinated Universal Time). TimeStamp
-   * is expressed as three RATIONAL values giving the hour, minute,
-   * and second.
    *
    * Format: {@link PelFormat::RATIONAL}.
    *
@@ -1625,13 +1131,6 @@ class PelTag {
   /**
    * GPS satellites used for measurement.
    *
-   * Indicates the GPS satellites used for measurements. This tag can
-   * be used to describe the number of satellites, their ID number,
-   * angle of elevation, azimuth, SNR and other information in ASCII
-   * notation. The format is not specified. If the GPS receiver is
-   * incapable of taking measurements, value of the tag shall be set
-   * to NULL.
-   *
    * Format: {@link PelFormat::ASCII}.
    *
    * Components: Any.
@@ -1640,10 +1139,6 @@ class PelTag {
 
   /**
    * GPS receiver status.
-   *
-   * Indicates the status of the GPS receiver when the image is
-   * recorded. 'A' means measurement is in progress, and 'V' means the
-   * measurement is Interoperability.
    *
    * Format: {@link PelFormat::ASCII}.
    *
@@ -1654,10 +1149,6 @@ class PelTag {
   /**
    * GPS measurement mode.
    *
-   * Indicates the GPS measurement mode. '2' means two-dimensional
-   * measurement and '3' means three-dimensional measurement is in
-   * progress.
-   *
    * Format: {@link PelFormat::ASCII}.
    *
    * Components: 2.
@@ -1666,10 +1157,6 @@ class PelTag {
 
   /**
    * Measurement precision.
-   *
-   * Indicates the GPS DOP (data degree of precision). An HDOP value
-   * is written during two-dimensional measurement, and PDOP during
-   * three-dimensional measurement.
    *
    * Format: {@link PelFormat::RATIONAL}.
    *
@@ -1680,10 +1167,6 @@ class PelTag {
   /**
    * Speed unit.
    *
-   * Indicates the unit used to express the GPS receiver speed of
-   * movement. 'K' 'M' and 'N' represents kilometers per hour, miles
-   * per hour, and knots.
-   *
    * Format: {@link PelFormat::ASCII}.
    *
    * Components: 2.
@@ -1692,8 +1175,6 @@ class PelTag {
 
   /**
    * Speed of GPS receiver.
-   *
-   * Indicates the speed of GPS receiver movement.
    *
    * Format: {@link PelFormat::RATIONAL}.
    *
@@ -1704,10 +1185,6 @@ class PelTag {
   /**
    * Reference for direction of movement.
    *
-   * Indicates the reference for giving the direction of GPS receiver
-   * movement. 'T' denotes true direction and 'M' is magnetic
-   * direction.
-   *
    * Format: {@link PelFormat::ASCII}.
    *
    * Components: 2.
@@ -1716,9 +1193,6 @@ class PelTag {
 
   /**
    * Direction of movement.
-   *
-   * Indicates the direction of GPS receiver movement. The range of
-   * values is from 0.00 to 359.99.
    *
    * Format: {@link PelFormat::RATIONAL}.
    *
@@ -1729,10 +1203,6 @@ class PelTag {
   /**
    * Reference for direction of image.
    *
-   * Indicates the reference for giving the direction of the image
-   * when it is captured. 'T' denotes true direction and 'M' is
-   * magnetic direction.
-   *
    * Format: {@link PelFormat::ASCII}.
    *
    * Components: 2.
@@ -1741,9 +1211,6 @@ class PelTag {
 
   /**
    * Direction of image.
-   *
-   * Indicates the direction of the image when it was captured. The
-   * range of values is from 0.00 to 359.99.
    *
    * Format: {@link PelFormat::RATIONAL}.
    *
@@ -1754,11 +1221,6 @@ class PelTag {
   /**
    * Geodetic survey data used.
    *
-   * Indicates the geodetic survey data used by the GPS receiver. If
-   * the survey data is restricted to Japan, the value of this tag is
-   * 'TOKYO' or 'WGS-84'. If a GPS Info tag is recorded, it is
-   * strongly recommended that this tag be recorded.
-   *
    * Format: {@link PelFormat::ASCII}.
    *
    * Components: Any.
@@ -1767,10 +1229,6 @@ class PelTag {
 
   /**
    * Reference for latitude of destination.
-   *
-   * Indicates whether the latitude of the destination point is north
-   * or south latitude. The ASCII value 'N' indicates north latitude,
-   * and 'S' is south latitude.
    *
    * Format: {@link PelFormat::ASCII}.
    *
@@ -1781,14 +1239,6 @@ class PelTag {
   /**
    * Latitude of destination.
    *
-   * Indicates the latitude of the destination point. The latitude is
-   * expressed as three RATIONAL values giving the degrees, minutes,
-   * and seconds, respectively. If latitude is expressed as degrees,
-   * minutes and seconds, a typical format would be
-   * dd/1,mm/1,ss/1. When degrees and minutes are used and, for
-   * example, fractions of minutes are given up to two decimal places,
-   * the format would be dd/1,mmmm/100,0/1.
-   *
    * Format: {@link PelFormat::RATIONAL}.
    *
    * Components: 3.
@@ -1797,10 +1247,6 @@ class PelTag {
 
   /**
    * Reference for longitude of destination.
-   *
-   * Indicates whether the longitude of the destination point is east
-   * or west longitude. ASCII 'E' indicates east longitude, and 'W' is
-   * west longitude.
    *
    * Format: {@link PelFormat::ASCII}.
    *
@@ -1811,14 +1257,6 @@ class PelTag {
   /**
    * Longitude of destination.
    *
-   * Indicates the longitude of the destination point. The longitude
-   * is expressed as three RATIONAL values giving the degrees,
-   * minutes, and seconds, respectively. If longitude is expressed as
-   * degrees, minutes and seconds, a typical format would be
-   * ddd/1,mm/1,ss/1. When degrees and minutes are used and, for
-   * example, fractions of minutes are given up to two decimal places,
-   * the format would be ddd/1,mmmm/100,0/1.
-   *
    * Format: {@link PelFormat::RATIONAL}.
    *
    * Components: 3.
@@ -1827,10 +1265,6 @@ class PelTag {
 
   /**
    * Reference for bearing of destination.
-   *
-   * Indicates the reference used for giving the bearing to the
-   * destination point. 'T' denotes true direction and 'M' is magnetic
-   * direction.
    *
    * Format: {@link PelFormat::ASCII}.
    *
@@ -1841,9 +1275,6 @@ class PelTag {
   /**
    * Bearing of destination.
    *
-   * Indicates the bearing to the destination point. The range of
-   * values is from 0.00 to 359.99.
-   *
    * Format: {@link PelFormat::RATIONAL}.
    *
    * Components: 1.
@@ -1852,10 +1283,6 @@ class PelTag {
 
   /**
    * Reference for distance to destination.
-   *
-   * Indicates the unit used to express the distance to the
-   * destination point. 'K', 'M' and 'N' represent kilometers, miles
-   * and knots.
    *
    * Format: {@link PelFormat::ASCII}.
    *
@@ -1866,8 +1293,6 @@ class PelTag {
   /**
    * Distance to destination.
    *
-   * Indicates the distance to the destination point.
-   *
    * Format: {@link PelFormat::RATIONAL}.
    *
    * Components: 1.
@@ -1876,12 +1301,6 @@ class PelTag {
 
   /**
    * Name of GPS processing method.
-   *
-   * A character string recording the name of the method used for
-   * location finding. The first byte indicates the character code
-   * used (Table 6, Table 7), and this is followed by the name of the
-   * method. Since the type is not ASCII, NULL termination is not
-   * necessary.
    *
    * Format: {@link PelFormat::UNDEFINED}.
    *
@@ -1892,11 +1311,6 @@ class PelTag {
   /**
    * Name of GPS area.
    *
-   * A character string recording the name of the GPS area.  The first
-   * byte indicates the character code used (Table 6, Table 7), and
-   * this is followed by the name of the method. Since the type is not
-   * ASCII, NULL termination is not necessary.
-   *
    * Format: {@link PelFormat::UNDEFINED}.
    *
    * Components: Any.
@@ -1906,11 +1320,6 @@ class PelTag {
   /**
    * GPS date.
    *
-   * A character string recording the date and time information
-   * relative to UTC (Coordinated Universal Time). The format is
-   * "YYYY:MM:DD." The elngth of the string is 11 bytes including
-   * NULL.
-   *
    * Format: {@link PelFormat::ASCII}.
    *
    * Components: 11.
@@ -1919,9 +1328,6 @@ class PelTag {
 
   /**
    * GPS differential correction.
-   *
-   * Indicates whether differential correction is applied to the GPS
-   * receiver.
    *
    * Format: {@link PelFormat::SHORT}.
    *
@@ -2559,423 +1965,5 @@ class PelTag {
     }
   }
 
-
-  /**
-   * Returns a description of an Exif tag.
-   *
-   * @param int the IFD type of the tag, one of {@link PelIfd::IFD0},
-   * {@link PelIfd::IFD1}, {@link PelIfd::EXIF}, {@link PelIfd::GPS},
-   * or {@link PelIfd::INTEROPERABILITY}.
-   *
-   * @param PelTag the tag.
-   *
-   * @return string the description of the tag which generally
-   * explains how the tag is supposed to be used or interpreted.  If
-   * the tag is not known, the string 'Unknown Tag :0xTT' will be
-   * returned where 'TT' is the hexadecimal representation of the tag.
-   */
-  function getDescription($type, $tag) {
-    switch ($type) {
-    case PelIfd::IFD0:
-    case PelIfd::IFD1:
-    case PelIfd::EXIF:
-    case PelIfd::INTEROPERABILITY:
-
-      switch ($tag) {
-      case self::INTEROPERABILITY_INDEX:
-        return Pel::tra('Indicates the identification of the Interoperability rule. Use "R98" for stating ExifR98 Rules. Four bytes used including the termination code (NULL). See the separate volume of Recommended Exif Interoperability Rules (ExifR98) for other tags used for ExifR98.');
-
-//       case self::INTEROPERABILITY_VERSION:
-//         return '';
-
-      case self::IMAGE_WIDTH:
-        return Pel::tra('The number of columns of image data, equal to the number of pixels per row. In JPEG compressed data a JPEG marker is used instead of this tag.');
-
-      case self::IMAGE_LENGTH:
-        return Pel::tra('The number of rows of image data. In JPEG compressed data a JPEG marker is used instead of this tag.');
-
-      case self::BITS_PER_SAMPLE:
-        return Pel::tra('The number of bits per image component. In this standard each component of the image is 8 bits, so the value for this tag is 8. See also <SamplesPerPixel>. In JPEG compressed data a JPEG marker is used instead of this tag.');
-
-      case self::COMPRESSION:
-        return Pel::tra('The compression scheme used for the image data. When a primary image is JPEG compressed, this designation is not necessary and is omitted. When thumbnails use JPEG compression, this tag value is set to 6.');
-
-      case self::PHOTOMETRIC_INTERPRETATION:
-        return Pel::tra('The pixel composition. In JPEG compressed data a JPEG marker is used instead of this tag.');
-
-//       case self::FILL_ORDER:
-//         return('');
-//       case self::DOCUMENT_NAME:
-//         return('');
-
-      case self::IMAGE_DESCRIPTION:
-        return Pel::tra('A character string giving the title of the image. It may be a comment such as "1988 company picnic" or the like. Two-bytes character codes cannot be used. When a 2-bytes code is necessary, the Exif Private tag <UserComment> is to be used.');
-
-      case self::MAKE:
-        return Pel::tra('The manufacturer of the recording equipment. This is the manufacturer of the DSC, scanner, video digitizer or other equipment that generated the image. When the field is left blank, it is treated as unknown.');
-
-      case self::MODEL:
-        return Pel::tra('The model name or model number of the equipment. This is the model name or number of the DSC, scanner, video digitizer or other equipment that generated the image. When the field is left blank, it is treated as unknown.');
-
-      case self::STRIP_OFFSETS:
-        return Pel::tra('For each strip, the byte offset of that strip. It is recommended that this be selected so the number of strip bytes does not exceed 64 Kbytes. With JPEG compressed data this designation is not needed and is omitted. See also <RowsPerStrip> and <StripByteCounts>.');
-
-      case self::ORIENTATION:
-        return Pel::tra('The image orientation viewed in terms of rows and columns.');
-
-      case self::SAMPLES_PER_PIXEL:
-        return Pel::tra('The number of components per pixel. Since this standard applies to RGB and YCbCr images, the value set for this tag is 3. In JPEG compressed data a JPEG marker is used instead of this tag.');
-
-      case self::ROWS_PER_STRIP:
-        return Pel::tra('The number of rows per strip. This is the number of rows in the image of one strip when an image is divided into strips. With JPEG compressed data this designation is not needed and is omitted. See also <StripOffsets> and <StripByteCounts>.');
-
-      case self::STRIP_BYTE_COUNTS:
-        return Pel::tra('The total number of bytes in each strip. With JPEG compressed data this designation is not needed and is omitted.');
-
-      case self::X_RESOLUTION:
-        return Pel::tra('The number of pixels per <ResolutionUnit> in the <ImageWidth> direction. When the image resolution is unknown, 72 [dpi] is designated.');
-
-      case self::Y_RESOLUTION:
-        return Pel::tra('The number of pixels per <ResolutionUnit> in the <ImageLength> direction. The same value as <XResolution> is designated.');
-
-      case self::PLANAR_CONFIGURATION:
-        return Pel::tra('Indicates whether pixel components are recorded in a chunky or planar format. In JPEG compressed files a JPEG marker is used instead of this tag. If this field does not exist, the TIFF default of 1 (chunky) is assumed.');
-
-      case self::RESOLUTION_UNIT:
-        return Pel::tra('The unit for measuring <XResolution> and <YResolution>. The same unit is used for both <XResolution> and <YResolution>. If the image resolution is unknown, 2 (inches) is designated.');
-
-      case self::TRANSFER_FUNCTION:
-        return Pel::tra('A transfer function for the image, described in tabular style. Normally this tag is not necessary, since color space is specified in the color space information tag (<ColorSpace>).');
-
-      case self::SOFTWARE:
-        return Pel::tra('This tag records the name and version of the software or firmware of the camera or image input device used to generate the image. The detailed format is not specified, but it is recommended that the example shown below be followed. When the field is left blank, it is treated as unknown.');
-
-      case self::DATE_TIME:
-        return Pel::tra('The date and time of image creation. In this standard (Exif-2.1) it is the date and time the file was changed.');
-
-      case self::ARTIST:
-        return Pel::tra('This tag records the name of the camera owner, photographer or image creator. The detailed format is not specified, but it is recommended that the information be written as in the example below for ease of Interoperability. When the field is left blank, it is treated as unknown.');
-
-      case self::WHITE_POINT:
-        return Pel::tra('The chromaticity of the white point of the image. Normally this tag is not necessary, since color space is specified in the colorspace information tag (<ColorSpace>).');
-
-      case self::PRIMARY_CHROMATICITIES:
-        return Pel::tra('The chromaticity of the three primary colors of the image. Normally this tag is not necessary, since colorspace is specified in the colorspace information tag (<ColorSpace>).');
-
-//       case self::TRANSFER_RANGE:
-//         return('');
-
-//       case self::JPEG_PROC:
-//         return('');
-
-      case self::JPEG_INTERCHANGE_FORMAT:
-        return Pel::tra('The offset to the start byte (SOI) of JPEG compressed thumbnail data. This is not used for primary image JPEG data.');
-
-      case self::JPEG_INTERCHANGE_FORMAT_LENGTH:
-        return Pel::tra('The number of bytes of JPEG compressed thumbnail data. This is not used for primary image JPEG data. JPEG thumbnails are not divided but are recorded as a continuous JPEG bitstream from SOI to EOI. Appn and COM markers should not be recorded. Compressed thumbnails must be recorded in no more than 64 Kbytes, including all other data to be recorded in APP1.');
-
-      case self::YCBCR_COEFFICIENTS:
-        return Pel::tra('The matrix coefficients for transformation from RGB to YCbCr image data. No default is given in TIFF; but here the value given in Appendix E, "Color Space Guidelines", is used as the default. The color space is declared in a color space information tag, with the default being the value that gives the optimal image characteristics Interoperability this condition.');
-
-      case self::YCBCR_SUB_SAMPLING:
-        return Pel::tra('The sampling ratio of chrominance components in relation to the luminance component. In JPEG compressed data a JPEG marker is used instead of this tag.');
-
-      case self::YCBCR_POSITIONING:
-        return Pel::tra('The position of chrominance components in relation to the luminance component. This field is designated only for JPEG compressed data or uncompressed YCbCr data. The TIFF default is 1 (centered); but when Y:Cb:Cr = 4:2:2 it is recommended in this standard that 2 (co-sited) be used to record data, in order to improve the image quality when viewed on TV systems. When this field does not exist, the reader shall assume the TIFF default. In the case of Y:Cb:Cr = 4:2:0, the TIFF default (centered) is recommended. If the reader does not have the capability of supporting both kinds of <YCbCrPositioning>, it shall follow the TIFF default regardless of the value in this field. It is preferable that readers be able to support both centered and co-sited positioning.');
-
-      case self::REFERENCE_BLACK_WHITE:
-        return Pel::tra('The reference black point value and reference white point value. No defaults are given in TIFF, but the values below are given as defaults here. The color space is declared in a color space information tag, with the default being the value that gives the optimal image characteristics Interoperability these conditions.');
-
-//       case self::RELATED_IMAGE_FILE_FORMAT:
-//         return('');
-
-//       case self::RELATED_IMAGE_WIDTH:
-//         return('');
-
-//       case self::RELATED_IMAGE_LENGTH:
-//         return('');
-
-//       case self::CFA_REPEAT_PATTERN_DIM:
-//         return('');
-
-      case self::CFA_PATTERN:
-        return Pel::tra('Indicates the color filter array (CFA) geometric pattern of the image sensor when a one-chip color area sensor is used. It does not apply to all sensing methods.');
-
-//       case self::BATTERY_LEVEL:
-//         return('');
-
-      case self::COPYRIGHT:
-        return Pel::tra('Copyright information. In this standard the tag is used to indicate both the photographer and editor copyrights. It is the copyright notice of the person or organization claiming rights to the image. The Interoperability copyright statement including date and rights should be written in this field; e.g., "Copyright, John Smith, 19xx. All rights reserved.". In this standard the field records both the photographer and editor copyrights, with each recorded in a separate part of the statement. When there is a clear distinction between the photographer and editor copyrights, these are to be written in the order of photographer followed by editor copyright, separated by NULL (in this case, since the statement also ends with a NULL, there are two NULL codes) (see example 1). When only the photographer is given, it is terminated by one NULL code (see example 2). When only the editor copyright is given, the photographer copyright part consists of one space followed by a terminating NULL code, then the editor copyright is given (see example 3). When the field is left blank, it is treated as unknown.');
-
-      case self::EXPOSURE_TIME:
-        return Pel::tra('Exposure time, given in seconds (sec).');
-
-      case self::FNUMBER:
-        return Pel::tra('The F number.');
-
-//       case self::IPTC_NAA:
-//         return('');
-
-      case self::EXIF_IFD_POINTER:
-        return Pel::tra('A pointer to the Exif IFD. Interoperability, Exif IFD has the same structure as that of the IFD specified in TIFF. ordinarily, however, it does not contain image data as in the case of TIFF.');
-
-//       case self::INTER_COLOR_PROFILE:
-//         return('');
-
-      case self::EXPOSURE_PROGRAM:
-        return Pel::tra('The class of the program used by the camera to set exposure when the picture is taken.');
-
-      case self::SPECTRAL_SENSITIVITY:
-        return Pel::tra('Indicates the spectral sensitivity of each channel of the camera used. The tag value is an ASCII string compatible with the standard developed by the ASTM Technical Committee.');
-
-      case self::GPS_INFO_IFD_POINTER:
-        return Pel::tra('A pointer to the GPS Info IFD. The Interoperability structure of the GPS Info IFD, like that of Exif IFD, has no image data.');
-
-      case self::ISO_SPEED_RATINGS:
-        return Pel::tra('Indicates the ISO Speed and ISO Latitude of the camera or input device as specified in ISO 12232.');
-
-      case self::OECF:
-        return Pel::tra('Indicates the Opto-Electoric Conversion Function (OECF) specified in ISO 14524. <OECF> is the relationship between the camera optical input and the image values.');
-
-      case self::EXIF_VERSION:
-        return Pel::tra('The version of this standard supported. Nonexistence of this field is taken to mean non-conformance to the standard.');
-
-      case self::DATE_TIME_ORIGINAL:
-        return Pel::tra('The date and time when the original image data was generated. For a digital still camera the date and time the picture was taken are recorded.');
-
-      case self::DATE_TIME_DIGITIZED:
-        return Pel::tra('The date and time when the image was stored as digital data. ');
-
-      case self::COMPONENTS_CONFIGURATION:
-        return Pel::tra('Information specific to compressed data. The channels of each component are arranged in order from the 1st component to the 4th. For uncompressed data the data arrangement is given in the <PhotometricInterpretation> tag. However, since <PhotometricInterpretation> can only express the order of Y, Cb and Cr, this tag is provided for cases when compressed data uses components other than Y, Cb, and Cr and to enable support of other sequences.');
-
-      case self::COMPRESSED_BITS_PER_PIXEL:
-        return Pel::tra('Information specific to compressed data. The compression mode used for a compressed image is indicated in unit bits per pixel.');
-
-      case self::SHUTTER_SPEED_VALUE:
-        return Pel::tra('Shutter speed. The unit is the APEX (Additive System of Photographic Exposure) setting (see Appendix C).');
-
-      case self::APERTURE_VALUE:
-        return Pel::tra('The lens aperture. The unit is the APEX value.');
-
-      case self::BRIGHTNESS_VALUE:
-        return Pel::tra('The value of brightness. The unit is the APEX value. Ordinarily it is given in the range of -99.99 to 99.99.');
-
-      case self::EXPOSURE_BIAS_VALUE:
-        return Pel::tra('The exposure bias. The units is the APEX value. Ordinarily it is given in the range of -99.99 to 99.99.');
-
-      case self::MAX_APERTURE_VALUE:
-        return Pel::tra('The smallest F number of the lens. The unit is the APEX value. Ordinarily it is given in the range of 00.00 to 99.99, but it is not limited to this range.');
-
-      case self::SUBJECT_DISTANCE:
-        return Pel::tra('The distance to the subject, given in meters.');
-
-      case self::METERING_MODE:
-        return Pel::tra('The metering mode.');
-
-      case self::LIGHT_SOURCE:
-        return Pel::tra('The kind of light source.');
-
-      case self::FLASH:
-        return Pel::tra('This tag is recorded when an image is taken using a strobe light (flash).');
-
-      case self::FOCAL_LENGTH:
-        return Pel::tra('The actual focal length of the lens, in mm. Conversion is not made to the focal length of a 35 mm film camera.');
-
-      case self::MAKER_NOTE:
-        return Pel::tra('A tag for manufacturers of Exif writers to record any desired information. The contents are up to the manufacturer.');
-
-      case self::USER_COMMENT:
-        return Pel::tra('A tag for Exif users to write keywords or comments on the image besides those in <ImageDescription>, and without the character code limitations of the <ImageDescription> tag. The character code used in the <UserComment> tag is identified based on an ID code in a fixed 8-byte area at the start of the tag data area. The unused portion of the area is padded with NULL ("00.h"). ID codes are assigned by means of registration. The designation method and references for each character code are given in Table 6. The value of CountN is determined based on the 8 bytes in the character code area and the number of bytes in the user comment part. Since the TYPE is not ASCII, NULL termination is not necessary (see Fig. 9). The ID code for the <UserComment> area may be a Defined code such as JIS or ASCII, or may be Undefined. The Undefined name is UndefinedText, and the ID code is filled with 8 bytes of all "NULL" ("00.H"). An Exif reader that reads the <UserComment> tag must have a function for determining the ID code. This function is not required in Exif readers that do not use the <UserComment> tag (see Table 7). When a <UserComment> area is set aside, it is recommended that the ID code be ASCII and that the following user comment part be filled with blank characters [20.H].');
-
-      case self::SUB_SEC_TIME:
-        return Pel::tra('A tag used to record fractions of seconds for the <DateTime> tag.');
-
-      case self::SUB_SEC_TIME_ORIGINAL:
-        return Pel::tra('A tag used to record fractions of seconds for the <DateTimeOriginal> tag.');
-
-      case self::SUB_SEC_TIME_DIGITIZED:
-        return Pel::tra('A tag used to record fractions of seconds for the <DateTimeDigitized> tag.');
-
-      case self::XP_TITLE:
-        return Pel::tra('The image title as defined by the user in Windows XP.');
-
-      case self::XP_COMMENT:
-        return Pel::tra('The image comment as defined by the user in Windows XP.');
-
-      case self::XP_AUTHOR:
-        return Pel::tra('The image author as defined by the user in Windows XP.');
-
-      case self::XP_KEYWORDS:
-        return Pel::tra('The image keywords as defined by the user in Windows XP.');
-
-      case self::XP_SUBJECT:
-        return Pel::tra('The image subject as defined by the user in Windows XP.');
-
-      case self::FLASH_PIX_VERSION:
-        return Pel::tra('The FlashPix format version supported by a FPXR file.');
-
-      case self::COLOR_SPACE:
-        return Pel::tra('The color space information tag is always recorded as the color space specifier. Normally sRGB (=1) is used to define the color space based on the PC monitor conditions and environment. If a color space other than sRGB is used, Uncalibrated (=FFFF.H) is set. Image data recorded as Uncalibrated can be treated as sRGB when it is converted to FlashPix. On sRGB see Appendix E.');
-
-      case self::PIXEL_X_DIMENSION:
-        return Pel::tra('Information specific to compressed data. When a compressed file is recorded, the valid width of the meaningful image must be recorded in this tag, whether or not there is padding data or a restart marker. This tag should not exist in an uncompressed file. For details see section 2.8.1 and Appendix F of the Exif 2.2 standard.');
-
-      case self::PIXEL_Y_DIMENSION:
-        return Pel::tra('Information specific to compressed data. When a compressed file is recorded, the valid height of the meaningful image must be recorded in this tag, whether or not there is padding data or a restart marker. This tag should not exist in an uncompressed file. For details see section 2.8.1 and Appendix F of the Exif 2.2 standard. Since data padding is unnecessary in the vertical direction, the number of lines recorded in this valid image height tag will in fact be the same as that recorded in the SOF.');
-
-      case self::RELATED_SOUND_FILE:
-        return Pel::tra('This tag is used to record the name of an audio file related to the image data. The only relational information recorded here is the Exif audio file name and extension (an ASCII string consisting of 8 characters + \'.\' + 3 characters). The path is not recorded. Stipulations on audio are given in  section 3.6.3 of the Exif 2.2 standard. File naming conventions are given in section 3.7.1. When using this tag, audio files must be recorded in conformance to the Exif audio format. Writers are also allowed to store the data such as Audio within APP2 as FlashPix extension stream data. Audio files must be recorded in conformance to the Exif audio format. The mapping of Exif image files and audio files is done in any of the three ways shown in Table 8. If multiple files are mapped to one file as in [2] or [3] of this table, the above format is used to record just one audio file name. If there are multiple audio files, the first recorded file is given. In the case of [3] in Table 8, for example, for the Exif image file "DSC00001.JPG" only  "SND00001.WAV" is given as the related Exif audio file. When there are three Exif audio files "SND00001.WAV", "SND00002.WAV" and "SND00003.WAV", the Exif image file name for each of them, "DSC00001.JPG", is indicated. By combining multiple relational information, a variety of playback possibilities can be supported. The method of using relational information is left to the implementation on the playback side. Since this information is an ASCII character string, it is terminated by NULL. When this tag is used to map audio files, the relation of the audio file to image data must also be indicated on the audio file end.');
-
-      case self::INTEROPERABILITY_IFD_POINTER:
-        return Pel::tra('Interoperability IFD is composed of tags which stores the information to ensure the Interoperability and pointed by the following tag located in Exif IFD. The Interoperability structure of Interoperability IFD is the same as TIFF defined IFD structure but does not contain the image data characteristically compared with normal TIFF IFD.');
-
-      case self::FLASH_ENERGY:
-        return Pel::tra('Indicates the strobe energy at the time the image is captured, as measured in Beam Candle Power Seconds (BCPS).');
-
-      case self::SPATIAL_FREQUENCY_RESPONSE:
-        return Pel::tra('This tag records the camera or input device spatial frequency table and SFR values in the direction of image width, image height, and diagonal direction, as specified in ISO 12233.');
-
-      case self::FOCAL_PLANE_X_RESOLUTION:
-        return Pel::tra('Indicates the number of pixels in the image width (X) direction per <FocalPlaneResolutionUnit> on the camera focal plane.');
-
-      case self::FOCAL_PLANE_Y_RESOLUTION:
-        return Pel::tra('Indicates the number of pixels in the image height (V) direction per <FocalPlaneResolutionUnit> on the camera focal plane.');
-
-      case self::FOCAL_PLANE_RESOLUTION_UNIT:
-        return Pel::tra('Indicates the unit for measuring <FocalPlaneXResolution> and <FocalPlaneYResolution>. This value is the same as the <ResolutionUnit>.');
-
-      case self::SUBJECT_LOCATION:
-        return Pel::tra('Indicates the location of the main subject in the scene. The value of this tag represents the pixel at the center of the main subject relative to the left edge, prior to rotation processing as per the <Rotation> tag. The first value indicates the X column number and second indicates the Y row number.');
-
-      case self::EXPOSURE_INDEX:
-        return Pel::tra('Indicates the exposure index selected on the camera or input device at the time the image is captured.');
-
-      case self::SENSING_METHOD:
-        return Pel::tra('Indicates the image sensor type on the camera or input device.');
-
-      case self::FILE_SOURCE:
-        return Pel::tra('Indicates the image source. If a DSC recorded the image, this tag value of this tag always be set to 3, indicating that the image was recorded on a DSC.');
-
-      case self::SCENE_TYPE:
-        return Pel::tra('Indicates the type of scene. If a DSC recorded the image, this tag value must always be set to 1, indicating that the image was directly photographed.');
-
-      case self::SUBJECT_AREA:
-        return Pel::tra('This tag indicates the location and area of the main subject in the overall scene.');
-
-      case self::CUSTOM_RENDERED:
-        return Pel::tra('This tag indicates the use of special processing on image data, such as rendering geared to output. When special processing is performed, the reader is expected to disable or minimize any further processing.');
-
-      case self::EXPOSURE_MODE:
-        return Pel::tra('This tag indicates the exposure mode set when the image was shot. In auto-bracketing mode, the camera shoots a series of frames of the same scene at different exposure settings.');
-
-      case self::WHITE_BALANCE:
-        return Pel::tra('This tag indicates the white balance mode set when the image was shot.');
-
-      case self::DIGITAL_ZOOM_RATIO:
-        return Pel::tra('This tag indicates the digital zoom ratio when the image was shot. If the numerator of the recorded value is 0, this indicates that digital zoom was not used.');
-
-      case self::FOCAL_LENGTH_IN_35MM_FILM:
-        return Pel::tra('This tag indicates the equivalent focal length assuming a 35mm film camera, in mm. A value of 0 means the focal length is unknown. Note that this tag differs from the FocalLength tag.');
-
-      case self::SCENE_CAPTURE_TYPE:
-        return Pel::tra('This tag indicates the type of scene that was shot. It can also be used to record the mode in which the image was shot. Note that this differs from the scene type (SceneType) tag.');
-
-      case self::GAIN_CONTROL:
-        return Pel::tra('This tag indicates the degree of overall image gain adjustment.');
-
-      case self::CONTRAST:
-        return Pel::tra('This tag indicates the direction of contrast processing applied by the camera when the image was shot.');
-
-      case self::SATURATION:
-        return Pel::tra('This tag indicates the direction of saturation processing applied by the camera when the image was shot.');
-
-      case self::SHARPNESS:
-        return Pel::tra('This tag indicates the direction of sharpness processing applied by the camera when the image was shot.');
-
-      case self::DEVICE_SETTING_DESCRIPTION:
-        return Pel::tra('This tag indicates information on the picture-taking conditions of a particular camera model. The tag is used only to indicate the picture-taking conditions in the reader.');
-
-      case self::SUBJECT_DISTANCE_RANGE:
-        return Pel::tra('This tag indicates the distance to the subject.');
-
-      case self::IMAGE_UNIQUE_ID:
-        return Pel::tra('This tag indicates an identifier assigned uniquely to each image. It is recorded as an ASCII string equivalent to hexadecimal notation and 128-bit fixed length.');
-
-      case self::GAMMA:
-        return Pel::tra('Indicates the value of the gamma coefficient. The formula of transfer function used for image reproduction is expressed as follows: (Reproduced value) = (Input value)^gamma. Both reproduced value and input value indicate normalized value, whose minimum value is 0 and maximum value is 1.');
-
-      }
-
-    case PelIfd::GPS:
-      switch ($tag) {
-      case self::GPS_VERSION_ID:
-        return Pel::tra('Indicates the version of GPSInfoIFD. The version is given as 2.2.0.0. This tag is mandatory when GPSInfo tag is present. Note that the GPSVersionID tag is written as a different byte than the Exif Version tag.');
-      case self::GPS_LATITUDE_REF:
-        return Pel::tra('Indicates whether the latitude is north or south latitude. The ASCII value \'N\' indicates north latitude, and \'S\' is south latitude.');
-      case self::GPS_LATITUDE:
-        return Pel::tra('Indicates the latitude. The latitude is expressed as three RATIONAL values giving the degrees, minutes, and seconds, respectively. If latitude is expressed as degrees, minutes and seconds, a typical format would be dd/1,mm/1,ss/1. When degrees and minutes are used and, for example, fractions of minutes are given up to two decimal places, the format would be dd/1,mmmm/100,0/1.');
-      case self::GPS_LONGITUDE_REF:
-        return Pel::tra('Indicates whether the longitude is east or west longitude. ASCII \'E\' indicates east longitude, and \'W\' is west longitude.');
-      case self::GPS_LONGITUDE:
-        return Pel::tra('Indicates the longitude. The longitude is expressed as three RATIONAL values giving the degrees, minutes, and seconds, respectively. If longitude is expressed as degrees, minutes and seconds, a typical format would be ddd/1,mm/1,ss/1. When degrees and minutes are used and, for example, fractions of minutes are given up to two decimal places, the format would be ddd/1,mmmm/100,0/1.');
-      case self::GPS_ALTITUDE_REF:
-        return Pel::tra('Indicates the altitude used as the reference altitude. If the reference is sea level and the altitude is above sea level, 0 is given. If the altitude is below sea level, a value of 1 is given and the altitude is indicated as an absolute value in the GPSAltitude tag. The reference unit is meters. Note that this tag is BYTE type, unlike other reference tags.');
-      case self::GPS_ALTITUDE:
-        return Pel::tra('Indicates the altitude based on the reference in GPSAltitudeRef. Altitude is expressed as one RATIONAL value. The reference unit is meters.');
-      case self::GPS_TIME_STAMP:
-        return Pel::tra('Indicates the time as UTC (Coordinated Universal Time). TimeStamp is expressed as three RATIONAL values giving the hour, minute, and second.');
-      case self::GPS_SATELLITES:
-        return Pel::tra('Indicates the GPS satellites used for measurements. This tag can be used to describe the number of satellites, their ID number, angle of elevation, azimuth, SNR and other information in ASCII notation. The format is not specified. If the GPS receiver is incapable of taking measurements, value of the tag shall be set to NULL.');
-      case self::GPS_STATUS:
-        return Pel::tra('Indicates the status of the GPS receiver when the image is recorded. \'A\' means measurement is in progress, and \'V\' means the measurement is Interoperability.');
-      case self::GPS_MEASURE_MODE:
-        return Pel::tra('Indicates the GPS measurement mode. \'2\' means two-dimensional measurement and \'3\' means three-dimensional measurement is in progress.');
-      case self::GPS_DOP:
-        return Pel::tra('Indicates the GPS DOP (data degree of precision). An HDOP value is written during two-dimensional measurement, and PDOP during three-dimensional measurement.');
-      case self::GPS_SPEED_REF:
-        return Pel::tra('Indicates the unit used to express the GPS receiver speed of movement. \'K\' \'M\' and \'N\' represents kilometers per hour, miles per hour, and knots.');
-      case self::GPS_SPEED:
-        return Pel::tra('Indicates the speed of GPS receiver movement.');
-      case self::GPS_TRACK_REF:
-        return Pel::tra('Indicates the reference for giving the direction of GPS receiver movement. \'T\' denotes true direction and \'M\' is magnetic direction.');
-      case self::GPS_TRACK:
-        return Pel::tra('Indicates the direction of GPS receiver movement. The range of values is from 0.00 to 359.99.');
-      case self::GPS_IMG_DIRECTION_REF:
-        return Pel::tra('Indicates the reference for giving the direction of the image when it is captured. \'T\' denotes true direction and \'M\' is magnetic direction.');
-      case self::GPS_IMG_DIRECTION:
-        return Pel::tra('Indicates the direction of the image when it was captured. The range of values is from 0.00 to 359.99.');
-      case self::GPS_MAP_DATUM:
-        return Pel::tra('Indicates the geodetic survey data used by the GPS receiver. If the survey data is restricted to Japan, the value of this tag is \'TOKYO\' or \'WGS-84\'. If a GPS Info tag is recorded, it is strongly recommended that this tag be recorded.');
-      case self::GPS_DEST_LATITUDE_REF:
-        return Pel::tra('Indicates whether the latitude of the destination point is north or south latitude. The ASCII value \'N\' indicates north latitude, and \'S\' is south latitude.');
-      case self::GPS_DEST_LATITUDE:
-        return Pel::tra('Indicates the latitude of the destination point. The latitude is expressed as three RATIONAL values giving the degrees, minutes, and seconds, respectively. If latitude is expressed as degrees, minutes and seconds, a typical format would be dd/1,mm/1,ss/1. When degrees and minutes are used and, for example, fractions of minutes are given up to two decimal places, the format would be dd/1,mmmm/100,0/1.');
-      case self::GPS_DEST_LONGITUDE_REF:
-        return Pel::tra('Indicates whether the longitude of the destination point is east or west longitude. ASCII \'E\' indicates east longitude, and \'W\' is west longitude.');
-      case self::GPS_DEST_LONGITUDE:
-        return Pel::tra('Indicates the longitude of the destination point. The longitude is expressed as three RATIONAL values giving the degrees, minutes, and seconds, respectively. If longitude is expressed as degrees, minutes and seconds, a typical format would be ddd/1,mm/1,ss/1. When degrees and minutes are used and, for example, fractions of minutes are given up to two decimal places, the format would be ddd/1,mmmm/100,0/1.');
-      case self::GPS_DEST_BEARING_REF:
-        return Pel::tra('Indicates the reference used for giving the bearing to the destination point. \'T\' denotes true direction and \'M\' is magnetic direction.');
-      case self::GPS_DEST_BEARING:
-        return Pel::tra('Indicates the bearing to the destination point. The range of values is from 0.00 to 359.99.');
-      case self::GPS_DEST_DISTANCE_REF:
-        return Pel::tra('Indicates the unit used to express the distance to the destination point. \'K\', \'M\' and \'N\' represent kilometers, miles and knots.');
-      case self::GPS_DEST_DISTANCE:
-        return Pel::tra('Indicates the distance to the destination point.');
-      case self::GPS_PROCESSING_METHOD:
-        return Pel::tra('A character string recording the name of the method used for location finding. The first byte indicates the character code used (Table 6, Table 7), and this is followed by the name of the method. Since the type is not ASCII, NULL termination is not necessary.');
-      case self::GPS_AREA_INFORMATION:
-        return Pel::tra('A character string recording the name of the GPS area.  The first byte indicates the character code used (Table 6, Table 7), and this is followed by the name of the method. Since the type is not ASCII, NULL termination is not necessary.');
-      case self::GPS_DATE_STAMP:
-        return Pel::tra('A character string recording the date and time information relative to UTC (Coordinated Universal Time). The format is "YYYY:MM:DD." The elngth of the string is 11 bytes including NULL.');
-      case self::GPS_DIFFERENTIAL:
-        return Pel::tra('Indicates whether differential correction is applied to the GPS receiver.');
-      }
-
-    default:
-      return self::getTitle($type, $tag);
-    }
-  }
 }
 ?>

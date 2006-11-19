@@ -13,9 +13,10 @@ Notes:
 Added setExif(), getExif(), and clearExif() methods as a convenient
 and recommended way of manipulating the Exif data in a PelJpeg object.
 Improved PelEntryTime to deal with timestamps in the full range from
-year 0 to year 9999. A new example demonstrates how to resize images
-while keeping the Exif data intact. Added a Japanese and updated the
-French and Danish translations.
+year 0 to year 9999. Removed PelTag::getDescription() because the
+descriptions were out of context. A new example demonstrates how to
+resize images while keeping the Exif data intact. Added a Japanese and
+updated the French and Danish translations.
 
 Changes:
 
@@ -35,6 +36,11 @@ Changes:
 
 * An example of how to resize images while keeping the Exif data
   intact is given in resize.php.
+
+* The PelTag::getDescription() method is no more. The descriptions
+  were taken directly from the Exif specification and they were often
+  impossible to translate in a meaningful out of context because they
+  had references to figures and tables from said specification.
 
 * Fixed bug in edit-description.php which still called the constructor
   of PelIfd in the old pre-0.9 way.
