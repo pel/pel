@@ -1731,7 +1731,7 @@ class PelTag {
       case self::TRANSFER_RANGE:
         return Pel::tra('Transfer Range');
       case self::JPEG_PROC:
-        return Pel::tra('JPEGProc');
+        return Pel::tra('JPEG Process');
       case self::JPEG_INTERCHANGE_FORMAT:
         return Pel::tra('JPEG Interchange Format');
       case self::JPEG_INTERCHANGE_FORMAT_LENGTH:
