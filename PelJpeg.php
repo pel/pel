@@ -165,6 +165,7 @@ class PelJpeg {
       Pel::debug('Initializing PelJpeg object from PelDataWindow.');
       $this->load($data);
     } elseif (is_resource($data) && get_resource_type($data) == 'gd') {
+      Pel::debug('Initializing PelJpeg object from image resource.');
       /* The ImageJpeg() function insists on printing the bytes
        * instead of returning them in a more civil way as a string, so
        * we have to buffer the output... */
