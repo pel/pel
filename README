@@ -18,13 +18,31 @@ not have any dependencies outside the core of PHP, it does not even
 use the Exif module available for PHP.
 
 Please note that the API for PEL is not yet frozen, and it will remain
-changeable until version 1.0 is reached.  Go to the PEL development
-mailing list (look below) and share your ideas about how the API
-should look like.
+changeable until version 1.0 is reached. Read the NEWS file for
+inportant information about API changes.
+
+Also, please go to the PEL development mailing list (look below) and
+share your ideas about how the API should look like.
 
 
-Features
-********
+Documentation Overview
+**********************
+
+* README: gives you a short introduction to PEL (this file).
+
+* INSTALL: explain how to install and get going with PEL.
+
+* NEWS: contains important information about changes in PEL.
+
+* examples/: small self-contained examples of how to use PEL.
+
+* doc/: the API documentation with a short tutorial and more examples.
+
+* AUTHORS: list of people who have helped.
+
+
+Features of PEL
+***************
 
 * Reads and writes Exif metadata from both JPEG and TIFF images.
 
@@ -43,13 +61,13 @@ Getting Support
 ***************
 
 The first place you should consult for support is the documentation
-supplied with PEL, found in the 'doc' directory.  There you will find
-a complete API documentation with descriptions of all classes and
-files in PEL.
+supplied with PEL, found in the doc/ directory.  There you will find a
+complete API documentation with descriptions of all classes and files
+in PEL.
 
-The scripts found in the 'examples' directory are also a good source
-of information, especially the 'edit-description.php' file which has
-tons of comments.
+The scripts found in the examples/ directory are also a good source of
+information, especially the edit-description.php file which has tons
+of comments.
 
 PEL is hosted on SourceForge and uses the tools found there for
 support.  This means that all questions, bug reports, etc. should be
