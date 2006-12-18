@@ -42,6 +42,9 @@
 # http://scripts.com/php-scripts/image-manipulation-scripts/pel-php-exif-library
 
 
+# Fix the locale to C, e.g. untranslated.
+export LC_ALL=C
+
 
 # Paths used below
 BUILD_BASE="build-base.$$"
@@ -63,7 +66,7 @@ cd $BUILD_BASE
 
 
 echo -n "Exporting trunk from SourceForge... "
-svn export https://svn.sourceforge.net/svnroot/pel/trunk pel || exit
+svn export https://pel.svn.sourceforge.net/svnroot/pel/trunk pel || exit
 # Export once more with Windows line-endings? Rename README to
 # README.txt? Would be neat, but it is necessary?
 echo "done."
@@ -104,9 +107,9 @@ else
 
     if [[ $REPLY == "y" ]]; then
         echo -n "Creating SVN tag 'pel-$VERSION'... "
-        svn --dry-run copy https://svn.sourceforge.net/svnroot/pel/trunk \
-            https://svn.sourceforge.net/svnroot/pel/$SVN_URL \
-            -m "Tagging PEL version $VERSION."
+        svn copy -m "Tagging PEL version $VERSION."
+            https://pel.svn.sourceforge.net/svnroot/pel/trunk \
+            https://pel.svn.sourceforge.net/svnroot/pel/tags/pel-$VERSION \
         echo "done."
     else
         echo "Skipping tagging by user request."
@@ -126,7 +129,7 @@ Licensed under the GNU GPL, see COPYING for details.
 " > ChangeLog
 svn2cl --include-rev --group-by-day --separate-daylogs  \
     --reparagraph --authors=authors.xml --stdout        \
-    https://svn.sourceforge.net/svnroot/pel/trunk/ >> ChangeLog || exit
+    https://pel.svn.sourceforge.net/svnroot/pel/trunk/ >> ChangeLog || exit
 echo "done."
 
 
