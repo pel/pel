@@ -93,6 +93,10 @@ repository, please see this SourceForge page for more information:
 
   http://sourceforge.net/svn/?group_id=108380
 
+It is very helpful if you try out the latest code from the Subversion
+repository before submitting a bug report. The code found there is
+generally very stable.
+
 
 Contributing Test Images
 ************************
