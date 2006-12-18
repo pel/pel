@@ -5,7 +5,7 @@ Copyright (C) 2004, 2005, 2006  Martin Geisler.
 Licensed under the GNU GPL, see COPYING for details.
 
 
-PEL Version 0.9.1  (not released yet)
+PEL Version 0.9.1  December 19th 2006
 *************************************
 
 Notes:
@@ -59,6 +59,7 @@ Changes:
 * Renamed test.php to run-tests.php and implemented a simple search
   functionality for finding the SimpleTest installation.
 
+* Rewrote make-release.sh script to work with Subversion.
 
 PEL Version 0.9  January 8th 2006
 *********************************

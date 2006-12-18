@@ -42,73 +42,76 @@
 # http://scripts.com/php-scripts/image-manipulation-scripts/pel-php-exif-library
 
 
+
+# Paths used below
+BUILD_BASE="build-base.$$"
+PHPDOC_PATH='../../../../PhpDocumentor/phpdoc'
+
+
+
+# Create the base directory for the build or bail out if it already
+# exists
+if [[ -d $BUILD_BASE ]]; then
+    echo "The build directory $BUILD_BASE already exists!"
+    exit
+else
+    echo "Building the release in $BUILD_BASE"
+    mkdir $BUILD_BASE
+fi
+
+cd $BUILD_BASE
+
+
+echo -n "Exporting trunk from SourceForge... "
+svn export https://svn.sourceforge.net/svnroot/pel/trunk pel || exit
+# Export once more with Windows line-endings? Rename README to
+# README.txt? Would be neat, but it is necessary?
+echo "done."
+
 # Grab version number from ChangeLog...
 PREFIX='PEL Version'
 MIDDLE='[0-9]+\.[0-9]+(\.[0-9]+(-[0-9a-z]+)?)?'
 DATE=$(date -u '+%B %-d.. %Y')
 REGEXP="$PREFIX $MIDDLE  $DATE"
 
-if OFFSET=$(grep -n -E -m 1 "$REGEXP" NEWS | cut -d ':' -f 1); then
-    VERSION=$(head -n $OFFSET NEWS | tail -n 1 | cut -d ' ' -f 3)
+OFFSET=$(grep -n -E -m 1 "$REGEXP" pel/NEWS | cut -d ':' -f 1)
+if [[ -z $OFFSET ]]; then
+    echo "Found no version from today in NEWS, creating SVN version."
+    VERSION='svn' #$(date -u '+svn-%Y-%m-%d')
+else
+    echo "Offset: $OFFSET"
+    VERSION=$(head -n $OFFSET pel/NEWS | tail -n 1 | cut -d ' ' -f 3)
     echo "Found match for today in NEWS: $VERSION."
 
-    LINE=$(head -n $OFFSET NEWS | tail -n 1)
-    STARS=$(head -n $((OFFSET+1)) NEWS | tail -n 1)
-    if [ ${#LINE} != ${#STARS} ]; then
+    LINE=$(head -n $OFFSET pel/NEWS | tail -n 1)
+    STARS=$(head -n $((OFFSET+1)) pel/NEWS | tail -n 1)
+    if [[ ${#LINE} != ${#STARS} ]]; then
         echo "Aborting because of bad underlining:"
         echo
         echo "$LINE"
         echo "$STARS"
         exit
     fi
+fi
+
+mv pel pel-$VERSION
+
+if [[ $VERSION == "svn" ]]; then
+    echo "Skipping tagging since this is a SVN snapshot."
 else
-    echo "Found no version from today in NEWS, creating SVN version."
-    VERSION='svn' #$(date -u '+svn-%Y-%m-%d')
-fi
+    read -p "Create SVN tag? [y/N] " -n 1
+    echo
 
-exit
-
-# Determine if this is the final run or just a trial
-read -p "Create SVN tag and upload files to SourceForge? [y/N] " -n 1
-echo
-
-if [ $REPLY == "y" -a $VERSION != "svn" ]; then
-    SVN_URL="tags/$VERSION"
-else
-    SVN_URL="trunk"
-fi
-
-# Remove old directories, if present
-if test -e pel-$VERSION; then
-    echo "Removing old pel-$VERSION directory and files"
-    rm -r pel-$VERSION pel-$VERSION.{tar.bz2,tar.gz,zip}
-fi
-
-if test -e image-tests; then
-    echo "Removing old pel-image-tests directory and files"
-    rm -r image-tests pel-image-tests-$VERSION.{tar.bz2,tar.gz,zip}
-fi
-
-
-if [ $VERSION != 'svn' ]; then
-    if [ $SVN_URL != "trunk" ]; then
+    if [[ $REPLY == "y" ]]; then
         echo -n "Creating SVN tag 'pel-$VERSION'... "
-        svn copy https://svn.sourceforge.net/svnroot/pel/trunk \
-                 https://svn.sourceforge.net/svnroot/pel/$SVN_URL \
+        svn --dry-run copy https://svn.sourceforge.net/svnroot/pel/trunk \
+            https://svn.sourceforge.net/svnroot/pel/$SVN_URL \
             -m "Tagging PEL version $VERSION."
         echo "done."
     else
-        echo "Skipping tagging."
+        echo "Skipping tagging by user request."
     fi
-else
-    echo "Skipping tagging since this is a SVN snapshot."
 fi
-
-echo -n "Exporting $SVN_URL from SourceForge into pel-$VERSION... "
-svn export https://svn.sourceforge.net/svnroot/pel/$SVN_URL pel-$VERSION || exit
-# Export with Windows line endings for zip files
-#svn export https://svn.sourceforge.net/svnroot/pel/$SVN_URL pel-$VERSION
-
 
 cd pel-$VERSION
 
@@ -120,17 +123,12 @@ reading and writing Exif headers in JPEG and TIFF images using PHP.
 Copyright (C) 2004, 2005, 2006  Martin Geisler.
 Licensed under the GNU GPL, see COPYING for details.
 
-" > ChangeLog || exit
-svn2cl \
-    --include-rev \
-    --group-by-day \
-    --separate-daylogs \
-    --reparagraph \
-    --authors=authors.xml \
-    --stdout \
-    --strip-prefix=trunk/
-    https://svn.sourceforge.net/svnroot/pel/ >> ChangeLog
+" > ChangeLog
+svn2cl --include-rev --group-by-day --separate-daylogs  \
+    --reparagraph --authors=authors.xml --stdout        \
+    https://svn.sourceforge.net/svnroot/pel/trunk/ >> ChangeLog || exit
 echo "done."
+
 
 #echo -n "Marking releases in ChangeLog... "
 #sed -re '/./{H;$!d;};x;/tags/s|tags/pel-([0-9]+\.[0-9]+).*|PEL Version \1|'
@@ -142,11 +140,11 @@ echo "done."
 
 
 # Generate the API documentation
-./run-phpdoc.sh $VERSION '../../../PhpDocumentor/phpdoc'
+./run-phpdoc.sh $VERSION $PHPDOC_PATH
 
 
 # Cleanup files that aren't needed in the released package
-rm make-release.sh users
+rm make-release.sh authors.xml
 rm -r tutorials
 
 
@@ -155,7 +153,7 @@ rm -r tutorials
 
 #sed -i -re 's|^[0-9]{4}-[0-9]{2}-[0-9]{2} [0-9]{2}:[0-9]{2}  tag release-([0-9])_([0-9])$|</pre>\n\n<div align="center"><h2 id="v\1.\2">PEL Version \1.\2</h2></div>\n\n<pre>\n|g' doc/ric_ChangeLog.html
 
-# Leave the package directory
+# Leave the pel-$VERSION directory
 cd ..
 
 mv pel-$VERSION/test/image-tests image-tests
@@ -186,7 +184,7 @@ echo "done."
 
 
 # Upload the compressed files and API documentation, if allowed
-if [ $REPLY == "y" -o $REPLY == "Y" ]; then
+if [[ $VERSION != "svn" && ( $REPLY == "y" || $REPLY == "Y" ) ]]; then
     echo -n "Uploading files to SourceForge for release... "
     ncftpput upload.sourceforge.net /incoming \
         pel-$VERSION.tar.gz                   \
@@ -204,5 +202,7 @@ if [ $REPLY == "y" -o $REPLY == "Y" ]; then
 else
     echo "Skipping upload."
 fi
+
+echo "All done. The $BUILD_BASE directory can be removed at any time."
 
 # The End --- PEL has now been packaged (and maybe even released)!
