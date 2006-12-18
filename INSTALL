@@ -8,12 +8,13 @@ Licensed under the GNU GPL, see COPYING for details.
 Requirements
 ************
 
-PEL requires PHP version 5, which was released on July the 13rd, 2004.
-If your provider still uses PHP 4, then ask them politely to upgrade.
+PEL requires PHP version 5, which was released in July 2004. If your
+provider still uses PHP 4, then ask them politely to upgrade.
 
-People using Debian GNU/Linux can easily install PHP 5 using the
-packages found at http://people.debian.org/~dexter/dists/all/ or those
-at http://dotdeb.org/.
+People using Debian GNU/Linux Etch can easily install PHP 5 from the
+normal Debian repository. For Debian Sarge one can use the packages
+found at http://people.debian.org/~dexter/dists/all/ or those at
+http://dotdeb.org/.
 
 Binaries for Windows are available from http://php.net/, where one
 also finds the source code for those who want to build PHP 5

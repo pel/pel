@@ -19,7 +19,7 @@ use the Exif module available for PHP.
 
 Please note that the API for PEL is not yet frozen, and it will remain
 changeable until version 1.0 is reached. Read the NEWS file for
-inportant information about API changes.
+important information about API changes.
 
 Also, please go to the PEL development mailing list (look below) and
 share your ideas about how the API should look like.
