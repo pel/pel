@@ -107,9 +107,10 @@ else
 
     if [[ $REPLY == "y" ]]; then
         echo -n "Creating SVN tag 'pel-$VERSION'... "
-        svn copy -m "Tagging PEL version $VERSION."
+        svn copy \
             https://pel.svn.sourceforge.net/svnroot/pel/trunk \
             https://pel.svn.sourceforge.net/svnroot/pel/tags/pel-$VERSION \
+            -m "Tagging PEL version $VERSION."
         echo "done."
     else
         echo "Skipping tagging by user request."
