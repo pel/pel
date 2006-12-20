@@ -1,6 +1,6 @@
 README file for PEL Test Images.
 
-Copyright (C) 2004, 2005  Martin Geisler.
+Copyright (C) 2004, 2005, 2006  Martin Geisler.
 Licensed under the GNU GPL, see COPYING for details.
 
 
@@ -16,9 +16,12 @@ All images except no-exif.jpg contain Exif information, and the
 corresponding PHP files contain SimpleTest (http://simpletest.sf.net/)
 unit tests.
 
-To use those files with PEL, simply place this directory (the
+To use those files with PEL, first place this directory (the
 image-tests directory) under the test directory in an unpacked PEL
-source tree.  Then run the test.php script, which will now
+source tree.  Install SimpleTest using the instructions found in the
+README file in the test directory.
+
+Now run the run-tests.php script in the test directory.  It should
 automatically pickup the new tests.
 
 The images can be used by anybody, but may only be redistributed under
