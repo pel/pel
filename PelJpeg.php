@@ -153,6 +153,10 @@ class PelJpeg {
    * // PelEntry objects to $exif... Finally add $exif to $jpeg:
    * $jpeg->setExif($exif);
    * </code>
+   *
+   * @param mixed the data that this JPEG. This can either be a
+   * filename, a {@link PelDataWindow} object, or a PHP image resource
+   * handle.
    */
   function __construct($data = false) {
     if ($data === false)
@@ -166,13 +170,7 @@ class PelJpeg {
       $this->load($data);
     } elseif (is_resource($data) && get_resource_type($data) == 'gd') {
       Pel::debug('Initializing PelJpeg object from image resource.');
-      /* The ImageJpeg() function insists on printing the bytes
-       * instead of returning them in a more civil way as a string, so
-       * we have to buffer the output... */
-      ob_start();
-      ImageJpeg($data);
-      $bytes = ob_get_clean();
-      $this->load(new PelDataWindow($bytes));
+      $this->load(new PelDataWindow($data));
     } else {
       throw new PelInvalidArgumentException('Bad type for $data: %s', 
                                             gettype($data));

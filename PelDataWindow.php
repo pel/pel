@@ -3,7 +3,7 @@
 /*  PEL: PHP Exif Library.  A library with support for reading and
  *  writing all Exif headers in JPEG and TIFF images using PHP.
  *
- *  Copyright (C) 2004, 2005  Martin Geisler.
+ *  Copyright (C) 2004, 2005, 2006  Martin Geisler.
  *
  *  This program is free software; you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
@@ -112,8 +112,10 @@ class PelDataWindow {
   /**
    * Construct a new data window with the data supplied.
    *
-   * @param string the data that this window will contain.  The data
-   * will be copied into the new data window.
+   * @param mixed the data that this window will contain. This can
+   * either be given as a string (interpreted litteraly as a sequence
+   * of bytes) or a PHP image resource handle. The data will be copied
+   * into the new data window.
    *
    * @param boolean the initial byte order of the window.  This must
    * be either {@link PelConvert::LITTLE_ENDIAN} or {@link
@@ -121,10 +123,23 @@ class PelDataWindow {
    * read from the data, and it can be changed later with {@link
    * setByteOrder()}.
    */
-  function __construct($d = '', $e = PelConvert::LITTLE_ENDIAN) {
-    $this->data  = $d;
-    $this->order = $e;
-    $this->size  = strlen($d);
+  function __construct($data = '', $endianess = PelConvert::LITTLE_ENDIAN) {
+    if (is_string($data)) {
+      $this->data = $data;
+    } elseif (is_resource($data) && get_resource_type($data) == 'gd') {
+      /* The ImageJpeg() function insists on printing the bytes
+       * instead of returning them in a more civil way as a string, so
+       * we have to buffer the output... */
+      ob_start();
+      ImageJpeg($data);
+      $this->data = ob_get_clean();
+    } else {
+      throw new PelInvalidArgumentException('Bad type for $data: %s', 
+                                            gettype($data));
+    }
+
+    $this->order = $endianess;
+    $this->size  = strlen($data);
   }
 
 
