@@ -48,7 +48,7 @@ echo "Running phpDocumentor... "
 $PHPDOC                                                             \
     --sourcecode          "on"                                      \
     --title               "PEL: PHP Exif Library$VERSION"           \
-    --output              "HTML:frames:earthli"                     \
+    --output              "HTML:frames:pel"                         \
     --customtags          "date"                                    \
     --defaultpackagename  "PEL"                                     \
     --directory           "tutorials"                               \
