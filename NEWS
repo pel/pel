@@ -1,8 +1,24 @@
 NEWS file for PEL: PHP Exif Library.  A library with support for
 reading and writing Exif headers in JPEG and TIFF images using PHP.
 
-Copyright (C) 2004, 2005, 2006  Martin Geisler.
+Copyright (C) 2004, 2005, 2006, 2007  Martin Geisler.
 Licensed under the GNU GPL, see COPYING for details.
+
+
+PEL Version 0.9.2  (Not yet released)
+*************************************
+
+Notes:
+
+Added static method for controlling the quality for encoding JPEG
+images.
+
+Changes:
+
+* Added static Pel::setJPEGQuality() and Pel::getJPEGQuality() method
+  for setting and getting the quailty used when PelJpeg automatically
+  converts an image resource to a JPEG image. Thanks Csaba Gabor for
+  asking about this.
 
 
 PEL Version 0.9.1  December 19th 2006

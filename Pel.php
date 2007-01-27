@@ -3,7 +3,7 @@
 /*  PEL: PHP Exif Library.  A library with support for reading and
  *  writing all Exif headers in JPEG and TIFF images using PHP.
  *
- *  Copyright (C) 2004, 2005, 2006  Martin Geisler.
+ *  Copyright (C) 2004, 2005, 2006, 2007  Martin Geisler.
  *
  *  This program is free software; you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
@@ -118,6 +118,41 @@ class Pel {
    * accumulated here instead of being thrown.
    */
   private static $exceptions = array();
+
+  /**
+   * Quality setting for encoding JPEG images.
+   *
+   * This controls the quality used then PHP image resources are
+   * encoded into JPEG images. This happens when you create a
+   * {@link PelJpeg} object based on an image resource.
+   *
+   * The default is 75 for average quality images, but you can change
+   * this to an integer between 0 and 100.
+   *
+   * @var int
+   */
+  private static $quality = 75;
+
+
+  /**
+   * Set the JPEG encoding quality.
+   *
+   * @param int $quality an integer between 0 and 100 with 75 being
+   * average quality and 95 very good quality.
+   */
+  function setJPEGQuality($quality) {
+    self::$quality = $quality;
+  }
+
+
+  /**
+   * Get current setting for JPEG encoding quality.
+   *
+   * @return int the quality.
+   */
+  function getJPEGQuality() {
+    return self::$quality;
+  }
 
 
   /**
