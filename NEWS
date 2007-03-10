@@ -20,6 +20,8 @@ Changes:
   converts an image resource to a JPEG image. Thanks Csaba Gabor for
   asking about this.
 
+* Moved the XP specific tags from the Exif IFD to the IFD0/1 IFD.
+
 
 PEL Version 0.9.1  December 19th 2006
 *************************************

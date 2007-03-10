@@ -3,7 +3,7 @@
 /*  PEL: PHP Exif Library.  A library with support for reading and
  *  writing all Exif headers in JPEG and TIFF images using PHP.
  *
- *  Copyright (C) 2004, 2005, 2006  Martin Geisler.
+ *  Copyright (C) 2004, 2005, 2006, 2007  Martin Geisler.
  *
  *  This program is free software; you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
@@ -636,7 +636,12 @@ class PelIfd implements IteratorAggregate, ArrayAccess {
                    PelTag::COPYRIGHT,
                    PelTag::EXIF_IFD_POINTER,
                    PelTag::GPS_INFO_IFD_POINTER,
-                   PelTag::PRINT_IM);
+                   PelTag::PRINT_IM,
+                   PelTag::XP_TITLE,
+                   PelTag::XP_COMMENT,
+                   PelTag::XP_AUTHOR,
+                   PelTag::XP_KEYWORDS,
+                   PelTag::XP_SUBJECT);
 
     case PelIfd::EXIF:
       return array(PelTag::EXPOSURE_TIME,
@@ -665,11 +670,6 @@ class PelIfd implements IteratorAggregate, ArrayAccess {
                    PelTag::SUB_SEC_TIME,
                    PelTag::SUB_SEC_TIME_ORIGINAL,
                    PelTag::SUB_SEC_TIME_DIGITIZED,
-                   PelTag::XP_TITLE,
-                   PelTag::XP_COMMENT,
-                   PelTag::XP_AUTHOR,
-                   PelTag::XP_KEYWORDS,
-                   PelTag::XP_SUBJECT,
                    PelTag::FLASH_PIX_VERSION,
                    PelTag::COLOR_SPACE,
                    PelTag::PIXEL_X_DIMENSION,
