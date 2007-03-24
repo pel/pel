@@ -3,7 +3,7 @@
 /*  PEL: PHP Exif Library.  A library with support for reading and
  *  writing all Exif headers in JPEG and TIFF images using PHP.
  *
- *  Copyright (C) 2004, 2005, 2006  Martin Geisler.
+ *  Copyright (C) 2004, 2005, 2006, 2007  Martin Geisler.
  *
  *  This program is free software; you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
@@ -720,7 +720,8 @@ class PelTag {
   /**
    * Windows XP Title
    *
-   * Format: {@link PelFormat::BYTE}.
+   * Format: {@link PelFormat::BYTE}, modelled by the
+   * {@link PelEntryWindowsString} class.
    *
    * Components: any number.
    */
@@ -730,7 +731,8 @@ class PelTag {
   /**
    * Windows XP Comment
    *
-   * Format: {@link PelFormat::BYTE}.
+   * Format: {@link PelFormat::BYTE}, modelled by the
+   * {@link PelEntryWindowsString} class.
    *
    * Components: any number.
    */
@@ -740,7 +742,8 @@ class PelTag {
   /**
    * Windows XP Author
    *
-   * Format: {@link PelFormat::BYTE}.
+   * Format: {@link PelFormat::BYTE}, modelled by the
+   * {@link PelEntryWindowsString} class.
    *
    * Components: any number.
    */
@@ -750,7 +753,8 @@ class PelTag {
   /**
    * Windows XP Keywords
    *
-   * Format: {@link PelFormat::BYTE}.
+   * Format: {@link PelFormat::BYTE}, modelled by the
+   * {@link PelEntryWindowsString} class.
    *
    * Components: any number.
    */
@@ -760,7 +764,8 @@ class PelTag {
   /**
    * Windows XP Subject
    *
-   * Format: {@link PelFormat::BYTE}.
+   * Format: {@link PelFormat::BYTE}, modelled by the
+   * {@link PelEntryWindowsString} class.
    *
    * Components: any number.
    */

@@ -11,7 +11,7 @@ PEL Version 0.9.2  (Not yet released)
 Notes:
 
 Added static method for controlling the quality for encoding JPEG
-images.
+images. Fixed placement of Windows XP tags.
 
 Changes:
 
@@ -21,6 +21,11 @@ Changes:
   asking about this.
 
 * Moved the XP specific tags from the Exif IFD to the IFD0/1 IFD.
+  Thanks Piotr Golebiowski for noticing this.
+
+* Added links from PelTag::XP_* tags to the PelEntryWindowsString
+  class. Thanks Garrison Locke for indirectly pointing out the need
+  for this.
 
 
 PEL Version 0.9.1  December 19th 2006
