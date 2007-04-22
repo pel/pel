@@ -3,7 +3,7 @@
 /*  PEL: PHP Exif Library.  A library with support for reading and
  *  writing all Exif headers in JPEG and TIFF images using PHP.
  *
- *  Copyright (C) 2004, 2005, 2006  Martin Geisler.
+ *  Copyright (C) 2004, 2005, 2006, 2007  Martin Geisler.
  *
  *  This program is free software; you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
@@ -145,6 +145,54 @@ class PelEntryAscii extends PelEntry {
 }
 
 
+/*
+ * The PelEntryTime class below uses the calendar extension, but if
+ * that is not available we can enumate the functions we need.
+ *
+ * Reference: http://www.hermetic.ch/cal_stud/jdn.htm#comp
+ */
+
+if (!function_exists('gregoriantojd')) {
+  // The Julian day number of 1/1/1970 is 2440588.
+  function gregoriantojd($month, $day, $year){
+    $m1412 = ($month <= 2) ? -1 : 0;
+    return floor(( 1461 * ( $year + 4800 + $m1412 ) ) / 4) +
+      floor(( 367 * ( $month - 2 - 12 * $m1412 ) ) / 12) -
+      floor(( 3 * floor( ( $year + 4900 + $m1412 ) / 100 ) ) / 4) +
+      $day - 32075;
+  }
+}
+
+if (!function_exists('unixtojd')){
+  function unixtojd($timestamp){
+    $unix_day = floor($timestamp / 86400);
+    return $unix_day + 2440588;
+  }
+}
+
+if (!function_exists('jdtounix')) {
+  function jdtounix($jday){
+    return ($jday - 2440588) * 86400;
+  }
+}
+
+if (!function_exists('jdtogregorian')) {
+  function jdtogregorian($jd){
+    $l = $jd + 68569;
+    $n = floor(( 4 * $l ) / 146097);
+    $l = $l - floor(( 146097 * $n + 3 ) / 4);
+    $i = floor(( 4000 * ( $l + 1 ) ) / 1461001);
+    $l = $l - floor(( 1461 * $i ) / 4) + 31;
+    $j = floor(( 80 * $l ) / 2447);
+    $d = $l - floor(( 2447 * $j ) / 80);
+    $l = floor($j / 11);
+    $m = $j + 2 - ( 12 * $l );
+    $y = 100 * ( $n - 49 ) + $i + $l;
+    return "$m/$d/$y";
+  }
+}
+
+
 /**
  * Class for holding a date and time.
  *
@@ -153,7 +201,7 @@ class PelEntryAscii extends PelEntry {
  * <code>
  * $entry = $ifd->getEntry(PelTag::DATE_TIME_ORIGINAL);
  * $time = $entry->getValue();
- * print('The image was taken on the ' . date($time, 'jS'));
+ * print('The image was taken on the ' . date('jS', $time));
  * $entry->setValue($time + 7 * 24 * 3600);
  * </code>
  *
