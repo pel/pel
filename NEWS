@@ -11,14 +11,17 @@ PEL Version 0.9.2  (Not yet released)
 Notes:
 
 Added a static method, Pel::setJPEGQuality(), for controlling the
-quality for encoding JPEG images. Enabled work around in case PHP
-lacks the calendar extension. Fixed placement of Windows XP tags.
+quality for encoding JPEG images. Fixed bug in conversion between
+Julian Day count and UNIX timestamps and removed dependency on the
+calendar PHP extension. Fixed placement of Windows XP tags.
 
 Changes:
 
-* If PHP was compiled without the calendar extension, we now enable
-  pure-PHP implementations of the necessary functions. The patch was
-  supplied by François Pirsch, thanks.
+* Fixed SF bug #1699489: Incorrect UNIX/Julian conversion.
+
+* PEL 0.9.1 introduced a dependency on the calendar extension for PHP.
+  The necessary functions have now been reimplemented in pure PHP. The
+  patch was supplied by François Pirsch, thanks.
 
 * Fixed doc comment for PelEntryTime, the variables for date() was
   swapped. Thanks François Pirsch.

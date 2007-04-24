@@ -3,7 +3,7 @@
 /*  PEL: PHP Exif Library.  A library with support for reading and
  *  writing all Exif headers in JPEG and TIFF images using PHP.
  *
- *  Copyright (C) 2004, 2006  Martin Geisler.
+ *  Copyright (C) 2004, 2006, 2007  Martin Geisler.
  *
  *  This program is free software; you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
@@ -101,6 +101,14 @@ class AsciiTestCase extends UnitTestCase {
                        '9999:12:31 23:59:59');
     $this->assertEqual($entry->getValue(PelEntryTime::JULIAN_DAY_COUNT),
                        5373484 + 86399/86400);
+
+    // Check day roll-over for SF bug #1699489.
+    $entry->setValue('2007:04:23 23:30:00', PelEntryTime::EXIF_STRING);
+    $t = $entry->getValue(PelEntryTime::UNIX_TIMESTAMP);
+    $entry->setValue($t + 3600);
+
+    $this->assertEqual($entry->getValue(PelEntryTime::EXIF_STRING),
+                       '2007:04:24 00:30:00');
   }
 
   function testCopyright() {
