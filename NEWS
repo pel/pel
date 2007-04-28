@@ -17,6 +17,9 @@ calendar PHP extension. Fixed placement of Windows XP tags.
 
 Changes:
 
+* Fixed PelJpegComment::getBytes(): it didn't return anything! Thanks
+  macondos.
+
 * Fixed SF bug #1699489: Incorrect UNIX/Julian conversion.
 
 * PEL 0.9.1 introduced a dependency on the calendar extension for PHP.
