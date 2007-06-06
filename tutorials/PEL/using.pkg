@@ -167,7 +167,7 @@ $desc->setValue('The new description.');
 
     <programlisting role="php">
       <![CDATA[
-file_put_contents('new-' . $filename, $jpeg->getBytes());
+$jpeg->saveFile('new-' . $filename);
       ]]>
     </programlisting>
 
