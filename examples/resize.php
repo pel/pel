@@ -4,7 +4,7 @@
 /*  PEL: PHP Exif Library.  A library with support for reading and
  *  writing all Exif headers in JPEG and TIFF images using PHP.
  *
- *  Copyright (C) 2006  Martin Geisler.
+ *  Copyright (C) 2006, 2007  Martin Geisler.
  *
  *  This program is free software; you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
@@ -124,7 +124,7 @@ if ($exif != null)
 
 /* We can now save the scaled image. */
 println('Writing file "%s".', $output);
-file_put_contents($output, $output_jpeg->getBytes());
+$output_jpeg->saveFile($output);
 
 /* The End. */
 ?>

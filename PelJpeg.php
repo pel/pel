@@ -3,7 +3,7 @@
 /*  PEL: PHP Exif Library.  A library with support for reading and
  *  writing all Exif headers in JPEG and TIFF images using PHP.
  *
- *  Copyright (C) 2004, 2005, 2006  Martin Geisler.
+ *  Copyright (C) 2004, 2005, 2006, 2007  Martin Geisler.
  *
  *  This program is free software; you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
@@ -496,7 +496,8 @@ class PelJpeg {
    * Turn this JPEG object into bytes.
    *
    * The bytes returned by this method is ready to be stored in a file
-   * as a valid JPEG image.
+   * as a valid JPEG image. Use the {@link saveFile()} convenience
+   * method to do this.
    *
    * @return string bytes representing this JPEG object, including all
    * its sections and their associated data.
@@ -527,6 +528,17 @@ class PelJpeg {
 
     return $bytes;
 
+  }
+
+
+  /**
+   * Save the JPEG object as a JPEG image in a file.
+   *
+   * @param string the filename to save in. An existing file with the
+   * same name will be overwritten!
+   */
+  function saveFile($filename) {
+    file_put_contents($filename, $this->getBytes());
   }
 
 
