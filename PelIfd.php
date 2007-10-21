@@ -268,15 +268,12 @@ class PelIfd implements IteratorAggregate, ArrayAccess {
 
         try {
             $entry = $this->newEntryFromData($tag, $format, $components, $data);
-
-            if ($this->isValidTag($tag)) {
-              $entry->setIfdType($this->type);
-              $this->entries[$tag] = $entry;
-            } else {
+            if ($this->isValidTag($tag))
+              $this->addEntry($entry);
+            else
               Pel::maybeThrow(new PelInvalidDataException("IFD %s cannot hold\n%s",
                                                           $this->getName(),
                                                           $entry->__toString()));
-            }
           } catch (PelException $e) {
             /* Throw the exception when running in strict mode, store
              * otherwise. */
@@ -803,6 +800,7 @@ PelTag::CFA_REPEAT_PATTERN_DIM,
    * bug?
    */
   function addEntry(PelEntry $e) {
+    $e->setIfdType($this->type);
     $this->entries[$e->getTag()] = $e;
   }
 
