@@ -13,9 +13,13 @@ Notes:
 Added a static method, Pel::setJPEGQuality(), for controlling the
 quality for encoding JPEG images. Fixed bug in conversion between
 Julian Day count and UNIX timestamps and removed dependency on the
-calendar PHP extension. Fixed placement of Windows XP tags.
+calendar PHP extension. Fixed placement of Windows XP tags. Added GPS
+example.
 
 Changes:
+
+* Added an example of how GPS information can be added. Thanks Andac
+  Aydin for contributing and testing this.
 
 * Fixed PelJpegComment::getBytes(): it didn't return anything! Thanks
   macondos.
