@@ -3,7 +3,7 @@
 /*  PEL: PHP Exif Library.  A library with support for reading and
  *  writing all Exif headers in JPEG and TIFF images using PHP.
  *
- *  Copyright (C) 2004, 2005, 2006, 2007  Martin Geisler.
+ *  Copyright (C) 2004, 2005, 2006, 2007, 2008  Martin Geisler.
  *
  *  This program is free software; you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
@@ -267,18 +267,13 @@ class PelIfd implements IteratorAggregate, ArrayAccess {
         }
 
         try {
-            $entry = $this->newEntryFromData($tag, $format, $components, $data);
-            if ($this->isValidTag($tag))
-              $this->addEntry($entry);
-            else
-              Pel::maybeThrow(new PelInvalidDataException("IFD %s cannot hold\n%s",
-                                                          $this->getName(),
-                                                          $entry->__toString()));
-          } catch (PelException $e) {
-            /* Throw the exception when running in strict mode, store
-             * otherwise. */
-            Pel::maybeThrow($e);
-          }
+          $entry = $this->newEntryFromData($tag, $format, $components, $data);
+          $this->addEntry($entry);
+        } catch (PelException $e) {
+          /* Throw the exception when running in strict mode, store
+           * otherwise. */
+          Pel::maybeThrow($e);
+        }
 
         /* The format of the thumbnail is stored in this tag. */
 //         TODO: handle TIFF thumbnail.
@@ -793,15 +788,22 @@ PelTag::CFA_REPEAT_PATTERN_DIM,
   /**
    * Adds an entry to the directory.
    *
-   * @param PelEntry the entry that will be added.
+   * @param PelEntry the entry that will be added. If the entry is not
+   * valid in this IFD (as per {@link isValidTag()}) an
+   * {@link PelInvalidDataException} is thrown.
    *
    * @todo The entry will be identified with its tag, so each
    * directory can only contain one entry with each tag.  Is this a
    * bug?
    */
   function addEntry(PelEntry $e) {
-    $e->setIfdType($this->type);
-    $this->entries[$e->getTag()] = $e;
+    if ($this->isValidTag($e->getTag())) {
+      $e->setIfdType($this->type);
+      $this->entries[$e->getTag()] = $e;
+    } else {
+      throw new PelInvalidDataException("IFD %s cannot hold\n%s",
+                                        $this->getName(), $e->__toString());
+    }
   }
 
 
