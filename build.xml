@@ -105,7 +105,7 @@
 
     <target name="phpcs">
         <exec output="${reports.dir}/checkstyle.xml" dir="${source.dir}"
-          command="phpcs --report=checkstyle ./src --standard=PEAR" />
+          command="phpcs --report=checkstyle ./src --ignore=./src/PelTag.php --standard=PEAR" />
     </target>
 
     <target name="php-documentor" depends="export">
