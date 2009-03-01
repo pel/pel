@@ -9,13 +9,13 @@
     <property name="stability" value="beta" />
     <property name="pear.channel" value="public.intraface.dk" />
 
-    <property name="source.dir" value="." />
-    <property name="tests.dir" value="./tests" />
     <property name="build.dir" value="../build" />
-    <property name="reports.phpcs.dir" value="../build/logs" />
+    <property name="source.dir" value="./" />
+    <property name="tests.dir" value="./test/" />
+    <property name="build.dir" value="../build" />
     <property name="reports.dir" value="../build/logs" />
     <property name="reports.phpunit.dir" value="../../build/logs" />
-    <property name="reports.coverage.dir" value="../../build/logs/coverage" />
+    <property name="reports.coverage.dir" value="../../build/coverage" />
     <property name="api.dir" value="../build/api" />
 
     <target name="prepare">
@@ -103,15 +103,15 @@
     </target>
 
     <target name="phpcs">
-        <exec output="${reports.phpcs.dir}/checkstyle.xml" dir="${source.dir}"
+        <exec output="${reports.dir}/checkstyle.xml" dir="${source.dir}/src/"
           command="phpcs --report=checkstyle . --standard=PEAR" />
     </target>
 
     <target name="php-documentor" depends="export">
-        <exec dir="${source.dir}" command="phpdoc -ue on -t ${api.dir} -d ./" passthru="true" />
+        <exec dir="${source.dir}" command="phpdoc -ue on -t ${api.dir} -d ./src/" passthru="true" />
     </target>
 
     <target name="test">
-<!--         <exec dir="${tests.dir}" command="" passthru="true" checkreturn="true" />   -->
+         <exec dir="${tests.dir}" command="limb_unit --include=*.php --cover=../src/ --cover-report=../coverage" passthru="true" checkreturn="false" /> 
     </target>
 </project>
