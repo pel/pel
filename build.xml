@@ -108,7 +108,7 @@
     </target>
 
     <target name="php-documentor" depends="export">
-        <exec dir="${source.dir}" command="phpdoc -ue on -t ${api.dir} -d ./src/" passthru="true" />
+        <exec dir="${source.dir}" command="phpdoc --sourcecode on --title 'PEL: PHP Exif Library${version}' --target ${api.dir} --directory tutorials,src --filename 'README,INSTALL,NEWS,TODO,ChangeLog'" passthru="true" />
     </target>
 
     <target name="test">
