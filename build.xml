@@ -25,6 +25,7 @@
     <target name="export">
         <echo msg="Exporting SVN files" />
         <exec command="svn export ${source.dir} ${build.dir}" />
+        <mkdir dir="${reports.dir}" />
 
         <mkdir dir="${build.dir}/package/${package-name}-${version}" />
         <copy todir="${build.dir}/package/${package-name}-${version}">
