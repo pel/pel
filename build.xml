@@ -104,8 +104,8 @@
     </target>
 
     <target name="phpcs">
-        <exec output="${reports.dir}/checkstyle.xml" dir="${source.dir}/src/"
-          command="phpcs --report=checkstyle . --standard=PEAR" />
+        <exec output="${reports.dir}/checkstyle.xml" dir="${source.dir}"
+          command="phpcs --report=checkstyle ./src --standard=PEAR" />
     </target>
 
     <target name="php-documentor" depends="export">
