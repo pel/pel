@@ -82,7 +82,8 @@
         </d51pearpkg2>
     </target>
 
-    <target name="build" depends="prepare, export, test, phpcs, php-documentor, make-pear-package">
+    <target name="build" depends="prepare, export, test, php-codesniffer, php-documentor, make-pear-package">
+    	<!--  -->
     </target>
 
     <target name="make-pear-package" depends="pear">
@@ -103,7 +104,7 @@
         </ftpdeploy>
     </target>
 
-    <target name="phpcs">
+    <target name="php-codesniffer">
         <exec output="${reports.dir}/checkstyle.xml" dir="${source.dir}"
           command="phpcs --report=checkstyle ./src --ignore=./src/PelTag.php --standard=PEAR" />
     </target>
