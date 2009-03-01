@@ -112,6 +112,6 @@
     </target>
 
     <target name="test">
-         <exec dir="${tests.dir}" command="limb_unit --include=*.php --cover=../src/ --cover-report=../coverage" passthru="true" checkreturn="false" /> 
+         <exec dir="${tests.dir}" command="limb_unit --include=*.php --cover=../src/ --cover-report=${reports.coverage.dir}" passthru="true" checkreturn="false" /> 
     </target>
 </project>
