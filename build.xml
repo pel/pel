@@ -82,7 +82,7 @@
         </d51pearpkg2>
     </target>
 
-    <target name="build" depends="prepare, export, test, php-codesniffer, php-documentor, make-pear-package">
+    <target name="build" depends="prepare, export, test">
     	<!--  -->
     </target>
 
