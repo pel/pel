@@ -22,20 +22,20 @@
  */
 
 /* $Id$ */
-
+set_include_path(dirname(__FILE__) . '/../src/' . PATH_SEPARATOR . get_include_path());
 
 class IFDTestCase extends UnitTestCase {
 
   function __construct() {
-    require_once('../PelIfd.php');
-    require_once('../PelTag.php');
-    require_once('../PelEntryAscii.php');
+    require_once('PelIfd.php');
+    require_once('PelTag.php');
+    require_once('PelEntryAscii.php');
     parent::__construct('PEL IFD Tests');
   }
 
   function testIteratorAggretate() {
     $ifd = new PelIfd(PelIfd::IFD0);
-    
+
     $this->assertEqual(sizeof($ifd->getIterator()), 0);
 
     $desc = new PelEntryAscii(PelTag::IMAGE_DESCRIPTION, 'Hello?');
@@ -57,7 +57,7 @@ class IFDTestCase extends UnitTestCase {
 
   function testArrayAccess() {
     $ifd = new PelIfd(PelIfd::IFD0);
-    
+
     $this->assertEqual(sizeof($ifd->getIterator()), 0);
 
     $desc = new PelEntryAscii(PelTag::IMAGE_DESCRIPTION, 'Hello?');
@@ -70,7 +70,7 @@ class IFDTestCase extends UnitTestCase {
     $this->assertIdentical($ifd[PelTag::DATE_TIME], $date);
 
     unset($ifd[PelTag::DATE_TIME]);
-    
+
     $this->assertFalse(isset($ifd[PelTag::DATE_TIME]));
   }
 

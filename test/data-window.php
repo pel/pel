@@ -22,12 +22,12 @@
  */
 
 /* $Id$ */
-
+set_include_path(dirname(__FILE__) . '/../src/' . PATH_SEPARATOR . get_include_path());
 
 class DataWindowTestCase extends UnitTestCase {
 
   function __construct() {
-    require_once('../PelDataWindow.php');
+    require_once('PelDataWindow.php');
     parent::__construct('PEL Data Window Tests');
   }
 
@@ -46,7 +46,7 @@ class DataWindowTestCase extends UnitTestCase {
     $this->assertEqual($window->getBytes(-2), 'gh');
     $this->assertEqual($window->getBytes(-7), 'bcdefgh');
     $this->assertEqual($window->getBytes(-8), 'abcdefgh');
-    
+
     $clone = $window->getClone(2, 4);
     $this->assertEqual($clone->getSize(), 4);
     $this->assertEqual($clone->getBytes(), 'cdef');
@@ -61,7 +61,7 @@ class DataWindowTestCase extends UnitTestCase {
     $this->assertEqual($clone->getBytes(-3), 'def');
     $this->assertEqual($clone->getBytes(-4), 'cdef');
 
-    
+
     $caught = false;
     try {
       $clone->getBytes(0, 6);
@@ -139,7 +139,7 @@ class DataWindowTestCase extends UnitTestCase {
 
 
   }
-  
+
 }
 
 ?>

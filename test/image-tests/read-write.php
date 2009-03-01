@@ -22,7 +22,7 @@
  */
 
 /* $Id$ */
-
+set_include_path(dirname(__FILE__) . '/../../src/' . PATH_SEPARATOR . get_include_path());
 
 abstract class WriteEntryTestCase extends UnitTestCase {
 
@@ -85,7 +85,7 @@ abstract class WriteEntryTestCase extends UnitTestCase {
 
 class WriteByteTestCase extends WriteEntryTestCase {
   function __construct() {
-    require_once('../PelEntryByte.php');
+    require_once('PelEntryByte.php');
 
     $this->entries[] = new PelEntryByte(0xF001, 0);
     $this->entries[] = new PelEntryByte(0xF002, 1);
@@ -103,7 +103,7 @@ class WriteByteTestCase extends WriteEntryTestCase {
 
 class WriteSByteTestCase extends WriteEntryTestCase {
   function __construct() {
-    require_once('../PelEntryByte.php');
+    require_once('PelEntryByte.php');
 
     $this->entries[] = new PelEntrySByte(0xF101, -128);
     $this->entries[] = new PelEntrySByte(0xF102, -127);
@@ -122,7 +122,7 @@ class WriteSByteTestCase extends WriteEntryTestCase {
 
 class WriteShortTestCase extends WriteEntryTestCase {
   function __construct() {
-    require_once('../PelEntryShort.php');
+    require_once('PelEntryShort.php');
 
     $this->entries[] = new PelEntryShort(0xF201, 0);
     $this->entries[] = new PelEntryShort(0xF202, 1);
@@ -140,7 +140,7 @@ class WriteShortTestCase extends WriteEntryTestCase {
 
 class WriteSShortTestCase extends WriteEntryTestCase {
   function __construct() {
-    require_once('../PelEntryShort.php');
+    require_once('PelEntryShort.php');
 
     $this->entries[] = new PelEntrySShort(0xF301, -32768);
     $this->entries[] = new PelEntrySShort(0xF302, -32767);
@@ -159,7 +159,7 @@ class WriteSShortTestCase extends WriteEntryTestCase {
 
 class WriteLongTestCase extends WriteEntryTestCase {
   function __construct() {
-    require_once('../PelEntryLong.php');
+    require_once('PelEntryLong.php');
 
     $this->entries[] = new PelEntryLong(0xF401, 0);
     $this->entries[] = new PelEntryLong(0xF402, 1);
@@ -177,7 +177,7 @@ class WriteLongTestCase extends WriteEntryTestCase {
 
 class WriteSLongTestCase extends WriteEntryTestCase {
   function __construct() {
-    require_once('../PelEntryLong.php');
+    require_once('PelEntryLong.php');
 
     $this->entries[] = new PelEntrySLong(0xF501, -2147483648);
     $this->entries[] = new PelEntrySLong(0xF502, -2147483647);
@@ -196,7 +196,7 @@ class WriteSLongTestCase extends WriteEntryTestCase {
 
 class WriteAsciiTestCase extends WriteEntryTestCase {
   function __construct() {
-    require_once('../PelEntryAscii.php');
+    require_once('PelEntryAscii.php');
 
     $this->entries[] = new PelEntryAscii(0xF601);
     $this->entries[] = new PelEntryAscii(0xF602, '');

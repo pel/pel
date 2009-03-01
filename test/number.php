@@ -22,7 +22,7 @@
  */
 
 /* $Id$ */
-
+set_include_path(dirname(__FILE__) . '/../src/' . PATH_SEPARATOR . get_include_path());
 
 abstract class NumberTestCase extends UnitTestCase {
 
@@ -36,7 +36,7 @@ abstract class NumberTestCase extends UnitTestCase {
     $this->max = $max;
     parent::__construct('PEL Exif Number Tests');
   }
-  
+
   function testOverflow() {
     $this->num->setValue(0);
     $this->assertEqual($this->num->getValue(), 0);
@@ -83,7 +83,7 @@ abstract class NumberTestCase extends UnitTestCase {
     $this->num->setValue(1, 2, 3);
     $this->assertEqual($this->num->getValue(), array(1, 2, 3));
     $this->assertEqual($this->num->getText(), '1, 2, 3');
-    
+
     $this->num->setValue(1);
     $this->assertEqual($this->num->getValue(), 1);
     $this->assertEqual($this->num->getText(), '1');
@@ -105,7 +105,7 @@ abstract class NumberTestCase extends UnitTestCase {
 
 class ByteTestCase extends NumberTestCase {
   function __construct() {
-    require_once('../PelEntryByte.php');
+    require_once('PelEntryByte.php');
     $this->num = new PelEntryByte(42);
     parent::__construct(0, 255);
   }
@@ -113,7 +113,7 @@ class ByteTestCase extends NumberTestCase {
 
 class SByteTestCase extends NumberTestCase {
   function __construct() {
-    require_once('../PelEntryByte.php');
+    require_once('PelEntryByte.php');
     $this->num = new PelEntrySByte(42);
     parent::__construct(-128, 127);
   }
@@ -121,7 +121,7 @@ class SByteTestCase extends NumberTestCase {
 
 class ShortTestCase extends NumberTestCase {
   function __construct() {
-    require_once('../PelEntryShort.php');
+    require_once('PelEntryShort.php');
     $this->num = new PelEntryShort(42);
     parent::__construct(0, 65535);
   }
@@ -129,7 +129,7 @@ class ShortTestCase extends NumberTestCase {
 
 class SShortTestCase extends NumberTestCase {
   function __construct() {
-    require_once('../PelEntryShort.php');
+    require_once('PelEntryShort.php');
     $this->num = new PelEntrySShort(42);
     parent::__construct(-32768, 32767);
   }
@@ -137,7 +137,7 @@ class SShortTestCase extends NumberTestCase {
 
 class LongTestCase extends NumberTestCase {
   function __construct() {
-    require_once('../PelEntryLong.php');
+    require_once('PelEntryLong.php');
     $this->num = new PelEntryLong(42);
     parent::__construct(0, 4294967295);
   }
@@ -145,7 +145,7 @@ class LongTestCase extends NumberTestCase {
 
 class SLongTestCase extends NumberTestCase {
   function __construct() {
-    require_once('../PelEntryLong.php');
+    require_once('PelEntryLong.php');
     $this->num = new PelEntrySLong(42);
     parent::__construct(-2147483648, 2147483647);
   }
@@ -155,7 +155,7 @@ class SLongTestCase extends NumberTestCase {
 class RationalTestCase extends UnitTestCase {
 
   function __construct() {
-    require_once('../PelEntryRational.php');
+    require_once('PelEntryRational.php');
     parent::__construct('PEL Exif Rational Tests');
   }
 
@@ -201,12 +201,12 @@ class RationalTestCase extends UnitTestCase {
     $entry = new PelEntryRational(42);
     $this->assertEqual($entry->getValue(), array());
     $this->assertEqual($entry->getText(), '');
-    
+
     $entry->setValue(array(1,2), array(3,4), array(5,6));
     $this->assertEqual($entry->getValue(),
                        array(array(1,2), array(3,4), array(5,6)));
     $this->assertEqual($entry->getText(), '1/2, 3/4, 5/6');
-    
+
     $entry->setValue(array(7,8));
     $this->assertEqual($entry->getValue(), array(7,8));
     $this->assertEqual($entry->getText(), '7/8');
@@ -227,7 +227,7 @@ class RationalTestCase extends UnitTestCase {
 class SRationalTestCase extends UnitTestCase {
 
   function __construct() {
-    require_once('../PelEntryRational.php');
+    require_once('PelEntryRational.php');
     parent::__construct('PEL Exif SRational Tests');
   }
 
@@ -272,7 +272,7 @@ class SRationalTestCase extends UnitTestCase {
 
     $entry = new PelEntrySRational(42);
     $this->assertEqual($entry->getValue(), array());
-    
+
     $entry->setValue(array(-1,2), array(3,4), array(5,-6));
     $this->assertEqual($entry->getValue(),
                        array(array(-1,2), array(3,4), array(5,-6)));

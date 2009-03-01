@@ -30,11 +30,12 @@ class Bug1730993TestCase extends UnitTestCase {
   function testThisDoesNotWorkAsExpected() {
     $tmpfile = dirname(__FILE__) . '/images/bug1730993_tmp.jpg';
     $bigfile = dirname(__FILE__) . '/images/bug1730993_large.jpg';
-    $jpeg = new PelJpeg($tmpfile);
+
+    $jpeg = new PelJpeg($tmpfile); // the error occurs here
     $exif = $jpeg->getExif();
     if ($exif != null) {
       $jpeg1 = new PelJpeg($bigfile);
-      $jpeg1->setExif( $exif);
+      $jpeg1->setExif($exif);
       file_put_contents($bigfile, $jpeg1->getBytes());
     }
   }

@@ -22,12 +22,12 @@
  */
 
 /* $Id$ */
-
+set_include_path(dirname(__FILE__) . '/../src/' . PATH_SEPARATOR . get_include_path());
 
 class UndefinedTestCase extends UnitTestCase {
 
   function __construct() {
-    require_once('../PelEntryUndefined.php');
+    require_once('PelEntryUndefined.php');
     parent::__construct('PEL Exif Undefined Tests');
   }
 
@@ -75,13 +75,13 @@ class UndefinedTestCase extends UnitTestCase {
     $this->assertEqual($entry->getText(false), 'Version 2.0');
     $this->assertEqual($entry->getText(true), '2.0');
     $this->assertEqual($entry->getBytes(PelConvert::LITTLE_ENDIAN), '0200');
-  
+
     $entry->setValue(2.1);
     $this->assertEqual($entry->getValue(), 2.1);
     $this->assertEqual($entry->getText(false), 'Version 2.1');
     $this->assertEqual($entry->getText(true), '2.1');
     $this->assertEqual($entry->getBytes(PelConvert::LITTLE_ENDIAN), '0210');
-  
+
     $entry->setValue(2.01);
     $this->assertEqual($entry->getValue(), 2.01);
     $this->assertEqual($entry->getText(false), 'Version 2.01');
@@ -89,7 +89,7 @@ class UndefinedTestCase extends UnitTestCase {
     $this->assertEqual($entry->getBytes(PelConvert::LITTLE_ENDIAN), '0201');
 
   }
-  
+
 }
 
 ?>

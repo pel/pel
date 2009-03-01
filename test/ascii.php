@@ -23,11 +23,12 @@
 
 /* $Id$ */
 
+set_include_path(dirname(__FILE__) . '/../src/' . PATH_SEPARATOR . get_include_path());
 
 class AsciiTestCase extends UnitTestCase {
 
   function __construct() {
-    require_once('../PelEntryAscii.php');
+    include_once 'PelEntryAscii.php';
     parent::__construct('PEL Exif ASCII Tests');
   }
 
@@ -147,7 +148,7 @@ class AsciiTestCase extends UnitTestCase {
     $this->assertEqual($entry->getBytes(PelConvert::LITTLE_ENDIAN),
                        'A' . chr(0) . 'B' . chr(0));
   }
-  
+
 }
 
 ?>

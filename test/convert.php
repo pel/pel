@@ -22,14 +22,14 @@
  */
 
 /* $Id$ */
-
+set_include_path(dirname(__FILE__) . '/../src/' . PATH_SEPARATOR . get_include_path());
 
 class ConvertTestCase extends UnitTestCase {
 
   private $bytes = "\x00\x00\x00\x00\x01\x23\x45\x67\x89\xAB\xCD\xEF\xFF\xFF\xFF\xFF";
 
   function __construct() {
-    require_once('../PelConvert.php');
+    require_once('PelConvert.php');
     parent::__construct('PEL Conversion Tests');
   }
 
