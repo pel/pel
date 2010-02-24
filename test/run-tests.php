@@ -26,6 +26,11 @@
 
 error_reporting(E_ALL);
 
+if (!file_exists(dirname(__FILE__))) {
+    echo "Create config.local.php";
+    exit(1);
+}
+
 require_once 'config.local.php';
 
 if (!defined('SIMPLE_TEST')) {
@@ -54,7 +59,7 @@ if (is_dir(SIMPLE_TEST)) {
 require_once(SIMPLE_TEST . 'unit_tester.php');
 require_once(SIMPLE_TEST . 'reporter.php');
 
-if ($argc > 1) {
+if (!empty($argc) AND $argc > 1) {
   /* If command line arguments are given, then only test those. */
   array_shift($argv);
   $tests = $argv;
@@ -84,5 +89,3 @@ foreach ($tests as $test)
   $group->addTestFile($test);
 
 $group->run(new TextReporter());
-
-?>
