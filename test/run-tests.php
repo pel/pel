@@ -26,9 +26,7 @@
 
 error_reporting(E_ALL);
 
-/* You can define the path to SimpleTest here, or you can let PEL
- * search for it by walking up the directory tree. */
-//define('SIMPLE_TEST', '../simpletest/');
+require_once 'config.local.php';
 
 if (!defined('SIMPLE_TEST')) {
   /* Search for a directory named 'simpletest' upwards in the
@@ -56,7 +54,7 @@ if (is_dir(SIMPLE_TEST)) {
 require_once(SIMPLE_TEST . 'unit_tester.php');
 require_once(SIMPLE_TEST . 'reporter.php');
 
-if ($argc > 1) { 
+if ($argc > 1) {
   /* If command line arguments are given, then only test those. */
   array_shift($argv);
   $tests = $argv;
@@ -73,7 +71,7 @@ if ($argc > 1) {
     $image_group = new GroupTest('Image Tests');
     foreach ($image_tests as $image_test)
       $image_group->addTestFile($image_test);
-    
+
     $group->addTestCase($image_group);
   } else {
     echo "Found no image tests, only core functionality will be tested.\n";
