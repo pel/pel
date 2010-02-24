@@ -26,7 +26,7 @@
 
 error_reporting(E_ALL);
 
-if (!file_exists(dirname(__FILE__))) {
+if (!file_exists(dirname(__FILE__) . '/config.local.php')) {
     echo "Create config.local.php";
     exit(1);
 }
@@ -66,7 +66,7 @@ if (!empty($argc) AND $argc > 1) {
   $group = new GroupTest('Selected PEL tests');
 } else {
   /* otherwive test all .php files, except this file (run-tests.php). */
-  $tests = array_diff(glob('*.php'), array('run-tests.php'));
+  $tests = array_diff(glob('*.php'), array('run-tests.php', 'config.local.php', 'config.local.example.php'));
   $group = new GroupTest('All PEL tests');
 
   /* Also test all image tests (if they are available). */
