@@ -10,7 +10,7 @@ PEL Test Images
 The images contained in this directory are test images collected for
 use with PEL: PHP Exif Library.  One can download PEL from:
 
-  http://pel.sourceforge.net/
+  http://github.com/lsolesen/pel/
 
 All images except no-exif.jpg contain Exif information, and the
 corresponding PHP files contain SimpleTest (http://simpletest.sf.net/)
@@ -53,9 +53,9 @@ please contribute one.  The image should
 * be licensed under the GNU GPL as the rest of PEL Test Images, so
   that it can be redistributed with it.
 
-Submit your test image(s) using the SourceForge Patch Tracker found at
+Submit your test image(s) by forking the repository found at
 
-  http://sourceforge.net/tracker/?group_id=108380&atid=650324
+  http://github.com/lsolesen/pel/
 
 All image contributers will be given full credit in the AUTHORS file
-distributed with PEL and on the PEL homepage at http://pel.sf.net/.
+distributed with PEL.
