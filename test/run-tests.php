@@ -45,14 +45,20 @@ if (!defined('SIMPLE_TEST')) {
   define('SIMPLE_TEST', $dir);
 }
 
+$simpletest_present = false;
+
 if (is_dir(SIMPLE_TEST)) {
+    if (file_get_contents(SIMPLE_TEST . 'VERSION')) {
+        $simpletest_present = true;
+    }
+}
+
+if ($simpletest_present) {
   printf("Found SimpleTest version %s in %s!\n",
          file_get_contents(SIMPLE_TEST . 'VERSION'),
          SIMPLE_TEST);
 } else {
   print "SimpleTest could not be found and so no tests can be made.\n";
-  print "Please download SimpleTest from http://simpletest.sf.net/\n";
-  print "and unpack it in as one of the directories mentioned above.\n";
   exit(1);
 }
 
