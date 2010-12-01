@@ -47,6 +47,14 @@ Features of PEL
 * Documented with PhpDocumentor (http://phpdoc.org/).
 
 
+Helping out
+***********
+
+Help will be very much appreciated. You can report issues, run the test
+suite, add patches. The best way to help out is applying patches and
+helping out with the tests. See instructions in the test/ directory.
+
+
 Getting Support
 ***************
 
