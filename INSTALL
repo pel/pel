@@ -8,30 +8,16 @@ Licensed under the GNU GPL, see COPYING for details.
 Requirements
 ************
 
-PEL requires PHP version 5, which was released in July 2004. If your
-provider still uses PHP 4, then ask them politely to upgrade.
-
-People using Debian GNU/Linux Etch can easily install PHP 5 from the
-normal Debian repository. For Debian Sarge one can use the packages
-found at http://people.debian.org/~dexter/dists/all/ or those at
-http://dotdeb.org/.
-
-Binaries for Windows are available from http://php.net/, where one
-also finds the source code for those who want to build PHP 5
-themselves.
+PEL requires PHP version 5.
 
 
 Installation
 ************
 
-PEL is installed by downloading it and unpacking it in a directory of
-your choice.  Your application can then start using the classed
-defined in PEL, most likely the PelJpeg class which contain an entire
-JPEG image or the PelTiff class for working with TIFF images.
+The preferred way of installing PEL is using the pear installer:
 
-It is important to understand that PEL is a library and not an
-application with a pretty interface --- PEL is a collection of classes
-that can be used to parse, read, and write Exif headers.
+  pear channel-discover pearhub.org
+  pear install pearhub/pel
 
 
 Upgrading
@@ -41,6 +27,10 @@ If you have already been using a previous version of PEL, then be sure
 to read the NEWS file before starting with a new version.  The goal of
 the NEWS file is to list the important changes in a more concise way
 that the ChangeLog file (which lists *every* little change).
+
+You can use the pear installer to upgrade:
+
+  pear upgrade pearhub/pel
 
 
 Using PEL
@@ -84,7 +74,7 @@ If you find a bug in PEL then please send a report back so that it can
 be fixed in the next version.  You can submit your bugs and other
 requests here:
 
-  http://sourceforge.net/tracker/?group_id=108380
+  http://github.com/lsolesen/pel/issues
 
 If you change the code (to fix bugs or to implement enhancements), it
 is highly recommended that you test your changes against known good
