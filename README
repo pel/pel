@@ -29,15 +29,10 @@ Documentation Overview
 **********************
 
 * README: gives you a short introduction to PEL (this file).
-
 * INSTALL: explain how to install and get going with PEL.
-
 * NEWS: contains important information about changes in PEL.
-
 * examples/: small self-contained examples of how to use PEL.
-
 * doc/: the API documentation with a short tutorial and more examples.
-
 * AUTHORS: list of people who have helped.
 
 
@@ -45,15 +40,10 @@ Features of PEL
 ***************
 
 * Reads and writes Exif metadata from both JPEG and TIFF images.
-
 * Supports reading and writing all Exif tags.
-
 * Supports internationalization.
-
 * Extensible object-oriented design.
-
 * Unit-tested with SimpleTest (http://sf.net/projects/simpletest).
-
 * Documented with PhpDocumentor (http://phpdoc.org/).
 
 
@@ -69,31 +59,17 @@ The scripts found in the examples/ directory are also a good source of
 information, especially the edit-description.php file which has tons
 of comments.
 
-PEL is hosted on SourceForge and uses the tools found there for
+PEL is hosted on Github and uses the tools found there for
 support.  This means that all questions, bug reports, etc. should be
-directed there (and not directly to Martin Geisler).
+directed there (and not directly to the developers).
 
-The preferred way of getting support is the development mailing list:
+Please try the latest version before reporting bugs -- it might have
+been fixed already.  The latest code can be found in the git
+repository at
 
-  http://lists.sourceforge.net/lists/listinfo/pel-devel
+  http://github.com/lsolesen/pel
 
-After you have subscribed (do not worry, it is a low volume list) you
-can post by sending your question to
-
-  <pel-devel@lists.sourceforge.net>
-
-If you have a specific support request, a bug report, a feature
-request, or maybe a patch, please use the corresponding tracker:
-
-  http://sourceforge.net/tracker/?group_id=108380
-
-Please try the latest version before reporting bugs --- it might have
-been fixed already.  The latest code can be found in the Subversion
-repository, please see this SourceForge page for more information:
-
-  http://sourceforge.net/svn/?group_id=108380
-
-It is very helpful if you try out the latest code from the Subversion
+It is very helpful if you try out the latest code from the git
 repository before submitting a bug report. The code found there is
 generally very stable.
 
@@ -102,14 +78,9 @@ Contributing Test Images
 ************************
 
 To make PEL as stable as possible, it is tested with images from a
-number of different camera models.  Those test images have been split
-out into a separate download, to make the core PEL as small and quick
-as possible to download.  Download the test images from the PEL
-homepage:
+number of different camera models.  
 
-  http://pel.sourceforge.net/
-
-New test images are very much appreciated --- please download the
+New test images are very much appreciated -- please download the
 existing test images and read the README file found there for
 instructions.
 
