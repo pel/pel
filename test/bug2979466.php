@@ -1,5 +1,4 @@
 <?php
-
 /*  PEL: PHP Exif Library.  A library with support for reading and
  *  writing all Exif headers in JPEG and TIFF images using PHP.
  *
@@ -20,6 +19,11 @@
  *  Free Software Foundation, Inc., 51 Franklin St, Fifth Floor,
  *  Boston, MA 02110-1301 USA
  */
+set_include_path(dirname(__FILE__) . '/../src/' . PATH_SEPARATOR . get_include_path());
+
+if (realpath($_SERVER['PHP_SELF']) == __FILE__) {
+  require_once 'simpletest/autorun.php';
+}
 
 class Bug2979466TestCase extends UnitTestCase {
 
@@ -31,6 +35,7 @@ class Bug2979466TestCase extends UnitTestCase {
     $file = dirname(__FILE__) . '/images/bug2979466.jpg';
 
     try {
+      require_once 'PelJpeg.php';
       $jpeg = new PelJpeg($file);
     } catch (Exception $e) {
         $this->fail('Test should not throw an exception');

@@ -20,6 +20,11 @@
  *  Free Software Foundation, Inc., 51 Franklin St, Fifth Floor,
  *  Boston, MA 02110-1301 USA
  */
+set_include_path(dirname(__FILE__) . '/../src/' . PATH_SEPARATOR . get_include_path());
+
+if (realpath($_SERVER['PHP_SELF']) == __FILE__) {
+  require_once 'simpletest/autorun.php';
+}
 
 class Bug1730993TestCase extends UnitTestCase {
 
@@ -32,6 +37,7 @@ class Bug1730993TestCase extends UnitTestCase {
     $bigfile = dirname(__FILE__) . '/images/bug1730993_large.jpg';
 
     try {
+      require_once 'PelJpeg.php';
       $jpeg = new PelJpeg($tmpfile); // the error occurs here
       $exif = $jpeg->getExif();
       if ($exif != null) {

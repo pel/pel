@@ -24,6 +24,10 @@
 /* $Id$ */
 set_include_path(dirname(__FILE__) . '/../src/' . PATH_SEPARATOR . get_include_path());
 
+if (realpath($_SERVER['PHP_SELF']) == __FILE__) {
+  require_once 'simpletest/autorun.php';
+}
+
 class ConvertTestCase extends UnitTestCase {
 
   private $bytes = "\x00\x00\x00\x00\x01\x23\x45\x67\x89\xAB\xCD\xEF\xFF\xFF\xFF\xFF";
