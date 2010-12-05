@@ -43,7 +43,6 @@ class UndefinedTestCase extends UnitTestCase {
     $this->expectError('Undefined variable: tag');
 
     $entry = new PelEntryUndefined(42);
-    $this->assertNoErrors();
 
     $entry = new PelEntryUndefined(42, 'foo bar baz');
     $this->assertEqual($entry->getComponents(), 11);
@@ -70,7 +69,6 @@ class UndefinedTestCase extends UnitTestCase {
     $this->expectError('Undefined variable: tag');
 
     $entry = new PelEntryVersion(42);
-    $this->assertNoErrors();
 
     $this->assertEqual($entry->getValue(), 0.0);
 

@@ -40,7 +40,6 @@ class AsciiTestCase extends UnitTestCase {
     $this->expectError('Undefined variable: tag');
 
     $entry = new PelEntryAscii(42);
-    $this->assertNoErrors();
 
     $entry = new PelEntryAscii(42, 'foo bar baz');
     $this->assertEqual($entry->getComponents(), 12);
@@ -64,7 +63,6 @@ class AsciiTestCase extends UnitTestCase {
     $this->expectError('Undefined variable: timestamp');
 
     $entry = new PelEntryTime(42, 10);
-    $this->assertNoErrors();
     $this->assertEqual($entry->getComponents(), 20);
     $this->assertEqual($entry->getValue(), 10);
     $this->assertEqual($entry->getValue(PelEntryTime::UNIX_TIMESTAMP), 10);
