@@ -34,8 +34,7 @@ if (!file_exists(dirname(__FILE__) . '/config.local.php')) {
 require_once 'config.local.php';
 
 if (!defined('SIMPLE_TEST')) {
-  /* Search for a directory named 'simpletest' upwards in the
-   * directory tree. */
+  // Search for a directory named 'simpletest' upwards in the directory tree
   $dir = 'simpletest/';
   while (!is_file($dir . 'unit_tester.php')) {
     print "Looking for SimpleTest in $dir...\n";
@@ -66,16 +65,16 @@ require_once(SIMPLE_TEST . 'unit_tester.php');
 require_once(SIMPLE_TEST . 'reporter.php');
 
 if (!empty($argc) AND $argc > 1) {
-  /* If command line arguments are given, then only test those. */
+  // If command line arguments are given, then only test those.
   array_shift($argv);
   $tests = $argv;
   $group = new GroupTest('Selected PEL tests');
 } else {
-  /* otherwive test all .php files, except this file (run-tests.php). */
+  // otherwive test all .php files, except this file (run-tests.php).
   $tests = array_diff(glob('*.php'), array('run-tests.php', 'config.local.php', 'config.local.example.php'));
   $group = new GroupTest('All PEL tests');
 
-  /* Also test all image tests (if they are available). */
+  // Also test all image tests (if they are available).
   if (is_dir('image-tests')) {
     $image_tests = array_diff(glob('image-tests/*.php'),
                               array('image-tests/make-image-test.php'));
