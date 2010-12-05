@@ -1,3 +1,5 @@
 .settings/*
 .buildpath
 .project
+locale/*
+ChangeLog
