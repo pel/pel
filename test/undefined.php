@@ -24,6 +24,10 @@
 /* $Id$ */
 set_include_path(dirname(__FILE__) . '/../src/' . PATH_SEPARATOR . get_include_path());
 
+if (realpath($_SERVER['PHP_SELF']) == __FILE__) {
+  require_once 'simpletest/autorun.php';
+}
+
 class UndefinedTestCase extends UnitTestCase {
 
   function __construct() {
@@ -33,7 +37,7 @@ class UndefinedTestCase extends UnitTestCase {
 
   function testReturnValues() {
     $entry = new PelEntryUndefined();
-    $pattern = new WantedPatternExpectation('/Missing argument 1 for ' .
+    $pattern = new PatternExpectation('/Missing argument 1 for ' .
                                             'PelEntryUndefined::__construct()/');
     $this->assertError($pattern);
     $this->assertError('Undefined variable: tag');
@@ -60,7 +64,7 @@ class UndefinedTestCase extends UnitTestCase {
 
   function testVersion() {
     $entry = new PelEntryVersion();
-    $pattern = new WantedPatternExpectation('/Missing argument 1 for ' .
+    $pattern = new PatternExpectation('/Missing argument 1 for ' .
                                             'PelEntryVersion::__construct()/');
     $this->assertError($pattern);
     $this->assertError('Undefined variable: tag');

@@ -193,7 +193,7 @@ class RationalTestCase extends UnitTestCase {
 
   function testReturnValues() {
     $entry = new PelEntryRational();
-    $pattern = new WantedPatternExpectation('/Missing argument 1 for ' .
+    $pattern = new PatternExpectation('/Missing argument 1 for ' .
                                             'PelEntryRational::__construct()/');
     $this->assertError($pattern);
     $this->assertError('Undefined variable: tag');
@@ -265,7 +265,7 @@ class SRationalTestCase extends UnitTestCase {
 
   function testReturnValues() {
     $entry = new PelEntrySRational();
-    $pattern = new WantedPatternExpectation('/Missing argument 1 for ' .
+    $pattern = new PatternExpectation('/Missing argument 1 for ' .
                                             'PelEntrySRational::__construct()/');
     $this->assertError($pattern);
     $this->assertError('Undefined variable: tag');
