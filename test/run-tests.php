@@ -79,8 +79,11 @@ if (!empty($argc) AND $argc > 1) {
     $image_tests = array_diff(glob('image-tests/*.php'),
                               array('image-tests/make-image-test.php'));
     $image_group = new TestSuite('Image Tests');
-    foreach ($image_tests as $image_test)
+    foreach ($image_tests as $image_test) {
+      // @todo FIXME API Change for simpletest. Should
+      //       Now the class name should be inputted, not the filename
       $image_group->add($image_test);
+    }
 
     $group->add($image_group);
   } else {
