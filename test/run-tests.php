@@ -24,7 +24,7 @@
 
 /* $Id$ */
 
-error_reporting(E_ALL &~E_DEPRECATED);
+error_reporting(E_ALL);
 
 if (!file_exists(dirname(__FILE__) . '/config.local.php')) {
     echo "Create config.local.php";
