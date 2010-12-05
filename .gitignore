@@ -3,3 +3,4 @@
 .project
 locale/*
 ChangeLog
+build-base*
