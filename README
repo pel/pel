@@ -55,6 +55,12 @@ suite, add patches. The best way to help out is applying patches and
 helping out with the tests. See instructions in the test/ directory.
 
 
+Languages
+*********
+
+To work with the translations, you need the gettext package installed.
+
+
 Getting Support
 ***************
 
