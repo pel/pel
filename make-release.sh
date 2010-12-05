@@ -28,19 +28,6 @@
 # permission to upload these files to SourceForge.  The generated
 # files are placed in the current directory.
 
-# Next go to the following sites and update the release information:
-
-# http://freshmeat.net/projects/pel
-# http://onlyphp.com/detail-1511.html
-# http://hotscripts.com/Detailed/35006.html
-# http://php-resource.de/scripte/show/5686/
-# http://scriptsearch.com/details/11255.html
-# http://needscripts.com/Resource/27087.html
-# http://php.resourceindex.com/detail/04003.html
-# http://script.dk/sourcecode.jsp?resourceId=1227
-# http://coding.phpground.net/download-mod-707.html
-# http://scripts.com/php-scripts/image-manipulation-scripts/pel-php-exif-library
-
 
 # Fix the locale to C, e.g. untranslated.
 export LC_ALL=C
