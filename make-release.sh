@@ -54,8 +54,6 @@ cd $BUILD_BASE
 
 echo -n "Exporting trunk from SourceForge... "
 svn export https://pel.svn.sourceforge.net/svnroot/pel/trunk pel || exit
-# Export once more with Windows line-endings? Rename README to
-# README.txt? Would be neat, but it is necessary?
 echo "done."
 
 # Grab version number from ChangeLog...
