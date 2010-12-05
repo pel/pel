@@ -68,21 +68,21 @@ if (!empty($argc) AND $argc > 1) {
   // If command line arguments are given, then only test those.
   array_shift($argv);
   $tests = $argv;
-  $group = new GroupTest('Selected PEL tests');
+  $group = new TestSuite('Selected PEL tests');
 } else {
   // otherwive test all .php files, except this file (run-tests.php).
   $tests = array_diff(glob('*.php'), array('run-tests.php', 'config.local.php', 'config.local.example.php'));
-  $group = new GroupTest('All PEL tests');
+  $group = new TestSuite('All PEL tests');
 
   // Also test all image tests (if they are available).
   if (is_dir('image-tests')) {
     $image_tests = array_diff(glob('image-tests/*.php'),
                               array('image-tests/make-image-test.php'));
-    $image_group = new GroupTest('Image Tests');
+    $image_group = new TestSuite('Image Tests');
     foreach ($image_tests as $image_test)
-      $image_group->addTestFile($image_test);
+      $image_group->add($image_test);
 
-    $group->addTestCase($image_group);
+    $group->add($image_group);
   } else {
     echo "Found no image tests, only core functionality will be tested.\n";
     echo "Image tests are available from http://pel.sourceforge.net/.\n";
@@ -91,6 +91,6 @@ if (!empty($argc) AND $argc > 1) {
 }
 
 foreach ($tests as $test)
-  $group->addTestFile($test);
+  $group->add($test);
 
 $group->run(new TextReporter());
