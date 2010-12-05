@@ -35,7 +35,7 @@ else
 fi
 
 if [[ -z $2 ]]; then
-    PHPDOC="../../PhpDocumentor/phpdoc"
+    PHPDOC="phpdoc"
 else
     PHPDOC=$2
 fi    
