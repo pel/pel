@@ -1,0 +1,1181 @@
+# Dutch translation for the PHP Exif Library (PEL).
+# Copyright (C) 2004, 2005, 2006 Martin Geisler
+# This file is distributed under the term of the GPL.
+#
+# First Author: Erik Oskam <info@eowd.nl>, 2010 
+msgid ""
+msgstr ""
+"Project-Id-Version: PEL\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2010-12-04 21:26+0100\n"
+"Last-Translator: Erik Oskam <info@eowd.nl>\n"
+"Language-Team: None\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: PelDataWindow.php:517
+#, php-format
+msgid "DataWindow: %d bytes in [%d, %d] of %d bytes"
+msgstr "DataWindow: %d bytes i [%d, %d] af %d bytes"
+
+#: PelEntryAscii.php:465
+msgid "(Photographer)"
+msgstr "(Fotofraaf)"
+
+#: PelEntryAscii.php:466
+msgid "(Editor)"
+msgstr "(Redacteur)"
+
+#: PelEntry.php:369
+#, php-format
+msgid "  Tag: 0x%04X (%s)\n"
+msgstr "  Tag: 0x%04X (%s)\n"
+
+#: PelEntry.php:371
+#, php-format
+msgid "    Format    : %d (%s)\n"
+msgstr "    Formaat    : %d (%s)\n"
+
+#: PelEntry.php:373
+#, php-format
+msgid "    Components: %d\n"
+msgstr "    Componenten: %d\n"
+
+#: PelEntry.php:376
+#, php-format
+msgid "    Value     : %s\n"
+msgstr "    Waarde     : %s\n"
+
+#: PelEntry.php:377
+#, php-format
+msgid "    Text      : %s\n"
+msgstr "    Tekst      : %s\n"
+
+#: PelEntryRational.php:136 PelEntryRational.php:141
+#, php-format
+msgid "f/%.01f"
+msgstr "f/%.01f"
+
+#: PelEntryRational.php:146
+#, php-format
+msgid "%.1f mm"
+msgstr "%.1f mm"
+
+#: PelEntryRational.php:151
+#, php-format
+msgid "%.1f m"
+msgstr "%.1f m"
+
+#: PelEntryRational.php:157
+#, php-format
+msgid "1/%d sec."
+msgstr "1/%d sek."
+
+#: PelEntryRational.php:159
+#, php-format
+msgid "%d sec."
+msgstr "%d sek."
+
+#: PelEntryRational.php:267
+#, php-format
+msgid "%.0f/%.0f sec. (APEX: %d)"
+msgstr "%.0f/%.0f sek. (APEX: %d)"
+
+#: PelEntryShort.php:142 PelEntryShort.php:209 PelEntryShort.php:507
+msgid "Unknown"
+msgstr "Onbekend"
+
+#: PelEntryShort.php:144
+msgid "Average"
+msgstr "Gemmiddelde"
+
+#: PelEntryShort.php:146
+msgid "Center-Weighted Average"
+msgstr "Centrumgericht Gemiddelde"
+
+#: PelEntryShort.php:148
+msgid "Spot"
+msgstr "Spot"
+
+#: PelEntryShort.php:150
+msgid "Multi Spot"
+msgstr "Multi Spot"
+
+#: PelEntryShort.php:152
+msgid "Pattern"
+msgstr "Patroon"
+
+#: PelEntryShort.php:154
+msgid "Partial"
+msgstr "Gedeeltelijk"
+
+#: PelEntryShort.php:156 PelEntryShort.php:247
+msgid "Other"
+msgstr "Anders"
+
+#: PelEntryShort.php:165
+msgid "Uncompressed"
+msgstr "Ongecomprimeerd"
+
+#: PelEntryShort.php:167
+msgid "JPEG compression"
+msgstr "JPEG compressie"
+
+#: PelEntryShort.php:177
+msgid "chunky format"
+msgstr "chunky format"
+
+#: PelEntryShort.php:179
+msgid "planar format"
+msgstr "planair format"
+
+#: PelEntryShort.php:188 PelEntryShort.php:268
+msgid "Not defined"
+msgstr "Niet gedefinieerd"
+
+#: PelEntryShort.php:190
+msgid "One-chip color area sensor"
+msgstr "Enkele chip kleursensor"
+
+#: PelEntryShort.php:192
+msgid "Two-chip color area sensor"
+msgstr "Twee-chips kleursensor"
+
+#: PelEntryShort.php:194
+msgid "Three-chip color area sensor"
+msgstr "Drie chips, kleursensor"
+
+#: PelEntryShort.php:196
+msgid "Color sequential area sensor"
+msgstr "Kleur-sequentiele sensor"
+
+#: PelEntryShort.php:198
+msgid "Trilinear sensor"
+msgstr "Trilinaire sensor"
+
+#: PelEntryShort.php:200
+msgid "Color sequential linear sensor"
+msgstr "Lineaire kleur-sequentiele sensor"
+
+#: PelEntryShort.php:211
+msgid "Daylight"
+msgstr "Daglicht"
+
+#: PelEntryShort.php:213
+msgid "Fluorescent"
+msgstr "Fluorescent"
+
+#: PelEntryShort.php:215
+msgid "Tungsten (incandescent light)"
+msgstr "Tungsten (gloeilamp)"
+
+#: PelEntryShort.php:217 PelTag.php:1808
+msgid "Flash"
+msgstr "Flits"
+
+#: PelEntryShort.php:219
+msgid "Fine weather"
+msgstr "Helder weer"
+
+#: PelEntryShort.php:221
+msgid "Cloudy weather"
+msgstr "Bewolkt weer"
+
+#: PelEntryShort.php:223
+msgid "Shade"
+msgstr "Skygge"
+
+#: PelEntryShort.php:225
+msgid "Daylight fluorescent"
+msgstr "Daglicht fluorescent"
+
+#: PelEntryShort.php:227
+msgid "Day white fluorescent"
+msgstr "Daglicht wit fluorescent"
+
+#: PelEntryShort.php:229
+msgid "Cool white fluorescent"
+msgstr "Koud wit fluorescent"
+
+#: PelEntryShort.php:231
+msgid "White fluorescent"
+msgstr "Wit fluorescent"
+
+#: PelEntryShort.php:233
+msgid "Standard light A"
+msgstr "Standaard licht A"
+
+#: PelEntryShort.php:235
+msgid "Standard light B"
+msgstr "Standaard licht B"
+
+#: PelEntryShort.php:237
+msgid "Standard light C"
+msgstr "Standaard licht A"
+
+#: PelEntryShort.php:239
+msgid "D55"
+msgstr "D55"
+
+#: PelEntryShort.php:241
+msgid "D65"
+msgstr "D65"
+
+#: PelEntryShort.php:243
+msgid "D75"
+msgstr "D75"
+
+#: PelEntryShort.php:245
+msgid "ISO studio tungsten"
+msgstr "ISO studio tungsten"
+
+#: PelEntryShort.php:257
+msgid "Inch"
+msgstr "Inch"
+
+#: PelEntryShort.php:259
+msgid "Centimeter"
+msgstr "Centimeter"
+
+#: PelEntryShort.php:270
+msgid "Manual"
+msgstr "Handmatig"
+
+#: PelEntryShort.php:272
+msgid "Normal program"
+msgstr "Normaal programma"
+
+#: PelEntryShort.php:274
+msgid "Aperture priority"
+msgstr "Diafragmavoorkeuze"
+
+#: PelEntryShort.php:276
+msgid "Shutter priority"
+msgstr "Sluitertijdvoorkeuze"
+
+#: PelEntryShort.php:278
+msgid "Creative program (biased toward depth of field)"
+msgstr "Creatief programma (voorkeur voor velddiepte)"
+
+#: PelEntryShort.php:280
+msgid "Action program (biased toward fast shutter speed)"
+msgstr "Sportstand (voorkeur voor korte sluitertijd)"
+
+#: PelEntryShort.php:282
+msgid "Portrait mode (for closeup photos with the background out of focus"
+msgstr "Portretstand (voor closeup foto's met de achtergrond uit focus)"
+
+#: PelEntryShort.php:284
+msgid "Landscape mode (for landscape photos with the background in focus"
+msgstr "Landschapstand (voor landschapsfoto's met de achtergron in focus)"
+
+#: PelEntryShort.php:293
+msgid "top - left"
+msgstr "boven - links"
+
+#: PelEntryShort.php:295
+msgid "top - right"
+msgstr "boven - rechts"
+
+#: PelEntryShort.php:297
+msgid "bottom - right"
+msgstr "onder - rechts"
+
+#: PelEntryShort.php:299
+msgid "bottom - left"
+msgstr "onder - links"
+
+#: PelEntryShort.php:301
+msgid "left - top"
+msgstr "links - boven"
+
+#: PelEntryShort.php:303
+msgid "right - top"
+msgstr "rechts - boven"
+
+#: PelEntryShort.php:3055
+msgid "right - bottom"
+msgstr "rechts - onder"
+
+#: PelEntryShort.php:307
+msgid "left - bottom"
+msgstr "links - onder"
+
+#: PelEntryShort.php:316
+msgid "centered"
+msgstr "gencentreerd"
+
+#: PelEntryShort.php:318
+msgid "co-sited"
+msgstr "co-sited"
+
+#: PelEntryShort.php:351
+msgid "Uncalibrated"
+msgstr "Ongecalibreerd"
+
+#: PelEntryShort.php:360
+msgid "Flash did not fire."
+msgstr "Niet geflitst."
+
+#: PelEntryShort.php:362
+msgid "Flash fired."
+msgstr "Geflitst."
+
+#: PelEntryShort.php:364
+msgid "Strobe return light not detected."
+msgstr "Weerkaatst flitslicht niet gedetecteerd."
+
+#: PelEntryShort.php:366
+msgid "Strobe return light detected."
+msgstr "Weerkaatst flitslicht gedetecteerd."
+
+#: PelEntryShort.php:368
+msgid "Flash fired, compulsory flash mode."
+msgstr "Geflitst, invulflitsstand gebruikt (altijd flitsen)"
+
+#: PelEntryShort.php:370
+msgid "Flash fired, compulsory flash mode, return light not detected."
+msgstr ""
+"Geflitst, invulflitsstand gebruikt (altijd flitsen), weerkaatst flitslicht "
+"niet gedetecteerd."
+
+#: PelEntryShort.php:372
+msgid "Flash fired, compulsory flash mode, return light detected."
+msgstr ""
+"Geflitst, invulflitsstand gebruikt (altijd flitsen), weerkaatst flitslicht "
+"gedetecteerd."
+
+#: PelEntryShort.php:374
+msgid "Flash did not fire, compulsory flash mode."
+msgstr "Niet geflitst, invulflitsstand gebruikt (altijd flitsen)."
+
+#: PelEntryShort.php:376
+msgid "Flash did not fire, auto mode."
+msgstr "Niet geflitst, automatische stand"
+
+#: PelEntryShort.php:378
+msgid "Flash fired, auto mode."
+msgstr "Geflitst, automatische stand."
+
+#: PelEntryShort.php:380
+msgid "Flash fired, auto mode, return light not detected."
+msgstr "Geflitst, automatische stand, weerkaatst flitslicht niet gedetecteerd."
+
+#: PelEntryShort.php:382
+msgid "Flash fired, auto mode, return light detected."
+msgstr "Geflitst, automatische stand, weerkaatst flitslicht gedetecteerd."
+
+#: PelEntryShort.php:384
+msgid "No flash function."
+msgstr "Geen flitsfunctie"
+
+#: PelEntryShort.php:386
+msgid "Flash fired, red-eye reduction mode."
+msgstr "Geflitst, rode-ogenreductie ingeschakeld."
+
+#: PelEntryShort.php:388
+msgid "Flash fired, red-eye reduction mode, return light not detected."
+msgstr ""
+"Geflitst, rode-ogenreductie ingeschakeld, weerkaatst flistlicht niet "
+"gedetecteerd."
+
+#: PelEntryShort.php:390
+msgid "Flash fired, red-eye reduction mode, return light detected."
+msgstr ""
+"Geflitst, rode-ogenreductie ingeschakeld, weerkaatst flistlicht gedetecteerd."
+
+#: PelEntryShort.php:392
+msgid "Flash fired, compulsory flash mode, red-eye reduction mode."
+msgstr ""
+"Geflitst, invulflitsstand gebruikt (altijd flitsen), rode-ogenreductie "
+"ingeschakeld."
+
+#: PelEntryShort.php:394
+msgid ""
+"Flash fired, compulsory flash mode, red-eye reduction mode, return light not "
+"detected."
+msgstr ""
+"Geflistst, invulflitsstand gebruikt (altijd flitsen), rode-ogenreductie "
+"ingeschakeld, weerkaatst flistlicht niet gedetecteerd."
+
+#: PelEntryShort.php:396
+msgid ""
+"Flash fired, compulsory flash mode, red-eye reduction mode, return light "
+"detected."
+msgstr ""
+"Geflistst, invulflitsstand gebruikt (altijd flitsen), rode-ogenreductie "
+"ingeschakeld, weerkaatst flistlicht gedetecteerd."
+
+#: PelEntryShort.php:398
+msgid "Flash did not fire, auto mode, red-eye reduction mode."
+msgstr "Niet geflitst, automatische stand, rode-ogenreductie ingeschakeld."
+
+#: PelEntryShort.php:400
+msgid "Flash fired, auto mode, red-eye reduction mode."
+msgstr "Geflitst, automatische stand, rode-ogenreductie ingeschakeld."
+
+#: PelEntryShort.php:402
+msgid ""
+"Flash fired, auto mode, return light not detected, red-eye reduction mode."
+msgstr ""
+"Geflitst, automatische stand, weerkaatst flitslicht niet gedetecteerd, "
+"rode-ogenreductie ingeschakeld."
+
+#: PelEntryShort.php:404
+msgid "Flash fired, auto mode, return light detected, red-eye reduction mode."
+msgstr ""
+"Geflitst, automatische stand, weerkaatst flitslicht gedetecteerd, "
+"rode-ogenreductie ingeschakeld."
+
+#: PelEntryShort.php:413
+msgid "Normal process"
+msgstr "Normaal proces"
+
+#: PelEntryShort.php:415
+msgid "Custom process"
+msgstr "Aangepast proces"
+
+#: PelEntryShort.php:424
+msgid "Auto exposure"
+msgstr "Automatische belichting"
+
+#: PelEntryShort.php:426
+msgid "Manual exposure"
+msgstr "Handmatige belichting"
+
+#: PelEntryShort.php:428
+msgid "Auto bracket"
+msgstr "Auto bracketing"
+
+#: PelEntryShort.php:437
+msgid "Auto white balance"
+msgstr "Automatiche witbalans"
+
+#: PelEntryShort.php:439
+msgid "Manual white balance"
+msgstr "Handmatig witbalans"
+
+#: PelEntryShort.php:448
+msgid "Standard"
+msgstr "Standaard"
+
+#: PelEntryShort.php:450
+msgid "Landscape"
+msgstr "Liggend (landschap)"
+
+#: PelEntryShort.php:452
+msgid "Portrait"
+msgstr "Staand (portret)"
+
+#: PelEntryShort.php:454
+msgid "Night scene"
+msgstr "Nachtscene"
+
+#: PelEntryShort.php:463 PelEntryShort.php:480 PelEntryShort.php:494
+msgid "Normal"
+msgstr "Normaal"
+
+#: PelEntryShort.php:465
+msgid "Low gain up"
+msgstr "Lage versterking"
+
+#: PelEntryShort.php:467
+msgid "High gain up"
+msgstr "Hoge versterking"
+
+#: PelEntryShort.php:469
+msgid "Low gain down"
+msgstr "Lage verzwakking"
+
+#: PelEntryShort.php:471
+msgid "High gain down"
+msgstr "Hoge verzwakking"
+
+#: PelEntryShort.php:482
+msgid "Low saturation"
+msgstr "Lage kleurverzadiging"
+
+#: PelEntryShort.php:484
+msgid "High saturation"
+msgstr "Hoge kleurverzadiging"
+
+#: PelEntryShort.php:496
+msgid "Soft"
+msgstr "Zacht"
+
+#: PelEntryShort.php:498
+msgid "Hard"
+msgstr "Hard"
+
+#: PelEntryShort.php:509
+msgid "Macro"
+msgstr "Makro"
+
+#: PelEntryShort.php:511
+msgid "Close view"
+msgstr "Dichtbij "
+
+#: PelEntryShort.php:513
+msgid "Distant view"
+msgstr "Ver weg"
+
+#: PelEntryShort.php:521
+#, php-format
+msgid "(x,y) = (%d,%d)"
+msgstr "(x,y) = (%d,%d)"
+
+#: PelEntryShort.php:523
+#, php-format
+msgid "Within distance %d of (x,y) = (%d,%d)"
+msgstr "Binnen afstand %d van (x,y) = (%d,%d)"
+
+#: PelEntryShort.php:526
+#, php-format
+msgid "Within rectangle (width %d, height %d) around (x,y) = (%d,%d)"
+msgstr "Binnen rechthoek (breedte %d, hooggte %d) om (x,y) = (%d,%d)"
+
+#: PelEntryShort.php:531
+#, php-format
+msgid "Unexpected number of components (%d, expected 2, 3, or 4)."
+msgstr "Onverwacht aantal componenten (%d, waar 2, 3 of 4 werden verwacht)."
+
+#: PelEntryUndefined.php:390
+#, php-format
+msgid "Exif %s"
+msgstr "Exif %s"
+
+#: PelEntryUndefined.php:392
+#, php-format
+msgid "Exif Version %s"
+msgstr "Exif version %s"
+
+#: PelEntryUndefined.php:396
+#, php-format
+msgid "FlashPix %s"
+msgstr "FlashPix %s"
+
+#: PelEntryUndefined.php:398
+#, php-format
+msgid "FlashPix Version %s"
+msgstr "FlashPix versie %s"
+
+#: PelEntryUndefined.php:402
+#, php-format
+msgid "Interoperability %s"
+msgstr "Interoperabiliteit %s"
+
+#: PelEntryUndefined.php:404
+#, php-format
+msgid "Interoperability Version %s"
+msgstr "Interoperabiliteit-versie %s"
+
+#: PelEntryUndefined.php:410
+#, php-format
+msgid "Version %s"
+msgstr "Versie %s"
+
+#: PelExif.php:169
+msgid "Dumping Exif data...\n"
+msgstr "Exif data dumpen...\n"
+
+#: PelFormat.php:192 PelFormat.php:220
+#, php-format
+msgid "Unknown format: 0x%X"
+msgstr "Onbekend formaat: 0x%X"
+
+#: PelIfd.php:1180
+#, php-format
+msgid "Dumping IFD %s with %d entries...\n"
+msgstr "IFD %s met %d items dumpen...\n"
+
+#: PelIfd.php:1186
+#, php-format
+msgid "Dumping %d sub IFDs...\n"
+msgstr "%d sub-IFD's dumpen...\n"
+
+#: PelJpegMarker.php:288 PelJpegMarker.php:430
+#, php-format
+msgid "Unknown marker: 0x%02X"
+msgstr "Onbekende code: 0x%02X"
+
+#: PelJpegMarker.php:302
+msgid "Encoding (baseline)"
+msgstr "Coderen (baseline)"
+
+#: PelJpegMarker.php:304
+msgid "Encoding (extended sequential)"
+msgstr "Coderen (uitgebreid sequentieel)"
+
+#: PelJpegMarker.php:306
+msgid "Encoding (progressive)"
+msgstr "Coderen (progressief)"
+
+#: PelJpegMarker.php:308
+msgid "Encoding (lossless)"
+msgstr "Coderen (zonder verlies)"
+
+#: PelJpegMarker.php:310
+msgid "Encoding (differential sequential)"
+msgstr "Coderen (differentiaal sequentieel)"
+
+#: PelJpegMarker.php:312
+msgid "Encoding (differential progressive)"
+msgstr "Coderen (differentiaal progressief)"
+
+#: PelJpegMarker.php:314
+msgid "Encoding (differential lossless)"
+msgstr "Coderen (differentiaal zonder verlies)"
+
+#: PelJpegMarker.php:316
+msgid "Encoding (extended sequential, arithmetic)"
+msgstr "Coderen (uitgebried sequentieel, rekenkundig)"
+
+#: PelJpegMarker.php:318
+msgid "Encoding (progressive, arithmetic)"
+msgstr "Coderen (progressief, rekenkundig)"
+
+#: PelJpegMarker.php:320
+msgid "Encoding (lossless, arithmetic)"
+msgstr "Coderen (zonder verlies, rekenkundig)"
+
+#: PelJpegMarker.php:322
+msgid "Encoding (differential sequential, arithmetic)"
+msgstr "Coderen (differentiaal sequentieel, rekenkundig)"
+
+#: PelJpegMarker.php:324
+msgid "Encoding (differential progressive, arithmetic)"
+msgstr "Coderen (differentiaal progressief, rekenkundig)"
+
+#: PelJpegMarker.php:326
+msgid "Encoding (differential lossless, arithmetic)"
+msgstr "Coderen (differentiaal zonder verlies, rekenkundig)"
+
+#: PelJpegMarker.php:328
+msgid "Start of image"
+msgstr "Start van afbeelding"
+
+#: PelJpegMarker.php:330
+msgid "End of image"
+msgstr "Eind van afbeelding"
+
+#: PelJpegMarker.php:332
+msgid "Start of scan"
+msgstr "Start van scan"
+
+#: PelJpegMarker.php:334 PelJpegMarker.php:428
+msgid "Comment"
+msgstr "Commentaar"
+
+#: PelJpegMarker.php:336
+msgid "Define Huffman table"
+msgstr "Definieer Huffman tabel"
+
+#: PelJpegMarker.php:338
+msgid "Extension"
+msgstr "Uitbreiding"
+
+#: PelJpegMarker.php:340
+msgid "Define arithmetic coding conditioning"
+msgstr "Definieer rekenkundige codering"
+
+#: PelJpegMarker.php:342 PelJpegMarker.php:344 PelJpegMarker.php:346
+#: PelJpegMarker.php:348 PelJpegMarker.php:350 PelJpegMarker.php:352
+#: PelJpegMarker.php:354 PelJpegMarker.php:356
+#, php-format
+msgid "Restart %d"
+msgstr "Herstart %d"
+
+#: PelJpegMarker.php:358
+msgid "Define quantization table"
+msgstr "Definieer kwantisatietabel"
+
+#: PelJpegMarker.php:360
+msgid "Define number of lines"
+msgstr "Definieer het aantal regels"
+
+#: PelJpegMarker.php:362
+msgid "Define restart interval"
+msgstr "Definieer herstartinterval"
+
+#: PelJpegMarker.php:364
+msgid "Define hierarchical progression"
+msgstr "Definieer hierarchische progressie"
+
+#: PelJpegMarker.php:366
+msgid "Expand reference component"
+msgstr "Referentie-onderdeel uitbreiden"
+
+#: PelJpegMarker.php:368 PelJpegMarker.php:370 PelJpegMarker.php:372
+#: PelJpegMarker.php:374 PelJpegMarker.php:376 PelJpegMarker.php:378
+#: PelJpegMarker.php:380 PelJpegMarker.php:382 PelJpegMarker.php:384
+#: PelJpegMarker.php:386 PelJpegMarker.php:388 PelJpegMarker.php:390
+#: PelJpegMarker.php:392 PelJpegMarker.php:394 PelJpegMarker.php:396
+#: PelJpegMarker.php:398
+#, php-format
+msgid "Application segment %d"
+msgstr "Applicatiesegment %d"
+
+#: PelJpegMarker.php:400 PelJpegMarker.php:402 PelJpegMarker.php:404
+#: PelJpegMarker.php:406 PelJpegMarker.php:408 PelJpegMarker.php:410
+#: PelJpegMarker.php:412 PelJpegMarker.php:414 PelJpegMarker.php:416
+#: PelJpegMarker.php:418 PelJpegMarker.php:420 PelJpegMarker.php:422
+#: PelJpegMarker.php:424 PelJpegMarker.php:426
+#, php-format
+msgid "Extension %d"
+msgstr "Uitbreiding %d"
+
+#: PelJpeg.php:543
+msgid "Dumping JPEG data...\n"
+msgstr "JPEG data dumpen...\n"
+
+#: PelJpeg.php:547
+#, php-format
+msgid "Section %d (marker 0x%02X - %s):\n"
+msgstr "Sectie %d (markering 0x%02X - %s):\n"
+
+#: PelJpeg.php:549
+#, php-format
+msgid "  Description: %s\n"
+msgstr "  Omschrijving: %s\n"
+
+#: PelJpeg.php:557
+msgid "  Content    : Exif data\n"
+msgstr "  Inhoud     : Exif data\n"
+
+#: PelJpeg.php:560
+#, php-format
+msgid "  Content    : %s\n"
+msgstr "  Inhoud     : %s\n"
+
+#: PelJpeg.php:562
+msgid "  Content    : Unknown\n"
+msgstr "  Inhoud     : Ukendt\n"
+
+#: PelTag.php:1649
+#, php-format
+msgid "Unknown: 0x%04X"
+msgstr "Onbekend: 0x%04X"
+
+#: PelTag.php:1678
+msgid "Interoperability Index"
+msgstr "Interoperabiliteitsindex"
+
+#: PelTag.php:1680
+msgid "Interoperability Version"
+msgstr "Interoperabiliteitsversie"
+
+#: PelTag.php:1682
+msgid "Image Width"
+msgstr "Afbeeldingsbreedte"
+
+#: PelTag.php:1684
+msgid "Image Length"
+msgstr "Afbeeldingslengte"
+
+#: PelTag.php:1686
+msgid "Bits per Sample"
+msgstr "Bits per onderdeel"
+
+#: PelTag.php:1688
+msgid "Compression"
+msgstr "Compressie"
+
+#: PelTag.php:1690
+msgid "Photometric Interpretation"
+msgstr "Fotometrische Interpretatie"
+
+#: PelTag.php:1692
+msgid "Fill Order"
+msgstr "Vullingsvolgorde"
+
+#: PelTag.php:1694
+msgid "Document Name"
+msgstr "Dokumentnaam"
+
+#: PelTag.php:1696
+msgid "Image Description"
+msgstr "Afbeeldingsbeschrijving"
+
+#: PelTag.php:1698
+msgid "Manufacturer"
+msgstr "Fabrikant"
+
+#: PelTag.php:1700
+msgid "Model"
+msgstr "Model"
+
+#: PelTag.php:1702
+msgid "Strip Offsets"
+msgstr ""
+
+#: PelTag.php:1704
+msgid "Orientation"
+msgstr "Orientatie"
+
+#: PelTag.php:1706
+msgid "Samples per Pixel"
+msgstr "Samples per Pixel"
+
+#: PelTag.php:1708
+msgid "Rows per Strip"
+msgstr "Rijen per strip"
+
+#: PelTag.php:1710
+msgid "Strip Byte Count"
+msgstr ""
+
+#: PelTag.php:1712
+msgid "x-Resolution"
+msgstr "x-resolutie"
+
+#: PelTag.php:1714
+msgid "y-Resolution"
+msgstr "y-resolutie"
+
+#: PelTag.php:1716
+msgid "Planar Configuration"
+msgstr "Planconfiguratie"
+
+#: PelTag.php:1718
+msgid "Resolution Unit"
+msgstr "Resolutie-eenheid"
+
+#: PelTag.php:1720
+msgid "Transfer Function"
+msgstr "Overdrachtsmethode"
+
+#: PelTag.php:1722
+msgid "Software"
+msgstr "Software"
+
+#: PelTag.php:1724
+msgid "Date and Time"
+msgstr "Datum en tijd"
+
+#: PelTag.php:1726
+msgid "Artist"
+msgstr "Artiest"
+
+#: PelTag.php:1728
+msgid "White Point"
+msgstr "Witpunt"
+
+#: PelTag.php:1730
+msgid "Primary Chromaticities"
+msgstr "Primaire Chromaticiteiten"
+
+#: PelTag.php:1732
+msgid "Transfer Range"
+msgstr "Overdrachtsbereik"
+
+#: PelTag.php:1734
+msgid "JPEG Process"
+msgstr "JPEG proces"
+
+#: PelTag.php:1736
+msgid "JPEG Interchange Format"
+msgstr "JPEG Interchange Format"
+
+#: PelTag.php:1738
+msgid "JPEG Interchange Format Length"
+msgstr "JPEG Interchange Format Length"
+
+#: PelTag.php:1740
+msgid "YCbCr Coefficients"
+msgstr "YCbCr coefficienten"
+
+#: PelTag.php:1742
+msgid "YCbCr Sub-Sampling"
+msgstr "YCbCr Sub-Sampling"
+
+#: PelTag.php:1744
+msgid "YCbCr Positioning"
+msgstr "YCbCr positionering"
+
+#: PelTag.php:1746
+msgid "Reference Black/White"
+msgstr "Referentie zwart/wit"
+
+#: PelTag.php:1748
+msgid "Related Image File Format"
+msgstr "Gerelateerd afbeeldingsbestandsformaat"
+
+#: PelTag.php:1750
+msgid "Related Image Width"
+msgstr "Gerelateerde afbeedlingsbreedte"
+
+#: PelTag.php:1752
+msgid "Related Image Length"
+msgstr "Gerelateerde afbeedlingslengte"
+
+#: PelTag.php:1754
+msgid "CFA Repeat Pattern Dim"
+msgstr ""
+
+#: PelTag.php:1756
+msgid "CFA Pattern"
+msgstr "CFA-patroon"
+
+#: PelTag.php:1758
+msgid "Battery Level"
+msgstr "Batterij-niveau"
+
+#: PelTag.php:1760
+msgid "Copyright"
+msgstr "Auteursrecht"
+
+#: PelTag.php:1762
+msgid "Exposure Time"
+msgstr "Belichtingstijd"
+
+#: PelTag.php:1764
+msgid "FNumber"
+msgstr "F-getal"
+
+#: PelTag.php:1766
+msgid "IPTC/NAA"
+msgstr "IPTC/NAA"
+
+#: PelTag.php:1768
+msgid "Exif IFD Pointer"
+msgstr "Exif IFD Pointer"
+
+#: PelTag.php:1770
+msgid "Inter Color Profile"
+msgstr "Inter kleurprofiel"
+
+#: PelTag.php:1772
+msgid "Exposure Program"
+msgstr "Belichtingsprogramma"
+
+#: PelTag.php:1774
+msgid "Spectral Sensitivity"
+msgstr "Spektrale gevoeligheid"
+
+#: PelTag.php:1776
+msgid "GPS Info IFD Pointer"
+msgstr "GPS Info IFD Pointer"
+
+#: PelTag.php:1778
+msgid "ISO Speed Ratings"
+msgstr "ISO-waarden"
+
+#: PelTag.php:1780
+msgid "OECF"
+msgstr "OECF"
+
+#: PelTag.php:1782
+msgid "Exif Version"
+msgstr "Exif versie"
+
+#: PelTag.php:1784
+msgid "Date and Time (original)"
+msgstr "Datum en tijd (origineel)"
+
+#: PelTag.php:1786
+msgid "Date and Time (digitized)"
+msgstr "Datum en tijd (gedigitaliseerd)"
+
+#: PelTag.php:1788
+msgid "Components Configuration"
+msgstr "Componententconfiguratie"
+
+#: PelTag.php:1790
+msgid "Compressed Bits per Pixel"
+msgstr "Gecomprimeerd aantal bits per pixel"
+
+#: PelTag.php:1792
+msgid "Shutter speed"
+msgstr "Sluitertijd"
+
+#: PelTag.php:1794
+msgid "Aperture"
+msgstr "Diafragma"
+
+#: PelTag.php:1796
+msgid "Brightness"
+msgstr "Helderheid"
+
+#: PelTag.php:1798
+msgid "Exposure Bias"
+msgstr "Belichtingscorrectie"
+
+#: PelTag.php:1800
+msgid "Max Aperture Value"
+msgstr "Maximaal diafragma"
+
+#: PelTag.php:1802
+msgid "Subject Distance"
+msgstr "Onderwerpsafstand"
+
+#: PelTag.php:1804
+msgid "Metering Mode"
+msgstr "Lichtmeting"
+
+#: PelTag.php:1806
+msgid "Light Source"
+msgstr "Lichtbron"
+
+#: PelTag.php:1810
+msgid "Focal Length"
+msgstr "Brandpuntsafstand"
+
+#: PelTag.php:1812
+msgid "Maker Note"
+msgstr "Opmerking van maker"
+
+#: PelTag.php:1814
+msgid "User Comment"
+msgstr "Gebruikerscommentaarr"
+
+#: PelTag.php:1816
+msgid "SubSec Time"
+msgstr "SubSec Tijd"
+
+#: PelTag.php:1818
+msgid "SubSec Time Original"
+msgstr "SubSec Tijd (origineel)"
+
+#: PelTag.php:1820
+msgid "SubSec Time Digitized"
+msgstr "SubSec Tijd (gedigitaliseerd)"
+
+#: PelTag.php:1832
+msgid "FlashPix Version"
+msgstr "FlashPix versie"
+
+#: PelTag.php:1834
+msgid "Color Space"
+msgstr "Kleurruimte"
+
+#: PelTag.php:1836
+msgid "Pixel x-Dimension"
+msgstr "Pixel x-dimensie"
+
+#: PelTag.php:1838
+msgid "Pixel y-Dimension"
+msgstr "Pixel y-dimensie"
+
+#: PelTag.php:1840
+msgid "Related Sound File"
+msgstr "Gerelateerd geluidsbestand"
+
+#: PelTag.php:1842
+msgid "Interoperability IFD Pointer"
+msgstr "Interoperabiliteits-IFD-Pointer"
+
+#: PelTag.php:1844
+msgid "Flash Energy"
+msgstr "Flitsenergie"
+
+#: PelTag.php:1846
+msgid "Spatial Frequency Response"
+msgstr "Ruimtelijke frequentie"
+
+#: PelTag.php:1848
+msgid "Focal Plane x-Resolution"
+msgstr "x-resolutie focusvlak"
+
+#: PelTag.php:1850
+msgid "Focal Plane y-Resolution"
+msgstr "y-resolutie focusvlak"
+
+#: PelTag.php:1852
+msgid "Focal Plane Resolution Unit"
+msgstr "Eenheid resolutie focusvlak"
+
+#: PelTag.php:1854
+msgid "Subject Location"
+msgstr "Locatie van onderwerp"
+
+#: PelTag.php:1856
+msgid "Exposure index"
+msgstr "Belichtingsindex"
+
+#: PelTag.php:1858
+msgid "Sensing Method"
+msgstr "Meetmethode"
+
+#: PelTag.php:1860
+msgid "File Source"
+msgstr "Fil kilde"
+
+#: PelTag.php:1862
+msgid "Scene Type"
+msgstr "Scenetype"
+
+#: PelTag.php:1864
+msgid "Subject Area"
+msgstr "Onderwerpruimte"
+
+#: PelTag.php:1866
+msgid "Custom Rendered"
+msgstr "ustom Rendered"
+
+#: PelTag.php:1868
+msgid "Exposure Mode"
+msgstr "Belichtingsinstelling"
+
+#: PelTag.php:1870
+msgid "White Balance"
+msgstr "Witbalans"
+
+#: PelTag.php:1872
+msgid "Digital Zoom Ratio"
+msgstr "Digitale zoomfactoe"
+
+#: PelTag.php:1874
+msgid "Focal Length In 35mm Film"
+msgstr "Brandpunt bij gebruik 35mm film"
+
+#: PelTag.php:1876
+msgid "Scene Capture Type"
+msgstr "Scenetype"
+
+#: PelTag.php:1878
+msgid "Gain Control"
+msgstr "Belichtingscorrectie"
+
+#: PelTag.php:1880
+msgid "Contrast"
+msgstr "Contrast"
+
+#: PelTag.php:1882
+msgid "Saturation"
+msgstr "Kleurverzadiging"
+
+#: PelTag.php:1884
+msgid "Sharpness"
+msgstr "Scherpte"
+
+#: PelTag.php:1886
+msgid "Device Setting Description"
+msgstr "Beschrijving apparaatinstellingen"
+
+#: PelTag.php:1888
+msgid "Subject Distance Range"
+msgstr "Afstand tot onderwerp"
+
+#: PelTag.php:1890
+msgid "Image Unique ID"
+msgstr "Uniek ID voor afbeelding"
+
+#: PelTag.php:1892
+msgid "Gamma"
+msgstr "Gamma"
+
+#: PelTag.php:1894
+msgid "Print IM"
+msgstr ""
+
+#: PelTag.php:1964
+#, php-format
+msgid "Unknown Tag: 0x%04X"
+msgstr "Onbekende tag: 0x%04X"
+
+#: PelTiff.php:255
+#, php-format
+msgid "Dumping TIFF data...\n"
+msgstr "TIFF data dumpen...\n"
