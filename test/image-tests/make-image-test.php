@@ -208,7 +208,7 @@ println('<?php
 class %s extends UnitTestCase {
 
   function __construct() {
-    require_once(\'../PelJpeg.php\');
+    require_once(\'../src/PelJpeg.php\');
     parent::__construct(\'PEL %s Tests\');
   }
 
@@ -218,7 +218,7 @@ class %s extends UnitTestCase {
     $jpeg = new PelJpeg(dirname(__FILE__) . \'/%s\');
 ', $test_name, $image_filename, $image_filename);
 
-require_once('../../PelJpeg.php');
+require_once('../../src/PelJpeg.php');
 $jpeg = new PelJpeg($image_filename);
 
 $indent = 2;
