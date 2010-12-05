@@ -80,9 +80,7 @@ if (!empty($argc) AND $argc > 1) {
                               array('image-tests/make-image-test.php'));
     $image_group = new TestSuite('Image Tests');
     foreach ($image_tests as $image_test) {
-      // @todo FIXME API Change for simpletest. Should
-      //       Now the class name should be inputted, not the filename
-      $image_group->add($image_test);
+      $image_group->addFile($image_test);
     }
 
     $group->add($image_group);
@@ -94,6 +92,6 @@ if (!empty($argc) AND $argc > 1) {
 }
 
 foreach ($tests as $test)
-  $group->add($test);
+  $group->addFile($test);
 
 $group->run(new TextReporter());
