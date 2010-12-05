@@ -48,9 +48,9 @@ Contributing New Examples
 
 More examples are needed!  If you have a neat example of how PEL can
 be used, then please contribute it to PEL.  Please submit it as a new
-item in the SourceForge Patch Tracker:
+item in the Github issue tracker:
 
-  http://sourceforge.net/tracker/?atid=650324&group_id=108380
+  http://github.com/lsolesen/pel/issues
 
 It will then be included in the next release of PEL, of course with
 full credit in the AUTHORS file.
