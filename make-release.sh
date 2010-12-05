@@ -35,7 +35,7 @@ export LC_ALL=C
 
 # Paths used below
 BUILD_BASE="build-base.$$"
-PHPDOC_PATH='../../../../PhpDocumentor/phpdoc'
+PHPDOC_PATH='phpdoc'
 
 
 
