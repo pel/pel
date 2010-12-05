@@ -36,8 +36,8 @@ class AsciiTestCase extends UnitTestCase {
     $entry = new PelEntryAscii();
     $pattern = new PatternExpectation('/Missing argument 1 for ' .
                                             'PelEntryAscii::__construct()/');
-    $this->assertError($pattern);
-    $this->assertError('Undefined variable: tag');
+    $this->expectError($pattern);
+    $this->expectError('Undefined variable: tag');
 
     $entry = new PelEntryAscii(42);
     $this->assertNoErrors();
@@ -54,14 +54,14 @@ class AsciiTestCase extends UnitTestCase {
                                          'PelEntryTime::__construct()/');
 
     $entry = new PelEntryTime();
-    $this->assertError($arg1);
-    $this->assertError($arg2);
-    $this->assertError('Undefined variable: tag');
-    $this->assertError('Undefined variable: timestamp');
+    $this->expectError($arg1);
+    $this->expectError($arg2);
+    $this->expectError('Undefined variable: tag');
+    $this->expectError('Undefined variable: timestamp');
 
     $entry = new PelEntryTime(42);
-    $this->assertError($arg2);
-    $this->assertError('Undefined variable: timestamp');
+    $this->expectError($arg2);
+    $this->expectError('Undefined variable: timestamp');
 
     $entry = new PelEntryTime(42, 10);
     $this->assertNoErrors();
