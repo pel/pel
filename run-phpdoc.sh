@@ -28,13 +28,13 @@
 # should be a version number to include in the documentation.  The
 # second argument should be the full path to the `phpdoc' script.
 
-if [[ -z $1 ]]; then
+if [ -z $1 ]; then
     VERSION=""
 else
     VERSION=" Version $1"
 fi
 
-if [[ -z $2 ]]; then
+if [ -z $2 ]; then
     PHPDOC="phpdoc"
 else
     PHPDOC=$2
@@ -48,10 +48,8 @@ echo "Running phpDocumentor... "
 $PHPDOC                                                             \
     --sourcecode          "on"                                      \
     --title               "PEL: PHP Exif Library$VERSION"           \
-    --output              "HTML:frames:pel"                         \
     --customtags          "date"                                    \
     --defaultpackagename  "PEL"                                     \
     --directory           "tutorials"                               \
     --filename            "Pel*.php,README,INSTALL,NEWS,TODO,ChangeLog"  \
-    --target              "doc"
-
+    --target              "doc"                                   
