@@ -46,7 +46,7 @@ class Bug1730993TestCase extends UnitTestCase {
         file_put_contents($bigfile, $jpeg1->getBytes());
       }
     } catch (Exception $e) {
-        $this->fail('Test should not throw an exception');
+        $this->fail('Test should not throw exception: ' . $e->getMessage());
     }
   }
 }
