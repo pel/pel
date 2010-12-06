@@ -37,11 +37,12 @@ class AsciiTestCase extends UnitTestCase {
   }
 
   function testReturnValues() {
-    $entry = new PelEntryAscii();
     $pattern = new PatternExpectation('/Missing argument 1 for ' .
                                             'PelEntryAscii::__construct()/');
     $this->expectError($pattern);
     $this->expectError('Undefined variable: tag');
+
+    $entry = new PelEntryAscii();
 
     $entry = new PelEntryAscii(42);
 
@@ -56,15 +57,17 @@ class AsciiTestCase extends UnitTestCase {
     $arg2 = new PatternExpectation('/Missing argument 2 for ' .
                                          'PelEntryTime::__construct()/');
 
-    $entry = new PelEntryTime();
     $this->expectError($arg1);
     $this->expectError($arg2);
     $this->expectError('Undefined variable: tag');
     $this->expectError('Undefined variable: timestamp');
 
-    $entry = new PelEntryTime(42);
+    $entry = new PelEntryTime();
+
     $this->expectError($arg2);
     $this->expectError('Undefined variable: timestamp');
+
+    $entry = new PelEntryTime(42);
 
     $entry = new PelEntryTime(42, 10);
     $this->assertEqual($entry->getComponents(), 20);
