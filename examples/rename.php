@@ -45,9 +45,9 @@ function println(/* fmt, args... */) {
 setlocale(LC_ALL, '');
 
 /* Load the required class definitions. */
-require_once(dirname(__FILE__) . '/../PelDataWindow.php');
-require_once(dirname(__FILE__) . '/../PelJpeg.php');
-require_once(dirname(__FILE__) . '/../PelTiff.php');
+require_once(dirname(__FILE__) . '/../src/PelDataWindow.php');
+require_once(dirname(__FILE__) . '/../src/PelJpeg.php');
+require_once(dirname(__FILE__) . '/../src/PelTiff.php');
 
 $prog = array_shift($argv);
 $error = false;
@@ -91,7 +91,7 @@ foreach ($argv as $file) {
     println('Unrecognized image format! Skipping.');
     continue;
   }
-  
+
   $ifd0 = $tiff->getIfd();
   $entry = $ifd0->getEntry(PelTag::DATE_TIME);
 
@@ -100,15 +100,15 @@ foreach ($argv as $file) {
     continue;
   }
 
-  
+
   $time = $entry->getValue();
-  
+
   do {
     $new = gmdate('Y:m:d-H:i:s', $time) . strchr($file, '.');
     println('Trying file name %s', $new);
     $time++;
   } while (file_exists($new));
-  
+
   rename($file, $new);
 }
 

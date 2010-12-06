@@ -20,7 +20,7 @@
  *  Free Software Foundation, Inc., 51 Franklin St, Fifth Floor,
  *  Boston, MA 02110-1301 USA
  */
- 
+
 /* $Id$ */
 
 /* Contributed by Andac Aydin (aandac@gmx.de).
@@ -40,7 +40,7 @@
 
 error_reporting(E_ALL);
 
-require_once(dirname(__FILE__) . '/../PelJpeg.php');
+require_once(dirname(__FILE__) . '/../src/PelJpeg.php');
 
 /**
  * Convert a decimal degree into degrees, minutes, and seconds.
@@ -60,7 +60,7 @@ function convertDecimalToDMS($degree) {
   $degree = abs($degree);            // make sure number is positive
                                      // (no distinction here for N/S
                                      // or W/E).
-  
+
   $seconds = $degree * 3600;         // Total number of seconds.
 
   $degrees = floor($degree);         // Number of whole degrees.
@@ -120,8 +120,8 @@ function addGpsInfo($input, $output, $description, $comment, $model,
 
   /* Create first Image File Directory and associate it with the TIFF
    * data. */
-  $ifd0 = new PelIfd(PelIfd::IFD0); 
-  $tiff->setIfd($ifd0);             
+  $ifd0 = new PelIfd(PelIfd::IFD0);
+  $tiff->setIfd($ifd0);
 
   /* Create a sub-IFD for holding GPS information. GPS data must be
    * below the first IFD. */
@@ -133,7 +133,7 @@ function addGpsInfo($input, $output, $description, $comment, $model,
   $exif_ifd = new PelIfd(PelIfd::EXIF);
   $exif_ifd->addEntry(new PelEntryUserComment($comment));
   $ifd0->addSubIfd($exif_ifd);
-  
+
   $inter_ifd = new PelIfd(PelIfd::INTEROPERABILITY);
   $ifd0->addSubIfd($inter_ifd);
 

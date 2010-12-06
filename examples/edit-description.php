@@ -43,9 +43,9 @@ setlocale(LC_ALL, '');
  * PelJpeg.php file for dealing with JPEG images, but because this
  * example can handle both JPEG and TIFF it loads the PelDataWindow
  * class too. */
-require_once(dirname(__FILE__) . '/../PelDataWindow.php');
-require_once(dirname(__FILE__) . '/../PelJpeg.php');
-require_once(dirname(__FILE__) . '/../PelTiff.php');
+require_once(dirname(__FILE__) . '/../src/PelDataWindow.php');
+require_once(dirname(__FILE__) . '/../src/PelJpeg.php');
+require_once(dirname(__FILE__) . '/../src/PelTiff.php');
 
 /* Store the name of the script in $prog and remove this first part of
  * the command line. */
@@ -150,7 +150,7 @@ if (PelJpeg::isValid($data)) {
   /* The data was not recognized as either JPEG or TIFF data.
    * Complain loudly, dump the first 16 bytes, and exit. */
   println('Unrecognized image format! The first 16 bytes follow:');
-  PelConvert::bytesToDump($data->getBytes(0, 16)); 
+  PelConvert::bytesToDump($data->getBytes(0, 16));
   exit(1);
 }
 
@@ -186,7 +186,7 @@ if ($desc == null) {
    * the description.  The constructor for PelEntryAscii needs to know
    * the tag and contents of the new entry. */
   $desc = new PelEntryAscii(PelTag::IMAGE_DESCRIPTION, $description);
-  
+
   /* This will insert the newly created entry with the description
    * into the IFD. */
   $ifd0->addEntry($desc);

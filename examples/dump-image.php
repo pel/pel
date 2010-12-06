@@ -29,9 +29,9 @@ error_reporting(E_ALL);
 /* Make PEL speak the users language, if it is available. */
 setlocale(LC_ALL, '');
 
-require_once(dirname(__FILE__) . '/../PelDataWindow.php');
-require_once(dirname(__FILE__) . '/../PelJpeg.php');
-require_once(dirname(__FILE__) . '/../PelTiff.php');
+require_once(dirname(__FILE__) . '/../src/PelDataWindow.php');
+require_once(dirname(__FILE__) . '/../src/PelJpeg.php');
+require_once(dirname(__FILE__) . '/../src/PelTiff.php');
 
 $prog = array_shift($argv);
 $file = '';

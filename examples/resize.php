@@ -40,7 +40,7 @@ function println(/* fmt, args... */) {
 setlocale(LC_ALL, '');
 
 /* Load the required PEL files for handling JPEG images. */
-require_once(dirname(__FILE__) . '/../PelJpeg.php');
+require_once(dirname(__FILE__) . '/../src/PelJpeg.php');
 
 /* Store the name of the script in $prog and remove this first part of
  * the command line. */
