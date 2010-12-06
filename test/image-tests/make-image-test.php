@@ -213,7 +213,7 @@ if (realpath($_SERVER["PHP_SELF"]) == __FILE__) {
 class %s extends UnitTestCase {
 
   function __construct() {
-    require_once(\'../../src/PelJpeg.php\');
+    require_once(dirname(__FILE__) . \'/../../src/PelJpeg.php\');
     parent::__construct(\'PEL %s Tests\');
   }
 
@@ -223,7 +223,7 @@ class %s extends UnitTestCase {
     $jpeg = new PelJpeg(dirname(__FILE__) . \'/%s\');
 ', $test_name, $image_filename, $image_filename);
 
-require_once('../../src/PelJpeg.php');
+require_once(dirname(__FILE__) . '/../../src/PelJpeg.php');
 $jpeg = new PelJpeg($image_filename);
 
 $indent = 2;
