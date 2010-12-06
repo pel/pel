@@ -250,8 +250,7 @@ if (count($exceptions) == 0) {
 println('
   }
 }
-
-?>');
+');
 
 /* The test case is finished -- now dump the output as a PHP file. */
 file_put_contents($test_filename, ob_get_clean());
