@@ -86,7 +86,7 @@ if (!empty($argc) AND $argc > 1) {
     $group->add($image_group);
   } else {
     echo "Found no image tests, only core functionality will be tested.\n";
-    echo "Image tests are available from http://pel.sourceforge.net/.\n";
+    echo "Image tests are available from http://github.com/lsolesen/pel/.\n";
   }
 
 }
