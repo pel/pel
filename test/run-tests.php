@@ -71,13 +71,13 @@ if (!empty($argc) AND $argc > 1) {
   $group = new TestSuite('Selected PEL tests');
 } else {
   // otherwive test all .php files, except this file (run-tests.php).
-  $tests = array_diff(glob('*.php'), array('run-tests.php', 'config.local.php', 'config.local.example.php'));
+  $tests = array_diff(glob(dirname(__FILE__) . '/*.php'), array('run-tests.php', 'config.local.php', 'config.local.example.php'));
   $group = new TestSuite('All PEL tests');
 
   // Also test all image tests (if they are available).
-  if (is_dir('image-tests')) {
-    $image_tests = array_diff(glob('image-tests/*.php'),
-                              array('image-tests/make-image-test.php'));
+  if (is_dir(dirname(__FILE__) . '/image-tests')) {
+    $image_tests = array_diff(glob(dirname(__FILE__) . '/image-tests/*.php'),
+                              array(dirname(__FILE__) . '/image-tests/make-image-test.php'));
     $image_group = new TestSuite('Image Tests');
     foreach ($image_tests as $image_test) {
       $image_group->addFile($image_test);
