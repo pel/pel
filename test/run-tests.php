@@ -26,43 +26,8 @@
 
 error_reporting(E_ALL);
 
-if (!file_exists(dirname(__FILE__) . '/config.local.php')) {
-    echo "Create config.local.php";
-    exit(1);
-}
-
-require_once 'config.local.php';
-
-if (!defined('SIMPLE_TEST')) {
-  // Search for a directory named 'simpletest' upwards in the directory tree
-  $dir = 'simpletest/';
-  while (!is_file($dir . 'unit_tester.php')) {
-    print "Looking for SimpleTest in $dir...\n";
-    $dir = '../' . $dir;
-  }
-
-  define('SIMPLE_TEST', $dir);
-}
-
-$simpletest_present = false;
-
-if (is_dir(SIMPLE_TEST)) {
-    if (file_get_contents(SIMPLE_TEST . 'VERSION')) {
-        $simpletest_present = true;
-    }
-}
-
-if ($simpletest_present) {
-  printf("Found SimpleTest version %s in %s!\n",
-         file_get_contents(SIMPLE_TEST . 'VERSION'),
-         SIMPLE_TEST);
-} else {
-  print "SimpleTest could not be found and so no tests can be made.\n";
-  exit(1);
-}
-
-require_once(SIMPLE_TEST . 'unit_tester.php');
-require_once(SIMPLE_TEST . 'reporter.php');
+require_once('simpletest/unit_tester.php');
+require_once('simpletest/reporter.php');
 
 if (!empty($argc) AND $argc > 1) {
   // If command line arguments are given, then only test those.
