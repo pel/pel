@@ -131,7 +131,7 @@ class PelDataWindow {
        * instead of returning them in a more civil way as a string, so
        * we have to buffer the output... */
       ob_start();
-      ImageJpeg($data, null, Pel::$quality);
+      ImageJpeg($data, null, Pel::getJPEGQuality());
       $this->data = ob_get_clean();
     } else {
       throw new PelInvalidArgumentException('Bad type for $data: %s', 
@@ -139,7 +139,7 @@ class PelDataWindow {
     }
 
     $this->order = $endianess;
-    $this->size  = strlen($data);
+    $this->size  = strlen($this->data);
   }
 
 
