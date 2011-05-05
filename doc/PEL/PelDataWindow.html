@@ -1,0 +1,672 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+  <html xmlns="http://www.w3.org/1999/xhtml">
+		<head>
+			<!-- template designed by Marco Von Ballmoos -->
+			<title>Docs For Class PelDataWindow</title>
+			<link rel="stylesheet" href="../media/stylesheet.css" />
+			<meta http-equiv='Content-Type' content='text/html; charset=iso-8859-1'/>
+		</head>
+		<body>
+			<div class="page-body">			
+<h2 class="class-name">Class PelDataWindow</h2>
+
+<a name="sec-description"></a>
+<div class="info-box">
+	<div class="info-box-title">Description</div>
+	<div class="nav-bar">
+					<span class="disabled">Description</span> |
+															<a href="#sec-method-summary">Methods</a> (<a href="#sec-methods">details</a>)
+						
+					</div>
+	<div class="info-box-body">
+        		<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">The window.</p>
+		<p class="notes">
+			Located in <a class="field" href="_src---PelDataWindow.php.html">/src/PelDataWindow.php</a> (line <span class="field"><a href="../__filesource/fsource_PEL__srcPelDataWindow.php.html#a64">64</a></span>)
+		</p>
+		
+				
+		<pre></pre>
+	
+			</div>
+</div>
+
+
+
+
+	<a name="sec-method-summary"></a>
+	<div class="info-box">
+		<div class="info-box-title">Method Summary</span></div>
+		<div class="nav-bar">
+			<a href="#sec-description">Description</a> |
+												<span class="disabled">Methods</span> (<a href="#sec-methods">details</a>)
+		</div>
+		<div class="info-box-body">			
+			<div class="method-summary">
+																																																																																																																																																				
+												<div class="method-definition">
+											<span class="method-result">PelDataWindow</span>
+										<a href="#__construct" title="details" class="method-name">__construct</a>
+											([<span class="var-type">mixed</span>&nbsp;<span class="var-name">$data</span> = <span class="var-default">''</span>], [<span class="var-type">boolean</span>&nbsp;<span class="var-name">$endianess</span> = <span class="var-default">PelConvert::LITTLE_ENDIAN</span>])
+									</div>
+																<div class="method-definition">
+											<span class="method-result">int</span>
+										<a href="#getByte" title="details" class="method-name">getByte</a>
+											([<span class="var-type">int</span>&nbsp;<span class="var-name">$o</span> = <span class="var-default">0</span>])
+									</div>
+																<div class="method-definition">
+											<span class="method-result">PelByteOrder</span>
+										<a href="#getByteOrder" title="details" class="method-name">getByteOrder</a>
+										()
+									</div>
+																<div class="method-definition">
+											<span class="method-result">string</span>
+										<a href="#getBytes" title="details" class="method-name">getBytes</a>
+											([<span class="var-type">int</span>&nbsp;<span class="var-name">$start</span> = <span class="var-default">false</span>], [<span class="var-type">int</span>&nbsp;<span class="var-name">$size</span> = <span class="var-default">false</span>])
+									</div>
+																<div class="method-definition">
+											<span class="method-result"><a href="../PEL/PelDataWindow.html">PelDataWindow</a></span>
+										<a href="#getClone" title="details" class="method-name">getClone</a>
+											([<span class="var-type">mixed</span>&nbsp;<span class="var-name">$start</span> = <span class="var-default">false</span>], [<span class="var-type">mixed</span>&nbsp;<span class="var-name">$size</span> = <span class="var-default">false</span>])
+									</div>
+																<div class="method-definition">
+											<span class="method-result">int</span>
+										<a href="#getLong" title="details" class="method-name">getLong</a>
+											([<span class="var-type">int</span>&nbsp;<span class="var-name">$o</span> = <span class="var-default">0</span>])
+									</div>
+																<div class="method-definition">
+											<span class="method-result">array</span>
+										<a href="#getRational" title="details" class="method-name">getRational</a>
+											([<span class="var-type">int</span>&nbsp;<span class="var-name">$o</span> = <span class="var-default">0</span>])
+									</div>
+																<div class="method-definition">
+											<span class="method-result">int</span>
+										<a href="#getSByte" title="details" class="method-name">getSByte</a>
+											([<span class="var-type">int</span>&nbsp;<span class="var-name">$o</span> = <span class="var-default">0</span>])
+									</div>
+																<div class="method-definition">
+											<span class="method-result">int</span>
+										<a href="#getShort" title="details" class="method-name">getShort</a>
+											([<span class="var-type">int</span>&nbsp;<span class="var-name">$o</span> = <span class="var-default">0</span>])
+									</div>
+																<div class="method-definition">
+											<span class="method-result">int</span>
+										<a href="#getSize" title="details" class="method-name">getSize</a>
+										()
+									</div>
+																<div class="method-definition">
+											<span class="method-result">int</span>
+										<a href="#getSLong" title="details" class="method-name">getSLong</a>
+											([<span class="var-type">int</span>&nbsp;<span class="var-name">$o</span> = <span class="var-default">0</span>])
+									</div>
+																<div class="method-definition">
+											<span class="method-result">array</span>
+										<a href="#getSRational" title="details" class="method-name">getSRational</a>
+											([<span class="var-type">int</span>&nbsp;<span class="var-name">$o</span> = <span class="var-default">0</span>])
+									</div>
+																<div class="method-definition">
+											<span class="method-result">int</span>
+										<a href="#getSShort" title="details" class="method-name">getSShort</a>
+											([<span class="var-type">int</span>&nbsp;<span class="var-name">$o</span> = <span class="var-default">0</span>])
+									</div>
+																<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#setByteOrder" title="details" class="method-name">setByteOrder</a>
+											(<span class="var-type">PelByteOrder</span>&nbsp;<span class="var-name">$o</span>)
+									</div>
+																<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#setWindowSize" title="details" class="method-name">setWindowSize</a>
+											(<span class="var-type">int</span>&nbsp;<span class="var-name">$size</span>)
+									</div>
+																<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#setWindowStart" title="details" class="method-name">setWindowStart</a>
+											(<span class="var-type"></span>&nbsp;<span class="var-name">$start</span>)
+									</div>
+																<div class="method-definition">
+											<span class="method-result">boolean</span>
+										<a href="#strcmp" title="details" class="method-name">strcmp</a>
+											(<span class="var-type">int</span>&nbsp;<span class="var-name">$o</span>, <span class="var-type">string</span>&nbsp;<span class="var-name">$str</span>)
+									</div>
+																<div class="method-definition">
+											<span class="method-result">string</span>
+										<a href="#__toString" title="details" class="method-name">__toString</a>
+										()
+									</div>
+								</div>
+		</div>
+	</div>		
+
+	
+	<a name="sec-methods"></a>
+	<div class="info-box">
+		<div class="info-box-title">Methods</div>
+		<div class="nav-bar">
+			<a href="#sec-description">Description</a> |
+																<a href="#sec-method-summary">Methods</a> (<span class="disabled">details</span>)
+						
+		</div>
+		<div class="info-box-body">
+			<A NAME='method_detail'></A>
+
+<a name="method__construct" id="__construct"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">Constructor __construct</span> (line <span class="line-number"><a href="../__filesource/fsource_PEL__srcPelDataWindow.php.html#a126">126</a></span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Construct a new data window with the data supplied.</p>
+	
+	<div class="method-signature">
+		<span class="method-result">PelDataWindow</span>
+		<span class="method-name">
+			__construct
+		</span>
+					([<span class="var-type">mixed</span>&nbsp;<span class="var-name">$data</span> = <span class="var-default">''</span>], [<span class="var-type">boolean</span>&nbsp;<span class="var-name">$endianess</span> = <span class="var-default">PelConvert::LITTLE_ENDIAN</span>])
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">mixed</span>
+				<span class="var-name">$data</span><span class="var-description">: the data that this window will contain. This can  either be given as a string (interpreted litteraly as a sequence  of bytes) or a PHP image resource handle. The data will be copied  into the new data window.</span>			</li>
+					<li>
+				<span class="var-type">boolean</span>
+				<span class="var-name">$endianess</span><span class="var-description">: the initial byte order of the window.  This must  be either <a href="../PEL/PelConvert.html#constLITTLE_ENDIAN">PelConvert::LITTLE_ENDIAN</a> or <a href="../PEL/PelConvert.html#constBIG_ENDIAN">PelConvert::BIG_ENDIAN</a>.  This will be used when integers are  read from the data, and it can be changed later with <a href="../PEL/PelDataWindow.html#methodsetByteOrder">setByteOrder()</a>.</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodgetByte" id="getByte"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">getByte</span> (line <span class="line-number"><a href="../__filesource/fsource_PEL__srcPelDataWindow.php.html#a315">315</a></span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Return an unsigned byte from the data.</p>
+	<ul class="tags">
+				<li><span class="field">return:</span> the unsigned byte found at offset.</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">int</span>
+		<span class="method-name">
+			getByte
+		</span>
+					([<span class="var-type">int</span>&nbsp;<span class="var-name">$o</span> = <span class="var-default">0</span>])
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">int</span>
+				<span class="var-name">$o</span><span class="var-description">: the offset into the data.  An offset of zero will  return the first byte in the current allowed window.  The last  valid offset is equal to <a href="../PEL/PelDataWindow.html#methodgetSize">getSize()</a>-1.  Invalid offsets  will result in a <a href="../PEL/Exception/PelDataWindowOffsetException.html">PelDataWindowOffsetException</a> being  thrown.</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodgetByteOrder" id="getByteOrder"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">getByteOrder</span> (line <span class="line-number"><a href="../__filesource/fsource_PEL__srcPelDataWindow.php.html#a177">177</a></span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Get the currently used byte order.</p>
+	<ul class="tags">
+				<li><span class="field">return:</span> this will be either <a href="../PEL/PelConvert.html#constLITTLE_ENDIAN">PelConvert::LITTLE_ENDIAN</a> or <a href="../PEL/PelConvert.html#constBIG_ENDIAN">PelConvert::BIG_ENDIAN</a>.</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">PelByteOrder</span>
+		<span class="method-name">
+			getByteOrder
+		</span>
+				()
+			</div>
+	
+		
+			
+	</div>
+<a name="methodgetBytes" id="getBytes"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">getBytes</span> (line <span class="line-number"><a href="../__filesource/fsource_PEL__srcPelDataWindow.php.html#a281">281</a></span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Return some or all bytes visible in the window.</p>
+<p class="description"><p>This method works just like the standard <a href="http://www.php.net/substr">http://www.php.net/substr</a>  function in PHP with the exception that it works within the  window of accessible bytes and does strict range checking.</p></p>
+	<ul class="tags">
+				<li><span class="field">return:</span> a subset of the bytes in the window.  This will  always return no more than <a href="../PEL/PelDataWindow.html#methodgetSize">getSize()</a> bytes.</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">string</span>
+		<span class="method-name">
+			getBytes
+		</span>
+					([<span class="var-type">int</span>&nbsp;<span class="var-name">$start</span> = <span class="var-default">false</span>], [<span class="var-type">int</span>&nbsp;<span class="var-name">$size</span> = <span class="var-default">false</span>])
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">int</span>
+				<span class="var-name">$start</span><span class="var-description">: the offset to the first byte returned.  If a negative  number is given, then the counting will be from the end of the  window.  Invalid offsets will result in a <a href="../PEL/Exception/PelDataWindowOffsetException.html">PelDataWindowOffsetException</a> being thrown.</span>			</li>
+					<li>
+				<span class="var-type">int</span>
+				<span class="var-name">$size</span><span class="var-description">: the size of the sub-window.  If a negative number is  given, then that many bytes will be omitted from the result.</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodgetClone" id="getClone"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">getClone</span> (line <span class="line-number"><a href="../__filesource/fsource_PEL__srcPelDataWindow.php.html#a233">233</a></span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Make a new data window with the same data as the this window.</p>
+	<ul class="tags">
+				<li><span class="field">return:</span> a new window that operates on the same data  as this window, but (optionally) with a smaller window size.</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result"><a href="../PEL/PelDataWindow.html">PelDataWindow</a></span>
+		<span class="method-name">
+			getClone
+		</span>
+					([<span class="var-type">mixed</span>&nbsp;<span class="var-name">$start</span> = <span class="var-default">false</span>], [<span class="var-type">mixed</span>&nbsp;<span class="var-name">$size</span> = <span class="var-default">false</span>])
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">mixed</span>
+				<span class="var-name">$start</span><span class="var-description">: if an integer is supplied, then it will be the start  of the window in the clone.  If left unspecified, then the clone  will inherit the start from this object.</span>			</li>
+					<li>
+				<span class="var-type">mixed</span>
+				<span class="var-name">$size</span><span class="var-description">: if an integer is supplied, then it will be the size  of the window in the clone.  If left unspecified, then the clone  will inherit the size from this object.</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodgetLong" id="getLong"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">getLong</span> (line <span class="line-number"><a href="../__filesource/fsource_PEL__srcPelDataWindow.php.html#a413">413</a></span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Return an unsigned long read from the data.</p>
+	<ul class="tags">
+				<li><span class="field">return:</span> the unsigned long found at offset.</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">int</span>
+		<span class="method-name">
+			getLong
+		</span>
+					([<span class="var-type">int</span>&nbsp;<span class="var-name">$o</span> = <span class="var-default">0</span>])
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">int</span>
+				<span class="var-name">$o</span><span class="var-description">: the offset into the data.  An offset of zero will  return the first long available in the current allowed window.  The last valid offset is equal to <a href="../PEL/PelDataWindow.html#methodgetSize">getSize()</a>-4.  Invalid  offsets will result in a <a href="../PEL/Exception/PelDataWindowOffsetException.html">PelDataWindowOffsetException</a>  being thrown.</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodgetRational" id="getRational"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">getRational</span> (line <span class="line-number"><a href="../__filesource/fsource_PEL__srcPelDataWindow.php.html#a465">465</a></span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Return an unsigned rational read from the data.</p>
+	<ul class="tags">
+				<li><span class="field">return:</span> the unsigned rational found at offset.  A rational  number is represented as an array of two numbers: the enumerator  and denominator.  Both of these numbers will be unsigned longs.</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">array</span>
+		<span class="method-name">
+			getRational
+		</span>
+					([<span class="var-type">int</span>&nbsp;<span class="var-name">$o</span> = <span class="var-default">0</span>])
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">int</span>
+				<span class="var-name">$o</span><span class="var-description">: the offset into the data.  An offset of zero will  return the first rational available in the current allowed  window.  The last valid offset is equal to <a href="../PEL/PelDataWindow.html#methodgetSize">getSize()</a>-8.  Invalid offsets will result in a <a href="../PEL/Exception/PelDataWindowOffsetException.html">PelDataWindowOffsetException</a> being thrown.</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodgetSByte" id="getSByte"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">getSByte</span> (line <span class="line-number"><a href="../__filesource/fsource_PEL__srcPelDataWindow.php.html#a339">339</a></span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Return a signed byte from the data.</p>
+	<ul class="tags">
+				<li><span class="field">return:</span> the signed byte found at offset.</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">int</span>
+		<span class="method-name">
+			getSByte
+		</span>
+					([<span class="var-type">int</span>&nbsp;<span class="var-name">$o</span> = <span class="var-default">0</span>])
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">int</span>
+				<span class="var-name">$o</span><span class="var-description">: the offset into the data.  An offset of zero will  return the first byte in the current allowed window.  The last  valid offset is equal to <a href="../PEL/PelDataWindow.html#methodgetSize">getSize()</a>-1.  Invalid offsets  will result in a <a href="../PEL/Exception/PelDataWindowOffsetException.html">PelDataWindowOffsetException</a> being  thrown.</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodgetShort" id="getShort"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">getShort</span> (line <span class="line-number"><a href="../__filesource/fsource_PEL__srcPelDataWindow.php.html#a363">363</a></span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Return an unsigned short read from the data.</p>
+	<ul class="tags">
+				<li><span class="field">return:</span> the unsigned short found at offset.</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">int</span>
+		<span class="method-name">
+			getShort
+		</span>
+					([<span class="var-type">int</span>&nbsp;<span class="var-name">$o</span> = <span class="var-default">0</span>])
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">int</span>
+				<span class="var-name">$o</span><span class="var-description">: the offset into the data.  An offset of zero will  return the first short available in the current allowed window.  The last valid offset is equal to <a href="../PEL/PelDataWindow.html#methodgetSize">getSize()</a>-2.  Invalid  offsets will result in a <a href="../PEL/Exception/PelDataWindowOffsetException.html">PelDataWindowOffsetException</a>  being thrown.</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodgetSize" id="getSize"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">getSize</span> (line <span class="line-number"><a href="../__filesource/fsource_PEL__srcPelDataWindow.php.html#a154">154</a></span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Get the size of the data window.</p>
+	<ul class="tags">
+				<li><span class="field">return:</span> the number of bytes covered by the window.  The  allowed offsets go from 0 up to this number minus one.</li>
+				<li><span class="field">see:</span> <a href="../PEL/PelDataWindow.html#methodgetBytes">PelDataWindow::getBytes()</a></li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">int</span>
+		<span class="method-name">
+			getSize
+		</span>
+				()
+			</div>
+	
+		
+			
+	</div>
+<a name="methodgetSLong" id="getSLong"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">getSLong</span> (line <span class="line-number"><a href="../__filesource/fsource_PEL__srcPelDataWindow.php.html#a438">438</a></span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Return a signed long read from the data.</p>
+	<ul class="tags">
+				<li><span class="field">return:</span> the signed long found at offset.</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">int</span>
+		<span class="method-name">
+			getSLong
+		</span>
+					([<span class="var-type">int</span>&nbsp;<span class="var-name">$o</span> = <span class="var-default">0</span>])
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">int</span>
+				<span class="var-name">$o</span><span class="var-description">: the offset into the data.  An offset of zero will  return the first long available in the current allowed window.  The last valid offset is equal to <a href="../PEL/PelDataWindow.html#methodgetSize">getSize()</a>-4.  Invalid  offsets will result in a <a href="../PEL/Exception/PelDataWindowOffsetException.html">PelDataWindowOffsetException</a>  being thrown.</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodgetSRational" id="getSRational"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">getSRational</span> (line <span class="line-number"><a href="../__filesource/fsource_PEL__srcPelDataWindow.php.html#a483">483</a></span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Return a signed rational read from the data.</p>
+	<ul class="tags">
+				<li><span class="field">return:</span> the signed rational found at offset.  A rational  number is represented as an array of two numbers: the enumerator  and denominator.  Both of these numbers will be signed longs.</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">array</span>
+		<span class="method-name">
+			getSRational
+		</span>
+					([<span class="var-type">int</span>&nbsp;<span class="var-name">$o</span> = <span class="var-default">0</span>])
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">int</span>
+				<span class="var-name">$o</span><span class="var-description">: the offset into the data.  An offset of zero will  return the first rational available in the current allowed  window.  The last valid offset is equal to <a href="../PEL/PelDataWindow.html#methodgetSize">getSize()</a>-8.  Invalid offsets will result in a <a href="../PEL/Exception/PelDataWindowOffsetException.html">PelDataWindowOffsetException</a> being thrown.</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodgetSShort" id="getSShort"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">getSShort</span> (line <span class="line-number"><a href="../__filesource/fsource_PEL__srcPelDataWindow.php.html#a388">388</a></span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Return a signed short read from the data.</p>
+	<ul class="tags">
+				<li><span class="field">return:</span> the signed short found at offset.</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">int</span>
+		<span class="method-name">
+			getSShort
+		</span>
+					([<span class="var-type">int</span>&nbsp;<span class="var-name">$o</span> = <span class="var-default">0</span>])
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">int</span>
+				<span class="var-name">$o</span><span class="var-description">: the offset into the data.  An offset of zero will  return the first short available in the current allowed window.  The last valid offset is equal to <a href="../PEL/PelDataWindow.html#methodgetSize">getSize()</a>-2.  Invalid  offsets will result in a <a href="../PEL/Exception/PelDataWindowOffsetException.html">PelDataWindowOffsetException</a>  being thrown.</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodsetByteOrder" id="setByteOrder"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">setByteOrder</span> (line <span class="line-number"><a href="../__filesource/fsource_PEL__srcPelDataWindow.php.html#a166">166</a></span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Change the byte order of the data.</p>
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			setByteOrder
+		</span>
+					(<span class="var-type">PelByteOrder</span>&nbsp;<span class="var-name">$o</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">PelByteOrder</span>
+				<span class="var-name">$o</span><span class="var-description">: the new byte order.  This must be either  <a href="../PEL/PelConvert.html#constLITTLE_ENDIAN">PelConvert::LITTLE_ENDIAN</a> or <a href="../PEL/PelConvert.html#constBIG_ENDIAN">PelConvert::BIG_ENDIAN</a>.</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodsetWindowSize" id="setWindowSize"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">setWindowSize</span> (line <span class="line-number"><a href="../__filesource/fsource_PEL__srcPelDataWindow.php.html#a207">207</a></span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Adjust the size of the window.</p>
+<p class="description"><p>The size can only be made smaller.</p></p>
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			setWindowSize
+		</span>
+					(<span class="var-type">int</span>&nbsp;<span class="var-name">$size</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">int</span>
+				<span class="var-name">$size</span><span class="var-description">: the desired size of the window.  If the argument is  negative, the window will be shrunk by the argument.</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodsetWindowStart" id="setWindowStart"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">setWindowStart</span> (line <span class="line-number"><a href="../__filesource/fsource_PEL__srcPelDataWindow.php.html#a188">188</a></span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			setWindowStart
+		</span>
+					(<span class="var-type"></span>&nbsp;<span class="var-name">$start</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$start</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodstrcmp" id="strcmp"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">strcmp</span> (line <span class="line-number"><a href="../__filesource/fsource_PEL__srcPelDataWindow.php.html#a503">503</a></span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">String comparison on substrings.</p>
+	<ul class="tags">
+				<li><span class="field">return:</span> true if the string given matches the data in the  window, at the specified offset, false otherwise.  The comparison  will stop as soon as a mismatch if found.</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">boolean</span>
+		<span class="method-name">
+			strcmp
+		</span>
+					(<span class="var-type">int</span>&nbsp;<span class="var-name">$o</span>, <span class="var-type">string</span>&nbsp;<span class="var-name">$str</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">int</span>
+				<span class="var-name">$o</span><span class="var-description">: the offset into the data.  An offset of zero will make  the comparison start with the very first byte available in the  window.  The last valid offset is equal to <a href="../PEL/PelDataWindow.html#methodgetSize">getSize()</a>  minus the length of the string.  If the string is too long, then  a <a href="../PEL/Exception/PelDataWindowOffsetException.html">PelDataWindowOffsetException</a> will be thrown.</span>			</li>
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$str</span><span class="var-description">: the string to compare with.</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="method__toString" id="__toString"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">__toString</span> (line <span class="line-number"><a href="../__filesource/fsource_PEL__srcPelDataWindow.php.html#a531">531</a></span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Return a string representation of the data window.</p>
+	<ul class="tags">
+				<li><span class="field">return:</span> a description of the window with information about  the number of bytes accessible, the total number of bytes, and  the window start and stop.</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">string</span>
+		<span class="method-name">
+			__toString
+		</span>
+				()
+			</div>
+	
+		
+			
+	</div>
+						
+		</div>
+	</div>
+
+
+	<p class="notes" id="credit">
+		Documentation generated on Thu, 05 May 2011 07:18:59 +0200 by <a href="http://www.phpdoc.org" target="_blank">phpDocumentor 1.4.3</a>
+	</p>
+	</div></body>
+</html>

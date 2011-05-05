@@ -1,0 +1,1112 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+  <html xmlns="http://www.w3.org/1999/xhtml">
+		<head>
+			<!-- template designed by Marco Von Ballmoos -->
+			<title>Docs For Class PelIfd</title>
+			<link rel="stylesheet" href="../media/stylesheet.css" />
+			<meta http-equiv='Content-Type' content='text/html; charset=iso-8859-1'/>
+		</head>
+		<body>
+			<div class="page-body">			
+<h2 class="class-name">Class PelIfd</h2>
+
+<a name="sec-description"></a>
+<div class="info-box">
+	<div class="info-box-title">Description</div>
+	<div class="nav-bar">
+					<span class="disabled">Description</span> |
+															<a href="#sec-method-summary">Methods</a> (<a href="#sec-methods">details</a>)
+						
+											<a href="#sec-const-summary">Constants</a> (<a href="#sec-consts">details</a>)
+						
+			</div>
+	<div class="info-box-body">
+                <p class="implements">
+            Implements interfaces:
+            <ul>
+                <li>IteratorAggregate (internal interface)</li><li>ArrayAccess (internal interface)</li>            </ul>
+        </p>
+        		<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Class representing an Image File Directory (IFD).</p>
+<p class="description"><p><a href="../PEL/PelTiff.html">TIFF data</a> is structured as a number of Image File  Directories, IFDs for short.  Each IFD contains a number of <a href="../PEL/PelEntry.html">entries</a>, some data and finally a link to the next IFD.</p></p>
+	<ul class="tags">
+				<li><span class="field">author:</span> Martin Geisler &lt;<a href="mailto:mgeisler@users.sourceforge.net">mgeisler@users.sourceforge.net</a>&gt;</li>
+			</ul>
+		<p class="notes">
+			Located in <a class="field" href="_src---PelIfd.php.html">/src/PelIfd.php</a> (line <span class="field"><a href="../__filesource/fsource_PEL__srcPelIfd.php.html#a73">73</a></span>)
+		</p>
+		
+				
+		<pre></pre>
+	
+			</div>
+</div>
+
+
+	<a name="sec-const-summary"></a>
+	<div class="info-box">
+		<div class="info-box-title">Class Constant Summary</span></div>
+		<div class="nav-bar">
+			<a href="#sec-description">Description</a> |
+						<span class="disabled">Constants</span> (<a href="#sec-consts">details</a>)
+										| 
+									<a href="#sec-method-summary">Methods</a> (<a href="#sec-methods">details</a>)
+							
+					</div>
+		<div class="info-box-body">
+			<div class="const-summary">
+								<div class="const-title">
+					<img src="../media/images/Constant.png" alt=" " />
+					<a href="#EXIF" title="details" class="const-name">EXIF</a> = 					<span class="var-type"> 2</span>
+
+				</div>
+								<div class="const-title">
+					<img src="../media/images/Constant.png" alt=" " />
+					<a href="#GPS" title="details" class="const-name">GPS</a> = 					<span class="var-type"> 3</span>
+
+				</div>
+								<div class="const-title">
+					<img src="../media/images/Constant.png" alt=" " />
+					<a href="#IFD0" title="details" class="const-name">IFD0</a> = 					<span class="var-type"> 0</span>
+
+				</div>
+								<div class="const-title">
+					<img src="../media/images/Constant.png" alt=" " />
+					<a href="#IFD1" title="details" class="const-name">IFD1</a> = 					<span class="var-type"> 1</span>
+
+				</div>
+								<div class="const-title">
+					<img src="../media/images/Constant.png" alt=" " />
+					<a href="#INTEROPERABILITY" title="details" class="const-name">INTEROPERABILITY</a> = 					<span class="var-type"> 4</span>
+
+				</div>
+							</div>
+		</div>
+	</div>
+
+
+	<a name="sec-method-summary"></a>
+	<div class="info-box">
+		<div class="info-box-title">Method Summary</span></div>
+		<div class="nav-bar">
+			<a href="#sec-description">Description</a> |
+															<a href="#sec-const-summary">Constants</a> (<a href="#sec-consts">details</a>)
+							
+									<span class="disabled">Methods</span> (<a href="#sec-methods">details</a>)
+		</div>
+		<div class="info-box-body">			
+			<div class="method-summary">
+																																																																																																																				<div class="method-definition">
+					static 						<span class="method-result">string</span>
+										<a href="#getTypeName" title="details" class="method-name">getTypeName</a>
+											(<span class="var-type">int</span>&nbsp;<span class="var-name">$type</span>)
+									</div>
+																																																																																																								
+												<div class="method-definition">
+											<span class="method-result">PelIfd</span>
+										<a href="#__construct" title="details" class="method-name">__construct</a>
+											(<span class="var-type">int</span>&nbsp;<span class="var-name">$type</span>)
+									</div>
+																<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#addEntry" title="details" class="method-name">addEntry</a>
+											(<span class="var-type"><a href="../PEL/PelEntry.html">PelEntry</a></span>&nbsp;<span class="var-name">$e</span>)
+									</div>
+																<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#addSubIfd" title="details" class="method-name">addSubIfd</a>
+											(<span class="var-type"><a href="../PEL/PelIfd.html">PelIfd</a></span>&nbsp;<span class="var-name">$sub</span>)
+									</div>
+																<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#getBytes" title="details" class="method-name">getBytes</a>
+											(<span class="var-type">int</span>&nbsp;<span class="var-name">$offset</span>, <span class="var-type">PelByteOrder</span>&nbsp;<span class="var-name">$order</span>)
+									</div>
+																<div class="method-definition">
+											<span class="method-result">array</span>
+										<a href="#getEntries" title="details" class="method-name">getEntries</a>
+										()
+									</div>
+																<div class="method-definition">
+											<span class="method-result"><a href="../PEL/PelEntry.html">PelEntry</a></span>
+										<a href="#getEntry" title="details" class="method-name">getEntry</a>
+											(<span class="var-type"><a href="../PEL/PelTag.html">PelTag</a></span>&nbsp;<span class="var-name">$tag</span>)
+									</div>
+																<div class="method-definition">
+											<span class="method-result">Iterator</span>
+										<a href="#getIterator" title="details" class="method-name">getIterator</a>
+										()
+									</div>
+																<div class="method-definition">
+											<span class="method-result">string</span>
+										<a href="#getName" title="details" class="method-name">getName</a>
+										()
+									</div>
+																<div class="method-definition">
+											<span class="method-result"><a href="../PEL/PelIfd.html">PelIfd</a></span>
+										<a href="#getNextIfd" title="details" class="method-name">getNextIfd</a>
+										()
+									</div>
+																<div class="method-definition">
+											<span class="method-result"><a href="../PEL/PelIfd.html">PelIfd</a></span>
+										<a href="#getSubIfd" title="details" class="method-name">getSubIfd</a>
+											(<span class="var-type">int</span>&nbsp;<span class="var-name">$type</span>)
+									</div>
+																<div class="method-definition">
+											<span class="method-result">array</span>
+										<a href="#getSubIfds" title="details" class="method-name">getSubIfds</a>
+										()
+									</div>
+																<div class="method-definition">
+											<span class="method-result">string</span>
+										<a href="#getThumbnailData" title="details" class="method-name">getThumbnailData</a>
+										()
+									</div>
+																<div class="method-definition">
+											<span class="method-result">int</span>
+										<a href="#getType" title="details" class="method-name">getType</a>
+										()
+									</div>
+																								<div class="method-definition">
+											<span class="method-result">array</span>
+										<a href="#getValidTags" title="details" class="method-name">getValidTags</a>
+										()
+									</div>
+																<div class="method-definition">
+											<span class="method-result">boolean</span>
+										<a href="#isLastIfd" title="details" class="method-name">isLastIfd</a>
+										()
+									</div>
+																<div class="method-definition">
+											<span class="method-result">boolean</span>
+										<a href="#isValidTag" title="details" class="method-name">isValidTag</a>
+											(<span class="var-type"><a href="../PEL/PelTag.html">PelTag</a></span>&nbsp;<span class="var-name">$tag</span>)
+									</div>
+																<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#load" title="details" class="method-name">load</a>
+											(<span class="var-type"><a href="../PEL/PelDataWindow.html">PelDataWindow</a></span>&nbsp;<span class="var-name">$d</span>, <span class="var-type">int</span>&nbsp;<span class="var-name">$offset</span>)
+									</div>
+																<div class="method-definition">
+											<span class="method-result"><a href="../PEL/PelEntry.html">PelEntry</a></span>
+										<a href="#newEntryFromData" title="details" class="method-name">newEntryFromData</a>
+											(<span class="var-type"><a href="../PEL/PelTag.html">PelTag</a></span>&nbsp;<span class="var-name">$tag</span>, <span class="var-type"><a href="../PEL/PelFormat.html">PelFormat</a></span>&nbsp;<span class="var-name">$format</span>, <span class="var-type">int</span>&nbsp;<span class="var-name">$components</span>, <span class="var-type"><a href="../PEL/PelDataWindow.html">PelDataWindow</a></span>&nbsp;<span class="var-name">$data</span>)
+									</div>
+																<div class="method-definition">
+											<span class="method-result">boolean</span>
+										<a href="#offsetExists" title="details" class="method-name">offsetExists</a>
+											(<span class="var-type"><a href="../PEL/PelTag.html">PelTag</a></span>&nbsp;<span class="var-name">$tag</span>)
+									</div>
+																<div class="method-definition">
+											<span class="method-result"><a href="../PEL/PelEntry.html">PelEntry</a></span>
+										<a href="#offsetGet" title="details" class="method-name">offsetGet</a>
+											(<span class="var-type"><a href="../PEL/PelTag.html">PelTag</a></span>&nbsp;<span class="var-name">$tag</span>)
+									</div>
+																<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#offsetSet" title="details" class="method-name">offsetSet</a>
+											(<span class="var-type"><a href="../PEL/PelTag.html">PelTag</a></span>&nbsp;<span class="var-name">$tag</span>, <span class="var-type"><a href="../PEL/PelEntry.html">PelEntry</a></span>&nbsp;<span class="var-name">$e</span>)
+									</div>
+																<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#offsetUnset" title="details" class="method-name">offsetUnset</a>
+											(<span class="var-type"><a href="../PEL/PelTag.html">PelTag</a></span>&nbsp;<span class="var-name">$tag</span>)
+									</div>
+																<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#setNextIfd" title="details" class="method-name">setNextIfd</a>
+											(<span class="var-type"><a href="../PEL/PelIfd.html">PelIfd</a></span>&nbsp;<span class="var-name">$i</span>)
+									</div>
+																<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#setThumbnail" title="details" class="method-name">setThumbnail</a>
+											(<span class="var-type"><a href="../PEL/PelDataWindow.html">PelDataWindow</a></span>&nbsp;<span class="var-name">$d</span>)
+									</div>
+																<div class="method-definition">
+											<span class="method-result">string</span>
+										<a href="#__toString" title="details" class="method-name">__toString</a>
+										()
+									</div>
+								</div>
+		</div>
+	</div>		
+
+	
+	<a name="sec-methods"></a>
+	<div class="info-box">
+		<div class="info-box-title">Methods</div>
+		<div class="nav-bar">
+			<a href="#sec-description">Description</a> |
+																		<a href="#sec-const-summary">Constants</a> (<a href="#sec-consts">details</a>)
+							
+										<a href="#sec-method-summary">Methods</a> (<span class="disabled">details</span>)
+						
+		</div>
+		<div class="info-box-body">
+			<A NAME='method_detail'></A>
+<a name="methodgetTypeName" id="getTypeName"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">static method getTypeName</span> (line <span class="line-number"><a href="../__filesource/fsource_PEL__srcPelIfd.php.html#a760">760</a></span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Get the name of an IFD type.</p>
+	<ul class="tags">
+				<li><span class="field">return:</span> the name of type.</li>
+			</ul>
+	
+	<div class="method-signature">
+	    static
+		<span class="method-result">string</span>
+		<span class="method-name">
+			getTypeName
+		</span>
+					(<span class="var-type">int</span>&nbsp;<span class="var-name">$type</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">int</span>
+				<span class="var-name">$type</span><span class="var-description">: one of <a href="../PEL/PelIfd.html#constIFD0">PelIfd::IFD0</a>, <a href="../PEL/PelIfd.html#constIFD1">PelIfd::IFD1</a>,  <a href="../PEL/PelIfd.html#constEXIF">PelIfd::EXIF</a>, <a href="../PEL/PelIfd.html#constGPS">PelIfd::GPS</a>, or <a href="../PEL/PelIfd.html#constINTEROPERABILITY">PelIfd::INTEROPERABILITY</a>.</span>			</li>
+				</ul>
+		
+			
+	</div>
+
+<a name="method__construct" id="__construct"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">Constructor __construct</span> (line <span class="line-number"><a href="../__filesource/fsource_PEL__srcPelIfd.php.html#a181">181</a></span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Construct a new Image File Directory (IFD).</p>
+<p class="description"><p>The IFD will be empty, use the <a href="../PEL/PelIfd.html#methodaddEntry">addEntry()</a> method to add  an <a href="../PEL/PelEntry.html">PelEntry</a>.  Use the setNext() method to link  this IFD to another.</p></p>
+	
+	<div class="method-signature">
+		<span class="method-result">PelIfd</span>
+		<span class="method-name">
+			__construct
+		</span>
+					(<span class="var-type">int</span>&nbsp;<span class="var-name">$type</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">int</span>
+				<span class="var-name">$type</span><span class="var-description">: type the type of this IFD.  Must be one of <a href="../PEL/PelIfd.html#constIFD0">IFD0</a>, <a href="../PEL/PelIfd.html#constIFD1">IFD1</a>, <a href="../PEL/PelIfd.html#constEXIF">EXIF</a>, <a href="../PEL/PelIfd.html#constGPS">GPS</a>, or <a href="../PEL/PelIfd.html#constINTEROPERABILITY">INTEROPERABILITY</a>.  An <a href="../PEL/Exception/PelIfdException.html">PelIfdException</a> will be thrown  otherwise.</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodaddEntry" id="addEntry"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">addEntry</span> (line <span class="line-number"><a href="../__filesource/fsource_PEL__srcPelIfd.php.html#a799">799</a></span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Adds an entry to the directory.</p>
+	<ul class="tags">
+				<li><span class="field">todo:</span> The entry will be identified with its tag, so each  directory can only contain one entry with each tag.  Is this a  bug?</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			addEntry
+		</span>
+					(<span class="var-type"><a href="../PEL/PelEntry.html">PelEntry</a></span>&nbsp;<span class="var-name">$e</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type"><a href="../PEL/PelEntry.html">PelEntry</a></span>
+				<span class="var-name">$e</span><span class="var-description">: the entry that will be added. If the entry is not  valid in this IFD (as per <a href="../PEL/PelIfd.html#methodisValidTag">isValidTag()</a>) an  <a href="../PEL/Exception/PelInvalidDataException.html">PelInvalidDataException</a> is thrown.</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodaddSubIfd" id="addSubIfd"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">addSubIfd</span> (line <span class="line-number"><a href="../__filesource/fsource_PEL__srcPelIfd.php.html#a1009">1009</a></span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Add a sub-IFD.</p>
+<p class="description"><p>Any previous sub-IFD of the same type will be overwritten.</p></p>
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			addSubIfd
+		</span>
+					(<span class="var-type"><a href="../PEL/PelIfd.html">PelIfd</a></span>&nbsp;<span class="var-name">$sub</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type"><a href="../PEL/PelIfd.html">PelIfd</a></span>
+				<span class="var-name">$sub</span><span class="var-description">: the sub IFD.  The type of must be one of <a href="../PEL/PelIfd.html#constEXIF">PelIfd::EXIF</a>, <a href="../PEL/PelIfd.html#constGPS">PelIfd::GPS</a>, or <a href="../PEL/PelIfd.html#constINTEROPERABILITY">PelIfd::INTEROPERABILITY</a>.</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodgetBytes" id="getBytes"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">getBytes</span> (line <span class="line-number"><a href="../__filesource/fsource_PEL__srcPelIfd.php.html#a1056">1056</a></span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Turn this directory into bytes.</p>
+<p class="description"><p>This directory will be turned into a byte string, with the  specified byte order.  The offsets will be calculated from the  offset given.</p></p>
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			getBytes
+		</span>
+					(<span class="var-type">int</span>&nbsp;<span class="var-name">$offset</span>, <span class="var-type">PelByteOrder</span>&nbsp;<span class="var-name">$order</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">int</span>
+				<span class="var-name">$offset</span><span class="var-description">: the offset of the first byte of this directory.</span>			</li>
+					<li>
+				<span class="var-type">PelByteOrder</span>
+				<span class="var-name">$order</span><span class="var-description">: the byte order that should be used when  turning integers into bytes.  This should be one of <a href="../PEL/PelConvert.html#constLITTLE_ENDIAN">PelConvert::LITTLE_ENDIAN</a> and <a href="../PEL/PelConvert.html#constBIG_ENDIAN">PelConvert::BIG_ENDIAN</a>.</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodgetEntries" id="getEntries"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">getEntries</span> (line <span class="line-number"><a href="../__filesource/fsource_PEL__srcPelIfd.php.html#a925">925</a></span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Returns all entries contained in this IFD.</p>
+	<ul class="tags">
+				<li><span class="field">return:</span> an array of <a href="../PEL/PelEntry.html">PelEntry</a> objects, or rather  descendant classes.  The array has <a href="../PEL/PelTag.html">PelTag</a>s as keys  and the entries as values.</li>
+				<li><span class="field">see:</span> <a href="../PEL/PelIfd.html#methodgetIterator">PelIfd::getIterator()</a></li>
+				<li><span class="field">see:</span> <a href="../PEL/PelIfd.html#methodgetEntry">PelIfd::getEntry()</a></li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">array</span>
+		<span class="method-name">
+			getEntries
+		</span>
+				()
+			</div>
+	
+		
+			
+	</div>
+<a name="methodgetEntry" id="getEntry"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">getEntry</span> (line <span class="line-number"><a href="../__filesource/fsource_PEL__srcPelIfd.php.html#a907">907</a></span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Retrieve an entry.</p>
+	<ul class="tags">
+				<li><span class="field">return:</span> the entry associated with the tag, or null if no  such entry exists.</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result"><a href="../PEL/PelEntry.html">PelEntry</a></span>
+		<span class="method-name">
+			getEntry
+		</span>
+					(<span class="var-type"><a href="../PEL/PelTag.html">PelTag</a></span>&nbsp;<span class="var-name">$tag</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type"><a href="../PEL/PelTag.html">PelTag</a></span>
+				<span class="var-name">$tag</span><span class="var-description">: the tag identifying the entry.</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodgetIterator" id="getIterator"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">getIterator</span> (line <span class="line-number"><a href="../__filesource/fsource_PEL__srcPelIfd.php.html#a944">944</a></span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Return an iterator for all entries contained in this IFD.</p>
+<p class="description"><p>Used with foreach as in</p><p><div class="src-code"><ol><li><div class="src-line">&nbsp;<span class="src-key">foreach&nbsp;</span><span class="src-sym">(</span><span class="src-var">$ifd&nbsp;</span><span class="src-key">as&nbsp;</span><span class="src-var">$tag&nbsp;</span>=&gt;&nbsp;<span class="src-var">$entry</span><span class="src-sym">)&nbsp;</span><span class="src-sym">{</span></div></li>
+<li><div class="src-line">&nbsp;&nbsp;&nbsp;<span class="src-comm">//&nbsp;$tag&nbsp;is&nbsp;now&nbsp;a&nbsp;PelTag&nbsp;and&nbsp;$entry&nbsp;is&nbsp;a&nbsp;PelEntry&nbsp;object.</span></div></li>
+<li><div class="src-line">&nbsp;<span class="src-sym">}</span></div></li>
+</ol></div></p></p>
+	<ul class="tags">
+				<li><span class="field">return:</span> an iterator using the <a href="../PEL/PelTag.html">tags</a> as  keys and the entries as values.</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">Iterator</span>
+		<span class="method-name">
+			getIterator
+		</span>
+				()
+			</div>
+	
+		
+				<hr class="separator" />
+		<div class="notes">Implementation of:</div>
+			<dl>
+			<dt>IteratorAggregate::getIterator</dt>
+					</dl>
+			
+	</div>
+<a name="methodgetName" id="getName"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">getName</span> (line <span class="line-number"><a href="../__filesource/fsource_PEL__srcPelIfd.php.html#a783">783</a></span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Get the name of this directory.</p>
+	<ul class="tags">
+				<li><span class="field">return:</span> the name of this directory.</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">string</span>
+		<span class="method-name">
+			getName
+		</span>
+				()
+			</div>
+	
+		
+			
+	</div>
+<a name="methodgetNextIfd" id="getNextIfd"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">getNextIfd</span> (line <span class="line-number"><a href="../__filesource/fsource_PEL__srcPelIfd.php.html#a984">984</a></span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Return the IFD pointed to by this directory.</p>
+	<ul class="tags">
+				<li><span class="field">return:</span> the next IFD, following this IFD. If this is the  last IFD, null is returned.</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result"><a href="../PEL/PelIfd.html">PelIfd</a></span>
+		<span class="method-name">
+			getNextIfd
+		</span>
+				()
+			</div>
+	
+		
+			
+	</div>
+<a name="methodgetSubIfd" id="getSubIfd"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">getSubIfd</span> (line <span class="line-number"><a href="../__filesource/fsource_PEL__srcPelIfd.php.html#a1024">1024</a></span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Return a sub IFD.</p>
+	<ul class="tags">
+				<li><span class="field">return:</span> the IFD associated with the type, or null if that  sub IFD does not exist.</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result"><a href="../PEL/PelIfd.html">PelIfd</a></span>
+		<span class="method-name">
+			getSubIfd
+		</span>
+					(<span class="var-type">int</span>&nbsp;<span class="var-name">$type</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">int</span>
+				<span class="var-name">$type</span><span class="var-description">: the type of the sub IFD.  This must be one of <a href="../PEL/PelIfd.html#constEXIF">PelIfd::EXIF</a>, <a href="../PEL/PelIfd.html#constGPS">PelIfd::GPS</a>, or <a href="../PEL/PelIfd.html#constINTEROPERABILITY">PelIfd::INTEROPERABILITY</a>.</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodgetSubIfds" id="getSubIfds"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">getSubIfds</span> (line <span class="line-number"><a href="../__filesource/fsource_PEL__srcPelIfd.php.html#a1038">1038</a></span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Get all sub IFDs.</p>
+	<ul class="tags">
+				<li><span class="field">return:</span> an associative array with (IFD-type, <a href="../PEL/PelIfd.html">PelIfd</a>) pairs.</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">array</span>
+		<span class="method-name">
+			getSubIfds
+		</span>
+				()
+			</div>
+	
+		
+			
+	</div>
+<a name="methodgetThumbnailData" id="getThumbnailData"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">getThumbnailData</span> (line <span class="line-number"><a href="../__filesource/fsource_PEL__srcPelIfd.php.html#a960">960</a></span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Returns available thumbnail data.</p>
+	<ul class="tags">
+				<li><span class="field">return:</span> the bytes in the thumbnail, if any.  If the IFD  does not contain any thumbnail data, the empty string is  returned.</li>
+				<li><span class="field">todo:</span> Throw an exception instead when no data is available?</li>
+				<li><span class="field">todo:</span> Return the $this-&gt;thumb_data object instead of the bytes?</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">string</span>
+		<span class="method-name">
+			getThumbnailData
+		</span>
+				()
+			</div>
+	
+		
+			
+	</div>
+<a name="methodgetType" id="getType"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">getType</span> (line <span class="line-number"><a href="../__filesource/fsource_PEL__srcPelIfd.php.html#a561">561</a></span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Get the type of this directory.</p>
+	<ul class="tags">
+				<li><span class="field">return:</span> of <a href="../PEL/PelIfd.html#constIFD0">PelIfd::IFD0</a>, <a href="../PEL/PelIfd.html#constIFD1">PelIfd::IFD1</a>, <a href="../PEL/PelIfd.html#constEXIF">PelIfd::EXIF</a>, <a href="../PEL/PelIfd.html#constGPS">PelIfd::GPS</a>, or <a href="../PEL/PelIfd.html#constINTEROPERABILITY">PelIfd::INTEROPERABILITY</a>.</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">int</span>
+		<span class="method-name">
+			getType
+		</span>
+				()
+			</div>
+	
+		
+			
+	</div>
+<a name="methodgetValidTags" id="getValidTags"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">getValidTags</span> (line <span class="line-number"><a href="../__filesource/fsource_PEL__srcPelIfd.php.html#a595">595</a></span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Returns a list of valid tags for this IFD.</p>
+	<ul class="tags">
+				<li><span class="field">return:</span> an array of <a href="../PEL/PelTag.html">PelTag</a>s which are valid for  this IFD.</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">array</span>
+		<span class="method-name">
+			getValidTags
+		</span>
+				()
+			</div>
+	
+		
+			
+	</div>
+<a name="methodisLastIfd" id="isLastIfd"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">isLastIfd</span> (line <span class="line-number"><a href="../__filesource/fsource_PEL__srcPelIfd.php.html#a995">995</a></span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Check if this is the last IFD.</p>
+	<ul class="tags">
+				<li><span class="field">return:</span> true if there are no following IFD, false  otherwise.</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">boolean</span>
+		<span class="method-name">
+			isLastIfd
+		</span>
+				()
+			</div>
+	
+		
+			
+	</div>
+<a name="methodisValidTag" id="isValidTag"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">isValidTag</span> (line <span class="line-number"><a href="../__filesource/fsource_PEL__srcPelIfd.php.html#a584">584</a></span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Is a given tag valid for this IFD?</p>
+<p class="description"><p>Different types of IFDs can contain different kinds of tags ---  the <a href="../PEL/PelIfd.html#constIFD0">IFD0</a> type, for example, cannot contain a <a href="../PEL/PelTag.html#constGPS_LONGITUDE">PelTag::GPS_LONGITUDE</a> tag.</p><p>A special exception is tags with values above 0xF000.  They are  treated as private tags and will be allowed everywhere (use this  for testing or for implementing your own types of tags).</p></p>
+	<ul class="tags">
+				<li><span class="field">return:</span> true if the tag is considered valid in this IFD,  false otherwise.</li>
+				<li><span class="field">see:</span> <a href="../PEL/PelIfd.html#methodgetValidTags">PelIfd::getValidTags()</a></li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">boolean</span>
+		<span class="method-name">
+			isValidTag
+		</span>
+					(<span class="var-type"><a href="../PEL/PelTag.html">PelTag</a></span>&nbsp;<span class="var-name">$tag</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type"><a href="../PEL/PelTag.html">PelTag</a></span>
+				<span class="var-name">$tag</span><span class="var-description">: the tag.</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodload" id="load"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">load</span> (line <span class="line-number"><a href="../__filesource/fsource_PEL__srcPelIfd.php.html#a199">199</a></span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Load data into a Image File Directory (IFD).</p>
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			load
+		</span>
+					(<span class="var-type"><a href="../PEL/PelDataWindow.html">PelDataWindow</a></span>&nbsp;<span class="var-name">$d</span>, <span class="var-type">int</span>&nbsp;<span class="var-name">$offset</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type"><a href="../PEL/PelDataWindow.html">PelDataWindow</a></span>
+				<span class="var-name">$d</span><span class="var-description">: the data window that will provide the data.</span>			</li>
+					<li>
+				<span class="var-type">int</span>
+				<span class="var-name">$offset</span><span class="var-description">: the offset within the window where the directory will  be found.</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodnewEntryFromData" id="newEntryFromData"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">newEntryFromData</span> (line <span class="line-number"><a href="../__filesource/fsource_PEL__srcPelIfd.php.html#a342">342</a></span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Make a new entry from a bunch of bytes.</p>
+<p class="description"><p>This method will create the proper subclass of <a href="../PEL/PelEntry.html">PelEntry</a>  corresponding to the <a href="../PEL/PelTag.html">PelTag</a> and <a href="../PEL/PelFormat.html">PelFormat</a> given.  The entry will be initialized with the data given.</p><p>Please note that the data you pass to this method should come  from an image, that is, it should be raw bytes.  If instead you  want to create an entry for holding, say, an short integer, then  create a <a href="../PEL/PelEntryShort.html">PelEntryShort</a> object directly and load the data  into it.</p><p>A <a href="../PEL/Exception/PelUnexpectedFormatException.html">PelUnexpectedFormatException</a> is thrown if a mismatch is  discovered between the tag and format, and likewise a <a href="../PEL/Exception/PelWrongComponentCountException.html">PelWrongComponentCountException</a> is thrown if the number of  components does not match the requirements of the tag.  The  requirements for a given tag (if any) can be found in the  documentation for <a href="../PEL/PelTag.html">PelTag</a>.</p></p>
+	<ul class="tags">
+				<li><span class="field">return:</span> a newly created entry, holding the data given.</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result"><a href="../PEL/PelEntry.html">PelEntry</a></span>
+		<span class="method-name">
+			newEntryFromData
+		</span>
+					(<span class="var-type"><a href="../PEL/PelTag.html">PelTag</a></span>&nbsp;<span class="var-name">$tag</span>, <span class="var-type"><a href="../PEL/PelFormat.html">PelFormat</a></span>&nbsp;<span class="var-name">$format</span>, <span class="var-type">int</span>&nbsp;<span class="var-name">$components</span>, <span class="var-type"><a href="../PEL/PelDataWindow.html">PelDataWindow</a></span>&nbsp;<span class="var-name">$data</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type"><a href="../PEL/PelTag.html">PelTag</a></span>
+				<span class="var-name">$tag</span><span class="var-description">: the tag of the entry.</span>			</li>
+					<li>
+				<span class="var-type"><a href="../PEL/PelFormat.html">PelFormat</a></span>
+				<span class="var-name">$format</span><span class="var-description">: the format of the entry.</span>			</li>
+					<li>
+				<span class="var-type">int</span>
+				<span class="var-name">$components</span><span class="var-description">: the components in the entry.</span>			</li>
+					<li>
+				<span class="var-type"><a href="../PEL/PelDataWindow.html">PelDataWindow</a></span>
+				<span class="var-name">$data</span><span class="var-description">: the data which will be used to construct the  entry.</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodoffsetExists" id="offsetExists"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">offsetExists</span> (line <span class="line-number"><a href="../__filesource/fsource_PEL__srcPelIfd.php.html#a826">826</a></span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Does a given tag exist in this IFD?</p>
+<p class="description"><p>This methods is part of the ArrayAccess SPL interface for  overriding array access of objects, it allows you to check for  existance of an entry in the IFD:</p><p><div class="src-code"><ol><li><div class="src-line">&nbsp;<span class="src-key">if&nbsp;</span><span class="src-sym">(</span>isset<span class="src-sym">(</span><span class="src-var">$ifd</span><span class="src-sym">[</span><span class="src-id"><a href="../PEL/PelTag.html">PelTag</a></span><span class="src-sym">::</span><span class="src-id">FNUMBER</span><span class="src-sym">]</span><span class="src-sym">))</span></div></li>
+<li><div class="src-line">&nbsp;&nbsp;&nbsp;<span class="src-comm">//&nbsp;...&nbsp;do&nbsp;something&nbsp;with&nbsp;the&nbsp;F-number.</span></div></li>
+</ol></div></p></p>
+	<ul class="tags">
+				<li><span class="field">return:</span> whether the tag exists.</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">boolean</span>
+		<span class="method-name">
+			offsetExists
+		</span>
+					(<span class="var-type"><a href="../PEL/PelTag.html">PelTag</a></span>&nbsp;<span class="var-name">$tag</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type"><a href="../PEL/PelTag.html">PelTag</a></span>
+				<span class="var-name">$tag</span><span class="var-description">: the offset to check.</span>			</li>
+				</ul>
+		
+				<hr class="separator" />
+		<div class="notes">Implementation of:</div>
+			<dl>
+			<dt>ArrayAccess::offsetExists</dt>
+					</dl>
+			
+	</div>
+<a name="methodoffsetGet" id="offsetGet"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">offsetGet</span> (line <span class="line-number"><a href="../__filesource/fsource_PEL__srcPelIfd.php.html#a848">848</a></span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Retrieve a given tag from this IFD.</p>
+<p class="description"><p>This methods is part of the ArrayAccess SPL interface for  overriding array access of objects, it allows you to read entries  from the IFD the same was as for an array:</p><p><div class="src-code"><ol><li><div class="src-line">&nbsp;<span class="src-var">$entry&nbsp;</span>=&nbsp;<span class="src-var">$ifd</span><span class="src-sym">[</span><span class="src-id"><a href="../PEL/PelTag.html">PelTag</a></span><span class="src-sym">::</span><span class="src-id">FNUMBER</span><span class="src-sym">]</span><span class="src-sym">;</span></div></li>
+</ol></div></p></p>
+	<ul class="tags">
+				<li><span class="field">return:</span> the entry.</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result"><a href="../PEL/PelEntry.html">PelEntry</a></span>
+		<span class="method-name">
+			offsetGet
+		</span>
+					(<span class="var-type"><a href="../PEL/PelTag.html">PelTag</a></span>&nbsp;<span class="var-name">$tag</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type"><a href="../PEL/PelTag.html">PelTag</a></span>
+				<span class="var-name">$tag</span><span class="var-description">: the tag to return.  It is an error to ask for a tag  which is not in the IFD, just like asking for a non-existant  array entry.</span>			</li>
+				</ul>
+		
+				<hr class="separator" />
+		<div class="notes">Implementation of:</div>
+			<dl>
+			<dt>ArrayAccess::offsetGet</dt>
+					</dl>
+			
+	</div>
+<a name="methodoffsetSet" id="offsetSet"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">offsetSet</span> (line <span class="line-number"><a href="../__filesource/fsource_PEL__srcPelIfd.php.html#a871">871</a></span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Set or update a given tag in this IFD.</p>
+<p class="description"><p>This methods is part of the ArrayAccess SPL interface for  overriding array access of objects, it allows you to add new  entries or replace esisting entries by doing:</p><p><div class="src-code"><ol><li><div class="src-line">&nbsp;<span class="src-var">$ifd</span><span class="src-sym">[</span><span class="src-id"><a href="../PEL/PelTag.html">PelTag</a></span><span class="src-sym">::</span><span class="src-id">EXPOSURE_BIAS_VALUE</span><span class="src-sym">]&nbsp;</span>=&nbsp;<span class="src-var">$entry</span><span class="src-sym">;</span></div></li>
+</ol></div></p><p>Note that the actual array index passed is ignored!  Instead the  <a href="../PEL/PelTag.html">PelTag</a> from the entry is used.</p></p>
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			offsetSet
+		</span>
+					(<span class="var-type"><a href="../PEL/PelTag.html">PelTag</a></span>&nbsp;<span class="var-name">$tag</span>, <span class="var-type"><a href="../PEL/PelEntry.html">PelEntry</a></span>&nbsp;<span class="var-name">$e</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type"><a href="../PEL/PelTag.html">PelTag</a></span>
+				<span class="var-name">$tag</span><span class="var-description">: the offset to update.</span>			</li>
+					<li>
+				<span class="var-type"><a href="../PEL/PelEntry.html">PelEntry</a></span>
+				<span class="var-name">$e</span><span class="var-description">: the new value.</span>			</li>
+				</ul>
+		
+				<hr class="separator" />
+		<div class="notes">Implementation of:</div>
+			<dl>
+			<dt>ArrayAccess::offsetSet</dt>
+					</dl>
+			
+	</div>
+<a name="methodoffsetUnset" id="offsetUnset"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">offsetUnset</span> (line <span class="line-number"><a href="../__filesource/fsource_PEL__srcPelIfd.php.html#a894">894</a></span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Unset a given tag in this IFD.</p>
+<p class="description"><p>This methods is part of the ArrayAccess SPL interface for  overriding array access of objects, it allows you to delete  entries in the IFD by doing:</p><p><div class="src-code"><ol><li><div class="src-line">&nbsp;unset<span class="src-sym">(</span><span class="src-var">$ifd</span><span class="src-sym">[</span><span class="src-id"><a href="../PEL/PelTag.html">PelTag</a></span><span class="src-sym">::</span><span class="src-id">EXPOSURE_BIAS_VALUE</span><span class="src-sym">]</span><span class="src-sym">)</span></div></li>
+</ol></div></p></p>
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			offsetUnset
+		</span>
+					(<span class="var-type"><a href="../PEL/PelTag.html">PelTag</a></span>&nbsp;<span class="var-name">$tag</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type"><a href="../PEL/PelTag.html">PelTag</a></span>
+				<span class="var-name">$tag</span><span class="var-description">: the offset to delete.</span>			</li>
+				</ul>
+		
+				<hr class="separator" />
+		<div class="notes">Implementation of:</div>
+			<dl>
+			<dt>ArrayAccess::offsetUnset</dt>
+					</dl>
+			
+	</div>
+<a name="methodsetNextIfd" id="setNextIfd"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">setNextIfd</span> (line <span class="line-number"><a href="../__filesource/fsource_PEL__srcPelIfd.php.html#a973">973</a></span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Make this directory point to a new directory.</p>
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			setNextIfd
+		</span>
+					(<span class="var-type"><a href="../PEL/PelIfd.html">PelIfd</a></span>&nbsp;<span class="var-name">$i</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type"><a href="../PEL/PelIfd.html">PelIfd</a></span>
+				<span class="var-name">$i</span><span class="var-description">: the IFD that this directory will point to.</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodsetThumbnail" id="setThumbnail"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">setThumbnail</span> (line <span class="line-number"><a href="../__filesource/fsource_PEL__srcPelIfd.php.html#a538">538</a></span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Set thumbnail data.</p>
+<p class="description"><p>Use this to embed an arbitrary JPEG image within this IFD. The  data will be checked to ensure that it has a proper <a href="../PEL/PelJpegMarker.html#constEOI">PelJpegMarker::EOI</a> at the end.  If not, then the length is  adjusted until one if found.  An <a href="../PEL/Exception/PelIfdException.html">PelIfdException</a> might be  thrown (depending on Pel::$strict) this case.</p></p>
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			setThumbnail
+		</span>
+					(<span class="var-type"><a href="../PEL/PelDataWindow.html">PelDataWindow</a></span>&nbsp;<span class="var-name">$d</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type"><a href="../PEL/PelDataWindow.html">PelDataWindow</a></span>
+				<span class="var-name">$d</span><span class="var-description">: the thumbnail data.</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="method__toString" id="__toString"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">__toString</span> (line <span class="line-number"><a href="../__filesource/fsource_PEL__srcPelIfd.php.html#a1179">1179</a></span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Turn this directory into text.</p>
+	<ul class="tags">
+				<li><span class="field">return:</span> information about the directory, mainly for  debugging.</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">string</span>
+		<span class="method-name">
+			__toString
+		</span>
+				()
+			</div>
+	
+		
+			
+	</div>
+						
+		</div>
+	</div>
+
+	<a name="sec-consts"></a>
+	<div class="info-box">
+		<div class="info-box-title">Class Constants</div>
+		<div class="nav-bar">
+			<a href="#sec-description">Description</a> |
+										<a href="#sec-var-summary">Constants</a> (<span class="disabled">details</span>)
+						
+			
+										| 
+									<a href="#sec-method-summary">Methods</a> (<a href="#sec-methods">details</a>)
+							
+					</div>
+		<div class="info-box-body">
+			<a name="constEXIF" id="EXIF"><!-- --></A>
+<div class="evenrow">
+
+	<div class="const-header">
+		<img src="../media/images/Variable.png" />
+		<span class="const-title">
+			<span class="const-name">EXIF</span>
+			 = <span class="const-default"> 2</span>
+			(line <span class="line-number"><a href="../__filesource/fsource_PEL__srcPelIfd.php.html#a97">97</a></span>)
+		</span>
+	</div>
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Exif IFD.</p>
+<p class="description"><p>Pass this to the constructor when creating an IFD which will be  the Exif sub-IFD.</p></p>
+	
+	
+</div>
+<a name="constGPS" id="GPS"><!-- --></A>
+<div class="oddrow">
+
+	<div class="const-header">
+		<img src="../media/images/Variable.png" />
+		<span class="const-title">
+			<span class="const-name">GPS</span>
+			 = <span class="const-default"> 3</span>
+			(line <span class="line-number"><a href="../__filesource/fsource_PEL__srcPelIfd.php.html#a105">105</a></span>)
+		</span>
+	</div>
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">GPS IFD.</p>
+<p class="description"><p>Pass this to the constructor when creating an IFD which will be  the GPS sub-IFD.</p></p>
+	
+	
+</div>
+<a name="constIFD0" id="IFD0"><!-- --></A>
+<div class="evenrow">
+
+	<div class="const-header">
+		<img src="../media/images/Variable.png" />
+		<span class="const-title">
+			<span class="const-name">IFD0</span>
+			 = <span class="const-default"> 0</span>
+			(line <span class="line-number"><a href="../__filesource/fsource_PEL__srcPelIfd.php.html#a81">81</a></span>)
+		</span>
+	</div>
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Main image IFD.</p>
+<p class="description"><p>Pass this to the constructor when creating an IFD which will be  the IFD of the main image.</p></p>
+	
+	
+</div>
+<a name="constIFD1" id="IFD1"><!-- --></A>
+<div class="oddrow">
+
+	<div class="const-header">
+		<img src="../media/images/Variable.png" />
+		<span class="const-title">
+			<span class="const-name">IFD1</span>
+			 = <span class="const-default"> 1</span>
+			(line <span class="line-number"><a href="../__filesource/fsource_PEL__srcPelIfd.php.html#a89">89</a></span>)
+		</span>
+	</div>
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Thumbnail image IFD.</p>
+<p class="description"><p>Pass this to the constructor when creating an IFD which will be  the IFD of the thumbnail image.</p></p>
+	
+	
+</div>
+<a name="constINTEROPERABILITY" id="INTEROPERABILITY"><!-- --></A>
+<div class="evenrow">
+
+	<div class="const-header">
+		<img src="../media/images/Variable.png" />
+		<span class="const-title">
+			<span class="const-name">INTEROPERABILITY</span>
+			 = <span class="const-default"> 4</span>
+			(line <span class="line-number"><a href="../__filesource/fsource_PEL__srcPelIfd.php.html#a113">113</a></span>)
+		</span>
+	</div>
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Interoperability IFD.</p>
+<p class="description"><p>Pass this to the constructor when creating an IFD which will be  the interoperability sub-IFD.</p></p>
+	
+	
+</div>
+						
+		</div>
+	</div>
+
+	<p class="notes" id="credit">
+		Documentation generated on Thu, 05 May 2011 07:19:16 +0200 by <a href="http://www.phpdoc.org" target="_blank">phpDocumentor 1.4.3</a>
+	</p>
+	</div></body>
+</html>

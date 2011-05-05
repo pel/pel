@@ -1,0 +1,245 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+  <html xmlns="http://www.w3.org/1999/xhtml">
+		<head>
+			<!-- template designed by Marco Von Ballmoos -->
+			<title>File Source for PelFormat.php</title>
+			<link rel="stylesheet" href="../media/stylesheet.css" />
+			<meta http-equiv='Content-Type' content='text/html; charset=iso-8859-1'/>
+		</head>
+		<body>
+						<h1>Source for file PelFormat.php</h1>
+<p>Documentation is available at <a href="../PEL/_src---PelFormat.php.html">PelFormat.php</a></p>
+<div class="src-code">
+<div class="src-code"><ol><li><div class="src-line"><a name="a1"></a><span class="src-php">&lt;?php</span></div></li>
+<li><div class="src-line"><a name="a2"></a>&nbsp;</div></li>
+<li><div class="src-line"><a name="a3"></a><span class="src-comm">/*&nbsp;&nbsp;PEL:&nbsp;PHP&nbsp;Exif&nbsp;Library.&nbsp;&nbsp;A&nbsp;library&nbsp;with&nbsp;support&nbsp;for&nbsp;reading&nbsp;and</span></div></li>
+<li><div class="src-line"><a name="a4"></a><span class="src-comm">&nbsp;*&nbsp;&nbsp;writing&nbsp;all&nbsp;Exif&nbsp;headers&nbsp;in&nbsp;JPEG&nbsp;and&nbsp;TIFF&nbsp;images&nbsp;using&nbsp;PHP.</span></div></li>
+<li><div class="src-line"><a name="a5"></a><span class="src-comm">&nbsp;*</span></div></li>
+<li><div class="src-line"><a name="a6"></a><span class="src-comm">&nbsp;*&nbsp;&nbsp;Copyright&nbsp;(C)&nbsp;2004,&nbsp;2005&nbsp;&nbsp;Martin&nbsp;Geisler.</span></div></li>
+<li><div class="src-line"><a name="a7"></a><span class="src-comm">&nbsp;*</span></div></li>
+<li><div class="src-line"><a name="a8"></a><span class="src-comm">&nbsp;*&nbsp;&nbsp;This&nbsp;program&nbsp;is&nbsp;free&nbsp;software;&nbsp;you&nbsp;can&nbsp;redistribute&nbsp;it&nbsp;and/or&nbsp;modify</span></div></li>
+<li><div class="src-line"><a name="a9"></a><span class="src-comm">&nbsp;*&nbsp;&nbsp;it&nbsp;under&nbsp;the&nbsp;terms&nbsp;of&nbsp;the&nbsp;GNU&nbsp;General&nbsp;Public&nbsp;License&nbsp;as&nbsp;published&nbsp;by</span></div></li>
+<li><div class="src-line"><a name="a10"></a><span class="src-comm">&nbsp;*&nbsp;&nbsp;the&nbsp;Free&nbsp;Software&nbsp;Foundation;&nbsp;either&nbsp;version&nbsp;2&nbsp;of&nbsp;the&nbsp;License,&nbsp;or</span></div></li>
+<li><div class="src-line"><a name="a11"></a><span class="src-comm">&nbsp;*&nbsp;&nbsp;(at&nbsp;your&nbsp;option)&nbsp;any&nbsp;later&nbsp;version.</span></div></li>
+<li><div class="src-line"><a name="a12"></a><span class="src-comm">&nbsp;*</span></div></li>
+<li><div class="src-line"><a name="a13"></a><span class="src-comm">&nbsp;*&nbsp;&nbsp;This&nbsp;program&nbsp;is&nbsp;distributed&nbsp;in&nbsp;the&nbsp;hope&nbsp;that&nbsp;it&nbsp;will&nbsp;be&nbsp;useful,</span></div></li>
+<li><div class="src-line"><a name="a14"></a><span class="src-comm">&nbsp;*&nbsp;&nbsp;but&nbsp;WITHOUT&nbsp;ANY&nbsp;WARRANTY;&nbsp;without&nbsp;even&nbsp;the&nbsp;implied&nbsp;warranty&nbsp;of</span></div></li>
+<li><div class="src-line"><a name="a15"></a><span class="src-comm">&nbsp;*&nbsp;&nbsp;MERCHANTABILITY&nbsp;or&nbsp;FITNESS&nbsp;FOR&nbsp;A&nbsp;PARTICULAR&nbsp;PURPOSE.&nbsp;&nbsp;See&nbsp;the</span></div></li>
+<li><div class="src-line"><a name="a16"></a><span class="src-comm">&nbsp;*&nbsp;&nbsp;GNU&nbsp;General&nbsp;Public&nbsp;License&nbsp;for&nbsp;more&nbsp;details.</span></div></li>
+<li><div class="src-line"><a name="a17"></a><span class="src-comm">&nbsp;*</span></div></li>
+<li><div class="src-line"><a name="a18"></a><span class="src-comm">&nbsp;*&nbsp;&nbsp;You&nbsp;should&nbsp;have&nbsp;received&nbsp;a&nbsp;copy&nbsp;of&nbsp;the&nbsp;GNU&nbsp;General&nbsp;Public&nbsp;License</span></div></li>
+<li><div class="src-line"><a name="a19"></a><span class="src-comm">&nbsp;*&nbsp;&nbsp;along&nbsp;with&nbsp;this&nbsp;program&nbsp;in&nbsp;the&nbsp;file&nbsp;COPYING;&nbsp;if&nbsp;not,&nbsp;write&nbsp;to&nbsp;the</span></div></li>
+<li><div class="src-line"><a name="a20"></a><span class="src-comm">&nbsp;*&nbsp;&nbsp;Free&nbsp;Software&nbsp;Foundation,&nbsp;Inc.,&nbsp;51&nbsp;Franklin&nbsp;St,&nbsp;Fifth&nbsp;Floor,</span></div></li>
+<li><div class="src-line"><a name="a21"></a><span class="src-comm">&nbsp;*&nbsp;&nbsp;Boston,&nbsp;MA&nbsp;02110-1301&nbsp;USA</span></div></li>
+<li><div class="src-line"><a name="a22"></a><span class="src-comm">&nbsp;*/</span></div></li>
+<li><div class="src-line"><a name="a23"></a>&nbsp;</div></li>
+<li><div class="src-line"><a name="a24"></a><span class="src-comm">/*&nbsp;$Id$&nbsp;*/</span></div></li>
+<li><div class="src-line"><a name="a25"></a>&nbsp;</div></li>
+<li><div class="src-line"><a name="a26"></a>&nbsp;</div></li>
+<li><div class="src-line"><a name="a27"></a><span class="src-doc">/**</span></div></li>
+<li><div class="src-line"><a name="a28"></a><span class="src-doc">&nbsp;*&nbsp;Namespace&nbsp;for&nbsp;functions&nbsp;operating&nbsp;on&nbsp;Exif&nbsp;formats.</span></div></li>
+<li><div class="src-line"><a name="a29"></a><span class="src-doc">&nbsp;*</span></div></li>
+<li><div class="src-line"><a name="a30"></a><span class="src-doc">&nbsp;*&nbsp;</span><span class="src-doc-coretag">@author</span><span class="src-doc">&nbsp;Martin&nbsp;Geisler&nbsp;&lt;mgeisler@users.sourceforge.net&gt;</span></div></li>
+<li><div class="src-line"><a name="a31"></a><span class="src-doc">&nbsp;*&nbsp;</span><span class="src-doc-coretag">@version</span><span class="src-doc">&nbsp;$Revision$</span></div></li>
+<li><div class="src-line"><a name="a32"></a><span class="src-doc">&nbsp;*&nbsp;</span><span class="src-doc-tag">@date</span><span class="src-doc">&nbsp;$Date$</span></div></li>
+<li><div class="src-line"><a name="a33"></a><span class="src-doc">&nbsp;*&nbsp;</span><span class="src-doc-coretag">@license</span><span class="src-doc">&nbsp;http://www.gnu.org/licenses/gpl.html&nbsp;GNU&nbsp;General&nbsp;Public</span></div></li>
+<li><div class="src-line"><a name="a34"></a><span class="src-doc">&nbsp;*&nbsp;&nbsp;License&nbsp;(GPL)</span></div></li>
+<li><div class="src-line"><a name="a35"></a><span class="src-doc">&nbsp;*&nbsp;</span><span class="src-doc-coretag">@package</span><span class="src-doc">&nbsp;PEL</span></div></li>
+<li><div class="src-line"><a name="a36"></a><span class="src-doc">&nbsp;*/</span></div></li>
+<li><div class="src-line"><a name="a37"></a>&nbsp;</div></li>
+<li><div class="src-line"><a name="a38"></a><span class="src-doc">/**</span></div></li>
+<li><div class="src-line"><a name="a39"></a><span class="src-doc">&nbsp;*&nbsp;Namespace&nbsp;for&nbsp;functions&nbsp;operating&nbsp;on&nbsp;Exif&nbsp;formats.</span></div></li>
+<li><div class="src-line"><a name="a40"></a><span class="src-doc">&nbsp;*</span></div></li>
+<li><div class="src-line"><a name="a41"></a><span class="src-doc">&nbsp;*&nbsp;This&nbsp;class&nbsp;defines&nbsp;the&nbsp;constants&nbsp;that&nbsp;are&nbsp;to&nbsp;be&nbsp;used&nbsp;whenever&nbsp;one</span></div></li>
+<li><div class="src-line"><a name="a42"></a><span class="src-doc">&nbsp;*&nbsp;has&nbsp;to&nbsp;refer&nbsp;to&nbsp;the&nbsp;format&nbsp;of&nbsp;an&nbsp;Exif&nbsp;tag.&nbsp;&nbsp;They&nbsp;will&nbsp;be</span></div></li>
+<li><div class="src-line"><a name="a43"></a><span class="src-doc">&nbsp;*&nbsp;collectively&nbsp;denoted&nbsp;by&nbsp;the&nbsp;pseudo-type&nbsp;PelFormat&nbsp;throughout&nbsp;the</span></div></li>
+<li><div class="src-line"><a name="a44"></a><span class="src-doc">&nbsp;*&nbsp;documentation.</span></div></li>
+<li><div class="src-line"><a name="a45"></a><span class="src-doc">&nbsp;*</span></div></li>
+<li><div class="src-line"><a name="a46"></a><span class="src-doc">&nbsp;*&nbsp;All&nbsp;the&nbsp;methods&nbsp;defined&nbsp;here&nbsp;are&nbsp;static,&nbsp;and&nbsp;they&nbsp;all&nbsp;operate&nbsp;on&nbsp;a</span></div></li>
+<li><div class="src-line"><a name="a47"></a><span class="src-doc">&nbsp;*&nbsp;single&nbsp;argument&nbsp;which&nbsp;should&nbsp;be&nbsp;one&nbsp;of&nbsp;the&nbsp;class&nbsp;constants.</span></div></li>
+<li><div class="src-line"><a name="a48"></a><span class="src-doc">&nbsp;*</span></div></li>
+<li><div class="src-line"><a name="a49"></a><span class="src-doc">&nbsp;*&nbsp;</span><span class="src-doc-coretag">@author</span><span class="src-doc">&nbsp;Martin&nbsp;Geisler&nbsp;&lt;mgeisler@users.sourceforge.net&gt;</span></div></li>
+<li><div class="src-line"><a name="a50"></a><span class="src-doc">&nbsp;*&nbsp;</span><span class="src-doc-coretag">@package</span><span class="src-doc">&nbsp;PEL</span></div></li>
+<li><div class="src-line"><a name="a51"></a><span class="src-doc">&nbsp;*/</span></div></li>
+<li><div class="src-line"><a name="a52"></a><span class="src-key">class&nbsp;</span><a href="../PEL/PelFormat.html">PelFormat</a>&nbsp;<span class="src-sym">{</span></div></li>
+<li><div class="src-line"><a name="a53"></a>&nbsp;</div></li>
+<li><div class="src-line"><a name="a54"></a>&nbsp;&nbsp;<span class="src-doc">/**</span></div></li>
+<li><div class="src-line"><a name="a55"></a><span class="src-doc">&nbsp;&nbsp;&nbsp;*&nbsp;Unsigned&nbsp;byte.</span></div></li>
+<li><div class="src-line"><a name="a56"></a><span class="src-doc">&nbsp;&nbsp;&nbsp;*</span></div></li>
+<li><div class="src-line"><a name="a57"></a><span class="src-doc">&nbsp;&nbsp;&nbsp;*&nbsp;Each&nbsp;component&nbsp;will&nbsp;be&nbsp;an&nbsp;unsigned&nbsp;8-bit&nbsp;integer&nbsp;with&nbsp;a&nbsp;value</span></div></li>
+<li><div class="src-line"><a name="a58"></a><span class="src-doc">&nbsp;&nbsp;&nbsp;*&nbsp;between&nbsp;0&nbsp;and&nbsp;255.</span></div></li>
+<li><div class="src-line"><a name="a59"></a><span class="src-doc">&nbsp;&nbsp;&nbsp;*</span></div></li>
+<li><div class="src-line"><a name="a60"></a><span class="src-doc">&nbsp;&nbsp;&nbsp;*&nbsp;Modelled&nbsp;with&nbsp;the&nbsp;</span><span class="src-doc-inlinetag">{@link&nbsp;PelEntryByte}</span><span class="src-doc">&nbsp;class.</span></div></li>
+<li><div class="src-line"><a name="a61"></a><span class="src-doc">&nbsp;&nbsp;&nbsp;*/</span></div></li>
+<li><div class="src-line"><a name="a62"></a>&nbsp;&nbsp;<span class="src-key">const&nbsp;</span><span class="src-id">BYTE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>=&nbsp;&nbsp;<span class="src-num">1</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line"><a name="a63"></a>&nbsp;&nbsp;</div></li>
+<li><div class="src-line"><a name="a64"></a>&nbsp;&nbsp;<span class="src-doc">/**</span></div></li>
+<li><div class="src-line"><a name="a65"></a><span class="src-doc">&nbsp;&nbsp;&nbsp;*&nbsp;ASCII&nbsp;string.</span></div></li>
+<li><div class="src-line"><a name="a66"></a><span class="src-doc">&nbsp;&nbsp;&nbsp;*</span></div></li>
+<li><div class="src-line"><a name="a67"></a><span class="src-doc">&nbsp;&nbsp;&nbsp;*&nbsp;Each&nbsp;component&nbsp;will&nbsp;be&nbsp;an&nbsp;ASCII&nbsp;character.</span></div></li>
+<li><div class="src-line"><a name="a68"></a><span class="src-doc">&nbsp;&nbsp;&nbsp;*</span></div></li>
+<li><div class="src-line"><a name="a69"></a><span class="src-doc">&nbsp;&nbsp;&nbsp;*&nbsp;Modelled&nbsp;with&nbsp;the&nbsp;</span><span class="src-doc-inlinetag">{@link&nbsp;PelEntryAscii}</span><span class="src-doc">&nbsp;class.</span></div></li>
+<li><div class="src-line"><a name="a70"></a><span class="src-doc">&nbsp;&nbsp;&nbsp;*/</span></div></li>
+<li><div class="src-line"><a name="a71"></a>&nbsp;&nbsp;<span class="src-key">const&nbsp;</span><span class="src-id">ASCII&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>=&nbsp;&nbsp;<span class="src-num">2</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line"><a name="a72"></a>&nbsp;&nbsp;</div></li>
+<li><div class="src-line"><a name="a73"></a>&nbsp;&nbsp;<span class="src-doc">/**</span></div></li>
+<li><div class="src-line"><a name="a74"></a><span class="src-doc">&nbsp;&nbsp;&nbsp;*&nbsp;Unsigned&nbsp;short.</span></div></li>
+<li><div class="src-line"><a name="a75"></a><span class="src-doc">&nbsp;&nbsp;&nbsp;*</span></div></li>
+<li><div class="src-line"><a name="a76"></a><span class="src-doc">&nbsp;&nbsp;&nbsp;*&nbsp;Each&nbsp;component&nbsp;will&nbsp;be&nbsp;an&nbsp;unsigned&nbsp;16-bit&nbsp;integer&nbsp;with&nbsp;a&nbsp;value</span></div></li>
+<li><div class="src-line"><a name="a77"></a><span class="src-doc">&nbsp;&nbsp;&nbsp;*&nbsp;between&nbsp;0&nbsp;and&nbsp;65535.</span></div></li>
+<li><div class="src-line"><a name="a78"></a><span class="src-doc">&nbsp;&nbsp;&nbsp;*</span></div></li>
+<li><div class="src-line"><a name="a79"></a><span class="src-doc">&nbsp;&nbsp;&nbsp;*&nbsp;Modelled&nbsp;with&nbsp;the&nbsp;</span><span class="src-doc-inlinetag">{@link&nbsp;PelEntryShort}</span><span class="src-doc">&nbsp;class.</span></div></li>
+<li><div class="src-line"><a name="a80"></a><span class="src-doc">&nbsp;&nbsp;&nbsp;*/</span></div></li>
+<li><div class="src-line"><a name="a81"></a>&nbsp;&nbsp;<span class="src-key">const&nbsp;</span><span class="src-id">SHORT&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>=&nbsp;&nbsp;<span class="src-num">3</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line"><a name="a82"></a>&nbsp;</div></li>
+<li><div class="src-line"><a name="a83"></a>&nbsp;&nbsp;<span class="src-doc">/**</span></div></li>
+<li><div class="src-line"><a name="a84"></a><span class="src-doc">&nbsp;&nbsp;&nbsp;*&nbsp;Unsigned&nbsp;long.</span></div></li>
+<li><div class="src-line"><a name="a85"></a><span class="src-doc">&nbsp;&nbsp;&nbsp;*</span></div></li>
+<li><div class="src-line"><a name="a86"></a><span class="src-doc">&nbsp;&nbsp;&nbsp;*&nbsp;Each&nbsp;component&nbsp;will&nbsp;be&nbsp;an&nbsp;unsigned&nbsp;32-bit&nbsp;integer&nbsp;with&nbsp;a&nbsp;value</span></div></li>
+<li><div class="src-line"><a name="a87"></a><span class="src-doc">&nbsp;&nbsp;&nbsp;*&nbsp;between&nbsp;0&nbsp;and&nbsp;4294967295.</span></div></li>
+<li><div class="src-line"><a name="a88"></a><span class="src-doc">&nbsp;&nbsp;&nbsp;*</span></div></li>
+<li><div class="src-line"><a name="a89"></a><span class="src-doc">&nbsp;&nbsp;&nbsp;*&nbsp;Modelled&nbsp;with&nbsp;the&nbsp;</span><span class="src-doc-inlinetag">{@link&nbsp;PelEntryLong}</span><span class="src-doc">&nbsp;class.</span></div></li>
+<li><div class="src-line"><a name="a90"></a><span class="src-doc">&nbsp;&nbsp;&nbsp;*/</span></div></li>
+<li><div class="src-line"><a name="a91"></a>&nbsp;&nbsp;<span class="src-key">const&nbsp;</span><span class="src-id">LONG&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>=&nbsp;&nbsp;<span class="src-num">4</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line"><a name="a92"></a>&nbsp;</div></li>
+<li><div class="src-line"><a name="a93"></a>&nbsp;&nbsp;<span class="src-doc">/**</span></div></li>
+<li><div class="src-line"><a name="a94"></a><span class="src-doc">&nbsp;&nbsp;&nbsp;*&nbsp;Unsigned&nbsp;rational&nbsp;number.</span></div></li>
+<li><div class="src-line"><a name="a95"></a><span class="src-doc">&nbsp;&nbsp;&nbsp;*</span></div></li>
+<li><div class="src-line"><a name="a96"></a><span class="src-doc">&nbsp;&nbsp;&nbsp;*&nbsp;Each&nbsp;component&nbsp;will&nbsp;consist&nbsp;of&nbsp;two&nbsp;unsigned&nbsp;32-bit&nbsp;integers</span></div></li>
+<li><div class="src-line"><a name="a97"></a><span class="src-doc">&nbsp;&nbsp;&nbsp;*&nbsp;denoting&nbsp;the&nbsp;enumerator&nbsp;and&nbsp;denominator.&nbsp;&nbsp;Each&nbsp;integer&nbsp;will&nbsp;have</span></div></li>
+<li><div class="src-line"><a name="a98"></a><span class="src-doc">&nbsp;&nbsp;&nbsp;*&nbsp;a&nbsp;value&nbsp;between&nbsp;0&nbsp;and&nbsp;4294967295.</span></div></li>
+<li><div class="src-line"><a name="a99"></a><span class="src-doc">&nbsp;&nbsp;&nbsp;*</span></div></li>
+<li><div class="src-line"><a name="a100"></a><span class="src-doc">&nbsp;&nbsp;&nbsp;*&nbsp;Modelled&nbsp;with&nbsp;the&nbsp;</span><span class="src-doc-inlinetag">{@link&nbsp;PelEntryRational}</span><span class="src-doc">&nbsp;class.</span></div></li>
+<li><div class="src-line"><a name="a101"></a><span class="src-doc">&nbsp;&nbsp;&nbsp;*/</span></div></li>
+<li><div class="src-line"><a name="a102"></a>&nbsp;&nbsp;<span class="src-key">const&nbsp;</span><span class="src-id">RATIONAL&nbsp;&nbsp;&nbsp;</span>=&nbsp;&nbsp;<span class="src-num">5</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line"><a name="a103"></a>&nbsp;</div></li>
+<li><div class="src-line"><a name="a104"></a>&nbsp;&nbsp;<span class="src-doc">/**</span></div></li>
+<li><div class="src-line"><a name="a105"></a><span class="src-doc">&nbsp;&nbsp;&nbsp;*&nbsp;Signed&nbsp;byte.</span></div></li>
+<li><div class="src-line"><a name="a106"></a><span class="src-doc">&nbsp;&nbsp;&nbsp;*</span></div></li>
+<li><div class="src-line"><a name="a107"></a><span class="src-doc">&nbsp;&nbsp;&nbsp;*&nbsp;Each&nbsp;component&nbsp;will&nbsp;be&nbsp;a&nbsp;signed&nbsp;8-bit&nbsp;integer&nbsp;with&nbsp;a&nbsp;value</span></div></li>
+<li><div class="src-line"><a name="a108"></a><span class="src-doc">&nbsp;&nbsp;&nbsp;*&nbsp;between&nbsp;-128&nbsp;and&nbsp;127.</span></div></li>
+<li><div class="src-line"><a name="a109"></a><span class="src-doc">&nbsp;&nbsp;&nbsp;*</span></div></li>
+<li><div class="src-line"><a name="a110"></a><span class="src-doc">&nbsp;&nbsp;&nbsp;*&nbsp;Modelled&nbsp;with&nbsp;the&nbsp;</span><span class="src-doc-inlinetag">{@link&nbsp;PelEntrySByte}</span><span class="src-doc">&nbsp;class.</span></div></li>
+<li><div class="src-line"><a name="a111"></a><span class="src-doc">&nbsp;&nbsp;&nbsp;*/</span></div></li>
+<li><div class="src-line"><a name="a112"></a>&nbsp;&nbsp;<span class="src-key">const&nbsp;</span><span class="src-id">SBYTE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>=&nbsp;&nbsp;<span class="src-num">6</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line"><a name="a113"></a>&nbsp;</div></li>
+<li><div class="src-line"><a name="a114"></a>&nbsp;&nbsp;<span class="src-doc">/**</span></div></li>
+<li><div class="src-line"><a name="a115"></a><span class="src-doc">&nbsp;&nbsp;&nbsp;*&nbsp;Undefined&nbsp;byte.</span></div></li>
+<li><div class="src-line"><a name="a116"></a><span class="src-doc">&nbsp;&nbsp;&nbsp;*</span></div></li>
+<li><div class="src-line"><a name="a117"></a><span class="src-doc">&nbsp;&nbsp;&nbsp;*&nbsp;Each&nbsp;component&nbsp;will&nbsp;be&nbsp;a&nbsp;byte&nbsp;with&nbsp;no&nbsp;associated&nbsp;interpretation.</span></div></li>
+<li><div class="src-line"><a name="a118"></a><span class="src-doc">&nbsp;&nbsp;&nbsp;*</span></div></li>
+<li><div class="src-line"><a name="a119"></a><span class="src-doc">&nbsp;&nbsp;&nbsp;*&nbsp;Modelled&nbsp;with&nbsp;the&nbsp;</span><span class="src-doc-inlinetag">{@link&nbsp;PelEntryUndefined}</span><span class="src-doc">&nbsp;class.</span></div></li>
+<li><div class="src-line"><a name="a120"></a><span class="src-doc">&nbsp;&nbsp;&nbsp;*/</span></div></li>
+<li><div class="src-line"><a name="a121"></a>&nbsp;&nbsp;<span class="src-key">const&nbsp;</span><span class="src-id">UNDEFINED&nbsp;&nbsp;</span>=&nbsp;&nbsp;<span class="src-num">7</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line"><a name="a122"></a>&nbsp;</div></li>
+<li><div class="src-line"><a name="a123"></a>&nbsp;&nbsp;<span class="src-doc">/**</span></div></li>
+<li><div class="src-line"><a name="a124"></a><span class="src-doc">&nbsp;&nbsp;&nbsp;*&nbsp;Signed&nbsp;short.</span></div></li>
+<li><div class="src-line"><a name="a125"></a><span class="src-doc">&nbsp;&nbsp;&nbsp;*</span></div></li>
+<li><div class="src-line"><a name="a126"></a><span class="src-doc">&nbsp;&nbsp;&nbsp;*&nbsp;Each&nbsp;component&nbsp;will&nbsp;be&nbsp;a&nbsp;signed&nbsp;16-bit&nbsp;integer&nbsp;with&nbsp;a&nbsp;value</span></div></li>
+<li><div class="src-line"><a name="a127"></a><span class="src-doc">&nbsp;&nbsp;&nbsp;*&nbsp;between&nbsp;-32768&nbsp;and&nbsp;32767.</span></div></li>
+<li><div class="src-line"><a name="a128"></a><span class="src-doc">&nbsp;&nbsp;&nbsp;*</span></div></li>
+<li><div class="src-line"><a name="a129"></a><span class="src-doc">&nbsp;&nbsp;&nbsp;*&nbsp;Modelled&nbsp;with&nbsp;the&nbsp;</span><span class="src-doc-inlinetag">{@link&nbsp;PelEntrySShort}</span><span class="src-doc">&nbsp;class.</span></div></li>
+<li><div class="src-line"><a name="a130"></a><span class="src-doc">&nbsp;&nbsp;&nbsp;*/</span></div></li>
+<li><div class="src-line"><a name="a131"></a>&nbsp;&nbsp;<span class="src-key">const&nbsp;</span><span class="src-id">SSHORT&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>=&nbsp;&nbsp;<span class="src-num">8</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line"><a name="a132"></a>&nbsp;</div></li>
+<li><div class="src-line"><a name="a133"></a>&nbsp;&nbsp;<span class="src-doc">/**</span></div></li>
+<li><div class="src-line"><a name="a134"></a><span class="src-doc">&nbsp;&nbsp;&nbsp;*&nbsp;Signed&nbsp;long.</span></div></li>
+<li><div class="src-line"><a name="a135"></a><span class="src-doc">&nbsp;&nbsp;&nbsp;*</span></div></li>
+<li><div class="src-line"><a name="a136"></a><span class="src-doc">&nbsp;&nbsp;&nbsp;*&nbsp;Each&nbsp;component&nbsp;will&nbsp;be&nbsp;a&nbsp;signed&nbsp;32-bit&nbsp;integer&nbsp;with&nbsp;a&nbsp;value</span></div></li>
+<li><div class="src-line"><a name="a137"></a><span class="src-doc">&nbsp;&nbsp;&nbsp;*&nbsp;between&nbsp;-2147483648&nbsp;and&nbsp;2147483647.</span></div></li>
+<li><div class="src-line"><a name="a138"></a><span class="src-doc">&nbsp;&nbsp;&nbsp;*</span></div></li>
+<li><div class="src-line"><a name="a139"></a><span class="src-doc">&nbsp;&nbsp;&nbsp;*&nbsp;Modelled&nbsp;with&nbsp;the&nbsp;</span><span class="src-doc-inlinetag">{@link&nbsp;PelEntrySLong}</span><span class="src-doc">&nbsp;class.</span></div></li>
+<li><div class="src-line"><a name="a140"></a><span class="src-doc">&nbsp;&nbsp;&nbsp;*/</span></div></li>
+<li><div class="src-line"><a name="a141"></a>&nbsp;&nbsp;<span class="src-key">const&nbsp;</span><span class="src-id">SLONG&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>=&nbsp;&nbsp;<span class="src-num">9</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line"><a name="a142"></a>&nbsp;</div></li>
+<li><div class="src-line"><a name="a143"></a>&nbsp;&nbsp;<span class="src-doc">/**</span></div></li>
+<li><div class="src-line"><a name="a144"></a><span class="src-doc">&nbsp;&nbsp;&nbsp;*&nbsp;Signed&nbsp;rational&nbsp;number.</span></div></li>
+<li><div class="src-line"><a name="a145"></a><span class="src-doc">&nbsp;&nbsp;&nbsp;*</span></div></li>
+<li><div class="src-line"><a name="a146"></a><span class="src-doc">&nbsp;&nbsp;&nbsp;*&nbsp;Each&nbsp;component&nbsp;will&nbsp;consist&nbsp;of&nbsp;two&nbsp;signed&nbsp;32-bit&nbsp;integers</span></div></li>
+<li><div class="src-line"><a name="a147"></a><span class="src-doc">&nbsp;&nbsp;&nbsp;*&nbsp;denoting&nbsp;the&nbsp;enumerator&nbsp;and&nbsp;denominator.&nbsp;&nbsp;Each&nbsp;integer&nbsp;will&nbsp;have</span></div></li>
+<li><div class="src-line"><a name="a148"></a><span class="src-doc">&nbsp;&nbsp;&nbsp;*&nbsp;a&nbsp;value&nbsp;between&nbsp;-2147483648&nbsp;and&nbsp;2147483647.</span></div></li>
+<li><div class="src-line"><a name="a149"></a><span class="src-doc">&nbsp;&nbsp;&nbsp;*</span></div></li>
+<li><div class="src-line"><a name="a150"></a><span class="src-doc">&nbsp;&nbsp;&nbsp;*&nbsp;Modelled&nbsp;with&nbsp;the&nbsp;</span><span class="src-doc-inlinetag">{@link&nbsp;PelEntrySRational}</span><span class="src-doc">&nbsp;class.</span></div></li>
+<li><div class="src-line"><a name="a151"></a><span class="src-doc">&nbsp;&nbsp;&nbsp;*/</span></div></li>
+<li><div class="src-line"><a name="a152"></a>&nbsp;&nbsp;<span class="src-key">const&nbsp;</span><span class="src-id">SRATIONAL&nbsp;&nbsp;</span>=&nbsp;<span class="src-num">10</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line"><a name="a153"></a>&nbsp;</div></li>
+<li><div class="src-line"><a name="a154"></a>&nbsp;&nbsp;<span class="src-doc">/**</span></div></li>
+<li><div class="src-line"><a name="a155"></a><span class="src-doc">&nbsp;&nbsp;&nbsp;*&nbsp;Floating&nbsp;point&nbsp;number.</span></div></li>
+<li><div class="src-line"><a name="a156"></a><span class="src-doc">&nbsp;&nbsp;&nbsp;*</span></div></li>
+<li><div class="src-line"><a name="a157"></a><span class="src-doc">&nbsp;&nbsp;&nbsp;*&nbsp;Entries&nbsp;with&nbsp;this&nbsp;format&nbsp;are&nbsp;not&nbsp;currently&nbsp;implemented.</span></div></li>
+<li><div class="src-line"><a name="a158"></a><span class="src-doc">&nbsp;&nbsp;&nbsp;*/</span></div></li>
+<li><div class="src-line"><a name="a159"></a>&nbsp;&nbsp;<span class="src-key">const&nbsp;</span><span class="src-id">FLOAT&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>=&nbsp;<span class="src-num">11</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line"><a name="a160"></a>&nbsp;</div></li>
+<li><div class="src-line"><a name="a161"></a>&nbsp;&nbsp;<span class="src-doc">/**</span></div></li>
+<li><div class="src-line"><a name="a162"></a><span class="src-doc">&nbsp;&nbsp;&nbsp;*&nbsp;Double&nbsp;precision&nbsp;floating&nbsp;point&nbsp;number.</span></div></li>
+<li><div class="src-line"><a name="a163"></a><span class="src-doc">&nbsp;&nbsp;&nbsp;*</span></div></li>
+<li><div class="src-line"><a name="a164"></a><span class="src-doc">&nbsp;&nbsp;&nbsp;*&nbsp;Entries&nbsp;with&nbsp;this&nbsp;format&nbsp;are&nbsp;not&nbsp;currently&nbsp;implemented.</span></div></li>
+<li><div class="src-line"><a name="a165"></a><span class="src-doc">&nbsp;&nbsp;&nbsp;*/</span></div></li>
+<li><div class="src-line"><a name="a166"></a>&nbsp;&nbsp;<span class="src-key">const&nbsp;</span><span class="src-id">DOUBLE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>=&nbsp;<span class="src-num">12</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line"><a name="a167"></a>&nbsp;</div></li>
+<li><div class="src-line"><a name="a168"></a>&nbsp;</div></li>
+<li><div class="src-line"><a name="a169"></a>&nbsp;&nbsp;<span class="src-doc">/**</span></div></li>
+<li><div class="src-line"><a name="a170"></a><span class="src-doc">&nbsp;&nbsp;&nbsp;*&nbsp;Returns&nbsp;the&nbsp;name&nbsp;of&nbsp;a&nbsp;format.</span></div></li>
+<li><div class="src-line"><a name="a171"></a><span class="src-doc">&nbsp;&nbsp;&nbsp;*</span></div></li>
+<li><div class="src-line"><a name="a172"></a><span class="src-doc">&nbsp;&nbsp;&nbsp;*&nbsp;</span><span class="src-doc-coretag">@param&nbsp;</span><span class="src-doc-type">PelFormat&nbsp;</span><span class="src-doc">the&nbsp;format.</span></div></li>
+<li><div class="src-line"><a name="a173"></a><span class="src-doc">&nbsp;&nbsp;&nbsp;*</span></div></li>
+<li><div class="src-line"><a name="a174"></a><span class="src-doc">&nbsp;&nbsp;&nbsp;*&nbsp;</span><span class="src-doc-coretag">@return&nbsp;</span><span class="src-doc-type">string&nbsp;</span><span class="src-doc">the&nbsp;name&nbsp;of&nbsp;the&nbsp;format,&nbsp;e.g.,&nbsp;'Ascii'&nbsp;for&nbsp;the</span></div></li>
+<li><div class="src-line"><a name="a175"></a><span class="src-doc">&nbsp;&nbsp;&nbsp;*&nbsp;&nbsp;</span><span class="src-doc-inlinetag">{@link&nbsp;ASCII}</span><span class="src-doc">&nbsp;format&nbsp;etc.</span></div></li>
+<li><div class="src-line"><a name="a176"></a><span class="src-doc">&nbsp;&nbsp;&nbsp;*/</span></div></li>
+<li><div class="src-line"><a name="a177"></a>&nbsp;&nbsp;<span class="src-key">static&nbsp;</span><span class="src-key">function&nbsp;</span><a href="../PEL/PelFormat.html#methodgetName">getName</a><span class="src-sym">(</span><span class="src-var">$type</span><span class="src-sym">)&nbsp;</span><span class="src-sym">{</span></div></li>
+<li><div class="src-line"><a name="a178"></a>&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-key">switch&nbsp;</span><span class="src-sym">(</span><span class="src-var">$type</span><span class="src-sym">)&nbsp;</span><span class="src-sym">{</span></div></li>
+<li><div class="src-line"><a name="a179"></a>&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-key">case&nbsp;</span><span class="src-id">self</span><span class="src-sym">::</span><span class="src-id">ASCII</span>:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-key">return&nbsp;</span><span class="src-str">'Ascii'</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line"><a name="a180"></a>&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-key">case&nbsp;</span><span class="src-id">self</span><span class="src-sym">::</span><span class="src-id">BYTE</span>:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-key">return&nbsp;</span><span class="src-str">'Byte'</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line"><a name="a181"></a>&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-key">case&nbsp;</span><span class="src-id">self</span><span class="src-sym">::</span><span class="src-id">SHORT</span>:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-key">return&nbsp;</span><span class="src-str">'Short'</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line"><a name="a182"></a>&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-key">case&nbsp;</span><span class="src-id">self</span><span class="src-sym">::</span><span class="src-id">LONG</span>:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-key">return&nbsp;</span><span class="src-str">'Long'</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line"><a name="a183"></a>&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-key">case&nbsp;</span><span class="src-id">self</span><span class="src-sym">::</span><span class="src-id">RATIONAL</span>:&nbsp;&nbsp;<span class="src-key">return&nbsp;</span><span class="src-str">'Rational'</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line"><a name="a184"></a>&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-key">case&nbsp;</span><span class="src-id">self</span><span class="src-sym">::</span><span class="src-id">SBYTE</span>:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-key">return&nbsp;</span><span class="src-str">'SByte'</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line"><a name="a185"></a>&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-key">case&nbsp;</span><span class="src-id">self</span><span class="src-sym">::</span><span class="src-id">SSHORT</span>:&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-key">return&nbsp;</span><span class="src-str">'SShort'</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line"><a name="a186"></a>&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-key">case&nbsp;</span><span class="src-id">self</span><span class="src-sym">::</span><span class="src-id">SLONG</span>:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-key">return&nbsp;</span><span class="src-str">'SLong'</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line"><a name="a187"></a>&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-key">case&nbsp;</span><span class="src-id">self</span><span class="src-sym">::</span><span class="src-id">SRATIONAL</span>:&nbsp;<span class="src-key">return&nbsp;</span><span class="src-str">'SRational'</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line"><a name="a188"></a>&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-key">case&nbsp;</span><span class="src-id">self</span><span class="src-sym">::</span><span class="src-id">FLOAT</span>:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-key">return&nbsp;</span><span class="src-str">'Float'</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line"><a name="a189"></a>&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-key">case&nbsp;</span><span class="src-id">self</span><span class="src-sym">::</span><span class="src-id">DOUBLE</span>:&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-key">return&nbsp;</span><span class="src-str">'Double'</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line"><a name="a190"></a>&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-key">case&nbsp;</span><span class="src-id">self</span><span class="src-sym">::</span><span class="src-id">UNDEFINED</span>:&nbsp;<span class="src-key">return&nbsp;</span><span class="src-str">'Undefined'</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line"><a name="a191"></a>&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-key">default</span>:</div></li>
+<li><div class="src-line"><a name="a192"></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-key">return&nbsp;</span><span class="src-id"><a href="../PEL/Pel.html">Pel</a></span><span class="src-sym">::</span><a href="../PEL/Pel.html#methodfmt">fmt</a><span class="src-sym">(</span><span class="src-str">'Unknown&nbsp;format:&nbsp;0x%X'</span><span class="src-sym">,&nbsp;</span><span class="src-var">$type</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line"><a name="a193"></a>&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-sym">}</span></div></li>
+<li><div class="src-line"><a name="a194"></a>&nbsp;&nbsp;<span class="src-sym">}</span></div></li>
+<li><div class="src-line"><a name="a195"></a>&nbsp;</div></li>
+<li><div class="src-line"><a name="a196"></a>&nbsp;</div></li>
+<li><div class="src-line"><a name="a197"></a>&nbsp;&nbsp;<span class="src-doc">/**</span></div></li>
+<li><div class="src-line"><a name="a198"></a><span class="src-doc">&nbsp;&nbsp;&nbsp;*&nbsp;Return&nbsp;the&nbsp;size&nbsp;of&nbsp;components&nbsp;in&nbsp;a&nbsp;given&nbsp;format.</span></div></li>
+<li><div class="src-line"><a name="a199"></a><span class="src-doc">&nbsp;&nbsp;&nbsp;*</span></div></li>
+<li><div class="src-line"><a name="a200"></a><span class="src-doc">&nbsp;&nbsp;&nbsp;*&nbsp;</span><span class="src-doc-coretag">@param&nbsp;</span><span class="src-doc-type">PelFormat&nbsp;</span><span class="src-doc">the&nbsp;format.</span></div></li>
+<li><div class="src-line"><a name="a201"></a><span class="src-doc">&nbsp;&nbsp;&nbsp;*</span></div></li>
+<li><div class="src-line"><a name="a202"></a><span class="src-doc">&nbsp;&nbsp;&nbsp;*&nbsp;</span><span class="src-doc-coretag">@return&nbsp;</span><span class="src-doc-type">the&nbsp;</span><span class="src-doc">size&nbsp;in&nbsp;bytes&nbsp;needed&nbsp;to&nbsp;store&nbsp;one&nbsp;component&nbsp;with&nbsp;the</span></div></li>
+<li><div class="src-line"><a name="a203"></a><span class="src-doc">&nbsp;&nbsp;&nbsp;*&nbsp;&nbsp;given&nbsp;format.</span></div></li>
+<li><div class="src-line"><a name="a204"></a><span class="src-doc">&nbsp;&nbsp;&nbsp;*/</span></div></li>
+<li><div class="src-line"><a name="a205"></a>&nbsp;&nbsp;<span class="src-key">static&nbsp;</span><span class="src-key">function&nbsp;</span><a href="../PEL/PelFormat.html#methodgetSize">getSize</a><span class="src-sym">(</span><span class="src-var">$type</span><span class="src-sym">)&nbsp;</span><span class="src-sym">{</span></div></li>
+<li><div class="src-line"><a name="a206"></a>&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-key">switch&nbsp;</span><span class="src-sym">(</span><span class="src-var">$type</span><span class="src-sym">)&nbsp;</span><span class="src-sym">{</span></div></li>
+<li><div class="src-line"><a name="a207"></a>&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-key">case&nbsp;</span><span class="src-id">self</span><span class="src-sym">::</span><span class="src-id">ASCII</span>:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-key">return&nbsp;</span><span class="src-num">1</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line"><a name="a208"></a>&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-key">case&nbsp;</span><span class="src-id">self</span><span class="src-sym">::</span><span class="src-id">BYTE</span>:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-key">return&nbsp;</span><span class="src-num">1</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line"><a name="a209"></a>&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-key">case&nbsp;</span><span class="src-id">self</span><span class="src-sym">::</span><span class="src-id">SHORT</span>:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-key">return&nbsp;</span><span class="src-num">2</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line"><a name="a210"></a>&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-key">case&nbsp;</span><span class="src-id">self</span><span class="src-sym">::</span><span class="src-id">LONG</span>:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-key">return&nbsp;</span><span class="src-num">4</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line"><a name="a211"></a>&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-key">case&nbsp;</span><span class="src-id">self</span><span class="src-sym">::</span><span class="src-id">RATIONAL</span>:&nbsp;&nbsp;<span class="src-key">return&nbsp;</span><span class="src-num">8</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line"><a name="a212"></a>&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-key">case&nbsp;</span><span class="src-id">self</span><span class="src-sym">::</span><span class="src-id">SBYTE</span>:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-key">return&nbsp;</span><span class="src-num">1</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line"><a name="a213"></a>&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-key">case&nbsp;</span><span class="src-id">self</span><span class="src-sym">::</span><span class="src-id">SSHORT</span>:&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-key">return&nbsp;</span><span class="src-num">2</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line"><a name="a214"></a>&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-key">case&nbsp;</span><span class="src-id">self</span><span class="src-sym">::</span><span class="src-id">SLONG</span>:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-key">return&nbsp;</span><span class="src-num">4</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line"><a name="a215"></a>&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-key">case&nbsp;</span><span class="src-id">self</span><span class="src-sym">::</span><span class="src-id">SRATIONAL</span>:&nbsp;<span class="src-key">return&nbsp;</span><span class="src-num">8</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line"><a name="a216"></a>&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-key">case&nbsp;</span><span class="src-id">self</span><span class="src-sym">::</span><span class="src-id">FLOAT</span>:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-key">return&nbsp;</span><span class="src-num">4</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line"><a name="a217"></a>&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-key">case&nbsp;</span><span class="src-id">self</span><span class="src-sym">::</span><span class="src-id">DOUBLE</span>:&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-key">return&nbsp;</span><span class="src-num">8</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line"><a name="a218"></a>&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-key">case&nbsp;</span><span class="src-id">self</span><span class="src-sym">::</span><span class="src-id">UNDEFINED</span>:&nbsp;<span class="src-key">return&nbsp;</span><span class="src-num">1</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line"><a name="a219"></a>&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-key">default</span>:</div></li>
+<li><div class="src-line"><a name="a220"></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-key">return&nbsp;</span><span class="src-id"><a href="../PEL/Pel.html">Pel</a></span><span class="src-sym">::</span><a href="../PEL/Pel.html#methodfmt">fmt</a><span class="src-sym">(</span><span class="src-str">'Unknown&nbsp;format:&nbsp;0x%X'</span><span class="src-sym">,&nbsp;</span><span class="src-var">$type</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line"><a name="a221"></a>&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-sym">}</span></div></li>
+<li><div class="src-line"><a name="a222"></a>&nbsp;&nbsp;<span class="src-sym">}</span></div></li>
+<li><div class="src-line"><a name="a223"></a>&nbsp;</div></li>
+<li><div class="src-line"><a name="a224"></a><span class="src-sym">}</span></div></li>
+<li><div class="src-line"><a name="a225"></a><span class="src-php">?&gt;</span></div></li>
+</ol></div>
+</div>
+	<p class="notes" id="credit">
+		Documentation generated on Thu, 05 May 2011 07:19:11 +0200 by <a href="http://www.phpdoc.org" target="_blank">phpDocumentor 1.4.3</a>
+	</p>
+	</body>
+</html>

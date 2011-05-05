@@ -1,0 +1,3409 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+  <html xmlns="http://www.w3.org/1999/xhtml">
+		<head>
+			<!-- template designed by Marco Von Ballmoos -->
+			<title>Docs For Class PelTag</title>
+			<link rel="stylesheet" href="../media/stylesheet.css" />
+			<meta http-equiv='Content-Type' content='text/html; charset=iso-8859-1'/>
+		</head>
+		<body>
+			<div class="page-body">			
+<h2 class="class-name">Class PelTag</h2>
+
+<a name="sec-description"></a>
+<div class="info-box">
+	<div class="info-box-title">Description</div>
+	<div class="nav-bar">
+					<span class="disabled">Description</span> |
+															<a href="#sec-method-summary">Methods</a> (<a href="#sec-methods">details</a>)
+						
+											<a href="#sec-const-summary">Constants</a> (<a href="#sec-consts">details</a>)
+						
+			</div>
+	<div class="info-box-body">
+        		<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Class with static methods for Exif tags.</p>
+<p class="description"><p>This class defines the constants that represents the Exif tags  known to PEL.  They are supposed to be used whenever one needs to  specify an Exif tag, and they will be denoted by the pseudo-type  <a href="../PEL/PelTag.html">PelTag</a> throughout the documentation.</p><p>Please note that the constrains on the format and number of  components given here are advisory only.  To follow the Exif  specification one should obey them, but there is nothing that  prevents you from creating an <a href="../PEL/PelTag.html#constIMAGE_LENGTH">IMAGE_LENGTH</a> entry with two  or more components, even though the standard says that there should  be exactly one component.</p><p>All the methods in this class are static and should be called with  the Exif tag on which they should operate.</p></p>
+	<ul class="tags">
+				<li><span class="field">author:</span> Martin Geisler &lt;<a href="mailto:mgeisler@users.sourceforge.net">mgeisler@users.sourceforge.net</a>&gt;</li>
+			</ul>
+		<p class="notes">
+			Located in <a class="field" href="_src---PelTag.php.html">/src/PelTag.php</a> (line <span class="field"><a href="../__filesource/fsource_PEL__srcPelTag.php.html#a65">65</a></span>)
+		</p>
+		
+				
+		<pre></pre>
+	
+			</div>
+</div>
+
+
+	<a name="sec-const-summary"></a>
+	<div class="info-box">
+		<div class="info-box-title">Class Constant Summary</span></div>
+		<div class="nav-bar">
+			<a href="#sec-description">Description</a> |
+						<span class="disabled">Constants</span> (<a href="#sec-consts">details</a>)
+										| 
+									<a href="#sec-method-summary">Methods</a> (<a href="#sec-methods">details</a>)
+							
+					</div>
+		<div class="info-box-body">
+			<div class="const-summary">
+								<div class="const-title">
+					<img src="../media/images/Constant.png" alt=" " />
+					<a href="#APERTURE_VALUE" title="details" class="const-name">APERTURE_VALUE</a> = 					<span class="var-type"> 0x9202</span>
+
+				</div>
+								<div class="const-title">
+					<img src="../media/images/Constant.png" alt=" " />
+					<a href="#ARTIST" title="details" class="const-name">ARTIST</a> = 					<span class="var-type"> 0x013B</span>
+
+				</div>
+								<div class="const-title">
+					<img src="../media/images/Constant.png" alt=" " />
+					<a href="#BATTERY_LEVEL" title="details" class="const-name">BATTERY_LEVEL</a> = 					<span class="var-type"> 0x828F</span>
+
+				</div>
+								<div class="const-title">
+					<img src="../media/images/Constant.png" alt=" " />
+					<a href="#BITS_PER_SAMPLE" title="details" class="const-name">BITS_PER_SAMPLE</a> = 					<span class="var-type"> 0x0102</span>
+
+				</div>
+								<div class="const-title">
+					<img src="../media/images/Constant.png" alt=" " />
+					<a href="#BRIGHTNESS_VALUE" title="details" class="const-name">BRIGHTNESS_VALUE</a> = 					<span class="var-type"> 0x9203</span>
+
+				</div>
+								<div class="const-title">
+					<img src="../media/images/Constant.png" alt=" " />
+					<a href="#CFA_PATTERN" title="details" class="const-name">CFA_PATTERN</a> = 					<span class="var-type"> 0xA302</span>
+
+				</div>
+								<div class="const-title">
+					<img src="../media/images/Constant.png" alt=" " />
+					<a href="#CFA_REPEAT_PATTERN_DIM" title="details" class="const-name">CFA_REPEAT_PATTERN_DIM</a> = 					<span class="var-type"> 0x828D</span>
+
+				</div>
+								<div class="const-title">
+					<img src="../media/images/Constant.png" alt=" " />
+					<a href="#COLOR_SPACE" title="details" class="const-name">COLOR_SPACE</a> = 					<span class="var-type"> 0xA001</span>
+
+				</div>
+								<div class="const-title">
+					<img src="../media/images/Constant.png" alt=" " />
+					<a href="#COMPONENTS_CONFIGURATION" title="details" class="const-name">COMPONENTS_CONFIGURATION</a> = 					<span class="var-type"> 0x9101</span>
+
+				</div>
+								<div class="const-title">
+					<img src="../media/images/Constant.png" alt=" " />
+					<a href="#COMPRESSED_BITS_PER_PIXEL" title="details" class="const-name">COMPRESSED_BITS_PER_PIXEL</a> = 					<span class="var-type"> 0x9102</span>
+
+				</div>
+								<div class="const-title">
+					<img src="../media/images/Constant.png" alt=" " />
+					<a href="#COMPRESSION" title="details" class="const-name">COMPRESSION</a> = 					<span class="var-type"> 0x0103</span>
+
+				</div>
+								<div class="const-title">
+					<img src="../media/images/Constant.png" alt=" " />
+					<a href="#CONTRAST" title="details" class="const-name">CONTRAST</a> = 					<span class="var-type"> 0xA408</span>
+
+				</div>
+								<div class="const-title">
+					<img src="../media/images/Constant.png" alt=" " />
+					<a href="#COPYRIGHT" title="details" class="const-name">COPYRIGHT</a> = 					<span class="var-type"> 0x8298</span>
+
+				</div>
+								<div class="const-title">
+					<img src="../media/images/Constant.png" alt=" " />
+					<a href="#CUSTOM_RENDERED" title="details" class="const-name">CUSTOM_RENDERED</a> = 					<span class="var-type"> 0xA401</span>
+
+				</div>
+								<div class="const-title">
+					<img src="../media/images/Constant.png" alt=" " />
+					<a href="#DATE_TIME" title="details" class="const-name">DATE_TIME</a> = 					<span class="var-type"> 0x0132</span>
+
+				</div>
+								<div class="const-title">
+					<img src="../media/images/Constant.png" alt=" " />
+					<a href="#DATE_TIME_DIGITIZED" title="details" class="const-name">DATE_TIME_DIGITIZED</a> = 					<span class="var-type"> 0x9004</span>
+
+				</div>
+								<div class="const-title">
+					<img src="../media/images/Constant.png" alt=" " />
+					<a href="#DATE_TIME_ORIGINAL" title="details" class="const-name">DATE_TIME_ORIGINAL</a> = 					<span class="var-type"> 0x9003</span>
+
+				</div>
+								<div class="const-title">
+					<img src="../media/images/Constant.png" alt=" " />
+					<a href="#DEVICE_SETTING_DESCRIPTION" title="details" class="const-name">DEVICE_SETTING_DESCRIPTION</a> = 					<span class="var-type"> 0xA40B</span>
+
+				</div>
+								<div class="const-title">
+					<img src="../media/images/Constant.png" alt=" " />
+					<a href="#DIGITAL_ZOOM_RATIO" title="details" class="const-name">DIGITAL_ZOOM_RATIO</a> = 					<span class="var-type"> 0xA404</span>
+
+				</div>
+								<div class="const-title">
+					<img src="../media/images/Constant.png" alt=" " />
+					<a href="#DOCUMENT_NAME" title="details" class="const-name">DOCUMENT_NAME</a> = 					<span class="var-type"> 0x010D</span>
+
+				</div>
+								<div class="const-title">
+					<img src="../media/images/Constant.png" alt=" " />
+					<a href="#EXIF_IFD_POINTER" title="details" class="const-name">EXIF_IFD_POINTER</a> = 					<span class="var-type"> 0x8769</span>
+
+				</div>
+								<div class="const-title">
+					<img src="../media/images/Constant.png" alt=" " />
+					<a href="#EXIF_VERSION" title="details" class="const-name">EXIF_VERSION</a> = 					<span class="var-type"> 0x9000</span>
+
+				</div>
+								<div class="const-title">
+					<img src="../media/images/Constant.png" alt=" " />
+					<a href="#EXPOSURE_BIAS_VALUE" title="details" class="const-name">EXPOSURE_BIAS_VALUE</a> = 					<span class="var-type"> 0x9204</span>
+
+				</div>
+								<div class="const-title">
+					<img src="../media/images/Constant.png" alt=" " />
+					<a href="#EXPOSURE_INDEX" title="details" class="const-name">EXPOSURE_INDEX</a> = 					<span class="var-type"> 0xA215</span>
+
+				</div>
+								<div class="const-title">
+					<img src="../media/images/Constant.png" alt=" " />
+					<a href="#EXPOSURE_MODE" title="details" class="const-name">EXPOSURE_MODE</a> = 					<span class="var-type"> 0xA402</span>
+
+				</div>
+								<div class="const-title">
+					<img src="../media/images/Constant.png" alt=" " />
+					<a href="#EXPOSURE_PROGRAM" title="details" class="const-name">EXPOSURE_PROGRAM</a> = 					<span class="var-type"> 0x8822</span>
+
+				</div>
+								<div class="const-title">
+					<img src="../media/images/Constant.png" alt=" " />
+					<a href="#EXPOSURE_TIME" title="details" class="const-name">EXPOSURE_TIME</a> = 					<span class="var-type"> 0x829A</span>
+
+				</div>
+								<div class="const-title">
+					<img src="../media/images/Constant.png" alt=" " />
+					<a href="#FILE_SOURCE" title="details" class="const-name">FILE_SOURCE</a> = 					<span class="var-type"> 0xA300</span>
+
+				</div>
+								<div class="const-title">
+					<img src="../media/images/Constant.png" alt=" " />
+					<a href="#FILL_ORDER" title="details" class="const-name">FILL_ORDER</a> = 					<span class="var-type"> 0x010A</span>
+
+				</div>
+								<div class="const-title">
+					<img src="../media/images/Constant.png" alt=" " />
+					<a href="#FLASH" title="details" class="const-name">FLASH</a> = 					<span class="var-type"> 0x9209</span>
+
+				</div>
+								<div class="const-title">
+					<img src="../media/images/Constant.png" alt=" " />
+					<a href="#FLASH_ENERGY" title="details" class="const-name">FLASH_ENERGY</a> = 					<span class="var-type"> 0xA20B</span>
+
+				</div>
+								<div class="const-title">
+					<img src="../media/images/Constant.png" alt=" " />
+					<a href="#FLASH_PIX_VERSION" title="details" class="const-name">FLASH_PIX_VERSION</a> = 					<span class="var-type"> 0xA000</span>
+
+				</div>
+								<div class="const-title">
+					<img src="../media/images/Constant.png" alt=" " />
+					<a href="#FNUMBER" title="details" class="const-name">FNUMBER</a> = 					<span class="var-type"> 0x829D</span>
+
+				</div>
+								<div class="const-title">
+					<img src="../media/images/Constant.png" alt=" " />
+					<a href="#FOCAL_LENGTH" title="details" class="const-name">FOCAL_LENGTH</a> = 					<span class="var-type"> 0x920A</span>
+
+				</div>
+								<div class="const-title">
+					<img src="../media/images/Constant.png" alt=" " />
+					<a href="#FOCAL_LENGTH_IN_35MM_FILM" title="details" class="const-name">FOCAL_LENGTH_IN_35MM_FILM</a> = 					<span class="var-type"> 0xA405</span>
+
+				</div>
+								<div class="const-title">
+					<img src="../media/images/Constant.png" alt=" " />
+					<a href="#FOCAL_PLANE_RESOLUTION_UNIT" title="details" class="const-name">FOCAL_PLANE_RESOLUTION_UNIT</a> = 					<span class="var-type"> 0xA210</span>
+
+				</div>
+								<div class="const-title">
+					<img src="../media/images/Constant.png" alt=" " />
+					<a href="#FOCAL_PLANE_X_RESOLUTION" title="details" class="const-name">FOCAL_PLANE_X_RESOLUTION</a> = 					<span class="var-type"> 0xA20E</span>
+
+				</div>
+								<div class="const-title">
+					<img src="../media/images/Constant.png" alt=" " />
+					<a href="#FOCAL_PLANE_Y_RESOLUTION" title="details" class="const-name">FOCAL_PLANE_Y_RESOLUTION</a> = 					<span class="var-type"> 0xA20F</span>
+
+				</div>
+								<div class="const-title">
+					<img src="../media/images/Constant.png" alt=" " />
+					<a href="#GAIN_CONTROL" title="details" class="const-name">GAIN_CONTROL</a> = 					<span class="var-type"> 0xA407</span>
+
+				</div>
+								<div class="const-title">
+					<img src="../media/images/Constant.png" alt=" " />
+					<a href="#GAMMA" title="details" class="const-name">GAMMA</a> = 					<span class="var-type"> 0xA500</span>
+
+				</div>
+								<div class="const-title">
+					<img src="../media/images/Constant.png" alt=" " />
+					<a href="#GPS_ALTITUDE" title="details" class="const-name">GPS_ALTITUDE</a> = 					<span class="var-type"> 0x0006</span>
+
+				</div>
+								<div class="const-title">
+					<img src="../media/images/Constant.png" alt=" " />
+					<a href="#GPS_ALTITUDE_REF" title="details" class="const-name">GPS_ALTITUDE_REF</a> = 					<span class="var-type"> 0x0005</span>
+
+				</div>
+								<div class="const-title">
+					<img src="../media/images/Constant.png" alt=" " />
+					<a href="#GPS_AREA_INFORMATION" title="details" class="const-name">GPS_AREA_INFORMATION</a> = 					<span class="var-type"> 0x001C</span>
+
+				</div>
+								<div class="const-title">
+					<img src="../media/images/Constant.png" alt=" " />
+					<a href="#GPS_DATE_STAMP" title="details" class="const-name">GPS_DATE_STAMP</a> = 					<span class="var-type"> 0x001D</span>
+
+				</div>
+								<div class="const-title">
+					<img src="../media/images/Constant.png" alt=" " />
+					<a href="#GPS_DEST_BEARING" title="details" class="const-name">GPS_DEST_BEARING</a> = 					<span class="var-type"> 0x0018</span>
+
+				</div>
+								<div class="const-title">
+					<img src="../media/images/Constant.png" alt=" " />
+					<a href="#GPS_DEST_BEARING_REF" title="details" class="const-name">GPS_DEST_BEARING_REF</a> = 					<span class="var-type"> 0x0017</span>
+
+				</div>
+								<div class="const-title">
+					<img src="../media/images/Constant.png" alt=" " />
+					<a href="#GPS_DEST_DISTANCE" title="details" class="const-name">GPS_DEST_DISTANCE</a> = 					<span class="var-type"> 0x001A</span>
+
+				</div>
+								<div class="const-title">
+					<img src="../media/images/Constant.png" alt=" " />
+					<a href="#GPS_DEST_DISTANCE_REF" title="details" class="const-name">GPS_DEST_DISTANCE_REF</a> = 					<span class="var-type"> 0x0019</span>
+
+				</div>
+								<div class="const-title">
+					<img src="../media/images/Constant.png" alt=" " />
+					<a href="#GPS_DEST_LATITUDE" title="details" class="const-name">GPS_DEST_LATITUDE</a> = 					<span class="var-type"> 0x0014</span>
+
+				</div>
+								<div class="const-title">
+					<img src="../media/images/Constant.png" alt=" " />
+					<a href="#GPS_DEST_LATITUDE_REF" title="details" class="const-name">GPS_DEST_LATITUDE_REF</a> = 					<span class="var-type"> 0x0013</span>
+
+				</div>
+								<div class="const-title">
+					<img src="../media/images/Constant.png" alt=" " />
+					<a href="#GPS_DEST_LONGITUDE" title="details" class="const-name">GPS_DEST_LONGITUDE</a> = 					<span class="var-type"> 0x0016</span>
+
+				</div>
+								<div class="const-title">
+					<img src="../media/images/Constant.png" alt=" " />
+					<a href="#GPS_DEST_LONGITUDE_REF" title="details" class="const-name">GPS_DEST_LONGITUDE_REF</a> = 					<span class="var-type"> 0x0015</span>
+
+				</div>
+								<div class="const-title">
+					<img src="../media/images/Constant.png" alt=" " />
+					<a href="#GPS_DIFFERENTIAL" title="details" class="const-name">GPS_DIFFERENTIAL</a> = 					<span class="var-type"> 0x001E</span>
+
+				</div>
+								<div class="const-title">
+					<img src="../media/images/Constant.png" alt=" " />
+					<a href="#GPS_DOP" title="details" class="const-name">GPS_DOP</a> = 					<span class="var-type"> 0x000B</span>
+
+				</div>
+								<div class="const-title">
+					<img src="../media/images/Constant.png" alt=" " />
+					<a href="#GPS_IMG_DIRECTION" title="details" class="const-name">GPS_IMG_DIRECTION</a> = 					<span class="var-type"> 0x0011</span>
+
+				</div>
+								<div class="const-title">
+					<img src="../media/images/Constant.png" alt=" " />
+					<a href="#GPS_IMG_DIRECTION_REF" title="details" class="const-name">GPS_IMG_DIRECTION_REF</a> = 					<span class="var-type"> 0x0010</span>
+
+				</div>
+								<div class="const-title">
+					<img src="../media/images/Constant.png" alt=" " />
+					<a href="#GPS_INFO_IFD_POINTER" title="details" class="const-name">GPS_INFO_IFD_POINTER</a> = 					<span class="var-type"> 0x8825</span>
+
+				</div>
+								<div class="const-title">
+					<img src="../media/images/Constant.png" alt=" " />
+					<a href="#GPS_LATITUDE" title="details" class="const-name">GPS_LATITUDE</a> = 					<span class="var-type"> 0x0002</span>
+
+				</div>
+								<div class="const-title">
+					<img src="../media/images/Constant.png" alt=" " />
+					<a href="#GPS_LATITUDE_REF" title="details" class="const-name">GPS_LATITUDE_REF</a> = 					<span class="var-type"> 0x0001</span>
+
+				</div>
+								<div class="const-title">
+					<img src="../media/images/Constant.png" alt=" " />
+					<a href="#GPS_LONGITUDE" title="details" class="const-name">GPS_LONGITUDE</a> = 					<span class="var-type"> 0x0004</span>
+
+				</div>
+								<div class="const-title">
+					<img src="../media/images/Constant.png" alt=" " />
+					<a href="#GPS_LONGITUDE_REF" title="details" class="const-name">GPS_LONGITUDE_REF</a> = 					<span class="var-type"> 0x0003</span>
+
+				</div>
+								<div class="const-title">
+					<img src="../media/images/Constant.png" alt=" " />
+					<a href="#GPS_MAP_DATUM" title="details" class="const-name">GPS_MAP_DATUM</a> = 					<span class="var-type"> 0x0012</span>
+
+				</div>
+								<div class="const-title">
+					<img src="../media/images/Constant.png" alt=" " />
+					<a href="#GPS_MEASURE_MODE" title="details" class="const-name">GPS_MEASURE_MODE</a> = 					<span class="var-type"> 0x000A</span>
+
+				</div>
+								<div class="const-title">
+					<img src="../media/images/Constant.png" alt=" " />
+					<a href="#GPS_PROCESSING_METHOD" title="details" class="const-name">GPS_PROCESSING_METHOD</a> = 					<span class="var-type"> 0x001B</span>
+
+				</div>
+								<div class="const-title">
+					<img src="../media/images/Constant.png" alt=" " />
+					<a href="#GPS_SATELLITES" title="details" class="const-name">GPS_SATELLITES</a> = 					<span class="var-type"> 0x0008</span>
+
+				</div>
+								<div class="const-title">
+					<img src="../media/images/Constant.png" alt=" " />
+					<a href="#GPS_SPEED" title="details" class="const-name">GPS_SPEED</a> = 					<span class="var-type"> 0x000D</span>
+
+				</div>
+								<div class="const-title">
+					<img src="../media/images/Constant.png" alt=" " />
+					<a href="#GPS_SPEED_REF" title="details" class="const-name">GPS_SPEED_REF</a> = 					<span class="var-type"> 0x000C</span>
+
+				</div>
+								<div class="const-title">
+					<img src="../media/images/Constant.png" alt=" " />
+					<a href="#GPS_STATUS" title="details" class="const-name">GPS_STATUS</a> = 					<span class="var-type"> 0x0009</span>
+
+				</div>
+								<div class="const-title">
+					<img src="../media/images/Constant.png" alt=" " />
+					<a href="#GPS_TIME_STAMP" title="details" class="const-name">GPS_TIME_STAMP</a> = 					<span class="var-type"> 0x0007</span>
+
+				</div>
+								<div class="const-title">
+					<img src="../media/images/Constant.png" alt=" " />
+					<a href="#GPS_TRACK" title="details" class="const-name">GPS_TRACK</a> = 					<span class="var-type"> 0x000F</span>
+
+				</div>
+								<div class="const-title">
+					<img src="../media/images/Constant.png" alt=" " />
+					<a href="#GPS_TRACK_REF" title="details" class="const-name">GPS_TRACK_REF</a> = 					<span class="var-type"> 0x000E</span>
+
+				</div>
+								<div class="const-title">
+					<img src="../media/images/Constant.png" alt=" " />
+					<a href="#GPS_VERSION_ID" title="details" class="const-name">GPS_VERSION_ID</a> = 					<span class="var-type"> 0x0000</span>
+
+				</div>
+								<div class="const-title">
+					<img src="../media/images/Constant.png" alt=" " />
+					<a href="#IMAGE_DESCRIPTION" title="details" class="const-name">IMAGE_DESCRIPTION</a> = 					<span class="var-type"> 0x010E</span>
+
+				</div>
+								<div class="const-title">
+					<img src="../media/images/Constant.png" alt=" " />
+					<a href="#IMAGE_LENGTH" title="details" class="const-name">IMAGE_LENGTH</a> = 					<span class="var-type"> 0x0101</span>
+
+				</div>
+								<div class="const-title">
+					<img src="../media/images/Constant.png" alt=" " />
+					<a href="#IMAGE_UNIQUE_ID" title="details" class="const-name">IMAGE_UNIQUE_ID</a> = 					<span class="var-type"> 0xA420</span>
+
+				</div>
+								<div class="const-title">
+					<img src="../media/images/Constant.png" alt=" " />
+					<a href="#IMAGE_WIDTH" title="details" class="const-name">IMAGE_WIDTH</a> = 					<span class="var-type"> 0x0100</span>
+
+				</div>
+								<div class="const-title">
+					<img src="../media/images/Constant.png" alt=" " />
+					<a href="#INTEROPERABILITY_IFD_POINTER" title="details" class="const-name">INTEROPERABILITY_IFD_POINTER</a> = 					<span class="var-type"> 0xA005</span>
+
+				</div>
+								<div class="const-title">
+					<img src="../media/images/Constant.png" alt=" " />
+					<a href="#INTEROPERABILITY_INDEX" title="details" class="const-name">INTEROPERABILITY_INDEX</a> = 					<span class="var-type"> 0x0001</span>
+
+				</div>
+								<div class="const-title">
+					<img src="../media/images/Constant.png" alt=" " />
+					<a href="#INTEROPERABILITY_VERSION" title="details" class="const-name">INTEROPERABILITY_VERSION</a> = 					<span class="var-type"> 0x0002</span>
+
+				</div>
+								<div class="const-title">
+					<img src="../media/images/Constant.png" alt=" " />
+					<a href="#INTER_COLOR_PROFILE" title="details" class="const-name">INTER_COLOR_PROFILE</a> = 					<span class="var-type"> 0x8773</span>
+
+				</div>
+								<div class="const-title">
+					<img src="../media/images/Constant.png" alt=" " />
+					<a href="#IPTC_NAA" title="details" class="const-name">IPTC_NAA</a> = 					<span class="var-type"> 0x83BB</span>
+
+				</div>
+								<div class="const-title">
+					<img src="../media/images/Constant.png" alt=" " />
+					<a href="#ISO_SPEED_RATINGS" title="details" class="const-name">ISO_SPEED_RATINGS</a> = 					<span class="var-type"> 0x8827</span>
+
+				</div>
+								<div class="const-title">
+					<img src="../media/images/Constant.png" alt=" " />
+					<a href="#JPEG_INTERCHANGE_FORMAT" title="details" class="const-name">JPEG_INTERCHANGE_FORMAT</a> = 					<span class="var-type"> 0x0201</span>
+
+				</div>
+								<div class="const-title">
+					<img src="../media/images/Constant.png" alt=" " />
+					<a href="#JPEG_INTERCHANGE_FORMAT_LENGTH" title="details" class="const-name">JPEG_INTERCHANGE_FORMAT_LENGTH</a> = 					<span class="var-type"> 0x0202</span>
+
+				</div>
+								<div class="const-title">
+					<img src="../media/images/Constant.png" alt=" " />
+					<a href="#JPEG_PROC" title="details" class="const-name">JPEG_PROC</a> = 					<span class="var-type"> 0x0200</span>
+
+				</div>
+								<div class="const-title">
+					<img src="../media/images/Constant.png" alt=" " />
+					<a href="#LIGHT_SOURCE" title="details" class="const-name">LIGHT_SOURCE</a> = 					<span class="var-type"> 0x9208</span>
+
+				</div>
+								<div class="const-title">
+					<img src="../media/images/Constant.png" alt=" " />
+					<a href="#MAKE" title="details" class="const-name">MAKE</a> = 					<span class="var-type"> 0x010F</span>
+
+				</div>
+								<div class="const-title">
+					<img src="../media/images/Constant.png" alt=" " />
+					<a href="#MAKER_NOTE" title="details" class="const-name">MAKER_NOTE</a> = 					<span class="var-type"> 0x927C</span>
+
+				</div>
+								<div class="const-title">
+					<img src="../media/images/Constant.png" alt=" " />
+					<a href="#MAX_APERTURE_VALUE" title="details" class="const-name">MAX_APERTURE_VALUE</a> = 					<span class="var-type"> 0x9205</span>
+
+				</div>
+								<div class="const-title">
+					<img src="../media/images/Constant.png" alt=" " />
+					<a href="#METERING_MODE" title="details" class="const-name">METERING_MODE</a> = 					<span class="var-type"> 0x9207</span>
+
+				</div>
+								<div class="const-title">
+					<img src="../media/images/Constant.png" alt=" " />
+					<a href="#MODEL" title="details" class="const-name">MODEL</a> = 					<span class="var-type"> 0x0110</span>
+
+				</div>
+								<div class="const-title">
+					<img src="../media/images/Constant.png" alt=" " />
+					<a href="#OECF" title="details" class="const-name">OECF</a> = 					<span class="var-type"> 0x8828</span>
+
+				</div>
+								<div class="const-title">
+					<img src="../media/images/Constant.png" alt=" " />
+					<a href="#ORIENTATION" title="details" class="const-name">ORIENTATION</a> = 					<span class="var-type"> 0x0112</span>
+
+				</div>
+								<div class="const-title">
+					<img src="../media/images/Constant.png" alt=" " />
+					<a href="#PHOTOMETRIC_INTERPRETATION" title="details" class="const-name">PHOTOMETRIC_INTERPRETATION</a> = 					<span class="var-type"> 0x0106</span>
+
+				</div>
+								<div class="const-title">
+					<img src="../media/images/Constant.png" alt=" " />
+					<a href="#PIXEL_X_DIMENSION" title="details" class="const-name">PIXEL_X_DIMENSION</a> = 					<span class="var-type"> 0xA002</span>
+
+				</div>
+								<div class="const-title">
+					<img src="../media/images/Constant.png" alt=" " />
+					<a href="#PIXEL_Y_DIMENSION" title="details" class="const-name">PIXEL_Y_DIMENSION</a> = 					<span class="var-type"> 0xA003</span>
+
+				</div>
+								<div class="const-title">
+					<img src="../media/images/Constant.png" alt=" " />
+					<a href="#PLANAR_CONFIGURATION" title="details" class="const-name">PLANAR_CONFIGURATION</a> = 					<span class="var-type"> 0x011C</span>
+
+				</div>
+								<div class="const-title">
+					<img src="../media/images/Constant.png" alt=" " />
+					<a href="#PRIMARY_CHROMATICITIES" title="details" class="const-name">PRIMARY_CHROMATICITIES</a> = 					<span class="var-type"> 0x013F</span>
+
+				</div>
+								<div class="const-title">
+					<img src="../media/images/Constant.png" alt=" " />
+					<a href="#PRINT_IM" title="details" class="const-name">PRINT_IM</a> = 					<span class="var-type"> 0xC4A5</span>
+
+				</div>
+								<div class="const-title">
+					<img src="../media/images/Constant.png" alt=" " />
+					<a href="#REFERENCE_BLACK_WHITE" title="details" class="const-name">REFERENCE_BLACK_WHITE</a> = 					<span class="var-type"> 0x0214</span>
+
+				</div>
+								<div class="const-title">
+					<img src="../media/images/Constant.png" alt=" " />
+					<a href="#RELATED_IMAGE_FILE_FORMAT" title="details" class="const-name">RELATED_IMAGE_FILE_FORMAT</a> = 					<span class="var-type"> 0x1000</span>
+
+				</div>
+								<div class="const-title">
+					<img src="../media/images/Constant.png" alt=" " />
+					<a href="#RELATED_IMAGE_LENGTH" title="details" class="const-name">RELATED_IMAGE_LENGTH</a> = 					<span class="var-type"> 0x1002</span>
+
+				</div>
+								<div class="const-title">
+					<img src="../media/images/Constant.png" alt=" " />
+					<a href="#RELATED_IMAGE_WIDTH" title="details" class="const-name">RELATED_IMAGE_WIDTH</a> = 					<span class="var-type"> 0x1001</span>
+
+				</div>
+								<div class="const-title">
+					<img src="../media/images/Constant.png" alt=" " />
+					<a href="#RELATED_SOUND_FILE" title="details" class="const-name">RELATED_SOUND_FILE</a> = 					<span class="var-type"> 0xA004</span>
+
+				</div>
+								<div class="const-title">
+					<img src="../media/images/Constant.png" alt=" " />
+					<a href="#RESOLUTION_UNIT" title="details" class="const-name">RESOLUTION_UNIT</a> = 					<span class="var-type"> 0x0128</span>
+
+				</div>
+								<div class="const-title">
+					<img src="../media/images/Constant.png" alt=" " />
+					<a href="#ROWS_PER_STRIP" title="details" class="const-name">ROWS_PER_STRIP</a> = 					<span class="var-type"> 0x0116</span>
+
+				</div>
+								<div class="const-title">
+					<img src="../media/images/Constant.png" alt=" " />
+					<a href="#SAMPLES_PER_PIXEL" title="details" class="const-name">SAMPLES_PER_PIXEL</a> = 					<span class="var-type"> 0x0115</span>
+
+				</div>
+								<div class="const-title">
+					<img src="../media/images/Constant.png" alt=" " />
+					<a href="#SATURATION" title="details" class="const-name">SATURATION</a> = 					<span class="var-type"> 0xA409</span>
+
+				</div>
+								<div class="const-title">
+					<img src="../media/images/Constant.png" alt=" " />
+					<a href="#SCENE_CAPTURE_TYPE" title="details" class="const-name">SCENE_CAPTURE_TYPE</a> = 					<span class="var-type"> 0xA406</span>
+
+				</div>
+								<div class="const-title">
+					<img src="../media/images/Constant.png" alt=" " />
+					<a href="#SCENE_TYPE" title="details" class="const-name">SCENE_TYPE</a> = 					<span class="var-type"> 0xA301</span>
+
+				</div>
+								<div class="const-title">
+					<img src="../media/images/Constant.png" alt=" " />
+					<a href="#SENSING_METHOD" title="details" class="const-name">SENSING_METHOD</a> = 					<span class="var-type"> 0xA217</span>
+
+				</div>
+								<div class="const-title">
+					<img src="../media/images/Constant.png" alt=" " />
+					<a href="#SHARPNESS" title="details" class="const-name">SHARPNESS</a> = 					<span class="var-type"> 0xA40A</span>
+
+				</div>
+								<div class="const-title">
+					<img src="../media/images/Constant.png" alt=" " />
+					<a href="#SHUTTER_SPEED_VALUE" title="details" class="const-name">SHUTTER_SPEED_VALUE</a> = 					<span class="var-type"> 0x9201</span>
+
+				</div>
+								<div class="const-title">
+					<img src="../media/images/Constant.png" alt=" " />
+					<a href="#SOFTWARE" title="details" class="const-name">SOFTWARE</a> = 					<span class="var-type"> 0x0131</span>
+
+				</div>
+								<div class="const-title">
+					<img src="../media/images/Constant.png" alt=" " />
+					<a href="#SPATIAL_FREQUENCY_RESPONSE" title="details" class="const-name">SPATIAL_FREQUENCY_RESPONSE</a> = 					<span class="var-type"> 0xA20C</span>
+
+				</div>
+								<div class="const-title">
+					<img src="../media/images/Constant.png" alt=" " />
+					<a href="#SPECTRAL_SENSITIVITY" title="details" class="const-name">SPECTRAL_SENSITIVITY</a> = 					<span class="var-type"> 0x8824</span>
+
+				</div>
+								<div class="const-title">
+					<img src="../media/images/Constant.png" alt=" " />
+					<a href="#STRIP_BYTE_COUNTS" title="details" class="const-name">STRIP_BYTE_COUNTS</a> = 					<span class="var-type"> 0x0117</span>
+
+				</div>
+								<div class="const-title">
+					<img src="../media/images/Constant.png" alt=" " />
+					<a href="#STRIP_OFFSETS" title="details" class="const-name">STRIP_OFFSETS</a> = 					<span class="var-type"> 0x0111</span>
+
+				</div>
+								<div class="const-title">
+					<img src="../media/images/Constant.png" alt=" " />
+					<a href="#SUBJECT_AREA" title="details" class="const-name">SUBJECT_AREA</a> = 					<span class="var-type"> 0x9214</span>
+
+				</div>
+								<div class="const-title">
+					<img src="../media/images/Constant.png" alt=" " />
+					<a href="#SUBJECT_DISTANCE" title="details" class="const-name">SUBJECT_DISTANCE</a> = 					<span class="var-type"> 0x9206</span>
+
+				</div>
+								<div class="const-title">
+					<img src="../media/images/Constant.png" alt=" " />
+					<a href="#SUBJECT_DISTANCE_RANGE" title="details" class="const-name">SUBJECT_DISTANCE_RANGE</a> = 					<span class="var-type"> 0xA40C</span>
+
+				</div>
+								<div class="const-title">
+					<img src="../media/images/Constant.png" alt=" " />
+					<a href="#SUBJECT_LOCATION" title="details" class="const-name">SUBJECT_LOCATION</a> = 					<span class="var-type"> 0xA214</span>
+
+				</div>
+								<div class="const-title">
+					<img src="../media/images/Constant.png" alt=" " />
+					<a href="#SUB_SEC_TIME" title="details" class="const-name">SUB_SEC_TIME</a> = 					<span class="var-type"> 0x9290</span>
+
+				</div>
+								<div class="const-title">
+					<img src="../media/images/Constant.png" alt=" " />
+					<a href="#SUB_SEC_TIME_DIGITIZED" title="details" class="const-name">SUB_SEC_TIME_DIGITIZED</a> = 					<span class="var-type"> 0x9292</span>
+
+				</div>
+								<div class="const-title">
+					<img src="../media/images/Constant.png" alt=" " />
+					<a href="#SUB_SEC_TIME_ORIGINAL" title="details" class="const-name">SUB_SEC_TIME_ORIGINAL</a> = 					<span class="var-type"> 0x9291</span>
+
+				</div>
+								<div class="const-title">
+					<img src="../media/images/Constant.png" alt=" " />
+					<a href="#TRANSFER_FUNCTION" title="details" class="const-name">TRANSFER_FUNCTION</a> = 					<span class="var-type"> 0x012D</span>
+
+				</div>
+								<div class="const-title">
+					<img src="../media/images/Constant.png" alt=" " />
+					<a href="#TRANSFER_RANGE" title="details" class="const-name">TRANSFER_RANGE</a> = 					<span class="var-type"> 0x0156</span>
+
+				</div>
+								<div class="const-title">
+					<img src="../media/images/Constant.png" alt=" " />
+					<a href="#USER_COMMENT" title="details" class="const-name">USER_COMMENT</a> = 					<span class="var-type"> 0x9286</span>
+
+				</div>
+								<div class="const-title">
+					<img src="../media/images/Constant.png" alt=" " />
+					<a href="#WHITE_BALANCE" title="details" class="const-name">WHITE_BALANCE</a> = 					<span class="var-type"> 0xA403</span>
+
+				</div>
+								<div class="const-title">
+					<img src="../media/images/Constant.png" alt=" " />
+					<a href="#WHITE_POINT" title="details" class="const-name">WHITE_POINT</a> = 					<span class="var-type"> 0x013E</span>
+
+				</div>
+								<div class="const-title">
+					<img src="../media/images/Constant.png" alt=" " />
+					<a href="#XP_AUTHOR" title="details" class="const-name">XP_AUTHOR</a> = 					<span class="var-type"> 0x9C9D</span>
+
+				</div>
+								<div class="const-title">
+					<img src="../media/images/Constant.png" alt=" " />
+					<a href="#XP_COMMENT" title="details" class="const-name">XP_COMMENT</a> = 					<span class="var-type"> 0x9C9C</span>
+
+				</div>
+								<div class="const-title">
+					<img src="../media/images/Constant.png" alt=" " />
+					<a href="#XP_KEYWORDS" title="details" class="const-name">XP_KEYWORDS</a> = 					<span class="var-type"> 0x9C9E</span>
+
+				</div>
+								<div class="const-title">
+					<img src="../media/images/Constant.png" alt=" " />
+					<a href="#XP_SUBJECT" title="details" class="const-name">XP_SUBJECT</a> = 					<span class="var-type"> 0x9C9F</span>
+
+				</div>
+								<div class="const-title">
+					<img src="../media/images/Constant.png" alt=" " />
+					<a href="#XP_TITLE" title="details" class="const-name">XP_TITLE</a> = 					<span class="var-type"> 0x9C9B</span>
+
+				</div>
+								<div class="const-title">
+					<img src="../media/images/Constant.png" alt=" " />
+					<a href="#X_RESOLUTION" title="details" class="const-name">X_RESOLUTION</a> = 					<span class="var-type"> 0x011A</span>
+
+				</div>
+								<div class="const-title">
+					<img src="../media/images/Constant.png" alt=" " />
+					<a href="#YCBCR_COEFFICIENTS" title="details" class="const-name">YCBCR_COEFFICIENTS</a> = 					<span class="var-type"> 0x0211</span>
+
+				</div>
+								<div class="const-title">
+					<img src="../media/images/Constant.png" alt=" " />
+					<a href="#YCBCR_POSITIONING" title="details" class="const-name">YCBCR_POSITIONING</a> = 					<span class="var-type"> 0x0213</span>
+
+				</div>
+								<div class="const-title">
+					<img src="../media/images/Constant.png" alt=" " />
+					<a href="#YCBCR_SUB_SAMPLING" title="details" class="const-name">YCBCR_SUB_SAMPLING</a> = 					<span class="var-type"> 0x0212</span>
+
+				</div>
+								<div class="const-title">
+					<img src="../media/images/Constant.png" alt=" " />
+					<a href="#Y_RESOLUTION" title="details" class="const-name">Y_RESOLUTION</a> = 					<span class="var-type"> 0x011B</span>
+
+				</div>
+							</div>
+		</div>
+	</div>
+
+
+	<a name="sec-method-summary"></a>
+	<div class="info-box">
+		<div class="info-box-title">Method Summary</span></div>
+		<div class="nav-bar">
+			<a href="#sec-description">Description</a> |
+															<a href="#sec-const-summary">Constants</a> (<a href="#sec-consts">details</a>)
+							
+									<span class="disabled">Methods</span> (<a href="#sec-methods">details</a>)
+		</div>
+		<div class="info-box-body">			
+			<div class="method-summary">
+												<div class="method-definition">
+					static 						<span class="method-result">string</span>
+										<a href="#getName" title="details" class="method-name">getName</a>
+											(<span class="var-type">int</span>&nbsp;<span class="var-name">$type</span>, <span class="var-type"><a href="../PEL/PelTag.html">PelTag</a></span>&nbsp;<span class="var-name">$tag</span>)
+									</div>
+																
+																				<div class="method-definition">
+											<span class="method-result">string</span>
+										<a href="#getTitle" title="details" class="method-name">getTitle</a>
+											(<span class="var-type">int</span>&nbsp;<span class="var-name">$type</span>, <span class="var-type"><a href="../PEL/PelTag.html">PelTag</a></span>&nbsp;<span class="var-name">$tag</span>)
+									</div>
+								</div>
+		</div>
+	</div>		
+
+	
+	<a name="sec-methods"></a>
+	<div class="info-box">
+		<div class="info-box-title">Methods</div>
+		<div class="nav-bar">
+			<a href="#sec-description">Description</a> |
+																		<a href="#sec-const-summary">Constants</a> (<a href="#sec-consts">details</a>)
+							
+										<a href="#sec-method-summary">Methods</a> (<span class="disabled">details</span>)
+						
+		</div>
+		<div class="info-box-body">
+			<A NAME='method_detail'></A>
+<a name="methodgetName" id="getName"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">static method getName</span> (line <span class="line-number"><a href="../__filesource/fsource_PEL__srcPelTag.php.html#a1358">1358</a></span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Returns a short name for an Exif tag.</p>
+	<ul class="tags">
+				<li><span class="field">return:</span> the short name of the tag, e.g., 'ImageWidth' for  the <a href="../PEL/PelTag.html#constIMAGE_WIDTH">IMAGE_WIDTH</a> tag.  If the tag is not known, the string  'Unknown:0xTTTT' will be returned where 'TTTT' is the hexadecimal  representation of the tag.</li>
+			</ul>
+	
+	<div class="method-signature">
+	    static
+		<span class="method-result">string</span>
+		<span class="method-name">
+			getName
+		</span>
+					(<span class="var-type">int</span>&nbsp;<span class="var-name">$type</span>, <span class="var-type"><a href="../PEL/PelTag.html">PelTag</a></span>&nbsp;<span class="var-name">$tag</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">int</span>
+				<span class="var-name">$type</span><span class="var-description">: the IFD type of the tag, one of <a href="../PEL/PelIfd.html#constIFD0">PelIfd::IFD0</a>,  <a href="../PEL/PelIfd.html#constIFD1">PelIfd::IFD1</a>, <a href="../PEL/PelIfd.html#constEXIF">PelIfd::EXIF</a>, <a href="../PEL/PelIfd.html#constGPS">PelIfd::GPS</a>,  or <a href="../PEL/PelIfd.html#constINTEROPERABILITY">PelIfd::INTEROPERABILITY</a>.</span>			</li>
+					<li>
+				<span class="var-type"><a href="../PEL/PelTag.html">PelTag</a></span>
+				<span class="var-name">$tag</span><span class="var-description">: the tag.</span>			</li>
+				</ul>
+		
+			
+	</div>
+
+<a name="methodgetTitle" id="getTitle"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">getTitle</span> (line <span class="line-number"><a href="../__filesource/fsource_PEL__srcPelTag.php.html#a1673">1673</a></span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Returns a title for an Exif tag.</p>
+	<ul class="tags">
+				<li><span class="field">return:</span> the title of the tag, e.g., 'Image Width' for the  <a href="../PEL/PelTag.html#constIMAGE_WIDTH">IMAGE_WIDTH</a> tag.  If the tag isn't known, the string  'Unknown Tag: 0xTT' will be returned where 'TT' is the  hexadecimal representation of the tag.</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">string</span>
+		<span class="method-name">
+			getTitle
+		</span>
+					(<span class="var-type">int</span>&nbsp;<span class="var-name">$type</span>, <span class="var-type"><a href="../PEL/PelTag.html">PelTag</a></span>&nbsp;<span class="var-name">$tag</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">int</span>
+				<span class="var-name">$type</span><span class="var-description">: the IFD type of the tag, one of <a href="../PEL/PelIfd.html#constIFD0">PelIfd::IFD0</a>,  <a href="../PEL/PelIfd.html#constIFD1">PelIfd::IFD1</a>, <a href="../PEL/PelIfd.html#constEXIF">PelIfd::EXIF</a>, <a href="../PEL/PelIfd.html#constGPS">PelIfd::GPS</a>,  or <a href="../PEL/PelIfd.html#constINTEROPERABILITY">PelIfd::INTEROPERABILITY</a>.</span>			</li>
+					<li>
+				<span class="var-type"><a href="../PEL/PelTag.html">PelTag</a></span>
+				<span class="var-name">$tag</span><span class="var-description">: the tag.</span>			</li>
+				</ul>
+		
+			
+	</div>
+						
+		</div>
+	</div>
+
+	<a name="sec-consts"></a>
+	<div class="info-box">
+		<div class="info-box-title">Class Constants</div>
+		<div class="nav-bar">
+			<a href="#sec-description">Description</a> |
+										<a href="#sec-var-summary">Constants</a> (<span class="disabled">details</span>)
+						
+			
+										| 
+									<a href="#sec-method-summary">Methods</a> (<a href="#sec-methods">details</a>)
+							
+					</div>
+		<div class="info-box-body">
+			<a name="constAPERTURE_VALUE" id="APERTURE_VALUE"><!-- --></A>
+<div class="oddrow">
+
+	<div class="const-header">
+		<img src="../media/images/Variable.png" />
+		<span class="const-title">
+			<span class="const-name">APERTURE_VALUE</span>
+			 = <span class="const-default"> 0x9202</span>
+			(line <span class="line-number"><a href="../__filesource/fsource_PEL__srcPelTag.php.html#a591">591</a></span>)
+		</span>
+	</div>
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Aperture</p>
+<p class="description"><p>Format: <a href="../PEL/PelFormat.html#constRATIONAL">PelFormat::RATIONAL</a>.</p><p>Components: 1.</p></p>
+	
+	
+</div>
+<a name="constARTIST" id="ARTIST"><!-- --></A>
+<div class="evenrow">
+
+	<div class="const-header">
+		<img src="../media/images/Variable.png" />
+		<span class="const-title">
+			<span class="const-name">ARTIST</span>
+			 = <span class="const-default"> 0x013B</span>
+			(line <span class="line-number"><a href="../__filesource/fsource_PEL__srcPelTag.php.html#a291">291</a></span>)
+		</span>
+	</div>
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Person who created the image.</p>
+<p class="description"><p>Format: <a href="../PEL/PelFormat.html#constASCII">PelFormat::ASCII</a>.</p><p>Components: any number.</p></p>
+	
+	
+</div>
+<a name="constBATTERY_LEVEL" id="BATTERY_LEVEL"><!-- --></A>
+<div class="oddrow">
+
+	<div class="const-header">
+		<img src="../media/images/Variable.png" />
+		<span class="const-title">
+			<span class="const-name">BATTERY_LEVEL</span>
+			 = <span class="const-default"> 0x828F</span>
+			(line <span class="line-number"><a href="../__filesource/fsource_PEL__srcPelTag.php.html#a425">425</a></span>)
+		</span>
+	</div>
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Battery level.</p>
+<p class="description"><p>Format: Unknown.</p><p>Components: Unknown.</p></p>
+	
+	
+</div>
+<a name="constBITS_PER_SAMPLE" id="BITS_PER_SAMPLE"><!-- --></A>
+<div class="evenrow">
+
+	<div class="const-header">
+		<img src="../media/images/Variable.png" />
+		<span class="const-title">
+			<span class="const-name">BITS_PER_SAMPLE</span>
+			 = <span class="const-default"> 0x0102</span>
+			(line <span class="line-number"><a href="../__filesource/fsource_PEL__srcPelTag.php.html#a110">110</a></span>)
+		</span>
+	</div>
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Number of bits per component.</p>
+<p class="description"><p>Format: <a href="../PEL/PelFormat.html#constSHORT">PelFormat::SHORT</a>.</p><p>Components: 3.</p></p>
+	
+	
+</div>
+<a name="constBRIGHTNESS_VALUE" id="BRIGHTNESS_VALUE"><!-- --></A>
+<div class="oddrow">
+
+	<div class="const-header">
+		<img src="../media/images/Variable.png" />
+		<span class="const-title">
+			<span class="const-name">BRIGHTNESS_VALUE</span>
+			 = <span class="const-default"> 0x9203</span>
+			(line <span class="line-number"><a href="../__filesource/fsource_PEL__srcPelTag.php.html#a600">600</a></span>)
+		</span>
+	</div>
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Brightness</p>
+<p class="description"><p>Format: <a href="../PEL/PelFormat.html#constSRATIONAL">PelFormat::SRATIONAL</a>.</p><p>Components: 1.</p></p>
+	
+	
+</div>
+<a name="constCFA_PATTERN" id="CFA_PATTERN"><!-- --></A>
+<div class="evenrow">
+
+	<div class="const-header">
+		<img src="../media/images/Variable.png" />
+		<span class="const-title">
+			<span class="const-name">CFA_PATTERN</span>
+			 = <span class="const-default"> 0xA302</span>
+			(line <span class="line-number"><a href="../__filesource/fsource_PEL__srcPelTag.php.html#a927">927</a></span>)
+		</span>
+	</div>
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">CFA pattern.</p>
+<p class="description"><p>Format: <a href="../PEL/PelFormat.html#constUNDEFINED">PelFormat::UNDEFINED</a>.</p><p>Components: any number.</p></p>
+	
+	
+</div>
+<a name="constCFA_REPEAT_PATTERN_DIM" id="CFA_REPEAT_PATTERN_DIM"><!-- --></A>
+<div class="oddrow">
+
+	<div class="const-header">
+		<img src="../media/images/Variable.png" />
+		<span class="const-title">
+			<span class="const-name">CFA_REPEAT_PATTERN_DIM</span>
+			 = <span class="const-default"> 0x828D</span>
+			(line <span class="line-number"><a href="../__filesource/fsource_PEL__srcPelTag.php.html#a416">416</a></span>)
+		</span>
+	</div>
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">CFA Repeat Pattern Dim.</p>
+<p class="description"><p>Format: <a href="../PEL/PelFormat.html#constSHORT">PelFormat::SHORT</a>.</p><p>Components: 2.</p></p>
+	
+	
+</div>
+<a name="constCOLOR_SPACE" id="COLOR_SPACE"><!-- --></A>
+<div class="evenrow">
+
+	<div class="const-header">
+		<img src="../media/images/Variable.png" />
+		<span class="const-title">
+			<span class="const-name">COLOR_SPACE</span>
+			 = <span class="const-default"> 0xA001</span>
+			(line <span class="line-number"><a href="../__filesource/fsource_PEL__srcPelTag.php.html#a792">792</a></span>)
+		</span>
+	</div>
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Color space information.</p>
+<p class="description"><p>Format: <a href="../PEL/PelFormat.html#constSHORT">PelFormat::SHORT</a>.</p><p>Components: 1.</p></p>
+	
+	
+</div>
+<a name="constCOMPONENTS_CONFIGURATION" id="COMPONENTS_CONFIGURATION"><!-- --></A>
+<div class="oddrow">
+
+	<div class="const-header">
+		<img src="../media/images/Variable.png" />
+		<span class="const-title">
+			<span class="const-name">COMPONENTS_CONFIGURATION</span>
+			 = <span class="const-default"> 0x9101</span>
+			(line <span class="line-number"><a href="../__filesource/fsource_PEL__srcPelTag.php.html#a564">564</a></span>)
+		</span>
+	</div>
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Meaning of each component.</p>
+<p class="description"><p>Format: <a href="../PEL/PelFormat.html#constUNDEFINED">PelFormat::UNDEFINED</a>.</p><p>Components: 4.</p></p>
+	
+	
+</div>
+<a name="constCOMPRESSED_BITS_PER_PIXEL" id="COMPRESSED_BITS_PER_PIXEL"><!-- --></A>
+<div class="evenrow">
+
+	<div class="const-header">
+		<img src="../media/images/Variable.png" />
+		<span class="const-title">
+			<span class="const-name">COMPRESSED_BITS_PER_PIXEL</span>
+			 = <span class="const-default"> 0x9102</span>
+			(line <span class="line-number"><a href="../__filesource/fsource_PEL__srcPelTag.php.html#a573">573</a></span>)
+		</span>
+	</div>
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Image compression mode.</p>
+<p class="description"><p>Format: <a href="../PEL/PelFormat.html#constRATIONAL">PelFormat::RATIONAL</a>.</p><p>Components: 1.</p></p>
+	
+	
+</div>
+<a name="constCOMPRESSION" id="COMPRESSION"><!-- --></A>
+<div class="oddrow">
+
+	<div class="const-header">
+		<img src="../media/images/Variable.png" />
+		<span class="const-title">
+			<span class="const-name">COMPRESSION</span>
+			 = <span class="const-default"> 0x0103</span>
+			(line <span class="line-number"><a href="../__filesource/fsource_PEL__srcPelTag.php.html#a119">119</a></span>)
+		</span>
+	</div>
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Compression scheme.</p>
+<p class="description"><p>Format: <a href="../PEL/PelFormat.html#constSHORT">PelFormat::SHORT</a>.</p><p>Components: 1.</p></p>
+	
+	
+</div>
+<a name="constCONTRAST" id="CONTRAST"><!-- --></A>
+<div class="evenrow">
+
+	<div class="const-header">
+		<img src="../media/images/Variable.png" />
+		<span class="const-title">
+			<span class="const-name">CONTRAST</span>
+			 = <span class="const-default"> 0xA408</span>
+			(line <span class="line-number"><a href="../__filesource/fsource_PEL__srcPelTag.php.html#a999">999</a></span>)
+		</span>
+	</div>
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Contrast.</p>
+<p class="description"><p>Format: <a href="../PEL/PelFormat.html#constSHORT">PelFormat::SHORT</a>.</p><p>Components: 1.</p></p>
+	
+	
+</div>
+<a name="constCOPYRIGHT" id="COPYRIGHT"><!-- --></A>
+<div class="oddrow">
+
+	<div class="const-header">
+		<img src="../media/images/Variable.png" />
+		<span class="const-title">
+			<span class="const-name">COPYRIGHT</span>
+			 = <span class="const-default"> 0x8298</span>
+			(line <span class="line-number"><a href="../__filesource/fsource_PEL__srcPelTag.php.html#a435">435</a></span>)
+		</span>
+	</div>
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Copyright holder.</p>
+<p class="description"><p>Format: <a href="../PEL/PelFormat.html#constASCII">PelFormat::ASCII</a>, modelled by the <a href="../PEL/PelEntryCopyright.html">PelEntryCopyright</a> class.</p><p>Components: any number.</p></p>
+	
+	
+</div>
+<a name="constCUSTOM_RENDERED" id="CUSTOM_RENDERED"><!-- --></A>
+<div class="evenrow">
+
+	<div class="const-header">
+		<img src="../media/images/Variable.png" />
+		<span class="const-title">
+			<span class="const-name">CUSTOM_RENDERED</span>
+			 = <span class="const-default"> 0xA401</span>
+			(line <span class="line-number"><a href="../__filesource/fsource_PEL__srcPelTag.php.html#a936">936</a></span>)
+		</span>
+	</div>
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Custom image processing.</p>
+<p class="description"><p>Format: <a href="../PEL/PelFormat.html#constSHORT">PelFormat::SHORT</a>.</p><p>Components: 1.</p></p>
+	
+	
+</div>
+<a name="constDATE_TIME" id="DATE_TIME"><!-- --></A>
+<div class="oddrow">
+
+	<div class="const-header">
+		<img src="../media/images/Variable.png" />
+		<span class="const-title">
+			<span class="const-name">DATE_TIME</span>
+			 = <span class="const-default"> 0x0132</span>
+			(line <span class="line-number"><a href="../__filesource/fsource_PEL__srcPelTag.php.html#a282">282</a></span>)
+		</span>
+	</div>
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">File change date and time.</p>
+<p class="description"><p>Format: <a href="../PEL/PelFormat.html#constASCII">PelFormat::ASCII</a>, modelled by the <a href="../PEL/PelEntryTime.html">PelEntryTime</a> class.</p><p>Components: 20.</p></p>
+	
+	
+</div>
+<a name="constDATE_TIME_DIGITIZED" id="DATE_TIME_DIGITIZED"><!-- --></A>
+<div class="evenrow">
+
+	<div class="const-header">
+		<img src="../media/images/Variable.png" />
+		<span class="const-title">
+			<span class="const-name">DATE_TIME_DIGITIZED</span>
+			 = <span class="const-default"> 0x9004</span>
+			(line <span class="line-number"><a href="../__filesource/fsource_PEL__srcPelTag.php.html#a555">555</a></span>)
+		</span>
+	</div>
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Date and time of digital data generation.</p>
+<p class="description"><p>Format: <a href="../PEL/PelFormat.html#constASCII">PelFormat::ASCII</a>, modelled by the <a href="../PEL/PelEntryTime.html">PelEntryTime</a> class.</p><p>Components: 20.</p></p>
+	
+	
+</div>
+<a name="constDATE_TIME_ORIGINAL" id="DATE_TIME_ORIGINAL"><!-- --></A>
+<div class="oddrow">
+
+	<div class="const-header">
+		<img src="../media/images/Variable.png" />
+		<span class="const-title">
+			<span class="const-name">DATE_TIME_ORIGINAL</span>
+			 = <span class="const-default"> 0x9003</span>
+			(line <span class="line-number"><a href="../__filesource/fsource_PEL__srcPelTag.php.html#a545">545</a></span>)
+		</span>
+	</div>
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Date and time of original data generation.</p>
+<p class="description"><p>Format: <a href="../PEL/PelFormat.html#constASCII">PelFormat::ASCII</a>, modelled by the <a href="../PEL/PelEntryTime.html">PelEntryTime</a> class.</p><p>Components: 20.</p></p>
+	
+	
+</div>
+<a name="constDEVICE_SETTING_DESCRIPTION" id="DEVICE_SETTING_DESCRIPTION"><!-- --></A>
+<div class="evenrow">
+
+	<div class="const-header">
+		<img src="../media/images/Variable.png" />
+		<span class="const-title">
+			<span class="const-name">DEVICE_SETTING_DESCRIPTION</span>
+			 = <span class="const-default"> 0xA40B</span>
+			(line <span class="line-number"><a href="../__filesource/fsource_PEL__srcPelTag.php.html#a1026">1026</a></span>)
+		</span>
+	</div>
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Device settings description.</p>
+<p class="description"><p>This tag indicates information on the picture-taking conditions  of a particular camera model.  The tag is used only to indicate  the picture-taking conditions in the reader.</p></p>
+	
+	
+</div>
+<a name="constDIGITAL_ZOOM_RATIO" id="DIGITAL_ZOOM_RATIO"><!-- --></A>
+<div class="oddrow">
+
+	<div class="const-header">
+		<img src="../media/images/Variable.png" />
+		<span class="const-title">
+			<span class="const-name">DIGITAL_ZOOM_RATIO</span>
+			 = <span class="const-default"> 0xA404</span>
+			(line <span class="line-number"><a href="../__filesource/fsource_PEL__srcPelTag.php.html#a963">963</a></span>)
+		</span>
+	</div>
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Digital zoom ratio.</p>
+<p class="description"><p>Format: <a href="../PEL/PelFormat.html#constRATIONAL">PelFormat::RATIONAL</a>.</p><p>Components: 1.</p></p>
+	
+	
+</div>
+<a name="constDOCUMENT_NAME" id="DOCUMENT_NAME"><!-- --></A>
+<div class="evenrow">
+
+	<div class="const-header">
+		<img src="../media/images/Variable.png" />
+		<span class="const-title">
+			<span class="const-name">DOCUMENT_NAME</span>
+			 = <span class="const-default"> 0x010D</span>
+			(line <span class="line-number"><a href="../__filesource/fsource_PEL__srcPelTag.php.html#a146">146</a></span>)
+		</span>
+	</div>
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Document Name</p>
+<p class="description"><p>Format: Unknown.</p><p>Components: Unknown.</p></p>
+	
+	
+</div>
+<a name="constEXIF_IFD_POINTER" id="EXIF_IFD_POINTER"><!-- --></A>
+<div class="oddrow">
+
+	<div class="const-header">
+		<img src="../media/images/Variable.png" />
+		<span class="const-title">
+			<span class="const-name">EXIF_IFD_POINTER</span>
+			 = <span class="const-default"> 0x8769</span>
+			(line <span class="line-number"><a href="../__filesource/fsource_PEL__srcPelTag.php.html#a471">471</a></span>)
+		</span>
+	</div>
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Exif IFD Pointer</p>
+<p class="description"><p>Format: <a href="../PEL/PelFormat.html#constLONG">PelFormat::LONG</a>.</p><p>Components: 1.</p></p>
+	
+	
+</div>
+<a name="constEXIF_VERSION" id="EXIF_VERSION"><!-- --></A>
+<div class="evenrow">
+
+	<div class="const-header">
+		<img src="../media/images/Variable.png" />
+		<span class="const-title">
+			<span class="const-name">EXIF_VERSION</span>
+			 = <span class="const-default"> 0x9000</span>
+			(line <span class="line-number"><a href="../__filesource/fsource_PEL__srcPelTag.php.html#a535">535</a></span>)
+		</span>
+	</div>
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Exif version.</p>
+<p class="description"><p>Format: <a href="../PEL/PelFormat.html#constUNDEFINED">PelFormat::UNDEFINED</a>, modelled by the <a href="../PEL/PelEntryVersion.html">PelEntryVersion</a> class.</p><p>Components: 4.</p></p>
+	
+	
+</div>
+<a name="constEXPOSURE_BIAS_VALUE" id="EXPOSURE_BIAS_VALUE"><!-- --></A>
+<div class="oddrow">
+
+	<div class="const-header">
+		<img src="../media/images/Variable.png" />
+		<span class="const-title">
+			<span class="const-name">EXPOSURE_BIAS_VALUE</span>
+			 = <span class="const-default"> 0x9204</span>
+			(line <span class="line-number"><a href="../__filesource/fsource_PEL__srcPelTag.php.html#a609">609</a></span>)
+		</span>
+	</div>
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Exposure Bias</p>
+<p class="description"><p>Format: <a href="../PEL/PelFormat.html#constSRATIONAL">PelFormat::SRATIONAL</a>.</p><p>Components: 1.</p></p>
+	
+	
+</div>
+<a name="constEXPOSURE_INDEX" id="EXPOSURE_INDEX"><!-- --></A>
+<div class="evenrow">
+
+	<div class="const-header">
+		<img src="../media/images/Variable.png" />
+		<span class="const-title">
+			<span class="const-name">EXPOSURE_INDEX</span>
+			 = <span class="const-default"> 0xA215</span>
+			(line <span class="line-number"><a href="../__filesource/fsource_PEL__srcPelTag.php.html#a891">891</a></span>)
+		</span>
+	</div>
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Exposure index.</p>
+<p class="description"><p>Format: <a href="../PEL/PelFormat.html#constRATIONAL">PelFormat::RATIONAL</a>.</p><p>Components: 1.</p></p>
+	
+	
+</div>
+<a name="constEXPOSURE_MODE" id="EXPOSURE_MODE"><!-- --></A>
+<div class="oddrow">
+
+	<div class="const-header">
+		<img src="../media/images/Variable.png" />
+		<span class="const-title">
+			<span class="const-name">EXPOSURE_MODE</span>
+			 = <span class="const-default"> 0xA402</span>
+			(line <span class="line-number"><a href="../__filesource/fsource_PEL__srcPelTag.php.html#a945">945</a></span>)
+		</span>
+	</div>
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Exposure mode.</p>
+<p class="description"><p>Format: <a href="../PEL/PelFormat.html#constSHORT">PelFormat::SHORT</a>.</p><p>Components: 1.</p></p>
+	
+	
+</div>
+<a name="constEXPOSURE_PROGRAM" id="EXPOSURE_PROGRAM"><!-- --></A>
+<div class="evenrow">
+
+	<div class="const-header">
+		<img src="../media/images/Variable.png" />
+		<span class="const-title">
+			<span class="const-name">EXPOSURE_PROGRAM</span>
+			 = <span class="const-default"> 0x8822</span>
+			(line <span class="line-number"><a href="../__filesource/fsource_PEL__srcPelTag.php.html#a489">489</a></span>)
+		</span>
+	</div>
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Exposure Program</p>
+<p class="description"><p>Format: <a href="../PEL/PelFormat.html#constSHORT">PelFormat::SHORT</a>.</p><p>Components: 1.</p></p>
+	
+	
+</div>
+<a name="constEXPOSURE_TIME" id="EXPOSURE_TIME"><!-- --></A>
+<div class="oddrow">
+
+	<div class="const-header">
+		<img src="../media/images/Variable.png" />
+		<span class="const-title">
+			<span class="const-name">EXPOSURE_TIME</span>
+			 = <span class="const-default"> 0x829A</span>
+			(line <span class="line-number"><a href="../__filesource/fsource_PEL__srcPelTag.php.html#a444">444</a></span>)
+		</span>
+	</div>
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Exposure Time</p>
+<p class="description"><p>Format: <a href="../PEL/PelFormat.html#constRATIONAL">PelFormat::RATIONAL</a>.</p><p>Components: 1.</p></p>
+	
+	
+</div>
+<a name="constFILE_SOURCE" id="FILE_SOURCE"><!-- --></A>
+<div class="evenrow">
+
+	<div class="const-header">
+		<img src="../media/images/Variable.png" />
+		<span class="const-title">
+			<span class="const-name">FILE_SOURCE</span>
+			 = <span class="const-default"> 0xA300</span>
+			(line <span class="line-number"><a href="../__filesource/fsource_PEL__srcPelTag.php.html#a909">909</a></span>)
+		</span>
+	</div>
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">File source.</p>
+<p class="description"><p>Format: <a href="../PEL/PelFormat.html#constUNDEFINED">PelFormat::UNDEFINED</a>.</p><p>Components: 1.</p></p>
+	
+	
+</div>
+<a name="constFILL_ORDER" id="FILL_ORDER"><!-- --></A>
+<div class="oddrow">
+
+	<div class="const-header">
+		<img src="../media/images/Variable.png" />
+		<span class="const-title">
+			<span class="const-name">FILL_ORDER</span>
+			 = <span class="const-default"> 0x010A</span>
+			(line <span class="line-number"><a href="../__filesource/fsource_PEL__srcPelTag.php.html#a137">137</a></span>)
+		</span>
+	</div>
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Fill Orde</p>
+<p class="description"><p>Format: Unknown.</p><p>Components: Unknown.</p></p>
+	
+	
+</div>
+<a name="constFLASH" id="FLASH"><!-- --></A>
+<div class="evenrow">
+
+	<div class="const-header">
+		<img src="../media/images/Variable.png" />
+		<span class="const-title">
+			<span class="const-name">FLASH</span>
+			 = <span class="const-default"> 0x9209</span>
+			(line <span class="line-number"><a href="../__filesource/fsource_PEL__srcPelTag.php.html#a654">654</a></span>)
+		</span>
+	</div>
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Flash</p>
+<p class="description"><p>Format: <a href="../PEL/PelFormat.html#constSHORT">PelFormat::SHORT</a>.</p><p>Components: 1.</p></p>
+	
+	
+</div>
+<a name="constFLASH_ENERGY" id="FLASH_ENERGY"><!-- --></A>
+<div class="oddrow">
+
+	<div class="const-header">
+		<img src="../media/images/Variable.png" />
+		<span class="const-title">
+			<span class="const-name">FLASH_ENERGY</span>
+			 = <span class="const-default"> 0xA20B</span>
+			(line <span class="line-number"><a href="../__filesource/fsource_PEL__srcPelTag.php.html#a837">837</a></span>)
+		</span>
+	</div>
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Flash energy.</p>
+<p class="description"><p>Format: <a href="../PEL/PelFormat.html#constRATIONAL">PelFormat::RATIONAL</a>.</p><p>Components: 1.</p></p>
+	
+	
+</div>
+<a name="constFLASH_PIX_VERSION" id="FLASH_PIX_VERSION"><!-- --></A>
+<div class="evenrow">
+
+	<div class="const-header">
+		<img src="../media/images/Variable.png" />
+		<span class="const-title">
+			<span class="const-name">FLASH_PIX_VERSION</span>
+			 = <span class="const-default"> 0xA000</span>
+			(line <span class="line-number"><a href="../__filesource/fsource_PEL__srcPelTag.php.html#a783">783</a></span>)
+		</span>
+	</div>
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Supported Flashpix version</p>
+<p class="description"><p>Format: <a href="../PEL/PelFormat.html#constUNDEFINED">PelFormat::UNDEFINED</a>, modelled by the <a href="../PEL/PelEntryVersion.html">PelEntryVersion</a> class.</p><p>Components: 4.</p></p>
+	
+	
+</div>
+<a name="constFNUMBER" id="FNUMBER"><!-- --></A>
+<div class="oddrow">
+
+	<div class="const-header">
+		<img src="../media/images/Variable.png" />
+		<span class="const-title">
+			<span class="const-name">FNUMBER</span>
+			 = <span class="const-default"> 0x829D</span>
+			(line <span class="line-number"><a href="../__filesource/fsource_PEL__srcPelTag.php.html#a453">453</a></span>)
+		</span>
+	</div>
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">FNumber</p>
+<p class="description"><p>Format: <a href="../PEL/PelFormat.html#constRATIONAL">PelFormat::RATIONAL</a>.</p><p>Components: 1.</p></p>
+	
+	
+</div>
+<a name="constFOCAL_LENGTH" id="FOCAL_LENGTH"><!-- --></A>
+<div class="evenrow">
+
+	<div class="const-header">
+		<img src="../media/images/Variable.png" />
+		<span class="const-title">
+			<span class="const-name">FOCAL_LENGTH</span>
+			 = <span class="const-default"> 0x920A</span>
+			(line <span class="line-number"><a href="../__filesource/fsource_PEL__srcPelTag.php.html#a663">663</a></span>)
+		</span>
+	</div>
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Focal Length</p>
+<p class="description"><p>Format: <a href="../PEL/PelFormat.html#constRATIONAL">PelFormat::RATIONAL</a>.</p><p>Components: 1.</p></p>
+	
+	
+</div>
+<a name="constFOCAL_LENGTH_IN_35MM_FILM" id="FOCAL_LENGTH_IN_35MM_FILM"><!-- --></A>
+<div class="oddrow">
+
+	<div class="const-header">
+		<img src="../media/images/Variable.png" />
+		<span class="const-title">
+			<span class="const-name">FOCAL_LENGTH_IN_35MM_FILM</span>
+			 = <span class="const-default"> 0xA405</span>
+			(line <span class="line-number"><a href="../__filesource/fsource_PEL__srcPelTag.php.html#a972">972</a></span>)
+		</span>
+	</div>
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Focal length in 35mm film.</p>
+<p class="description"><p>Format: <a href="../PEL/PelFormat.html#constRATIONAL">PelFormat::RATIONAL</a>.</p><p>Components: 1.</p></p>
+	
+	
+</div>
+<a name="constFOCAL_PLANE_RESOLUTION_UNIT" id="FOCAL_PLANE_RESOLUTION_UNIT"><!-- --></A>
+<div class="evenrow">
+
+	<div class="const-header">
+		<img src="../media/images/Variable.png" />
+		<span class="const-title">
+			<span class="const-name">FOCAL_PLANE_RESOLUTION_UNIT</span>
+			 = <span class="const-default"> 0xA210</span>
+			(line <span class="line-number"><a href="../__filesource/fsource_PEL__srcPelTag.php.html#a873">873</a></span>)
+		</span>
+	</div>
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Focal plane resolution unit.</p>
+<p class="description"><p>Format: <a href="../PEL/PelFormat.html#constSHORT">PelFormat::SHORT</a>.</p><p>Components: 1.</p></p>
+	
+	
+</div>
+<a name="constFOCAL_PLANE_X_RESOLUTION" id="FOCAL_PLANE_X_RESOLUTION"><!-- --></A>
+<div class="oddrow">
+
+	<div class="const-header">
+		<img src="../media/images/Variable.png" />
+		<span class="const-title">
+			<span class="const-name">FOCAL_PLANE_X_RESOLUTION</span>
+			 = <span class="const-default"> 0xA20E</span>
+			(line <span class="line-number"><a href="../__filesource/fsource_PEL__srcPelTag.php.html#a855">855</a></span>)
+		</span>
+	</div>
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Focal plane X resolution.</p>
+<p class="description"><p>Format: <a href="../PEL/PelFormat.html#constRATIONAL">PelFormat::RATIONAL</a>.</p><p>Components: 1.</p></p>
+	
+	
+</div>
+<a name="constFOCAL_PLANE_Y_RESOLUTION" id="FOCAL_PLANE_Y_RESOLUTION"><!-- --></A>
+<div class="evenrow">
+
+	<div class="const-header">
+		<img src="../media/images/Variable.png" />
+		<span class="const-title">
+			<span class="const-name">FOCAL_PLANE_Y_RESOLUTION</span>
+			 = <span class="const-default"> 0xA20F</span>
+			(line <span class="line-number"><a href="../__filesource/fsource_PEL__srcPelTag.php.html#a864">864</a></span>)
+		</span>
+	</div>
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Focal plane Y resolution.</p>
+<p class="description"><p>Format: <a href="../PEL/PelFormat.html#constRATIONAL">PelFormat::RATIONAL</a>.</p><p>Components: 1.</p></p>
+	
+	
+</div>
+<a name="constGAIN_CONTROL" id="GAIN_CONTROL"><!-- --></A>
+<div class="oddrow">
+
+	<div class="const-header">
+		<img src="../media/images/Variable.png" />
+		<span class="const-title">
+			<span class="const-name">GAIN_CONTROL</span>
+			 = <span class="const-default"> 0xA407</span>
+			(line <span class="line-number"><a href="../__filesource/fsource_PEL__srcPelTag.php.html#a990">990</a></span>)
+		</span>
+	</div>
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Gain control.</p>
+<p class="description"><p>Format: <a href="../PEL/PelFormat.html#constSHORT">PelFormat::SHORT</a>.</p><p>Components: 1.</p></p>
+	
+	
+</div>
+<a name="constGAMMA" id="GAMMA"><!-- --></A>
+<div class="evenrow">
+
+	<div class="const-header">
+		<img src="../media/images/Variable.png" />
+		<span class="const-title">
+			<span class="const-name">GAMMA</span>
+			 = <span class="const-default"> 0xA500</span>
+			(line <span class="line-number"><a href="../__filesource/fsource_PEL__srcPelTag.php.html#a1053">1053</a></span>)
+		</span>
+	</div>
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Gamma.</p>
+<p class="description"><p>Format: <a href="../PEL/PelFormat.html#constRATIONAL">PelFormat::RATIONAL</a>.</p><p>Components: 1.</p></p>
+	
+	
+</div>
+<a name="constGPS_ALTITUDE" id="GPS_ALTITUDE"><!-- --></A>
+<div class="oddrow">
+
+	<div class="const-header">
+		<img src="../media/images/Variable.png" />
+		<span class="const-title">
+			<span class="const-name">GPS_ALTITUDE</span>
+			 = <span class="const-default"> 0x0006</span>
+			(line <span class="line-number"><a href="../__filesource/fsource_PEL__srcPelTag.php.html#a1125">1125</a></span>)
+		</span>
+	</div>
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Altitude.</p>
+<p class="description"><p>Format: <a href="../PEL/PelFormat.html#constRATIONAL">PelFormat::RATIONAL</a>.</p><p>Components: 1.</p></p>
+	
+	
+</div>
+<a name="constGPS_ALTITUDE_REF" id="GPS_ALTITUDE_REF"><!-- --></A>
+<div class="evenrow">
+
+	<div class="const-header">
+		<img src="../media/images/Variable.png" />
+		<span class="const-title">
+			<span class="const-name">GPS_ALTITUDE_REF</span>
+			 = <span class="const-default"> 0x0005</span>
+			(line <span class="line-number"><a href="../__filesource/fsource_PEL__srcPelTag.php.html#a1116">1116</a></span>)
+		</span>
+	</div>
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Altitude reference.</p>
+<p class="description"><p>Format: <a href="../PEL/PelFormat.html#constBYTE">PelFormat::BYTE</a>.</p><p>Components: 1.</p></p>
+	
+	
+</div>
+<a name="constGPS_AREA_INFORMATION" id="GPS_AREA_INFORMATION"><!-- --></A>
+<div class="oddrow">
+
+	<div class="const-header">
+		<img src="../media/images/Variable.png" />
+		<span class="const-title">
+			<span class="const-name">GPS_AREA_INFORMATION</span>
+			 = <span class="const-default"> 0x001C</span>
+			(line <span class="line-number"><a href="../__filesource/fsource_PEL__srcPelTag.php.html#a1323">1323</a></span>)
+		</span>
+	</div>
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Name of GPS area.</p>
+<p class="description"><p>Format: <a href="../PEL/PelFormat.html#constUNDEFINED">PelFormat::UNDEFINED</a>.</p><p>Components: Any.</p></p>
+	
+	
+</div>
+<a name="constGPS_DATE_STAMP" id="GPS_DATE_STAMP"><!-- --></A>
+<div class="evenrow">
+
+	<div class="const-header">
+		<img src="../media/images/Variable.png" />
+		<span class="const-title">
+			<span class="const-name">GPS_DATE_STAMP</span>
+			 = <span class="const-default"> 0x001D</span>
+			(line <span class="line-number"><a href="../__filesource/fsource_PEL__srcPelTag.php.html#a1332">1332</a></span>)
+		</span>
+	</div>
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">GPS date.</p>
+<p class="description"><p>Format: <a href="../PEL/PelFormat.html#constASCII">PelFormat::ASCII</a>.</p><p>Components: 11.</p></p>
+	
+	
+</div>
+<a name="constGPS_DEST_BEARING" id="GPS_DEST_BEARING"><!-- --></A>
+<div class="oddrow">
+
+	<div class="const-header">
+		<img src="../media/images/Variable.png" />
+		<span class="const-title">
+			<span class="const-name">GPS_DEST_BEARING</span>
+			 = <span class="const-default"> 0x0018</span>
+			(line <span class="line-number"><a href="../__filesource/fsource_PEL__srcPelTag.php.html#a1287">1287</a></span>)
+		</span>
+	</div>
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Bearing of destination.</p>
+<p class="description"><p>Format: <a href="../PEL/PelFormat.html#constRATIONAL">PelFormat::RATIONAL</a>.</p><p>Components: 1.</p></p>
+	
+	
+</div>
+<a name="constGPS_DEST_BEARING_REF" id="GPS_DEST_BEARING_REF"><!-- --></A>
+<div class="evenrow">
+
+	<div class="const-header">
+		<img src="../media/images/Variable.png" />
+		<span class="const-title">
+			<span class="const-name">GPS_DEST_BEARING_REF</span>
+			 = <span class="const-default"> 0x0017</span>
+			(line <span class="line-number"><a href="../__filesource/fsource_PEL__srcPelTag.php.html#a1278">1278</a></span>)
+		</span>
+	</div>
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Reference for bearing of destination.</p>
+<p class="description"><p>Format: <a href="../PEL/PelFormat.html#constASCII">PelFormat::ASCII</a>.</p><p>Components: 2.</p></p>
+	
+	
+</div>
+<a name="constGPS_DEST_DISTANCE" id="GPS_DEST_DISTANCE"><!-- --></A>
+<div class="oddrow">
+
+	<div class="const-header">
+		<img src="../media/images/Variable.png" />
+		<span class="const-title">
+			<span class="const-name">GPS_DEST_DISTANCE</span>
+			 = <span class="const-default"> 0x001A</span>
+			(line <span class="line-number"><a href="../__filesource/fsource_PEL__srcPelTag.php.html#a1305">1305</a></span>)
+		</span>
+	</div>
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Distance to destination.</p>
+<p class="description"><p>Format: <a href="../PEL/PelFormat.html#constRATIONAL">PelFormat::RATIONAL</a>.</p><p>Components: 1.</p></p>
+	
+	
+</div>
+<a name="constGPS_DEST_DISTANCE_REF" id="GPS_DEST_DISTANCE_REF"><!-- --></A>
+<div class="evenrow">
+
+	<div class="const-header">
+		<img src="../media/images/Variable.png" />
+		<span class="const-title">
+			<span class="const-name">GPS_DEST_DISTANCE_REF</span>
+			 = <span class="const-default"> 0x0019</span>
+			(line <span class="line-number"><a href="../__filesource/fsource_PEL__srcPelTag.php.html#a1296">1296</a></span>)
+		</span>
+	</div>
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Reference for distance to destination.</p>
+<p class="description"><p>Format: <a href="../PEL/PelFormat.html#constASCII">PelFormat::ASCII</a>.</p><p>Components: 2.</p></p>
+	
+	
+</div>
+<a name="constGPS_DEST_LATITUDE" id="GPS_DEST_LATITUDE"><!-- --></A>
+<div class="oddrow">
+
+	<div class="const-header">
+		<img src="../media/images/Variable.png" />
+		<span class="const-title">
+			<span class="const-name">GPS_DEST_LATITUDE</span>
+			 = <span class="const-default"> 0x0014</span>
+			(line <span class="line-number"><a href="../__filesource/fsource_PEL__srcPelTag.php.html#a1251">1251</a></span>)
+		</span>
+	</div>
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Latitude of destination.</p>
+<p class="description"><p>Format: <a href="../PEL/PelFormat.html#constRATIONAL">PelFormat::RATIONAL</a>.</p><p>Components: 3.</p></p>
+	
+	
+</div>
+<a name="constGPS_DEST_LATITUDE_REF" id="GPS_DEST_LATITUDE_REF"><!-- --></A>
+<div class="evenrow">
+
+	<div class="const-header">
+		<img src="../media/images/Variable.png" />
+		<span class="const-title">
+			<span class="const-name">GPS_DEST_LATITUDE_REF</span>
+			 = <span class="const-default"> 0x0013</span>
+			(line <span class="line-number"><a href="../__filesource/fsource_PEL__srcPelTag.php.html#a1242">1242</a></span>)
+		</span>
+	</div>
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Reference for latitude of destination.</p>
+<p class="description"><p>Format: <a href="../PEL/PelFormat.html#constASCII">PelFormat::ASCII</a>.</p><p>Components: 2.</p></p>
+	
+	
+</div>
+<a name="constGPS_DEST_LONGITUDE" id="GPS_DEST_LONGITUDE"><!-- --></A>
+<div class="oddrow">
+
+	<div class="const-header">
+		<img src="../media/images/Variable.png" />
+		<span class="const-title">
+			<span class="const-name">GPS_DEST_LONGITUDE</span>
+			 = <span class="const-default"> 0x0016</span>
+			(line <span class="line-number"><a href="../__filesource/fsource_PEL__srcPelTag.php.html#a1269">1269</a></span>)
+		</span>
+	</div>
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Longitude of destination.</p>
+<p class="description"><p>Format: <a href="../PEL/PelFormat.html#constRATIONAL">PelFormat::RATIONAL</a>.</p><p>Components: 3.</p></p>
+	
+	
+</div>
+<a name="constGPS_DEST_LONGITUDE_REF" id="GPS_DEST_LONGITUDE_REF"><!-- --></A>
+<div class="evenrow">
+
+	<div class="const-header">
+		<img src="../media/images/Variable.png" />
+		<span class="const-title">
+			<span class="const-name">GPS_DEST_LONGITUDE_REF</span>
+			 = <span class="const-default"> 0x0015</span>
+			(line <span class="line-number"><a href="../__filesource/fsource_PEL__srcPelTag.php.html#a1260">1260</a></span>)
+		</span>
+	</div>
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Reference for longitude of destination.</p>
+<p class="description"><p>Format: <a href="../PEL/PelFormat.html#constASCII">PelFormat::ASCII</a>.</p><p>Components: 2.</p></p>
+	
+	
+</div>
+<a name="constGPS_DIFFERENTIAL" id="GPS_DIFFERENTIAL"><!-- --></A>
+<div class="oddrow">
+
+	<div class="const-header">
+		<img src="../media/images/Variable.png" />
+		<span class="const-title">
+			<span class="const-name">GPS_DIFFERENTIAL</span>
+			 = <span class="const-default"> 0x001E</span>
+			(line <span class="line-number"><a href="../__filesource/fsource_PEL__srcPelTag.php.html#a1341">1341</a></span>)
+		</span>
+	</div>
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">GPS differential correction.</p>
+<p class="description"><p>Format: <a href="../PEL/PelFormat.html#constSHORT">PelFormat::SHORT</a>.</p><p>Components: 1.</p></p>
+	
+	
+</div>
+<a name="constGPS_DOP" id="GPS_DOP"><!-- --></A>
+<div class="evenrow">
+
+	<div class="const-header">
+		<img src="../media/images/Variable.png" />
+		<span class="const-title">
+			<span class="const-name">GPS_DOP</span>
+			 = <span class="const-default"> 0x000B</span>
+			(line <span class="line-number"><a href="../__filesource/fsource_PEL__srcPelTag.php.html#a1170">1170</a></span>)
+		</span>
+	</div>
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Measurement precision.</p>
+<p class="description"><p>Format: <a href="../PEL/PelFormat.html#constRATIONAL">PelFormat::RATIONAL</a>.</p><p>Components: 1.</p></p>
+	
+	
+</div>
+<a name="constGPS_IMG_DIRECTION" id="GPS_IMG_DIRECTION"><!-- --></A>
+<div class="oddrow">
+
+	<div class="const-header">
+		<img src="../media/images/Variable.png" />
+		<span class="const-title">
+			<span class="const-name">GPS_IMG_DIRECTION</span>
+			 = <span class="const-default"> 0x0011</span>
+			(line <span class="line-number"><a href="../__filesource/fsource_PEL__srcPelTag.php.html#a1224">1224</a></span>)
+		</span>
+	</div>
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Direction of image.</p>
+<p class="description"><p>Format: <a href="../PEL/PelFormat.html#constRATIONAL">PelFormat::RATIONAL</a>.</p><p>Components: 1.</p></p>
+	
+	
+</div>
+<a name="constGPS_IMG_DIRECTION_REF" id="GPS_IMG_DIRECTION_REF"><!-- --></A>
+<div class="evenrow">
+
+	<div class="const-header">
+		<img src="../media/images/Variable.png" />
+		<span class="const-title">
+			<span class="const-name">GPS_IMG_DIRECTION_REF</span>
+			 = <span class="const-default"> 0x0010</span>
+			(line <span class="line-number"><a href="../__filesource/fsource_PEL__srcPelTag.php.html#a1215">1215</a></span>)
+		</span>
+	</div>
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Reference for direction of image.</p>
+<p class="description"><p>Format: <a href="../PEL/PelFormat.html#constASCII">PelFormat::ASCII</a>.</p><p>Components: 2.</p></p>
+	
+	
+</div>
+<a name="constGPS_INFO_IFD_POINTER" id="GPS_INFO_IFD_POINTER"><!-- --></A>
+<div class="oddrow">
+
+	<div class="const-header">
+		<img src="../media/images/Variable.png" />
+		<span class="const-title">
+			<span class="const-name">GPS_INFO_IFD_POINTER</span>
+			 = <span class="const-default"> 0x8825</span>
+			(line <span class="line-number"><a href="../__filesource/fsource_PEL__srcPelTag.php.html#a507">507</a></span>)
+		</span>
+	</div>
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">GPS Info IFD Pointer</p>
+<p class="description"><p>Format: <a href="../PEL/PelFormat.html#constLONG">PelFormat::LONG</a>.</p><p>Components: 1.</p></p>
+	
+	
+</div>
+<a name="constGPS_LATITUDE" id="GPS_LATITUDE"><!-- --></A>
+<div class="evenrow">
+
+	<div class="const-header">
+		<img src="../media/images/Variable.png" />
+		<span class="const-title">
+			<span class="const-name">GPS_LATITUDE</span>
+			 = <span class="const-default"> 0x0002</span>
+			(line <span class="line-number"><a href="../__filesource/fsource_PEL__srcPelTag.php.html#a1089">1089</a></span>)
+		</span>
+	</div>
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Latitude.</p>
+<p class="description"><p>Format: <a href="../PEL/PelFormat.html#constRATIONAL">PelFormat::RATIONAL</a>.</p><p>Components: 3.</p></p>
+	
+	
+</div>
+<a name="constGPS_LATITUDE_REF" id="GPS_LATITUDE_REF"><!-- --></A>
+<div class="oddrow">
+
+	<div class="const-header">
+		<img src="../media/images/Variable.png" />
+		<span class="const-title">
+			<span class="const-name">GPS_LATITUDE_REF</span>
+			 = <span class="const-default"> 0x0001</span>
+			(line <span class="line-number"><a href="../__filesource/fsource_PEL__srcPelTag.php.html#a1080">1080</a></span>)
+		</span>
+	</div>
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">North or South Latitude.</p>
+<p class="description"><p>Format: <a href="../PEL/PelFormat.html#constASCII">PelFormat::ASCII</a>.</p><p>Components: 2.</p></p>
+	
+	
+</div>
+<a name="constGPS_LONGITUDE" id="GPS_LONGITUDE"><!-- --></A>
+<div class="evenrow">
+
+	<div class="const-header">
+		<img src="../media/images/Variable.png" />
+		<span class="const-title">
+			<span class="const-name">GPS_LONGITUDE</span>
+			 = <span class="const-default"> 0x0004</span>
+			(line <span class="line-number"><a href="../__filesource/fsource_PEL__srcPelTag.php.html#a1107">1107</a></span>)
+		</span>
+	</div>
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Longitude.</p>
+<p class="description"><p>Format: <a href="../PEL/PelFormat.html#constRATIONAL">PelFormat::RATIONAL</a>.</p><p>Components: 3.</p></p>
+	
+	
+</div>
+<a name="constGPS_LONGITUDE_REF" id="GPS_LONGITUDE_REF"><!-- --></A>
+<div class="oddrow">
+
+	<div class="const-header">
+		<img src="../media/images/Variable.png" />
+		<span class="const-title">
+			<span class="const-name">GPS_LONGITUDE_REF</span>
+			 = <span class="const-default"> 0x0003</span>
+			(line <span class="line-number"><a href="../__filesource/fsource_PEL__srcPelTag.php.html#a1098">1098</a></span>)
+		</span>
+	</div>
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">East or West Longitude.</p>
+<p class="description"><p>Format: <a href="../PEL/PelFormat.html#constASCII">PelFormat::ASCII</a>.</p><p>Components: 2.</p></p>
+	
+	
+</div>
+<a name="constGPS_MAP_DATUM" id="GPS_MAP_DATUM"><!-- --></A>
+<div class="evenrow">
+
+	<div class="const-header">
+		<img src="../media/images/Variable.png" />
+		<span class="const-title">
+			<span class="const-name">GPS_MAP_DATUM</span>
+			 = <span class="const-default"> 0x0012</span>
+			(line <span class="line-number"><a href="../__filesource/fsource_PEL__srcPelTag.php.html#a1233">1233</a></span>)
+		</span>
+	</div>
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Geodetic survey data used.</p>
+<p class="description"><p>Format: <a href="../PEL/PelFormat.html#constASCII">PelFormat::ASCII</a>.</p><p>Components: Any.</p></p>
+	
+	
+</div>
+<a name="constGPS_MEASURE_MODE" id="GPS_MEASURE_MODE"><!-- --></A>
+<div class="oddrow">
+
+	<div class="const-header">
+		<img src="../media/images/Variable.png" />
+		<span class="const-title">
+			<span class="const-name">GPS_MEASURE_MODE</span>
+			 = <span class="const-default"> 0x000A</span>
+			(line <span class="line-number"><a href="../__filesource/fsource_PEL__srcPelTag.php.html#a1161">1161</a></span>)
+		</span>
+	</div>
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">GPS measurement mode.</p>
+<p class="description"><p>Format: <a href="../PEL/PelFormat.html#constASCII">PelFormat::ASCII</a>.</p><p>Components: 2.</p></p>
+	
+	
+</div>
+<a name="constGPS_PROCESSING_METHOD" id="GPS_PROCESSING_METHOD"><!-- --></A>
+<div class="evenrow">
+
+	<div class="const-header">
+		<img src="../media/images/Variable.png" />
+		<span class="const-title">
+			<span class="const-name">GPS_PROCESSING_METHOD</span>
+			 = <span class="const-default"> 0x001B</span>
+			(line <span class="line-number"><a href="../__filesource/fsource_PEL__srcPelTag.php.html#a1314">1314</a></span>)
+		</span>
+	</div>
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Name of GPS processing method.</p>
+<p class="description"><p>Format: <a href="../PEL/PelFormat.html#constUNDEFINED">PelFormat::UNDEFINED</a>.</p><p>Components: Any.</p></p>
+	
+	
+</div>
+<a name="constGPS_SATELLITES" id="GPS_SATELLITES"><!-- --></A>
+<div class="oddrow">
+
+	<div class="const-header">
+		<img src="../media/images/Variable.png" />
+		<span class="const-title">
+			<span class="const-name">GPS_SATELLITES</span>
+			 = <span class="const-default"> 0x0008</span>
+			(line <span class="line-number"><a href="../__filesource/fsource_PEL__srcPelTag.php.html#a1143">1143</a></span>)
+		</span>
+	</div>
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">GPS satellites used for measurement.</p>
+<p class="description"><p>Format: <a href="../PEL/PelFormat.html#constASCII">PelFormat::ASCII</a>.</p><p>Components: Any.</p></p>
+	
+	
+</div>
+<a name="constGPS_SPEED" id="GPS_SPEED"><!-- --></A>
+<div class="evenrow">
+
+	<div class="const-header">
+		<img src="../media/images/Variable.png" />
+		<span class="const-title">
+			<span class="const-name">GPS_SPEED</span>
+			 = <span class="const-default"> 0x000D</span>
+			(line <span class="line-number"><a href="../__filesource/fsource_PEL__srcPelTag.php.html#a1188">1188</a></span>)
+		</span>
+	</div>
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Speed of GPS receiver.</p>
+<p class="description"><p>Format: <a href="../PEL/PelFormat.html#constRATIONAL">PelFormat::RATIONAL</a>.</p><p>Components: 1.</p></p>
+	
+	
+</div>
+<a name="constGPS_SPEED_REF" id="GPS_SPEED_REF"><!-- --></A>
+<div class="oddrow">
+
+	<div class="const-header">
+		<img src="../media/images/Variable.png" />
+		<span class="const-title">
+			<span class="const-name">GPS_SPEED_REF</span>
+			 = <span class="const-default"> 0x000C</span>
+			(line <span class="line-number"><a href="../__filesource/fsource_PEL__srcPelTag.php.html#a1179">1179</a></span>)
+		</span>
+	</div>
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Speed unit.</p>
+<p class="description"><p>Format: <a href="../PEL/PelFormat.html#constASCII">PelFormat::ASCII</a>.</p><p>Components: 2.</p></p>
+	
+	
+</div>
+<a name="constGPS_STATUS" id="GPS_STATUS"><!-- --></A>
+<div class="evenrow">
+
+	<div class="const-header">
+		<img src="../media/images/Variable.png" />
+		<span class="const-title">
+			<span class="const-name">GPS_STATUS</span>
+			 = <span class="const-default"> 0x0009</span>
+			(line <span class="line-number"><a href="../__filesource/fsource_PEL__srcPelTag.php.html#a1152">1152</a></span>)
+		</span>
+	</div>
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">GPS receiver status.</p>
+<p class="description"><p>Format: <a href="../PEL/PelFormat.html#constASCII">PelFormat::ASCII</a>.</p><p>Components: 2.</p></p>
+	
+	
+</div>
+<a name="constGPS_TIME_STAMP" id="GPS_TIME_STAMP"><!-- --></A>
+<div class="oddrow">
+
+	<div class="const-header">
+		<img src="../media/images/Variable.png" />
+		<span class="const-title">
+			<span class="const-name">GPS_TIME_STAMP</span>
+			 = <span class="const-default"> 0x0007</span>
+			(line <span class="line-number"><a href="../__filesource/fsource_PEL__srcPelTag.php.html#a1134">1134</a></span>)
+		</span>
+	</div>
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">GPS time (atomic clock).</p>
+<p class="description"><p>Format: <a href="../PEL/PelFormat.html#constRATIONAL">PelFormat::RATIONAL</a>.</p><p>Components: 3.</p></p>
+	
+	
+</div>
+<a name="constGPS_TRACK" id="GPS_TRACK"><!-- --></A>
+<div class="evenrow">
+
+	<div class="const-header">
+		<img src="../media/images/Variable.png" />
+		<span class="const-title">
+			<span class="const-name">GPS_TRACK</span>
+			 = <span class="const-default"> 0x000F</span>
+			(line <span class="line-number"><a href="../__filesource/fsource_PEL__srcPelTag.php.html#a1206">1206</a></span>)
+		</span>
+	</div>
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Direction of movement.</p>
+<p class="description"><p>Format: <a href="../PEL/PelFormat.html#constRATIONAL">PelFormat::RATIONAL</a>.</p><p>Components: 1.</p></p>
+	
+	
+</div>
+<a name="constGPS_TRACK_REF" id="GPS_TRACK_REF"><!-- --></A>
+<div class="oddrow">
+
+	<div class="const-header">
+		<img src="../media/images/Variable.png" />
+		<span class="const-title">
+			<span class="const-name">GPS_TRACK_REF</span>
+			 = <span class="const-default"> 0x000E</span>
+			(line <span class="line-number"><a href="../__filesource/fsource_PEL__srcPelTag.php.html#a1197">1197</a></span>)
+		</span>
+	</div>
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Reference for direction of movement.</p>
+<p class="description"><p>Format: <a href="../PEL/PelFormat.html#constASCII">PelFormat::ASCII</a>.</p><p>Components: 2.</p></p>
+	
+	
+</div>
+<a name="constGPS_VERSION_ID" id="GPS_VERSION_ID"><!-- --></A>
+<div class="evenrow">
+
+	<div class="const-header">
+		<img src="../media/images/Variable.png" />
+		<span class="const-title">
+			<span class="const-name">GPS_VERSION_ID</span>
+			 = <span class="const-default"> 0x0000</span>
+			(line <span class="line-number"><a href="../__filesource/fsource_PEL__srcPelTag.php.html#a1071">1071</a></span>)
+		</span>
+	</div>
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">GPS tag version.</p>
+<p class="description"><p>Format: <a href="../PEL/PelFormat.html#constBYTE">PelFormat::BYTE</a>.</p><p>Components: 4.</p></p>
+	
+	
+</div>
+<a name="constIMAGE_DESCRIPTION" id="IMAGE_DESCRIPTION"><!-- --></A>
+<div class="oddrow">
+
+	<div class="const-header">
+		<img src="../media/images/Variable.png" />
+		<span class="const-title">
+			<span class="const-name">IMAGE_DESCRIPTION</span>
+			 = <span class="const-default"> 0x010E</span>
+			(line <span class="line-number"><a href="../__filesource/fsource_PEL__srcPelTag.php.html#a155">155</a></span>)
+		</span>
+	</div>
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Image Description</p>
+<p class="description"><p>Format: <a href="../PEL/PelEntryAscii.html">PelEntryAscii</a>.</p><p>Components: any number.</p></p>
+	
+	
+</div>
+<a name="constIMAGE_LENGTH" id="IMAGE_LENGTH"><!-- --></A>
+<div class="evenrow">
+
+	<div class="const-header">
+		<img src="../media/images/Variable.png" />
+		<span class="const-title">
+			<span class="const-name">IMAGE_LENGTH</span>
+			 = <span class="const-default"> 0x0101</span>
+			(line <span class="line-number"><a href="../__filesource/fsource_PEL__srcPelTag.php.html#a101">101</a></span>)
+		</span>
+	</div>
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Image length.</p>
+<p class="description"><p>Format: <a href="../PEL/PelFormat.html#constSHORT">PelFormat::SHORT</a> or <a href="../PEL/PelFormat.html#constLONG">PelFormat::LONG</a>.</p><p>Components: 1.</p></p>
+	
+	
+</div>
+<a name="constIMAGE_UNIQUE_ID" id="IMAGE_UNIQUE_ID"><!-- --></A>
+<div class="oddrow">
+
+	<div class="const-header">
+		<img src="../media/images/Variable.png" />
+		<span class="const-title">
+			<span class="const-name">IMAGE_UNIQUE_ID</span>
+			 = <span class="const-default"> 0xA420</span>
+			(line <span class="line-number"><a href="../__filesource/fsource_PEL__srcPelTag.php.html#a1044">1044</a></span>)
+		</span>
+	</div>
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Image unique ID.</p>
+<p class="description"><p>Format: <a href="../PEL/PelFormat.html#constASCII">PelFormat::ASCII</a>.</p><p>Components: 32.</p></p>
+	
+	
+</div>
+<a name="constIMAGE_WIDTH" id="IMAGE_WIDTH"><!-- --></A>
+<div class="evenrow">
+
+	<div class="const-header">
+		<img src="../media/images/Variable.png" />
+		<span class="const-title">
+			<span class="const-name">IMAGE_WIDTH</span>
+			 = <span class="const-default"> 0x0100</span>
+			(line <span class="line-number"><a href="../__filesource/fsource_PEL__srcPelTag.php.html#a92">92</a></span>)
+		</span>
+	</div>
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Image width.</p>
+<p class="description"><p>Format: <a href="../PEL/PelFormat.html#constSHORT">PelFormat::SHORT</a> or <a href="../PEL/PelFormat.html#constLONG">PelFormat::LONG</a>.</p><p>Components: 1.</p></p>
+	
+	
+</div>
+<a name="constINTEROPERABILITY_IFD_POINTER" id="INTEROPERABILITY_IFD_POINTER"><!-- --></A>
+<div class="oddrow">
+
+	<div class="const-header">
+		<img src="../media/images/Variable.png" />
+		<span class="const-title">
+			<span class="const-name">INTEROPERABILITY_IFD_POINTER</span>
+			 = <span class="const-default"> 0xA005</span>
+			(line <span class="line-number"><a href="../__filesource/fsource_PEL__srcPelTag.php.html#a828">828</a></span>)
+		</span>
+	</div>
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Interoperability IFD Pointer</p>
+<p class="description"><p>Format: <a href="../PEL/PelFormat.html#constLONG">PelFormat::LONG</a>.</p><p>Components: 1.</p></p>
+	
+	
+</div>
+<a name="constINTEROPERABILITY_INDEX" id="INTEROPERABILITY_INDEX"><!-- --></A>
+<div class="evenrow">
+
+	<div class="const-header">
+		<img src="../media/images/Variable.png" />
+		<span class="const-title">
+			<span class="const-name">INTEROPERABILITY_INDEX</span>
+			 = <span class="const-default"> 0x0001</span>
+			(line <span class="line-number"><a href="../__filesource/fsource_PEL__srcPelTag.php.html#a74">74</a></span>)
+		</span>
+	</div>
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Interoperability index.</p>
+<p class="description"><p>Format: <a href="../PEL/PelFormat.html#constASCII">PelFormat::ASCII</a>.</p><p>Components: 4.</p></p>
+	
+	
+</div>
+<a name="constINTEROPERABILITY_VERSION" id="INTEROPERABILITY_VERSION"><!-- --></A>
+<div class="oddrow">
+
+	<div class="const-header">
+		<img src="../media/images/Variable.png" />
+		<span class="const-title">
+			<span class="const-name">INTEROPERABILITY_VERSION</span>
+			 = <span class="const-default"> 0x0002</span>
+			(line <span class="line-number"><a href="../__filesource/fsource_PEL__srcPelTag.php.html#a83">83</a></span>)
+		</span>
+	</div>
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Interoperability version.</p>
+<p class="description"><p>Format: <a href="../PEL/PelFormat.html#constUNDEFINED">PelFormat::UNDEFINED</a>.</p><p>Components: 4.</p></p>
+	
+	
+</div>
+<a name="constINTER_COLOR_PROFILE" id="INTER_COLOR_PROFILE"><!-- --></A>
+<div class="evenrow">
+
+	<div class="const-header">
+		<img src="../media/images/Variable.png" />
+		<span class="const-title">
+			<span class="const-name">INTER_COLOR_PROFILE</span>
+			 = <span class="const-default"> 0x8773</span>
+			(line <span class="line-number"><a href="../__filesource/fsource_PEL__srcPelTag.php.html#a480">480</a></span>)
+		</span>
+	</div>
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Inter Color Profile</p>
+<p class="description"><p>Format: <a href="../PEL/PelFormat.html#constUNDEFINED">PelFormat::UNDEFINED</a>.</p><p>Components: any number.</p></p>
+	
+	
+</div>
+<a name="constIPTC_NAA" id="IPTC_NAA"><!-- --></A>
+<div class="oddrow">
+
+	<div class="const-header">
+		<img src="../media/images/Variable.png" />
+		<span class="const-title">
+			<span class="const-name">IPTC_NAA</span>
+			 = <span class="const-default"> 0x83BB</span>
+			(line <span class="line-number"><a href="../__filesource/fsource_PEL__srcPelTag.php.html#a462">462</a></span>)
+		</span>
+	</div>
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">IPTC/NAA</p>
+<p class="description"><p>Format: <a href="../PEL/PelFormat.html#constLONG">PelFormat::LONG</a>.</p><p>Components: any number.</p></p>
+	
+	
+</div>
+<a name="constISO_SPEED_RATINGS" id="ISO_SPEED_RATINGS"><!-- --></A>
+<div class="evenrow">
+
+	<div class="const-header">
+		<img src="../media/images/Variable.png" />
+		<span class="const-title">
+			<span class="const-name">ISO_SPEED_RATINGS</span>
+			 = <span class="const-default"> 0x8827</span>
+			(line <span class="line-number"><a href="../__filesource/fsource_PEL__srcPelTag.php.html#a516">516</a></span>)
+		</span>
+	</div>
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">ISO Speed Ratings</p>
+<p class="description"><p>Format: <a href="../PEL/PelFormat.html#constSHORT">PelFormat::SHORT</a>.</p><p>Components: 2.</p></p>
+	
+	
+</div>
+<a name="constJPEG_INTERCHANGE_FORMAT" id="JPEG_INTERCHANGE_FORMAT"><!-- --></A>
+<div class="oddrow">
+
+	<div class="const-header">
+		<img src="../media/images/Variable.png" />
+		<span class="const-title">
+			<span class="const-name">JPEG_INTERCHANGE_FORMAT</span>
+			 = <span class="const-default"> 0x0201</span>
+			(line <span class="line-number"><a href="../__filesource/fsource_PEL__srcPelTag.php.html#a336">336</a></span>)
+		</span>
+	</div>
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Offset to JPEG SOI.</p>
+<p class="description"><p>Format: <a href="../PEL/PelFormat.html#constLONG">PelFormat::LONG</a>.</p><p>Components: 1.</p></p>
+	
+	
+</div>
+<a name="constJPEG_INTERCHANGE_FORMAT_LENGTH" id="JPEG_INTERCHANGE_FORMAT_LENGTH"><!-- --></A>
+<div class="evenrow">
+
+	<div class="const-header">
+		<img src="../media/images/Variable.png" />
+		<span class="const-title">
+			<span class="const-name">JPEG_INTERCHANGE_FORMAT_LENGTH</span>
+			 = <span class="const-default"> 0x0202</span>
+			(line <span class="line-number"><a href="../__filesource/fsource_PEL__srcPelTag.php.html#a345">345</a></span>)
+		</span>
+	</div>
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Bytes of JPEG data.</p>
+<p class="description"><p>Format: <a href="../PEL/PelFormat.html#constLONG">PelFormat::LONG</a>.</p><p>Components: 1.</p></p>
+	
+	
+</div>
+<a name="constJPEG_PROC" id="JPEG_PROC"><!-- --></A>
+<div class="oddrow">
+
+	<div class="const-header">
+		<img src="../media/images/Variable.png" />
+		<span class="const-title">
+			<span class="const-name">JPEG_PROC</span>
+			 = <span class="const-default"> 0x0200</span>
+			(line <span class="line-number"><a href="../__filesource/fsource_PEL__srcPelTag.php.html#a327">327</a></span>)
+		</span>
+	</div>
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">JPEGProc</p>
+<p class="description"><p>Format: Unknown.</p><p>Components: Unknown.</p></p>
+	
+	
+</div>
+<a name="constLIGHT_SOURCE" id="LIGHT_SOURCE"><!-- --></A>
+<div class="evenrow">
+
+	<div class="const-header">
+		<img src="../media/images/Variable.png" />
+		<span class="const-title">
+			<span class="const-name">LIGHT_SOURCE</span>
+			 = <span class="const-default"> 0x9208</span>
+			(line <span class="line-number"><a href="../__filesource/fsource_PEL__srcPelTag.php.html#a645">645</a></span>)
+		</span>
+	</div>
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Light Source</p>
+<p class="description"><p>Format: <a href="../PEL/PelFormat.html#constSHORT">PelFormat::SHORT</a>.</p><p>Components: 1.</p></p>
+	
+	
+</div>
+<a name="constMAKE" id="MAKE"><!-- --></A>
+<div class="oddrow">
+
+	<div class="const-header">
+		<img src="../media/images/Variable.png" />
+		<span class="const-title">
+			<span class="const-name">MAKE</span>
+			 = <span class="const-default"> 0x010F</span>
+			(line <span class="line-number"><a href="../__filesource/fsource_PEL__srcPelTag.php.html#a164">164</a></span>)
+		</span>
+	</div>
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Manufacturer</p>
+<p class="description"><p>Format: <a href="../PEL/PelEntryAscii.html">PelEntryAscii</a>.</p><p>Components: any number.</p></p>
+	
+	
+</div>
+<a name="constMAKER_NOTE" id="MAKER_NOTE"><!-- --></A>
+<div class="evenrow">
+
+	<div class="const-header">
+		<img src="../media/images/Variable.png" />
+		<span class="const-title">
+			<span class="const-name">MAKER_NOTE</span>
+			 = <span class="const-default"> 0x927C</span>
+			(line <span class="line-number"><a href="../__filesource/fsource_PEL__srcPelTag.php.html#a681">681</a></span>)
+		</span>
+	</div>
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Maker Note</p>
+<p class="description"><p>Format: <a href="../PEL/PelFormat.html#constUNDEFINED">PelFormat::UNDEFINED</a>.</p><p>Components: any number.</p></p>
+	
+	
+</div>
+<a name="constMAX_APERTURE_VALUE" id="MAX_APERTURE_VALUE"><!-- --></A>
+<div class="oddrow">
+
+	<div class="const-header">
+		<img src="../media/images/Variable.png" />
+		<span class="const-title">
+			<span class="const-name">MAX_APERTURE_VALUE</span>
+			 = <span class="const-default"> 0x9205</span>
+			(line <span class="line-number"><a href="../__filesource/fsource_PEL__srcPelTag.php.html#a618">618</a></span>)
+		</span>
+	</div>
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Max Aperture Value</p>
+<p class="description"><p>Format: <a href="../PEL/PelFormat.html#constRATIONAL">PelFormat::RATIONAL</a>.</p><p>Components: 1.</p></p>
+	
+	
+</div>
+<a name="constMETERING_MODE" id="METERING_MODE"><!-- --></A>
+<div class="evenrow">
+
+	<div class="const-header">
+		<img src="../media/images/Variable.png" />
+		<span class="const-title">
+			<span class="const-name">METERING_MODE</span>
+			 = <span class="const-default"> 0x9207</span>
+			(line <span class="line-number"><a href="../__filesource/fsource_PEL__srcPelTag.php.html#a636">636</a></span>)
+		</span>
+	</div>
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Metering Mode</p>
+<p class="description"><p>Format: <a href="../PEL/PelFormat.html#constSHORT">PelFormat::SHORT</a>.</p><p>Components: 1.</p></p>
+	
+	
+</div>
+<a name="constMODEL" id="MODEL"><!-- --></A>
+<div class="oddrow">
+
+	<div class="const-header">
+		<img src="../media/images/Variable.png" />
+		<span class="const-title">
+			<span class="const-name">MODEL</span>
+			 = <span class="const-default"> 0x0110</span>
+			(line <span class="line-number"><a href="../__filesource/fsource_PEL__srcPelTag.php.html#a173">173</a></span>)
+		</span>
+	</div>
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Model</p>
+<p class="description"><p>Format: <a href="../PEL/PelFormat.html#constASCII">PelFormat::ASCII</a>.</p><p>Components: any number.</p></p>
+	
+	
+</div>
+<a name="constOECF" id="OECF"><!-- --></A>
+<div class="evenrow">
+
+	<div class="const-header">
+		<img src="../media/images/Variable.png" />
+		<span class="const-title">
+			<span class="const-name">OECF</span>
+			 = <span class="const-default"> 0x8828</span>
+			(line <span class="line-number"><a href="../__filesource/fsource_PEL__srcPelTag.php.html#a525">525</a></span>)
+		</span>
+	</div>
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">OECF</p>
+<p class="description"><p>Format: <a href="../PEL/PelFormat.html#constUNDEFINED">PelFormat::UNDEFINED</a>.</p><p>Components: any number.</p></p>
+	
+	
+</div>
+<a name="constORIENTATION" id="ORIENTATION"><!-- --></A>
+<div class="oddrow">
+
+	<div class="const-header">
+		<img src="../media/images/Variable.png" />
+		<span class="const-title">
+			<span class="const-name">ORIENTATION</span>
+			 = <span class="const-default"> 0x0112</span>
+			(line <span class="line-number"><a href="../__filesource/fsource_PEL__srcPelTag.php.html#a191">191</a></span>)
+		</span>
+	</div>
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Orientation of image.</p>
+<p class="description"><p>Format: <a href="../PEL/PelFormat.html#constSHORT">PelFormat::SHORT</a>.</p><p>Components: 1.</p></p>
+	
+	
+</div>
+<a name="constPHOTOMETRIC_INTERPRETATION" id="PHOTOMETRIC_INTERPRETATION"><!-- --></A>
+<div class="evenrow">
+
+	<div class="const-header">
+		<img src="../media/images/Variable.png" />
+		<span class="const-title">
+			<span class="const-name">PHOTOMETRIC_INTERPRETATION</span>
+			 = <span class="const-default"> 0x0106</span>
+			(line <span class="line-number"><a href="../__filesource/fsource_PEL__srcPelTag.php.html#a128">128</a></span>)
+		</span>
+	</div>
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Pixel composition.</p>
+<p class="description"><p>Format: <a href="../PEL/PelFormat.html#constSHORT">PelFormat::SHORT</a>.</p><p>Components: 1.</p></p>
+	
+	
+</div>
+<a name="constPIXEL_X_DIMENSION" id="PIXEL_X_DIMENSION"><!-- --></A>
+<div class="oddrow">
+
+	<div class="const-header">
+		<img src="../media/images/Variable.png" />
+		<span class="const-title">
+			<span class="const-name">PIXEL_X_DIMENSION</span>
+			 = <span class="const-default"> 0xA002</span>
+			(line <span class="line-number"><a href="../__filesource/fsource_PEL__srcPelTag.php.html#a801">801</a></span>)
+		</span>
+	</div>
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Valid image width.</p>
+<p class="description"><p>Format: <a href="../PEL/PelFormat.html#constSHORT">PelFormat::SHORT</a> or <a href="../PEL/PelFormat.html#constLONG">PelFormat::LONG</a>.</p><p>Components: 1.</p></p>
+	
+	
+</div>
+<a name="constPIXEL_Y_DIMENSION" id="PIXEL_Y_DIMENSION"><!-- --></A>
+<div class="evenrow">
+
+	<div class="const-header">
+		<img src="../media/images/Variable.png" />
+		<span class="const-title">
+			<span class="const-name">PIXEL_Y_DIMENSION</span>
+			 = <span class="const-default"> 0xA003</span>
+			(line <span class="line-number"><a href="../__filesource/fsource_PEL__srcPelTag.php.html#a810">810</a></span>)
+		</span>
+	</div>
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Valid image height.</p>
+<p class="description"><p>Format: <a href="../PEL/PelFormat.html#constSHORT">PelFormat::SHORT</a> or <a href="../PEL/PelFormat.html#constLONG">PelFormat::LONG</a>.</p><p>Components: 1.</p></p>
+	
+	
+</div>
+<a name="constPLANAR_CONFIGURATION" id="PLANAR_CONFIGURATION"><!-- --></A>
+<div class="oddrow">
+
+	<div class="const-header">
+		<img src="../media/images/Variable.png" />
+		<span class="const-title">
+			<span class="const-name">PLANAR_CONFIGURATION</span>
+			 = <span class="const-default"> 0x011C</span>
+			(line <span class="line-number"><a href="../__filesource/fsource_PEL__srcPelTag.php.html#a245">245</a></span>)
+		</span>
+	</div>
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Image data arrangement.</p>
+<p class="description"><p>Format: <a href="../PEL/PelFormat.html#constSHORT">PelFormat::SHORT</a>.</p><p>Components: 1.</p></p>
+	
+	
+</div>
+<a name="constPRIMARY_CHROMATICITIES" id="PRIMARY_CHROMATICITIES"><!-- --></A>
+<div class="evenrow">
+
+	<div class="const-header">
+		<img src="../media/images/Variable.png" />
+		<span class="const-title">
+			<span class="const-name">PRIMARY_CHROMATICITIES</span>
+			 = <span class="const-default"> 0x013F</span>
+			(line <span class="line-number"><a href="../__filesource/fsource_PEL__srcPelTag.php.html#a309">309</a></span>)
+		</span>
+	</div>
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Chromaticities of primaries.</p>
+<p class="description"><p>Format: <a href="../PEL/PelFormat.html#constRATIONAL">PelFormat::RATIONAL</a>.</p><p>Components: 6.</p></p>
+	
+	
+</div>
+<a name="constPRINT_IM" id="PRINT_IM"><!-- --></A>
+<div class="oddrow">
+
+	<div class="const-header">
+		<img src="../media/images/Variable.png" />
+		<span class="const-title">
+			<span class="const-name">PRINT_IM</span>
+			 = <span class="const-default"> 0xC4A5</span>
+			(line <span class="line-number"><a href="../__filesource/fsource_PEL__srcPelTag.php.html#a1062">1062</a></span>)
+		</span>
+	</div>
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">PrintIM</p>
+<p class="description"><p>Format: <a href="../PEL/PelFormat.html#constUNDEFINED">PelFormat::UNDEFINED</a>.</p><p>Components: unknown.</p></p>
+	
+	
+</div>
+<a name="constREFERENCE_BLACK_WHITE" id="REFERENCE_BLACK_WHITE"><!-- --></A>
+<div class="evenrow">
+
+	<div class="const-header">
+		<img src="../media/images/Variable.png" />
+		<span class="const-title">
+			<span class="const-name">REFERENCE_BLACK_WHITE</span>
+			 = <span class="const-default"> 0x0214</span>
+			(line <span class="line-number"><a href="../__filesource/fsource_PEL__srcPelTag.php.html#a381">381</a></span>)
+		</span>
+	</div>
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Pair of black and white reference values.</p>
+<p class="description"><p>Format: <a href="../PEL/PelFormat.html#constRATIONAL">PelFormat::RATIONAL</a>.</p><p>Components: 6.</p></p>
+	
+	
+</div>
+<a name="constRELATED_IMAGE_FILE_FORMAT" id="RELATED_IMAGE_FILE_FORMAT"><!-- --></A>
+<div class="oddrow">
+
+	<div class="const-header">
+		<img src="../media/images/Variable.png" />
+		<span class="const-title">
+			<span class="const-name">RELATED_IMAGE_FILE_FORMAT</span>
+			 = <span class="const-default"> 0x1000</span>
+			(line <span class="line-number"><a href="../__filesource/fsource_PEL__srcPelTag.php.html#a390">390</a></span>)
+		</span>
+	</div>
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Related Image File Format</p>
+<p class="description"><p>Format: Unknown.</p><p>Components: Unknown.</p></p>
+	
+	
+</div>
+<a name="constRELATED_IMAGE_LENGTH" id="RELATED_IMAGE_LENGTH"><!-- --></A>
+<div class="evenrow">
+
+	<div class="const-header">
+		<img src="../media/images/Variable.png" />
+		<span class="const-title">
+			<span class="const-name">RELATED_IMAGE_LENGTH</span>
+			 = <span class="const-default"> 0x1002</span>
+			(line <span class="line-number"><a href="../__filesource/fsource_PEL__srcPelTag.php.html#a407">407</a></span>)
+		</span>
+	</div>
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Related Image Length</p>
+<p class="description"><p>Format: Unknown, probably <a href="../PEL/PelFormat.html#constSHORT">PelFormat::SHORT</a>?</p><p>Components: Unknown, probably 1.</p></p>
+	
+	
+</div>
+<a name="constRELATED_IMAGE_WIDTH" id="RELATED_IMAGE_WIDTH"><!-- --></A>
+<div class="oddrow">
+
+	<div class="const-header">
+		<img src="../media/images/Variable.png" />
+		<span class="const-title">
+			<span class="const-name">RELATED_IMAGE_WIDTH</span>
+			 = <span class="const-default"> 0x1001</span>
+			(line <span class="line-number"><a href="../__filesource/fsource_PEL__srcPelTag.php.html#a399">399</a></span>)
+		</span>
+	</div>
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Related Image Width</p>
+<p class="description"><p>Format: Unknown, probably <a href="../PEL/PelFormat.html#constSHORT">PelFormat::SHORT</a>?</p><p>Components: Unknown, probably 1.</p></p>
+	
+	
+</div>
+<a name="constRELATED_SOUND_FILE" id="RELATED_SOUND_FILE"><!-- --></A>
+<div class="evenrow">
+
+	<div class="const-header">
+		<img src="../media/images/Variable.png" />
+		<span class="const-title">
+			<span class="const-name">RELATED_SOUND_FILE</span>
+			 = <span class="const-default"> 0xA004</span>
+			(line <span class="line-number"><a href="../__filesource/fsource_PEL__srcPelTag.php.html#a819">819</a></span>)
+		</span>
+	</div>
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Related audio file.</p>
+<p class="description"><p>Format: <a href="../PEL/PelFormat.html#constASCII">PelFormat::ASCII</a>.</p><p>Components: any number.</p></p>
+	
+	
+</div>
+<a name="constRESOLUTION_UNIT" id="RESOLUTION_UNIT"><!-- --></A>
+<div class="oddrow">
+
+	<div class="const-header">
+		<img src="../media/images/Variable.png" />
+		<span class="const-title">
+			<span class="const-name">RESOLUTION_UNIT</span>
+			 = <span class="const-default"> 0x0128</span>
+			(line <span class="line-number"><a href="../__filesource/fsource_PEL__srcPelTag.php.html#a254">254</a></span>)
+		</span>
+	</div>
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Unit of X and Y resolution.</p>
+<p class="description"><p>Format: <a href="../PEL/PelFormat.html#constSHORT">PelFormat::SHORT</a>.</p><p>Components: 1.</p></p>
+	
+	
+</div>
+<a name="constROWS_PER_STRIP" id="ROWS_PER_STRIP"><!-- --></A>
+<div class="evenrow">
+
+	<div class="const-header">
+		<img src="../media/images/Variable.png" />
+		<span class="const-title">
+			<span class="const-name">ROWS_PER_STRIP</span>
+			 = <span class="const-default"> 0x0116</span>
+			(line <span class="line-number"><a href="../__filesource/fsource_PEL__srcPelTag.php.html#a209">209</a></span>)
+		</span>
+	</div>
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Rows per Strip</p>
+<p class="description"><p>Format: <a href="../PEL/PelFormat.html#constSHORT">PelFormat::SHORT</a> or <a href="../PEL/PelFormat.html#constLONG">PelFormat::LONG</a>.</p><p>Components: 1.</p></p>
+	
+	
+</div>
+<a name="constSAMPLES_PER_PIXEL" id="SAMPLES_PER_PIXEL"><!-- --></A>
+<div class="oddrow">
+
+	<div class="const-header">
+		<img src="../media/images/Variable.png" />
+		<span class="const-title">
+			<span class="const-name">SAMPLES_PER_PIXEL</span>
+			 = <span class="const-default"> 0x0115</span>
+			(line <span class="line-number"><a href="../__filesource/fsource_PEL__srcPelTag.php.html#a200">200</a></span>)
+		</span>
+	</div>
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Number of components.</p>
+<p class="description"><p>Format: <a href="../PEL/PelFormat.html#constSHORT">PelFormat::SHORT</a>.</p><p>Components: 1.</p></p>
+	
+	
+</div>
+<a name="constSATURATION" id="SATURATION"><!-- --></A>
+<div class="evenrow">
+
+	<div class="const-header">
+		<img src="../media/images/Variable.png" />
+		<span class="const-title">
+			<span class="const-name">SATURATION</span>
+			 = <span class="const-default"> 0xA409</span>
+			(line <span class="line-number"><a href="../__filesource/fsource_PEL__srcPelTag.php.html#a1008">1008</a></span>)
+		</span>
+	</div>
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Saturation.</p>
+<p class="description"><p>Format: <a href="../PEL/PelFormat.html#constSHORT">PelFormat::SHORT</a>.</p><p>Components: 1.</p></p>
+	
+	
+</div>
+<a name="constSCENE_CAPTURE_TYPE" id="SCENE_CAPTURE_TYPE"><!-- --></A>
+<div class="oddrow">
+
+	<div class="const-header">
+		<img src="../media/images/Variable.png" />
+		<span class="const-title">
+			<span class="const-name">SCENE_CAPTURE_TYPE</span>
+			 = <span class="const-default"> 0xA406</span>
+			(line <span class="line-number"><a href="../__filesource/fsource_PEL__srcPelTag.php.html#a981">981</a></span>)
+		</span>
+	</div>
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Scene capture type.</p>
+<p class="description"><p>Format: <a href="../PEL/PelFormat.html#constSHORT">PelFormat::SHORT</a>.</p><p>Components: 1.</p></p>
+	
+	
+</div>
+<a name="constSCENE_TYPE" id="SCENE_TYPE"><!-- --></A>
+<div class="evenrow">
+
+	<div class="const-header">
+		<img src="../media/images/Variable.png" />
+		<span class="const-title">
+			<span class="const-name">SCENE_TYPE</span>
+			 = <span class="const-default"> 0xA301</span>
+			(line <span class="line-number"><a href="../__filesource/fsource_PEL__srcPelTag.php.html#a918">918</a></span>)
+		</span>
+	</div>
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Scene type.</p>
+<p class="description"><p>Format: <a href="../PEL/PelFormat.html#constUNDEFINED">PelFormat::UNDEFINED</a>.</p><p>Components: 1.</p></p>
+	
+	
+</div>
+<a name="constSENSING_METHOD" id="SENSING_METHOD"><!-- --></A>
+<div class="oddrow">
+
+	<div class="const-header">
+		<img src="../media/images/Variable.png" />
+		<span class="const-title">
+			<span class="const-name">SENSING_METHOD</span>
+			 = <span class="const-default"> 0xA217</span>
+			(line <span class="line-number"><a href="../__filesource/fsource_PEL__srcPelTag.php.html#a900">900</a></span>)
+		</span>
+	</div>
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Sensing method.</p>
+<p class="description"><p>Format: <a href="../PEL/PelFormat.html#constSHORT">PelFormat::SHORT</a>.</p><p>Components: 1.</p></p>
+	
+	
+</div>
+<a name="constSHARPNESS" id="SHARPNESS"><!-- --></A>
+<div class="evenrow">
+
+	<div class="const-header">
+		<img src="../media/images/Variable.png" />
+		<span class="const-title">
+			<span class="const-name">SHARPNESS</span>
+			 = <span class="const-default"> 0xA40A</span>
+			(line <span class="line-number"><a href="../__filesource/fsource_PEL__srcPelTag.php.html#a1017">1017</a></span>)
+		</span>
+	</div>
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Sharpness.</p>
+<p class="description"><p>Format: <a href="../PEL/PelFormat.html#constSHORT">PelFormat::SHORT</a>.</p><p>Components: 1.</p></p>
+	
+	
+</div>
+<a name="constSHUTTER_SPEED_VALUE" id="SHUTTER_SPEED_VALUE"><!-- --></A>
+<div class="oddrow">
+
+	<div class="const-header">
+		<img src="../media/images/Variable.png" />
+		<span class="const-title">
+			<span class="const-name">SHUTTER_SPEED_VALUE</span>
+			 = <span class="const-default"> 0x9201</span>
+			(line <span class="line-number"><a href="../__filesource/fsource_PEL__srcPelTag.php.html#a582">582</a></span>)
+		</span>
+	</div>
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Shutter speed</p>
+<p class="description"><p>Format: <a href="../PEL/PelFormat.html#constSRATIONAL">PelFormat::SRATIONAL</a>.</p><p>Components: 1.</p></p>
+	
+	
+</div>
+<a name="constSOFTWARE" id="SOFTWARE"><!-- --></A>
+<div class="evenrow">
+
+	<div class="const-header">
+		<img src="../media/images/Variable.png" />
+		<span class="const-title">
+			<span class="const-name">SOFTWARE</span>
+			 = <span class="const-default"> 0x0131</span>
+			(line <span class="line-number"><a href="../__filesource/fsource_PEL__srcPelTag.php.html#a272">272</a></span>)
+		</span>
+	</div>
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Software used.</p>
+<p class="description"><p>Format: <a href="../PEL/PelFormat.html#constASCII">PelFormat::ASCII</a>.</p><p>Components: any number.</p></p>
+	
+	
+</div>
+<a name="constSPATIAL_FREQUENCY_RESPONSE" id="SPATIAL_FREQUENCY_RESPONSE"><!-- --></A>
+<div class="oddrow">
+
+	<div class="const-header">
+		<img src="../media/images/Variable.png" />
+		<span class="const-title">
+			<span class="const-name">SPATIAL_FREQUENCY_RESPONSE</span>
+			 = <span class="const-default"> 0xA20C</span>
+			(line <span class="line-number"><a href="../__filesource/fsource_PEL__srcPelTag.php.html#a846">846</a></span>)
+		</span>
+	</div>
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Spatial frequency response.</p>
+<p class="description"><p>Format: <a href="../PEL/PelFormat.html#constUNDEFINED">PelFormat::UNDEFINED</a>.</p><p>Components: any number.</p></p>
+	
+	
+</div>
+<a name="constSPECTRAL_SENSITIVITY" id="SPECTRAL_SENSITIVITY"><!-- --></A>
+<div class="evenrow">
+
+	<div class="const-header">
+		<img src="../media/images/Variable.png" />
+		<span class="const-title">
+			<span class="const-name">SPECTRAL_SENSITIVITY</span>
+			 = <span class="const-default"> 0x8824</span>
+			(line <span class="line-number"><a href="../__filesource/fsource_PEL__srcPelTag.php.html#a498">498</a></span>)
+		</span>
+	</div>
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Spectral Sensitivity</p>
+<p class="description"><p>Format: <a href="../PEL/PelFormat.html#constASCII">PelFormat::ASCII</a>.</p><p>Components: any number.</p></p>
+	
+	
+</div>
+<a name="constSTRIP_BYTE_COUNTS" id="STRIP_BYTE_COUNTS"><!-- --></A>
+<div class="oddrow">
+
+	<div class="const-header">
+		<img src="../media/images/Variable.png" />
+		<span class="const-title">
+			<span class="const-name">STRIP_BYTE_COUNTS</span>
+			 = <span class="const-default"> 0x0117</span>
+			(line <span class="line-number"><a href="../__filesource/fsource_PEL__srcPelTag.php.html#a218">218</a></span>)
+		</span>
+	</div>
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Strip Byte Count</p>
+<p class="description"><p>Format: <a href="../PEL/PelFormat.html#constSHORT">PelFormat::SHORT</a> or <a href="../PEL/PelFormat.html#constLONG">PelFormat::LONG</a>.</p><p>Components: any number.</p></p>
+	
+	
+</div>
+<a name="constSTRIP_OFFSETS" id="STRIP_OFFSETS"><!-- --></A>
+<div class="evenrow">
+
+	<div class="const-header">
+		<img src="../media/images/Variable.png" />
+		<span class="const-title">
+			<span class="const-name">STRIP_OFFSETS</span>
+			 = <span class="const-default"> 0x0111</span>
+			(line <span class="line-number"><a href="../__filesource/fsource_PEL__srcPelTag.php.html#a182">182</a></span>)
+		</span>
+	</div>
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Strip Offsets</p>
+<p class="description"><p>Format: <a href="../PEL/PelFormat.html#constSHORT">PelFormat::SHORT</a> or <a href="../PEL/PelFormat.html#constLONG">PelFormat::LONG</a>.</p><p>Components: any number.</p></p>
+	
+	
+</div>
+<a name="constSUBJECT_AREA" id="SUBJECT_AREA"><!-- --></A>
+<div class="oddrow">
+
+	<div class="const-header">
+		<img src="../media/images/Variable.png" />
+		<span class="const-title">
+			<span class="const-name">SUBJECT_AREA</span>
+			 = <span class="const-default"> 0x9214</span>
+			(line <span class="line-number"><a href="../__filesource/fsource_PEL__srcPelTag.php.html#a672">672</a></span>)
+		</span>
+	</div>
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Subject Area</p>
+<p class="description"><p>Format: <a href="../PEL/PelFormat.html#constSHORT">PelFormat::SHORT</a>.</p><p>Components: 4.</p></p>
+	
+	
+</div>
+<a name="constSUBJECT_DISTANCE" id="SUBJECT_DISTANCE"><!-- --></A>
+<div class="evenrow">
+
+	<div class="const-header">
+		<img src="../media/images/Variable.png" />
+		<span class="const-title">
+			<span class="const-name">SUBJECT_DISTANCE</span>
+			 = <span class="const-default"> 0x9206</span>
+			(line <span class="line-number"><a href="../__filesource/fsource_PEL__srcPelTag.php.html#a627">627</a></span>)
+		</span>
+	</div>
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Subject Distance</p>
+<p class="description"><p>Format: <a href="../PEL/PelFormat.html#constSRATIONAL">PelFormat::SRATIONAL</a>.</p><p>Components: 1.</p></p>
+	
+	
+</div>
+<a name="constSUBJECT_DISTANCE_RANGE" id="SUBJECT_DISTANCE_RANGE"><!-- --></A>
+<div class="oddrow">
+
+	<div class="const-header">
+		<img src="../media/images/Variable.png" />
+		<span class="const-title">
+			<span class="const-name">SUBJECT_DISTANCE_RANGE</span>
+			 = <span class="const-default"> 0xA40C</span>
+			(line <span class="line-number"><a href="../__filesource/fsource_PEL__srcPelTag.php.html#a1035">1035</a></span>)
+		</span>
+	</div>
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Subject distance range.</p>
+<p class="description"><p>Format: <a href="../PEL/PelFormat.html#constSHORT">PelFormat::SHORT</a>.</p><p>Components: 1.</p></p>
+	
+	
+</div>
+<a name="constSUBJECT_LOCATION" id="SUBJECT_LOCATION"><!-- --></A>
+<div class="evenrow">
+
+	<div class="const-header">
+		<img src="../media/images/Variable.png" />
+		<span class="const-title">
+			<span class="const-name">SUBJECT_LOCATION</span>
+			 = <span class="const-default"> 0xA214</span>
+			(line <span class="line-number"><a href="../__filesource/fsource_PEL__srcPelTag.php.html#a882">882</a></span>)
+		</span>
+	</div>
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Subject location.</p>
+<p class="description"><p>Format: <a href="../PEL/PelFormat.html#constSHORT">PelFormat::SHORT</a>.</p><p>Components: 1.</p></p>
+	
+	
+</div>
+<a name="constSUB_SEC_TIME" id="SUB_SEC_TIME"><!-- --></A>
+<div class="oddrow">
+
+	<div class="const-header">
+		<img src="../media/images/Variable.png" />
+		<span class="const-title">
+			<span class="const-name">SUB_SEC_TIME</span>
+			 = <span class="const-default"> 0x9290</span>
+			(line <span class="line-number"><a href="../__filesource/fsource_PEL__srcPelTag.php.html#a700">700</a></span>)
+		</span>
+	</div>
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">SubSec Time</p>
+<p class="description"><p>Format: <a href="../PEL/PelFormat.html#constASCII">PelFormat::ASCII</a>.</p><p>Components: any number.</p></p>
+	
+	
+</div>
+<a name="constSUB_SEC_TIME_DIGITIZED" id="SUB_SEC_TIME_DIGITIZED"><!-- --></A>
+<div class="evenrow">
+
+	<div class="const-header">
+		<img src="../media/images/Variable.png" />
+		<span class="const-title">
+			<span class="const-name">SUB_SEC_TIME_DIGITIZED</span>
+			 = <span class="const-default"> 0x9292</span>
+			(line <span class="line-number"><a href="../__filesource/fsource_PEL__srcPelTag.php.html#a718">718</a></span>)
+		</span>
+	</div>
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">SubSec Time Digitized</p>
+<p class="description"><p>Format: <a href="../PEL/PelFormat.html#constASCII">PelFormat::ASCII</a>.</p><p>Components: any number.</p></p>
+	
+	
+</div>
+<a name="constSUB_SEC_TIME_ORIGINAL" id="SUB_SEC_TIME_ORIGINAL"><!-- --></A>
+<div class="oddrow">
+
+	<div class="const-header">
+		<img src="../media/images/Variable.png" />
+		<span class="const-title">
+			<span class="const-name">SUB_SEC_TIME_ORIGINAL</span>
+			 = <span class="const-default"> 0x9291</span>
+			(line <span class="line-number"><a href="../__filesource/fsource_PEL__srcPelTag.php.html#a709">709</a></span>)
+		</span>
+	</div>
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">SubSec Time Original</p>
+<p class="description"><p>Format: <a href="../PEL/PelFormat.html#constASCII">PelFormat::ASCII</a>.</p><p>Components: any number.</p></p>
+	
+	
+</div>
+<a name="constTRANSFER_FUNCTION" id="TRANSFER_FUNCTION"><!-- --></A>
+<div class="evenrow">
+
+	<div class="const-header">
+		<img src="../media/images/Variable.png" />
+		<span class="const-title">
+			<span class="const-name">TRANSFER_FUNCTION</span>
+			 = <span class="const-default"> 0x012D</span>
+			(line <span class="line-number"><a href="../__filesource/fsource_PEL__srcPelTag.php.html#a263">263</a></span>)
+		</span>
+	</div>
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Transfer function.</p>
+<p class="description"><p>Format: <a href="../PEL/PelFormat.html#constSHORT">PelFormat::SHORT</a>.</p><p>Components: 3.</p></p>
+	
+	
+</div>
+<a name="constTRANSFER_RANGE" id="TRANSFER_RANGE"><!-- --></A>
+<div class="oddrow">
+
+	<div class="const-header">
+		<img src="../media/images/Variable.png" />
+		<span class="const-title">
+			<span class="const-name">TRANSFER_RANGE</span>
+			 = <span class="const-default"> 0x0156</span>
+			(line <span class="line-number"><a href="../__filesource/fsource_PEL__srcPelTag.php.html#a318">318</a></span>)
+		</span>
+	</div>
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Transfer Range</p>
+<p class="description"><p>Format: Unknown.</p><p>Components: Unknown.</p></p>
+	
+	
+</div>
+<a name="constUSER_COMMENT" id="USER_COMMENT"><!-- --></A>
+<div class="evenrow">
+
+	<div class="const-header">
+		<img src="../media/images/Variable.png" />
+		<span class="const-title">
+			<span class="const-name">USER_COMMENT</span>
+			 = <span class="const-default"> 0x9286</span>
+			(line <span class="line-number"><a href="../__filesource/fsource_PEL__srcPelTag.php.html#a691">691</a></span>)
+		</span>
+	</div>
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">User Comment</p>
+<p class="description"><p>Format: <a href="../PEL/PelFormat.html#constUNDEFINED">PelFormat::UNDEFINED</a>, modelled by the <a href="../PEL/PelEntryUserComment.html">PelEntryUserComment</a> class.</p><p>Components: any number.</p></p>
+	
+	
+</div>
+<a name="constWHITE_BALANCE" id="WHITE_BALANCE"><!-- --></A>
+<div class="oddrow">
+
+	<div class="const-header">
+		<img src="../media/images/Variable.png" />
+		<span class="const-title">
+			<span class="const-name">WHITE_BALANCE</span>
+			 = <span class="const-default"> 0xA403</span>
+			(line <span class="line-number"><a href="../__filesource/fsource_PEL__srcPelTag.php.html#a954">954</a></span>)
+		</span>
+	</div>
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">White balance.</p>
+<p class="description"><p>Format: <a href="../PEL/PelFormat.html#constSHORT">PelFormat::SHORT</a>.</p><p>Components: 1.</p></p>
+	
+	
+</div>
+<a name="constWHITE_POINT" id="WHITE_POINT"><!-- --></A>
+<div class="evenrow">
+
+	<div class="const-header">
+		<img src="../media/images/Variable.png" />
+		<span class="const-title">
+			<span class="const-name">WHITE_POINT</span>
+			 = <span class="const-default"> 0x013E</span>
+			(line <span class="line-number"><a href="../__filesource/fsource_PEL__srcPelTag.php.html#a300">300</a></span>)
+		</span>
+	</div>
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">White point chromaticity.</p>
+<p class="description"><p>Format: <a href="../PEL/PelFormat.html#constRATIONAL">PelFormat::RATIONAL</a>.</p><p>Components: 2.</p></p>
+	
+	
+</div>
+<a name="constXP_AUTHOR" id="XP_AUTHOR"><!-- --></A>
+<div class="oddrow">
+
+	<div class="const-header">
+		<img src="../media/images/Variable.png" />
+		<span class="const-title">
+			<span class="const-name">XP_AUTHOR</span>
+			 = <span class="const-default"> 0x9C9D</span>
+			(line <span class="line-number"><a href="../__filesource/fsource_PEL__srcPelTag.php.html#a750">750</a></span>)
+		</span>
+	</div>
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Windows XP Author</p>
+<p class="description"><p>Format: <a href="../PEL/PelFormat.html#constBYTE">PelFormat::BYTE</a>, modelled by the  <a href="../PEL/PelEntryWindowsString.html">PelEntryWindowsString</a> class.</p><p>Components: any number.</p></p>
+	
+	
+</div>
+<a name="constXP_COMMENT" id="XP_COMMENT"><!-- --></A>
+<div class="evenrow">
+
+	<div class="const-header">
+		<img src="../media/images/Variable.png" />
+		<span class="const-title">
+			<span class="const-name">XP_COMMENT</span>
+			 = <span class="const-default"> 0x9C9C</span>
+			(line <span class="line-number"><a href="../__filesource/fsource_PEL__srcPelTag.php.html#a739">739</a></span>)
+		</span>
+	</div>
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Windows XP Comment</p>
+<p class="description"><p>Format: <a href="../PEL/PelFormat.html#constBYTE">PelFormat::BYTE</a>, modelled by the  <a href="../PEL/PelEntryWindowsString.html">PelEntryWindowsString</a> class.</p><p>Components: any number.</p></p>
+	
+	
+</div>
+<a name="constXP_KEYWORDS" id="XP_KEYWORDS"><!-- --></A>
+<div class="oddrow">
+
+	<div class="const-header">
+		<img src="../media/images/Variable.png" />
+		<span class="const-title">
+			<span class="const-name">XP_KEYWORDS</span>
+			 = <span class="const-default"> 0x9C9E</span>
+			(line <span class="line-number"><a href="../__filesource/fsource_PEL__srcPelTag.php.html#a761">761</a></span>)
+		</span>
+	</div>
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Windows XP Keywords</p>
+<p class="description"><p>Format: <a href="../PEL/PelFormat.html#constBYTE">PelFormat::BYTE</a>, modelled by the  <a href="../PEL/PelEntryWindowsString.html">PelEntryWindowsString</a> class.</p><p>Components: any number.</p></p>
+	
+	
+</div>
+<a name="constXP_SUBJECT" id="XP_SUBJECT"><!-- --></A>
+<div class="evenrow">
+
+	<div class="const-header">
+		<img src="../media/images/Variable.png" />
+		<span class="const-title">
+			<span class="const-name">XP_SUBJECT</span>
+			 = <span class="const-default"> 0x9C9F</span>
+			(line <span class="line-number"><a href="../__filesource/fsource_PEL__srcPelTag.php.html#a772">772</a></span>)
+		</span>
+	</div>
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Windows XP Subject</p>
+<p class="description"><p>Format: <a href="../PEL/PelFormat.html#constBYTE">PelFormat::BYTE</a>, modelled by the  <a href="../PEL/PelEntryWindowsString.html">PelEntryWindowsString</a> class.</p><p>Components: any number.</p></p>
+	
+	
+</div>
+<a name="constXP_TITLE" id="XP_TITLE"><!-- --></A>
+<div class="oddrow">
+
+	<div class="const-header">
+		<img src="../media/images/Variable.png" />
+		<span class="const-title">
+			<span class="const-name">XP_TITLE</span>
+			 = <span class="const-default"> 0x9C9B</span>
+			(line <span class="line-number"><a href="../__filesource/fsource_PEL__srcPelTag.php.html#a728">728</a></span>)
+		</span>
+	</div>
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Windows XP Title</p>
+<p class="description"><p>Format: <a href="../PEL/PelFormat.html#constBYTE">PelFormat::BYTE</a>, modelled by the  <a href="../PEL/PelEntryWindowsString.html">PelEntryWindowsString</a> class.</p><p>Components: any number.</p></p>
+	
+	
+</div>
+<a name="constX_RESOLUTION" id="X_RESOLUTION"><!-- --></A>
+<div class="evenrow">
+
+	<div class="const-header">
+		<img src="../media/images/Variable.png" />
+		<span class="const-title">
+			<span class="const-name">X_RESOLUTION</span>
+			 = <span class="const-default"> 0x011A</span>
+			(line <span class="line-number"><a href="../__filesource/fsource_PEL__srcPelTag.php.html#a227">227</a></span>)
+		</span>
+	</div>
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Image resolution in width direction.</p>
+<p class="description"><p>Format: <a href="../PEL/PelFormat.html#constRATIONAL">PelFormat::RATIONAL</a>.</p><p>Components: 1.</p></p>
+	
+	
+</div>
+<a name="constYCBCR_COEFFICIENTS" id="YCBCR_COEFFICIENTS"><!-- --></A>
+<div class="oddrow">
+
+	<div class="const-header">
+		<img src="../media/images/Variable.png" />
+		<span class="const-title">
+			<span class="const-name">YCBCR_COEFFICIENTS</span>
+			 = <span class="const-default"> 0x0211</span>
+			(line <span class="line-number"><a href="../__filesource/fsource_PEL__srcPelTag.php.html#a354">354</a></span>)
+		</span>
+	</div>
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Color space transformation matrix coefficients.</p>
+<p class="description"><p>Format: <a href="../PEL/PelFormat.html#constRATIONAL">PelFormat::RATIONAL</a>.</p><p>Components: 3.</p></p>
+	
+	
+</div>
+<a name="constYCBCR_POSITIONING" id="YCBCR_POSITIONING"><!-- --></A>
+<div class="evenrow">
+
+	<div class="const-header">
+		<img src="../media/images/Variable.png" />
+		<span class="const-title">
+			<span class="const-name">YCBCR_POSITIONING</span>
+			 = <span class="const-default"> 0x0213</span>
+			(line <span class="line-number"><a href="../__filesource/fsource_PEL__srcPelTag.php.html#a372">372</a></span>)
+		</span>
+	</div>
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Y and C positioning.</p>
+<p class="description"><p>Format: <a href="../PEL/PelFormat.html#constSHORT">PelFormat::SHORT</a>.</p><p>Components: 1.</p></p>
+	
+	
+</div>
+<a name="constYCBCR_SUB_SAMPLING" id="YCBCR_SUB_SAMPLING"><!-- --></A>
+<div class="oddrow">
+
+	<div class="const-header">
+		<img src="../media/images/Variable.png" />
+		<span class="const-title">
+			<span class="const-name">YCBCR_SUB_SAMPLING</span>
+			 = <span class="const-default"> 0x0212</span>
+			(line <span class="line-number"><a href="../__filesource/fsource_PEL__srcPelTag.php.html#a363">363</a></span>)
+		</span>
+	</div>
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Subsampling ratio of Y to C.</p>
+<p class="description"><p>Format: <a href="../PEL/PelFormat.html#constSHORT">PelFormat::SHORT</a>.</p><p>Components: 2.</p></p>
+	
+	
+</div>
+<a name="constY_RESOLUTION" id="Y_RESOLUTION"><!-- --></A>
+<div class="evenrow">
+
+	<div class="const-header">
+		<img src="../media/images/Variable.png" />
+		<span class="const-title">
+			<span class="const-name">Y_RESOLUTION</span>
+			 = <span class="const-default"> 0x011B</span>
+			(line <span class="line-number"><a href="../__filesource/fsource_PEL__srcPelTag.php.html#a236">236</a></span>)
+		</span>
+	</div>
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Image resolution in height direction.</p>
+<p class="description"><p>Format: <a href="../PEL/PelFormat.html#constRATIONAL">PelFormat::RATIONAL</a>.</p><p>Components: 1.</p></p>
+	
+	
+</div>
+						
+		</div>
+	</div>
+
+	<p class="notes" id="credit">
+		Documentation generated on Thu, 05 May 2011 07:19:29 +0200 by <a href="http://www.phpdoc.org" target="_blank">phpDocumentor 1.4.3</a>
+	</p>
+	</div></body>
+</html>

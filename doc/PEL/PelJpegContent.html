@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+  <html xmlns="http://www.w3.org/1999/xhtml">
+		<head>
+			<!-- template designed by Marco Von Ballmoos -->
+			<title>Docs For Class PelJpegContent</title>
+			<link rel="stylesheet" href="../media/stylesheet.css" />
+			<meta http-equiv='Content-Type' content='text/html; charset=iso-8859-1'/>
+		</head>
+		<body>
+			<div class="page-body">			
+<h2 class="class-name">Class PelJpegContent</h2>
+
+<a name="sec-description"></a>
+<div class="info-box">
+	<div class="info-box-title">Description</div>
+	<div class="nav-bar">
+					<span class="disabled">Description</span> |
+							<a href="#sec-descendents">Descendents</a>
+			|													<a href="#sec-method-summary">Methods</a> (<a href="#sec-methods">details</a>)
+						
+					</div>
+	<div class="info-box-body">
+        		<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Class representing content in a JPEG file.</p>
+<p class="description"><p>A JPEG file consists of a sequence of each of which has an  associated <a href="../PEL/PelJpegMarker.html">marker</a> and some content.  This  class represents the content, and this basic type is just a simple  holder of such content, represented by a <a href="../PEL/PelDataWindow.html">PelDataWindow</a>  object.  The <a href="../PEL/PelExif.html">PelExif</a> class is an example of more  specialized JPEG content.</p></p>
+	<ul class="tags">
+				<li><span class="field">author:</span> Martin Geisler &lt;<a href="mailto:mgeisler@users.sourceforge.net">mgeisler@users.sourceforge.net</a>&gt;</li>
+			</ul>
+		<p class="notes">
+			Located in <a class="field" href="_src---PelJpegContent.php.html">/src/PelJpegContent.php</a> (line <span class="field"><a href="../__filesource/fsource_PEL__srcPelJpegContent.php.html#a56">56</a></span>)
+		</p>
+		
+				
+		<pre></pre>
+	
+			</div>
+</div>
+
+	<a name="sec-descendents"></a>
+	<div class="info-box">
+		<div class="info-box-title">Direct descendents</div>
+		<div class="nav-bar">
+			<a href="#sec-description">Description</a> |
+			<span class="disabled">Descendents</span>
+			|															<a href="#sec-method-summary">Methods</a> (<a href="#sec-methods">details</a>)
+							
+								</div>
+		<div class="info-box-body">
+			<table cellpadding="2" cellspacing="0" class="class-table">
+				<tr>
+					<th class="class-table-header">Class</th>
+					<th class="class-table-header">Description</th>
+				</tr>
+								<tr>
+					<td style="padding-right: 2em"><a href="../PEL/PelJpegComment.html">PelJpegComment</a></td>
+					<td>
+											Class representing JPEG comments.
+										</td>
+				</tr>
+								<tr>
+					<td style="padding-right: 2em"><a href="../PEL/PelExif.html">PelExif</a></td>
+					<td>
+											Class representing Exif data.
+										</td>
+				</tr>
+							</table>
+		</div>
+	</div>
+
+
+
+	<a name="sec-method-summary"></a>
+	<div class="info-box">
+		<div class="info-box-title">Method Summary</span></div>
+		<div class="nav-bar">
+			<a href="#sec-description">Description</a> |
+							<a href="#sec-descendents">Descendents</a> |
+												<span class="disabled">Methods</span> (<a href="#sec-methods">details</a>)
+		</div>
+		<div class="info-box-body">			
+			<div class="method-summary">
+																				
+												<div class="method-definition">
+											<span class="method-result">PelJpegContent</span>
+										<a href="#__construct" title="details" class="method-name">__construct</a>
+											(<span class="var-type"><a href="../PEL/PelDataWindow.html">PelDataWindow</a></span>&nbsp;<span class="var-name">$data</span>)
+									</div>
+																<div class="method-definition">
+											<span class="method-result">string</span>
+										<a href="#getBytes" title="details" class="method-name">getBytes</a>
+										()
+									</div>
+								</div>
+		</div>
+	</div>		
+
+	
+	<a name="sec-methods"></a>
+	<div class="info-box">
+		<div class="info-box-title">Methods</div>
+		<div class="nav-bar">
+			<a href="#sec-description">Description</a> |
+							<a href="#sec-descendents">Descendents</a> |
+																<a href="#sec-method-summary">Methods</a> (<span class="disabled">details</span>)
+						
+		</div>
+		<div class="info-box-body">
+			<A NAME='method_detail'></A>
+
+<a name="method__construct" id="__construct"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">Constructor __construct</span> (line <span class="line-number"><a href="../__filesource/fsource_PEL__srcPelJpegContent.php.html#a64">64</a></span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Make a new piece of JPEG content.</p>
+	
+	<div class="method-signature">
+		<span class="method-result">PelJpegContent</span>
+		<span class="method-name">
+			__construct
+		</span>
+					(<span class="var-type"><a href="../PEL/PelDataWindow.html">PelDataWindow</a></span>&nbsp;<span class="var-name">$data</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type"><a href="../PEL/PelDataWindow.html">PelDataWindow</a></span>
+				<span class="var-name">$data</span><span class="var-description">: the content.</span>			</li>
+				</ul>
+		
+			
+			<hr class="separator" />
+		<div class="notes">Redefined in descendants as:</div>
+		<ul class="redefinitions">
+					<li>
+				<a href="../PEL/PelJpegComment.html#method__construct">PelJpegComment::__construct()</a>
+								: Construct a new JPEG comment.
+							</li>
+					<li>
+				<a href="../PEL/PelExif.html#method__construct">PelExif::__construct()</a>
+								: Construct a new Exif object.
+							</li>
+				</ul>
+	</div>
+<a name="methodgetBytes" id="getBytes"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">getBytes</span> (line <span class="line-number"><a href="../__filesource/fsource_PEL__srcPelJpegContent.php.html#a76">76</a></span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Return the bytes of the content.</p>
+	<ul class="tags">
+				<li><span class="field">return:</span> bytes representing this JPEG content.  These bytes  will match the bytes given to <a href="../PEL/PelExif.html#method__construct">the  constructor</a>.</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">string</span>
+		<span class="method-name">
+			getBytes
+		</span>
+				()
+			</div>
+	
+		
+			
+			<hr class="separator" />
+		<div class="notes">Redefined in descendants as:</div>
+		<ul class="redefinitions">
+					<li>
+				<a href="../PEL/PelJpegComment.html#methodgetBytes">PelJpegComment::getBytes()</a>
+								: Turn this comment into bytes.
+							</li>
+					<li>
+				<a href="../PEL/PelExif.html#methodgetBytes">PelExif::getBytes()</a>
+								: Produce bytes for the Exif data.
+							</li>
+				</ul>
+	</div>
+						
+		</div>
+	</div>
+
+
+	<p class="notes" id="credit">
+		Documentation generated on Thu, 05 May 2011 07:19:19 +0200 by <a href="http://www.phpdoc.org" target="_blank">phpDocumentor 1.4.3</a>
+	</p>
+	</div></body>
+</html>

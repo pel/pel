@@ -1,0 +1,730 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+  <html xmlns="http://www.w3.org/1999/xhtml">
+		<head>
+			<!-- template designed by Marco Von Ballmoos -->
+			<title>Docs For Class PelEntry</title>
+			<link rel="stylesheet" href="../media/stylesheet.css" />
+			<meta http-equiv='Content-Type' content='text/html; charset=iso-8859-1'/>
+		</head>
+		<body>
+			<div class="page-body">			
+<h2 class="class-name">Class PelEntry</h2>
+
+<a name="sec-description"></a>
+<div class="info-box">
+	<div class="info-box-title">Description</div>
+	<div class="nav-bar">
+					<span class="disabled">Description</span> |
+							<a href="#sec-descendents">Descendents</a>
+			|											<a href="#sec-var-summary">Vars</a> (<a href="#sec-vars">details</a>)
+						|											<a href="#sec-method-summary">Methods</a> (<a href="#sec-methods">details</a>)
+						
+					</div>
+	<div class="info-box-body">
+        		<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Common ancestor class of all <a href="../PEL/PelIfd.html">PelIfd</a> entries.</p>
+<p class="description"><p>As this class is abstract you cannot instantiate objects from it.  It only serves as a common ancestor to define the methods common to  all entries.  The most important methods are <a href="../PEL/PelEntry.html#methodgetValue">getValue()</a> and  <a href="../PEL/PelEntry.html#methodsetValue">setValue()</a>, both of which is abstract in this class.  The  descendants will give concrete implementations for them.</p><p>If you have some data coming from an image (some raw bytes), then  the static method newFromData() is helpful --- it will look  at the data and give you a proper decendent of <a href="../PEL/PelEntry.html">PelEntry</a>  back.</p><p>If you instead want to have an entry for some data which take the  form of an integer, a string, a byte, or some other PHP type, then  don't use this class.  You should instead create an object of the  right subclass (<a href="../PEL/PelEntryShort.html">PelEntryShort</a> for short integers, <a href="../PEL/PelEntryAscii.html">PelEntryAscii</a> for strings, and so on) directly.</p></p>
+	<ul class="tags">
+				<li><span class="field">author:</span> Martin Geisler &lt;<a href="mailto:mgeisler@users.sourceforge.net">mgeisler@users.sourceforge.net</a>&gt;</li>
+				<li><span class="field">abstract:</span> </li>
+			</ul>
+		<p class="notes">
+			Located in <a class="field" href="_src---PelEntry.php.html">/src/PelEntry.php</a> (line <span class="field"><a href="../__filesource/fsource_PEL__srcPelEntry.php.html#a194">194</a></span>)
+		</p>
+		
+				
+		<pre></pre>
+	
+			</div>
+</div>
+
+	<a name="sec-descendents"></a>
+	<div class="info-box">
+		<div class="info-box-title">Direct descendents</div>
+		<div class="nav-bar">
+			<a href="#sec-description">Description</a> |
+			<span class="disabled">Descendents</span>
+			|												<a href="#sec-var-summary">Vars</a> (<a href="#sec-vars">details</a>)
+								|															<a href="#sec-method-summary">Methods</a> (<a href="#sec-methods">details</a>)
+							
+								</div>
+		<div class="info-box-body">
+			<table cellpadding="2" cellspacing="0" class="class-table">
+				<tr>
+					<th class="class-table-header">Class</th>
+					<th class="class-table-header">Description</th>
+				</tr>
+								<tr>
+					<td style="padding-right: 2em"><a href="../PEL/PelEntryWindowsString.html">PelEntryWindowsString</a></td>
+					<td>
+											Class used to manipulate strings in the format Windows XP uses.
+										</td>
+				</tr>
+								<tr>
+					<td style="padding-right: 2em"><a href="../PEL/PelEntryNumber.html">PelEntryNumber</a></td>
+					<td>
+											Class for holding numbers.
+										</td>
+				</tr>
+								<tr>
+					<td style="padding-right: 2em"><a href="../PEL/PelEntryAscii.html">PelEntryAscii</a></td>
+					<td>
+											Class for holding a plain ASCII string.
+										</td>
+				</tr>
+								<tr>
+					<td style="padding-right: 2em"><a href="../PEL/PelEntryUndefined.html">PelEntryUndefined</a></td>
+					<td>
+											Class for holding data of any kind.
+										</td>
+				</tr>
+							</table>
+		</div>
+	</div>
+
+
+	<a name="sec-var-summary"></a>
+	<div class="info-box">
+		<div class="info-box-title">Variable Summary</span></div>
+		<div class="nav-bar">
+			<a href="#sec-description">Description</a> |
+							<a href="#sec-descendents">Descendents</a> |
+						<span class="disabled">Vars</span> (<a href="#sec-vars">details</a>)
+							| 
+									<a href="#sec-method-summary">Methods</a> (<a href="#sec-methods">details</a>)
+							
+								</div>
+		<div class="info-box-body">
+			<div class="var-summary">
+																																																								<div class="var-title">
+					<span class="var-type">string</span>
+					<a href="#$bytes" title="details" class="var-name">$bytes</a>
+				</div>
+																<div class="var-title">
+					<span class="var-type">int</span>
+					<a href="#$components" title="details" class="var-name">$components</a>
+				</div>
+																<div class="var-title">
+					<span class="var-type"><a href="../PEL/PelFormat.html">PelFormat</a></span>
+					<a href="#$format" title="details" class="var-name">$format</a>
+				</div>
+																<div class="var-title">
+					<span class="var-type">int</span>
+					<a href="#$ifd_type" title="details" class="var-name">$ifd_type</a>
+				</div>
+																<div class="var-title">
+					<span class="var-type"><a href="../PEL/PelTag.html">PelTag</a></span>
+					<a href="#$tag" title="details" class="var-name">$tag</a>
+				</div>
+											</div>
+		</div>
+	</div>
+
+	<a name="sec-method-summary"></a>
+	<div class="info-box">
+		<div class="info-box-title">Method Summary</span></div>
+		<div class="nav-bar">
+			<a href="#sec-description">Description</a> |
+							<a href="#sec-descendents">Descendents</a> |
+																		<a href="#sec-var-summary">Vars</a> (<a href="#sec-vars">details</a>)
+				 
+				|
+						<span class="disabled">Methods</span> (<a href="#sec-methods">details</a>)
+		</div>
+		<div class="info-box-body">			
+			<div class="method-summary">
+																																																																																				
+												<div class="method-definition">
+											<span class="method-result">string</span>
+										<a href="#getBytes" title="details" class="method-name">getBytes</a>
+											(<span class="var-type">PelByteOrder</span>&nbsp;<span class="var-name">$o</span>)
+									</div>
+																<div class="method-definition">
+											<span class="method-result">int</span>
+										<a href="#getComponents" title="details" class="method-name">getComponents</a>
+										()
+									</div>
+																<div class="method-definition">
+											<span class="method-result"><a href="../PEL/PelFormat.html">PelFormat</a></span>
+										<a href="#getFormat" title="details" class="method-name">getFormat</a>
+										()
+									</div>
+																<div class="method-definition">
+											<span class="method-result">int</span>
+										<a href="#getIfdType" title="details" class="method-name">getIfdType</a>
+										()
+									</div>
+																<div class="method-definition">
+											<span class="method-result"><a href="../PEL/PelTag.html">PelTag</a></span>
+										<a href="#getTag" title="details" class="method-name">getTag</a>
+										()
+									</div>
+																<div class="method-definition">
+											<span class="method-result">string</span>
+										<a href="#getText" title="details" class="method-name">getText</a>
+											([<span class="var-type">boolean</span>&nbsp;<span class="var-name">$brief</span> = <span class="var-default">false</span>])
+									</div>
+																<div class="method-definition">
+											<span class="method-result">mixed</span>
+										<a href="#getValue" title="details" class="method-name">getValue</a>
+										()
+									</div>
+																<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#setIfdType" title="details" class="method-name">setIfdType</a>
+											(<span class="var-type">int</span>&nbsp;<span class="var-name">$type</span>)
+									</div>
+																<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#setValue" title="details" class="method-name">setValue</a>
+											(<span class="var-type">mixed</span>&nbsp;<span class="var-name">$value</span>)
+									</div>
+																<div class="method-definition">
+											<span class="method-result">string</span>
+										<a href="#__toString" title="details" class="method-name">__toString</a>
+										()
+									</div>
+								</div>
+		</div>
+	</div>		
+
+	<a name="sec-vars"></a>
+	<div class="info-box">
+		<div class="info-box-title">Variables</div>
+		<div class="nav-bar">
+			<a href="#sec-description">Description</a> |
+							<a href="#sec-descendents">Descendents</a> |
+										<a href="#sec-var-summary">Vars</a> (<span class="disabled">details</span>)
+						
+			
+										| 
+									<a href="#sec-method-summary">Methods</a> (<a href="#sec-methods">details</a>)
+							
+					</div>
+		<div class="info-box-body">
+			<a name="var$bytes" id="$bytes"><!-- --></A>
+<div class="oddrow">
+
+	<div class="var-header">
+		<span class="var-title">
+			<span class="var-type">string</span>
+			<span class="var-name">$bytes</span>
+			 = <span class="var-default"> ''</span>			(line <span class="line-number"><a href="../__filesource/fsource_PEL__srcPelEntry.php.html#a218">218</a></span>)
+		</span>
+	</div>
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">The bytes representing this entry.</p>
+<p class="description"><p>Subclasses must either override <a href="../PEL/PelEntry.html#methodgetBytes">getBytes()</a> or, if  possible, maintain this property so that it always contains a  true representation of the entry.</p></p>
+	<ul class="tags">
+				<li><span class="field">access:</span> protected</li>
+			</ul>
+	
+	
+		
+		
+
+</div>
+<a name="var$components" id="$components"><!-- --></A>
+<div class="evenrow">
+
+	<div class="var-header">
+		<span class="var-title">
+			<span class="var-type">int</span>
+			<span class="var-name">$components</span>
+						(line <span class="line-number"><a href="../__filesource/fsource_PEL__srcPelEntry.php.html#a239">239</a></span>)
+		</span>
+	</div>
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">The number of components of this entry.</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> protected</li>
+			</ul>
+	
+	
+		
+		
+
+</div>
+<a name="var$format" id="$format"><!-- --></A>
+<div class="oddrow">
+
+	<div class="var-header">
+		<span class="var-title">
+			<span class="var-type"><a href="../PEL/PelFormat.html">PelFormat</a></span>
+			<span class="var-name">$format</span>
+						(line <span class="line-number"><a href="../__filesource/fsource_PEL__srcPelEntry.php.html#a232">232</a></span>)
+		</span>
+	</div>
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">The <a href="../PEL/PelFormat.html">PelFormat</a> of this entry.</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> protected</li>
+			</ul>
+	
+	
+		
+		
+
+</div>
+<a name="var$ifd_type" id="$ifd_type"><!-- --></A>
+<div class="evenrow">
+
+	<div class="var-header">
+		<span class="var-title">
+			<span class="var-type">int</span>
+			<span class="var-name">$ifd_type</span>
+						(line <span class="line-number"><a href="../__filesource/fsource_PEL__srcPelEntry.php.html#a207">207</a></span>)
+		</span>
+	</div>
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Type of IFD containing this tag.</p>
+<p class="description"><p>This must be one of the constants defined in <a href="../PEL/PelIfd.html">PelIfd</a>:  <a href="../PEL/PelIfd.html#constIFD0">PelIfd::IFD0</a> for the main image IFD, <a href="../PEL/PelIfd.html#constIFD1">PelIfd::IFD1</a>  for the thumbnail image IFD, <a href="../PEL/PelIfd.html#constEXIF">PelIfd::EXIF</a> for the Exif  sub-IFD, <a href="../PEL/PelIfd.html#constGPS">PelIfd::GPS</a> for the GPS sub-IFD, or <a href="../PEL/PelIfd.html#constINTEROPERABILITY">PelIfd::INTEROPERABILITY</a> for the interoperability sub-IFD.</p></p>
+	<ul class="tags">
+				<li><span class="field">access:</span> protected</li>
+			</ul>
+	
+	
+		
+		
+
+</div>
+<a name="var$tag" id="$tag"><!-- --></A>
+<div class="oddrow">
+
+	<div class="var-header">
+		<span class="var-title">
+			<span class="var-type"><a href="../PEL/PelTag.html">PelTag</a></span>
+			<span class="var-name">$tag</span>
+						(line <span class="line-number"><a href="../__filesource/fsource_PEL__srcPelEntry.php.html#a225">225</a></span>)
+		</span>
+	</div>
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">The <a href="../PEL/PelTag.html">PelTag</a> of this entry.</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> protected</li>
+			</ul>
+	
+	
+		
+		
+
+</div>
+						
+		</div>
+	</div>
+	
+	<a name="sec-methods"></a>
+	<div class="info-box">
+		<div class="info-box-title">Methods</div>
+		<div class="nav-bar">
+			<a href="#sec-description">Description</a> |
+							<a href="#sec-descendents">Descendents</a> |
+															<a href="#sec-var-summary">Vars</a> (<a href="#sec-vars">details</a>)
+																	<a href="#sec-method-summary">Methods</a> (<span class="disabled">details</span>)
+						
+		</div>
+		<div class="info-box-body">
+			<A NAME='method_detail'></A>
+
+<a name="methodgetBytes" id="getBytes"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">getBytes</span> (line <span class="line-number"><a href="../__filesource/fsource_PEL__srcPelEntry.php.html#a309">309</a></span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Turn this entry into bytes.</p>
+	<ul class="tags">
+				<li><span class="field">return:</span> bytes representing this entry.</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">string</span>
+		<span class="method-name">
+			getBytes
+		</span>
+					(<span class="var-type">PelByteOrder</span>&nbsp;<span class="var-name">$o</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">PelByteOrder</span>
+				<span class="var-name">$o</span><span class="var-description">: the desired byte order, which must be either  Convert::LITTLE_ENDIAN or Convert::BIG_ENDIAN.</span>			</li>
+				</ul>
+		
+			
+			<hr class="separator" />
+		<div class="notes">Redefined in descendants as:</div>
+		<ul class="redefinitions">
+					<li>
+				<a href="../PEL/PelEntryNumber.html#methodgetBytes">PelEntryNumber::getBytes()</a>
+								: Turn this entry into bytes.
+							</li>
+				</ul>
+	</div>
+<a name="methodgetComponents" id="getComponents"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">getComponents</span> (line <span class="line-number"><a href="../__filesource/fsource_PEL__srcPelEntry.php.html#a296">296</a></span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Return the number of components of this entry.</p>
+	<ul class="tags">
+				<li><span class="field">return:</span> the number of components of this entry.</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">int</span>
+		<span class="method-name">
+			getComponents
+		</span>
+				()
+			</div>
+	
+		
+			
+	</div>
+<a name="methodgetFormat" id="getFormat"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">getFormat</span> (line <span class="line-number"><a href="../__filesource/fsource_PEL__srcPelEntry.php.html#a286">286</a></span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Return the format of this entry.</p>
+	<ul class="tags">
+				<li><span class="field">return:</span> the format of this entry.</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result"><a href="../PEL/PelFormat.html">PelFormat</a></span>
+		<span class="method-name">
+			getFormat
+		</span>
+				()
+			</div>
+	
+		
+			
+	</div>
+<a name="methodgetIfdType" id="getIfdType"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">getIfdType</span> (line <span class="line-number"><a href="../__filesource/fsource_PEL__srcPelEntry.php.html#a261">261</a></span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Return the type of IFD which holds this entry.</p>
+	<ul class="tags">
+				<li><span class="field">return:</span> one of the constants defined in <a href="../PEL/PelIfd.html">PelIfd</a>:  <a href="../PEL/PelIfd.html#constIFD0">PelIfd::IFD0</a> for the main image IFD, <a href="../PEL/PelIfd.html#constIFD1">PelIfd::IFD1</a>  for the thumbnail image IFD, <a href="../PEL/PelIfd.html#constEXIF">PelIfd::EXIF</a> for the Exif  sub-IFD, <a href="../PEL/PelIfd.html#constGPS">PelIfd::GPS</a> for the GPS sub-IFD, or <a href="../PEL/PelIfd.html#constINTEROPERABILITY">PelIfd::INTEROPERABILITY</a> for the interoperability sub-IFD.</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">int</span>
+		<span class="method-name">
+			getIfdType
+		</span>
+				()
+			</div>
+	
+		
+			
+	</div>
+<a name="methodgetTag" id="getTag"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">getTag</span> (line <span class="line-number"><a href="../__filesource/fsource_PEL__srcPelEntry.php.html#a247">247</a></span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Return the tag of this entry.</p>
+	<ul class="tags">
+				<li><span class="field">return:</span> the tag of this entry.</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result"><a href="../PEL/PelTag.html">PelTag</a></span>
+		<span class="method-name">
+			getTag
+		</span>
+				()
+			</div>
+	
+		
+			
+	</div>
+<a name="methodgetText" id="getText"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">getText</span> (line <span class="line-number"><a href="../__filesource/fsource_PEL__srcPelEntry.php.html#a326">326</a></span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Get the value of this entry as text.</p>
+<p class="description"><p>The value will be returned in a format suitable for presentation,  e.g., rationals will be returned as 'x/y', ASCII strings will be  returned as themselves etc.</p></p>
+	<ul class="tags">
+				<li><span class="field">return:</span> the value as text.</li>
+				<li><span class="field">abstract:</span> </li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">string</span>
+		<span class="method-name">
+			getText
+		</span>
+					([<span class="var-type">boolean</span>&nbsp;<span class="var-name">$brief</span> = <span class="var-default">false</span>])
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">boolean</span>
+				<span class="var-name">$brief</span><span class="var-description">: some values can be returned in a long or more  brief form, and this parameter controls that.</span>			</li>
+				</ul>
+		
+			
+			<hr class="separator" />
+		<div class="notes">Redefined in descendants as:</div>
+		<ul class="redefinitions">
+					<li>
+				<a href="../PEL/PelEntryWindowsString.html#methodgetText">PelEntryWindowsString::getText()</a>
+								: Return the string of the entry.
+							</li>
+					<li>
+				<a href="../PEL/PelEntryNumber.html#methodgetText">PelEntryNumber::getText()</a>
+								: Get the numeric value of this entry as text.
+							</li>
+					<li>
+				<a href="../PEL/PelEntryShort.html#methodgetText">PelEntryShort::getText()</a>
+								: Get the value of an entry as text.
+							</li>
+					<li>
+				<a href="../PEL/PelEntryRational.html#methodgetText">PelEntryRational::getText()</a>
+								: Get the value of an entry as text.
+							</li>
+					<li>
+				<a href="../PEL/PelEntrySRational.html#methodgetText">PelEntrySRational::getText()</a>
+								: Get the value of an entry as text.
+							</li>
+					<li>
+				<a href="../PEL/PelEntryAscii.html#methodgetText">PelEntryAscii::getText()</a>
+								: Return the ASCII string of the entry.
+							</li>
+					<li>
+				<a href="../PEL/PelEntryCopyright.html#methodgetText">PelEntryCopyright::getText()</a>
+								: Return a text string with the copyright information.
+							</li>
+					<li>
+				<a href="../PEL/PelEntryUndefined.html#methodgetText">PelEntryUndefined::getText()</a>
+								: Get the value of this entry as text.
+							</li>
+					<li>
+				<a href="../PEL/PelEntryUserComment.html#methodgetText">PelEntryUserComment::getText()</a>
+								: Returns the user comment.
+							</li>
+					<li>
+				<a href="../PEL/PelEntryVersion.html#methodgetText">PelEntryVersion::getText()</a>
+								: Return a text string with the version.
+							</li>
+				</ul>
+	</div>
+<a name="methodgetValue" id="getValue"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">getValue</span> (line <span class="line-number"><a href="../__filesource/fsource_PEL__srcPelEntry.php.html#a338">338</a></span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Get the value of this entry.</p>
+<p class="description"><p>The value returned will generally be the same as the one supplied  to the constructor or with <a href="../PEL/PelEntry.html#methodsetValue">setValue()</a>.  For a formatted  version of the value, one should use <a href="../PEL/PelEntry.html#methodgetText">getText()</a> instead.</p></p>
+	<ul class="tags">
+				<li><span class="field">return:</span> the unformatted value.</li>
+				<li><span class="field">abstract:</span> </li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">mixed</span>
+		<span class="method-name">
+			getValue
+		</span>
+				()
+			</div>
+	
+		
+			
+			<hr class="separator" />
+		<div class="notes">Redefined in descendants as:</div>
+		<ul class="redefinitions">
+					<li>
+				<a href="../PEL/PelEntryWindowsString.html#methodgetValue">PelEntryWindowsString::getValue()</a>
+								: Return the string of the entry.
+							</li>
+					<li>
+				<a href="../PEL/PelEntryNumber.html#methodgetValue">PelEntryNumber::getValue()</a>
+								: Return the numeric value held.
+							</li>
+					<li>
+				<a href="../PEL/PelEntryAscii.html#methodgetValue">PelEntryAscii::getValue()</a>
+								: Return the ASCII string of the entry.
+							</li>
+					<li>
+				<a href="../PEL/PelEntryTime.html#methodgetValue">PelEntryTime::getValue()</a>
+								: Return the timestamp of the entry.
+							</li>
+					<li>
+				<a href="../PEL/PelEntryCopyright.html#methodgetValue">PelEntryCopyright::getValue()</a>
+								: Retrive the copyright information.
+							</li>
+					<li>
+				<a href="../PEL/PelEntryUndefined.html#methodgetValue">PelEntryUndefined::getValue()</a>
+								: Get the data of this undefined entry.
+							</li>
+					<li>
+				<a href="../PEL/PelEntryUserComment.html#methodgetValue">PelEntryUserComment::getValue()</a>
+								: Returns the user comment.
+							</li>
+					<li>
+				<a href="../PEL/PelEntryVersion.html#methodgetValue">PelEntryVersion::getValue()</a>
+								: Return the version held by this entry.
+							</li>
+				</ul>
+	</div>
+<a name="methodsetIfdType" id="setIfdType"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">setIfdType</span> (line <span class="line-number"><a href="../__filesource/fsource_PEL__srcPelEntry.php.html#a276">276</a></span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Update the IFD type.</p>
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			setIfdType
+		</span>
+					(<span class="var-type">int</span>&nbsp;<span class="var-name">$type</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">int</span>
+				<span class="var-name">$type</span><span class="var-description">: must be one of the constants defined in <a href="../PEL/PelIfd.html">PelIfd</a>: <a href="../PEL/PelIfd.html#constIFD0">PelIfd::IFD0</a> for the main image IFD, <a href="../PEL/PelIfd.html#constIFD1">PelIfd::IFD1</a> for the thumbnail image IFD, <a href="../PEL/PelIfd.html#constEXIF">PelIfd::EXIF</a>  for the Exif sub-IFD, <a href="../PEL/PelIfd.html#constGPS">PelIfd::GPS</a> for the GPS sub-IFD, or  <a href="../PEL/PelIfd.html#constINTEROPERABILITY">PelIfd::INTEROPERABILITY</a> for the interoperability  sub-IFD.</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodsetValue" id="setValue"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">setValue</span> (line <span class="line-number"><a href="../__filesource/fsource_PEL__srcPelEntry.php.html#a350">350</a></span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Set the value of this entry.</p>
+<p class="description"><p>The value should be in the same format as for the constructor.</p></p>
+	<ul class="tags">
+				<li><span class="field">abstract:</span> </li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			setValue
+		</span>
+					(<span class="var-type">mixed</span>&nbsp;<span class="var-name">$value</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">mixed</span>
+				<span class="var-name">$value</span><span class="var-description">: the new value.</span>			</li>
+				</ul>
+		
+			
+			<hr class="separator" />
+		<div class="notes">Redefined in descendants as:</div>
+		<ul class="redefinitions">
+					<li>
+				<a href="../PEL/PelEntryWindowsString.html#methodsetValue">PelEntryWindowsString::setValue()</a>
+								: Give the entry a new value.
+							</li>
+					<li>
+				<a href="../PEL/PelEntryNumber.html#methodsetValue">PelEntryNumber::setValue()</a>
+								: Change the value.
+							</li>
+					<li>
+				<a href="../PEL/PelEntryAscii.html#methodsetValue">PelEntryAscii::setValue()</a>
+								: Give the entry a new ASCII value.
+							</li>
+					<li>
+				<a href="../PEL/PelEntryTime.html#methodsetValue">PelEntryTime::setValue()</a>
+								: Update the timestamp held by this entry.
+							</li>
+					<li>
+				<a href="../PEL/PelEntryCopyright.html#methodsetValue">PelEntryCopyright::setValue()</a>
+								: Update the copyright information.
+							</li>
+					<li>
+				<a href="../PEL/PelEntryUndefined.html#methodsetValue">PelEntryUndefined::setValue()</a>
+								: Set the data of this undefined entry.
+							</li>
+					<li>
+				<a href="../PEL/PelEntryUserComment.html#methodsetValue">PelEntryUserComment::setValue()</a>
+								: Set the user comment.
+							</li>
+					<li>
+				<a href="../PEL/PelEntryVersion.html#methodsetValue">PelEntryVersion::setValue()</a>
+								: Set the version held by this entry.
+							</li>
+				</ul>
+	</div>
+<a name="method__toString" id="__toString"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">__toString</span> (line <span class="line-number"><a href="../__filesource/fsource_PEL__srcPelEntry.php.html#a368">368</a></span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Turn this entry into a string.</p>
+	<ul class="tags">
+				<li><span class="field">return:</span> a string representation of this entry.  This is  mostly for debugging.</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">string</span>
+		<span class="method-name">
+			__toString
+		</span>
+				()
+			</div>
+	
+		
+			
+	</div>
+						
+		</div>
+	</div>
+
+
+	<p class="notes" id="credit">
+		Documentation generated on Thu, 05 May 2011 07:19:00 +0200 by <a href="http://www.phpdoc.org" target="_blank">phpDocumentor 1.4.3</a>
+	</p>
+	</div></body>
+</html>

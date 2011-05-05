@@ -1,0 +1,303 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+  <html xmlns="http://www.w3.org/1999/xhtml">
+		<head>
+			<!-- template designed by Marco Von Ballmoos -->
+			<title>Docs For Class PelEntryVersion</title>
+			<link rel="stylesheet" href="../media/stylesheet.css" />
+			<meta http-equiv='Content-Type' content='text/html; charset=iso-8859-1'/>
+		</head>
+		<body>
+			<div class="page-body">			
+<h2 class="class-name">Class PelEntryVersion</h2>
+
+<a name="sec-description"></a>
+<div class="info-box">
+	<div class="info-box-title">Description</div>
+	<div class="nav-bar">
+					<span class="disabled">Description</span> |
+													<a href="#sec-vars">Vars</a>
+						|											<a href="#sec-method-summary">Methods</a> (<a href="#sec-methods">details</a>)
+						
+					</div>
+	<div class="info-box-body">
+        		<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Class to hold version information.</p>
+<p class="description"><p>There are three Exif entries that hold version information: the  <a href="../PEL/PelTag.html#constEXIF_VERSION">PelTag::EXIF_VERSION</a>, <a href="../PEL/PelTag.html#constFLASH_PIX_VERSION">PelTag::FLASH_PIX_VERSION</a>, and <a href="../PEL/PelTag.html#constINTEROPERABILITY_VERSION">PelTag::INTEROPERABILITY_VERSION</a> tags.  This class manages  those tags.</p><p>The class is used in a very straight-forward way:  <div class="src-code"><ol><li><div class="src-line">&nbsp;<span class="src-var">$entry&nbsp;</span>=&nbsp;<span class="src-key">new&nbsp;</span><span class="src-id"><a href="../PEL/PelEntryVersion.html">PelEntryVersion</a></span><span class="src-sym">(</span><span class="src-id"><a href="../PEL/PelTag.html">PelTag</a></span><span class="src-sym">::</span><span class="src-id">EXIF_VERSION</span><span class="src-sym">,&nbsp;</span><span class="src-num">2.2</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+</ol></div>  This creates an entry for an file complying to the Exif 2.2  standard.  It is easy to test for standards level of an unknown  entry:  <div class="src-code"><ol><li><div class="src-line">&nbsp;<span class="src-key">if&nbsp;</span><span class="src-sym">(</span><span class="src-var">$entry</span><span class="src-sym">-&gt;</span><a href="../PEL/PelEntry.html#methodgetTag">getTag</a><span class="src-sym">(</span><span class="src-sym">)&nbsp;</span>==&nbsp;<span class="src-id"><a href="../PEL/PelTag.html">PelTag</a></span><span class="src-sym">::</span><span class="src-id">EXIF_VERSION&nbsp;</span>&amp;&amp;</div></li>
+<li><div class="src-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-var">$entry</span><span class="src-sym">-&gt;</span><a href="../PEL/PelEntryVersion.html#methodgetValue">getValue</a><span class="src-sym">(</span><span class="src-sym">)&nbsp;</span>&gt;&nbsp;<span class="src-num">2.0</span><span class="src-sym">)&nbsp;</span><span class="src-sym">{</span></div></li>
+<li><div class="src-line">&nbsp;&nbsp;&nbsp;echo&nbsp;<span class="src-str">'Recent&nbsp;Exif&nbsp;version.'</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&nbsp;<span class="src-sym">}</span></div></li>
+</ol></div></p></p>
+	<ul class="tags">
+				<li><span class="field">author:</span> Martin Geisler &lt;<a href="mailto:mgeisler@users.sourceforge.net">mgeisler@users.sourceforge.net</a>&gt;</li>
+			</ul>
+		<p class="notes">
+			Located in <a class="field" href="_src---PelEntryUndefined.php.html">/src/PelEntryUndefined.php</a> (line <span class="field"><a href="../__filesource/fsource_PEL__srcPelEntryUndefined.php.html#a314">314</a></span>)
+		</p>
+		
+				
+		<pre><a href="../PEL/PelEntry.html">PelEntry</a>
+   |
+   --<a href="../PEL/PelEntryUndefined.html">PelEntryUndefined</a>
+      |
+      --PelEntryVersion</pre>
+	
+			</div>
+</div>
+
+
+
+
+	<a name="sec-method-summary"></a>
+	<div class="info-box">
+		<div class="info-box-title">Method Summary</span></div>
+		<div class="nav-bar">
+			<a href="#sec-description">Description</a> |
+																		<a href="#sec-vars">Vars</a>
+				 
+				|
+						<span class="disabled">Methods</span> (<a href="#sec-methods">details</a>)
+		</div>
+		<div class="info-box-body">			
+			<div class="method-summary">
+																																				
+												<div class="method-definition">
+											<span class="method-result">PelEntryVersion</span>
+										<a href="#__construct" title="details" class="method-name">__construct</a>
+											(<span class="var-type"><a href="../PEL/PelTag.html">PelTag</a></span>&nbsp;<span class="var-name">$tag</span>, [<span class="var-type">float</span>&nbsp;<span class="var-name">$version</span> = <span class="var-default">0.0</span>])
+									</div>
+																<div class="method-definition">
+											<span class="method-result">string</span>
+										<a href="#getText" title="details" class="method-name">getText</a>
+											([<span class="var-type">boolean</span>&nbsp;<span class="var-name">$brief</span> = <span class="var-default">false</span>])
+									</div>
+																<div class="method-definition">
+											<span class="method-result">float</span>
+										<a href="#getValue" title="details" class="method-name">getValue</a>
+										()
+									</div>
+																<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#setValue" title="details" class="method-name">setValue</a>
+											([<span class="var-type">float</span>&nbsp;<span class="var-name">$version</span> = <span class="var-default">0.0</span>])
+									</div>
+								</div>
+		</div>
+	</div>		
+
+	<a name="sec-vars"></a>
+	<div class="info-box">
+		<div class="info-box-title">Variables</div>
+		<div class="nav-bar">
+			<a href="#sec-description">Description</a> |
+										<a href="#sec-var-summary">Vars</a> (<span class="disabled">details</span>)
+						
+			
+										| 
+									<a href="#sec-method-summary">Methods</a> (<a href="#sec-methods">details</a>)
+							
+					</div>
+		<div class="info-box-body">
+										<h4>Inherited Variables</h4>
+				<A NAME='inherited_vars'><!-- --></A>
+									<p>Inherited from <span class="classname"><a href="../PEL/PelEntry.html">PelEntry</a></span></p>
+					<blockquote>
+													<span class="var-title">
+								<span class="var-name"><a href="../PEL/PelEntry.html#var$bytes">PelEntry::$bytes</a></span><br>
+							</span>
+													<span class="var-title">
+								<span class="var-name"><a href="../PEL/PelEntry.html#var$components">PelEntry::$components</a></span><br>
+							</span>
+													<span class="var-title">
+								<span class="var-name"><a href="../PEL/PelEntry.html#var$format">PelEntry::$format</a></span><br>
+							</span>
+													<span class="var-title">
+								<span class="var-name"><a href="../PEL/PelEntry.html#var$ifd_type">PelEntry::$ifd_type</a></span><br>
+							</span>
+													<span class="var-title">
+								<span class="var-name"><a href="../PEL/PelEntry.html#var$tag">PelEntry::$tag</a></span><br>
+							</span>
+											</blockquote> 
+										
+		</div>
+	</div>
+	
+	<a name="sec-methods"></a>
+	<div class="info-box">
+		<div class="info-box-title">Methods</div>
+		<div class="nav-bar">
+			<a href="#sec-description">Description</a> |
+															<a href="#sec-vars">Vars</a>
+																	<a href="#sec-method-summary">Methods</a> (<span class="disabled">details</span>)
+						
+		</div>
+		<div class="info-box-body">
+			<A NAME='method_detail'></A>
+
+<a name="method__construct" id="__construct"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">Constructor __construct</span> (line <span class="line-number"><a href="../__filesource/fsource_PEL__srcPelEntryUndefined.php.html#a335">335</a></span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Make a new entry for holding a version.</p>
+	
+	<div class="method-signature">
+		<span class="method-result">PelEntryVersion</span>
+		<span class="method-name">
+			__construct
+		</span>
+					(<span class="var-type"><a href="../PEL/PelTag.html">PelTag</a></span>&nbsp;<span class="var-name">$tag</span>, [<span class="var-type">float</span>&nbsp;<span class="var-name">$version</span> = <span class="var-default">0.0</span>])
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type"><a href="../PEL/PelTag.html">PelTag</a></span>
+				<span class="var-name">$tag</span><span class="var-description">: the tag.  This should be one of <a href="../PEL/PelTag.html#constEXIF_VERSION">PelTag::EXIF_VERSION</a>, <a href="../PEL/PelTag.html#constFLASH_PIX_VERSION">PelTag::FLASH_PIX_VERSION</a>,  or <a href="../PEL/PelTag.html#constINTEROPERABILITY_VERSION">PelTag::INTEROPERABILITY_VERSION</a>.</span>			</li>
+					<li>
+				<span class="var-type">float</span>
+				<span class="var-name">$version</span><span class="var-description">: the version.  The size of the entries leave room for  exactly four digits: two digits on either side of the decimal  point.</span>			</li>
+				</ul>
+		
+			<hr class="separator" />
+		<div class="notes">Redefinition of:</div>
+		<dl>
+			<dt><a href="../PEL/PelEntryUndefined.html#method__construct">PelEntryUndefined::__construct()</a></dt>
+						<dd>Make a new PelEntry that can hold undefined data.</dd>
+					</dl>
+			
+	</div>
+<a name="methodgetText" id="getText"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">getText</span> (line <span class="line-number"><a href="../__filesource/fsource_PEL__srcPelEntryUndefined.php.html#a379">379</a></span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Return a text string with the version.</p>
+	<ul class="tags">
+				<li><span class="field">return:</span> the version number with the type of the tag,  either 'Exif' or 'FlashPix'.</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">string</span>
+		<span class="method-name">
+			getText
+		</span>
+					([<span class="var-type">boolean</span>&nbsp;<span class="var-name">$brief</span> = <span class="var-default">false</span>])
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">boolean</span>
+				<span class="var-name">$brief</span><span class="var-description">: controls if the output should be brief.  Brief  output omits the word 'Version' so the result is just 'Exif x.y'  instead of 'Exif Version x.y' if the entry holds information  about the Exif version --- the output for FlashPix is similar.</span>			</li>
+				</ul>
+		
+			<hr class="separator" />
+		<div class="notes">Redefinition of:</div>
+		<dl>
+			<dt><a href="../PEL/PelEntryUndefined.html#methodgetText">PelEntryUndefined::getText()</a></dt>
+						<dd>Get the value of this entry as text.</dd>
+					</dl>
+			
+	</div>
+<a name="methodgetValue" id="getValue"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">getValue</span> (line <span class="line-number"><a href="../__filesource/fsource_PEL__srcPelEntryUndefined.php.html#a363">363</a></span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Return the version held by this entry.</p>
+	<ul class="tags">
+				<li><span class="field">return:</span> the version.  This will be the same as the value  given to <a href="../PEL/PelEntryVersion.html#methodsetValue">setValue</a> or <a href="../PEL/PelEntryVersion.html#method__construct">the  constructor</a>.</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">float</span>
+		<span class="method-name">
+			getValue
+		</span>
+				()
+			</div>
+	
+		
+			<hr class="separator" />
+		<div class="notes">Redefinition of:</div>
+		<dl>
+			<dt><a href="../PEL/PelEntryUndefined.html#methodgetValue">PelEntryUndefined::getValue()</a></dt>
+						<dd>Get the data of this undefined entry.</dd>
+					</dl>
+			
+	</div>
+<a name="methodsetValue" id="setValue"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">setValue</span> (line <span class="line-number"><a href="../__filesource/fsource_PEL__srcPelEntryUndefined.php.html#a348">348</a></span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Set the version held by this entry.</p>
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			setValue
+		</span>
+					([<span class="var-type">float</span>&nbsp;<span class="var-name">$version</span> = <span class="var-default">0.0</span>])
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">float</span>
+				<span class="var-name">$version</span><span class="var-description">: the version.  The size of the entries leave room for  exactly four digits: two digits on either side of the decimal  point.</span>			</li>
+				</ul>
+		
+			<hr class="separator" />
+		<div class="notes">Redefinition of:</div>
+		<dl>
+			<dt><a href="../PEL/PelEntryUndefined.html#methodsetValue">PelEntryUndefined::setValue()</a></dt>
+						<dd>Set the data of this undefined entry.</dd>
+					</dl>
+			
+	</div>
+							<h4>Inherited Methods</h4>
+				<a name='inherited_methods'><!-- --></a>	
+									<!-- =========== Summary =========== -->
+					<p>Inherited From <span class="classname"><a href="../PEL/PelEntryUndefined.html">PelEntryUndefined</a></span></p>
+					<blockquote>
+													<span class="method-name"><a href="../PEL/PelEntryUndefined.html#method__construct">PelEntryUndefined::__construct()</a></span><br>
+													<span class="method-name"><a href="../PEL/PelEntryUndefined.html#methodgetText">PelEntryUndefined::getText()</a></span><br>
+													<span class="method-name"><a href="../PEL/PelEntryUndefined.html#methodgetValue">PelEntryUndefined::getValue()</a></span><br>
+													<span class="method-name"><a href="../PEL/PelEntryUndefined.html#methodsetValue">PelEntryUndefined::setValue()</a></span><br>
+											</blockquote>
+									<!-- =========== Summary =========== -->
+					<p>Inherited From <span class="classname"><a href="../PEL/PelEntry.html">PelEntry</a></span></p>
+					<blockquote>
+													<span class="method-name"><a href="../PEL/PelEntry.html#methodgetBytes">PelEntry::getBytes()</a></span><br>
+													<span class="method-name"><a href="../PEL/PelEntry.html#methodgetComponents">PelEntry::getComponents()</a></span><br>
+													<span class="method-name"><a href="../PEL/PelEntry.html#methodgetFormat">PelEntry::getFormat()</a></span><br>
+													<span class="method-name"><a href="../PEL/PelEntry.html#methodgetIfdType">PelEntry::getIfdType()</a></span><br>
+													<span class="method-name"><a href="../PEL/PelEntry.html#methodgetTag">PelEntry::getTag()</a></span><br>
+													<span class="method-name"><a href="../PEL/PelEntry.html#methodgetText">PelEntry::getText()</a></span><br>
+													<span class="method-name"><a href="../PEL/PelEntry.html#methodgetValue">PelEntry::getValue()</a></span><br>
+													<span class="method-name"><a href="../PEL/PelEntry.html#methodsetIfdType">PelEntry::setIfdType()</a></span><br>
+													<span class="method-name"><a href="../PEL/PelEntry.html#methodsetValue">PelEntry::setValue()</a></span><br>
+													<span class="method-name"><a href="../PEL/PelEntry.html#method__toString">PelEntry::__toString()</a></span><br>
+											</blockquote>
+										
+		</div>
+	</div>
+
+
+	<p class="notes" id="credit">
+		Documentation generated on Thu, 05 May 2011 07:19:10 +0200 by <a href="http://www.phpdoc.org" target="_blank">phpDocumentor 1.4.3</a>
+	</p>
+	</div></body>
+</html>

@@ -1,0 +1,329 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+  <html xmlns="http://www.w3.org/1999/xhtml">
+		<head>
+			<!-- template designed by Marco Von Ballmoos -->
+			<title>File Source for PelEntryNumber.php</title>
+			<link rel="stylesheet" href="../media/stylesheet.css" />
+			<meta http-equiv='Content-Type' content='text/html; charset=iso-8859-1'/>
+		</head>
+		<body>
+						<h1>Source for file PelEntryNumber.php</h1>
+<p>Documentation is available at <a href="../PEL/_src---PelEntryNumber.php.html">PelEntryNumber.php</a></p>
+<div class="src-code">
+<div class="src-code"><ol><li><div class="src-line"><a name="a1"></a><span class="src-php">&lt;?php</span></div></li>
+<li><div class="src-line"><a name="a2"></a>&nbsp;</div></li>
+<li><div class="src-line"><a name="a3"></a><span class="src-comm">/*&nbsp;&nbsp;PEL:&nbsp;PHP&nbsp;Exif&nbsp;Library.&nbsp;&nbsp;A&nbsp;library&nbsp;with&nbsp;support&nbsp;for&nbsp;reading&nbsp;and</span></div></li>
+<li><div class="src-line"><a name="a4"></a><span class="src-comm">&nbsp;*&nbsp;&nbsp;writing&nbsp;all&nbsp;Exif&nbsp;headers&nbsp;in&nbsp;JPEG&nbsp;and&nbsp;TIFF&nbsp;images&nbsp;using&nbsp;PHP.</span></div></li>
+<li><div class="src-line"><a name="a5"></a><span class="src-comm">&nbsp;*</span></div></li>
+<li><div class="src-line"><a name="a6"></a><span class="src-comm">&nbsp;*&nbsp;&nbsp;Copyright&nbsp;(C)&nbsp;2004,&nbsp;2005,&nbsp;2006&nbsp;&nbsp;Martin&nbsp;Geisler.</span></div></li>
+<li><div class="src-line"><a name="a7"></a><span class="src-comm">&nbsp;*</span></div></li>
+<li><div class="src-line"><a name="a8"></a><span class="src-comm">&nbsp;*&nbsp;&nbsp;This&nbsp;program&nbsp;is&nbsp;free&nbsp;software;&nbsp;you&nbsp;can&nbsp;redistribute&nbsp;it&nbsp;and/or&nbsp;modify</span></div></li>
+<li><div class="src-line"><a name="a9"></a><span class="src-comm">&nbsp;*&nbsp;&nbsp;it&nbsp;under&nbsp;the&nbsp;terms&nbsp;of&nbsp;the&nbsp;GNU&nbsp;General&nbsp;Public&nbsp;License&nbsp;as&nbsp;published&nbsp;by</span></div></li>
+<li><div class="src-line"><a name="a10"></a><span class="src-comm">&nbsp;*&nbsp;&nbsp;the&nbsp;Free&nbsp;Software&nbsp;Foundation;&nbsp;either&nbsp;version&nbsp;2&nbsp;of&nbsp;the&nbsp;License,&nbsp;or</span></div></li>
+<li><div class="src-line"><a name="a11"></a><span class="src-comm">&nbsp;*&nbsp;&nbsp;(at&nbsp;your&nbsp;option)&nbsp;any&nbsp;later&nbsp;version.</span></div></li>
+<li><div class="src-line"><a name="a12"></a><span class="src-comm">&nbsp;*</span></div></li>
+<li><div class="src-line"><a name="a13"></a><span class="src-comm">&nbsp;*&nbsp;&nbsp;This&nbsp;program&nbsp;is&nbsp;distributed&nbsp;in&nbsp;the&nbsp;hope&nbsp;that&nbsp;it&nbsp;will&nbsp;be&nbsp;useful,</span></div></li>
+<li><div class="src-line"><a name="a14"></a><span class="src-comm">&nbsp;*&nbsp;&nbsp;but&nbsp;WITHOUT&nbsp;ANY&nbsp;WARRANTY;&nbsp;without&nbsp;even&nbsp;the&nbsp;implied&nbsp;warranty&nbsp;of</span></div></li>
+<li><div class="src-line"><a name="a15"></a><span class="src-comm">&nbsp;*&nbsp;&nbsp;MERCHANTABILITY&nbsp;or&nbsp;FITNESS&nbsp;FOR&nbsp;A&nbsp;PARTICULAR&nbsp;PURPOSE.&nbsp;&nbsp;See&nbsp;the</span></div></li>
+<li><div class="src-line"><a name="a16"></a><span class="src-comm">&nbsp;*&nbsp;&nbsp;GNU&nbsp;General&nbsp;Public&nbsp;License&nbsp;for&nbsp;more&nbsp;details.</span></div></li>
+<li><div class="src-line"><a name="a17"></a><span class="src-comm">&nbsp;*</span></div></li>
+<li><div class="src-line"><a name="a18"></a><span class="src-comm">&nbsp;*&nbsp;&nbsp;You&nbsp;should&nbsp;have&nbsp;received&nbsp;a&nbsp;copy&nbsp;of&nbsp;the&nbsp;GNU&nbsp;General&nbsp;Public&nbsp;License</span></div></li>
+<li><div class="src-line"><a name="a19"></a><span class="src-comm">&nbsp;*&nbsp;&nbsp;along&nbsp;with&nbsp;this&nbsp;program&nbsp;in&nbsp;the&nbsp;file&nbsp;COPYING;&nbsp;if&nbsp;not,&nbsp;write&nbsp;to&nbsp;the</span></div></li>
+<li><div class="src-line"><a name="a20"></a><span class="src-comm">&nbsp;*&nbsp;&nbsp;Free&nbsp;Software&nbsp;Foundation,&nbsp;Inc.,&nbsp;51&nbsp;Franklin&nbsp;St,&nbsp;Fifth&nbsp;Floor,</span></div></li>
+<li><div class="src-line"><a name="a21"></a><span class="src-comm">&nbsp;*&nbsp;&nbsp;Boston,&nbsp;MA&nbsp;02110-1301&nbsp;USA</span></div></li>
+<li><div class="src-line"><a name="a22"></a><span class="src-comm">&nbsp;*/</span></div></li>
+<li><div class="src-line"><a name="a23"></a>&nbsp;</div></li>
+<li><div class="src-line"><a name="a24"></a><span class="src-comm">/*&nbsp;$Id$&nbsp;*/</span></div></li>
+<li><div class="src-line"><a name="a25"></a>&nbsp;</div></li>
+<li><div class="src-line"><a name="a26"></a>&nbsp;</div></li>
+<li><div class="src-line"><a name="a27"></a><span class="src-doc">/**</span></div></li>
+<li><div class="src-line"><a name="a28"></a><span class="src-doc">&nbsp;*&nbsp;Abstract&nbsp;class&nbsp;for&nbsp;numbers.</span></div></li>
+<li><div class="src-line"><a name="a29"></a><span class="src-doc">&nbsp;*</span></div></li>
+<li><div class="src-line"><a name="a30"></a><span class="src-doc">&nbsp;*&nbsp;</span><span class="src-doc-coretag">@author</span><span class="src-doc">&nbsp;Martin&nbsp;Geisler&nbsp;&lt;mgeisler@users.sourceforge.net&gt;</span></div></li>
+<li><div class="src-line"><a name="a31"></a><span class="src-doc">&nbsp;*&nbsp;</span><span class="src-doc-coretag">@version</span><span class="src-doc">&nbsp;$Revision$</span></div></li>
+<li><div class="src-line"><a name="a32"></a><span class="src-doc">&nbsp;*&nbsp;</span><span class="src-doc-tag">@date</span><span class="src-doc">&nbsp;$Date$</span></div></li>
+<li><div class="src-line"><a name="a33"></a><span class="src-doc">&nbsp;*&nbsp;</span><span class="src-doc-coretag">@license</span><span class="src-doc">&nbsp;http://www.gnu.org/licenses/gpl.html&nbsp;GNU&nbsp;General&nbsp;Public</span></div></li>
+<li><div class="src-line"><a name="a34"></a><span class="src-doc">&nbsp;*&nbsp;&nbsp;License&nbsp;(GPL)</span></div></li>
+<li><div class="src-line"><a name="a35"></a><span class="src-doc">&nbsp;*&nbsp;</span><span class="src-doc-coretag">@package</span><span class="src-doc">&nbsp;PEL</span></div></li>
+<li><div class="src-line"><a name="a36"></a><span class="src-doc">&nbsp;*/</span></div></li>
+<li><div class="src-line"><a name="a37"></a>&nbsp;</div></li>
+<li><div class="src-line"><a name="a38"></a><span class="src-comm">/**#@+&nbsp;Required&nbsp;class&nbsp;definitions.&nbsp;*/</span></div></li>
+<li><div class="src-line"><a name="a39"></a><span class="src-inc">require_once</span><span class="src-sym">(</span><span class="src-str">'PelException.php'</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line"><a name="a40"></a><span class="src-inc">require_once</span><span class="src-sym">(</span><span class="src-str">'PelEntry.php'</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line"><a name="a41"></a><span class="src-comm">/**#@-*/</span></div></li>
+<li><div class="src-line"><a name="a42"></a>&nbsp;</div></li>
+<li><div class="src-line"><a name="a43"></a>&nbsp;</div></li>
+<li><div class="src-line"><a name="a44"></a><span class="src-doc">/**</span></div></li>
+<li><div class="src-line"><a name="a45"></a><span class="src-doc">&nbsp;*&nbsp;Exception&nbsp;cast&nbsp;when&nbsp;numbers&nbsp;overflow.</span></div></li>
+<li><div class="src-line"><a name="a46"></a><span class="src-doc">&nbsp;*</span></div></li>
+<li><div class="src-line"><a name="a47"></a><span class="src-doc">&nbsp;*&nbsp;</span><span class="src-doc-coretag">@author</span><span class="src-doc">&nbsp;Martin&nbsp;Geisler&nbsp;&lt;mgeisler@users.sourceforge.net&gt;</span></div></li>
+<li><div class="src-line"><a name="a48"></a><span class="src-doc">&nbsp;*&nbsp;</span><span class="src-doc-coretag">@package</span><span class="src-doc">&nbsp;PEL</span></div></li>
+<li><div class="src-line"><a name="a49"></a><span class="src-doc">&nbsp;*&nbsp;</span><span class="src-doc-coretag">@subpackage</span><span class="src-doc">&nbsp;Exception</span></div></li>
+<li><div class="src-line"><a name="a50"></a><span class="src-doc">&nbsp;*/</span></div></li>
+<li><div class="src-line"><a name="a51"></a><span class="src-key">class&nbsp;</span><a href="../PEL/Exception/PelOverflowException.html">PelOverflowException</a>&nbsp;<span class="src-key">extends&nbsp;</span><a href="../PEL/Exception/PelException.html">PelException</a>&nbsp;<span class="src-sym">{</span></div></li>
+<li><div class="src-line"><a name="a52"></a>&nbsp;&nbsp;</div></li>
+<li><div class="src-line"><a name="a53"></a>&nbsp;&nbsp;<span class="src-doc">/**</span></div></li>
+<li><div class="src-line"><a name="a54"></a><span class="src-doc">&nbsp;&nbsp;&nbsp;*&nbsp;Construct&nbsp;a&nbsp;new&nbsp;overflow&nbsp;exception.</span></div></li>
+<li><div class="src-line"><a name="a55"></a><span class="src-doc">&nbsp;&nbsp;&nbsp;*</span></div></li>
+<li><div class="src-line"><a name="a56"></a><span class="src-doc">&nbsp;&nbsp;&nbsp;*&nbsp;</span><span class="src-doc-coretag">@param&nbsp;</span><span class="src-doc-type">int&nbsp;</span><span class="src-doc">the&nbsp;value&nbsp;that&nbsp;is&nbsp;out&nbsp;of&nbsp;range.</span></div></li>
+<li><div class="src-line"><a name="a57"></a><span class="src-doc">&nbsp;&nbsp;&nbsp;*</span></div></li>
+<li><div class="src-line"><a name="a58"></a><span class="src-doc">&nbsp;&nbsp;&nbsp;*&nbsp;</span><span class="src-doc-coretag">@param&nbsp;</span><span class="src-doc-type">int&nbsp;</span><span class="src-doc">the&nbsp;minimum&nbsp;allowed&nbsp;value.</span></div></li>
+<li><div class="src-line"><a name="a59"></a><span class="src-doc">&nbsp;&nbsp;&nbsp;*</span></div></li>
+<li><div class="src-line"><a name="a60"></a><span class="src-doc">&nbsp;&nbsp;&nbsp;*&nbsp;</span><span class="src-doc-coretag">@param&nbsp;</span><span class="src-doc-type">int&nbsp;</span><span class="src-doc">the&nbsp;maximum&nbsp;allowed&nbsp;value.</span></div></li>
+<li><div class="src-line"><a name="a61"></a><span class="src-doc">&nbsp;&nbsp;&nbsp;*/</span></div></li>
+<li><div class="src-line"><a name="a62"></a>&nbsp;&nbsp;<span class="src-key">function&nbsp;</span><a href="../PEL/Exception/PelOverflowException.html#method__construct">__construct</a><span class="src-sym">(</span><span class="src-var">$v</span><span class="src-sym">,&nbsp;</span><span class="src-var">$min</span><span class="src-sym">,&nbsp;</span><span class="src-var">$max</span><span class="src-sym">)&nbsp;</span><span class="src-sym">{</span></div></li>
+<li><div class="src-line"><a name="a63"></a>&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-id">parent</span><span class="src-sym">::</span><a href="../PEL/Exception/PelException.html#method__construct">__construct</a><span class="src-sym">(</span><span class="src-str">'Value&nbsp;%.0f&nbsp;out&nbsp;of&nbsp;range&nbsp;[%.0f,&nbsp;%.0f]'</span><span class="src-sym">,</span></div></li>
+<li><div class="src-line"><a name="a64"></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-var">$v</span><span class="src-sym">,&nbsp;</span><span class="src-var">$min</span><span class="src-sym">,&nbsp;</span><span class="src-var">$max</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line"><a name="a65"></a>&nbsp;&nbsp;<span class="src-sym">}</span></div></li>
+<li><div class="src-line"><a name="a66"></a><span class="src-sym">}</span></div></li>
+<li><div class="src-line"><a name="a67"></a>&nbsp;</div></li>
+<li><div class="src-line"><a name="a68"></a>&nbsp;</div></li>
+<li><div class="src-line"><a name="a69"></a><span class="src-doc">/**</span></div></li>
+<li><div class="src-line"><a name="a70"></a><span class="src-doc">&nbsp;*&nbsp;Class&nbsp;for&nbsp;holding&nbsp;numbers.</span></div></li>
+<li><div class="src-line"><a name="a71"></a><span class="src-doc">&nbsp;*</span></div></li>
+<li><div class="src-line"><a name="a72"></a><span class="src-doc">&nbsp;*&nbsp;This&nbsp;class&nbsp;can&nbsp;hold&nbsp;numbers,&nbsp;with&nbsp;range&nbsp;checks.</span></div></li>
+<li><div class="src-line"><a name="a73"></a><span class="src-doc">&nbsp;*</span></div></li>
+<li><div class="src-line"><a name="a74"></a><span class="src-doc">&nbsp;*&nbsp;</span><span class="src-doc-coretag">@author</span><span class="src-doc">&nbsp;Martin&nbsp;Geisler&nbsp;&lt;mgeisler@users.sourceforge.net&gt;</span></div></li>
+<li><div class="src-line"><a name="a75"></a><span class="src-doc">&nbsp;*&nbsp;</span><span class="src-doc-coretag">@package</span><span class="src-doc">&nbsp;PEL</span></div></li>
+<li><div class="src-line"><a name="a76"></a><span class="src-doc">&nbsp;*/</span></div></li>
+<li><div class="src-line"><a name="a77"></a><span class="src-key">abstract&nbsp;</span><span class="src-key">class&nbsp;</span><a href="../PEL/PelEntryNumber.html">PelEntryNumber</a>&nbsp;<span class="src-key">extends&nbsp;</span><a href="../PEL/PelEntry.html">PelEntry</a>&nbsp;<span class="src-sym">{</span></div></li>
+<li><div class="src-line"><a name="a78"></a>&nbsp;</div></li>
+<li><div class="src-line"><a name="a79"></a>&nbsp;&nbsp;<span class="src-doc">/**</span></div></li>
+<li><div class="src-line"><a name="a80"></a><span class="src-doc">&nbsp;&nbsp;&nbsp;*&nbsp;The&nbsp;value&nbsp;held&nbsp;by&nbsp;this&nbsp;entry.</span></div></li>
+<li><div class="src-line"><a name="a81"></a><span class="src-doc">&nbsp;&nbsp;&nbsp;*</span></div></li>
+<li><div class="src-line"><a name="a82"></a><span class="src-doc">&nbsp;&nbsp;&nbsp;*&nbsp;</span><span class="src-doc-coretag">@var&nbsp;</span><span class="src-doc-type">array&nbsp;</span></div></li>
+<li><div class="src-line"><a name="a83"></a><span class="src-doc">&nbsp;&nbsp;&nbsp;*/</span></div></li>
+<li><div class="src-line"><a name="a84"></a>&nbsp;&nbsp;<span class="src-key">protected&nbsp;</span><a href="../PEL/PelEntryNumber.html#var$value">$value</a>&nbsp;=&nbsp;<span class="src-key">array</span><span class="src-sym">(</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line"><a name="a85"></a>&nbsp;</div></li>
+<li><div class="src-line"><a name="a86"></a>&nbsp;&nbsp;<span class="src-doc">/**</span></div></li>
+<li><div class="src-line"><a name="a87"></a><span class="src-doc">&nbsp;&nbsp;&nbsp;*&nbsp;The&nbsp;minimum&nbsp;allowed&nbsp;value.</span></div></li>
+<li><div class="src-line"><a name="a88"></a><span class="src-doc">&nbsp;&nbsp;&nbsp;*</span></div></li>
+<li><div class="src-line"><a name="a89"></a><span class="src-doc">&nbsp;&nbsp;&nbsp;*&nbsp;Any&nbsp;attempt&nbsp;to&nbsp;change&nbsp;the&nbsp;value&nbsp;below&nbsp;this&nbsp;variable&nbsp;will&nbsp;result</span></div></li>
+<li><div class="src-line"><a name="a90"></a><span class="src-doc">&nbsp;&nbsp;&nbsp;*&nbsp;in&nbsp;a&nbsp;</span><span class="src-doc-inlinetag">{@link&nbsp;PelOverflowException}</span><span class="src-doc">&nbsp;being&nbsp;thrown.</span></div></li>
+<li><div class="src-line"><a name="a91"></a><span class="src-doc">&nbsp;&nbsp;&nbsp;*</span></div></li>
+<li><div class="src-line"><a name="a92"></a><span class="src-doc">&nbsp;&nbsp;&nbsp;*&nbsp;</span><span class="src-doc-coretag">@var&nbsp;</span><span class="src-doc-type">int&nbsp;</span></div></li>
+<li><div class="src-line"><a name="a93"></a><span class="src-doc">&nbsp;&nbsp;&nbsp;*/</span></div></li>
+<li><div class="src-line"><a name="a94"></a>&nbsp;&nbsp;<span class="src-key">protected&nbsp;</span><a href="../PEL/PelEntryNumber.html#var$min">$min</a><span class="src-sym">;</span></div></li>
+<li><div class="src-line"><a name="a95"></a>&nbsp;</div></li>
+<li><div class="src-line"><a name="a96"></a>&nbsp;&nbsp;<span class="src-doc">/**</span></div></li>
+<li><div class="src-line"><a name="a97"></a><span class="src-doc">&nbsp;&nbsp;&nbsp;*&nbsp;The&nbsp;maximum&nbsp;allowed&nbsp;value.</span></div></li>
+<li><div class="src-line"><a name="a98"></a><span class="src-doc">&nbsp;&nbsp;&nbsp;*</span></div></li>
+<li><div class="src-line"><a name="a99"></a><span class="src-doc">&nbsp;&nbsp;&nbsp;*&nbsp;Any&nbsp;attempt&nbsp;to&nbsp;change&nbsp;the&nbsp;value&nbsp;over&nbsp;this&nbsp;variable&nbsp;will&nbsp;result&nbsp;in</span></div></li>
+<li><div class="src-line"><a name="a100"></a><span class="src-doc">&nbsp;&nbsp;&nbsp;*&nbsp;a&nbsp;</span><span class="src-doc-inlinetag">{@link&nbsp;PelOverflowException}</span><span class="src-doc">&nbsp;being&nbsp;thrown.</span></div></li>
+<li><div class="src-line"><a name="a101"></a><span class="src-doc">&nbsp;&nbsp;&nbsp;*</span></div></li>
+<li><div class="src-line"><a name="a102"></a><span class="src-doc">&nbsp;&nbsp;&nbsp;*&nbsp;</span><span class="src-doc-coretag">@var&nbsp;</span><span class="src-doc-type">int&nbsp;</span></div></li>
+<li><div class="src-line"><a name="a103"></a><span class="src-doc">&nbsp;&nbsp;&nbsp;*/</span></div></li>
+<li><div class="src-line"><a name="a104"></a>&nbsp;&nbsp;<span class="src-key">protected&nbsp;</span><a href="../PEL/PelEntryNumber.html#var$max">$max</a><span class="src-sym">;</span></div></li>
+<li><div class="src-line"><a name="a105"></a>&nbsp;&nbsp;</div></li>
+<li><div class="src-line"><a name="a106"></a>&nbsp;&nbsp;<span class="src-doc">/**</span></div></li>
+<li><div class="src-line"><a name="a107"></a><span class="src-doc">&nbsp;&nbsp;&nbsp;*&nbsp;The&nbsp;dimension&nbsp;of&nbsp;the&nbsp;number&nbsp;held.</span></div></li>
+<li><div class="src-line"><a name="a108"></a><span class="src-doc">&nbsp;&nbsp;&nbsp;*</span></div></li>
+<li><div class="src-line"><a name="a109"></a><span class="src-doc">&nbsp;&nbsp;&nbsp;*&nbsp;Normal&nbsp;numbers&nbsp;have&nbsp;a&nbsp;dimension&nbsp;of&nbsp;one,&nbsp;pairs&nbsp;have&nbsp;a&nbsp;dimension&nbsp;of</span></div></li>
+<li><div class="src-line"><a name="a110"></a><span class="src-doc">&nbsp;&nbsp;&nbsp;*&nbsp;two,&nbsp;etc.</span></div></li>
+<li><div class="src-line"><a name="a111"></a><span class="src-doc">&nbsp;&nbsp;&nbsp;*</span></div></li>
+<li><div class="src-line"><a name="a112"></a><span class="src-doc">&nbsp;&nbsp;&nbsp;*&nbsp;</span><span class="src-doc-coretag">@var&nbsp;</span><span class="src-doc-type">int&nbsp;</span></div></li>
+<li><div class="src-line"><a name="a113"></a><span class="src-doc">&nbsp;&nbsp;&nbsp;*/</span></div></li>
+<li><div class="src-line"><a name="a114"></a>&nbsp;&nbsp;<span class="src-key">protected&nbsp;</span><a href="../PEL/PelEntryNumber.html#var$dimension">$dimension</a>&nbsp;=&nbsp;<span class="src-num">1</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line"><a name="a115"></a>&nbsp;</div></li>
+<li><div class="src-line"><a name="a116"></a>&nbsp;</div></li>
+<li><div class="src-line"><a name="a117"></a>&nbsp;&nbsp;<span class="src-doc">/**</span></div></li>
+<li><div class="src-line"><a name="a118"></a><span class="src-doc">&nbsp;&nbsp;&nbsp;*&nbsp;Change&nbsp;the&nbsp;value.</span></div></li>
+<li><div class="src-line"><a name="a119"></a><span class="src-doc">&nbsp;&nbsp;&nbsp;*</span></div></li>
+<li><div class="src-line"><a name="a120"></a><span class="src-doc">&nbsp;&nbsp;&nbsp;*&nbsp;This&nbsp;method&nbsp;can&nbsp;change&nbsp;both&nbsp;the&nbsp;number&nbsp;of&nbsp;components&nbsp;and&nbsp;the</span></div></li>
+<li><div class="src-line"><a name="a121"></a><span class="src-doc">&nbsp;&nbsp;&nbsp;*&nbsp;value&nbsp;of&nbsp;the&nbsp;components.&nbsp;&nbsp;Range&nbsp;checks&nbsp;will&nbsp;be&nbsp;made&nbsp;on&nbsp;the&nbsp;new</span></div></li>
+<li><div class="src-line"><a name="a122"></a><span class="src-doc">&nbsp;&nbsp;&nbsp;*&nbsp;value,&nbsp;and&nbsp;a&nbsp;</span><span class="src-doc-inlinetag">{@link&nbsp;PelOverflowException}</span><span class="src-doc">&nbsp;will&nbsp;be&nbsp;thrown&nbsp;if&nbsp;the</span></div></li>
+<li><div class="src-line"><a name="a123"></a><span class="src-doc">&nbsp;&nbsp;&nbsp;*&nbsp;value&nbsp;is&nbsp;found&nbsp;to&nbsp;be&nbsp;outside&nbsp;the&nbsp;legal&nbsp;range.</span></div></li>
+<li><div class="src-line"><a name="a124"></a><span class="src-doc">&nbsp;&nbsp;&nbsp;*</span></div></li>
+<li><div class="src-line"><a name="a125"></a><span class="src-doc">&nbsp;&nbsp;&nbsp;*&nbsp;The&nbsp;method&nbsp;accept&nbsp;several&nbsp;number&nbsp;arguments.&nbsp;&nbsp;The&nbsp;</span><span class="src-doc-inlinetag">{@link&nbsp;getValue}</span></div></li>
+<li><div class="src-line"><a name="a126"></a><span class="src-doc">&nbsp;&nbsp;&nbsp;*&nbsp;method&nbsp;will&nbsp;always&nbsp;return&nbsp;an&nbsp;array&nbsp;except&nbsp;for&nbsp;when&nbsp;a&nbsp;single</span></div></li>
+<li><div class="src-line"><a name="a127"></a><span class="src-doc">&nbsp;&nbsp;&nbsp;*&nbsp;number&nbsp;is&nbsp;given&nbsp;here.</span></div></li>
+<li><div class="src-line"><a name="a128"></a><span class="src-doc">&nbsp;&nbsp;&nbsp;*</span></div></li>
+<li><div class="src-line"><a name="a129"></a><span class="src-doc">&nbsp;&nbsp;&nbsp;*&nbsp;</span><span class="src-doc-coretag">@param&nbsp;</span><span class="src-doc-type">int</span><span class="src-doc">|</span><span class="src-doc-type">array</span><span class="src-doc-var">$value...&nbsp;</span><span class="src-doc">the&nbsp;new&nbsp;value(s).&nbsp;&nbsp;This&nbsp;can&nbsp;be&nbsp;zero&nbsp;or</span></div></li>
+<li><div class="src-line"><a name="a130"></a><span class="src-doc">&nbsp;&nbsp;&nbsp;*&nbsp;&nbsp;more&nbsp;numbers,&nbsp;that&nbsp;is,&nbsp;either&nbsp;integers&nbsp;or&nbsp;arrays.&nbsp;&nbsp;The&nbsp;input&nbsp;will</span></div></li>
+<li><div class="src-line"><a name="a131"></a><span class="src-doc">&nbsp;&nbsp;&nbsp;*&nbsp;&nbsp;be&nbsp;checked&nbsp;to&nbsp;ensure&nbsp;that&nbsp;the&nbsp;numbers&nbsp;are&nbsp;within&nbsp;the&nbsp;valid&nbsp;range.</span></div></li>
+<li><div class="src-line"><a name="a132"></a><span class="src-doc">&nbsp;&nbsp;&nbsp;*&nbsp;&nbsp;If&nbsp;not,&nbsp;then&nbsp;a&nbsp;</span><span class="src-doc-inlinetag">{@link&nbsp;PelOverflowException}</span><span class="src-doc">&nbsp;will&nbsp;be&nbsp;thrown.</span></div></li>
+<li><div class="src-line"><a name="a133"></a><span class="src-doc">&nbsp;&nbsp;&nbsp;*</span></div></li>
+<li><div class="src-line"><a name="a134"></a><span class="src-doc">&nbsp;&nbsp;&nbsp;*&nbsp;</span><span class="src-doc-coretag">@see</span><span class="src-doc">&nbsp;getValue</span></div></li>
+<li><div class="src-line"><a name="a135"></a><span class="src-doc">&nbsp;&nbsp;&nbsp;*/</span></div></li>
+<li><div class="src-line"><a name="a136"></a>&nbsp;&nbsp;<span class="src-key">function&nbsp;</span><a href="../PEL/PelEntryNumber.html#methodsetValue">setValue</a><span class="src-sym">(</span><span class="src-comm">/*&nbsp;$value...&nbsp;*/</span><span class="src-sym">)&nbsp;</span><span class="src-sym">{</span></div></li>
+<li><div class="src-line"><a name="a137"></a>&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-var">$value&nbsp;</span>=&nbsp;<a href="http://www.php.net/func_get_args">func_get_args</a><span class="src-sym">(</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line"><a name="a138"></a>&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-var">$this</span><span class="src-sym">-&gt;</span><a href="../PEL/PelEntryNumber.html#methodsetValueArray">setValueArray</a><span class="src-sym">(</span><span class="src-var">$value</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line"><a name="a139"></a>&nbsp;&nbsp;<span class="src-sym">}</span></div></li>
+<li><div class="src-line"><a name="a140"></a>&nbsp;</div></li>
+<li><div class="src-line"><a name="a141"></a>&nbsp;</div></li>
+<li><div class="src-line"><a name="a142"></a>&nbsp;&nbsp;<span class="src-doc">/**</span></div></li>
+<li><div class="src-line"><a name="a143"></a><span class="src-doc">&nbsp;&nbsp;&nbsp;*&nbsp;Change&nbsp;the&nbsp;value.</span></div></li>
+<li><div class="src-line"><a name="a144"></a><span class="src-doc">&nbsp;&nbsp;&nbsp;*</span></div></li>
+<li><div class="src-line"><a name="a145"></a><span class="src-doc">&nbsp;&nbsp;&nbsp;*&nbsp;This&nbsp;method&nbsp;can&nbsp;change&nbsp;both&nbsp;the&nbsp;number&nbsp;of&nbsp;components&nbsp;and&nbsp;the</span></div></li>
+<li><div class="src-line"><a name="a146"></a><span class="src-doc">&nbsp;&nbsp;&nbsp;*&nbsp;value&nbsp;of&nbsp;the&nbsp;components.&nbsp;&nbsp;Range&nbsp;checks&nbsp;will&nbsp;be&nbsp;made&nbsp;on&nbsp;the&nbsp;new</span></div></li>
+<li><div class="src-line"><a name="a147"></a><span class="src-doc">&nbsp;&nbsp;&nbsp;*&nbsp;value,&nbsp;and&nbsp;a&nbsp;</span><span class="src-doc-inlinetag">{@link&nbsp;PelOverflowException}</span><span class="src-doc">&nbsp;will&nbsp;be&nbsp;thrown&nbsp;if&nbsp;the</span></div></li>
+<li><div class="src-line"><a name="a148"></a><span class="src-doc">&nbsp;&nbsp;&nbsp;*&nbsp;value&nbsp;is&nbsp;found&nbsp;to&nbsp;be&nbsp;outside&nbsp;the&nbsp;legal&nbsp;range.</span></div></li>
+<li><div class="src-line"><a name="a149"></a><span class="src-doc">&nbsp;&nbsp;&nbsp;*</span></div></li>
+<li><div class="src-line"><a name="a150"></a><span class="src-doc">&nbsp;&nbsp;&nbsp;*&nbsp;</span><span class="src-doc-coretag">@param&nbsp;</span><span class="src-doc-type">array&nbsp;</span><span class="src-doc">the&nbsp;new&nbsp;values.&nbsp;&nbsp;The&nbsp;array&nbsp;must&nbsp;contain&nbsp;the&nbsp;new</span></div></li>
+<li><div class="src-line"><a name="a151"></a><span class="src-doc">&nbsp;&nbsp;&nbsp;*&nbsp;&nbsp;numbers.</span></div></li>
+<li><div class="src-line"><a name="a152"></a><span class="src-doc">&nbsp;&nbsp;&nbsp;*</span></div></li>
+<li><div class="src-line"><a name="a153"></a><span class="src-doc">&nbsp;&nbsp;&nbsp;*&nbsp;</span><span class="src-doc-coretag">@see</span><span class="src-doc">&nbsp;getValue</span></div></li>
+<li><div class="src-line"><a name="a154"></a><span class="src-doc">&nbsp;&nbsp;&nbsp;*/</span></div></li>
+<li><div class="src-line"><a name="a155"></a>&nbsp;&nbsp;<span class="src-key">function&nbsp;</span><a href="../PEL/PelEntryNumber.html#methodsetValueArray">setValueArray</a><span class="src-sym">(</span><span class="src-var">$value</span><span class="src-sym">)&nbsp;</span><span class="src-sym">{</span></div></li>
+<li><div class="src-line"><a name="a156"></a>&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-key">foreach&nbsp;</span><span class="src-sym">(</span><span class="src-var">$value&nbsp;</span><span class="src-key">as&nbsp;</span><span class="src-var">$v</span><span class="src-sym">)</span></div></li>
+<li><div class="src-line"><a name="a157"></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-var">$this</span><span class="src-sym">-&gt;</span><a href="../PEL/PelEntryNumber.html#methodvalidateNumber">validateNumber</a><span class="src-sym">(</span><span class="src-var">$v</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line"><a name="a158"></a>&nbsp;&nbsp;&nbsp;&nbsp;</div></li>
+<li><div class="src-line"><a name="a159"></a>&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-var">$this</span><span class="src-sym">-&gt;</span><a href="../PEL/PelEntry.html#var$components">components</a>&nbsp;=&nbsp;<a href="http://www.php.net/count">count</a><span class="src-sym">(</span><span class="src-var">$value</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line"><a name="a160"></a>&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-var">$this</span><span class="src-sym">-&gt;</span><a href="../PEL/PelEntryNumber.html#var$value">value</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;<span class="src-var">$value</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line"><a name="a161"></a>&nbsp;&nbsp;<span class="src-sym">}</span></div></li>
+<li><div class="src-line"><a name="a162"></a>&nbsp;</div></li>
+<li><div class="src-line"><a name="a163"></a>&nbsp;</div></li>
+<li><div class="src-line"><a name="a164"></a>&nbsp;&nbsp;<span class="src-doc">/**</span></div></li>
+<li><div class="src-line"><a name="a165"></a><span class="src-doc">&nbsp;&nbsp;&nbsp;*&nbsp;Return&nbsp;the&nbsp;numeric&nbsp;value&nbsp;held.</span></div></li>
+<li><div class="src-line"><a name="a166"></a><span class="src-doc">&nbsp;&nbsp;&nbsp;*</span></div></li>
+<li><div class="src-line"><a name="a167"></a><span class="src-doc">&nbsp;&nbsp;&nbsp;*&nbsp;</span><span class="src-doc-coretag">@return&nbsp;</span><span class="src-doc-type">int</span><span class="src-doc">|</span><span class="src-doc-type">array</span><span class="src-doc">this&nbsp;will&nbsp;either&nbsp;be&nbsp;a&nbsp;single&nbsp;number&nbsp;if&nbsp;there&nbsp;is</span></div></li>
+<li><div class="src-line"><a name="a168"></a><span class="src-doc">&nbsp;&nbsp;&nbsp;*&nbsp;&nbsp;only&nbsp;one&nbsp;component,&nbsp;or&nbsp;an&nbsp;array&nbsp;of&nbsp;numbers&nbsp;otherwise.</span></div></li>
+<li><div class="src-line"><a name="a169"></a><span class="src-doc">&nbsp;&nbsp;&nbsp;*/</span></div></li>
+<li><div class="src-line"><a name="a170"></a>&nbsp;&nbsp;<span class="src-key">function&nbsp;</span><a href="../PEL/PelEntryNumber.html#methodgetValue">getValue</a><span class="src-sym">(</span><span class="src-sym">)&nbsp;</span><span class="src-sym">{</span></div></li>
+<li><div class="src-line"><a name="a171"></a>&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-key">if&nbsp;</span><span class="src-sym">(</span><span class="src-var">$this</span><span class="src-sym">-&gt;</span><a href="../PEL/PelEntry.html#var$components">components</a>&nbsp;==&nbsp;<span class="src-num">1</span><span class="src-sym">)</span></div></li>
+<li><div class="src-line"><a name="a172"></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-key">return&nbsp;</span><span class="src-var">$this</span><span class="src-sym">-&gt;</span><a href="../PEL/PelEntryNumber.html#var$value">value</a><span class="src-sym">[</span><span class="src-num">0</span><span class="src-sym">]</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line"><a name="a173"></a>&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-key">else</span></div></li>
+<li><div class="src-line"><a name="a174"></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-key">return&nbsp;</span><span class="src-var">$this</span><span class="src-sym">-&gt;</span><a href="../PEL/PelEntryNumber.html#var$value">value</a><span class="src-sym">;</span></div></li>
+<li><div class="src-line"><a name="a175"></a>&nbsp;&nbsp;<span class="src-sym">}</span></div></li>
+<li><div class="src-line"><a name="a176"></a>&nbsp;</div></li>
+<li><div class="src-line"><a name="a177"></a>&nbsp;</div></li>
+<li><div class="src-line"><a name="a178"></a>&nbsp;&nbsp;<span class="src-doc">/**</span></div></li>
+<li><div class="src-line"><a name="a179"></a><span class="src-doc">&nbsp;&nbsp;&nbsp;*&nbsp;Validate&nbsp;a&nbsp;number.</span></div></li>
+<li><div class="src-line"><a name="a180"></a><span class="src-doc">&nbsp;&nbsp;&nbsp;*</span></div></li>
+<li><div class="src-line"><a name="a181"></a><span class="src-doc">&nbsp;&nbsp;&nbsp;*&nbsp;This&nbsp;method&nbsp;will&nbsp;check&nbsp;that&nbsp;the&nbsp;number&nbsp;given&nbsp;is&nbsp;within&nbsp;the&nbsp;range</span></div></li>
+<li><div class="src-line"><a name="a182"></a><span class="src-doc">&nbsp;&nbsp;&nbsp;*&nbsp;given&nbsp;my&nbsp;</span><span class="src-doc-inlinetag">{@link&nbsp;getMin()}</span><span class="src-doc">&nbsp;and&nbsp;</span><span class="src-doc-inlinetag">{@link&nbsp;getMax()}</span><span class="src-doc">,&nbsp;inclusive.&nbsp;&nbsp;If</span></div></li>
+<li><div class="src-line"><a name="a183"></a><span class="src-doc">&nbsp;&nbsp;&nbsp;*&nbsp;not,&nbsp;then&nbsp;a&nbsp;</span><span class="src-doc-inlinetag">{@link&nbsp;PelOverflowException}</span><span class="src-doc">&nbsp;is&nbsp;thrown.</span></div></li>
+<li><div class="src-line"><a name="a184"></a><span class="src-doc">&nbsp;&nbsp;&nbsp;*</span></div></li>
+<li><div class="src-line"><a name="a185"></a><span class="src-doc">&nbsp;&nbsp;&nbsp;*&nbsp;</span><span class="src-doc-coretag">@param&nbsp;</span><span class="src-doc-type">int</span><span class="src-doc">|</span><span class="src-doc-type">array</span><span class="src-doc">the&nbsp;number&nbsp;in&nbsp;question.</span></div></li>
+<li><div class="src-line"><a name="a186"></a><span class="src-doc">&nbsp;&nbsp;&nbsp;*</span></div></li>
+<li><div class="src-line"><a name="a187"></a><span class="src-doc">&nbsp;&nbsp;&nbsp;*&nbsp;</span><span class="src-doc-coretag">@return&nbsp;</span><span class="src-doc-type">void&nbsp;</span><span class="src-doc">nothing,&nbsp;but&nbsp;will&nbsp;throw&nbsp;a&nbsp;</span><span class="src-doc-inlinetag">{@link&nbsp;}</span></div></li>
+<li><div class="src-line"><a name="a188"></a><span class="src-doc">&nbsp;&nbsp;&nbsp;*&nbsp;&nbsp;PelOverflowException}&nbsp;if&nbsp;the&nbsp;number&nbsp;is&nbsp;found&nbsp;to&nbsp;be&nbsp;outside&nbsp;the</span></div></li>
+<li><div class="src-line"><a name="a189"></a><span class="src-doc">&nbsp;&nbsp;&nbsp;*&nbsp;&nbsp;legal&nbsp;range&nbsp;and&nbsp;</span><span class="src-doc-inlinetag">{@link&nbsp;Pel::$strict}</span><span class="src-doc">&nbsp;is&nbsp;true.</span></div></li>
+<li><div class="src-line"><a name="a190"></a><span class="src-doc">&nbsp;&nbsp;&nbsp;*/</span></div></li>
+<li><div class="src-line"><a name="a191"></a>&nbsp;&nbsp;<span class="src-key">function&nbsp;</span><a href="../PEL/PelEntryNumber.html#methodvalidateNumber">validateNumber</a><span class="src-sym">(</span><span class="src-var">$n</span><span class="src-sym">)&nbsp;</span><span class="src-sym">{</span></div></li>
+<li><div class="src-line"><a name="a192"></a>&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-key">if&nbsp;</span><span class="src-sym">(</span><span class="src-var">$this</span><span class="src-sym">-&gt;</span><a href="../PEL/PelEntryNumber.html#var$dimension">dimension</a>&nbsp;==&nbsp;<span class="src-num">1</span><span class="src-sym">)&nbsp;</span><span class="src-sym">{</span></div></li>
+<li><div class="src-line"><a name="a193"></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-key">if&nbsp;</span><span class="src-sym">(</span><span class="src-var">$n&nbsp;</span>&lt;&nbsp;<span class="src-var">$this</span><span class="src-sym">-&gt;</span><a href="../PEL/PelEntryNumber.html#var$min">min</a>&nbsp;||&nbsp;<span class="src-var">$n&nbsp;</span>&gt;&nbsp;<span class="src-var">$this</span><span class="src-sym">-&gt;</span><a href="../PEL/PelEntryNumber.html#var$max">max</a><span class="src-sym">)</span></div></li>
+<li><div class="src-line"><a name="a194"></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-id"><a href="../PEL/Pel.html">Pel</a></span><span class="src-sym">::</span><a href="../PEL/Pel.html#methodmaybeThrow">maybeThrow</a><span class="src-sym">(</span><span class="src-key">new&nbsp;</span><span class="src-id"><a href="../PEL/Exception/PelOverflowException.html">PelOverflowException</a></span><span class="src-sym">(</span><span class="src-var">$n</span><span class="src-sym">,</span></div></li>
+<li><div class="src-line"><a name="a195"></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-var">$this</span><span class="src-sym">-&gt;</span><a href="../PEL/PelEntryNumber.html#var$min">min</a><span class="src-sym">,</span></div></li>
+<li><div class="src-line"><a name="a196"></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-var">$this</span><span class="src-sym">-&gt;</span><a href="../PEL/PelEntryNumber.html#var$max">max</a><span class="src-sym">))</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line"><a name="a197"></a>&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-sym">}&nbsp;</span><span class="src-key">else&nbsp;</span><span class="src-sym">{</span></div></li>
+<li><div class="src-line"><a name="a198"></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-key">for&nbsp;</span><span class="src-sym">(</span><span class="src-var">$i&nbsp;</span>=&nbsp;<span class="src-num">0</span><span class="src-sym">;&nbsp;</span><span class="src-var">$i&nbsp;</span>&lt;&nbsp;<span class="src-var">$this</span><span class="src-sym">-&gt;</span><a href="../PEL/PelEntryNumber.html#var$dimension">dimension</a><span class="src-sym">;&nbsp;</span><span class="src-var">$i</span>++<span class="src-sym">)</span></div></li>
+<li><div class="src-line"><a name="a199"></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-key">if&nbsp;</span><span class="src-sym">(</span><span class="src-var">$n</span><span class="src-sym">[</span><span class="src-var">$i</span><span class="src-sym">]&nbsp;</span>&lt;&nbsp;<span class="src-var">$this</span><span class="src-sym">-&gt;</span><a href="../PEL/PelEntryNumber.html#var$min">min</a>&nbsp;||&nbsp;<span class="src-var">$n</span><span class="src-sym">[</span><span class="src-var">$i</span><span class="src-sym">]&nbsp;</span>&gt;&nbsp;<span class="src-var">$this</span><span class="src-sym">-&gt;</span><a href="../PEL/PelEntryNumber.html#var$max">max</a><span class="src-sym">)</span></div></li>
+<li><div class="src-line"><a name="a200"></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-id"><a href="../PEL/Pel.html">Pel</a></span><span class="src-sym">::</span><a href="../PEL/Pel.html#methodmaybeThrow">maybeThrow</a><span class="src-sym">(</span><span class="src-key">new&nbsp;</span><span class="src-id"><a href="../PEL/Exception/PelOverflowException.html">PelOverflowException</a></span><span class="src-sym">(</span><span class="src-var">$n</span><span class="src-sym">[</span><span class="src-var">$i</span><span class="src-sym">]</span><span class="src-sym">,</span></div></li>
+<li><div class="src-line"><a name="a201"></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-var">$this</span><span class="src-sym">-&gt;</span><a href="../PEL/PelEntryNumber.html#var$min">min</a><span class="src-sym">,</span></div></li>
+<li><div class="src-line"><a name="a202"></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-var">$this</span><span class="src-sym">-&gt;</span><a href="../PEL/PelEntryNumber.html#var$max">max</a><span class="src-sym">))</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line"><a name="a203"></a>&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-sym">}</span></div></li>
+<li><div class="src-line"><a name="a204"></a>&nbsp;&nbsp;<span class="src-sym">}</span></div></li>
+<li><div class="src-line"><a name="a205"></a>&nbsp;</div></li>
+<li><div class="src-line"><a name="a206"></a>&nbsp;</div></li>
+<li><div class="src-line"><a name="a207"></a>&nbsp;&nbsp;<span class="src-doc">/**</span></div></li>
+<li><div class="src-line"><a name="a208"></a><span class="src-doc">&nbsp;&nbsp;&nbsp;*&nbsp;Add&nbsp;a&nbsp;number.</span></div></li>
+<li><div class="src-line"><a name="a209"></a><span class="src-doc">&nbsp;&nbsp;&nbsp;*</span></div></li>
+<li><div class="src-line"><a name="a210"></a><span class="src-doc">&nbsp;&nbsp;&nbsp;*&nbsp;This&nbsp;appends&nbsp;a&nbsp;number&nbsp;to&nbsp;the&nbsp;numbers&nbsp;already&nbsp;held&nbsp;by&nbsp;this&nbsp;entry,</span></div></li>
+<li><div class="src-line"><a name="a211"></a><span class="src-doc">&nbsp;&nbsp;&nbsp;*&nbsp;thereby&nbsp;increasing&nbsp;the&nbsp;number&nbsp;of&nbsp;components&nbsp;by&nbsp;one.</span></div></li>
+<li><div class="src-line"><a name="a212"></a><span class="src-doc">&nbsp;&nbsp;&nbsp;*</span></div></li>
+<li><div class="src-line"><a name="a213"></a><span class="src-doc">&nbsp;&nbsp;&nbsp;*&nbsp;</span><span class="src-doc-coretag">@param&nbsp;</span><span class="src-doc-type">int</span><span class="src-doc">|</span><span class="src-doc-type">array</span><span class="src-doc">the&nbsp;number&nbsp;to&nbsp;be&nbsp;added.</span></div></li>
+<li><div class="src-line"><a name="a214"></a><span class="src-doc">&nbsp;&nbsp;&nbsp;*/</span></div></li>
+<li><div class="src-line"><a name="a215"></a>&nbsp;&nbsp;<span class="src-key">function&nbsp;</span><a href="../PEL/PelEntryNumber.html#methodaddNumber">addNumber</a><span class="src-sym">(</span><span class="src-var">$n</span><span class="src-sym">)&nbsp;</span><span class="src-sym">{</span></div></li>
+<li><div class="src-line"><a name="a216"></a>&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-var">$this</span><span class="src-sym">-&gt;</span><a href="../PEL/PelEntryNumber.html#methodvalidateNumber">validateNumber</a><span class="src-sym">(</span><span class="src-var">$n</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line"><a name="a217"></a>&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-var">$this</span><span class="src-sym">-&gt;</span><a href="../PEL/PelEntryNumber.html#var$value">value</a><span class="src-sym">[</span><span class="src-sym">]&nbsp;</span>=&nbsp;<span class="src-var">$n</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line"><a name="a218"></a>&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-var">$this</span><span class="src-sym">-&gt;</span><a href="../PEL/PelEntry.html#var$components">components</a>++<span class="src-sym">;</span></div></li>
+<li><div class="src-line"><a name="a219"></a>&nbsp;&nbsp;<span class="src-sym">}</span></div></li>
+<li><div class="src-line"><a name="a220"></a>&nbsp;</div></li>
+<li><div class="src-line"><a name="a221"></a>&nbsp;</div></li>
+<li><div class="src-line"><a name="a222"></a>&nbsp;&nbsp;<span class="src-doc">/**</span></div></li>
+<li><div class="src-line"><a name="a223"></a><span class="src-doc">&nbsp;&nbsp;&nbsp;*&nbsp;Convert&nbsp;a&nbsp;number&nbsp;into&nbsp;bytes.</span></div></li>
+<li><div class="src-line"><a name="a224"></a><span class="src-doc">&nbsp;&nbsp;&nbsp;*</span></div></li>
+<li><div class="src-line"><a name="a225"></a><span class="src-doc">&nbsp;&nbsp;&nbsp;*&nbsp;The&nbsp;concrete&nbsp;subclasses&nbsp;will&nbsp;have&nbsp;to&nbsp;implement&nbsp;this&nbsp;method&nbsp;so</span></div></li>
+<li><div class="src-line"><a name="a226"></a><span class="src-doc">&nbsp;&nbsp;&nbsp;*&nbsp;that&nbsp;the&nbsp;numbers&nbsp;represented&nbsp;can&nbsp;be&nbsp;turned&nbsp;into&nbsp;bytes.</span></div></li>
+<li><div class="src-line"><a name="a227"></a><span class="src-doc">&nbsp;&nbsp;&nbsp;*</span></div></li>
+<li><div class="src-line"><a name="a228"></a><span class="src-doc">&nbsp;&nbsp;&nbsp;*&nbsp;The&nbsp;method&nbsp;will&nbsp;be&nbsp;called&nbsp;once&nbsp;for&nbsp;each&nbsp;number&nbsp;held&nbsp;by&nbsp;the&nbsp;entry.</span></div></li>
+<li><div class="src-line"><a name="a229"></a><span class="src-doc">&nbsp;&nbsp;&nbsp;*</span></div></li>
+<li><div class="src-line"><a name="a230"></a><span class="src-doc">&nbsp;&nbsp;&nbsp;*&nbsp;</span><span class="src-doc-coretag">@param&nbsp;</span><span class="src-doc-type">int&nbsp;</span><span class="src-doc">the&nbsp;number&nbsp;that&nbsp;should&nbsp;be&nbsp;converted.</span></div></li>
+<li><div class="src-line"><a name="a231"></a><span class="src-doc">&nbsp;&nbsp;&nbsp;*</span></div></li>
+<li><div class="src-line"><a name="a232"></a><span class="src-doc">&nbsp;&nbsp;&nbsp;*&nbsp;</span><span class="src-doc-coretag">@param&nbsp;</span><span class="src-doc-type">PelByteOrder&nbsp;</span><span class="src-doc">one&nbsp;of&nbsp;</span><span class="src-doc-inlinetag">{@link&nbsp;PelConvert::LITTLE_ENDIAN}</span><span class="src-doc">&nbsp;and</span></div></li>
+<li><div class="src-line"><a name="a233"></a><span class="src-doc">&nbsp;&nbsp;&nbsp;*&nbsp;&nbsp;</span><span class="src-doc-inlinetag">{@link&nbsp;PelConvert::BIG_ENDIAN}</span><span class="src-doc">,&nbsp;specifying&nbsp;the&nbsp;target&nbsp;byte&nbsp;order.</span></div></li>
+<li><div class="src-line"><a name="a234"></a><span class="src-doc">&nbsp;&nbsp;&nbsp;*</span></div></li>
+<li><div class="src-line"><a name="a235"></a><span class="src-doc">&nbsp;&nbsp;&nbsp;*&nbsp;</span><span class="src-doc-coretag">@return&nbsp;</span><span class="src-doc-type">string&nbsp;</span><span class="src-doc">bytes&nbsp;representing&nbsp;the&nbsp;number&nbsp;given.</span></div></li>
+<li><div class="src-line"><a name="a236"></a><span class="src-doc">&nbsp;&nbsp;&nbsp;*/</span></div></li>
+<li><div class="src-line"><a name="a237"></a>&nbsp;&nbsp;<span class="src-key">abstract&nbsp;</span><span class="src-key">function&nbsp;</span><a href="../PEL/PelEntryNumber.html#methodnumberToBytes">numberToBytes</a><span class="src-sym">(</span><span class="src-var">$number</span><span class="src-sym">,&nbsp;</span><span class="src-var">$order</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line"><a name="a238"></a>&nbsp;</div></li>
+<li><div class="src-line"><a name="a239"></a>&nbsp;&nbsp;</div></li>
+<li><div class="src-line"><a name="a240"></a>&nbsp;&nbsp;<span class="src-doc">/**</span></div></li>
+<li><div class="src-line"><a name="a241"></a><span class="src-doc">&nbsp;&nbsp;&nbsp;*&nbsp;Turn&nbsp;this&nbsp;entry&nbsp;into&nbsp;bytes.</span></div></li>
+<li><div class="src-line"><a name="a242"></a><span class="src-doc">&nbsp;&nbsp;&nbsp;*</span></div></li>
+<li><div class="src-line"><a name="a243"></a><span class="src-doc">&nbsp;&nbsp;&nbsp;*&nbsp;</span><span class="src-doc-coretag">@param&nbsp;</span><span class="src-doc-type">PelByteOrder&nbsp;</span><span class="src-doc">the&nbsp;desired&nbsp;byte&nbsp;order,&nbsp;which&nbsp;must&nbsp;be&nbsp;either</span></div></li>
+<li><div class="src-line"><a name="a244"></a><span class="src-doc">&nbsp;&nbsp;&nbsp;*&nbsp;&nbsp;</span><span class="src-doc-inlinetag">{@link&nbsp;PelConvert::LITTLE_ENDIAN}</span><span class="src-doc">&nbsp;or&nbsp;</span><span class="src-doc-inlinetag">{@link&nbsp;}</span></div></li>
+<li><div class="src-line"><a name="a245"></a><span class="src-doc">&nbsp;&nbsp;&nbsp;*&nbsp;&nbsp;PelConvert::BIG_ENDIAN}.</span></div></li>
+<li><div class="src-line"><a name="a246"></a><span class="src-doc">&nbsp;&nbsp;&nbsp;*</span></div></li>
+<li><div class="src-line"><a name="a247"></a><span class="src-doc">&nbsp;&nbsp;&nbsp;*&nbsp;</span><span class="src-doc-coretag">@return&nbsp;</span><span class="src-doc-type">string&nbsp;</span><span class="src-doc">bytes&nbsp;representing&nbsp;this&nbsp;entry.</span></div></li>
+<li><div class="src-line"><a name="a248"></a><span class="src-doc">&nbsp;&nbsp;&nbsp;*/</span></div></li>
+<li><div class="src-line"><a name="a249"></a>&nbsp;&nbsp;<span class="src-key">function&nbsp;</span><a href="../PEL/PelEntryNumber.html#methodgetBytes">getBytes</a><span class="src-sym">(</span><span class="src-var">$o</span><span class="src-sym">)&nbsp;</span><span class="src-sym">{</span></div></li>
+<li><div class="src-line"><a name="a250"></a>&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-var">$bytes&nbsp;</span>=&nbsp;<span class="src-str">''</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line"><a name="a251"></a>&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-key">for&nbsp;</span><span class="src-sym">(</span><span class="src-var">$i&nbsp;</span>=&nbsp;<span class="src-num">0</span><span class="src-sym">;&nbsp;</span><span class="src-var">$i&nbsp;</span>&lt;&nbsp;<span class="src-var">$this</span><span class="src-sym">-&gt;</span><a href="../PEL/PelEntry.html#var$components">components</a><span class="src-sym">;&nbsp;</span><span class="src-var">$i</span>++<span class="src-sym">)&nbsp;</span><span class="src-sym">{</span></div></li>
+<li><div class="src-line"><a name="a252"></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-key">if&nbsp;</span><span class="src-sym">(</span><span class="src-var">$this</span><span class="src-sym">-&gt;</span><a href="../PEL/PelEntryNumber.html#var$dimension">dimension</a>&nbsp;==&nbsp;<span class="src-num">1</span><span class="src-sym">)&nbsp;</span><span class="src-sym">{</span></div></li>
+<li><div class="src-line"><a name="a253"></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-var">$bytes&nbsp;</span>.=&nbsp;<span class="src-var">$this</span><span class="src-sym">-&gt;</span><a href="../PEL/PelEntryNumber.html#methodnumberToBytes">numberToBytes</a><span class="src-sym">(</span><span class="src-var">$this</span><span class="src-sym">-&gt;</span><a href="../PEL/PelEntryNumber.html#var$value">value</a><span class="src-sym">[</span><span class="src-var">$i</span><span class="src-sym">]</span><span class="src-sym">,&nbsp;</span><span class="src-var">$o</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line"><a name="a254"></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-sym">}&nbsp;</span><span class="src-key">else&nbsp;</span><span class="src-sym">{</span></div></li>
+<li><div class="src-line"><a name="a255"></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-key">for&nbsp;</span><span class="src-sym">(</span><span class="src-var">$j&nbsp;</span>=&nbsp;<span class="src-num">0</span><span class="src-sym">;&nbsp;</span><span class="src-var">$j&nbsp;</span>&lt;&nbsp;<span class="src-var">$this</span><span class="src-sym">-&gt;</span><a href="../PEL/PelEntryNumber.html#var$dimension">dimension</a><span class="src-sym">;&nbsp;</span><span class="src-var">$j</span>++<span class="src-sym">)&nbsp;</span><span class="src-sym">{</span></div></li>
+<li><div class="src-line"><a name="a256"></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-var">$bytes&nbsp;</span>.=&nbsp;<span class="src-var">$this</span><span class="src-sym">-&gt;</span><a href="../PEL/PelEntryNumber.html#methodnumberToBytes">numberToBytes</a><span class="src-sym">(</span><span class="src-var">$this</span><span class="src-sym">-&gt;</span><a href="../PEL/PelEntryNumber.html#var$value">value</a><span class="src-sym">[</span><span class="src-var">$i</span><span class="src-sym">]</span><span class="src-sym">[</span><span class="src-var">$j</span><span class="src-sym">]</span><span class="src-sym">,&nbsp;</span><span class="src-var">$o</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line"><a name="a257"></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-sym">}</span></div></li>
+<li><div class="src-line"><a name="a258"></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-sym">}</span></div></li>
+<li><div class="src-line"><a name="a259"></a>&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-sym">}</span></div></li>
+<li><div class="src-line"><a name="a260"></a>&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-key">return&nbsp;</span><span class="src-var">$bytes</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line"><a name="a261"></a>&nbsp;&nbsp;<span class="src-sym">}</span></div></li>
+<li><div class="src-line"><a name="a262"></a>&nbsp;</div></li>
+<li><div class="src-line"><a name="a263"></a>&nbsp;</div></li>
+<li><div class="src-line"><a name="a264"></a>&nbsp;&nbsp;<span class="src-doc">/**</span></div></li>
+<li><div class="src-line"><a name="a265"></a><span class="src-doc">&nbsp;&nbsp;&nbsp;*&nbsp;Format&nbsp;a&nbsp;number.</span></div></li>
+<li><div class="src-line"><a name="a266"></a><span class="src-doc">&nbsp;&nbsp;&nbsp;*</span></div></li>
+<li><div class="src-line"><a name="a267"></a><span class="src-doc">&nbsp;&nbsp;&nbsp;*&nbsp;This&nbsp;method&nbsp;is&nbsp;called&nbsp;by&nbsp;</span><span class="src-doc-inlinetag">{@link&nbsp;getText}</span><span class="src-doc">&nbsp;to&nbsp;format&nbsp;numbers.</span></div></li>
+<li><div class="src-line"><a name="a268"></a><span class="src-doc">&nbsp;&nbsp;&nbsp;*&nbsp;Subclasses&nbsp;should&nbsp;override&nbsp;this&nbsp;method&nbsp;if&nbsp;they&nbsp;need&nbsp;more</span></div></li>
+<li><div class="src-line"><a name="a269"></a><span class="src-doc">&nbsp;&nbsp;&nbsp;*&nbsp;sophisticated&nbsp;behavior&nbsp;than&nbsp;the&nbsp;default,&nbsp;which&nbsp;is&nbsp;to&nbsp;just&nbsp;return</span></div></li>
+<li><div class="src-line"><a name="a270"></a><span class="src-doc">&nbsp;&nbsp;&nbsp;*&nbsp;the&nbsp;number&nbsp;as&nbsp;is.</span></div></li>
+<li><div class="src-line"><a name="a271"></a><span class="src-doc">&nbsp;&nbsp;&nbsp;*</span></div></li>
+<li><div class="src-line"><a name="a272"></a><span class="src-doc">&nbsp;&nbsp;&nbsp;*&nbsp;</span><span class="src-doc-coretag">@param&nbsp;</span><span class="src-doc-type">int&nbsp;</span><span class="src-doc">the&nbsp;number&nbsp;which&nbsp;will&nbsp;be&nbsp;formatted.</span></div></li>
+<li><div class="src-line"><a name="a273"></a><span class="src-doc">&nbsp;&nbsp;&nbsp;*</span></div></li>
+<li><div class="src-line"><a name="a274"></a><span class="src-doc">&nbsp;&nbsp;&nbsp;*&nbsp;</span><span class="src-doc-coretag">@param&nbsp;</span><span class="src-doc-type">boolean&nbsp;</span><span class="src-doc">it&nbsp;could&nbsp;be&nbsp;that&nbsp;there&nbsp;is&nbsp;both&nbsp;a&nbsp;verbose&nbsp;and&nbsp;a</span></div></li>
+<li><div class="src-line"><a name="a275"></a><span class="src-doc">&nbsp;&nbsp;&nbsp;*&nbsp;&nbsp;brief&nbsp;formatting&nbsp;available,&nbsp;and&nbsp;this&nbsp;argument&nbsp;controls&nbsp;that.</span></div></li>
+<li><div class="src-line"><a name="a276"></a><span class="src-doc">&nbsp;&nbsp;&nbsp;*</span></div></li>
+<li><div class="src-line"><a name="a277"></a><span class="src-doc">&nbsp;&nbsp;&nbsp;*&nbsp;</span><span class="src-doc-coretag">@return&nbsp;</span><span class="src-doc-type">string&nbsp;</span><span class="src-doc">the&nbsp;number&nbsp;formatted&nbsp;as&nbsp;a&nbsp;string&nbsp;suitable&nbsp;for</span></div></li>
+<li><div class="src-line"><a name="a278"></a><span class="src-doc">&nbsp;&nbsp;&nbsp;*&nbsp;&nbsp;display.</span></div></li>
+<li><div class="src-line"><a name="a279"></a><span class="src-doc">&nbsp;&nbsp;&nbsp;*/</span></div></li>
+<li><div class="src-line"><a name="a280"></a>&nbsp;&nbsp;<span class="src-key">function&nbsp;</span><a href="../PEL/PelEntryNumber.html#methodformatNumber">formatNumber</a><span class="src-sym">(</span><span class="src-var">$number</span><span class="src-sym">,&nbsp;</span><span class="src-var">$brief&nbsp;</span>=&nbsp;<span class="src-id">false</span><span class="src-sym">)&nbsp;</span><span class="src-sym">{</span></div></li>
+<li><div class="src-line"><a name="a281"></a>&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-key">return&nbsp;</span><span class="src-var">$number</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line"><a name="a282"></a>&nbsp;&nbsp;<span class="src-sym">}</span></div></li>
+<li><div class="src-line"><a name="a283"></a>&nbsp;</div></li>
+<li><div class="src-line"><a name="a284"></a>&nbsp;</div></li>
+<li><div class="src-line"><a name="a285"></a>&nbsp;&nbsp;<span class="src-doc">/**</span></div></li>
+<li><div class="src-line"><a name="a286"></a><span class="src-doc">&nbsp;&nbsp;&nbsp;*&nbsp;Get&nbsp;the&nbsp;numeric&nbsp;value&nbsp;of&nbsp;this&nbsp;entry&nbsp;as&nbsp;text.</span></div></li>
+<li><div class="src-line"><a name="a287"></a><span class="src-doc">&nbsp;&nbsp;&nbsp;*</span></div></li>
+<li><div class="src-line"><a name="a288"></a><span class="src-doc">&nbsp;&nbsp;&nbsp;*&nbsp;</span><span class="src-doc-coretag">@param&nbsp;</span><span class="src-doc-type">boolean&nbsp;</span><span class="src-doc">use&nbsp;brief&nbsp;output?&nbsp;&nbsp;The&nbsp;numbers&nbsp;will&nbsp;be&nbsp;separated</span></div></li>
+<li><div class="src-line"><a name="a289"></a><span class="src-doc">&nbsp;&nbsp;&nbsp;*&nbsp;&nbsp;by&nbsp;a&nbsp;single&nbsp;space&nbsp;if&nbsp;brief&nbsp;output&nbsp;is&nbsp;requested,&nbsp;otherwise&nbsp;a&nbsp;space</span></div></li>
+<li><div class="src-line"><a name="a290"></a><span class="src-doc">&nbsp;&nbsp;&nbsp;*&nbsp;&nbsp;and&nbsp;a&nbsp;comma&nbsp;will&nbsp;be&nbsp;used.</span></div></li>
+<li><div class="src-line"><a name="a291"></a><span class="src-doc">&nbsp;&nbsp;&nbsp;*</span></div></li>
+<li><div class="src-line"><a name="a292"></a><span class="src-doc">&nbsp;&nbsp;&nbsp;*&nbsp;</span><span class="src-doc-coretag">@return&nbsp;</span><span class="src-doc-type">string&nbsp;</span><span class="src-doc">the&nbsp;numbers(s)&nbsp;held&nbsp;by&nbsp;this&nbsp;entry.</span></div></li>
+<li><div class="src-line"><a name="a293"></a><span class="src-doc">&nbsp;&nbsp;&nbsp;*/</span></div></li>
+<li><div class="src-line"><a name="a294"></a>&nbsp;&nbsp;<span class="src-key">function&nbsp;</span><a href="../PEL/PelEntryNumber.html#methodgetText">getText</a><span class="src-sym">(</span><span class="src-var">$brief&nbsp;</span>=&nbsp;<span class="src-id">false</span><span class="src-sym">)&nbsp;</span><span class="src-sym">{</span></div></li>
+<li><div class="src-line"><a name="a295"></a>&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-key">if&nbsp;</span><span class="src-sym">(</span><span class="src-var">$this</span><span class="src-sym">-&gt;</span><a href="../PEL/PelEntry.html#var$components">components</a>&nbsp;==&nbsp;<span class="src-num">0</span><span class="src-sym">)</span></div></li>
+<li><div class="src-line"><a name="a296"></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-key">return&nbsp;</span><span class="src-str">''</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line"><a name="a297"></a>&nbsp;</div></li>
+<li><div class="src-line"><a name="a298"></a>&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-var">$str&nbsp;</span>=&nbsp;<span class="src-var">$this</span><span class="src-sym">-&gt;</span><a href="../PEL/PelEntryNumber.html#methodformatNumber">formatNumber</a><span class="src-sym">(</span><span class="src-var">$this</span><span class="src-sym">-&gt;</span><a href="../PEL/PelEntryNumber.html#var$value">value</a><span class="src-sym">[</span><span class="src-num">0</span><span class="src-sym">]</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line"><a name="a299"></a>&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-key">for&nbsp;</span><span class="src-sym">(</span><span class="src-var">$i&nbsp;</span>=&nbsp;<span class="src-num">1</span><span class="src-sym">;&nbsp;</span><span class="src-var">$i&nbsp;</span>&lt;&nbsp;<span class="src-var">$this</span><span class="src-sym">-&gt;</span><a href="../PEL/PelEntry.html#var$components">components</a><span class="src-sym">;&nbsp;</span><span class="src-var">$i</span>++<span class="src-sym">)&nbsp;</span><span class="src-sym">{</span></div></li>
+<li><div class="src-line"><a name="a300"></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-var">$str&nbsp;</span>.=&nbsp;<span class="src-sym">(</span><span class="src-var">$brief&nbsp;</span>?&nbsp;<span class="src-str">'&nbsp;'&nbsp;</span>:&nbsp;<span class="src-str">',&nbsp;'</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line"><a name="a301"></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-var">$str&nbsp;</span>.=&nbsp;<span class="src-var">$this</span><span class="src-sym">-&gt;</span><a href="../PEL/PelEntryNumber.html#methodformatNumber">formatNumber</a><span class="src-sym">(</span><span class="src-var">$this</span><span class="src-sym">-&gt;</span><a href="../PEL/PelEntryNumber.html#var$value">value</a><span class="src-sym">[</span><span class="src-var">$i</span><span class="src-sym">]</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line"><a name="a302"></a>&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-sym">}</span></div></li>
+<li><div class="src-line"><a name="a303"></a>&nbsp;</div></li>
+<li><div class="src-line"><a name="a304"></a>&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-key">return&nbsp;</span><span class="src-var">$str</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line"><a name="a305"></a>&nbsp;&nbsp;<span class="src-sym">}</span></div></li>
+<li><div class="src-line"><a name="a306"></a>&nbsp;</div></li>
+<li><div class="src-line"><a name="a307"></a><span class="src-sym">}</span></div></li>
+<li><div class="src-line"><a name="a308"></a>&nbsp;</div></li>
+<li><div class="src-line"><a name="a309"></a><span class="src-php">?&gt;</span></div></li>
+</ol></div>
+</div>
+	<p class="notes" id="credit">
+		Documentation generated on Thu, 05 May 2011 07:19:04 +0200 by <a href="http://www.phpdoc.org" target="_blank">phpDocumentor 1.4.3</a>
+	</p>
+	</body>
+</html>

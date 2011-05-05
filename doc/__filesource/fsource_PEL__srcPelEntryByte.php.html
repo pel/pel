@@ -1,0 +1,300 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+  <html xmlns="http://www.w3.org/1999/xhtml">
+		<head>
+			<!-- template designed by Marco Von Ballmoos -->
+			<title>File Source for PelEntryByte.php</title>
+			<link rel="stylesheet" href="../media/stylesheet.css" />
+			<meta http-equiv='Content-Type' content='text/html; charset=iso-8859-1'/>
+		</head>
+		<body>
+						<h1>Source for file PelEntryByte.php</h1>
+<p>Documentation is available at <a href="../PEL/_src---PelEntryByte.php.html">PelEntryByte.php</a></p>
+<div class="src-code">
+<div class="src-code"><ol><li><div class="src-line"><a name="a1"></a><span class="src-php">&lt;?php</span></div></li>
+<li><div class="src-line"><a name="a2"></a>&nbsp;</div></li>
+<li><div class="src-line"><a name="a3"></a><span class="src-comm">/*&nbsp;&nbsp;PEL:&nbsp;PHP&nbsp;Exif&nbsp;Library.&nbsp;&nbsp;A&nbsp;library&nbsp;with&nbsp;support&nbsp;for&nbsp;reading&nbsp;and</span></div></li>
+<li><div class="src-line"><a name="a4"></a><span class="src-comm">&nbsp;*&nbsp;&nbsp;writing&nbsp;all&nbsp;Exif&nbsp;headers&nbsp;in&nbsp;JPEG&nbsp;and&nbsp;TIFF&nbsp;images&nbsp;using&nbsp;PHP.</span></div></li>
+<li><div class="src-line"><a name="a5"></a><span class="src-comm">&nbsp;*</span></div></li>
+<li><div class="src-line"><a name="a6"></a><span class="src-comm">&nbsp;*&nbsp;&nbsp;Copyright&nbsp;(C)&nbsp;2004,&nbsp;2005,&nbsp;2006,&nbsp;2007&nbsp;&nbsp;Martin&nbsp;Geisler.</span></div></li>
+<li><div class="src-line"><a name="a7"></a><span class="src-comm">&nbsp;*</span></div></li>
+<li><div class="src-line"><a name="a8"></a><span class="src-comm">&nbsp;*&nbsp;&nbsp;This&nbsp;program&nbsp;is&nbsp;free&nbsp;software;&nbsp;you&nbsp;can&nbsp;redistribute&nbsp;it&nbsp;and/or&nbsp;modify</span></div></li>
+<li><div class="src-line"><a name="a9"></a><span class="src-comm">&nbsp;*&nbsp;&nbsp;it&nbsp;under&nbsp;the&nbsp;terms&nbsp;of&nbsp;the&nbsp;GNU&nbsp;General&nbsp;Public&nbsp;License&nbsp;as&nbsp;published&nbsp;by</span></div></li>
+<li><div class="src-line"><a name="a10"></a><span class="src-comm">&nbsp;*&nbsp;&nbsp;the&nbsp;Free&nbsp;Software&nbsp;Foundation;&nbsp;either&nbsp;version&nbsp;2&nbsp;of&nbsp;the&nbsp;License,&nbsp;or</span></div></li>
+<li><div class="src-line"><a name="a11"></a><span class="src-comm">&nbsp;*&nbsp;&nbsp;(at&nbsp;your&nbsp;option)&nbsp;any&nbsp;later&nbsp;version.</span></div></li>
+<li><div class="src-line"><a name="a12"></a><span class="src-comm">&nbsp;*</span></div></li>
+<li><div class="src-line"><a name="a13"></a><span class="src-comm">&nbsp;*&nbsp;&nbsp;This&nbsp;program&nbsp;is&nbsp;distributed&nbsp;in&nbsp;the&nbsp;hope&nbsp;that&nbsp;it&nbsp;will&nbsp;be&nbsp;useful,</span></div></li>
+<li><div class="src-line"><a name="a14"></a><span class="src-comm">&nbsp;*&nbsp;&nbsp;but&nbsp;WITHOUT&nbsp;ANY&nbsp;WARRANTY;&nbsp;without&nbsp;even&nbsp;the&nbsp;implied&nbsp;warranty&nbsp;of</span></div></li>
+<li><div class="src-line"><a name="a15"></a><span class="src-comm">&nbsp;*&nbsp;&nbsp;MERCHANTABILITY&nbsp;or&nbsp;FITNESS&nbsp;FOR&nbsp;A&nbsp;PARTICULAR&nbsp;PURPOSE.&nbsp;&nbsp;See&nbsp;the</span></div></li>
+<li><div class="src-line"><a name="a16"></a><span class="src-comm">&nbsp;*&nbsp;&nbsp;GNU&nbsp;General&nbsp;Public&nbsp;License&nbsp;for&nbsp;more&nbsp;details.</span></div></li>
+<li><div class="src-line"><a name="a17"></a><span class="src-comm">&nbsp;*</span></div></li>
+<li><div class="src-line"><a name="a18"></a><span class="src-comm">&nbsp;*&nbsp;&nbsp;You&nbsp;should&nbsp;have&nbsp;received&nbsp;a&nbsp;copy&nbsp;of&nbsp;the&nbsp;GNU&nbsp;General&nbsp;Public&nbsp;License</span></div></li>
+<li><div class="src-line"><a name="a19"></a><span class="src-comm">&nbsp;*&nbsp;&nbsp;along&nbsp;with&nbsp;this&nbsp;program&nbsp;in&nbsp;the&nbsp;file&nbsp;COPYING;&nbsp;if&nbsp;not,&nbsp;write&nbsp;to&nbsp;the</span></div></li>
+<li><div class="src-line"><a name="a20"></a><span class="src-comm">&nbsp;*&nbsp;&nbsp;Free&nbsp;Software&nbsp;Foundation,&nbsp;Inc.,&nbsp;51&nbsp;Franklin&nbsp;St,&nbsp;Fifth&nbsp;Floor,</span></div></li>
+<li><div class="src-line"><a name="a21"></a><span class="src-comm">&nbsp;*&nbsp;&nbsp;Boston,&nbsp;MA&nbsp;02110-1301&nbsp;USA</span></div></li>
+<li><div class="src-line"><a name="a22"></a><span class="src-comm">&nbsp;*/</span></div></li>
+<li><div class="src-line"><a name="a23"></a>&nbsp;</div></li>
+<li><div class="src-line"><a name="a24"></a><span class="src-comm">/*&nbsp;$Id$&nbsp;*/</span></div></li>
+<li><div class="src-line"><a name="a25"></a>&nbsp;</div></li>
+<li><div class="src-line"><a name="a26"></a>&nbsp;</div></li>
+<li><div class="src-line"><a name="a27"></a><span class="src-doc">/**</span></div></li>
+<li><div class="src-line"><a name="a28"></a><span class="src-doc">&nbsp;*&nbsp;Classes&nbsp;used&nbsp;to&nbsp;hold&nbsp;bytes,&nbsp;both&nbsp;signed&nbsp;and&nbsp;unsigned.&nbsp;&nbsp;The&nbsp;</span><span class="src-doc-inlinetag">{@link&nbsp;}</span></div></li>
+<li><div class="src-line"><a name="a29"></a><span class="src-doc">&nbsp;*&nbsp;PelEntryWindowsString}&nbsp;class&nbsp;is&nbsp;used&nbsp;to&nbsp;manipulate&nbsp;strings&nbsp;in&nbsp;the</span></div></li>
+<li><div class="src-line"><a name="a30"></a><span class="src-doc">&nbsp;*&nbsp;format&nbsp;Windows&nbsp;XP&nbsp;needs.</span></div></li>
+<li><div class="src-line"><a name="a31"></a><span class="src-doc">&nbsp;*</span></div></li>
+<li><div class="src-line"><a name="a32"></a><span class="src-doc">&nbsp;*&nbsp;</span><span class="src-doc-coretag">@author</span><span class="src-doc">&nbsp;Martin&nbsp;Geisler&nbsp;&lt;mgeisler@users.sourceforge.net&gt;</span></div></li>
+<li><div class="src-line"><a name="a33"></a><span class="src-doc">&nbsp;*&nbsp;</span><span class="src-doc-coretag">@version</span><span class="src-doc">&nbsp;$Revision$</span></div></li>
+<li><div class="src-line"><a name="a34"></a><span class="src-doc">&nbsp;*&nbsp;</span><span class="src-doc-tag">@date</span><span class="src-doc">&nbsp;$Date$</span></div></li>
+<li><div class="src-line"><a name="a35"></a><span class="src-doc">&nbsp;*&nbsp;</span><span class="src-doc-coretag">@license</span><span class="src-doc">&nbsp;http://www.gnu.org/licenses/gpl.html&nbsp;GNU&nbsp;General&nbsp;Public</span></div></li>
+<li><div class="src-line"><a name="a36"></a><span class="src-doc">&nbsp;*&nbsp;&nbsp;License&nbsp;(GPL)</span></div></li>
+<li><div class="src-line"><a name="a37"></a><span class="src-doc">&nbsp;*&nbsp;</span><span class="src-doc-coretag">@package</span><span class="src-doc">&nbsp;PEL</span></div></li>
+<li><div class="src-line"><a name="a38"></a><span class="src-doc">&nbsp;*/</span></div></li>
+<li><div class="src-line"><a name="a39"></a>&nbsp;</div></li>
+<li><div class="src-line"><a name="a40"></a><span class="src-comm">/**#@+&nbsp;Required&nbsp;class&nbsp;definitions.&nbsp;*/</span></div></li>
+<li><div class="src-line"><a name="a41"></a><span class="src-inc">require_once</span><span class="src-sym">(</span><span class="src-str">'PelEntryNumber.php'</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line"><a name="a42"></a><span class="src-comm">/**#@-*/</span></div></li>
+<li><div class="src-line"><a name="a43"></a>&nbsp;</div></li>
+<li><div class="src-line"><a name="a44"></a>&nbsp;</div></li>
+<li><div class="src-line"><a name="a45"></a><span class="src-doc">/**</span></div></li>
+<li><div class="src-line"><a name="a46"></a><span class="src-doc">&nbsp;*&nbsp;Class&nbsp;for&nbsp;holding&nbsp;unsigned&nbsp;bytes.</span></div></li>
+<li><div class="src-line"><a name="a47"></a><span class="src-doc">&nbsp;*</span></div></li>
+<li><div class="src-line"><a name="a48"></a><span class="src-doc">&nbsp;*&nbsp;This&nbsp;class&nbsp;can&nbsp;hold&nbsp;bytes,&nbsp;either&nbsp;just&nbsp;a&nbsp;single&nbsp;byte&nbsp;or&nbsp;an&nbsp;array&nbsp;of</span></div></li>
+<li><div class="src-line"><a name="a49"></a><span class="src-doc">&nbsp;*&nbsp;bytes.&nbsp;&nbsp;The&nbsp;class&nbsp;will&nbsp;be&nbsp;used&nbsp;to&nbsp;manipulate&nbsp;any&nbsp;of&nbsp;the&nbsp;Exif&nbsp;tags</span></div></li>
+<li><div class="src-line"><a name="a50"></a><span class="src-doc">&nbsp;*&nbsp;which&nbsp;has&nbsp;format&nbsp;</span><span class="src-doc-inlinetag">{@link&nbsp;PelFormat::BYTE}</span><span class="src-doc">.</span></div></li>
+<li><div class="src-line"><a name="a51"></a><span class="src-doc">&nbsp;*</span></div></li>
+<li><div class="src-line"><a name="a52"></a><span class="src-doc">&nbsp;*&nbsp;</span><span class="src-doc-coretag">@author</span><span class="src-doc">&nbsp;Martin&nbsp;Geisler&nbsp;&lt;mgeisler@users.sourceforge.net&gt;</span></div></li>
+<li><div class="src-line"><a name="a53"></a><span class="src-doc">&nbsp;*&nbsp;</span><span class="src-doc-coretag">@package</span><span class="src-doc">&nbsp;PEL</span></div></li>
+<li><div class="src-line"><a name="a54"></a><span class="src-doc">&nbsp;*/</span></div></li>
+<li><div class="src-line"><a name="a55"></a><span class="src-key">class&nbsp;</span><a href="../PEL/PelEntryByte.html">PelEntryByte</a>&nbsp;<span class="src-key">extends&nbsp;</span><a href="../PEL/PelEntryNumber.html">PelEntryNumber</a>&nbsp;<span class="src-sym">{</span></div></li>
+<li><div class="src-line"><a name="a56"></a>&nbsp;</div></li>
+<li><div class="src-line"><a name="a57"></a>&nbsp;&nbsp;<span class="src-doc">/**</span></div></li>
+<li><div class="src-line"><a name="a58"></a><span class="src-doc">&nbsp;&nbsp;&nbsp;*&nbsp;Make&nbsp;a&nbsp;new&nbsp;entry&nbsp;that&nbsp;can&nbsp;hold&nbsp;an&nbsp;unsigned&nbsp;byte.</span></div></li>
+<li><div class="src-line"><a name="a59"></a><span class="src-doc">&nbsp;&nbsp;&nbsp;*</span></div></li>
+<li><div class="src-line"><a name="a60"></a><span class="src-doc">&nbsp;&nbsp;&nbsp;*&nbsp;The&nbsp;method&nbsp;accept&nbsp;several&nbsp;integer&nbsp;arguments.&nbsp;&nbsp;The&nbsp;</span><span class="src-doc-inlinetag">{@link&nbsp;}</span></div></li>
+<li><div class="src-line"><a name="a61"></a><span class="src-doc">&nbsp;&nbsp;&nbsp;*&nbsp;getValue}&nbsp;method&nbsp;will&nbsp;always&nbsp;return&nbsp;an&nbsp;array&nbsp;except&nbsp;for&nbsp;when&nbsp;a</span></div></li>
+<li><div class="src-line"><a name="a62"></a><span class="src-doc">&nbsp;&nbsp;&nbsp;*&nbsp;single&nbsp;integer&nbsp;argument&nbsp;is&nbsp;given&nbsp;here.</span></div></li>
+<li><div class="src-line"><a name="a63"></a><span class="src-doc">&nbsp;&nbsp;&nbsp;*</span></div></li>
+<li><div class="src-line"><a name="a64"></a><span class="src-doc">&nbsp;&nbsp;&nbsp;*&nbsp;</span><span class="src-doc-coretag">@param&nbsp;</span><span class="src-doc-type">PelTag&nbsp;</span><span class="src-doc">the&nbsp;tag&nbsp;which&nbsp;this&nbsp;entry&nbsp;represents.&nbsp;&nbsp;This</span></div></li>
+<li><div class="src-line"><a name="a65"></a><span class="src-doc">&nbsp;&nbsp;&nbsp;*&nbsp;&nbsp;should&nbsp;be&nbsp;one&nbsp;of&nbsp;the&nbsp;constants&nbsp;defined&nbsp;in&nbsp;</span><span class="src-doc-inlinetag">{@link&nbsp;PelTag}</span></div></li>
+<li><div class="src-line"><a name="a66"></a><span class="src-doc">&nbsp;&nbsp;&nbsp;*&nbsp;&nbsp;which&nbsp;has&nbsp;format&nbsp;</span><span class="src-doc-inlinetag">{@link&nbsp;PelFormat::BYTE}</span><span class="src-doc">.</span></div></li>
+<li><div class="src-line"><a name="a67"></a><span class="src-doc">&nbsp;&nbsp;&nbsp;*</span></div></li>
+<li><div class="src-line"><a name="a68"></a><span class="src-doc">&nbsp;&nbsp;&nbsp;*&nbsp;</span><span class="src-doc-coretag">@param&nbsp;</span><span class="src-doc-type">int&nbsp;</span><span class="src-doc-var">$value...&nbsp;</span><span class="src-doc">the&nbsp;byte(s)&nbsp;that&nbsp;this&nbsp;entry&nbsp;will&nbsp;represent.</span></div></li>
+<li><div class="src-line"><a name="a69"></a><span class="src-doc">&nbsp;&nbsp;&nbsp;*&nbsp;&nbsp;The&nbsp;argument&nbsp;passed&nbsp;must&nbsp;obey&nbsp;the&nbsp;same&nbsp;rules&nbsp;as&nbsp;the&nbsp;argument&nbsp;to</span></div></li>
+<li><div class="src-line"><a name="a70"></a><span class="src-doc">&nbsp;&nbsp;&nbsp;*&nbsp;&nbsp;</span><span class="src-doc-inlinetag">{@link&nbsp;setValue}</span><span class="src-doc">,&nbsp;namely&nbsp;that&nbsp;it&nbsp;should&nbsp;be&nbsp;within&nbsp;range&nbsp;of&nbsp;an</span></div></li>
+<li><div class="src-line"><a name="a71"></a><span class="src-doc">&nbsp;&nbsp;&nbsp;*&nbsp;&nbsp;unsigned&nbsp;byte,&nbsp;that&nbsp;is&nbsp;between&nbsp;0&nbsp;and&nbsp;255&nbsp;(inclusive).&nbsp;&nbsp;If&nbsp;not,</span></div></li>
+<li><div class="src-line"><a name="a72"></a><span class="src-doc">&nbsp;&nbsp;&nbsp;*&nbsp;&nbsp;then&nbsp;a&nbsp;</span><span class="src-doc-inlinetag">{@link&nbsp;PelOverflowException}</span><span class="src-doc">&nbsp;will&nbsp;be&nbsp;thrown.</span></div></li>
+<li><div class="src-line"><a name="a73"></a><span class="src-doc">&nbsp;&nbsp;&nbsp;*/</span></div></li>
+<li><div class="src-line"><a name="a74"></a>&nbsp;&nbsp;<span class="src-key">function&nbsp;</span><a href="../PEL/PelEntryByte.html#method__construct">__construct</a><span class="src-sym">(</span><span class="src-var">$tag&nbsp;</span><span class="src-comm">/*&nbsp;$value...&nbsp;*/</span><span class="src-sym">)&nbsp;</span><span class="src-sym">{</span></div></li>
+<li><div class="src-line"><a name="a75"></a>&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-var">$this</span><span class="src-sym">-&gt;</span><a href="../PEL/PelEntry.html#var$tag">tag</a>&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;<span class="src-var">$tag</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line"><a name="a76"></a>&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-var">$this</span><span class="src-sym">-&gt;</span><a href="../PEL/PelEntryNumber.html#var$min">min</a>&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;<span class="src-num">0</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line"><a name="a77"></a>&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-var">$this</span><span class="src-sym">-&gt;</span><a href="../PEL/PelEntryNumber.html#var$max">max</a>&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;<span class="src-num">255</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line"><a name="a78"></a>&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-var">$this</span><span class="src-sym">-&gt;</span><a href="../PEL/PelEntry.html#var$format">format</a>&nbsp;=&nbsp;<span class="src-id"><a href="../PEL/PelFormat.html">PelFormat</a></span><span class="src-sym">::</span><span class="src-id">BYTE</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line"><a name="a79"></a>&nbsp;</div></li>
+<li><div class="src-line"><a name="a80"></a>&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-var">$value&nbsp;</span>=&nbsp;<a href="http://www.php.net/func_get_args">func_get_args</a><span class="src-sym">(</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line"><a name="a81"></a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.php.net/array_shift">array_shift</a><span class="src-sym">(</span><span class="src-var">$value</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line"><a name="a82"></a>&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-var">$this</span><span class="src-sym">-&gt;</span><a href="../PEL/PelEntryNumber.html#methodsetValueArray">setValueArray</a><span class="src-sym">(</span><span class="src-var">$value</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line"><a name="a83"></a>&nbsp;&nbsp;<span class="src-sym">}</span></div></li>
+<li><div class="src-line"><a name="a84"></a>&nbsp;</div></li>
+<li><div class="src-line"><a name="a85"></a>&nbsp;</div></li>
+<li><div class="src-line"><a name="a86"></a>&nbsp;&nbsp;<span class="src-doc">/**</span></div></li>
+<li><div class="src-line"><a name="a87"></a><span class="src-doc">&nbsp;&nbsp;&nbsp;*&nbsp;Convert&nbsp;a&nbsp;number&nbsp;into&nbsp;bytes.</span></div></li>
+<li><div class="src-line"><a name="a88"></a><span class="src-doc">&nbsp;&nbsp;&nbsp;*</span></div></li>
+<li><div class="src-line"><a name="a89"></a><span class="src-doc">&nbsp;&nbsp;&nbsp;*&nbsp;</span><span class="src-doc-coretag">@param&nbsp;</span><span class="src-doc-type">int&nbsp;</span><span class="src-doc">the&nbsp;number&nbsp;that&nbsp;should&nbsp;be&nbsp;converted.</span></div></li>
+<li><div class="src-line"><a name="a90"></a><span class="src-doc">&nbsp;&nbsp;&nbsp;*</span></div></li>
+<li><div class="src-line"><a name="a91"></a><span class="src-doc">&nbsp;&nbsp;&nbsp;*&nbsp;</span><span class="src-doc-coretag">@param&nbsp;</span><span class="src-doc-type">PelByteOrder&nbsp;</span><span class="src-doc">one&nbsp;of&nbsp;</span><span class="src-doc-inlinetag">{@link&nbsp;PelConvert::LITTLE_ENDIAN}</span><span class="src-doc">&nbsp;and</span></div></li>
+<li><div class="src-line"><a name="a92"></a><span class="src-doc">&nbsp;&nbsp;&nbsp;*&nbsp;&nbsp;</span><span class="src-doc-inlinetag">{@link&nbsp;PelConvert::BIG_ENDIAN}</span><span class="src-doc">,&nbsp;specifying&nbsp;the&nbsp;target&nbsp;byte&nbsp;order.</span></div></li>
+<li><div class="src-line"><a name="a93"></a><span class="src-doc">&nbsp;&nbsp;&nbsp;*</span></div></li>
+<li><div class="src-line"><a name="a94"></a><span class="src-doc">&nbsp;&nbsp;&nbsp;*&nbsp;</span><span class="src-doc-coretag">@return&nbsp;</span><span class="src-doc-type">string&nbsp;</span><span class="src-doc">bytes&nbsp;representing&nbsp;the&nbsp;number&nbsp;given.</span></div></li>
+<li><div class="src-line"><a name="a95"></a><span class="src-doc">&nbsp;&nbsp;&nbsp;*/</span></div></li>
+<li><div class="src-line"><a name="a96"></a>&nbsp;&nbsp;<span class="src-key">function&nbsp;</span><a href="../PEL/PelEntryByte.html#methodnumberToBytes">numberToBytes</a><span class="src-sym">(</span><span class="src-var">$number</span><span class="src-sym">,&nbsp;</span><span class="src-var">$order</span><span class="src-sym">)&nbsp;</span><span class="src-sym">{</span></div></li>
+<li><div class="src-line"><a name="a97"></a>&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-key">return&nbsp;</span><a href="http://www.php.net/chr">chr</a><span class="src-sym">(</span><span class="src-var">$number</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line"><a name="a98"></a>&nbsp;&nbsp;<span class="src-sym">}</span></div></li>
+<li><div class="src-line"><a name="a99"></a>&nbsp;</div></li>
+<li><div class="src-line"><a name="a100"></a><span class="src-sym">}</span></div></li>
+<li><div class="src-line"><a name="a101"></a>&nbsp;</div></li>
+<li><div class="src-line"><a name="a102"></a>&nbsp;</div></li>
+<li><div class="src-line"><a name="a103"></a><span class="src-doc">/**</span></div></li>
+<li><div class="src-line"><a name="a104"></a><span class="src-doc">&nbsp;*&nbsp;Class&nbsp;for&nbsp;holding&nbsp;signed&nbsp;bytes.</span></div></li>
+<li><div class="src-line"><a name="a105"></a><span class="src-doc">&nbsp;*</span></div></li>
+<li><div class="src-line"><a name="a106"></a><span class="src-doc">&nbsp;*&nbsp;This&nbsp;class&nbsp;can&nbsp;hold&nbsp;bytes,&nbsp;either&nbsp;just&nbsp;a&nbsp;single&nbsp;byte&nbsp;or&nbsp;an&nbsp;array&nbsp;of</span></div></li>
+<li><div class="src-line"><a name="a107"></a><span class="src-doc">&nbsp;*&nbsp;bytes.&nbsp;&nbsp;The&nbsp;class&nbsp;will&nbsp;be&nbsp;used&nbsp;to&nbsp;manipulate&nbsp;any&nbsp;of&nbsp;the&nbsp;Exif&nbsp;tags</span></div></li>
+<li><div class="src-line"><a name="a108"></a><span class="src-doc">&nbsp;*&nbsp;which&nbsp;has&nbsp;format&nbsp;</span><span class="src-doc-inlinetag">{@link&nbsp;PelFormat::BYTE}</span><span class="src-doc">.</span></div></li>
+<li><div class="src-line"><a name="a109"></a><span class="src-doc">&nbsp;*</span></div></li>
+<li><div class="src-line"><a name="a110"></a><span class="src-doc">&nbsp;*&nbsp;</span><span class="src-doc-coretag">@author</span><span class="src-doc">&nbsp;Martin&nbsp;Geisler&nbsp;&lt;mgeisler@users.sourceforge.net&gt;</span></div></li>
+<li><div class="src-line"><a name="a111"></a><span class="src-doc">&nbsp;*&nbsp;</span><span class="src-doc-coretag">@package</span><span class="src-doc">&nbsp;PEL</span></div></li>
+<li><div class="src-line"><a name="a112"></a><span class="src-doc">&nbsp;*/</span></div></li>
+<li><div class="src-line"><a name="a113"></a><span class="src-key">class&nbsp;</span><a href="../PEL/PelEntrySByte.html">PelEntrySByte</a>&nbsp;<span class="src-key">extends&nbsp;</span><a href="../PEL/PelEntryNumber.html">PelEntryNumber</a>&nbsp;<span class="src-sym">{</span></div></li>
+<li><div class="src-line"><a name="a114"></a>&nbsp;</div></li>
+<li><div class="src-line"><a name="a115"></a>&nbsp;&nbsp;<span class="src-doc">/**</span></div></li>
+<li><div class="src-line"><a name="a116"></a><span class="src-doc">&nbsp;&nbsp;&nbsp;*&nbsp;Make&nbsp;a&nbsp;new&nbsp;entry&nbsp;that&nbsp;can&nbsp;hold&nbsp;a&nbsp;signed&nbsp;byte.</span></div></li>
+<li><div class="src-line"><a name="a117"></a><span class="src-doc">&nbsp;&nbsp;&nbsp;*</span></div></li>
+<li><div class="src-line"><a name="a118"></a><span class="src-doc">&nbsp;&nbsp;&nbsp;*&nbsp;The&nbsp;method&nbsp;accept&nbsp;several&nbsp;integer&nbsp;arguments.&nbsp;&nbsp;The&nbsp;</span><span class="src-doc-inlinetag">{@link&nbsp;getValue}</span></div></li>
+<li><div class="src-line"><a name="a119"></a><span class="src-doc">&nbsp;&nbsp;&nbsp;*&nbsp;method&nbsp;will&nbsp;always&nbsp;return&nbsp;an&nbsp;array&nbsp;except&nbsp;for&nbsp;when&nbsp;a&nbsp;single</span></div></li>
+<li><div class="src-line"><a name="a120"></a><span class="src-doc">&nbsp;&nbsp;&nbsp;*&nbsp;integer&nbsp;argument&nbsp;is&nbsp;given&nbsp;here.</span></div></li>
+<li><div class="src-line"><a name="a121"></a><span class="src-doc">&nbsp;&nbsp;&nbsp;*</span></div></li>
+<li><div class="src-line"><a name="a122"></a><span class="src-doc">&nbsp;&nbsp;&nbsp;*&nbsp;</span><span class="src-doc-coretag">@param&nbsp;</span><span class="src-doc-type">PelTag&nbsp;</span><span class="src-doc">the&nbsp;tag&nbsp;which&nbsp;this&nbsp;entry&nbsp;represents.&nbsp;&nbsp;This</span></div></li>
+<li><div class="src-line"><a name="a123"></a><span class="src-doc">&nbsp;&nbsp;&nbsp;*&nbsp;&nbsp;should&nbsp;be&nbsp;one&nbsp;of&nbsp;the&nbsp;constants&nbsp;defined&nbsp;in&nbsp;</span><span class="src-doc-inlinetag">{@link&nbsp;PelTag}</span></div></li>
+<li><div class="src-line"><a name="a124"></a><span class="src-doc">&nbsp;&nbsp;&nbsp;*&nbsp;&nbsp;which&nbsp;has&nbsp;format&nbsp;</span><span class="src-doc-inlinetag">{@link&nbsp;PelFormat::BYTE}</span><span class="src-doc">.</span></div></li>
+<li><div class="src-line"><a name="a125"></a><span class="src-doc">&nbsp;&nbsp;&nbsp;*</span></div></li>
+<li><div class="src-line"><a name="a126"></a><span class="src-doc">&nbsp;&nbsp;&nbsp;*&nbsp;</span><span class="src-doc-coretag">@param&nbsp;</span><span class="src-doc-type">int&nbsp;</span><span class="src-doc-var">$value...&nbsp;</span><span class="src-doc">the&nbsp;byte(s)&nbsp;that&nbsp;this&nbsp;entry&nbsp;will&nbsp;represent.</span></div></li>
+<li><div class="src-line"><a name="a127"></a><span class="src-doc">&nbsp;&nbsp;&nbsp;*&nbsp;&nbsp;The&nbsp;argument&nbsp;passed&nbsp;must&nbsp;obey&nbsp;the&nbsp;same&nbsp;rules&nbsp;as&nbsp;the&nbsp;argument&nbsp;to</span></div></li>
+<li><div class="src-line"><a name="a128"></a><span class="src-doc">&nbsp;&nbsp;&nbsp;*&nbsp;&nbsp;</span><span class="src-doc-inlinetag">{@link&nbsp;setValue}</span><span class="src-doc">,&nbsp;namely&nbsp;that&nbsp;it&nbsp;should&nbsp;be&nbsp;within&nbsp;range&nbsp;of&nbsp;a</span></div></li>
+<li><div class="src-line"><a name="a129"></a><span class="src-doc">&nbsp;&nbsp;&nbsp;*&nbsp;&nbsp;signed&nbsp;byte,&nbsp;that&nbsp;is&nbsp;between&nbsp;-128&nbsp;and&nbsp;127&nbsp;(inclusive).&nbsp;&nbsp;If&nbsp;not,</span></div></li>
+<li><div class="src-line"><a name="a130"></a><span class="src-doc">&nbsp;&nbsp;&nbsp;*&nbsp;&nbsp;then&nbsp;a&nbsp;</span><span class="src-doc-inlinetag">{@link&nbsp;PelOverflowException}</span><span class="src-doc">&nbsp;will&nbsp;be&nbsp;thrown.</span></div></li>
+<li><div class="src-line"><a name="a131"></a><span class="src-doc">&nbsp;&nbsp;&nbsp;*/</span></div></li>
+<li><div class="src-line"><a name="a132"></a>&nbsp;&nbsp;<span class="src-key">function&nbsp;</span><a href="../PEL/PelEntrySByte.html#method__construct">__construct</a><span class="src-sym">(</span><span class="src-var">$tag&nbsp;</span><span class="src-comm">/*&nbsp;$value...&nbsp;*/</span><span class="src-sym">)&nbsp;</span><span class="src-sym">{</span></div></li>
+<li><div class="src-line"><a name="a133"></a>&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-var">$this</span><span class="src-sym">-&gt;</span><a href="../PEL/PelEntry.html#var$tag">tag</a>&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;<span class="src-var">$tag</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line"><a name="a134"></a>&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-var">$this</span><span class="src-sym">-&gt;</span><a href="../PEL/PelEntryNumber.html#var$min">min</a>&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;-<span class="src-num">128</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line"><a name="a135"></a>&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-var">$this</span><span class="src-sym">-&gt;</span><a href="../PEL/PelEntryNumber.html#var$max">max</a>&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;<span class="src-num">127</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line"><a name="a136"></a>&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-var">$this</span><span class="src-sym">-&gt;</span><a href="../PEL/PelEntry.html#var$format">format</a>&nbsp;=&nbsp;<span class="src-id"><a href="../PEL/PelFormat.html">PelFormat</a></span><span class="src-sym">::</span><span class="src-id">SBYTE</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line"><a name="a137"></a>&nbsp;</div></li>
+<li><div class="src-line"><a name="a138"></a>&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-var">$value&nbsp;</span>=&nbsp;<a href="http://www.php.net/func_get_args">func_get_args</a><span class="src-sym">(</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line"><a name="a139"></a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.php.net/array_shift">array_shift</a><span class="src-sym">(</span><span class="src-var">$value</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line"><a name="a140"></a>&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-var">$this</span><span class="src-sym">-&gt;</span><a href="../PEL/PelEntryNumber.html#methodsetValueArray">setValueArray</a><span class="src-sym">(</span><span class="src-var">$value</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line"><a name="a141"></a>&nbsp;&nbsp;<span class="src-sym">}</span></div></li>
+<li><div class="src-line"><a name="a142"></a>&nbsp;</div></li>
+<li><div class="src-line"><a name="a143"></a>&nbsp;</div></li>
+<li><div class="src-line"><a name="a144"></a>&nbsp;&nbsp;<span class="src-doc">/**</span></div></li>
+<li><div class="src-line"><a name="a145"></a><span class="src-doc">&nbsp;&nbsp;&nbsp;*&nbsp;Convert&nbsp;a&nbsp;number&nbsp;into&nbsp;bytes.</span></div></li>
+<li><div class="src-line"><a name="a146"></a><span class="src-doc">&nbsp;&nbsp;&nbsp;*</span></div></li>
+<li><div class="src-line"><a name="a147"></a><span class="src-doc">&nbsp;&nbsp;&nbsp;*&nbsp;</span><span class="src-doc-coretag">@param&nbsp;</span><span class="src-doc-type">int&nbsp;</span><span class="src-doc">the&nbsp;number&nbsp;that&nbsp;should&nbsp;be&nbsp;converted.</span></div></li>
+<li><div class="src-line"><a name="a148"></a><span class="src-doc">&nbsp;&nbsp;&nbsp;*</span></div></li>
+<li><div class="src-line"><a name="a149"></a><span class="src-doc">&nbsp;&nbsp;&nbsp;*&nbsp;</span><span class="src-doc-coretag">@param&nbsp;</span><span class="src-doc-type">PelByteOrder&nbsp;</span><span class="src-doc">one&nbsp;of&nbsp;</span><span class="src-doc-inlinetag">{@link&nbsp;PelConvert::LITTLE_ENDIAN}</span><span class="src-doc">&nbsp;and</span></div></li>
+<li><div class="src-line"><a name="a150"></a><span class="src-doc">&nbsp;&nbsp;&nbsp;*&nbsp;&nbsp;</span><span class="src-doc-inlinetag">{@link&nbsp;PelConvert::BIG_ENDIAN}</span><span class="src-doc">,&nbsp;specifying&nbsp;the&nbsp;target&nbsp;byte&nbsp;order.</span></div></li>
+<li><div class="src-line"><a name="a151"></a><span class="src-doc">&nbsp;&nbsp;&nbsp;*</span></div></li>
+<li><div class="src-line"><a name="a152"></a><span class="src-doc">&nbsp;&nbsp;&nbsp;*&nbsp;</span><span class="src-doc-coretag">@return&nbsp;</span><span class="src-doc-type">string&nbsp;</span><span class="src-doc">bytes&nbsp;representing&nbsp;the&nbsp;number&nbsp;given.</span></div></li>
+<li><div class="src-line"><a name="a153"></a><span class="src-doc">&nbsp;&nbsp;&nbsp;*/</span></div></li>
+<li><div class="src-line"><a name="a154"></a>&nbsp;&nbsp;<span class="src-key">function&nbsp;</span><a href="../PEL/PelEntrySByte.html#methodnumberToBytes">numberToBytes</a><span class="src-sym">(</span><span class="src-var">$number</span><span class="src-sym">,&nbsp;</span><span class="src-var">$order</span><span class="src-sym">)&nbsp;</span><span class="src-sym">{</span></div></li>
+<li><div class="src-line"><a name="a155"></a>&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-key">return&nbsp;</span><a href="http://www.php.net/chr">chr</a><span class="src-sym">(</span><span class="src-var">$number</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line"><a name="a156"></a>&nbsp;&nbsp;<span class="src-sym">}</span></div></li>
+<li><div class="src-line"><a name="a157"></a>&nbsp;</div></li>
+<li><div class="src-line"><a name="a158"></a><span class="src-sym">}</span></div></li>
+<li><div class="src-line"><a name="a159"></a>&nbsp;</div></li>
+<li><div class="src-line"><a name="a160"></a>&nbsp;</div></li>
+<li><div class="src-line"><a name="a161"></a><span class="src-doc">/**</span></div></li>
+<li><div class="src-line"><a name="a162"></a><span class="src-doc">&nbsp;*&nbsp;Class&nbsp;used&nbsp;to&nbsp;manipulate&nbsp;strings&nbsp;in&nbsp;the&nbsp;format&nbsp;Windows&nbsp;XP&nbsp;uses.</span></div></li>
+<li><div class="src-line"><a name="a163"></a><span class="src-doc">&nbsp;*</span></div></li>
+<li><div class="src-line"><a name="a164"></a><span class="src-doc">&nbsp;*&nbsp;When&nbsp;examining&nbsp;the&nbsp;file&nbsp;properties&nbsp;of&nbsp;an&nbsp;image&nbsp;in&nbsp;Windows&nbsp;XP&nbsp;one</span></div></li>
+<li><div class="src-line"><a name="a165"></a><span class="src-doc">&nbsp;*&nbsp;can&nbsp;fill&nbsp;in&nbsp;title,&nbsp;comment,&nbsp;author,&nbsp;keyword,&nbsp;and&nbsp;subject&nbsp;fields.</span></div></li>
+<li><div class="src-line"><a name="a166"></a><span class="src-doc">&nbsp;*&nbsp;Filling&nbsp;those&nbsp;fields&nbsp;and&nbsp;pressing&nbsp;OK&nbsp;will&nbsp;result&nbsp;in&nbsp;the&nbsp;data&nbsp;being</span></div></li>
+<li><div class="src-line"><a name="a167"></a><span class="src-doc">&nbsp;*&nbsp;written&nbsp;into&nbsp;the&nbsp;Exif&nbsp;data&nbsp;in&nbsp;the&nbsp;image.</span></div></li>
+<li><div class="src-line"><a name="a168"></a><span class="src-doc">&nbsp;*</span></div></li>
+<li><div class="src-line"><a name="a169"></a><span class="src-doc">&nbsp;*&nbsp;The&nbsp;data&nbsp;is&nbsp;written&nbsp;in&nbsp;a&nbsp;non-standard&nbsp;format&nbsp;and&nbsp;can&nbsp;thus&nbsp;not&nbsp;be</span></div></li>
+<li><div class="src-line"><a name="a170"></a><span class="src-doc">&nbsp;*&nbsp;loaded&nbsp;directly&nbsp;---&nbsp;this&nbsp;class&nbsp;is&nbsp;needed&nbsp;to&nbsp;translate&nbsp;it&nbsp;into</span></div></li>
+<li><div class="src-line"><a name="a171"></a><span class="src-doc">&nbsp;*&nbsp;normal&nbsp;strings.</span></div></li>
+<li><div class="src-line"><a name="a172"></a><span class="src-doc">&nbsp;*</span></div></li>
+<li><div class="src-line"><a name="a173"></a><span class="src-doc">&nbsp;*&nbsp;It&nbsp;is&nbsp;important&nbsp;that&nbsp;entries&nbsp;from&nbsp;this&nbsp;class&nbsp;are&nbsp;only&nbsp;created&nbsp;with</span></div></li>
+<li><div class="src-line"><a name="a174"></a><span class="src-doc">&nbsp;*&nbsp;the&nbsp;</span><span class="src-doc-inlinetag">{@link&nbsp;PelTag::XP_TITLE}</span><span class="src-doc">,&nbsp;</span><span class="src-doc-inlinetag">{@link&nbsp;PelTag::XP_COMMENT}</span><span class="src-doc">,&nbsp;</span><span class="src-doc-inlinetag">{@link&nbsp;}</span></div></li>
+<li><div class="src-line"><a name="a175"></a><span class="src-doc">&nbsp;*&nbsp;PelTag::XP_AUTHOR},&nbsp;</span><span class="src-doc-inlinetag">{@link&nbsp;PelTag::XP_KEYWORD}</span><span class="src-doc">,&nbsp;and&nbsp;</span><span class="src-doc-inlinetag">{@link&nbsp;}</span></div></li>
+<li><div class="src-line"><a name="a176"></a><span class="src-doc">&nbsp;*&nbsp;PelTag::XP_SUBJECT}&nbsp;tags.&nbsp;&nbsp;If&nbsp;another&nbsp;tag&nbsp;is&nbsp;used&nbsp;the&nbsp;data&nbsp;will&nbsp;no</span></div></li>
+<li><div class="src-line"><a name="a177"></a><span class="src-doc">&nbsp;*&nbsp;longer&nbsp;be&nbsp;correctly&nbsp;decoded&nbsp;when&nbsp;reloaded&nbsp;with&nbsp;PEL.&nbsp;(The&nbsp;data&nbsp;will</span></div></li>
+<li><div class="src-line"><a name="a178"></a><span class="src-doc">&nbsp;*&nbsp;be&nbsp;loaded&nbsp;as&nbsp;an&nbsp;</span><span class="src-doc-inlinetag">{@link&nbsp;PelEntryByte}</span><span class="src-doc">&nbsp;entry,&nbsp;which&nbsp;isn't&nbsp;as&nbsp;useful.)</span></div></li>
+<li><div class="src-line"><a name="a179"></a><span class="src-doc">&nbsp;*</span></div></li>
+<li><div class="src-line"><a name="a180"></a><span class="src-doc">&nbsp;*&nbsp;This&nbsp;class&nbsp;is&nbsp;to&nbsp;be&nbsp;used&nbsp;as&nbsp;in</span></div></li>
+<li><div class="src-line"><a name="a181"></a><span class="src-doc">&nbsp;*&nbsp;&lt;code&gt;</span></div></li>
+<li><div class="src-line"><a name="a182"></a><span class="src-doc">&nbsp;*&nbsp;$title&nbsp;=&nbsp;$ifd-&gt;getEntry(PelTag::XP_TITLE);</span></div></li>
+<li><div class="src-line"><a name="a183"></a><span class="src-doc">&nbsp;*&nbsp;print($title-&gt;getValue());</span></div></li>
+<li><div class="src-line"><a name="a184"></a><span class="src-doc">&nbsp;*&nbsp;$title-&gt;setValue('My&nbsp;favorite&nbsp;cat');</span></div></li>
+<li><div class="src-line"><a name="a185"></a><span class="src-doc">&nbsp;*&nbsp;&lt;/code&gt;</span></div></li>
+<li><div class="src-line"><a name="a186"></a><span class="src-doc">&nbsp;*&nbsp;or&nbsp;if&nbsp;no&nbsp;entry&nbsp;is&nbsp;present&nbsp;one&nbsp;can&nbsp;add&nbsp;a&nbsp;new&nbsp;one&nbsp;with</span></div></li>
+<li><div class="src-line"><a name="a187"></a><span class="src-doc">&nbsp;*&nbsp;&lt;code&gt;</span></div></li>
+<li><div class="src-line"><a name="a188"></a><span class="src-doc">&nbsp;*&nbsp;$title&nbsp;=&nbsp;new&nbsp;PelEntryWindowsString(PelTag::XP_TITLE,&nbsp;'A&nbsp;cute&nbsp;dog.');</span></div></li>
+<li><div class="src-line"><a name="a189"></a><span class="src-doc">&nbsp;*&nbsp;$ifd-&gt;addEntry($title);</span></div></li>
+<li><div class="src-line"><a name="a190"></a><span class="src-doc">&nbsp;*&nbsp;&lt;/code&gt;</span></div></li>
+<li><div class="src-line"><a name="a191"></a><span class="src-doc">&nbsp;*</span></div></li>
+<li><div class="src-line"><a name="a192"></a><span class="src-doc">&nbsp;*&nbsp;</span><span class="src-doc-coretag">@author</span><span class="src-doc">&nbsp;Martin&nbsp;Geisler&nbsp;&lt;mgeisler@users.sourceforge.net&gt;</span></div></li>
+<li><div class="src-line"><a name="a193"></a><span class="src-doc">&nbsp;*&nbsp;</span><span class="src-doc-coretag">@package</span><span class="src-doc">&nbsp;PEL</span></div></li>
+<li><div class="src-line"><a name="a194"></a><span class="src-doc">&nbsp;*/</span></div></li>
+<li><div class="src-line"><a name="a195"></a><span class="src-key">class&nbsp;</span><a href="../PEL/PelEntryWindowsString.html">PelEntryWindowsString</a>&nbsp;<span class="src-key">extends&nbsp;</span><a href="../PEL/PelEntry.html">PelEntry</a>&nbsp;<span class="src-sym">{</span></div></li>
+<li><div class="src-line"><a name="a196"></a>&nbsp;</div></li>
+<li><div class="src-line"><a name="a197"></a>&nbsp;&nbsp;<span class="src-doc">/**</span></div></li>
+<li><div class="src-line"><a name="a198"></a><span class="src-doc">&nbsp;&nbsp;&nbsp;*&nbsp;The&nbsp;string&nbsp;hold&nbsp;by&nbsp;this&nbsp;entry.</span></div></li>
+<li><div class="src-line"><a name="a199"></a><span class="src-doc">&nbsp;&nbsp;&nbsp;*</span></div></li>
+<li><div class="src-line"><a name="a200"></a><span class="src-doc">&nbsp;&nbsp;&nbsp;*&nbsp;This&nbsp;is&nbsp;the&nbsp;string&nbsp;that&nbsp;was&nbsp;given&nbsp;to&nbsp;the&nbsp;</span><span class="src-doc-inlinetag">{@link&nbsp;__construct}</span></div></li>
+<li><div class="src-line"><a name="a201"></a><span class="src-doc">&nbsp;&nbsp;&nbsp;*&nbsp;constructor}&nbsp;or&nbsp;later&nbsp;to&nbsp;</span><span class="src-doc-inlinetag">{@link&nbsp;setValue}</span><span class="src-doc">,&nbsp;without&nbsp;any&nbsp;extra&nbsp;NULL</span></div></li>
+<li><div class="src-line"><a name="a202"></a><span class="src-doc">&nbsp;&nbsp;&nbsp;*&nbsp;characters&nbsp;or&nbsp;any&nbsp;such&nbsp;nonsense.</span></div></li>
+<li><div class="src-line"><a name="a203"></a><span class="src-doc">&nbsp;&nbsp;&nbsp;*</span></div></li>
+<li><div class="src-line"><a name="a204"></a><span class="src-doc">&nbsp;&nbsp;&nbsp;*&nbsp;</span><span class="src-doc-coretag">@var&nbsp;</span><span class="src-doc-type">string&nbsp;</span></div></li>
+<li><div class="src-line"><a name="a205"></a><span class="src-doc">&nbsp;&nbsp;&nbsp;*/</span></div></li>
+<li><div class="src-line"><a name="a206"></a>&nbsp;&nbsp;<span class="src-key">private&nbsp;</span><span class="src-var">$str</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line"><a name="a207"></a>&nbsp;</div></li>
+<li><div class="src-line"><a name="a208"></a>&nbsp;</div></li>
+<li><div class="src-line"><a name="a209"></a>&nbsp;&nbsp;<span class="src-doc">/**</span></div></li>
+<li><div class="src-line"><a name="a210"></a><span class="src-doc">&nbsp;&nbsp;&nbsp;*&nbsp;Make&nbsp;a&nbsp;new&nbsp;PelEntry&nbsp;that&nbsp;can&nbsp;hold&nbsp;a&nbsp;Windows&nbsp;XP&nbsp;specific&nbsp;string.</span></div></li>
+<li><div class="src-line"><a name="a211"></a><span class="src-doc">&nbsp;&nbsp;&nbsp;*</span></div></li>
+<li><div class="src-line"><a name="a212"></a><span class="src-doc">&nbsp;&nbsp;&nbsp;*&nbsp;</span><span class="src-doc-coretag">@param&nbsp;</span><span class="src-doc-type">int&nbsp;</span><span class="src-doc">the&nbsp;tag&nbsp;which&nbsp;this&nbsp;entry&nbsp;represents.&nbsp;&nbsp;This&nbsp;should&nbsp;be</span></div></li>
+<li><div class="src-line"><a name="a213"></a><span class="src-doc">&nbsp;&nbsp;&nbsp;*&nbsp;&nbsp;one&nbsp;of&nbsp;</span><span class="src-doc-inlinetag">{@link&nbsp;PelTag::XP_TITLE}</span><span class="src-doc">,&nbsp;</span><span class="src-doc-inlinetag">{@link&nbsp;PelTag::XP_COMMENT}</span><span class="src-doc">,</span></div></li>
+<li><div class="src-line"><a name="a214"></a><span class="src-doc">&nbsp;&nbsp;&nbsp;*&nbsp;&nbsp;</span><span class="src-doc-inlinetag">{@link&nbsp;PelTag::XP_AUTHOR}</span><span class="src-doc">,&nbsp;</span><span class="src-doc-inlinetag">{@link&nbsp;PelTag::XP_KEYWORD}</span><span class="src-doc">,&nbsp;and&nbsp;</span><span class="src-doc-inlinetag">{@link&nbsp;}</span></div></li>
+<li><div class="src-line"><a name="a215"></a><span class="src-doc">&nbsp;&nbsp;&nbsp;*&nbsp;&nbsp;PelTag::XP_SUBJECT}&nbsp;tags.&nbsp;&nbsp;If&nbsp;another&nbsp;tag&nbsp;is&nbsp;used,&nbsp;then&nbsp;this</span></div></li>
+<li><div class="src-line"><a name="a216"></a><span class="src-doc">&nbsp;&nbsp;&nbsp;*&nbsp;&nbsp;entry&nbsp;will&nbsp;be&nbsp;incorrectly&nbsp;reloaded&nbsp;as&nbsp;a&nbsp;</span><span class="src-doc-inlinetag">{@link&nbsp;PelEntryByte}</span><span class="src-doc">.</span></div></li>
+<li><div class="src-line"><a name="a217"></a><span class="src-doc">&nbsp;&nbsp;&nbsp;*</span></div></li>
+<li><div class="src-line"><a name="a218"></a><span class="src-doc">&nbsp;&nbsp;&nbsp;*&nbsp;</span><span class="src-doc-coretag">@param&nbsp;</span><span class="src-doc-type">string&nbsp;</span><span class="src-doc">the&nbsp;string&nbsp;that&nbsp;this&nbsp;entry&nbsp;will&nbsp;represent.&nbsp;&nbsp;It&nbsp;will</span></div></li>
+<li><div class="src-line"><a name="a219"></a><span class="src-doc">&nbsp;&nbsp;&nbsp;*&nbsp;&nbsp;be&nbsp;passed&nbsp;to&nbsp;</span><span class="src-doc-inlinetag">{@link&nbsp;setValue}</span><span class="src-doc">&nbsp;and&nbsp;thus&nbsp;has&nbsp;to&nbsp;obey&nbsp;its</span></div></li>
+<li><div class="src-line"><a name="a220"></a><span class="src-doc">&nbsp;&nbsp;&nbsp;*&nbsp;&nbsp;requirements.</span></div></li>
+<li><div class="src-line"><a name="a221"></a><span class="src-doc">&nbsp;&nbsp;&nbsp;*/</span></div></li>
+<li><div class="src-line"><a name="a222"></a>&nbsp;&nbsp;<span class="src-key">function&nbsp;</span><a href="../PEL/PelEntryWindowsString.html#method__construct">__construct</a><span class="src-sym">(</span><span class="src-var">$tag</span><span class="src-sym">,&nbsp;</span><span class="src-var">$str&nbsp;</span>=&nbsp;<span class="src-str">''</span><span class="src-sym">)&nbsp;</span><span class="src-sym">{</span></div></li>
+<li><div class="src-line"><a name="a223"></a>&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-var">$this</span><span class="src-sym">-&gt;</span><a href="../PEL/PelEntry.html#var$tag">tag</a>&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;<span class="src-var">$tag</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line"><a name="a224"></a>&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-var">$this</span><span class="src-sym">-&gt;</span><a href="../PEL/PelEntry.html#var$format">format</a>&nbsp;=&nbsp;<span class="src-id"><a href="../PEL/PelFormat.html">PelFormat</a></span><span class="src-sym">::</span><span class="src-id">BYTE</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line"><a name="a225"></a>&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-var">$this</span><span class="src-sym">-&gt;</span><a href="../PEL/PelEntryWindowsString.html#methodsetValue">setValue</a><span class="src-sym">(</span><span class="src-var">$str</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line"><a name="a226"></a>&nbsp;&nbsp;<span class="src-sym">}</span></div></li>
+<li><div class="src-line"><a name="a227"></a>&nbsp;</div></li>
+<li><div class="src-line"><a name="a228"></a>&nbsp;</div></li>
+<li><div class="src-line"><a name="a229"></a>&nbsp;&nbsp;<span class="src-doc">/**</span></div></li>
+<li><div class="src-line"><a name="a230"></a><span class="src-doc">&nbsp;&nbsp;&nbsp;*&nbsp;Give&nbsp;the&nbsp;entry&nbsp;a&nbsp;new&nbsp;value.</span></div></li>
+<li><div class="src-line"><a name="a231"></a><span class="src-doc">&nbsp;&nbsp;&nbsp;*</span></div></li>
+<li><div class="src-line"><a name="a232"></a><span class="src-doc">&nbsp;&nbsp;&nbsp;*&nbsp;This&nbsp;will&nbsp;overwrite&nbsp;the&nbsp;previous&nbsp;value.&nbsp;&nbsp;The&nbsp;value&nbsp;can&nbsp;be</span></div></li>
+<li><div class="src-line"><a name="a233"></a><span class="src-doc">&nbsp;&nbsp;&nbsp;*&nbsp;retrieved&nbsp;later&nbsp;with&nbsp;the&nbsp;</span><span class="src-doc-inlinetag">{@link&nbsp;getValue}</span><span class="src-doc">&nbsp;method.</span></div></li>
+<li><div class="src-line"><a name="a234"></a><span class="src-doc">&nbsp;&nbsp;&nbsp;*</span></div></li>
+<li><div class="src-line"><a name="a235"></a><span class="src-doc">&nbsp;&nbsp;&nbsp;*&nbsp;</span><span class="src-doc-coretag">@param&nbsp;</span><span class="src-doc-type">string&nbsp;</span><span class="src-doc">the&nbsp;new&nbsp;value&nbsp;of&nbsp;the&nbsp;entry.&nbsp;&nbsp;This&nbsp;should&nbsp;be&nbsp;use&nbsp;the</span></div></li>
+<li><div class="src-line"><a name="a236"></a><span class="src-doc">&nbsp;&nbsp;&nbsp;*&nbsp;&nbsp;Latin-1&nbsp;encoding&nbsp;and&nbsp;be&nbsp;given&nbsp;without&nbsp;any&nbsp;extra&nbsp;NULL&nbsp;characters.</span></div></li>
+<li><div class="src-line"><a name="a237"></a><span class="src-doc">&nbsp;&nbsp;&nbsp;*/</span></div></li>
+<li><div class="src-line"><a name="a238"></a>&nbsp;&nbsp;<span class="src-key">function&nbsp;</span><a href="../PEL/PelEntryWindowsString.html#methodsetValue">setValue</a><span class="src-sym">(</span><span class="src-var">$str</span><span class="src-sym">)&nbsp;</span><span class="src-sym">{</span></div></li>
+<li><div class="src-line"><a name="a239"></a>&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-var">$l&nbsp;</span>=&nbsp;<a href="http://www.php.net/strlen">strlen</a><span class="src-sym">(</span><span class="src-var">$str</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line"><a name="a240"></a>&nbsp;</div></li>
+<li><div class="src-line"><a name="a241"></a>&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-var">$this</span><span class="src-sym">-&gt;</span><a href="../PEL/PelEntry.html#var$components">components</a>&nbsp;=&nbsp;<span class="src-num">2&nbsp;</span>*&nbsp;<span class="src-sym">(</span><span class="src-var">$l&nbsp;</span>+&nbsp;<span class="src-num">1</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line"><a name="a242"></a>&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-var">$this</span><span class="src-sym">-&gt;</span><span class="src-var">str&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>=&nbsp;<span class="src-var">$str</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line"><a name="a243"></a>&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-var">$this</span><span class="src-sym">-&gt;</span><a href="../PEL/PelEntry.html#var$bytes">bytes</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;<span class="src-str">''</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line"><a name="a244"></a>&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-key">for&nbsp;</span><span class="src-sym">(</span><span class="src-var">$i&nbsp;</span>=&nbsp;<span class="src-num">0</span><span class="src-sym">;&nbsp;</span><span class="src-var">$i&nbsp;</span>&lt;&nbsp;<span class="src-var">$l</span><span class="src-sym">;&nbsp;</span><span class="src-var">$i</span>++<span class="src-sym">)</span></div></li>
+<li><div class="src-line"><a name="a245"></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-var">$this</span><span class="src-sym">-&gt;</span><a href="../PEL/PelEntry.html#var$bytes">bytes</a>&nbsp;.=&nbsp;<span class="src-var">$str</span><span class="src-sym">{</span><span class="src-var">$i</span><span class="src-sym">}&nbsp;</span>.&nbsp;<a href="http://www.php.net/chr">chr</a><span class="src-sym">(</span><span class="src-num">0x00</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line"><a name="a246"></a>&nbsp;</div></li>
+<li><div class="src-line"><a name="a247"></a>&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-var">$this</span><span class="src-sym">-&gt;</span><a href="../PEL/PelEntry.html#var$bytes">bytes</a>&nbsp;.=&nbsp;<a href="http://www.php.net/chr">chr</a><span class="src-sym">(</span><span class="src-num">0x00</span><span class="src-sym">)&nbsp;</span>.&nbsp;<a href="http://www.php.net/chr">chr</a><span class="src-sym">(</span><span class="src-num">0x00</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line"><a name="a248"></a>&nbsp;&nbsp;<span class="src-sym">}</span></div></li>
+<li><div class="src-line"><a name="a249"></a>&nbsp;</div></li>
+<li><div class="src-line"><a name="a250"></a>&nbsp;</div></li>
+<li><div class="src-line"><a name="a251"></a>&nbsp;&nbsp;<span class="src-doc">/**</span></div></li>
+<li><div class="src-line"><a name="a252"></a><span class="src-doc">&nbsp;&nbsp;&nbsp;*&nbsp;Return&nbsp;the&nbsp;string&nbsp;of&nbsp;the&nbsp;entry.</span></div></li>
+<li><div class="src-line"><a name="a253"></a><span class="src-doc">&nbsp;&nbsp;&nbsp;*</span></div></li>
+<li><div class="src-line"><a name="a254"></a><span class="src-doc">&nbsp;&nbsp;&nbsp;*&nbsp;</span><span class="src-doc-coretag">@return&nbsp;</span><span class="src-doc-type">string&nbsp;</span><span class="src-doc">the&nbsp;string&nbsp;held,&nbsp;without&nbsp;any&nbsp;extra&nbsp;NULL</span></div></li>
+<li><div class="src-line"><a name="a255"></a><span class="src-doc">&nbsp;&nbsp;&nbsp;*&nbsp;&nbsp;characters.&nbsp;&nbsp;The&nbsp;string&nbsp;will&nbsp;be&nbsp;the&nbsp;same&nbsp;as&nbsp;the&nbsp;one&nbsp;given&nbsp;to</span></div></li>
+<li><div class="src-line"><a name="a256"></a><span class="src-doc">&nbsp;&nbsp;&nbsp;*&nbsp;&nbsp;</span><span class="src-doc-inlinetag">{@link&nbsp;setValue}</span><span class="src-doc">&nbsp;or&nbsp;to&nbsp;the&nbsp;</span><span class="src-doc-inlinetag">{@link&nbsp;__construct&nbsp;constructor}</span><span class="src-doc">.</span></div></li>
+<li><div class="src-line"><a name="a257"></a><span class="src-doc">&nbsp;&nbsp;&nbsp;*/</span></div></li>
+<li><div class="src-line"><a name="a258"></a>&nbsp;&nbsp;<span class="src-key">function&nbsp;</span><a href="../PEL/PelEntryWindowsString.html#methodgetValue">getValue</a><span class="src-sym">(</span><span class="src-sym">)&nbsp;</span><span class="src-sym">{</span></div></li>
+<li><div class="src-line"><a name="a259"></a>&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-key">return&nbsp;</span><span class="src-var">$this</span><span class="src-sym">-&gt;</span><span class="src-var">str</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line"><a name="a260"></a>&nbsp;&nbsp;<span class="src-sym">}</span></div></li>
+<li><div class="src-line"><a name="a261"></a>&nbsp;</div></li>
+<li><div class="src-line"><a name="a262"></a>&nbsp;</div></li>
+<li><div class="src-line"><a name="a263"></a>&nbsp;&nbsp;<span class="src-doc">/**</span></div></li>
+<li><div class="src-line"><a name="a264"></a><span class="src-doc">&nbsp;&nbsp;&nbsp;*&nbsp;Return&nbsp;the&nbsp;string&nbsp;of&nbsp;the&nbsp;entry.</span></div></li>
+<li><div class="src-line"><a name="a265"></a><span class="src-doc">&nbsp;&nbsp;&nbsp;*</span></div></li>
+<li><div class="src-line"><a name="a266"></a><span class="src-doc">&nbsp;&nbsp;&nbsp;*&nbsp;This&nbsp;methods&nbsp;returns&nbsp;the&nbsp;same&nbsp;as&nbsp;</span><span class="src-doc-inlinetag">{@link&nbsp;getValue}</span><span class="src-doc">.</span></div></li>
+<li><div class="src-line"><a name="a267"></a><span class="src-doc">&nbsp;&nbsp;&nbsp;*</span></div></li>
+<li><div class="src-line"><a name="a268"></a><span class="src-doc">&nbsp;&nbsp;&nbsp;*&nbsp;</span><span class="src-doc-coretag">@param&nbsp;</span><span class="src-doc-type">boolean&nbsp;</span><span class="src-doc">not&nbsp;used.</span></div></li>
+<li><div class="src-line"><a name="a269"></a><span class="src-doc">&nbsp;&nbsp;&nbsp;*</span></div></li>
+<li><div class="src-line"><a name="a270"></a><span class="src-doc">&nbsp;&nbsp;&nbsp;*&nbsp;</span><span class="src-doc-coretag">@return&nbsp;</span><span class="src-doc-type">string&nbsp;</span><span class="src-doc">the&nbsp;string&nbsp;held,&nbsp;without&nbsp;any&nbsp;extra&nbsp;NULL</span></div></li>
+<li><div class="src-line"><a name="a271"></a><span class="src-doc">&nbsp;&nbsp;&nbsp;*&nbsp;&nbsp;characters.&nbsp;&nbsp;The&nbsp;string&nbsp;will&nbsp;be&nbsp;the&nbsp;same&nbsp;as&nbsp;the&nbsp;one&nbsp;given&nbsp;to</span></div></li>
+<li><div class="src-line"><a name="a272"></a><span class="src-doc">&nbsp;&nbsp;&nbsp;*&nbsp;&nbsp;</span><span class="src-doc-inlinetag">{@link&nbsp;setValue}</span><span class="src-doc">&nbsp;or&nbsp;to&nbsp;the&nbsp;</span><span class="src-doc-inlinetag">{@link&nbsp;__construct&nbsp;constructor}</span><span class="src-doc">.</span></div></li>
+<li><div class="src-line"><a name="a273"></a><span class="src-doc">&nbsp;&nbsp;&nbsp;*/</span></div></li>
+<li><div class="src-line"><a name="a274"></a>&nbsp;&nbsp;<span class="src-key">function&nbsp;</span><a href="../PEL/PelEntryWindowsString.html#methodgetText">getText</a><span class="src-sym">(</span><span class="src-var">$brief&nbsp;</span>=&nbsp;<span class="src-id">false</span><span class="src-sym">)&nbsp;</span><span class="src-sym">{</span></div></li>
+<li><div class="src-line"><a name="a275"></a>&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-key">return&nbsp;</span><span class="src-var">$this</span><span class="src-sym">-&gt;</span><span class="src-var">str</span><span class="src-sym">;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></div></li>
+<li><div class="src-line"><a name="a276"></a>&nbsp;&nbsp;<span class="src-sym">}</span></div></li>
+<li><div class="src-line"><a name="a277"></a>&nbsp;</div></li>
+<li><div class="src-line"><a name="a278"></a><span class="src-sym">}</span></div></li>
+<li><div class="src-line"><a name="a279"></a>&nbsp;</div></li>
+<li><div class="src-line"><a name="a280"></a><span class="src-php">?&gt;</span></div></li>
+</ol></div>
+</div>
+	<p class="notes" id="credit">
+		Documentation generated on Thu, 05 May 2011 07:19:03 +0200 by <a href="http://www.phpdoc.org" target="_blank">phpDocumentor 1.4.3</a>
+	</p>
+	</body>
+</html>

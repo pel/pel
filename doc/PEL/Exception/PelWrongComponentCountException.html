@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+  <html xmlns="http://www.w3.org/1999/xhtml">
+		<head>
+			<!-- template designed by Marco Von Ballmoos -->
+			<title>Docs For Class PelWrongComponentCountException</title>
+			<link rel="stylesheet" href="../../media/stylesheet.css" />
+			<meta http-equiv='Content-Type' content='text/html; charset=iso-8859-1'/>
+		</head>
+		<body>
+			<div class="page-body">			
+<h2 class="class-name">Class PelWrongComponentCountException</h2>
+
+<a name="sec-description"></a>
+<div class="info-box">
+	<div class="info-box-title">Description</div>
+	<div class="nav-bar">
+					<span class="disabled">Description</span> |
+													<a href="#sec-vars">Vars</a>
+						|											<a href="#sec-method-summary">Methods</a> (<a href="#sec-methods">details</a>)
+						
+					</div>
+	<div class="info-box-body">
+        		<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Exception indicating that an unexpected number of components was  found.</p>
+<p class="description"><p>Some tags have strict limits as to the allowed number of  components, and this exception is thrown if the data violates such  a constraint.  The documentation for each tag in <a href="../../PEL/PelTag.html">PelTag</a>  explains the expected number of components.</p></p>
+	<ul class="tags">
+				<li><span class="field">author:</span> Martin Geisler &lt;<a href="mailto:mgeisler@users.sourceforge.net">mgeisler@users.sourceforge.net</a>&gt;</li>
+			</ul>
+		<p class="notes">
+			Located in <a class="field" href="_src---PelEntry.php.html">/src/PelEntry.php</a> (line <span class="field"><a href="../../__filesource/fsource_PEL__srcPelEntry.php.html#a147">147</a></span>)
+		</p>
+		
+				
+		<pre>Exception
+   |
+   --<a href="../../PEL/Exception/PelException.html">PelException</a>
+      |
+      --<a href="../../PEL/Exception/PelEntryException.html">PelEntryException</a>
+         |
+         --PelWrongComponentCountException</pre>
+	
+			</div>
+</div>
+
+
+
+
+	<a name="sec-method-summary"></a>
+	<div class="info-box">
+		<div class="info-box-title">Method Summary</span></div>
+		<div class="nav-bar">
+			<a href="#sec-description">Description</a> |
+																		<a href="#sec-vars">Vars</a>
+				 
+				|
+						<span class="disabled">Methods</span> (<a href="#sec-methods">details</a>)
+		</div>
+		<div class="info-box-body">			
+			<div class="method-summary">
+												
+												<div class="method-definition">
+											<span class="method-result">PelWrongComponentCountException</span>
+										<a href="#__construct" title="details" class="method-name">__construct</a>
+											(<span class="var-type">int</span>&nbsp;<span class="var-name">$type</span>, <span class="var-type"><a href="../../PEL/PelTag.html">PelTag</a></span>&nbsp;<span class="var-name">$tag</span>, <span class="var-type">int</span>&nbsp;<span class="var-name">$found</span>, <span class="var-type">int</span>&nbsp;<span class="var-name">$expected</span>)
+									</div>
+								</div>
+		</div>
+	</div>		
+
+	<a name="sec-vars"></a>
+	<div class="info-box">
+		<div class="info-box-title">Variables</div>
+		<div class="nav-bar">
+			<a href="#sec-description">Description</a> |
+										<a href="#sec-var-summary">Vars</a> (<span class="disabled">details</span>)
+						
+			
+										| 
+									<a href="#sec-method-summary">Methods</a> (<a href="#sec-methods">details</a>)
+							
+					</div>
+		<div class="info-box-body">
+										<h4>Inherited Variables</h4>
+				<A NAME='inherited_vars'><!-- --></A>
+									<p>Inherited from <span class="classname"><a href="../../PEL/Exception/PelEntryException.html">PelEntryException</a></span></p>
+					<blockquote>
+													<span class="var-title">
+								<span class="var-name"><a href="../../PEL/Exception/PelEntryException.html#var$tag">PelEntryException::$tag</a></span><br>
+							</span>
+													<span class="var-title">
+								<span class="var-name"><a href="../../PEL/Exception/PelEntryException.html#var$type">PelEntryException::$type</a></span><br>
+							</span>
+											</blockquote> 
+									<p>Inherited from <span class="classname">Exception (Internal Class)</span></p>
+					<blockquote>
+													<span class="var-title">
+								<span class="var-name">$code</span><br>
+							</span>
+													<span class="var-title">
+								<span class="var-name">$file</span><br>
+							</span>
+													<span class="var-title">
+								<span class="var-name">$line</span><br>
+							</span>
+													<span class="var-title">
+								<span class="var-name">$message</span><br>
+							</span>
+													<span class="var-title">
+								<span class="var-name">$previous</span><br>
+							</span>
+													<span class="var-title">
+								<span class="var-name">$string</span><br>
+							</span>
+													<span class="var-title">
+								<span class="var-name">$trace</span><br>
+							</span>
+											</blockquote> 
+										
+		</div>
+	</div>
+	
+	<a name="sec-methods"></a>
+	<div class="info-box">
+		<div class="info-box-title">Methods</div>
+		<div class="nav-bar">
+			<a href="#sec-description">Description</a> |
+															<a href="#sec-vars">Vars</a>
+																	<a href="#sec-method-summary">Methods</a> (<span class="disabled">details</span>)
+						
+		</div>
+		<div class="info-box-body">
+			<A NAME='method_detail'></A>
+
+<a name="method__construct" id="__construct"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">Constructor __construct</span> (line <span class="line-number"><a href="../../__filesource/fsource_PEL__srcPelEntry.php.html#a161">161</a></span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Construct a new exception indicating a wrong number of  components.</p>
+	
+	<div class="method-signature">
+		<span class="method-result">PelWrongComponentCountException</span>
+		<span class="method-name">
+			__construct
+		</span>
+					(<span class="var-type">int</span>&nbsp;<span class="var-name">$type</span>, <span class="var-type"><a href="../../PEL/PelTag.html">PelTag</a></span>&nbsp;<span class="var-name">$tag</span>, <span class="var-type">int</span>&nbsp;<span class="var-name">$found</span>, <span class="var-type">int</span>&nbsp;<span class="var-name">$expected</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">int</span>
+				<span class="var-name">$type</span><span class="var-description">: the type of IFD.</span>			</li>
+					<li>
+				<span class="var-type"><a href="../../PEL/PelTag.html">PelTag</a></span>
+				<span class="var-name">$tag</span><span class="var-description">: the tag for which the violation was found.</span>			</li>
+					<li>
+				<span class="var-type">int</span>
+				<span class="var-name">$found</span><span class="var-description">: the number of components found.</span>			</li>
+					<li>
+				<span class="var-type">int</span>
+				<span class="var-name">$expected</span><span class="var-description">: the expected number of components.</span>			</li>
+				</ul>
+		
+			<hr class="separator" />
+		<div class="notes">Redefinition of:</div>
+		<dl>
+			<dt><a href="../../PEL/Exception/PelException.html#method__construct">PelException::__construct()</a></dt>
+						<dd>Construct a new PEL exception.</dd>
+					</dl>
+			
+	</div>
+							<h4>Inherited Methods</h4>
+				<a name='inherited_methods'><!-- --></a>	
+									<!-- =========== Summary =========== -->
+					<p>Inherited From <span class="classname"><a href="../../PEL/Exception/PelEntryException.html">PelEntryException</a></span></p>
+					<blockquote>
+													<span class="method-name"><a href="../../PEL/Exception/PelEntryException.html#methodgetIfdType">PelEntryException::getIfdType()</a></span><br>
+													<span class="method-name"><a href="../../PEL/Exception/PelEntryException.html#methodgetTag">PelEntryException::getTag()</a></span><br>
+											</blockquote>
+									<!-- =========== Summary =========== -->
+					<p>Inherited From <span class="classname"><a href="../../PEL/Exception/PelException.html">PelException</a></span></p>
+					<blockquote>
+													<span class="method-name"><a href="../../PEL/Exception/PelException.html#method__construct">PelException::__construct()</a></span><br>
+											</blockquote>
+									<!-- =========== Summary =========== -->
+					<p>Inherited From <span class="classname">Exception (Internal Class)</span></p>
+					<blockquote>
+													<span class="method-name">constructor __construct ( [$message = ], [$code = ], [$previous = ] )</span><br>
+													<span class="method-name">getCode (  )</span><br>
+													<span class="method-name">getFile (  )</span><br>
+													<span class="method-name">getLine (  )</span><br>
+													<span class="method-name">getMessage (  )</span><br>
+													<span class="method-name">getPrevious (  )</span><br>
+													<span class="method-name">getTrace (  )</span><br>
+													<span class="method-name">getTraceAsString (  )</span><br>
+													<span class="method-name">__clone (  )</span><br>
+													<span class="method-name">__toString (  )</span><br>
+											</blockquote>
+										
+		</div>
+	</div>
+
+
+	<p class="notes" id="credit">
+		Documentation generated on Thu, 05 May 2011 07:19:00 +0200 by <a href="http://www.phpdoc.org" target="_blank">phpDocumentor 1.4.3</a>
+	</p>
+	</div></body>
+</html>

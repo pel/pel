@@ -1,0 +1,550 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+  <html xmlns="http://www.w3.org/1999/xhtml">
+		<head>
+			<!-- template designed by Marco Von Ballmoos -->
+			<title>Docs For Class PelJpeg</title>
+			<link rel="stylesheet" href="../media/stylesheet.css" />
+			<meta http-equiv='Content-Type' content='text/html; charset=iso-8859-1'/>
+		</head>
+		<body>
+			<div class="page-body">			
+<h2 class="class-name">Class PelJpeg</h2>
+
+<a name="sec-description"></a>
+<div class="info-box">
+	<div class="info-box-title">Description</div>
+	<div class="nav-bar">
+					<span class="disabled">Description</span> |
+															<a href="#sec-method-summary">Methods</a> (<a href="#sec-methods">details</a>)
+						
+					</div>
+	<div class="info-box-body">
+        		<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Class for handling JPEG data.</p>
+<p class="description"><p>The <a href="../PEL/PelJpeg.html">PelJpeg</a> class defined here provides an abstraction for  dealing with a JPEG file.  The file will be contain a number of  sections containing some <a href="../PEL/PelJpegContent.html">content</a> identified  by a <a href="../PEL/PelJpegMarker.html">marker</a>.</p><p>The <a href="../PEL/PelJpeg.html#methodgetExif">getExif()</a> method is used get hold of the <a href="../PEL/PelJpegMarker.html#constAPP1">APP1</a> section which stores Exif data.  So if  the name of the JPEG file is stored in $filename, then one would  get hold of the Exif data by saying:</p><p><div class="src-code"><ol><li><div class="src-line">&nbsp;<span class="src-var">$jpeg&nbsp;</span>=&nbsp;<span class="src-key">new&nbsp;</span><span class="src-id"><a href="../PEL/PelJpeg.html">PelJpeg</a></span><span class="src-sym">(</span><span class="src-var">$filename</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&nbsp;<span class="src-var">$exif&nbsp;</span>=&nbsp;<span class="src-var">$jpeg</span><span class="src-sym">-&gt;</span><a href="../PEL/PelJpeg.html#methodgetExif">getExif</a><span class="src-sym">(</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&nbsp;<span class="src-var">$tiff&nbsp;</span>=&nbsp;<span class="src-var">$exif</span><span class="src-sym">-&gt;</span><span class="src-id">getTiff</span><span class="src-sym">(</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&nbsp;<span class="src-var">$ifd0&nbsp;</span>=&nbsp;<span class="src-var">$tiff</span><span class="src-sym">-&gt;</span><span class="src-id">getIfd</span><span class="src-sym">(</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&nbsp;<span class="src-var">$exif&nbsp;</span>=&nbsp;<span class="src-var">$ifd0</span><span class="src-sym">-&gt;</span><span class="src-id">getSubIfd</span><span class="src-sym">(</span><span class="src-id"><a href="../PEL/PelIfd.html">PelIfd</a></span><span class="src-sym">::</span><span class="src-id">EXIF</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&nbsp;<span class="src-var">$ifd1&nbsp;</span>=&nbsp;<span class="src-var">$ifd0</span><span class="src-sym">-&gt;</span><span class="src-id">getNextIfd</span><span class="src-sym">(</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+</ol></div></p><p>The $idf0 and $ifd1 variables will then be two <a href="../PEL/PelTiff.html">TIFF</a>  <a href="../PEL/PelIfd.html">Image File Directories</a>, in which the data is stored  under the keys found in <a href="../PEL/PelTag.html">PelTag</a>.</p><p>Should one have some image data (in the form of a <a href="../PEL/PelDataWindow.html">PelDataWindow</a>) of an unknown type, then the <a href="../PEL/PelJpeg.html#methodisValid">PelJpeg::isValid()</a> function is handy: it will quickly test if the  data could be valid JPEG data.  The <a href="../PEL/PelTiff.html#methodisValid">PelTiff::isValid()</a>  function does the same for TIFF images.</p></p>
+	<ul class="tags">
+				<li><span class="field">author:</span> Martin Geisler &lt;<a href="mailto:mgeisler@users.sourceforge.net">mgeisler@users.sourceforge.net</a>&gt;</li>
+			</ul>
+		<p class="notes">
+			Located in <a class="field" href="_src---PelJpeg.php.html">/src/PelJpeg.php</a> (line <span class="field"><a href="../__filesource/fsource_PEL__srcPelJpeg.php.html#a111">111</a></span>)
+		</p>
+		
+				
+		<pre></pre>
+	
+			</div>
+</div>
+
+
+
+
+	<a name="sec-method-summary"></a>
+	<div class="info-box">
+		<div class="info-box-title">Method Summary</span></div>
+		<div class="nav-bar">
+			<a href="#sec-description">Description</a> |
+												<span class="disabled">Methods</span> (<a href="#sec-methods">details</a>)
+		</div>
+		<div class="info-box-body">			
+			<div class="method-summary">
+																																																																												<div class="method-definition">
+					static 						<span class="method-result">boolean</span>
+										<a href="#isValid" title="details" class="method-name">isValid</a>
+											(<span class="var-type"><a href="../PEL/PelDataWindow.html">PelDataWindow</a></span>&nbsp;<span class="var-name">$d</span>)
+									</div>
+																																																
+												<div class="method-definition">
+											<span class="method-result">PelJpeg</span>
+										<a href="#__construct" title="details" class="method-name">__construct</a>
+											([<span class="var-type">mixed</span>&nbsp;<span class="var-name">$data</span> = <span class="var-default">false</span>])
+									</div>
+																<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#appendSection" title="details" class="method-name">appendSection</a>
+											(<span class="var-type"><a href="../PEL/PelJpegMarker.html">PelJpegMarker</a></span>&nbsp;<span class="var-name">$marker</span>, <span class="var-type"><a href="../PEL/PelJpegContent.html">PelJpegContent</a></span>&nbsp;<span class="var-name">$content</span>)
+									</div>
+																<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#clearExif" title="details" class="method-name">clearExif</a>
+										()
+									</div>
+																<div class="method-definition">
+											<span class="method-result">string</span>
+										<a href="#getBytes" title="details" class="method-name">getBytes</a>
+										()
+									</div>
+																<div class="method-definition">
+											<span class="method-result"><a href="../PEL/PelExif.html">PelExif</a></span>
+										<a href="#getExif" title="details" class="method-name">getExif</a>
+										()
+									</div>
+																<div class="method-definition">
+											<span class="method-result"><a href="../PEL/PelJpegContent.html">PelJpegContent</a></span>
+										<a href="#getSection" title="details" class="method-name">getSection</a>
+											(<span class="var-type"><a href="../PEL/PelJpegMarker.html">PelJpegMarker</a></span>&nbsp;<span class="var-name">$marker</span>, [<span class="var-type">int</span>&nbsp;<span class="var-name">$skip</span> = <span class="var-default">0</span>])
+									</div>
+																<div class="method-definition">
+											<span class="method-result">array</span>
+										<a href="#getSections" title="details" class="method-name">getSections</a>
+										()
+									</div>
+																<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#insertSection" title="details" class="method-name">insertSection</a>
+											(<span class="var-type"><a href="../PEL/PelJpegMarker.html">PelJpegMarker</a></span>&nbsp;<span class="var-name">$marker</span>, <span class="var-type"><a href="../PEL/PelJpegContent.html">PelJpegContent</a></span>&nbsp;<span class="var-name">$content</span>, <span class="var-type">int</span>&nbsp;<span class="var-name">$offset</span>)
+									</div>
+																								<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#load" title="details" class="method-name">load</a>
+											(<span class="var-type"><a href="../PEL/PelDataWindow.html">PelDataWindow</a></span>&nbsp;<span class="var-name">$d</span>)
+									</div>
+																<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#loadFile" title="details" class="method-name">loadFile</a>
+											(<span class="var-type">string</span>&nbsp;<span class="var-name">$filename</span>)
+									</div>
+																<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#saveFile" title="details" class="method-name">saveFile</a>
+											(<span class="var-type">string</span>&nbsp;<span class="var-name">$filename</span>)
+									</div>
+																<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#setExif" title="details" class="method-name">setExif</a>
+											(<span class="var-type"><a href="../PEL/PelExif.html">PelExif</a></span>&nbsp;<span class="var-name">$exif</span>)
+									</div>
+																<div class="method-definition">
+											<span class="method-result">string</span>
+										<a href="#__toString" title="details" class="method-name">__toString</a>
+										()
+									</div>
+								</div>
+		</div>
+	</div>		
+
+	
+	<a name="sec-methods"></a>
+	<div class="info-box">
+		<div class="info-box-title">Methods</div>
+		<div class="nav-bar">
+			<a href="#sec-description">Description</a> |
+																<a href="#sec-method-summary">Methods</a> (<span class="disabled">details</span>)
+						
+		</div>
+		<div class="info-box-body">
+			<A NAME='method_detail'></A>
+<a name="methodisValid" id="isValid"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">static method isValid</span> (line <span class="line-number"><a href="../__filesource/fsource_PEL__srcPelJpeg.php.html#a596">596</a></span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Test data to see if it could be a valid JPEG image.</p>
+<p class="description"><p>The function will only look at the first few bytes of the data,  and try to determine if it could be a valid JPEG image based on  those bytes.  This means that the check is more like a heuristic  than a rigorous check.</p></p>
+	<ul class="tags">
+				<li><span class="field">return:</span> true if the bytes look like the beginning of a  JPEG image, false otherwise.</li>
+				<li><span class="field">see:</span> <a href="../PEL/PelTiff.html#methodisValid">PelTiff::isValid()</a></li>
+			</ul>
+	
+	<div class="method-signature">
+	    static
+		<span class="method-result">boolean</span>
+		<span class="method-name">
+			isValid
+		</span>
+					(<span class="var-type"><a href="../PEL/PelDataWindow.html">PelDataWindow</a></span>&nbsp;<span class="var-name">$d</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type"><a href="../PEL/PelDataWindow.html">PelDataWindow</a></span>
+				<span class="var-name">$d</span><span class="var-description">: the bytes that will be checked.</span>			</li>
+				</ul>
+		
+			
+	</div>
+
+<a name="method__construct" id="__construct"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">Constructor __construct</span> (line <span class="line-number"><a href="../__filesource/fsource_PEL__srcPelJpeg.php.html#a161">161</a></span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Construct a new JPEG object.</p>
+<p class="description"><p>The new object will be empty unless an argument is given from  which it can initialize itself. This can either be the filename  of a JPEG image, a <a href="../PEL/PelDataWindow.html">PelDataWindow</a> object or a PHP image  resource handle.</p><p>New Exif data (in the form of a <a href="../PEL/PelExif.html">PelExif</a> object) can be  inserted with the <a href="../PEL/PelJpeg.html#methodsetExif">setExif()</a> method:</p><p><div class="src-code"><ol><li><div class="src-line">&nbsp;<span class="src-var">$jpeg&nbsp;</span>=&nbsp;<span class="src-key">new&nbsp;</span><span class="src-id"><a href="../PEL/PelJpeg.html">PelJpeg</a></span><span class="src-sym">(</span><span class="src-var">$data</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&nbsp;<span class="src-comm">//&nbsp;Create&nbsp;container&nbsp;for&nbsp;the&nbsp;Exif&nbsp;information:</span></div></li>
+<li><div class="src-line">&nbsp;<span class="src-var">$exif&nbsp;</span>=&nbsp;<span class="src-key">new&nbsp;</span><span class="src-id"><a href="../PEL/PelExif.html">PelExif</a></span><span class="src-sym">(</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&nbsp;<span class="src-comm">//&nbsp;Now&nbsp;Add&nbsp;a&nbsp;PelTiff&nbsp;object&nbsp;with&nbsp;a&nbsp;PelIfd&nbsp;object&nbsp;with&nbsp;one&nbsp;or&nbsp;more</span></div></li>
+<li><div class="src-line">&nbsp;<span class="src-comm">//&nbsp;PelEntry&nbsp;objects&nbsp;to&nbsp;$exif...&nbsp;Finally&nbsp;add&nbsp;$exif&nbsp;to&nbsp;$jpeg:</span></div></li>
+<li><div class="src-line">&nbsp;<span class="src-var">$jpeg</span><span class="src-sym">-&gt;</span><a href="../PEL/PelJpeg.html#methodsetExif">setExif</a><span class="src-sym">(</span><span class="src-var">$exif</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+</ol></div></p></p>
+	
+	<div class="method-signature">
+		<span class="method-result">PelJpeg</span>
+		<span class="method-name">
+			__construct
+		</span>
+					([<span class="var-type">mixed</span>&nbsp;<span class="var-name">$data</span> = <span class="var-default">false</span>])
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">mixed</span>
+				<span class="var-name">$data</span><span class="var-description">: the data that this JPEG. This can either be a  filename, a <a href="../PEL/PelDataWindow.html">PelDataWindow</a> object, or a PHP image resource  handle.</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodappendSection" id="appendSection"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">appendSection</span> (line <span class="line-number"><a href="../__filesource/fsource_PEL__srcPelJpeg.php.html#a397">397</a></span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Append a new section.</p>
+<p class="description"><p>Used only when loading an image. If it used again later, then the  section will end up after the @{link PelJpegMarker::EOI EOI  marker} and will probably not be useful.</p><p>Please use @{link setExif()} instead if you intend to add Exif  information to an image as that function will know the right  place to insert the data.</p></p>
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			appendSection
+		</span>
+					(<span class="var-type"><a href="../PEL/PelJpegMarker.html">PelJpegMarker</a></span>&nbsp;<span class="var-name">$marker</span>, <span class="var-type"><a href="../PEL/PelJpegContent.html">PelJpegContent</a></span>&nbsp;<span class="var-name">$content</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type"><a href="../PEL/PelJpegMarker.html">PelJpegMarker</a></span>
+				<span class="var-name">$marker</span><span class="var-description">: the marker identifying the new section.</span>			</li>
+					<li>
+				<span class="var-type"><a href="../PEL/PelJpegContent.html">PelJpegContent</a></span>
+				<span class="var-name">$content</span><span class="var-description">: the content of the new section.</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodclearExif" id="clearExif"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">clearExif</span> (line <span class="line-number"><a href="../__filesource/fsource_PEL__srcPelJpeg.php.html#a372">372</a></span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Clear any Exif data.</p>
+<p class="description"><p>This method will only clear the first @{link PelJpegMarker::APP1}  section found (there should normally be just one).</p></p>
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			clearExif
+		</span>
+				()
+			</div>
+	
+		
+			
+	</div>
+<a name="methodgetBytes" id="getBytes"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">getBytes</span> (line <span class="line-number"><a href="../__filesource/fsource_PEL__srcPelJpeg.php.html#a505">505</a></span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Turn this JPEG object into bytes.</p>
+<p class="description"><p>The bytes returned by this method is ready to be stored in a file  as a valid JPEG image. Use the <a href="../PEL/PelJpeg.html#methodsaveFile">saveFile()</a> convenience  method to do this.</p></p>
+	<ul class="tags">
+				<li><span class="field">return:</span> bytes representing this JPEG object, including all  its sections and their associated data.</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">string</span>
+		<span class="method-name">
+			getBytes
+		</span>
+				()
+			</div>
+	
+		
+			
+	</div>
+<a name="methodgetExif" id="getExif"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">getExif</span> (line <span class="line-number"><a href="../__filesource/fsource_PEL__srcPelJpeg.php.html#a357">357</a></span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Get Exif data.</p>
+<p class="description"><p>Use this to get the @{link PelExif Exif data} stored.</p></p>
+	<ul class="tags">
+				<li><span class="field">return:</span> the Exif data found or null if the image has no  Exif data.</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result"><a href="../PEL/PelExif.html">PelExif</a></span>
+		<span class="method-name">
+			getExif
+		</span>
+				()
+			</div>
+	
+		
+			
+	</div>
+<a name="methodgetSection" id="getSection"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">getSection</span> (line <span class="line-number"><a href="../__filesource/fsource_PEL__srcPelJpeg.php.html#a446">446</a></span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Get a section corresponding to a particular marker.</p>
+<p class="description"><p>Please use the <a href="../PEL/PelJpeg.html#methodgetExif">getExif()</a> if you just need the Exif data.</p><p>This will search through the sections of this JPEG object,  looking for a section identified with the specified <a href="../PEL/PelJpegMarker.html">marker</a>.  The <a href="../PEL/PelJpegContent.html">content</a> will  then be returned.  The optional argument can be used to skip over  some of the sections.  So if one is looking for the, say, third  <a href="../PEL/PelJpegMarker.html#constDHT">DHT</a> section one would do:</p><p><div class="src-code"><ol><li><div class="src-line">&nbsp;<span class="src-var">$dht3&nbsp;</span>=&nbsp;<span class="src-var">$jpeg</span><span class="src-sym">-&gt;</span><a href="../PEL/PelJpeg.html#methodgetSection">getSection</a><span class="src-sym">(</span><span class="src-id"><a href="../PEL/PelJpegMarker.html">PelJpegMarker</a></span><span class="src-sym">::</span><span class="src-id">DHT</span><span class="src-sym">,&nbsp;</span><span class="src-num">2</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+</ol></div></p></p>
+	<ul class="tags">
+				<li><span class="field">return:</span> the content found, or null if there is no  content available.</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result"><a href="../PEL/PelJpegContent.html">PelJpegContent</a></span>
+		<span class="method-name">
+			getSection
+		</span>
+					(<span class="var-type"><a href="../PEL/PelJpegMarker.html">PelJpegMarker</a></span>&nbsp;<span class="var-name">$marker</span>, [<span class="var-type">int</span>&nbsp;<span class="var-name">$skip</span> = <span class="var-default">0</span>])
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type"><a href="../PEL/PelJpegMarker.html">PelJpegMarker</a></span>
+				<span class="var-name">$marker</span><span class="var-description">: the marker identifying the section.</span>			</li>
+					<li>
+				<span class="var-type">int</span>
+				<span class="var-name">$skip</span><span class="var-description">: the number of sections to be skipped.  This must be a  non-negative integer.</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodgetSections" id="getSections"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">getSections</span> (line <span class="line-number"><a href="../__filesource/fsource_PEL__srcPelJpeg.php.html#a490">490</a></span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Get all sections.</p>
+	<ul class="tags">
+				<li><span class="field">return:</span> <p>an array of (<a href="../PEL/PelJpegMarker.html">PelJpegMarker</a>, <a href="../PEL/PelJpegContent.html">PelJpegContent</a>) pairs.  Each pair is an array with the <a href="../PEL/PelJpegMarker.html">PelJpegMarker</a> as the first element and the <a href="../PEL/PelJpegContent.html">PelJpegContent</a> as the second element, so the return type is an  array of arrays.</p><p>So to loop through all the sections in a given JPEG image do  this:</p><p><div class="src-code"><ol><li><div class="src-line">&nbsp;<span class="src-key">foreach&nbsp;</span><span class="src-sym">(</span><span class="src-var">$jpeg</span><span class="src-sym">-&gt;</span><a href="../PEL/PelJpeg.html#methodgetSections">getSections</a><span class="src-sym">(</span><span class="src-sym">)&nbsp;</span><span class="src-key">as&nbsp;</span><span class="src-var">$section</span><span class="src-sym">)&nbsp;</span><span class="src-sym">{</span></div></li>
+<li><div class="src-line">&nbsp;&nbsp;&nbsp;<span class="src-var">$marker&nbsp;</span>=&nbsp;<span class="src-var">$section</span><span class="src-sym">[</span><span class="src-num">0</span><span class="src-sym">]</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&nbsp;&nbsp;&nbsp;<span class="src-var">$content&nbsp;</span>=&nbsp;<span class="src-var">$section</span><span class="src-sym">[</span><span class="src-num">1</span><span class="src-sym">]</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&nbsp;&nbsp;&nbsp;<span class="src-comm">//&nbsp;Use&nbsp;$marker&nbsp;and&nbsp;$content&nbsp;here.</span></div></li>
+<li><div class="src-line">&nbsp;<span class="src-sym">}</span></div></li>
+</ol></div></p><p>instead of this:</p><p><div class="src-code"><ol><li><div class="src-line">&nbsp;<span class="src-key">foreach&nbsp;</span><span class="src-sym">(</span><span class="src-var">$jpeg</span><span class="src-sym">-&gt;</span><a href="../PEL/PelJpeg.html#methodgetSections">getSections</a><span class="src-sym">(</span><span class="src-sym">)&nbsp;</span><span class="src-key">as&nbsp;</span><span class="src-var">$marker&nbsp;</span>=&gt;&nbsp;<span class="src-var">$content</span><span class="src-sym">)&nbsp;</span><span class="src-sym">{</span></div></li>
+<li><div class="src-line">&nbsp;&nbsp;&nbsp;<span class="src-comm">//&nbsp;Does&nbsp;not&nbsp;work&nbsp;the&nbsp;way&nbsp;you&nbsp;would&nbsp;think...</span></div></li>
+<li><div class="src-line">&nbsp;<span class="src-sym">}</span></div></li>
+</ol></div></p><p>The problem is that there could be several sections with the same  marker, and thus a simple associative array does not suffice.</p></li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">array</span>
+		<span class="method-name">
+			getSections
+		</span>
+				()
+			</div>
+	
+		
+			
+	</div>
+<a name="methodinsertSection" id="insertSection"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">insertSection</span> (line <span class="line-number"><a href="../__filesource/fsource_PEL__srcPelJpeg.php.html#a417">417</a></span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Insert a new section.</p>
+<p class="description"><p>Please use @{link setExif()} instead if you intend to add Exif  information to an image as that function will know the right  place to insert the data.</p></p>
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			insertSection
+		</span>
+					(<span class="var-type"><a href="../PEL/PelJpegMarker.html">PelJpegMarker</a></span>&nbsp;<span class="var-name">$marker</span>, <span class="var-type"><a href="../PEL/PelJpegContent.html">PelJpegContent</a></span>&nbsp;<span class="var-name">$content</span>, <span class="var-type">int</span>&nbsp;<span class="var-name">$offset</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type"><a href="../PEL/PelJpegMarker.html">PelJpegMarker</a></span>
+				<span class="var-name">$marker</span><span class="var-description">: the marker for the new section.</span>			</li>
+					<li>
+				<span class="var-type"><a href="../PEL/PelJpegContent.html">PelJpegContent</a></span>
+				<span class="var-name">$content</span><span class="var-description">: the content of the new section.</span>			</li>
+					<li>
+				<span class="var-type">int</span>
+				<span class="var-name">$offset</span><span class="var-description">: the offset where the new section will be inserted ---  use 0 to insert it at the very beginning, use 1 to insert it  between sections 1 and 2, etc.</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodload" id="load"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">load</span> (line <span class="line-number"><a href="../__filesource/fsource_PEL__srcPelJpeg.php.html#a196">196</a></span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Load data into a JPEG object.</p>
+<p class="description"><p>The data supplied will be parsed and turned into an object  structure representing the image.  This structure can then be  manipulated and later turned back into an string of bytes.</p><p>This methods can be called at any time after a JPEG object has  been constructed, also after the <a href="../PEL/PelJpeg.html#methodappendSection">appendSection()</a> has been  called to append custom sections.  Loading several JPEG images  into one object will accumulate the sections, but there will only  be one <a href="../PEL/PelJpegMarker.html#constSOS">PelJpegMarker::SOS</a> section at any given time.</p></p>
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			load
+		</span>
+					(<span class="var-type"><a href="../PEL/PelDataWindow.html">PelDataWindow</a></span>&nbsp;<span class="var-name">$d</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type"><a href="../PEL/PelDataWindow.html">PelDataWindow</a></span>
+				<span class="var-name">$d</span><span class="var-description">: the data that will be turned into JPEG  sections.</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodloadFile" id="loadFile"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">loadFile</span> (line <span class="line-number"><a href="../__filesource/fsource_PEL__srcPelJpeg.php.html#a312">312</a></span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Load data from a file into a JPEG object.</p>
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			loadFile
+		</span>
+					(<span class="var-type">string</span>&nbsp;<span class="var-name">$filename</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$filename</span><span class="var-description">: the filename.  This must be a readable file.</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodsaveFile" id="saveFile"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">saveFile</span> (line <span class="line-number"><a href="../__filesource/fsource_PEL__srcPelJpeg.php.html#a540">540</a></span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Save the JPEG object as a JPEG image in a file.</p>
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			saveFile
+		</span>
+					(<span class="var-type">string</span>&nbsp;<span class="var-name">$filename</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$filename</span><span class="var-description">: the filename to save in. An existing file with the  same name will be overwritten!</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodsetExif" id="setExif"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">setExif</span> (line <span class="line-number"><a href="../__filesource/fsource_PEL__srcPelJpeg.php.html#a325">325</a></span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Set Exif data.</p>
+<p class="description"><p>Use this to set the Exif data in the image. This will overwrite  any old Exif information in the image.</p></p>
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			setExif
+		</span>
+					(<span class="var-type"><a href="../PEL/PelExif.html">PelExif</a></span>&nbsp;<span class="var-name">$exif</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type"><a href="../PEL/PelExif.html">PelExif</a></span>
+				<span class="var-name">$exif</span><span class="var-description">: the Exif data.</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="method__toString" id="__toString"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">__toString</span> (line <span class="line-number"><a href="../__filesource/fsource_PEL__srcPelJpeg.php.html#a553">553</a></span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Make a string representation of this JPEG object.</p>
+<p class="description"><p>This is mainly usefull for debugging.  It will show the structure  of the image, and its sections.</p></p>
+	<ul class="tags">
+				<li><span class="field">return:</span> debugging information about this JPEG object.</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">string</span>
+		<span class="method-name">
+			__toString
+		</span>
+				()
+			</div>
+	
+		
+			
+	</div>
+						
+		</div>
+	</div>
+
+
+	<p class="notes" id="credit">
+		Documentation generated on Thu, 05 May 2011 07:19:18 +0200 by <a href="http://www.phpdoc.org" target="_blank">phpDocumentor 1.4.3</a>
+	</p>
+	</div></body>
+</html>

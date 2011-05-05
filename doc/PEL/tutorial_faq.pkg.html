@@ -1,0 +1,272 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+  <html xmlns="http://www.w3.org/1999/xhtml">
+		<head>
+			<!-- template designed by Marco Von Ballmoos -->
+			<title>Frequently Asked Questions (FAQ)</title>
+			<link rel="stylesheet" href="../media/stylesheet.css" />
+			<meta http-equiv='Content-Type' content='text/html; charset=iso-8859-1'/>
+		</head>
+		<body>
+			<div class="page-body">			
+	<table class="tutorial-nav-box">
+	<tr>
+		<td style="width: 30%">
+							<a href="../PEL/tutorial_using.pkg.html" class="nav-button">Previous</a>
+					</td>
+		<td style="text-align: center">
+							<a href="../PEL/tutorial_PEL.pkg.html" class="nav-button">Up</a>
+					</td>
+		<td style="text-align: right; width: 30%">
+							<span class="nav-button-disabled">Next</span>
+					</td>
+	</tr>
+	<tr>
+		<td style="width: 30%">
+							<span class="detail">Using PEL in applications</span>
+					</td>
+		<td style="text-align: center">
+							<span class="detail">PHP Exif Library</span>
+					</td>
+		<td style="text-align: right; width: 30%">
+					</td>
+	</tr>
+</table>
+	
+<div><a name=""></a><div class="ref-title-box"><h1 class="ref-title">Frequently Asked Questions (FAQ)</h1>
+    <h2 class="ref-purpose">Quick answers to common questions</h2></div>
+  <div class="ref-synopsis"><div class="author-blurb"><p><span class="author">Martin
+          Geisler</span>
+        <a href="mailto:mgeisler@users.sourceforge.net">mgeisler@users.sourceforge.net</a></p></div></div>
+
+  <h1 class="title">Table of Contents</h1>
+<ul class="toc">
+	
+			
+					<li><a href="../PEL/tutorial_faq.pkg.html#pel-acronym">What does PEL stand for?</a></li>
+					
+					<li><a href="../PEL/tutorial_faq.pkg.html#exif-vs-exif">What's the business with EXIF vs. Exif?</a></li>
+					
+					<li><a href="../PEL/tutorial_faq.pkg.html#why-php5">Why does PEL require PHP version 5?</a></li>
+					
+					<li><a href="../PEL/tutorial_faq.pkg.html#fatal-php4-errors">Why do I get fatal errors from PHP?</a></li>
+					
+					<li><a href="../PEL/tutorial_faq.pkg.html#call-on-non-object">What does &quot;Call to a member function
+  f() on a non-object&quot; (where
+  f() is getTiff() or
+  setValue()) mean?</a></li>
+					
+					<li><a href="../PEL/tutorial_faq.pkg.html#IPTC-entries">Does PEL handle IPTC entries?</a></li>
+					
+					<li><a href="../PEL/tutorial_faq.pkg.html#missing-Gettext">Why does Gettext not work?</a></li>
+					
+					<li><a href="../PEL/tutorial_faq.pkg.html#error-handling">How to deal with broken images?</a></li>
+					
+					<li><a href="../PEL/tutorial_faq.pkg.html#commercial-use">Can I use PEL for a commercial application?</a></li>
+					
+					<li><a href="../PEL/tutorial_faq.pkg.html#unanswered-question">My question is not answered here!</a></li>
+					</ul>
+
+
+<span><a name="pel-acronym"></a><h2 class="title">What does PEL stand for?</h2><p>PEL is an acronym for &quot;PHP Exif Library&quot;.  Sound simple
+  enough, doesn't it?</p>
+
+  <p>But did you realise that PEL is an acronym consisting of two
+  acronyms, one of which is recursive!  So &quot;PEL&quot; actually stands for
+  &quot;PHP Hypertext Preprocessor Exchangeable image file format Library&quot;.
+  Pyh!</p></span>
+
+
+<span><a name="exif-vs-exif"></a><h2 class="title">What's the business with EXIF vs. Exif?</h2><p>Well, since Exif is an acronym for &quot;Exchangeable image file
+  format&quot; and thus you would expect it to be spelled &quot;EXIF&quot;, just like
+  &quot;JPEG&quot; which is an acronym for Joint Photographic Experts
+  Group.</p>
+
+  <p>But the Exif standards spell Exif as &quot;Exif&quot; and so does PEL,
+  at least since version 0.9.  But should they ever decide to update
+  their acronym to &quot;EXIF&quot; then PEL will revert...  Luckily it does not
+  affect the acronym PEL itself :-)</p></span>
+
+
+<span><a name="why-php5"></a><h2 class="title">Why does PEL require PHP version 5?</h2><p>The support for object-oriented programming was completely
+  overhauled with the introduction of PHP 5 in July 2004.  The changes
+  included both semantic changes and syntaxtical changes to the PHP
+  language.</p>
+
+  <p>The semantic change was the use of object references per
+  default.  This change means that when you do</p>
+  
+  <div class="src-code"><ol><li><div class="src-line"><span class="src-var">$object_a&nbsp;</span>=&nbsp;<span class="src-var">$ifd</span><span class="src-sym">-&gt;</span><span class="src-id">getEntry</span><span class="src-sym">(</span><span class="src-id"><a href="../PEL/PelTag.html">PelTag</a></span><span class="src-sym">::</span><span class="src-id">IMAGE_DESCRIPTION</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line"><span class="src-var">$object_a</span><span class="src-sym">-&gt;</span><span class="src-id">setValue</span><span class="src-sym">(</span><span class="src-str">'This&nbsp;is&nbsp;my&nbsp;new&nbsp;description.'</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line"><span class="src-var">$object_b&nbsp;</span>=&nbsp;<span class="src-var">$ifd</span><span class="src-sym">-&gt;</span><span class="src-id">getEntry</span><span class="src-sym">(</span><span class="src-id"><a href="../PEL/PelTag.html">PelTag</a></span><span class="src-sym">::</span><span class="src-id">IMAGE_DESCRIPTION</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+</ol></div>
+
+  <p>then <code>$object_a</code> and
+  <code>$object_b</code> will both reference <em>the
+  same</em> element.  In particular, you will see that
+  <code>$object_b-&gt;getValue()</code> returns the string just
+  stored in <code>$object_a</code> (since they are the same
+  object).  With PHP 4 you would have gotten two different objects,
+  which is generally not what you want.</p>
+
+  <p>The syntaxtical changes from PHP 5 to PHP 4 include the
+  addition of access modifiers to object fields (the private,
+  protected, and public keywords), object constants, constructors
+  named <code>__construct()</code>, interfaces and abstract
+  classes, and exceptions.  PEL uses all these new features to the
+  fullest, which means that PHP 4 doesn't understand the code.</p>
+
+  <p>If your provider is still using PHP 4, then you should ask
+  them to upgrade.  PHP 5 has been declared stable since July 2004 and
+  all major PHP applications (<a href="http://www.wordpress.org">WordPress</a>, <a href="http://gallery.menalto.com/">Gallery</a>,
+  <a href="http://phpwiki.sourceforge.net/">PhpWiki</a>,
+  <a href="http://www.phpmyadmin.net/">phpMyAdmin</a>, etc...), have been
+  upgraded to work with PHP 5, so an upgrade should not bring you any
+  problems, just more features and better performance.</p></span>
+
+
+<span><a name="fatal-php4-errors"></a><h2 class="title">Why do I get fatal errors from PHP?</h2><p>If you get a fatal error when trying to use PEL, then your
+  installation of PHP might be too old.  PEL requires PHP version 5.
+  Please see the question &quot;<a href="../PEL/tutorial_faq.pkg.html#why-php5">Why does PEL require PHP version 5?</a>&quot; for more
+  information.</p></span>
+
+
+<span><a name="call-on-non-object"></a><h2 class="title">What does &quot;<code>Call to a member function
+  f() on a non-object</code>&quot; (where
+  f() is <code>getTiff()</code> or
+  <code>setValue()</code>) mean?</h2><p>This is the error PHP gives when you call a method on a
+  variable which is not an object.</p>
+
+  <p>PEL uses objects to represent the entire structure of a JPEG
+  image, and many of the methods defined on those objects return other
+  objects.  In particular, the method <a href="../PEL/PelJpeg.html#methodgetExif">PelJpeg::getExif()</a>
+  returns a <a href="../PEL/PelExif.html">PelExif</a> object and <a href="../PEL/PelIfd.html#methodgetEntry">PelIfd::getEntry()</a>
+  returns a <a href="../PEL/PelEntry.html">PelEntry</a> object.</p>
+
+  <p>But both methods can return <code>null</code> if no such
+  section or entry exist.  The correct way to use them is thus
+  something along the lines of:</p>
+
+  <div class="src-code"><ol><li><div class="src-line"><span class="src-var">$exif&nbsp;</span>=&nbsp;<span class="src-var">$jpeg</span><span class="src-sym">-&gt;</span><span class="src-id">getExif</span><span class="src-sym">(</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line"><span class="src-key">if&nbsp;</span><span class="src-sym">(</span><span class="src-var">$exif&nbsp;</span>!=&nbsp;<span class="src-id">null</span><span class="src-sym">)&nbsp;</span><span class="src-sym">{</span></div></li>
+<li><div class="src-line">&nbsp;&nbsp;<span class="src-var">$tiff&nbsp;</span>=&nbsp;<span class="src-var">$exif</span><span class="src-sym">-&gt;</span><span class="src-id">getTiff</span><span class="src-sym">(</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&nbsp;&nbsp;<span class="src-comm">/*&nbsp;Do&nbsp;something&nbsp;with&nbsp;the&nbsp;TIFF&nbsp;data.&nbsp;*/</span></div></li>
+<li><div class="src-line"><span class="src-sym">}&nbsp;</span><span class="src-key">else&nbsp;</span><span class="src-sym">{</span></div></li>
+<li><div class="src-line">&nbsp;&nbsp;<span class="src-comm">/*&nbsp;Sorry&nbsp;---&nbsp;no&nbsp;Exif&nbsp;data&nbsp;found.&nbsp;*/</span></div></li>
+<li><div class="src-line"><span class="src-sym">}</span></div></li>
+</ol></div>
+  
+  <p>The same principle applies to the return values of
+  <a href="../PEL/PelIfd.html#methodgetEntry">PelIfd::getEntry()</a> and all other methods which return
+  objects.</p></span>
+
+
+<span><a name="IPTC-entries"></a><h2 class="title">Does PEL handle IPTC entries?</h2><p>No, PEL only deals with Exif data, and no such extension is
+  planned.  Try taking at look at the
+  <a href="http://www.ozhiker.com/electronics/pjmt/">PHP JPEG Metadata
+  Toolkit</a> which should handle IPTC along with a huge number of other
+  metadata formats.</p></span>
+
+
+<span><a name="missing-Gettext"></a><h2 class="title">Why does Gettext not work?</h2><p>PEL uses Gettext for localization, and thus your system must
+  fulfill a few requirements:</p>
+
+  <ol><li><p>PHP must have support for the
+      <a href="http://www.php.net/manual/en/ref.gettext.php">Gettext
+      extension</a>.  Most installations of PHP already has this, but
+      please double-check with <a href="http://www.php.net/manual/en/function.phpinfo.php">phpinfo</a>() before asking for help on the
+      mailinglist.</p></li>
+
+    <li><p>The system must be setup to generate locales for the
+      languages into which PEL has been translated.  Again, most
+      commercial webhosts would have their systems configured to deal
+      with all locales, but if you're installing PEL on your own
+      server you'll probably have to reconfigure it.</p>
+
+      <p>How to configure the locales differ from system to system.
+      With the <a href="http://www.debian.net/">Debian GNU/Linux</a>
+      distribution you should run</p>
+
+      <div class="src-code">dpkg-reconfigure locales</div>
+
+      <p>and then select all locales that you want your system to
+      support.</p>
+
+      <p>Restart your webserver after changing the locale setup to
+      make the changes effective.</p></li></ol></span>
+
+
+<span><a name="error-handling"></a><h2 class="title">How to deal with broken images?</h2><p>By default PEL will try to load as much from an image as
+  possible and continue dispite any errors found.  The Exif standard
+  mandates certain formats and lengths for some entries, and sometimes
+  these requirements are violated.</p>
+
+  <p>The strictness of PEL is controlled by the the method
+  <a href="../PEL/Pel.html#methodsetStrictParsing">Pel::setStrictParsing()</a>.  The default is non-strict parsing.
+  In this mode, PEL will not throw exceptions for parse errors but
+  instead store them for later inspection via the
+  <a href="../PEL/Pel.html#methodgetExceptions">Pel::getExceptions()</a> method.</p>
+
+  <p>With an argument of <code>true</code> to
+  <a href="../PEL/Pel.html#methodsetStrictParsing">Pel::setStrictParsing()</a> you make PEL throw exceptions upon
+  parse errors.</p>
+
+  <p>This may all sound very complex, but it is actually fairly
+  simple for most uses: have PEL load your images in non-strict mode
+  and check for errors afterwards, if necessary.</p>
+
+  <p>Please note that even if PEL is in non-strict mode it might
+  throw exceptions while parsing an image, for example if the image
+  cannot be recognized a JPEG or TIFF image.  So it is always
+  necessary to wrap calls to PEL in a try-catch block.</p></span>
+
+
+<span><a name="commercial-use"></a><h2 class="title">Can I use PEL for a commercial application?</h2><p>Yes, no problem as long as you do not distribute your
+  application under another license than the GNU GPL.</p>
+
+  <p>As you should know, PEL is licensed to you under the
+  conditions of the GNU GPL.  The license deals
+  <em>only</em> with the distribution of PEL and any
+  derivative works based on PEL, the license has nothing to say over
+  how you may use PEL.</p>
+
+  <p>So if you do not distribute your code, then you can use it for
+  whatever you want, including writing a website (commercial or not)
+  that integrates PEL.  Please see
+  <a href="http://www.gnu.org/licenses/gpl-faq.html#GPLRequireSourcePostedPublic">this question</a> in the GPL FAQ.</p></span>
+
+
+<span><a name="unanswered-question"></a><h2 class="title">My question is not answered here!</h2><p>Please ask your questions on the
+  <a href="http://lists.sourceforge.net/lists/listinfo/pel-devel">PEL
+  Development List</a>.  If an answer is found, then the FAQ will be
+  updated.</p></span></div>
+
+	<table class="tutorial-nav-box">
+	<tr>
+		<td style="width: 30%">
+							<a href="../PEL/tutorial_using.pkg.html" class="nav-button">Previous</a>
+					</td>
+		<td style="text-align: center">
+							<a href="../PEL/tutorial_PEL.pkg.html" class="nav-button">Up</a>
+					</td>
+		<td style="text-align: right; width: 30%">
+							<span class="nav-button-disabled">Next</span>
+					</td>
+	</tr>
+	<tr>
+		<td style="width: 30%">
+							<span class="detail">Using PEL in applications</span>
+					</td>
+		<td style="text-align: center">
+							<span class="detail">PHP Exif Library</span>
+					</td>
+		<td style="text-align: right; width: 30%">
+					</td>
+	</tr>
+</table>
+	
+	<p class="notes" id="credit">
+		Documentation generated on Thu, 05 May 2011 07:18:55 +0200 by <a href="http://www.phpdoc.org" target="_blank">phpDocumentor 1.4.3</a>
+	</p>
+	</div></body>
+</html>

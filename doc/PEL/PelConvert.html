@@ -1,0 +1,671 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+  <html xmlns="http://www.w3.org/1999/xhtml">
+		<head>
+			<!-- template designed by Marco Von Ballmoos -->
+			<title>Docs For Class PelConvert</title>
+			<link rel="stylesheet" href="../media/stylesheet.css" />
+			<meta http-equiv='Content-Type' content='text/html; charset=iso-8859-1'/>
+		</head>
+		<body>
+			<div class="page-body">			
+<h2 class="class-name">Class PelConvert</h2>
+
+<a name="sec-description"></a>
+<div class="info-box">
+	<div class="info-box-title">Description</div>
+	<div class="nav-bar">
+					<span class="disabled">Description</span> |
+															<a href="#sec-method-summary">Methods</a> (<a href="#sec-methods">details</a>)
+						
+											<a href="#sec-const-summary">Constants</a> (<a href="#sec-consts">details</a>)
+						
+			</div>
+	<div class="info-box-body">
+        		<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Conversion functions to and from bytes and integers.</p>
+<p class="description"><p>The functions found in this class are used to convert bytes into  integers of several sizes (<a href="../PEL/PelConvert.html#methodbytesToShort">bytesToShort</a>, <a href="../PEL/PelConvert.html#methodbytesToLong">bytesToLong</a>, and <a href="../PEL/PelConvert.html#methodbytesToRational">bytesToRational</a>) and convert integers of  several sizes into bytes (<a href="../PEL/PelConvert.html#methodshortToBytes">shortToBytes</a> and <a href="../PEL/PelConvert.html#methodlongToBytes">longToBytes</a>).</p><p>All the methods are static and they all rely on an argument that  specifies the byte order to be used, this must be one of the class  constants <a href="../PEL/PelConvert.html#constLITTLE_ENDIAN">LITTLE_ENDIAN</a> or <a href="../PEL/PelConvert.html#constBIG_ENDIAN">BIG_ENDIAN</a>.  These  constants will be referred to as the pseudo type PelByteOrder  throughout the documentation.</p></p>
+	<ul class="tags">
+				<li><span class="field">author:</span> Martin Geisler &lt;<a href="mailto:mgeisler@users.sourceforge.net">mgeisler@users.sourceforge.net</a>&gt;</li>
+			</ul>
+		<p class="notes">
+			Located in <a class="field" href="_src---PelConvert.php.html">/src/PelConvert.php</a> (line <span class="field"><a href="../__filesource/fsource_PEL__srcPelConvert.php.html#a56">56</a></span>)
+		</p>
+		
+				
+		<pre></pre>
+	
+			</div>
+</div>
+
+
+	<a name="sec-const-summary"></a>
+	<div class="info-box">
+		<div class="info-box-title">Class Constant Summary</span></div>
+		<div class="nav-bar">
+			<a href="#sec-description">Description</a> |
+						<span class="disabled">Constants</span> (<a href="#sec-consts">details</a>)
+										| 
+									<a href="#sec-method-summary">Methods</a> (<a href="#sec-methods">details</a>)
+							
+					</div>
+		<div class="info-box-body">
+			<div class="const-summary">
+								<div class="const-title">
+					<img src="../media/images/Constant.png" alt=" " />
+					<a href="#BIG_ENDIAN" title="details" class="const-name">BIG_ENDIAN</a> = 					<span class="var-type"> false</span>
+
+				</div>
+								<div class="const-title">
+					<img src="../media/images/Constant.png" alt=" " />
+					<a href="#LITTLE_ENDIAN" title="details" class="const-name">LITTLE_ENDIAN</a> = 					<span class="var-type"> true</span>
+
+				</div>
+							</div>
+		</div>
+	</div>
+
+
+	<a name="sec-method-summary"></a>
+	<div class="info-box">
+		<div class="info-box-title">Method Summary</span></div>
+		<div class="nav-bar">
+			<a href="#sec-description">Description</a> |
+															<a href="#sec-const-summary">Constants</a> (<a href="#sec-consts">details</a>)
+							
+									<span class="disabled">Methods</span> (<a href="#sec-methods">details</a>)
+		</div>
+		<div class="info-box-body">			
+			<div class="method-summary">
+												<div class="method-definition">
+					static 						<span class="method-result">int</span>
+										<a href="#bytesToByte" title="details" class="method-name">bytesToByte</a>
+											(<span class="var-type">string</span>&nbsp;<span class="var-name">$bytes</span>, <span class="var-type">int</span>&nbsp;<span class="var-name">$offset</span>)
+									</div>
+																<div class="method-definition">
+					static 						<span class="method-result">void</span>
+										<a href="#bytesToDump" title="details" class="method-name">bytesToDump</a>
+											(<span class="var-type">string</span>&nbsp;<span class="var-name">$bytes</span>, [<span class="var-type">int</span>&nbsp;<span class="var-name">$max</span> = <span class="var-default">0</span>])
+									</div>
+																<div class="method-definition">
+					static 						<span class="method-result">int</span>
+										<a href="#bytesToLong" title="details" class="method-name">bytesToLong</a>
+											(<span class="var-type">string</span>&nbsp;<span class="var-name">$bytes</span>, <span class="var-type">int</span>&nbsp;<span class="var-name">$offset</span>, <span class="var-type">PelByteOrder</span>&nbsp;<span class="var-name">$endian</span>)
+									</div>
+																<div class="method-definition">
+					static 						<span class="method-result">array</span>
+										<a href="#bytesToRational" title="details" class="method-name">bytesToRational</a>
+											(<span class="var-type">string</span>&nbsp;<span class="var-name">$bytes</span>, <span class="var-type">int</span>&nbsp;<span class="var-name">$offset</span>, <span class="var-type">PelByteOrder</span>&nbsp;<span class="var-name">$endian</span>)
+									</div>
+																<div class="method-definition">
+					static 						<span class="method-result">int</span>
+										<a href="#bytesToSByte" title="details" class="method-name">bytesToSByte</a>
+											(<span class="var-type">string</span>&nbsp;<span class="var-name">$bytes</span>, <span class="var-type">int</span>&nbsp;<span class="var-name">$offset</span>)
+									</div>
+																<div class="method-definition">
+					static 						<span class="method-result">int</span>
+										<a href="#bytesToShort" title="details" class="method-name">bytesToShort</a>
+											(<span class="var-type">string</span>&nbsp;<span class="var-name">$bytes</span>, <span class="var-type">int</span>&nbsp;<span class="var-name">$offset</span>, <span class="var-type">PelByteOrder</span>&nbsp;<span class="var-name">$endian</span>)
+									</div>
+																<div class="method-definition">
+					static 						<span class="method-result">int</span>
+										<a href="#bytesToSLong" title="details" class="method-name">bytesToSLong</a>
+											(<span class="var-type">string</span>&nbsp;<span class="var-name">$bytes</span>, <span class="var-type">int</span>&nbsp;<span class="var-name">$offset</span>, <span class="var-type">PelByteOrder</span>&nbsp;<span class="var-name">$endian</span>)
+									</div>
+																<div class="method-definition">
+					static 						<span class="method-result">array</span>
+										<a href="#bytesToSRational" title="details" class="method-name">bytesToSRational</a>
+											(<span class="var-type">string</span>&nbsp;<span class="var-name">$bytes</span>, <span class="var-type">int</span>&nbsp;<span class="var-name">$offset</span>, <span class="var-type">PelByteOrder</span>&nbsp;<span class="var-name">$endian</span>)
+									</div>
+																<div class="method-definition">
+					static 						<span class="method-result">int</span>
+										<a href="#bytesToSShort" title="details" class="method-name">bytesToSShort</a>
+											(<span class="var-type">string</span>&nbsp;<span class="var-name">$bytes</span>, <span class="var-type">int</span>&nbsp;<span class="var-name">$offset</span>, <span class="var-type">PelByteOrder</span>&nbsp;<span class="var-name">$endian</span>)
+									</div>
+																<div class="method-definition">
+					static 						<span class="method-result">string</span>
+										<a href="#longToBytes" title="details" class="method-name">longToBytes</a>
+											(<span class="var-type">int</span>&nbsp;<span class="var-name">$value</span>, <span class="var-type">PelByteOrder</span>&nbsp;<span class="var-name">$endian</span>)
+									</div>
+																<div class="method-definition">
+					static 						<span class="method-result">string</span>
+										<a href="#shortToBytes" title="details" class="method-name">shortToBytes</a>
+											(<span class="var-type">int</span>&nbsp;<span class="var-name">$value</span>, <span class="var-type">PelByteOrder</span>&nbsp;<span class="var-name">$endian</span>)
+									</div>
+																<div class="method-definition">
+					static 						<span class="method-result">string</span>
+										<a href="#sLongToBytes" title="details" class="method-name">sLongToBytes</a>
+											(<span class="var-type">int</span>&nbsp;<span class="var-name">$value</span>, <span class="var-type">PelByteOrder</span>&nbsp;<span class="var-name">$endian</span>)
+									</div>
+																<div class="method-definition">
+					static 						<span class="method-result">string</span>
+										<a href="#sShortToBytes" title="details" class="method-name">sShortToBytes</a>
+											(<span class="var-type">int</span>&nbsp;<span class="var-name">$value</span>, <span class="var-type">PelByteOrder</span>&nbsp;<span class="var-name">$endian</span>)
+									</div>
+								
+																																																																																																												</div>
+		</div>
+	</div>		
+
+	
+	<a name="sec-methods"></a>
+	<div class="info-box">
+		<div class="info-box-title">Methods</div>
+		<div class="nav-bar">
+			<a href="#sec-description">Description</a> |
+																		<a href="#sec-const-summary">Constants</a> (<a href="#sec-consts">details</a>)
+							
+										<a href="#sec-method-summary">Methods</a> (<span class="disabled">details</span>)
+						
+		</div>
+		<div class="info-box-body">
+			<A NAME='method_detail'></A>
+<a name="methodbytesToByte" id="bytesToByte"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">static method bytesToByte</span> (line <span class="line-number"><a href="../__filesource/fsource_PEL__srcPelConvert.php.html#a195">195</a></span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Extract an unsigned byte from a string of bytes.</p>
+	<ul class="tags">
+				<li><span class="field">return:</span> the unsigned byte found at offset, e.g., an integer  in the range 0 to 255.</li>
+			</ul>
+	
+	<div class="method-signature">
+	    static
+		<span class="method-result">int</span>
+		<span class="method-name">
+			bytesToByte
+		</span>
+					(<span class="var-type">string</span>&nbsp;<span class="var-name">$bytes</span>, <span class="var-type">int</span>&nbsp;<span class="var-name">$offset</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$bytes</span><span class="var-description">: the bytes.</span>			</li>
+					<li>
+				<span class="var-type">int</span>
+				<span class="var-name">$offset</span><span class="var-description">: the offset.  The byte found at the offset will be  returned as an integer.  The must be at least one byte available  at offset.</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodbytesToDump" id="bytesToDump"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">static method bytesToDump</span> (line <span class="line-number"><a href="../__filesource/fsource_PEL__srcPelConvert.php.html#a378">378</a></span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Format bytes for dumping.</p>
+<p class="description"><p>This method is for debug output, it will format a string as a  hexadecimal dump suitable for display on a terminal.  The output  is printed directly to standard out.</p></p>
+	
+	<div class="method-signature">
+	    static
+		<span class="method-result">void</span>
+		<span class="method-name">
+			bytesToDump
+		</span>
+					(<span class="var-type">string</span>&nbsp;<span class="var-name">$bytes</span>, [<span class="var-type">int</span>&nbsp;<span class="var-name">$max</span> = <span class="var-default">0</span>])
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$bytes</span><span class="var-description">: the bytes that will be dumped.</span>			</li>
+					<li>
+				<span class="var-type">int</span>
+				<span class="var-name">$max</span><span class="var-description">: the maximum number of bytes to dump.  If this is left  out (or left to the default of 0), then the entire string will be  dumped.</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodbytesToLong" id="bytesToLong"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">static method bytesToLong</span> (line <span class="line-number"><a href="../__filesource/fsource_PEL__srcPelConvert.php.html#a285">285</a></span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Extract an unsigned long from bytes.</p>
+	<ul class="tags">
+				<li><span class="field">return:</span> the unsigned long found at offset, e.g., an integer  in the range 0 to 4294967295.</li>
+			</ul>
+	
+	<div class="method-signature">
+	    static
+		<span class="method-result">int</span>
+		<span class="method-name">
+			bytesToLong
+		</span>
+					(<span class="var-type">string</span>&nbsp;<span class="var-name">$bytes</span>, <span class="var-type">int</span>&nbsp;<span class="var-name">$offset</span>, <span class="var-type">PelByteOrder</span>&nbsp;<span class="var-name">$endian</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$bytes</span><span class="var-description">: the bytes.</span>			</li>
+					<li>
+				<span class="var-type">int</span>
+				<span class="var-name">$offset</span><span class="var-description">: the offset.  The long found at offset will be returned  as an integer.  There must be at least four bytes available  beginning at the offset given.</span>			</li>
+					<li>
+				<span class="var-type">PelByteOrder</span>
+				<span class="var-name">$endian</span><span class="var-description">: one of <a href="../PEL/PelConvert.html#constLITTLE_ENDIAN">LITTLE_ENDIAN</a> and <a href="../PEL/PelConvert.html#constBIG_ENDIAN">BIG_ENDIAN</a>.</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodbytesToRational" id="bytesToRational"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">static method bytesToRational</span> (line <span class="line-number"><a href="../__filesource/fsource_PEL__srcPelConvert.php.html#a338">338</a></span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Extract an unsigned rational from bytes.</p>
+	<ul class="tags">
+				<li><span class="field">return:</span> the unsigned rational found at offset, e.g., an  array with two integers in the range 0 to 4294967295.</li>
+			</ul>
+	
+	<div class="method-signature">
+	    static
+		<span class="method-result">array</span>
+		<span class="method-name">
+			bytesToRational
+		</span>
+					(<span class="var-type">string</span>&nbsp;<span class="var-name">$bytes</span>, <span class="var-type">int</span>&nbsp;<span class="var-name">$offset</span>, <span class="var-type">PelByteOrder</span>&nbsp;<span class="var-name">$endian</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$bytes</span><span class="var-description">: the bytes.</span>			</li>
+					<li>
+				<span class="var-type">int</span>
+				<span class="var-name">$offset</span><span class="var-description">: the offset.  The rational found at offset will be  returned as an array.  There must be at least eight bytes  available beginning at the offset given.</span>			</li>
+					<li>
+				<span class="var-type">PelByteOrder</span>
+				<span class="var-name">$endian</span><span class="var-description">: one of <a href="../PEL/PelConvert.html#constLITTLE_ENDIAN">LITTLE_ENDIAN</a> and <a href="../PEL/PelConvert.html#constBIG_ENDIAN">BIG_ENDIAN</a>.</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodbytesToSByte" id="bytesToSByte"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">static method bytesToSByte</span> (line <span class="line-number"><a href="../__filesource/fsource_PEL__srcPelConvert.php.html#a212">212</a></span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Extract a signed byte from bytes.</p>
+	<ul class="tags">
+				<li><span class="field">return:</span> the signed byte found at offset, e.g., an integer in  the range -128 to 127.</li>
+			</ul>
+	
+	<div class="method-signature">
+	    static
+		<span class="method-result">int</span>
+		<span class="method-name">
+			bytesToSByte
+		</span>
+					(<span class="var-type">string</span>&nbsp;<span class="var-name">$bytes</span>, <span class="var-type">int</span>&nbsp;<span class="var-name">$offset</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$bytes</span><span class="var-description">: the bytes.</span>			</li>
+					<li>
+				<span class="var-type">int</span>
+				<span class="var-name">$offset</span><span class="var-description">: the offset.  The byte found at the offset will be  returned as an integer.  The must be at least one byte available  at offset.</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodbytesToShort" id="bytesToShort"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">static method bytesToShort</span> (line <span class="line-number"><a href="../__filesource/fsource_PEL__srcPelConvert.php.html#a236">236</a></span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Extract an unsigned short from bytes.</p>
+	<ul class="tags">
+				<li><span class="field">return:</span> the unsigned short found at offset, e.g., an integer  in the range 0 to 65535.</li>
+			</ul>
+	
+	<div class="method-signature">
+	    static
+		<span class="method-result">int</span>
+		<span class="method-name">
+			bytesToShort
+		</span>
+					(<span class="var-type">string</span>&nbsp;<span class="var-name">$bytes</span>, <span class="var-type">int</span>&nbsp;<span class="var-name">$offset</span>, <span class="var-type">PelByteOrder</span>&nbsp;<span class="var-name">$endian</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$bytes</span><span class="var-description">: the bytes.</span>			</li>
+					<li>
+				<span class="var-type">int</span>
+				<span class="var-name">$offset</span><span class="var-description">: the offset.  The short found at the offset will be  returned as an integer.  There must be at least two bytes  available beginning at the offset given.</span>			</li>
+					<li>
+				<span class="var-type">PelByteOrder</span>
+				<span class="var-name">$endian</span><span class="var-description">: one of <a href="../PEL/PelConvert.html#constLITTLE_ENDIAN">LITTLE_ENDIAN</a> and <a href="../PEL/PelConvert.html#constBIG_ENDIAN">BIG_ENDIAN</a>.</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodbytesToSLong" id="bytesToSLong"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">static method bytesToSLong</span> (line <span class="line-number"><a href="../__filesource/fsource_PEL__srcPelConvert.php.html#a314">314</a></span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Extract a signed long from bytes.</p>
+	<ul class="tags">
+				<li><span class="field">return:</span> the signed long found at offset, e.g., an integer in  the range -2147483648 to 2147483647.</li>
+			</ul>
+	
+	<div class="method-signature">
+	    static
+		<span class="method-result">int</span>
+		<span class="method-name">
+			bytesToSLong
+		</span>
+					(<span class="var-type">string</span>&nbsp;<span class="var-name">$bytes</span>, <span class="var-type">int</span>&nbsp;<span class="var-name">$offset</span>, <span class="var-type">PelByteOrder</span>&nbsp;<span class="var-name">$endian</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$bytes</span><span class="var-description">: the bytes.</span>			</li>
+					<li>
+				<span class="var-type">int</span>
+				<span class="var-name">$offset</span><span class="var-description">: the offset.  The long found at offset will be returned  as an integer.  There must be at least four bytes available  beginning at the offset given.</span>			</li>
+					<li>
+				<span class="var-type">PelByteOrder</span>
+				<span class="var-name">$endian</span><span class="var-description">: one of <a href="../PEL/PelConvert.html#constLITTLE_ENDIAN">LITTLE_ENDIAN</a> and <a href="../PEL/PelConvert.html#constBIG_ENDIAN">BIG_ENDIAN</a>.</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodbytesToSRational" id="bytesToSRational"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">static method bytesToSRational</span> (line <span class="line-number"><a href="../__filesource/fsource_PEL__srcPelConvert.php.html#a359">359</a></span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Extract a signed rational from bytes.</p>
+	<ul class="tags">
+				<li><span class="field">return:</span> the signed rational found at offset, e.g., an array  with two integers in the range -2147483648 to 2147483647.</li>
+			</ul>
+	
+	<div class="method-signature">
+	    static
+		<span class="method-result">array</span>
+		<span class="method-name">
+			bytesToSRational
+		</span>
+					(<span class="var-type">string</span>&nbsp;<span class="var-name">$bytes</span>, <span class="var-type">int</span>&nbsp;<span class="var-name">$offset</span>, <span class="var-type">PelByteOrder</span>&nbsp;<span class="var-name">$endian</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$bytes</span><span class="var-description">: the bytes.</span>			</li>
+					<li>
+				<span class="var-type">int</span>
+				<span class="var-name">$offset</span><span class="var-description">: the offset.  The rational found at offset will be  returned as an array.  There must be at least eight bytes  available beginning at the offset given.</span>			</li>
+					<li>
+				<span class="var-type">PelByteOrder</span>
+				<span class="var-name">$endian</span><span class="var-description">: one of <a href="../PEL/PelConvert.html#constLITTLE_ENDIAN">LITTLE_ENDIAN</a> and <a href="../PEL/PelConvert.html#constBIG_ENDIAN">BIG_ENDIAN</a>.</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodbytesToSShort" id="bytesToSShort"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">static method bytesToSShort</span> (line <span class="line-number"><a href="../__filesource/fsource_PEL__srcPelConvert.php.html#a261">261</a></span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Extract a signed short from bytes.</p>
+	<ul class="tags">
+				<li><span class="field">return:</span> the signed byte found at offset, e.g., an integer in  the range -32768 to 32767.</li>
+			</ul>
+	
+	<div class="method-signature">
+	    static
+		<span class="method-result">int</span>
+		<span class="method-name">
+			bytesToSShort
+		</span>
+					(<span class="var-type">string</span>&nbsp;<span class="var-name">$bytes</span>, <span class="var-type">int</span>&nbsp;<span class="var-name">$offset</span>, <span class="var-type">PelByteOrder</span>&nbsp;<span class="var-name">$endian</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$bytes</span><span class="var-description">: the bytes.</span>			</li>
+					<li>
+				<span class="var-type">int</span>
+				<span class="var-name">$offset</span><span class="var-description">: the offset.  The short found at offset will be returned  as an integer.  There must be at least two bytes available  beginning at the offset given.</span>			</li>
+					<li>
+				<span class="var-type">PelByteOrder</span>
+				<span class="var-name">$endian</span><span class="var-description">: one of <a href="../PEL/PelConvert.html#constLITTLE_ENDIAN">LITTLE_ENDIAN</a> and <a href="../PEL/PelConvert.html#constBIG_ENDIAN">BIG_ENDIAN</a>.</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodlongToBytes" id="longToBytes"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">static method longToBytes</span> (line <span class="line-number"><a href="../__filesource/fsource_PEL__srcPelConvert.php.html#a133">133</a></span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Convert an unsigned long into four bytes.</p>
+<p class="description"><p>Because PHP limits the size of integers to 32 bit signed, one  cannot really have an unsigned integer in PHP.  But integers  larger than 2^31-1 will be promoted to 64 bit signed floating  point numbers, and so such large numbers can be handled too.</p></p>
+	<ul class="tags">
+				<li><span class="field">return:</span> the bytes representing the unsigned long.</li>
+			</ul>
+	
+	<div class="method-signature">
+	    static
+		<span class="method-result">string</span>
+		<span class="method-name">
+			longToBytes
+		</span>
+					(<span class="var-type">int</span>&nbsp;<span class="var-name">$value</span>, <span class="var-type">PelByteOrder</span>&nbsp;<span class="var-name">$endian</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">int</span>
+				<span class="var-name">$value</span><span class="var-description">: the unsigned long that will be converted.  The  argument will be treated as an unsigned 32 bit integer and the  lower four bytes will be extracted.  Treating the argument as an  unsigned integer means that the absolute value will be used.  Use  <a href="../PEL/PelConvert.html#methodsLongToBytes">sLongToBytes</a> to convert signed integers.</span>			</li>
+					<li>
+				<span class="var-type">PelByteOrder</span>
+				<span class="var-name">$endian</span><span class="var-description">: one of <a href="../PEL/PelConvert.html#constLITTLE_ENDIAN">LITTLE_ENDIAN</a> and <a href="../PEL/PelConvert.html#constBIG_ENDIAN">BIG_ENDIAN</a>.</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodshortToBytes" id="shortToBytes"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">static method shortToBytes</span> (line <span class="line-number"><a href="../__filesource/fsource_PEL__srcPelConvert.php.html#a88">88</a></span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Convert an unsigned short into two bytes.</p>
+	<ul class="tags">
+				<li><span class="field">return:</span> the bytes representing the unsigned short.</li>
+			</ul>
+	
+	<div class="method-signature">
+	    static
+		<span class="method-result">string</span>
+		<span class="method-name">
+			shortToBytes
+		</span>
+					(<span class="var-type">int</span>&nbsp;<span class="var-name">$value</span>, <span class="var-type">PelByteOrder</span>&nbsp;<span class="var-name">$endian</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">int</span>
+				<span class="var-name">$value</span><span class="var-description">: the unsigned short that will be converted.  The lower  two bytes will be extracted regardless of the actual size passed.</span>			</li>
+					<li>
+				<span class="var-type">PelByteOrder</span>
+				<span class="var-name">$endian</span><span class="var-description">: one of <a href="../PEL/PelConvert.html#constLITTLE_ENDIAN">LITTLE_ENDIAN</a> and <a href="../PEL/PelConvert.html#constBIG_ENDIAN">BIG_ENDIAN</a>.</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodsLongToBytes" id="sLongToBytes"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">static method sLongToBytes</span> (line <span class="line-number"><a href="../__filesource/fsource_PEL__srcPelConvert.php.html#a165">165</a></span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Convert a signed long into four bytes.</p>
+	<ul class="tags">
+				<li><span class="field">return:</span> the bytes representing the signed long.</li>
+			</ul>
+	
+	<div class="method-signature">
+	    static
+		<span class="method-result">string</span>
+		<span class="method-name">
+			sLongToBytes
+		</span>
+					(<span class="var-type">int</span>&nbsp;<span class="var-name">$value</span>, <span class="var-type">PelByteOrder</span>&nbsp;<span class="var-name">$endian</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">int</span>
+				<span class="var-name">$value</span><span class="var-description">: the signed long that will be converted.  The argument  will be treated as a signed 32 bit integer, from which the lower  four bytes will be extracted.</span>			</li>
+					<li>
+				<span class="var-type">PelByteOrder</span>
+				<span class="var-name">$endian</span><span class="var-description">: one of <a href="../PEL/PelConvert.html#constLITTLE_ENDIAN">LITTLE_ENDIAN</a> and <a href="../PEL/PelConvert.html#constBIG_ENDIAN">BIG_ENDIAN</a>.</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodsShortToBytes" id="sShortToBytes"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">static method sShortToBytes</span> (line <span class="line-number"><a href="../__filesource/fsource_PEL__srcPelConvert.php.html#a107">107</a></span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Convert a signed short into two bytes.</p>
+	<ul class="tags">
+				<li><span class="field">return:</span> the bytes representing the signed short.</li>
+			</ul>
+	
+	<div class="method-signature">
+	    static
+		<span class="method-result">string</span>
+		<span class="method-name">
+			sShortToBytes
+		</span>
+					(<span class="var-type">int</span>&nbsp;<span class="var-name">$value</span>, <span class="var-type">PelByteOrder</span>&nbsp;<span class="var-name">$endian</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">int</span>
+				<span class="var-name">$value</span><span class="var-description">: the signed short that will be converted.  The lower  two bytes will be extracted regardless of the actual size passed.</span>			</li>
+					<li>
+				<span class="var-type">PelByteOrder</span>
+				<span class="var-name">$endian</span><span class="var-description">: one of <a href="../PEL/PelConvert.html#constLITTLE_ENDIAN">LITTLE_ENDIAN</a> and <a href="../PEL/PelConvert.html#constBIG_ENDIAN">BIG_ENDIAN</a>.</span>			</li>
+				</ul>
+		
+			
+	</div>
+
+						
+		</div>
+	</div>
+
+	<a name="sec-consts"></a>
+	<div class="info-box">
+		<div class="info-box-title">Class Constants</div>
+		<div class="nav-bar">
+			<a href="#sec-description">Description</a> |
+										<a href="#sec-var-summary">Constants</a> (<span class="disabled">details</span>)
+						
+			
+										| 
+									<a href="#sec-method-summary">Methods</a> (<a href="#sec-methods">details</a>)
+							
+					</div>
+		<div class="info-box-body">
+			<a name="constBIG_ENDIAN" id="BIG_ENDIAN"><!-- --></A>
+<div class="oddrow">
+
+	<div class="const-header">
+		<img src="../media/images/Variable.png" />
+		<span class="const-title">
+			<span class="const-name">BIG_ENDIAN</span>
+			 = <span class="const-default"> false</span>
+			(line <span class="line-number"><a href="../__filesource/fsource_PEL__srcPelConvert.php.html#a74">74</a></span>)
+		</span>
+	</div>
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Big-endian (Motorola) byte order.</p>
+<p class="description"><p>Data stored in big-endian byte order store the most significant  byte first, so the number 0x12345678 becomes 0x12 0x34 0x56 0x78  when stored with big-endian byte order.</p></p>
+	
+	
+</div>
+<a name="constLITTLE_ENDIAN" id="LITTLE_ENDIAN"><!-- --></A>
+<div class="evenrow">
+
+	<div class="const-header">
+		<img src="../media/images/Variable.png" />
+		<span class="const-title">
+			<span class="const-name">LITTLE_ENDIAN</span>
+			 = <span class="const-default"> true</span>
+			(line <span class="line-number"><a href="../__filesource/fsource_PEL__srcPelConvert.php.html#a65">65</a></span>)
+		</span>
+	</div>
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Little-endian (Intel) byte order.</p>
+<p class="description"><p>Data stored in little-endian byte order store the least  significant byte first, so the number 0x12345678 becomes 0x78  0x56 0x34 0x12 when stored with little-endian byte order.</p></p>
+	
+	
+</div>
+						
+		</div>
+	</div>
+
+	<p class="notes" id="credit">
+		Documentation generated on Thu, 05 May 2011 07:18:57 +0200 by <a href="http://www.phpdoc.org" target="_blank">phpDocumentor 1.4.3</a>
+	</p>
+	</div></body>
+</html>

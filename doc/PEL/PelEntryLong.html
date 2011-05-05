@@ -1,0 +1,287 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+  <html xmlns="http://www.w3.org/1999/xhtml">
+		<head>
+			<!-- template designed by Marco Von Ballmoos -->
+			<title>Docs For Class PelEntryLong</title>
+			<link rel="stylesheet" href="../media/stylesheet.css" />
+			<meta http-equiv='Content-Type' content='text/html; charset=iso-8859-1'/>
+		</head>
+		<body>
+			<div class="page-body">			
+<h2 class="class-name">Class PelEntryLong</h2>
+
+<a name="sec-description"></a>
+<div class="info-box">
+	<div class="info-box-title">Description</div>
+	<div class="nav-bar">
+					<span class="disabled">Description</span> |
+							<a href="#sec-descendents">Descendents</a>
+			|											<a href="#sec-vars">Vars</a>
+						|											<a href="#sec-method-summary">Methods</a> (<a href="#sec-methods">details</a>)
+						
+					</div>
+	<div class="info-box-body">
+        		<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Class for holding unsigned longs.</p>
+<p class="description"><p>This class can hold longs, either just a single long or an array of  longs.  The class will be used to manipulate any of the Exif tags  which can have format <a href="../PEL/PelFormat.html#constLONG">PelFormat::LONG</a> like in this  example:  <div class="src-code"><ol><li><div class="src-line">&nbsp;<span class="src-var">$w&nbsp;</span>=&nbsp;<span class="src-var">$ifd</span><span class="src-sym">-&gt;</span><span class="src-id">getEntry</span><span class="src-sym">(</span><span class="src-id"><a href="../PEL/PelTag.html">PelTag</a></span><span class="src-sym">::</span><span class="src-id">EXIF_IMAGE_WIDTH</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&nbsp;<span class="src-var">$w</span><span class="src-sym">-&gt;</span><a href="../PEL/PelEntryNumber.html#methodsetValue">setValue</a><span class="src-sym">(</span><span class="src-var">$w</span><span class="src-sym">-&gt;</span><a href="../PEL/PelEntryNumber.html#methodgetValue">getValue</a><span class="src-sym">(</span><span class="src-sym">)&nbsp;</span>/&nbsp;<span class="src-num">2</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&nbsp;<span class="src-var">$h&nbsp;</span>=&nbsp;<span class="src-var">$ifd</span><span class="src-sym">-&gt;</span><span class="src-id">getEntry</span><span class="src-sym">(</span><span class="src-id"><a href="../PEL/PelTag.html">PelTag</a></span><span class="src-sym">::</span><span class="src-id">EXIF_IMAGE_HEIGHT</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&nbsp;<span class="src-var">$h</span><span class="src-sym">-&gt;</span><a href="../PEL/PelEntryNumber.html#methodsetValue">setValue</a><span class="src-sym">(</span><span class="src-var">$h</span><span class="src-sym">-&gt;</span><a href="../PEL/PelEntryNumber.html#methodgetValue">getValue</a><span class="src-sym">(</span><span class="src-sym">)&nbsp;</span>/&nbsp;<span class="src-num">2</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+</ol></div>  Here the width and height is updated to 50% of their original  values.</p></p>
+	<ul class="tags">
+				<li><span class="field">author:</span> Martin Geisler &lt;<a href="mailto:mgeisler@users.sourceforge.net">mgeisler@users.sourceforge.net</a>&gt;</li>
+			</ul>
+		<p class="notes">
+			Located in <a class="field" href="_src---PelEntryLong.php.html">/src/PelEntryLong.php</a> (line <span class="field"><a href="../__filesource/fsource_PEL__srcPelEntryLong.php.html#a62">62</a></span>)
+		</p>
+		
+				
+		<pre><a href="../PEL/PelEntry.html">PelEntry</a>
+   |
+   --<a href="../PEL/PelEntryNumber.html">PelEntryNumber</a>
+      |
+      --PelEntryLong</pre>
+	
+			</div>
+</div>
+
+	<a name="sec-descendents"></a>
+	<div class="info-box">
+		<div class="info-box-title">Direct descendents</div>
+		<div class="nav-bar">
+			<a href="#sec-description">Description</a> |
+			<span class="disabled">Descendents</span>
+			|												<a href="#sec-vars">Vars</a>
+								|															<a href="#sec-method-summary">Methods</a> (<a href="#sec-methods">details</a>)
+							
+								</div>
+		<div class="info-box-body">
+			<table cellpadding="2" cellspacing="0" class="class-table">
+				<tr>
+					<th class="class-table-header">Class</th>
+					<th class="class-table-header">Description</th>
+				</tr>
+								<tr>
+					<td style="padding-right: 2em"><a href="../PEL/PelEntryRational.html">PelEntryRational</a></td>
+					<td>
+											Class for holding unsigned rational numbers.
+										</td>
+				</tr>
+							</table>
+		</div>
+	</div>
+
+
+
+	<a name="sec-method-summary"></a>
+	<div class="info-box">
+		<div class="info-box-title">Method Summary</span></div>
+		<div class="nav-bar">
+			<a href="#sec-description">Description</a> |
+							<a href="#sec-descendents">Descendents</a> |
+																		<a href="#sec-vars">Vars</a>
+				 
+				|
+						<span class="disabled">Methods</span> (<a href="#sec-methods">details</a>)
+		</div>
+		<div class="info-box-body">			
+			<div class="method-summary">
+																				
+												<div class="method-definition">
+											<span class="method-result">PelEntryLong</span>
+										<a href="#__construct" title="details" class="method-name">__construct</a>
+											(<span class="var-type"><a href="../PEL/PelTag.html">PelTag</a></span>&nbsp;<span class="var-name">$tag</span>, <span class="var-type">int</span>&nbsp;<span class="var-name">$value...</span>)
+									</div>
+																<div class="method-definition">
+											<span class="method-result">string</span>
+										<a href="#numberToBytes" title="details" class="method-name">numberToBytes</a>
+											(<span class="var-type">int</span>&nbsp;<span class="var-name">$number</span>, <span class="var-type">PelByteOrder</span>&nbsp;<span class="var-name">$order</span>)
+									</div>
+								</div>
+		</div>
+	</div>		
+
+	<a name="sec-vars"></a>
+	<div class="info-box">
+		<div class="info-box-title">Variables</div>
+		<div class="nav-bar">
+			<a href="#sec-description">Description</a> |
+							<a href="#sec-descendents">Descendents</a> |
+										<a href="#sec-var-summary">Vars</a> (<span class="disabled">details</span>)
+						
+			
+										| 
+									<a href="#sec-method-summary">Methods</a> (<a href="#sec-methods">details</a>)
+							
+					</div>
+		<div class="info-box-body">
+										<h4>Inherited Variables</h4>
+				<A NAME='inherited_vars'><!-- --></A>
+									<p>Inherited from <span class="classname"><a href="../PEL/PelEntryNumber.html">PelEntryNumber</a></span></p>
+					<blockquote>
+													<span class="var-title">
+								<span class="var-name"><a href="../PEL/PelEntryNumber.html#var$dimension">PelEntryNumber::$dimension</a></span><br>
+							</span>
+													<span class="var-title">
+								<span class="var-name"><a href="../PEL/PelEntryNumber.html#var$max">PelEntryNumber::$max</a></span><br>
+							</span>
+													<span class="var-title">
+								<span class="var-name"><a href="../PEL/PelEntryNumber.html#var$min">PelEntryNumber::$min</a></span><br>
+							</span>
+													<span class="var-title">
+								<span class="var-name"><a href="../PEL/PelEntryNumber.html#var$value">PelEntryNumber::$value</a></span><br>
+							</span>
+											</blockquote> 
+									<p>Inherited from <span class="classname"><a href="../PEL/PelEntry.html">PelEntry</a></span></p>
+					<blockquote>
+													<span class="var-title">
+								<span class="var-name"><a href="../PEL/PelEntry.html#var$bytes">PelEntry::$bytes</a></span><br>
+							</span>
+													<span class="var-title">
+								<span class="var-name"><a href="../PEL/PelEntry.html#var$components">PelEntry::$components</a></span><br>
+							</span>
+													<span class="var-title">
+								<span class="var-name"><a href="../PEL/PelEntry.html#var$format">PelEntry::$format</a></span><br>
+							</span>
+													<span class="var-title">
+								<span class="var-name"><a href="../PEL/PelEntry.html#var$ifd_type">PelEntry::$ifd_type</a></span><br>
+							</span>
+													<span class="var-title">
+								<span class="var-name"><a href="../PEL/PelEntry.html#var$tag">PelEntry::$tag</a></span><br>
+							</span>
+											</blockquote> 
+										
+		</div>
+	</div>
+	
+	<a name="sec-methods"></a>
+	<div class="info-box">
+		<div class="info-box-title">Methods</div>
+		<div class="nav-bar">
+			<a href="#sec-description">Description</a> |
+							<a href="#sec-descendents">Descendents</a> |
+															<a href="#sec-vars">Vars</a>
+																	<a href="#sec-method-summary">Methods</a> (<span class="disabled">details</span>)
+						
+		</div>
+		<div class="info-box-body">
+			<A NAME='method_detail'></A>
+
+<a name="method__construct" id="__construct"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">Constructor __construct</span> (line <span class="line-number"><a href="../__filesource/fsource_PEL__srcPelEntryLong.php.html#a94">94</a></span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Make a new entry that can hold an unsigned long.</p>
+<p class="description"><p>The method accept its arguments in two forms: several integer  arguments or a single array argument.  The <a href="../PEL/PelEntryNumber.html#methodgetValue">getValue</a>  method will always return an array except for when a single  integer argument is given here, or when an array with just a  single integer is given.</p><p>This means that one can conveniently use objects like this:  <div class="src-code"><ol><li><div class="src-line">&nbsp;<span class="src-var">$a&nbsp;</span>=&nbsp;<span class="src-key">new&nbsp;</span><span class="src-id"><a href="../PEL/PelEntryLong.html">PelEntryLong</a></span><span class="src-sym">(</span><span class="src-id"><a href="../PEL/PelTag.html">PelTag</a></span><span class="src-sym">::</span><span class="src-id">EXIF_IMAGE_WIDTH</span><span class="src-sym">,&nbsp;</span><span class="src-num">123456</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&nbsp;<span class="src-var">$b&nbsp;</span>=&nbsp;<span class="src-var">$a</span><span class="src-sym">-&gt;</span><a href="../PEL/PelEntryNumber.html#methodgetValue">getValue</a><span class="src-sym">(</span><span class="src-sym">)&nbsp;</span>-&nbsp;<span class="src-num">654321</span><span class="src-sym">;</span></div></li>
+</ol></div>  where the call to <a href="../PEL/PelEntryNumber.html#methodgetValue">getValue</a> will return an integer instead  of an array with one integer element, which would then have to be  extracted.</p></p>
+	
+	<div class="method-signature">
+		<span class="method-result">PelEntryLong</span>
+		<span class="method-name">
+			__construct
+		</span>
+					(<span class="var-type"><a href="../PEL/PelTag.html">PelTag</a></span>&nbsp;<span class="var-name">$tag</span>, <span class="var-type">int</span>&nbsp;<span class="var-name">$value...</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">int</span>
+				<span class="var-name">$value...</span><span class="var-description">: the long(s) that this entry will  represent or an array of longs.  The argument passed must obey  the same rules as the argument to <a href="../PEL/PelEntryNumber.html#methodsetValue">setValue</a>, namely that  it should be within range of an unsigned long (32 bit), that is  between 0 and 4294967295 (inclusive).  If not, then a PelExifOverflowException will be thrown.</span>			</li>
+					<li>
+				<span class="var-type"><a href="../PEL/PelTag.html">PelTag</a></span>
+				<span class="var-name">$tag</span><span class="var-description">: the tag which this entry represents.  This  should be one of the constants defined in <a href="../PEL/PelTag.html">PelTag</a>,  e.g., <a href="../PEL/PelTag.html#constIMAGE_WIDTH">PelTag::IMAGE_WIDTH</a>, or any other tag which can  have format <a href="../PEL/PelFormat.html#constLONG">PelFormat::LONG</a>.</span>			</li>
+				</ul>
+		
+			
+			<hr class="separator" />
+		<div class="notes">Redefined in descendants as:</div>
+		<ul class="redefinitions">
+					<li>
+				<a href="../PEL/PelEntryRational.html#method__construct">PelEntryRational::__construct()</a>
+								: Make a new entry that can hold an unsigned rational.
+							</li>
+				</ul>
+	</div>
+<a name="methodnumberToBytes" id="numberToBytes"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">numberToBytes</span> (line <span class="line-number"><a href="../__filesource/fsource_PEL__srcPelEntryLong.php.html#a116">116</a></span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Convert a number into bytes.</p>
+	<ul class="tags">
+				<li><span class="field">return:</span> bytes representing the number given.</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">string</span>
+		<span class="method-name">
+			numberToBytes
+		</span>
+					(<span class="var-type">int</span>&nbsp;<span class="var-name">$number</span>, <span class="var-type">PelByteOrder</span>&nbsp;<span class="var-name">$order</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">int</span>
+				<span class="var-name">$number</span><span class="var-description">: the number that should be converted.</span>			</li>
+					<li>
+				<span class="var-type">PelByteOrder</span>
+				<span class="var-name">$order</span><span class="var-description">: one of <a href="../PEL/PelConvert.html#constLITTLE_ENDIAN">PelConvert::LITTLE_ENDIAN</a> and  <a href="../PEL/PelConvert.html#constBIG_ENDIAN">PelConvert::BIG_ENDIAN</a>, specifying the target byte order.</span>			</li>
+				</ul>
+		
+			<hr class="separator" />
+		<div class="notes">Redefinition of:</div>
+		<dl>
+			<dt><a href="../PEL/PelEntryNumber.html#methodnumberToBytes">PelEntryNumber::numberToBytes()</a></dt>
+						<dd>Convert a number into bytes.</dd>
+					</dl>
+			
+	</div>
+							<h4>Inherited Methods</h4>
+				<a name='inherited_methods'><!-- --></a>	
+									<!-- =========== Summary =========== -->
+					<p>Inherited From <span class="classname"><a href="../PEL/PelEntryNumber.html">PelEntryNumber</a></span></p>
+					<blockquote>
+													<span class="method-name"><a href="../PEL/PelEntryNumber.html#methodaddNumber">PelEntryNumber::addNumber()</a></span><br>
+													<span class="method-name"><a href="../PEL/PelEntryNumber.html#methodformatNumber">PelEntryNumber::formatNumber()</a></span><br>
+													<span class="method-name"><a href="../PEL/PelEntryNumber.html#methodgetBytes">PelEntryNumber::getBytes()</a></span><br>
+													<span class="method-name"><a href="../PEL/PelEntryNumber.html#methodgetText">PelEntryNumber::getText()</a></span><br>
+													<span class="method-name"><a href="../PEL/PelEntryNumber.html#methodgetValue">PelEntryNumber::getValue()</a></span><br>
+													<span class="method-name"><a href="../PEL/PelEntryNumber.html#methodnumberToBytes">PelEntryNumber::numberToBytes()</a></span><br>
+													<span class="method-name"><a href="../PEL/PelEntryNumber.html#methodsetValue">PelEntryNumber::setValue()</a></span><br>
+													<span class="method-name"><a href="../PEL/PelEntryNumber.html#methodsetValueArray">PelEntryNumber::setValueArray()</a></span><br>
+													<span class="method-name"><a href="../PEL/PelEntryNumber.html#methodvalidateNumber">PelEntryNumber::validateNumber()</a></span><br>
+											</blockquote>
+									<!-- =========== Summary =========== -->
+					<p>Inherited From <span class="classname"><a href="../PEL/PelEntry.html">PelEntry</a></span></p>
+					<blockquote>
+													<span class="method-name"><a href="../PEL/PelEntry.html#methodgetBytes">PelEntry::getBytes()</a></span><br>
+													<span class="method-name"><a href="../PEL/PelEntry.html#methodgetComponents">PelEntry::getComponents()</a></span><br>
+													<span class="method-name"><a href="../PEL/PelEntry.html#methodgetFormat">PelEntry::getFormat()</a></span><br>
+													<span class="method-name"><a href="../PEL/PelEntry.html#methodgetIfdType">PelEntry::getIfdType()</a></span><br>
+													<span class="method-name"><a href="../PEL/PelEntry.html#methodgetTag">PelEntry::getTag()</a></span><br>
+													<span class="method-name"><a href="../PEL/PelEntry.html#methodgetText">PelEntry::getText()</a></span><br>
+													<span class="method-name"><a href="../PEL/PelEntry.html#methodgetValue">PelEntry::getValue()</a></span><br>
+													<span class="method-name"><a href="../PEL/PelEntry.html#methodsetIfdType">PelEntry::setIfdType()</a></span><br>
+													<span class="method-name"><a href="../PEL/PelEntry.html#methodsetValue">PelEntry::setValue()</a></span><br>
+													<span class="method-name"><a href="../PEL/PelEntry.html#method__toString">PelEntry::__toString()</a></span><br>
+											</blockquote>
+										
+		</div>
+	</div>
+
+
+	<p class="notes" id="credit">
+		Documentation generated on Thu, 05 May 2011 07:19:03 +0200 by <a href="http://www.phpdoc.org" target="_blank">phpDocumentor 1.4.3</a>
+	</p>
+	</div></body>
+</html>

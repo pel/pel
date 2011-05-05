@@ -51,17 +51,56 @@
 
     <p>The PHP Exif Library (PEL) lets you fully manipulate Exif (Exchangeable Image File Format) data. This is the data that digital cameras place in their images, such as the date and time, shutter speed, ISO value and so on.
 
-Using PEL, one can fully modify the Exif data, meaning that it can be both read and written. Completely new Exif data can also be added to images. PEL is written completely in PHP and depends on nothing except a standard installation of PHP, version 5.</p><h2>Install</h2>
-<p>You can install PEL as a pear package using the following code:
+Using PEL, one can fully modify the Exif data, meaning that it can be both read and written. Completely new Exif data can also be added to images. PEL is written completely in PHP and depends on nothing except a standard installation of PHP, version 5.</p>
+<h3>Features</h3>
 
+<ul>
+  <li>
+    Reads and parses both JPEG and TIFF images.
+  </li>
+
+  <li>
+    All Exif tags can be modified: new tags can be created and old
+    tags can be updated.
+  </li>
+
+  <li>
+    Extensible object-oriented design. PEL utilizes the new
+    features in PHP&nbsp;5.
+  </li>
+
+  <li>
+    Tested with <a
+    href="http://sourceforge.net/projects/simpletest">SimpleTest</a>
+    (11 camera models tested, plus core tests).
+  </li>
+
+  <li>
+    Fully documented with <a
+    href="http://phpdoc.org/">PhpDocumentor</a>, see the online <a
+    href="doc/">API documentation</a>.
+  </li>
+
+  <li>
+    Supports internationalisation.
+  </li>
+
+</ul>
+
+<h2>Install</h2>
+<p>You can install PEL as a pear package using the following code:
+<pre>
     pear channel-discover pearhub.org
-    pear install pearhub/PEL </p>
+    pear install pearhub/PEL </pre></p>
 <h2>License</h2>
-<p>[GPL License](http://www.gnu.org/licenses/gpl.html)</p>
+<p><a href="http://www.gnu.org/licenses/gpl.html">GPL License</a></p>
 <h2>Authors</h2>
-<p>Martin Geisler (mgeisler@users.sourceforge.net)<br/>Lars Olesen (lars@intraface.dk)<br/>Erik Oskam (info@eowd.nl)</p>
+<p>Martin Geisler (mgeisler@users.sourceforge.net)
+<br/>Lars Olesen (lars@intraface.dk)
+<br/>Erik Oskam (info@eowd.nl)</p>
 <h2>Contact</h2>
-<p>Lars Olesen (lars@intraface.dk)<br/>      </p>
+<p>Lars Olesen (lars@intraface.dk)
+<br/>      </p>
 
 
     <h2>Download</h2>
@@ -76,7 +115,7 @@ Using PEL, one can fully modify the Exif data, meaning that it can be both read 
     </p>
 
     <div class="footer">
-      get the source code on GitHub : <a href="http://github.com/lsolesen/pel">lsolesen/pel</a>
+      get the source code on GitHub: <a href="http://github.com/lsolesen/pel">lsolesen/pel</a>
     </div>
 
   </div>

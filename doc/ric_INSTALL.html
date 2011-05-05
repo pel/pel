@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+  <html xmlns="http://www.w3.org/1999/xhtml">
+		<head>
+			<!-- template designed by Marco Von Ballmoos -->
+			<title></title>
+			<link rel="stylesheet" href="media/stylesheet.css" />
+			<meta http-equiv='Content-Type' content='text/html; charset=iso-8859-1'/>
+		</head>
+		<body>
+						<h1 align="center">INSTALL</h1>
+<pre>
+INSTALL file for PEL: PHP Exif Library.  A library with support for
+reading and writing Exif headers in JPEG and TIFF images using PHP.
+
+Copyright (C) 2004, 2005, 2006, 2007  Martin Geisler.
+Licensed under the GNU GPL, see COPYING for details.
+
+
+Requirements
+************
+
+PEL requires PHP version 5.
+
+
+Installation
+************
+
+The preferred way of installing PEL is using the pear installer:
+
+  pear channel-discover pearhub.org
+  pear install pearhub/pel
+
+
+Upgrading
+*********
+
+If you have already been using a previous version of PEL, then be sure
+to read the NEWS file before starting with a new version.  The goal of
+the NEWS file is to list the important changes in a more concise way
+that the ChangeLog file (which lists *every* little change).
+
+You can use the pear installer to upgrade:
+
+  pear upgrade pearhub/pel
+
+
+Using PEL
+*********
+
+Your application should include PelJpeg.php or PelTiff.php for working
+with JPEG or TIFF files.  The files will define the PelJpeg and
+PelTiff classes, which can hold a JPEG or TIFF image, respectively.
+Please see the API documentation in the doc directory or online at
+
+  http://pel.sourceforge.net/doc/
+
+for the full story about those classes and all other available classes
+in PEL.
+
+Still, an example would be good.  The following example will load a
+JPEG file given as a command line argument, parse the Exif data
+within, change the image description to 'Edited by PEL', and finally
+save the file again.  All in just six lines of code:
+
+  &lt;?php
+  require_once('PelJpeg.php');
+  
+  $jpeg = new PelJpeg($argv[1]);
+  $ifd0 = $jpeg-&gt;getExif()-&gt;getTiff()-&gt;getIfd();
+  $entry = $ifd0-&gt;getEntry(PelTag::IMAGE_DESCRIPTION);
+  $entry-&gt;setValue('Edited by PEL');
+  $jpeg-&gt;saveFile($argv[1]);
+  ?&gt;
+
+See the examples directory for this example (or rather a more
+elaborate version in the file edit-description.php) and others as PHP
+files.  You may have to adjust the path to PHP, found in the very
+first line of the files before you can execute them.
+
+
+Changing PEL
+************
+
+If you find a bug in PEL then please send a report back so that it can
+be fixed in the next version.  You can submit your bugs and other
+requests here:
+
+  http://github.com/lsolesen/pel/issues
+
+If you change the code (to fix bugs or to implement enhancements), it
+is highly recommended that you test your changes against known good
+data.  Please see the test/README file for more information about
+running the PEL test suite.
+
+</pre>
+	<p class="notes" id="credit">
+		Documentation generated on Thu, 05 May 2011 07:18:54 +0200 by <a href="http://www.phpdoc.org" target="_blank">phpDocumentor 1.4.3</a>
+	</p>
+	</body>
+</html>

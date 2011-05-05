@@ -1,0 +1,511 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+  <html xmlns="http://www.w3.org/1999/xhtml">
+		<head>
+			<!-- template designed by Marco Von Ballmoos -->
+			<title>Docs For Class Pel</title>
+			<link rel="stylesheet" href="../media/stylesheet.css" />
+			<meta http-equiv='Content-Type' content='text/html; charset=iso-8859-1'/>
+		</head>
+		<body>
+			<div class="page-body">			
+<h2 class="class-name">Class Pel</h2>
+
+<a name="sec-description"></a>
+<div class="info-box">
+	<div class="info-box-title">Description</div>
+	<div class="nav-bar">
+					<span class="disabled">Description</span> |
+															<a href="#sec-method-summary">Methods</a> (<a href="#sec-methods">details</a>)
+						
+					</div>
+	<div class="info-box-body">
+        		<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Class with miscellaneous static methods.</p>
+<p class="description"><p>This class will contain various methods that govern the overall  behavior of PEL.</p><p>Debugging output from PEL can be turned on and off by assigning  true or false to Pel::$debug.</p></p>
+	<ul class="tags">
+				<li><span class="field">author:</span> Martin Geisler &lt;<a href="mailto:mgeisler@users.sourceforge.net">mgeisler@users.sourceforge.net</a>&gt;</li>
+			</ul>
+		<p class="notes">
+			Located in <a class="field" href="_src---Pel.php.html">/src/Pel.php</a> (line <span class="field"><a href="../__filesource/fsource_PEL__srcPel.php.html#a85">85</a></span>)
+		</p>
+		
+				
+		<pre></pre>
+	
+			</div>
+</div>
+
+
+
+
+	<a name="sec-method-summary"></a>
+	<div class="info-box">
+		<div class="info-box-title">Method Summary</span></div>
+		<div class="nav-bar">
+			<a href="#sec-description">Description</a> |
+												<span class="disabled">Methods</span> (<a href="#sec-methods">details</a>)
+		</div>
+		<div class="info-box-body">			
+			<div class="method-summary">
+												<div class="method-definition">
+					static 						<span class="method-result">void</span>
+										<a href="#clearExceptions" title="details" class="method-name">clearExceptions</a>
+										()
+									</div>
+																<div class="method-definition">
+					static 						<span class="method-result">void</span>
+										<a href="#debug" title="details" class="method-name">debug</a>
+											(<span class="var-type">string</span>&nbsp;<span class="var-name">$format</span>, <span class="var-type">mixed</span>&nbsp;<span class="var-name">$args,...</span>)
+									</div>
+																<div class="method-definition">
+					static 						<span class="method-result">string</span>
+										<a href="#fmt" title="details" class="method-name">fmt</a>
+											(<span class="var-type">string</span>&nbsp;<span class="var-name">$format</span>, <span class="var-type">mixed</span>&nbsp;<span class="var-name">$args,...</span>)
+									</div>
+																								<div class="method-definition">
+					static 						<span class="method-result">array</span>
+										<a href="#getExceptions" title="details" class="method-name">getExceptions</a>
+										()
+									</div>
+																																<div class="method-definition">
+					static 						<span class="method-result">void</span>
+										<a href="#maybeThrow" title="details" class="method-name">maybeThrow</a>
+											(<span class="var-type"><a href="../PEL/Exception/PelException.html">PelException</a></span>&nbsp;<span class="var-name">$e</span>)
+									</div>
+																																								<div class="method-definition">
+					static 						<span class="method-result">string</span>
+										<a href="#tra" title="details" class="method-name">tra</a>
+											(<span class="var-type">string</span>&nbsp;<span class="var-name">$str</span>)
+									</div>
+																<div class="method-definition">
+					static 						<span class="method-result">void</span>
+										<a href="#warning" title="details" class="method-name">warning</a>
+											(<span class="var-type">string</span>&nbsp;<span class="var-name">$format</span>, <span class="var-type">mixed</span>&nbsp;<span class="var-name">$args,...</span>)
+									</div>
+								
+																																				<div class="method-definition">
+											<span class="method-result">boolean</span>
+										<a href="#getDebug" title="details" class="method-name">getDebug</a>
+										()
+									</div>
+																								<div class="method-definition">
+											<span class="method-result">int</span>
+										<a href="#getJPEGQuality" title="details" class="method-name">getJPEGQuality</a>
+										()
+									</div>
+																<div class="method-definition">
+											<span class="method-result">boolean</span>
+										<a href="#getStrictParsing" title="details" class="method-name">getStrictParsing</a>
+										()
+									</div>
+																								<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#setDebug" title="details" class="method-name">setDebug</a>
+											(<span class="var-type">boolean</span>&nbsp;<span class="var-name">$flag</span>)
+									</div>
+																<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#setJPEGQuality" title="details" class="method-name">setJPEGQuality</a>
+											(<span class="var-type">int</span>&nbsp;<span class="var-name">$quality</span>)
+									</div>
+																<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#setStrictParsing" title="details" class="method-name">setStrictParsing</a>
+											(<span class="var-type">boolean</span>&nbsp;<span class="var-name">$flag</span>)
+									</div>
+																								</div>
+		</div>
+	</div>		
+
+	
+	<a name="sec-methods"></a>
+	<div class="info-box">
+		<div class="info-box-title">Methods</div>
+		<div class="nav-bar">
+			<a href="#sec-description">Description</a> |
+																<a href="#sec-method-summary">Methods</a> (<span class="disabled">details</span>)
+						
+		</div>
+		<div class="info-box-body">
+			<A NAME='method_detail'></A>
+<a name="methodclearExceptions" id="clearExceptions"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">static method clearExceptions</span> (line <span class="line-number"><a href="../__filesource/fsource_PEL__srcPel.php.html#a201">201</a></span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Clear list of stored exceptions.</p>
+<p class="description"><p>Use this function before a call to some method if you intend to  check for exceptions afterwards.</p></p>
+	
+	<div class="method-signature">
+	    static
+		<span class="method-result">void</span>
+		<span class="method-name">
+			clearExceptions
+		</span>
+				()
+			</div>
+	
+		
+			
+	</div>
+<a name="methoddebug" id="debug"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">static method debug</span> (line <span class="line-number"><a href="../__filesource/fsource_PEL__srcPel.php.html#a294">294</a></span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Conditionally output debug information.</p>
+<p class="description"><p>This method works just like printf() except that it always  terminates the output with a newline, and that it only outputs  something if the Pel::$debug is true.</p></p>
+	
+	<div class="method-signature">
+	    static
+		<span class="method-result">void</span>
+		<span class="method-name">
+			debug
+		</span>
+					(<span class="var-type">string</span>&nbsp;<span class="var-name">$format</span>, <span class="var-type">mixed</span>&nbsp;<span class="var-name">$args,...</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$format</span><span class="var-description">: the format string.</span>			</li>
+					<li>
+				<span class="var-type">mixed</span>
+				<span class="var-name">$args,...</span><span class="var-description">: any number of arguments can be given.  The  arguments will be available for the format string as usual with  sprintf().</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodfmt" id="fmt"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">static method fmt</span> (line <span class="line-number"><a href="../__filesource/fsource_PEL__srcPel.php.html#a364">364</a></span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Translate and format a string.</p>
+<p class="description"><p>This static function will first use Gettext to translate a format  string, which will then have access to any extra arguments.  By  always using this function for dynamic string one is assured that  the translation will be taken from the correct text domain.  If  the string is static, use <a href="../PEL/Pel.html#methodtra">tra</a> instead as it will be  faster.</p></p>
+	<ul class="tags">
+				<li><span class="field">return:</span> the translated string, or the original string if  no translation could be found.</li>
+			</ul>
+	
+	<div class="method-signature">
+	    static
+		<span class="method-result">string</span>
+		<span class="method-name">
+			fmt
+		</span>
+					(<span class="var-type">string</span>&nbsp;<span class="var-name">$format</span>, <span class="var-type">mixed</span>&nbsp;<span class="var-name">$args,...</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$format</span><span class="var-description">: the format string.  This will be translated  before being used as a format string.</span>			</li>
+					<li>
+				<span class="var-type">mixed</span>
+				<span class="var-name">$args,...</span><span class="var-description">: any number of arguments can be given.  The  arguments will be available for the format string as usual with  sprintf().</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodgetExceptions" id="getExceptions"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">static method getExceptions</span> (line <span class="line-number"><a href="../__filesource/fsource_PEL__srcPel.php.html#a190">190</a></span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Return list of stored exceptions.</p>
+<p class="description"><p>When PEL is parsing in non-strict mode, it will store most  exceptions instead of throwing them.  Use this method to get hold  of them when a call returns.</p><p>Code for using this could look like this:</p><p><div class="src-code"><ol><li><div class="src-line">&nbsp;<span class="src-id"><a href="../PEL/Pel.html">Pel</a></span><span class="src-sym">::</span><a href="../PEL/Pel.html#methodsetStrictParsing">setStrictParsing</a><span class="src-sym">(</span><span class="src-id">true</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&nbsp;<span class="src-id"><a href="../PEL/Pel.html">Pel</a></span><span class="src-sym">::</span><a href="../PEL/Pel.html#methodclearExceptions">clearExceptions</a><span class="src-sym">(</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&nbsp;</div></li>
+<li><div class="src-line">&nbsp;<span class="src-var">$jpeg&nbsp;</span>=&nbsp;<span class="src-key">new&nbsp;</span><span class="src-id"><a href="../PEL/PelJpeg.html">PelJpeg</a></span><span class="src-sym">(</span><span class="src-var">$file</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&nbsp;</div></li>
+<li><div class="src-line">&nbsp;<span class="src-comm">//&nbsp;Check&nbsp;for&nbsp;exceptions.</span></div></li>
+<li><div class="src-line">&nbsp;<span class="src-key">foreach&nbsp;</span><span class="src-sym">(</span><span class="src-id"><a href="../PEL/Pel.html">Pel</a></span><span class="src-sym">::</span><a href="../PEL/Pel.html#methodgetExceptions">getExceptions</a><span class="src-sym">(</span><span class="src-sym">)&nbsp;</span><span class="src-key">as&nbsp;</span><span class="src-var">$e</span><span class="src-sym">)&nbsp;</span><span class="src-sym">{</span></div></li>
+<li><div class="src-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.php.net/printf">printf</a><span class="src-sym">(</span><span class="src-str">&quot;Exception:&nbsp;%s\n&quot;</span><span class="src-sym">,&nbsp;</span><span class="src-var">$e</span><span class="src-sym">-&gt;</span><span class="src-id">getMessage</span><span class="src-sym">(</span><span class="src-sym">))</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-key">if&nbsp;</span><span class="src-sym">(</span><span class="src-var">$e&nbsp;</span>instanceof&nbsp;<span class="src-id"><a href="../PEL/Exception/PelEntryException.html">PelEntryException</a></span><span class="src-sym">)&nbsp;</span><span class="src-sym">{</span></div></li>
+<li><div class="src-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-comm">//&nbsp;Warn&nbsp;about&nbsp;entries&nbsp;that&nbsp;couldn't&nbsp;be&nbsp;loaded.</span></div></li>
+<li><div class="src-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.php.net/printf">printf</a><span class="src-sym">(</span><span class="src-str">&quot;Warning:&nbsp;Problem&nbsp;with&nbsp;%s.\n&quot;</span><span class="src-sym">,</span></div></li>
+<li><div class="src-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-id"><a href="../PEL/PelTag.html">PelTag</a></span><span class="src-sym">::</span><a href="../PEL/PelTag.html#methodgetName">getName</a><span class="src-sym">(</span><span class="src-var">$e</span><span class="src-sym">-&gt;</span><span class="src-id">getType</span><span class="src-sym">(</span><span class="src-sym">)</span><span class="src-sym">,&nbsp;</span><span class="src-var">$e</span><span class="src-sym">-&gt;</span><span class="src-id">getTag</span><span class="src-sym">(</span><span class="src-sym">)))</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-sym">}</span></div></li>
+<li><div class="src-line">&nbsp;<span class="src-sym">}</span></div></li>
+</ol></div></p><p>This gives applications total control over the amount of error  messages shown and (hopefully) provides the necessary information  for proper error recovery.</p></p>
+	<ul class="tags">
+				<li><span class="field">return:</span> the exceptions.</li>
+			</ul>
+	
+	<div class="method-signature">
+	    static
+		<span class="method-result">array</span>
+		<span class="method-name">
+			getExceptions
+		</span>
+				()
+			</div>
+	
+		
+			
+	</div>
+<a name="methodmaybeThrow" id="maybeThrow"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">static method maybeThrow</span> (line <span class="line-number"><a href="../__filesource/fsource_PEL__srcPel.php.html#a217">217</a></span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Conditionally throw an exception.</p>
+<p class="description"><p>This method will throw the passed exception when strict parsing  in effect (see <a href="../PEL/Pel.html#methodsetStrictParsing">setStrictParsing()</a>).  Otherwise the  exception is stored (it can be accessed with <a href="../PEL/Pel.html#methodgetExceptions">getExceptions()</a>) and a warning is issued (with Pel::warning).</p></p>
+	
+	<div class="method-signature">
+	    static
+		<span class="method-result">void</span>
+		<span class="method-name">
+			maybeThrow
+		</span>
+					(<span class="var-type"><a href="../PEL/Exception/PelException.html">PelException</a></span>&nbsp;<span class="var-name">$e</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type"><a href="../PEL/Exception/PelException.html">PelException</a></span>
+				<span class="var-name">$e</span><span class="var-description">: the exceptions.</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodtra" id="tra"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">static method tra</span> (line <span class="line-number"><a href="../__filesource/fsource_PEL__srcPel.php.html#a339">339</a></span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Translate a string.</p>
+<p class="description"><p>This static function will use Gettext to translate a string.  By  always using this function for static string one is assured that  the translation will be taken from the correct text domain.  Dynamic strings should be passed to <a href="../PEL/Pel.html#methodfmt">fmt</a> instead.</p></p>
+	<ul class="tags">
+				<li><span class="field">return:</span> the translated string, or the original string if  no translation could be found.</li>
+			</ul>
+	
+	<div class="method-signature">
+	    static
+		<span class="method-result">string</span>
+		<span class="method-name">
+			tra
+		</span>
+					(<span class="var-type">string</span>&nbsp;<span class="var-name">$str</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$str</span><span class="var-description">: the string that should be translated.</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodwarning" id="warning"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">static method warning</span> (line <span class="line-number"><a href="../__filesource/fsource_PEL__srcPel.php.html#a317">317</a></span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Conditionally output a warning.</p>
+<p class="description"><p>This method works just like printf() except that it prepends the  output with the string 'Warning: ', terminates the output with a  newline, and that it only outputs something if the PEL_DEBUG  defined to some true value.</p></p>
+	
+	<div class="method-signature">
+	    static
+		<span class="method-result">void</span>
+		<span class="method-name">
+			warning
+		</span>
+					(<span class="var-type">string</span>&nbsp;<span class="var-name">$format</span>, <span class="var-type">mixed</span>&nbsp;<span class="var-name">$args,...</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$format</span><span class="var-description">: the format string.</span>			</li>
+					<li>
+				<span class="var-type">mixed</span>
+				<span class="var-name">$args,...</span><span class="var-description">: any number of arguments can be given.  The  arguments will be available for the format string as usual with  sprintf().</span>			</li>
+				</ul>
+		
+			
+	</div>
+
+<a name="methodgetDebug" id="getDebug"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">getDebug</span> (line <span class="line-number"><a href="../__filesource/fsource_PEL__srcPel.php.html#a276">276</a></span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Get current setting for debug output.</p>
+	<ul class="tags">
+				<li><span class="field">return:</span> true if debug is enabled, false otherwise.</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">boolean</span>
+		<span class="method-name">
+			getDebug
+		</span>
+				()
+			</div>
+	
+		
+			
+	</div>
+<a name="methodgetJPEGQuality" id="getJPEGQuality"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">getJPEGQuality</span> (line <span class="line-number"><a href="../__filesource/fsource_PEL__srcPel.php.html#a153">153</a></span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Get current setting for JPEG encoding quality.</p>
+	<ul class="tags">
+				<li><span class="field">return:</span> the quality.</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">int</span>
+		<span class="method-name">
+			getJPEGQuality
+		</span>
+				()
+			</div>
+	
+		
+			
+	</div>
+<a name="methodgetStrictParsing" id="getStrictParsing"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">getStrictParsing</span> (line <span class="line-number"><a href="../__filesource/fsource_PEL__srcPel.php.html#a255">255</a></span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Get current setting for strict parsing.</p>
+	<ul class="tags">
+				<li><span class="field">return:</span> true if strict parsing is in effect, false  otherwise.</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">boolean</span>
+		<span class="method-name">
+			getStrictParsing
+		</span>
+				()
+			</div>
+	
+		
+			
+	</div>
+<a name="methodsetDebug" id="setDebug"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">setDebug</span> (line <span class="line-number"><a href="../__filesource/fsource_PEL__srcPel.php.html#a266">266</a></span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Enable/disable debugging output.</p>
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			setDebug
+		</span>
+					(<span class="var-type">boolean</span>&nbsp;<span class="var-name">$flag</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">boolean</span>
+				<span class="var-name">$flag</span><span class="var-description">: use true to enable debug output, false to  diable.</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodsetJPEGQuality" id="setJPEGQuality"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">setJPEGQuality</span> (line <span class="line-number"><a href="../__filesource/fsource_PEL__srcPel.php.html#a143">143</a></span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Set the JPEG encoding quality.</p>
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			setJPEGQuality
+		</span>
+					(<span class="var-type">int</span>&nbsp;<span class="var-name">$quality</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">int</span>
+				<span class="var-name">$quality</span><span class="var-description">: an integer between 0 and 100 with 75 being  average quality and 95 very good quality.</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodsetStrictParsing" id="setStrictParsing"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">setStrictParsing</span> (line <span class="line-number"><a href="../__filesource/fsource_PEL__srcPel.php.html#a244">244</a></span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Enable/disable strict parsing.</p>
+<p class="description"><p>If strict parsing is enabled, then most errors while loading  images will result in exceptions being thrown.  Otherwise a  warning will be emitted (using Pel::warning) and the  exceptions will be stored for later use via <a href="../PEL/Pel.html#methodgetExceptions">getExceptions()</a>.</p><p>Some errors will still be fatal and result in thrown exceptions,  but an effort will be made to skip over as much garbage as  possible.</p></p>
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			setStrictParsing
+		</span>
+					(<span class="var-type">boolean</span>&nbsp;<span class="var-name">$flag</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">boolean</span>
+				<span class="var-name">$flag</span><span class="var-description">: use true to enable strict parsing, false to  diable.</span>			</li>
+				</ul>
+		
+			
+	</div>
+						
+		</div>
+	</div>
+
+
+	<p class="notes" id="credit">
+		Documentation generated on Thu, 05 May 2011 07:18:55 +0200 by <a href="http://www.phpdoc.org" target="_blank">phpDocumentor 1.4.3</a>
+	</p>
+	</div></body>
+</html>

@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+  <html xmlns="http://www.w3.org/1999/xhtml">
+		<head>
+			<!-- template designed by Marco Von Ballmoos -->
+			<title>Docs for page PelEntry.php</title>
+			<link rel="stylesheet" href="../media/stylesheet.css" />
+			<meta http-equiv='Content-Type' content='text/html; charset=iso-8859-1'/>
+		</head>
+		<body>
+			<div class="page-body">			
+<h2 class="file-name">/src/PelEntry.php</h2>
+
+<a name="sec-description"></a>
+<div class="info-box">
+	<div class="info-box-title">Description</div>
+	<div class="nav-bar">
+					<span class="disabled">Description</span> |
+							<a href="#sec-classes">Classes</a>
+			|							<a href="#sec-includes">Includes</a>
+												</div>
+	<div class="info-box-body">	
+		<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Classes for dealing with Exif entries.</p>
+<p class="description"><p>This file defines two exception classes and the abstract class  <a href="../PEL/PelEntry.html">PelEntry</a> which provides the basic methods that all Exif  entries will have.  All Exif entries will be represented by  descendants of the <a href="../PEL/PelEntry.html">PelEntry</a> class --- the class itself is  abstract and so it cannot be instantiated.</p></p>
+	<ul class="tags">
+				<li><span class="field">author:</span> Martin Geisler &lt;<a href="mailto:mgeisler@users.sourceforge.net">mgeisler@users.sourceforge.net</a>&gt;</li>
+				<li><span class="field">version:</span> $Revision$</li>
+				<li><span class="field">date:</span> $Date$</li>
+				<li><span class="field">filesource:</span> <a href="../__filesource/fsource_PEL__srcPelEntry.php.html">Source Code for this file</a></li>
+				<li><span class="field">license:</span> <a href="http://www.gnu.org/licenses/gpl.html">GNU General Public
+ License (GPL)</a></li>
+			</ul>
+		
+			</div>
+</div>
+		
+	<a name="sec-classes"></a>	
+	<div class="info-box">
+		<div class="info-box-title">Classes</div>
+		<div class="nav-bar">
+			<a href="#sec-description">Description</a> |
+			<span class="disabled">Classes</span>
+			|							<a href="#sec-includes">Includes</a>
+																		</div>
+		<div class="info-box-body">	
+			<table cellpadding="2" cellspacing="0" class="class-table">
+				<tr>
+					<th class="class-table-header">Class</th>
+					<th class="class-table-header">Description</th>
+				</tr>
+								<tr>
+					<td style="padding-right: 2em; vertical-align: top">
+						<a href="../PEL/Exception/PelEntryException.html">PelEntryException</a>
+					</td>
+					<td>
+											Exception indicating a problem with an entry.
+										</td>
+				</tr>
+								<tr>
+					<td style="padding-right: 2em; vertical-align: top">
+						<a href="../PEL/Exception/PelUnexpectedFormatException.html">PelUnexpectedFormatException</a>
+					</td>
+					<td>
+											Exception indicating that an unexpected format was found.
+										</td>
+				</tr>
+								<tr>
+					<td style="padding-right: 2em; vertical-align: top">
+						<a href="../PEL/Exception/PelWrongComponentCountException.html">PelWrongComponentCountException</a>
+					</td>
+					<td>
+											Exception indicating that an unexpected number of components was  found.
+										</td>
+				</tr>
+								<tr>
+					<td style="padding-right: 2em; vertical-align: top">
+						<a href="../PEL/PelEntry.html">PelEntry</a>
+					</td>
+					<td>
+											Common ancestor class of all <a href="../PEL/PelIfd.html">PelIfd</a> entries.
+										</td>
+				</tr>
+							</table>
+		</div>
+	</div>
+
+	<a name="sec-includes"></a>	
+	<div class="info-box">
+		<div class="info-box-title">Includes</div>
+		<div class="nav-bar">
+			<a href="#sec-description">Description</a> |
+							<a href="#sec-classes">Classes</a>
+				|						<span class="disabled">Includes</span>
+														</div>
+		<div class="info-box-body">	
+			<a name="_PelException_php"><!-- --></a>
+<div class="evenrow">
+	
+	<div>
+		<span class="include-title">
+			<span class="include-type">require_once</span>
+			(<span class="include-name"><a href="../PEL/Exception/_src---PelException.php.html">'PelException.php'</a></span>)
+			(line <span class="line-number"><a href="../__filesource/fsource_PEL__srcPelEntry.php.html#a45">45</a></span>)
+		</span>
+	</div>
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Required class definitions.</p>
+	
+</div>
+<a name="_PelFormat_php"><!-- --></a>
+<div class="oddrow">
+	
+	<div>
+		<span class="include-title">
+			<span class="include-type">require_once</span>
+			(<span class="include-name"><a href="../PEL/_src---PelFormat.php.html">'PelFormat.php'</a></span>)
+			(line <span class="line-number"><a href="../__filesource/fsource_PEL__srcPelEntry.php.html#a46">46</a></span>)
+		</span>
+	</div>
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Required class definitions.</p>
+	
+</div>
+<a name="_PelTag_php"><!-- --></a>
+<div class="evenrow">
+	
+	<div>
+		<span class="include-title">
+			<span class="include-type">require_once</span>
+			(<span class="include-name"><a href="../PEL/_src---PelTag.php.html">'PelTag.php'</a></span>)
+			(line <span class="line-number"><a href="../__filesource/fsource_PEL__srcPelEntry.php.html#a47">47</a></span>)
+		</span>
+	</div>
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Required class definitions.</p>
+	
+</div>
+<a name="_Pel_php"><!-- --></a>
+<div class="oddrow">
+	
+	<div>
+		<span class="include-title">
+			<span class="include-type">require_once</span>
+			(<span class="include-name"><a href="../PEL/_src---Pel.php.html">'Pel.php'</a></span>)
+			(line <span class="line-number"><a href="../__filesource/fsource_PEL__srcPelEntry.php.html#a48">48</a></span>)
+		</span>
+	</div>
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Required class definitions.</p>
+	
+</div>
+		</div>
+	</div>
+	
+	
+	
+	
+	<p class="notes" id="credit">
+		Documentation generated on Thu, 05 May 2011 07:18:59 +0200 by <a href="http://www.phpdoc.org" target="_blank">phpDocumentor 1.4.3</a>
+	</p>
+	</div></body>
+</html>

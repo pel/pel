@@ -1,0 +1,369 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+  <html xmlns="http://www.w3.org/1999/xhtml">
+		<head>
+			<!-- template designed by Marco Von Ballmoos -->
+			<title>Docs For Class PelEntryAscii</title>
+			<link rel="stylesheet" href="../media/stylesheet.css" />
+			<meta http-equiv='Content-Type' content='text/html; charset=iso-8859-1'/>
+		</head>
+		<body>
+			<div class="page-body">			
+<h2 class="class-name">Class PelEntryAscii</h2>
+
+<a name="sec-description"></a>
+<div class="info-box">
+	<div class="info-box-title">Description</div>
+	<div class="nav-bar">
+					<span class="disabled">Description</span> |
+							<a href="#sec-descendents">Descendents</a>
+			|											<a href="#sec-vars">Vars</a>
+						|											<a href="#sec-method-summary">Methods</a> (<a href="#sec-methods">details</a>)
+						
+					</div>
+	<div class="info-box-body">
+        		<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Class for holding a plain ASCII string.</p>
+<p class="description"><p>This class can hold a single ASCII string, and it will be used as in  <div class="src-code"><ol><li><div class="src-line">&nbsp;<span class="src-var">$entry&nbsp;</span>=&nbsp;<span class="src-var">$ifd</span><span class="src-sym">-&gt;</span><span class="src-id">getEntry</span><span class="src-sym">(</span><span class="src-id"><a href="../PEL/PelTag.html">PelTag</a></span><span class="src-sym">::</span><span class="src-id">IMAGE_DESCRIPTION</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&nbsp;print<span class="src-sym">(</span><span class="src-var">$entry</span><span class="src-sym">-&gt;</span><a href="../PEL/PelEntryAscii.html#methodgetValue">getValue</a><span class="src-sym">(</span><span class="src-sym">))</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&nbsp;<span class="src-var">$entry</span><span class="src-sym">-&gt;</span><a href="../PEL/PelEntryAscii.html#methodsetValue">setValue</a><span class="src-sym">(</span><span class="src-str">'This&nbsp;is&nbsp;my&nbsp;image.&nbsp;&nbsp;I&nbsp;like&nbsp;it.'</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+</ol></div></p></p>
+	<ul class="tags">
+				<li><span class="field">author:</span> Martin Geisler &lt;<a href="mailto:mgeisler@users.sourceforge.net">mgeisler@users.sourceforge.net</a>&gt;</li>
+			</ul>
+		<p class="notes">
+			Located in <a class="field" href="_src---PelEntryAscii.php.html">/src/PelEntryAscii.php</a> (line <span class="field"><a href="../__filesource/fsource_PEL__srcPelEntryAscii.php.html#a65">65</a></span>)
+		</p>
+		
+				
+		<pre><a href="../PEL/PelEntry.html">PelEntry</a>
+   |
+   --PelEntryAscii</pre>
+	
+			</div>
+</div>
+
+	<a name="sec-descendents"></a>
+	<div class="info-box">
+		<div class="info-box-title">Direct descendents</div>
+		<div class="nav-bar">
+			<a href="#sec-description">Description</a> |
+			<span class="disabled">Descendents</span>
+			|												<a href="#sec-vars">Vars</a>
+								|															<a href="#sec-method-summary">Methods</a> (<a href="#sec-methods">details</a>)
+							
+								</div>
+		<div class="info-box-body">
+			<table cellpadding="2" cellspacing="0" class="class-table">
+				<tr>
+					<th class="class-table-header">Class</th>
+					<th class="class-table-header">Description</th>
+				</tr>
+								<tr>
+					<td style="padding-right: 2em"><a href="../PEL/PelEntryTime.html">PelEntryTime</a></td>
+					<td>
+											Class for holding a date and time.
+										</td>
+				</tr>
+								<tr>
+					<td style="padding-right: 2em"><a href="../PEL/PelEntryCopyright.html">PelEntryCopyright</a></td>
+					<td>
+											Class for holding copyright information.
+										</td>
+				</tr>
+							</table>
+		</div>
+	</div>
+
+
+
+	<a name="sec-method-summary"></a>
+	<div class="info-box">
+		<div class="info-box-title">Method Summary</span></div>
+		<div class="nav-bar">
+			<a href="#sec-description">Description</a> |
+							<a href="#sec-descendents">Descendents</a> |
+																		<a href="#sec-vars">Vars</a>
+				 
+				|
+						<span class="disabled">Methods</span> (<a href="#sec-methods">details</a>)
+		</div>
+		<div class="info-box-body">			
+			<div class="method-summary">
+																																				
+												<div class="method-definition">
+											<span class="method-result">PelEntryAscii</span>
+										<a href="#__construct" title="details" class="method-name">__construct</a>
+											(<span class="var-type">int</span>&nbsp;<span class="var-name">$tag</span>, [<span class="var-type">string</span>&nbsp;<span class="var-name">$str</span> = <span class="var-default">''</span>])
+									</div>
+																<div class="method-definition">
+											<span class="method-result">string</span>
+										<a href="#getText" title="details" class="method-name">getText</a>
+											([<span class="var-type">boolean</span>&nbsp;<span class="var-name">$brief</span> = <span class="var-default">false</span>])
+									</div>
+																<div class="method-definition">
+											<span class="method-result">string</span>
+										<a href="#getValue" title="details" class="method-name">getValue</a>
+										()
+									</div>
+																<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#setValue" title="details" class="method-name">setValue</a>
+											(<span class="var-type">string</span>&nbsp;<span class="var-name">$str</span>)
+									</div>
+								</div>
+		</div>
+	</div>		
+
+	<a name="sec-vars"></a>
+	<div class="info-box">
+		<div class="info-box-title">Variables</div>
+		<div class="nav-bar">
+			<a href="#sec-description">Description</a> |
+							<a href="#sec-descendents">Descendents</a> |
+										<a href="#sec-var-summary">Vars</a> (<span class="disabled">details</span>)
+						
+			
+										| 
+									<a href="#sec-method-summary">Methods</a> (<a href="#sec-methods">details</a>)
+							
+					</div>
+		<div class="info-box-body">
+										<h4>Inherited Variables</h4>
+				<A NAME='inherited_vars'><!-- --></A>
+									<p>Inherited from <span class="classname"><a href="../PEL/PelEntry.html">PelEntry</a></span></p>
+					<blockquote>
+													<span class="var-title">
+								<span class="var-name"><a href="../PEL/PelEntry.html#var$bytes">PelEntry::$bytes</a></span><br>
+							</span>
+													<span class="var-title">
+								<span class="var-name"><a href="../PEL/PelEntry.html#var$components">PelEntry::$components</a></span><br>
+							</span>
+													<span class="var-title">
+								<span class="var-name"><a href="../PEL/PelEntry.html#var$format">PelEntry::$format</a></span><br>
+							</span>
+													<span class="var-title">
+								<span class="var-name"><a href="../PEL/PelEntry.html#var$ifd_type">PelEntry::$ifd_type</a></span><br>
+							</span>
+													<span class="var-title">
+								<span class="var-name"><a href="../PEL/PelEntry.html#var$tag">PelEntry::$tag</a></span><br>
+							</span>
+											</blockquote> 
+										
+		</div>
+	</div>
+	
+	<a name="sec-methods"></a>
+	<div class="info-box">
+		<div class="info-box-title">Methods</div>
+		<div class="nav-bar">
+			<a href="#sec-description">Description</a> |
+							<a href="#sec-descendents">Descendents</a> |
+															<a href="#sec-vars">Vars</a>
+																	<a href="#sec-method-summary">Methods</a> (<span class="disabled">details</span>)
+						
+		</div>
+		<div class="info-box-body">
+			<A NAME='method_detail'></A>
+
+<a name="method__construct" id="__construct"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">Constructor __construct</span> (line <span class="line-number"><a href="../__filesource/fsource_PEL__srcPelEntryAscii.php.html#a92">92</a></span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Make a new PelEntry that can hold an ASCII string.</p>
+	
+	<div class="method-signature">
+		<span class="method-result">PelEntryAscii</span>
+		<span class="method-name">
+			__construct
+		</span>
+					(<span class="var-type">int</span>&nbsp;<span class="var-name">$tag</span>, [<span class="var-type">string</span>&nbsp;<span class="var-name">$str</span> = <span class="var-default">''</span>])
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">int</span>
+				<span class="var-name">$tag</span><span class="var-description">: the tag which this entry represents.  This should be  one of the constants defined in <a href="../PEL/PelTag.html">PelTag</a>, e.g., <a href="../PEL/PelTag.html#constIMAGE_DESCRIPTION">PelTag::IMAGE_DESCRIPTION</a>, <a href="../PEL/PelTag.html#constMODEL">PelTag::MODEL</a>, or any other  tag with format <a href="../PEL/PelFormat.html#constASCII">PelFormat::ASCII</a>.</span>			</li>
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$str</span><span class="var-description">: the string that this entry will represent.  The  string must obey the same rules as the string argument to <a href="../PEL/PelEntryAscii.html#methodsetValue">setValue</a>, namely that it should be given without any trailing  NULL character and that it must be plain 7-bit ASCII.</span>			</li>
+				</ul>
+		
+			
+			<hr class="separator" />
+		<div class="notes">Redefined in descendants as:</div>
+		<ul class="redefinitions">
+					<li>
+				<a href="../PEL/PelEntryTime.html#method__construct">PelEntryTime::__construct()</a>
+								: Make a new entry for holding a timestamp.
+							</li>
+					<li>
+				<a href="../PEL/PelEntryCopyright.html#method__construct">PelEntryCopyright::__construct()</a>
+								: Make a new entry for holding copyright information.
+							</li>
+				</ul>
+	</div>
+<a name="methodgetText" id="getText"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">getText</span> (line <span class="line-number"><a href="../__filesource/fsource_PEL__srcPelEntryAscii.php.html#a141">141</a></span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Return the ASCII string of the entry.</p>
+<p class="description"><p>This methods returns the same as <a href="../PEL/PelEntryAscii.html#methodgetValue">getValue</a>.</p></p>
+	<ul class="tags">
+				<li><span class="field">return:</span> the string held, without any final NULL character.  The string will be the same as the one given to <a href="../PEL/PelEntryAscii.html#methodsetValue">setValue</a>  or to the <a href="../PEL/PelEntryAscii.html#method__construct">constructor</a>.</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">string</span>
+		<span class="method-name">
+			getText
+		</span>
+					([<span class="var-type">boolean</span>&nbsp;<span class="var-name">$brief</span> = <span class="var-default">false</span>])
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">boolean</span>
+				<span class="var-name">$brief</span><span class="var-description">: not used with ASCII entries.</span>			</li>
+				</ul>
+		
+			<hr class="separator" />
+		<div class="notes">Redefinition of:</div>
+		<dl>
+			<dt><a href="../PEL/PelEntry.html#methodgetText">PelEntry::getText()</a></dt>
+						<dd>Get the value of this entry as text.</dd>
+					</dl>
+			
+			<hr class="separator" />
+		<div class="notes">Redefined in descendants as:</div>
+		<ul class="redefinitions">
+					<li>
+				<a href="../PEL/PelEntryCopyright.html#methodgetText">PelEntryCopyright::getText()</a>
+								: Return a text string with the copyright information.
+							</li>
+				</ul>
+	</div>
+<a name="methodgetValue" id="getValue"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">getValue</span> (line <span class="line-number"><a href="../__filesource/fsource_PEL__srcPelEntryAscii.php.html#a125">125</a></span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Return the ASCII string of the entry.</p>
+	<ul class="tags">
+				<li><span class="field">return:</span> the string held, without any final NULL character.  The string will be the same as the one given to <a href="../PEL/PelEntryAscii.html#methodsetValue">setValue</a>  or to the <a href="../PEL/PelEntryAscii.html#method__construct">constructor</a>.</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">string</span>
+		<span class="method-name">
+			getValue
+		</span>
+				()
+			</div>
+	
+		
+			<hr class="separator" />
+		<div class="notes">Redefinition of:</div>
+		<dl>
+			<dt><a href="../PEL/PelEntry.html#methodgetValue">PelEntry::getValue()</a></dt>
+						<dd>Get the value of this entry.</dd>
+					</dl>
+			
+			<hr class="separator" />
+		<div class="notes">Redefined in descendants as:</div>
+		<ul class="redefinitions">
+					<li>
+				<a href="../PEL/PelEntryTime.html#methodgetValue">PelEntryTime::getValue()</a>
+								: Return the timestamp of the entry.
+							</li>
+					<li>
+				<a href="../PEL/PelEntryCopyright.html#methodgetValue">PelEntryCopyright::getValue()</a>
+								: Retrive the copyright information.
+							</li>
+				</ul>
+	</div>
+<a name="methodsetValue" id="setValue"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">setValue</span> (line <span class="line-number"><a href="../__filesource/fsource_PEL__srcPelEntryAscii.php.html#a111">111</a></span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Give the entry a new ASCII value.</p>
+<p class="description"><p>This will overwrite the previous value.  The value can be  retrieved later with the <a href="../PEL/PelEntryAscii.html#methodgetValue">getValue</a> method.</p></p>
+	<ul class="tags">
+				<li><span class="field">todo:</span> Implement check for high bytes?</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			setValue
+		</span>
+					(<span class="var-type">string</span>&nbsp;<span class="var-name">$str</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$str</span><span class="var-description">: the new value of the entry.  This should be given  without any trailing NULL character.  The string must be plain  7-bit ASCII, the string should contain no high bytes.</span>			</li>
+				</ul>
+		
+			<hr class="separator" />
+		<div class="notes">Redefinition of:</div>
+		<dl>
+			<dt><a href="../PEL/PelEntry.html#methodsetValue">PelEntry::setValue()</a></dt>
+						<dd>Set the value of this entry.</dd>
+					</dl>
+			
+			<hr class="separator" />
+		<div class="notes">Redefined in descendants as:</div>
+		<ul class="redefinitions">
+					<li>
+				<a href="../PEL/PelEntryTime.html#methodsetValue">PelEntryTime::setValue()</a>
+								: Update the timestamp held by this entry.
+							</li>
+					<li>
+				<a href="../PEL/PelEntryCopyright.html#methodsetValue">PelEntryCopyright::setValue()</a>
+								: Update the copyright information.
+							</li>
+				</ul>
+	</div>
+							<h4>Inherited Methods</h4>
+				<a name='inherited_methods'><!-- --></a>	
+									<!-- =========== Summary =========== -->
+					<p>Inherited From <span class="classname"><a href="../PEL/PelEntry.html">PelEntry</a></span></p>
+					<blockquote>
+													<span class="method-name"><a href="../PEL/PelEntry.html#methodgetBytes">PelEntry::getBytes()</a></span><br>
+													<span class="method-name"><a href="../PEL/PelEntry.html#methodgetComponents">PelEntry::getComponents()</a></span><br>
+													<span class="method-name"><a href="../PEL/PelEntry.html#methodgetFormat">PelEntry::getFormat()</a></span><br>
+													<span class="method-name"><a href="../PEL/PelEntry.html#methodgetIfdType">PelEntry::getIfdType()</a></span><br>
+													<span class="method-name"><a href="../PEL/PelEntry.html#methodgetTag">PelEntry::getTag()</a></span><br>
+													<span class="method-name"><a href="../PEL/PelEntry.html#methodgetText">PelEntry::getText()</a></span><br>
+													<span class="method-name"><a href="../PEL/PelEntry.html#methodgetValue">PelEntry::getValue()</a></span><br>
+													<span class="method-name"><a href="../PEL/PelEntry.html#methodsetIfdType">PelEntry::setIfdType()</a></span><br>
+													<span class="method-name"><a href="../PEL/PelEntry.html#methodsetValue">PelEntry::setValue()</a></span><br>
+													<span class="method-name"><a href="../PEL/PelEntry.html#method__toString">PelEntry::__toString()</a></span><br>
+											</blockquote>
+										
+		</div>
+	</div>
+
+
+	<p class="notes" id="credit">
+		Documentation generated on Thu, 05 May 2011 07:19:02 +0200 by <a href="http://www.phpdoc.org" target="_blank">phpDocumentor 1.4.3</a>
+	</p>
+	</div></body>
+</html>
