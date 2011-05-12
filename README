@@ -32,9 +32,8 @@ Documentation Overview
 * INSTALL: explain how to install and get going with PEL.
 * NEWS: contains important information about changes in PEL.
 * examples/: small self-contained examples of how to use PEL.
-* doc/: the API documentation with a short tutorial and more examples.
 * AUTHORS: list of people who have helped.
-
+* run run-phpdoc.sh to generate API-documention or see it online at http://lsolesen.github.com/pel
 
 Features of PEL
 ***************

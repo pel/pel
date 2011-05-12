@@ -41,7 +41,7 @@ with JPEG or TIFF files.  The files will define the PelJpeg and
 PelTiff classes, which can hold a JPEG or TIFF image, respectively.
 Please see the API documentation in the doc directory or online at
 
-  http://pel.sourceforge.net/doc/
+  http://lsolesen.github.com/pel/doc/
 
 for the full story about those classes and all other available classes
 in PEL.
