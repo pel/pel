@@ -272,7 +272,7 @@ class PelEntryWindowsString extends PelEntry {
    * {@link setValue} or to the {@link __construct constructor}.
    */
   function getText($brief = false) {
-    return $this->str;      
+    return $this->str;
   }
 
 }

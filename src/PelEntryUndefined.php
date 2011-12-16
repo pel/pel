@@ -117,7 +117,7 @@ class PelEntryUndefined extends PelEntry {
       default:
         return sprintf('0x%02X', ord($this->bytes{0}));
       }
-   
+
     case PelTag::SCENE_TYPE:
       //CC (e->components, 1, v);
       switch (ord($this->bytes{0})) {
@@ -126,7 +126,7 @@ class PelEntryUndefined extends PelEntry {
       default:
         return sprintf('0x%02X', ord($this->bytes{0}));
       }
-   
+
     case PelTag::COMPONENTS_CONFIGURATION:
       //CC (e->components, 4, v);
       $v = '';
@@ -232,7 +232,7 @@ class PelEntryUserComment extends PelEntryUndefined {
     $this->setValue($comment, $encoding);
   }
 
-  
+
   /**
    * Set the user comment.
    *
@@ -364,7 +364,7 @@ class PelEntryVersion extends PelEntryUndefined {
     return $this->version;
   }
 
- 
+
   /**
    * Return a text string with the version.
    *
@@ -390,13 +390,13 @@ class PelEntryVersion extends PelEntryUndefined {
         return Pel::fmt('Exif %s', $v);
       else
         return Pel::fmt('Exif Version %s', $v);
-      
+
     case PelTag::FLASH_PIX_VERSION:
       if ($brief)
         return Pel::fmt('FlashPix %s', $v);
       else
         return Pel::fmt('FlashPix Version %s', $v);
-      
+
     case PelTag::INTEROPERABILITY_VERSION:
       if ($brief)
         return Pel::fmt('Interoperability %s', $v);
@@ -408,7 +408,7 @@ class PelEntryVersion extends PelEntryUndefined {
       return $v;
     else
       return Pel::fmt('Version %s', $v);
-    
+
   }
 
 }

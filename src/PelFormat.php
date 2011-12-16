@@ -60,7 +60,7 @@ class PelFormat {
    * Modelled with the {@link PelEntryByte} class.
    */
   const BYTE       =  1;
-  
+
   /**
    * ASCII string.
    *
@@ -69,7 +69,7 @@ class PelFormat {
    * Modelled with the {@link PelEntryAscii} class.
    */
   const ASCII      =  2;
-  
+
   /**
    * Unsigned short.
    *

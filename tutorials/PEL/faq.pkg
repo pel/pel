@@ -59,7 +59,7 @@
 
   <para>The semantic change was the use of object references per
   default.  This change means that when you do</para>
-  
+
   <programlisting role="php">
     <![CDATA[
 $object_a = $ifd->getEntry(PelTag::IMAGE_DESCRIPTION);
@@ -137,7 +137,7 @@ if ($exif != null) {
 }
     ]]>
   </programlisting>
-  
+
   <para>The same principle applies to the return values of
   {@link PelIfd::getEntry()} and all other methods which return
   objects.</para>

@@ -101,7 +101,7 @@ $desc = $ifd0->getEntry(PelTag::IMAGE_DESCRIPTION);
     for big numbers, and more specialized classes, such as
     {@link PelEntryVersion} for version numbers, {@link PelEntryTime}
     for date and time, and so on.</para>
-  
+
   </refsect1>
 
   <refsect1 id="{@id reading}">
@@ -114,13 +114,13 @@ $desc = $ifd0->getEntry(PelTag::IMAGE_DESCRIPTION);
     integer (see {@link PelEntryNumber::getValue() the documentation}
     for the full story).  So to echo the description one simply
     does:</para>
-    
+
     <programlisting role="php">
       <![CDATA[
 echo 'The description: ' . $desc->getValue();
       ]]>
     </programlisting>
-    
+
   </refsect1>
 
   <refsect1 id="{@id writing}">

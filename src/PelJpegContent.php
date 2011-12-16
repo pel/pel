@@ -65,7 +65,7 @@ class PelJpegContent {
     $this->data = $data;
   }
 
-  
+
   /**
    * Return the bytes of the content.
    *

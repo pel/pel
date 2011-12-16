@@ -2,7 +2,7 @@
 # Copyright (C) 2004, 2005, 2006 Martin Geisler
 # This file is distributed under the term of the GPL.
 #
-# First Author: Erik Oskam <info@eowd.nl>, 2010 
+# First Author: Erik Oskam <info@eowd.nl>, 2010
 msgid ""
 msgstr ""
 "Project-Id-Version: PEL\n"

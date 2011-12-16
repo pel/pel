@@ -91,7 +91,7 @@ Contributing Test Images
 ************************
 
 To make PEL as stable as possible, it is tested with images from a
-number of different camera models.  
+number of different camera models.
 
 New test images are very much appreciated -- please download the
 existing test images and read the README file found there for

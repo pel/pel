@@ -38,7 +38,7 @@ if [ -z $2 ]; then
     PHPDOC="phpdoc"
 else
     PHPDOC=$2
-fi    
+fi
 
 # The ChangeLog file might not be here yet, but phpDocumentor fails if
 # it is missing...
@@ -52,4 +52,4 @@ $PHPDOC                                                             \
     --defaultpackagename  "PEL"                                     \
     --directory           "tutorials"                               \
     --filename            "Pel*.php,README,INSTALL,NEWS,TODO,ChangeLog"  \
-    --target              "doc"                                   
+    --target              "doc"
