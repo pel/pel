@@ -1,25 +1,26 @@
 <?php
 
 /**
- *  PEL: PHP Exif Library.  A library with support for reading and
- *  writing all Exif headers in JPEG and TIFF images using PHP.
+ * @file
+ * PEL: PHP Exif Library.  A library with support for reading and
+ * writing all Exif headers in JPEG and TIFF images using PHP.
  *
- *  Copyright (C) 2004, 2005, 2006, 2007  Martin Geisler.
+ * Copyright (C) 2004, 2005, 2006, 2007  Martin Geisler.
  *
- *  This program is free software; you can redistribute it and/or modify
- *  it under the terms of the GNU General Public License as published by
- *  the Free Software Foundation; either version 2 of the License, or
- *  (at your option) any later version.
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2 of the License, or
+ * (at your option) any later version.
  *
- *  This program is distributed in the hope that it will be useful,
- *  but WITHOUT ANY WARRANTY; without even the implied warranty of
- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *  GNU General Public License for more details.
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
  *
- *  You should have received a copy of the GNU General Public License
- *  along with this program in the file COPYING; if not, write to the
- *  Free Software Foundation, Inc., 51 Franklin St, Fifth Floor,
- *  Boston, MA 02110-1301 USA
+ * You should have received a copy of the GNU General Public License
+ * along with this program in the file COPYING; if not, write to the
+ * Free Software Foundation, Inc., 51 Franklin St, Fifth Floor,
+ * Boston, MA 02110-1301 USA
  */
 
 /* $Id$ */
@@ -50,7 +51,8 @@
 
 if (function_exists('dgettext')) {
   bindtextdomain('pel', dirname(__FILE__) . '/locale');
-} else {
+}
+else {
 
   /**
    * Pretend to lookup a message in a specific domain.
@@ -59,11 +61,13 @@ if (function_exists('dgettext')) {
    * untranslated.  The function will only be defined if the Gettext
    * extension has not already defined it.
    *
-   * @param string $domain the domain.
+   * @param string $domain
+   *   the domain.
+   * @param string $str
+   *   the message to be translated.
    *
-   * @param string $str the message to be translated.
-   *
-   * @return string the original, untranslated message.
+   * @return string
+   *   the original, untranslated message.
    */
   function dgettext($domain, $str) {
     return $str;
@@ -94,7 +98,7 @@ class Pel {
    *
    * @var boolean
    */
-  private static $debug = false;
+  private static $debug = FALSE;
 
   /**
    * Flag for strictness of parsing.
@@ -110,7 +114,7 @@ class Pel {
    *
    * @var boolean
    */
-  private static $strict = false;
+  private static $strict = FALSE;
 
   /**
    * Stored exceptions.
@@ -138,8 +142,9 @@ class Pel {
   /**
    * Set the JPEG encoding quality.
    *
-   * @param int $quality an integer between 0 and 100 with 75 being
-   * average quality and 95 very good quality.
+   * @param int $quality
+   *   an integer between 0 and 100 with 75 being average quality and 95
+   *   very good quality.
    */
   function setJPEGQuality($quality) {
     self::$quality = $quality;
@@ -149,7 +154,8 @@ class Pel {
   /**
    * Get current setting for JPEG encoding quality.
    *
-   * @return int the quality.
+   * @return int
+   *   the quality.
    */
   function getJPEGQuality() {
     return self::$quality;
@@ -186,7 +192,8 @@ class Pel {
    * messages shown and (hopefully) provides the necessary information
    * for proper error recovery.
    *
-   * @return array the exceptions.
+   * @return array
+   *   the exceptions.
    */
   static function getExceptions() {
     return self::$exceptions;
@@ -213,15 +220,16 @@ class Pel {
    * getExceptions()}) and a warning is issued (with {@link
    * Pel::warning}).
    *
-   * @param PelException $e the exceptions.
+   * @param PelException $e
+   *   the exceptions.
    */
   static function maybeThrow(PelException $e) {
     if (self::$strict) {
       throw $e;
-    } else {
+    }
+    else {
       self::$exceptions[] = $e;
-      self::warning('%s (%s:%s)', $e->getMessage(),
-                   basename($e->getFile()), $e->getLine());
+      self::warning('%s (%s:%s)', $e->getMessage(), basename($e->getFile()), $e->getLine());
     }
   }
 
@@ -239,8 +247,8 @@ class Pel {
    * but an effort will be made to skip over as much garbage as
    * possible.
    *
-   * @param boolean $flag use true to enable strict parsing, false to
-   * diable.
+   * @param boolean $flag
+   *   use true to enable strict parsing, false to disable.
    */
   function setStrictParsing($flag) {
     self::$strict = $flag;
@@ -250,8 +258,8 @@ class Pel {
   /**
    * Get current setting for strict parsing.
    *
-   * @return boolean true if strict parsing is in effect, false
-   * otherwise.
+   * @return boolean
+   *   true if strict parsing is in effect, false otherwise.
    */
   function getStrictParsing() {
     return self::$strict;
@@ -261,8 +269,8 @@ class Pel {
   /**
    * Enable/disable debugging output.
    *
-   * @param boolean $flag use true to enable debug output, false to
-   * diable.
+   * @param boolean $flag
+   *   use true to enable debug output, false to disable.
    */
   function setDebug($flag) {
     self::$debug = $flag;
@@ -272,7 +280,8 @@ class Pel {
   /**
    * Get current setting for debug output.
    *
-   * @return boolean true if debug is enabled, false otherwise.
+   * @return boolean
+   *   true if debug is enabled, false otherwise.
    */
   function getDebug() {
     return self::$debug;
@@ -286,11 +295,11 @@ class Pel {
    * terminates the output with a newline, and that it only outputs
    * something if the {@link Pel::$debug} is true.
    *
-   * @param string $format the format string.
-   *
-   * @param mixed $args,... any number of arguments can be given.  The
-   * arguments will be available for the format string as usual with
-   * sprintf().
+   * @param string $format
+   *   the format string.
+   * @param mixed $args,...
+   *   any number of arguments can be given. The arguments will be available
+   *   for the format string as usual with sprintf().
    */
   static function debug() {
     if (self::$debug) {
@@ -309,11 +318,11 @@ class Pel {
    * newline, and that it only outputs something if the PEL_DEBUG
    * defined to some true value.
    *
-   * @param string $format the format string.
-   *
-   * @param mixed $args,... any number of arguments can be given.  The
-   * arguments will be available for the format string as usual with
-   * sprintf().
+   * @param string $format
+   *   the format string.
+   * @param mixed $args,...
+   *   any number of arguments can be given. The arguments will be available
+   *   for the format string as usual with sprintf().
    */
   static function warning() {
     if (self::$debug) {
@@ -332,10 +341,12 @@ class Pel {
    * the translation will be taken from the correct text domain.
    * Dynamic strings should be passed to {@link fmt} instead.
    *
-   * @param string the string that should be translated.
+   * @param string $str
+   *   the string that should be translated.
    *
-   * @return string the translated string, or the original string if
-   * no translation could be found.
+   * @return string
+   *   the translated string, or the original string if no translation
+   *   could be found.
    */
   static function tra($str) {
     return dgettext('pel', $str);
@@ -352,15 +363,16 @@ class Pel {
    * the string is static, use {@link tra} instead as it will be
    * faster.
    *
-   * @param string $format the format string.  This will be translated
-   * before being used as a format string.
+   * @param string $format
+   *   the format string. This will be translated before being used as a
+   *   format string.
+   * @param mixed $args,...
+   *   any number of arguments can be given. The arguments will be available
+   *   for the format string as usual with sprintf().
    *
-   * @param mixed $args,... any number of arguments can be given.  The
-   * arguments will be available for the format string as usual with
-   * sprintf().
-   *
-   * @return string the translated string, or the original string if
-   * no translation could be found.
+   * @return string
+   *   the translated string, or the original string if no translation could
+   *   be found.
    */
   static function fmt() {
     $args = func_get_args();
