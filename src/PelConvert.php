@@ -63,7 +63,7 @@ class PelConvert {
    * significant byte first, so the number 0x12345678 becomes 0x78
    * 0x56 0x34 0x12 when stored with little-endian byte order.
    */
-  const LITTLE_ENDIAN = true;
+  const LITTLE_ENDIAN = TRUE;
 
   /**
    * Big-endian (Motorola) byte order.
@@ -72,7 +72,7 @@ class PelConvert {
    * byte first, so the number 0x12345678 becomes 0x12 0x34 0x56 0x78
    * when stored with big-endian byte order.
    */
-  const BIG_ENDIAN = false;
+  const BIG_ENDIAN = FALSE;
 
 
   /**
@@ -132,24 +132,25 @@ class PelConvert {
    * @return string the bytes representing the unsigned long.
    */
   static function longToBytes($value, $endian) {
-    /* We cannot convert the number to bytes in the normal way (using
-     * shifts and modulo calculations) because the PHP operator >> and
-     * function chr() clip their arguments to 2^31-1, which is the
-     * largest signed integer known to PHP.  But luckily base_convert
-     * handles such big numbers. */
+    // We cannot convert the number to bytes in the normal way (using
+    // shifts and modulo calculations) because the PHP operator >> and
+    // function chr() clip their arguments to 2^31-1, which is the
+    // largest signed integer known to PHP.  But luckily base_convert
+    // handles such big numbers.
     $hex = str_pad(base_convert($value, 10, 16), 8, '0', STR_PAD_LEFT);
-    if ($endian == self::LITTLE_ENDIAN)
+    if ($endian == self::LITTLE_ENDIAN) {
       return (chr(hexdec($hex{6} . $hex{7})) .
-              chr(hexdec($hex{4} . $hex{5})) .
-              chr(hexdec($hex{2} . $hex{3})) .
-              chr(hexdec($hex{0} . $hex{1})));
-    else
+        chr(hexdec($hex{4} . $hex{5})) .
+        chr(hexdec($hex{2} . $hex{3})) .
+        chr(hexdec($hex{0} . $hex{1})));
+    }
+    else {
       return (chr(hexdec($hex{0} . $hex{1})) .
-              chr(hexdec($hex{2} . $hex{3})) .
-              chr(hexdec($hex{4} . $hex{5})) .
-              chr(hexdec($hex{6} . $hex{7})));
+        chr(hexdec($hex{2} . $hex{3})) .
+        chr(hexdec($hex{4} . $hex{5})) .
+        chr(hexdec($hex{6} . $hex{7})));
+    }
   }
-
 
   /**
    * Convert a signed long into four bytes.
@@ -164,22 +165,15 @@ class PelConvert {
    * @return string the bytes representing the signed long.
    */
   static function sLongToBytes($value, $endian) {
-    /* We can convert the number into bytes in the normal way using
-     * shifts and modulo calculations here (in contrast with
-     * longToBytes) because PHP automatically handles 32 bit signed
-     * integers for us. */
-    if ($endian == self::LITTLE_ENDIAN)
-      return (chr($value) .
-              chr($value >>  8) .
-              chr($value >> 16) .
-              chr($value >> 24));
-    else
-      return (chr($value >> 24) .
-              chr($value >> 16) .
-              chr($value >>  8) .
-              chr($value));
-  }
+    // We can convert the number into bytes in the normal way using shifts and
+    // modulo calculations here (in contrast with longToBytes) because PHP
+    // automatically handles 32 bit signed integers for us.
+    if ($endian == self::LITTLE_ENDIAN) {
+      return (chr($value) . chr($value >>  8) . chr($value >> 16) . chr($value >> 24));
+    }
 
+    return (chr($value >> 24) . chr($value >> 16) . chr($value >> 8) . chr($value));
+  }
 
   /**
    * Extract an unsigned byte from a string of bytes.
@@ -197,7 +191,6 @@ class PelConvert {
     return ord($bytes{$offset});
   }
 
-
   /**
    * Extract a signed byte from bytes.
    *
@@ -212,12 +205,13 @@ class PelConvert {
    */
   static function bytesToSByte($bytes, $offset) {
     $n = self::bytesToByte($bytes, $offset);
-    if ($n > 127)
-      return $n - 256;
-    else
-      return $n;
-  }
 
+    if ($n > 127) {
+      return $n - 256;
+    }
+
+    return $n;
+  }
 
   /**
    * Extract an unsigned short from bytes.
@@ -235,14 +229,12 @@ class PelConvert {
    * BIG_ENDIAN}.
    */
   static function bytesToShort($bytes, $offset, $endian) {
-    if ($endian == self::LITTLE_ENDIAN)
-      return (ord($bytes{$offset+1}) * 256 +
-              ord($bytes{$offset}));
-    else
-      return (ord($bytes{$offset})   * 256 +
-              ord($bytes{$offset+1}));
-  }
+    if ($endian == self::LITTLE_ENDIAN) {
+      return (ord($bytes{$offset+1}) * 256 + ord($bytes{$offset}));
+    }
 
+    return (ord($bytes{$offset}) * 256 + ord($bytes{$offset+1}));
+  }
 
   /**
    * Extract a signed short from bytes.
@@ -261,10 +253,12 @@ class PelConvert {
    */
   static function bytesToSShort($bytes, $offset, $endian) {
     $n = self::bytesToShort($bytes, $offset, $endian);
-    if ($n > 32767)
+
+    if ($n > 32767) {
       return $n - 65536;
-    else
-      return $n;
+    }
+
+    return $n;
   }
 
 
@@ -284,16 +278,17 @@ class PelConvert {
    * BIG_ENDIAN}.
    */
   static function bytesToLong($bytes, $offset, $endian) {
-    if ($endian == self::LITTLE_ENDIAN)
-      return (ord($bytes{$offset+3}) * 16777216 +
-              ord($bytes{$offset+2}) * 65536    +
-              ord($bytes{$offset+1}) * 256      +
-              ord($bytes{$offset}));
-    else
-      return (ord($bytes{$offset})   * 16777216 +
-              ord($bytes{$offset+1}) * 65536    +
-              ord($bytes{$offset+2}) * 256      +
-              ord($bytes{$offset+3}));
+    if ($endian == self::LITTLE_ENDIAN) {
+      return (ord($bytes{$offset + 3}) * 16777216 +
+        ord($bytes{$offset + 2}) * 65536 +
+        ord($bytes{$offset + 1}) * 256 +
+        ord($bytes{$offset}));
+    }
+
+    return (ord($bytes{$offset}) * 16777216 +
+      ord($bytes{$offset + 1}) * 65536 +
+      ord($bytes{$offset + 2}) * 256 +
+      ord($bytes{$offset + 3}));
   }
 
 
@@ -314,10 +309,12 @@ class PelConvert {
    */
   static function bytesToSLong($bytes, $offset, $endian) {
     $n = self::bytesToLong($bytes, $offset, $endian);
-    if ($n > 2147483647)
+
+    if ($n > 2147483647) {
       return $n - 4294967296;
-    else
-      return $n;
+    }
+
+    return $n;
   }
 
 
@@ -337,10 +334,11 @@ class PelConvert {
    * BIG_ENDIAN}.
    */
   static function bytesToRational($bytes, $offset, $endian) {
-    return array(self::bytesToLong($bytes, $offset, $endian),
-                 self::bytesToLong($bytes, $offset+4, $endian));
+    return array(
+      self::bytesToLong($bytes, $offset, $endian),
+      self::bytesToLong($bytes, $offset + 4, $endian),
+    );
   }
-
 
   /**
    * Extract a signed rational from bytes.
@@ -358,10 +356,11 @@ class PelConvert {
    * BIG_ENDIAN}.
    */
   static function bytesToSRational($bytes, $offset, $endian) {
-    return array(self::bytesToSLong($bytes, $offset, $endian),
-                 self::bytesToSLong($bytes, $offset+4, $endian));
+    return array(
+      self::bytesToSLong($bytes, $offset, $endian),
+      self::bytesToSLong($bytes, $offset + 4, $endian),
+    );
   }
-
 
   /**
    * Format bytes for dumping.
@@ -370,26 +369,29 @@ class PelConvert {
    * hexadecimal dump suitable for display on a terminal.  The output
    * is printed directly to standard out.
    *
-   * @param string the bytes that will be dumped.
-   *
-   * @param int the maximum number of bytes to dump.  If this is left
-   * out (or left to the default of 0), then the entire string will be
-   * dumped.
+   * @param string
+   *   the bytes that will be dumped.
+   * @param int
+   *   the maximum number of bytes to dump. If this is left out
+   *   (or left to the default of 0), then the entire string will be dumped.
    */
   static function bytesToDump($bytes, $max = 0) {
     $s = strlen($bytes);
 
-    if ($max > 0)
+    if ($max > 0) {
       $s = min($max, $s);
+    }
 
     $line = 24;
 
     for ($i = 0; $i < $s; $i++) {
       printf('%02X ', ord($bytes{$i}));
 
-      if (($i+1) % $line == 0)
+      if (($i + 1) % $line === 0) {
         print("\n");
+      }
     }
+
     print("\n");
   }
 
