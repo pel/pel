@@ -1,6 +1,7 @@
 <?php
 
-/*  PEL: PHP Exif Library.  A library with support for reading and
+/**
+ *  PEL: PHP Exif Library.  A library with support for reading and
  *  writing all Exif headers in JPEG and TIFF images using PHP.
  *
  *  Copyright (C) 2004, 2005, 2006  Martin Geisler.
@@ -197,7 +198,7 @@ class PelJpegMarker {
   static function isValid($m) {
     return ($m >= self::SOF0 && $m <= self::COM);
   }
-  
+
   /**
    * Turn a JPEG marker into bytes.
    *
@@ -431,5 +432,3 @@ class PelJpegMarker {
     }
   }
 }
-
-?>

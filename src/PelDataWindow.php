@@ -1,6 +1,7 @@
 <?php
 
-/*  PEL: PHP Exif Library.  A library with support for reading and
+/**
+ *  PEL: PHP Exif Library.  A library with support for reading and
  *  writing all Exif headers in JPEG and TIFF images using PHP.
  *
  *  Copyright (C) 2004, 2005, 2006, 2007  Martin Geisler.
@@ -134,7 +135,7 @@ class PelDataWindow {
       ImageJpeg($data, null, Pel::getJPEGQuality());
       $this->data = ob_get_clean();
     } else {
-      throw new PelInvalidArgumentException('Bad type for $data: %s', 
+      throw new PelInvalidArgumentException('Bad type for $data: %s',
                                             gettype($data));
     }
 
@@ -214,7 +215,7 @@ class PelDataWindow {
                                              $size, $this->size);
     $this->size = $size;
   }
-  
+
 
   /**
    * Make a new data window with the same data as the this window.
@@ -232,7 +233,7 @@ class PelDataWindow {
    */
   function getClone($start = false, $size = false) {
     $c = clone $this;
-    
+
     if (is_int($start))
       $c->setWindowStart($start);
 
@@ -266,7 +267,7 @@ class PelDataWindow {
    * This method works just like the standard {@link substr()}
    * function in PHP with the exception that it works within the
    * window of accessible bytes and does strict range checking.
-   * 
+   *
    * @param int the offset to the first byte returned.  If a negative
    * number is given, then the counting will be from the end of the
    * window.  Invalid offsets will result in a {@link
@@ -282,16 +283,16 @@ class PelDataWindow {
     if (is_int($start)) {
       if ($start < 0)
         $start += $this->size;
-      
+
       $this->validateOffset($start);
     } else {
       $start = 0;
     }
-    
+
     if (is_int($size)) {
       if ($size <= 0)
         $size += $this->size - $start;
-      
+
       $this->validateOffset($start+$size);
     } else {
       $size = $this->size - $start;
@@ -319,7 +320,7 @@ class PelDataWindow {
 
     /* Translate the offset into an offset into the data. */
     $o += $this->start;
-    
+
     /* Return an unsigned byte. */
     return PelConvert::bytesToByte($this->data, $o);
   }
@@ -343,7 +344,7 @@ class PelDataWindow {
 
     /* Translate the offset into an offset into the data. */
     $o += $this->start;
-    
+
     /* Return a signed byte. */
     return PelConvert::bytesToSByte($this->data, $o);
   }
@@ -415,7 +416,7 @@ class PelDataWindow {
      * --- this throws an exception if offset is out of range. */
     $this->validateOffset($o);
     $this->validateOffset($o+3);
-   
+
     /* Translate the offset into an offset into the data. */
     $o += $this->start;
 
@@ -440,7 +441,7 @@ class PelDataWindow {
      * --- this throws an exception if offset is out of range. */
     $this->validateOffset($o);
     $this->validateOffset($o+3);
-   
+
     /* Translate the offset into an offset into the data. */
     $o += $this->start;
 
@@ -509,7 +510,7 @@ class PelDataWindow {
 
     /* Translate the offset into an offset into the data. */
     $o += $this->start;
-  
+
     /* Check each character, return as soon as the answer is known. */
     for ($i = 0; $i < $s; $i++) {
       if ($this->data{$o + $i} != $str{$i})
@@ -536,5 +537,3 @@ class PelDataWindow {
   }
 
 }
-
-?>

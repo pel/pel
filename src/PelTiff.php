@@ -1,6 +1,7 @@
 <?php
 
-/*  PEL: PHP Exif Library.  A library with support for reading and
+/**
+ *  PEL: PHP Exif Library.  A library with support for reading and
  *  writing all Exif headers in JPEG and TIFF images using PHP.
  *
  *  Copyright (C) 2004, 2005, 2006  Martin Geisler.
@@ -53,7 +54,7 @@ require_once('Pel.php');
  *
  * To parse a TIFF image for Exif data one would do:
  *
- * <code> 
+ * <code>
  * $tiff = new PelTiff($data);
  * $ifd0 = $tiff->getIfd();
  * $exif = $ifd0->getSubIfd(PelIfd::EXIF);
@@ -108,7 +109,7 @@ class PelTiff {
       Pel::debug('Initializing PelTiff object from PelDataWindow.');
       $this->load($data);
     } else {
-      throw new PelInvalidArgumentException('Bad type for $data: %s', 
+      throw new PelInvalidArgumentException('Bad type for $data: %s',
                                             gettype($data));
     }
   }
@@ -148,7 +149,7 @@ class PelTiff {
                                         'data: 0x%2X%2X',
                                         $d->getByte(0), $d->getByte(1));
     }
-    
+
     /* Verify the TIFF header */
     if ($d->getShort(2) != self::TIFF_HEADER)
       throw new PelInvalidDataException('Missing TIFF magic value.');
@@ -220,7 +221,7 @@ class PelTiff {
       $bytes = 'II';
     else
       $bytes = 'MM';
-    
+
     /* TIFF magic number --- fixed value. */
     $bytes .= PelConvert::shortToBytes(self::TIFF_HEADER, $order);
 
@@ -231,7 +232,7 @@ class PelTiff {
        * together).
        */
       $bytes .= PelConvert::longToBytes(8, $order);
-    
+
       /* The argument specifies the offset of this IFD.  The IFD will
        * use this to calculate offsets from the entries to their data,
        * all those offsets are absolute offsets counted from the
@@ -288,7 +289,7 @@ class PelTiff {
     } else {
       return false;
     }
-    
+
     /* Verify the TIFF header */
     return $d->getShort(2) == self::TIFF_HEADER;
   }
