@@ -1,6 +1,7 @@
 <?php
 
-/*  PEL: PHP Exif Library.  A library with support for reading and
+/**
+ *  PEL: PHP Exif Library.  A library with support for reading and
  *  writing all Exif headers in JPEG and TIFF images using PHP.
  *
  *  Copyright (C) 2004, 2005, 2006, 2007  Martin Geisler.
@@ -71,7 +72,7 @@ if (function_exists('dgettext')) {
 
 
 /**
- * Class with miscellaneous static methods. 
+ * Class with miscellaneous static methods.
  *
  * This class will contain various methods that govern the overall
  * behavior of PEL.
@@ -110,7 +111,7 @@ class Pel {
    * @var boolean
    */
   private static $strict = false;
-  
+
   /**
    * Stored exceptions.
    *
@@ -299,7 +300,7 @@ class Pel {
     }
   }
 
-  
+
   /**
    * Conditionally output a warning.
    *
@@ -339,7 +340,7 @@ class Pel {
   static function tra($str) {
     return dgettext('pel', $str);
   }
-  
+
 
   /**
    * Translate and format a string.
@@ -368,5 +369,3 @@ class Pel {
   }
 
 }
-
-?>

@@ -1,6 +1,7 @@
 <?php
 
-/*  PEL: PHP Exif Library.  A library with support for reading and
+/**
+ *  PEL: PHP Exif Library.  A library with support for reading and
  *  writing all Exif headers in JPEG and TIFF images using PHP.
  *
  *  Copyright (C) 2004, 2005  Martin Geisler.
@@ -42,7 +43,7 @@
  */
 
 /**#@+ Required class definitions. */
-require_once('PelEntry.php');
+require_once 'PelEntry.php';
 /**#@-*/
 
 
@@ -107,66 +108,77 @@ class PelEntryUndefined extends PelEntry {
    *
    * @return string the value as text.
    */
-  function getText($brief = false) {
+  function getText($brief = FALSE) {
     switch ($this->tag) {
-    case PelTag::FILE_SOURCE:
-      //CC (e->components, 1, v);
-      switch (ord($this->bytes{0})) {
-      case 0x03:
-        return 'DSC';
-      default:
-        return sprintf('0x%02X', ord($this->bytes{0}));
-      }
-   
-    case PelTag::SCENE_TYPE:
-      //CC (e->components, 1, v);
-      switch (ord($this->bytes{0})) {
-      case 0x01:
-        return 'Directly photographed';
-      default:
-        return sprintf('0x%02X', ord($this->bytes{0}));
-      }
-   
-    case PelTag::COMPONENTS_CONFIGURATION:
-      //CC (e->components, 4, v);
-      $v = '';
-      for ($i = 0; $i < 4; $i++) {
-        switch (ord($this->bytes{$i})) {
-        case 0:
-          $v .= '-';
-          break;
-        case 1:
-          $v .= 'Y';
-          break;
-        case 2:
-          $v .= 'Cb';
-          break;
-        case 3:
-          $v .= 'Cr';
-          break;
-        case 4:
-          $v .= 'R';
-          break;
-        case 5:
-          $v .= 'G';
-          break;
-        case 6:
-          $v .= 'B';
-          break;
-        default:
-          $v .= 'reserved';
-          break;
+      case PelTag::FILE_SOURCE:
+        // CC (e->components, 1, v);
+        switch (ord($this->bytes{0})) {
+          case 0x03:
+            return 'DSC';
+
+          default:
+            return sprintf('0x%02X', ord($this->bytes{0}));
         }
-        if ($i < 3) $v .= ' ';
-      }
-      return $v;
 
-    case PelTag::MAKER_NOTE:
-      // TODO: handle maker notes.
-      return $this->components . ' bytes unknown MakerNote data';
+      case PelTag::SCENE_TYPE:
+        // CC (e->components, 1, v);
+        switch (ord($this->bytes{0})) {
+          case 0x01:
+            return 'Directly photographed';
 
-    default:
-      return '(undefined)';
+          default:
+            return sprintf('0x%02X', ord($this->bytes{0}));
+        }
+
+      case PelTag::COMPONENTS_CONFIGURATION:
+        // CC (e->components, 4, v);
+        $v = '';
+        for ($i = 0; $i < 4; $i++) {
+          switch (ord($this->bytes{$i})) {
+            case 0:
+              $v .= '-';
+              break;
+
+            case 1:
+              $v .= 'Y';
+              break;
+
+            case 2:
+              $v .= 'Cb';
+              break;
+
+            case 3:
+              $v .= 'Cr';
+              break;
+
+            case 4:
+              $v .= 'R';
+              break;
+
+            case 5:
+              $v .= 'G';
+              break;
+
+            case 6:
+              $v .= 'B';
+              break;
+
+            default:
+              $v .= 'reserved';
+              break;
+          }
+          if ($i < 3) {
+            $v .= ' ';
+          }
+        }
+        return $v;
+
+      case PelTag::MAKER_NOTE:
+        // TODO: handle maker notes.
+        return $this->components . ' bytes unknown MakerNote data';
+
+      default:
+        return '(undefined)';
     }
   }
 
@@ -232,7 +244,7 @@ class PelEntryUserComment extends PelEntryUndefined {
     $this->setValue($comment, $encoding);
   }
 
-  
+
   /**
    * Set the user comment.
    *
@@ -278,7 +290,7 @@ class PelEntryUserComment extends PelEntryUndefined {
    *
    * @return string the user comment.
    */
-  function getText($brief = false) {
+  function getText($brief = FALSE) {
     return $this->comment;
   }
 
@@ -364,7 +376,7 @@ class PelEntryVersion extends PelEntryUndefined {
     return $this->version;
   }
 
- 
+
   /**
    * Return a text string with the version.
    *
@@ -376,41 +388,48 @@ class PelEntryVersion extends PelEntryUndefined {
    * @return string the version number with the type of the tag,
    * either 'Exif' or 'FlashPix'.
    */
-  function getText($brief = false) {
+  function getText($brief = FALSE) {
     $v = $this->version;
 
-    /* Versions numbers like 2.0 would be output as just 2 if we don't
-     * add the '.0' ourselves. */
-    if (floor($this->version) == $this->version)
+    // Versions numbers like 2.0 would be output as just 2 if we don't
+    // add the '.0' ourselves.
+    if (floor($this->version) == $this->version) {
       $v .= '.0';
-
-    switch ($this->tag) {
-    case PelTag::EXIF_VERSION:
-      if ($brief)
-        return Pel::fmt('Exif %s', $v);
-      else
-        return Pel::fmt('Exif Version %s', $v);
-      
-    case PelTag::FLASH_PIX_VERSION:
-      if ($brief)
-        return Pel::fmt('FlashPix %s', $v);
-      else
-        return Pel::fmt('FlashPix Version %s', $v);
-      
-    case PelTag::INTEROPERABILITY_VERSION:
-      if ($brief)
-        return Pel::fmt('Interoperability %s', $v);
-      else
-        return Pel::fmt('Interoperability Version %s', $v);
     }
 
-    if ($brief)
+    switch ($this->tag) {
+      case PelTag::EXIF_VERSION:
+        if ($brief) {
+          return Pel::fmt('Exif %s', $v);
+        }
+        else {
+          return Pel::fmt('Exif Version %s', $v);
+        }
+
+      case PelTag::FLASH_PIX_VERSION:
+        if ($brief) {
+          return Pel::fmt('FlashPix %s', $v);
+        }
+        else {
+          return Pel::fmt('FlashPix Version %s', $v);
+        }
+
+      case PelTag::INTEROPERABILITY_VERSION:
+        if ($brief) {
+          return Pel::fmt('Interoperability %s', $v);
+        }
+        else {
+          return Pel::fmt('Interoperability Version %s', $v);
+        }
+    }
+
+    if ($brief) {
       return $v;
-    else
+    }
+    else {
       return Pel::fmt('Version %s', $v);
-    
+    }
+
   }
 
 }
-
-?>

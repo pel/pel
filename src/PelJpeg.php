@@ -1,6 +1,7 @@
 <?php
 
-/*  PEL: PHP Exif Library.  A library with support for reading and
+/**
+ *  PEL: PHP Exif Library.  A library with support for reading and
  *  writing all Exif headers in JPEG and TIFF images using PHP.
  *
  *  Copyright (C) 2004, 2005, 2006, 2007  Martin Geisler.
@@ -172,7 +173,7 @@ class PelJpeg {
       Pel::debug('Initializing PelJpeg object from image resource.');
       $this->load(new PelDataWindow($data));
     } else {
-      throw new PelInvalidArgumentException('Bad type for $data: %s', 
+      throw new PelInvalidArgumentException('Bad type for $data: %s',
                                             gettype($data));
     }
   }
@@ -199,7 +200,7 @@ class PelJpeg {
 
     /* JPEG data is stored in big-endian format. */
     $d->setByteOrder(PelConvert::BIG_ENDIAN);
-    
+
     /* Run through the data to read the sections in the image.  After
      * each section is read, the start of the data window will be
      * moved forward, and after the last section we'll terminate with
@@ -228,7 +229,7 @@ class PelJpeg {
         /* Read the length of the section.  The length includes the
          * two bytes used to store the length. */
         $len = $d->getShort(0) - 2;
-        
+
         Pel::debug('Found %s section of length %d',
                    PelJpegMarker::getName($marker), $len);
 
@@ -263,7 +264,7 @@ class PelJpeg {
           $this->appendSection($marker, $content);
           /* Skip past the data. */
           $d->setWindowStart($len);
-          
+
           /* In case of SOS, image data will follow. */
           if ($marker == PelJpegMarker::SOS) {
             /* Some images have some trailing (garbage?) following the
@@ -312,7 +313,7 @@ class PelJpeg {
   function loadFile($filename) {
     $this->load(new PelDataWindow(file_get_contents($filename)));
   }
-  
+
 
   /**
    * Set Exif data.
@@ -452,7 +453,7 @@ class PelJpeg {
           return $s[1];
     }
 
-    return null;        
+    return null;
   }
 
 
@@ -517,10 +518,10 @@ class PelJpeg {
 
       $data = $c->getBytes();
       $size = strlen($data) + 2;
-      
+
       $bytes .= PelConvert::shortToBytes($size, PelConvert::BIG_ENDIAN);
       $bytes .= $data;
-      
+
       /* In case of SOS, we need to write the JPEG data. */
       if ($m == PelJpegMarker::SOS)
         $bytes .= $this->jpeg_data->getBytes();
@@ -559,11 +560,11 @@ class PelJpeg {
                        $i, $m, PelJpegMarker::getName($m));
       $str .= Pel::fmt("  Description: %s\n",
                        PelJpegMarker::getDescription($m));
-      
+
       if ($m == PelJpegMarker::SOI ||
           $m == PelJpegMarker::EOI)
         continue;
-      
+
       if ($c instanceof PelExif) {
         $str .= Pel::tra("  Content    : Exif data\n");
         $str .= $c->__toString() . "\n";
@@ -596,14 +597,12 @@ class PelJpeg {
   static function isValid(PelDataWindow $d) {
     /* JPEG data is stored in big-endian format. */
     $d->setByteOrder(PelConvert::BIG_ENDIAN);
-    
+
     for ($i = 0; $i < 7; $i++)
       if ($d->getByte($i) != 0xFF)
         break;
-    
+
     return $d->getByte($i) == PelJpegMarker::SOI;
   }
 
 }
-
-?>

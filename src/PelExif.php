@@ -1,6 +1,7 @@
 <?php
 
-/*  PEL: PHP Exif Library.  A library with support for reading and
+/**
+ *  PEL: PHP Exif Library.  A library with support for reading and
  *  writing all Exif headers in JPEG and TIFF images using PHP.
  *
  *  Copyright (C) 2004, 2005  Martin Geisler.
@@ -36,14 +37,14 @@
  */
 
 /**#@+ Required class definitions. */
-require_once('PelJpegContent.php');
-require_once('PelException.php');
-require_once('PelFormat.php');
-require_once('PelEntry.php');
-require_once('PelTiff.php');
-require_once('PelIfd.php');
-require_once('PelTag.php');
-require_once('Pel.php');
+require_once 'PelJpegContent.php';
+require_once 'PelException.php';
+require_once 'PelFormat.php';
+require_once 'PelEntry.php';
+require_once 'PelTiff.php';
+require_once 'PelIfd.php';
+require_once 'PelTag.php';
+require_once 'Pel.php';
 /**#@-*/
 
 
@@ -108,7 +109,7 @@ class PelExif extends PelJpegContent {
       throw new PelInvalidDataException('Expected at least 6 bytes of Exif ' .
                                         'data, found just %d bytes.',
                                         $d->getSize());
-    
+
     /* Verify the Exif header */
     if ($d->strcmp(0, self::EXIF_HEADER)) {
       $d->setWindowStart(strlen(self::EXIF_HEADER));
@@ -158,7 +159,7 @@ class PelExif extends PelJpegContent {
     return self::EXIF_HEADER . $this->tiff->getBytes();
   }
 
-  
+
   /**
    * Return a string representation of this object.
    *
@@ -171,5 +172,3 @@ class PelExif extends PelJpegContent {
   }
 
 }
-
-?>

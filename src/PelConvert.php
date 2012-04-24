@@ -1,6 +1,7 @@
 <?php
 
-/*  PEL: PHP Exif Library.  A library with support for reading and
+/**
+ *  PEL: PHP Exif Library.  A library with support for reading and
  *  writing all Exif headers in JPEG and TIFF images using PHP.
  *
  *  Copyright (C) 2004, 2005  Martin Geisler.
@@ -109,7 +110,7 @@ class PelConvert {
      * within the 32 bit signed integers used in PHP. */
     return self::shortToBytes($value, $endian);
   }
-  
+
 
   /**
    * Convert an unsigned long into four bytes.
@@ -385,7 +386,7 @@ class PelConvert {
 
     for ($i = 0; $i < $s; $i++) {
       printf('%02X ', ord($bytes{$i}));
-      
+
       if (($i+1) % $line == 0)
         print("\n");
     }
@@ -393,5 +394,3 @@ class PelConvert {
   }
 
 }
-
-?>

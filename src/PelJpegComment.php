@@ -1,6 +1,7 @@
 <?php
 
-/*  PEL: PHP Exif Library.  A library with support for reading and
+/**
+ *  PEL: PHP Exif Library.  A library with support for reading and
  *  writing all Exif headers in JPEG and TIFF images using PHP.
  *
  *  Copyright (C) 2005, 2007  Martin Geisler.
@@ -117,5 +118,3 @@ class PelJpegComment extends PelJpegContent {
   }
 
 }
-
-?>

@@ -1,6 +1,7 @@
 <?php
 
-/*  PEL: PHP Exif Library.  A library with support for reading and
+/**
+ *  PEL: PHP Exif Library.  A library with support for reading and
  *  writing all Exif headers in JPEG and TIFF images using PHP.
  *
  *  Copyright (C) 2004, 2005  Martin Geisler.
@@ -60,7 +61,7 @@ class PelFormat {
    * Modelled with the {@link PelEntryByte} class.
    */
   const BYTE       =  1;
-  
+
   /**
    * ASCII string.
    *
@@ -69,7 +70,7 @@ class PelFormat {
    * Modelled with the {@link PelEntryAscii} class.
    */
   const ASCII      =  2;
-  
+
   /**
    * Unsigned short.
    *
@@ -204,22 +205,22 @@ class PelFormat {
    */
   static function getSize($type) {
     switch ($type) {
-    case self::ASCII:     return 1;
-    case self::BYTE:      return 1;
-    case self::SHORT:     return 2;
-    case self::LONG:      return 4;
-    case self::RATIONAL:  return 8;
-    case self::SBYTE:     return 1;
-    case self::SSHORT:    return 2;
-    case self::SLONG:     return 4;
-    case self::SRATIONAL: return 8;
-    case self::FLOAT:     return 4;
-    case self::DOUBLE:    return 8;
-    case self::UNDEFINED: return 1;
+      case self::ASCII:     return 1;
+      case self::BYTE:      return 1;
+      case self::SHORT:     return 2;
+      case self::LONG:      return 4;
+      case self::RATIONAL:  return 8;
+      case self::SBYTE:     return 1;
+      case self::SSHORT:    return 2;
+      case self::SLONG:     return 4;
+      case self::SRATIONAL: return 8;
+      case self::FLOAT:     return 4;
+      case self::DOUBLE:    return 8;
+      case self::UNDEFINED: return 1;
+
     default:
       return Pel::fmt('Unknown format: 0x%X', $type);
     }
   }
 
 }
-?>
