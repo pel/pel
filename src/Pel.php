@@ -71,7 +71,7 @@ if (function_exists('dgettext')) {
 
 
 /**
- * Class with miscellaneous static methods. 
+ * Class with miscellaneous static methods.
  *
  * This class will contain various methods that govern the overall
  * behavior of PEL.
@@ -110,7 +110,7 @@ class Pel {
    * @var boolean
    */
   private static $strict = false;
-  
+
   /**
    * Stored exceptions.
    *
@@ -299,7 +299,7 @@ class Pel {
     }
   }
 
-  
+
   /**
    * Conditionally output a warning.
    *
@@ -339,7 +339,7 @@ class Pel {
   static function tra($str) {
     return dgettext('pel', $str);
   }
-  
+
 
   /**
    * Translate and format a string.

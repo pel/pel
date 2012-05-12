@@ -53,7 +53,7 @@ save the file again.  All in just six lines of code:
 
   <?php
   require_once('PelJpeg.php');
-  
+
   $jpeg = new PelJpeg($argv[1]);
   $ifd0 = $jpeg->getExif()->getTiff()->getIfd();
   $entry = $ifd0->getEntry(PelTag::IMAGE_DESCRIPTION);

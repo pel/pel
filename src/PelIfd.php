@@ -165,7 +165,7 @@ class PelIfd implements IteratorAggregate, ArrayAccess {
   // JPEG_INTERCHANGE_FORMAT and STRIP_OFFSETS tags.
   // private $thumb_format;
 
-  
+
   /**
    * Construct a new Image File Directory (IFD).
    *
@@ -206,7 +206,7 @@ class PelIfd implements IteratorAggregate, ArrayAccess {
     /* Read the number of entries */
     $n = $d->getShort($offset);
     Pel::debug('Loading %d entries...', $n);
-    
+
     $offset += 2;
 
     /* Check if we have enough data. */
@@ -220,7 +220,7 @@ class PelIfd implements IteratorAggregate, ArrayAccess {
       $tag = $d->getShort($offset + 12 * $i);
       Pel::debug('Loading entry with tag 0x%04X: %s (%d of %d)...',
                  $tag, PelTag::getName($this->type, $tag), $i + 1, $n);
-      
+
       switch ($tag) {
       case PelTag::EXIF_IFD_POINTER:
       case PelTag::GPS_INFO_IFD_POINTER:
@@ -250,13 +250,13 @@ class PelIfd implements IteratorAggregate, ArrayAccess {
       default:
         $format     = $d->getShort($offset + 12 * $i + 2);
         $components = $d->getLong($offset + 12 * $i + 4);
-        
+
         /* The data size.  If bigger than 4 bytes, the actual data is
          * not in the entry but somewhere else, with the offset stored
          * in the entry.
          */
         $s = PelFormat::getSize($format) * $components;
-        if ($s > 0) {    
+        if ($s > 0) {
           $doff = $offset + 12 * $i + 8;
           if ($s > 4)
             $doff = $d->getLong($doff);
@@ -418,7 +418,7 @@ class PelIfd implements IteratorAggregate, ArrayAccess {
       }
 
     case self::GPS:
-      
+
     default:
       /* Then handle the basic formats. */
       switch ($format) {
@@ -523,7 +523,7 @@ class PelIfd implements IteratorAggregate, ArrayAccess {
     }
   }
 
-  
+
   /**
    * Set thumbnail data.
    *
@@ -546,7 +546,7 @@ class PelIfd implements IteratorAggregate, ArrayAccess {
     if ($size != $d->getSize())
       Pel::maybeThrow(new PelIfdException('Decrementing thumbnail size ' .
                                           'to %d bytes', $size));
-    
+
     $this->thumb_data = $d->getClone(0, $size);
   }
 
@@ -695,11 +695,11 @@ class PelIfd implements IteratorAggregate, ArrayAccess {
                    PelTag::GAMMA);
 
     case PelIfd::GPS:
-      return array(PelTag::GPS_VERSION_ID, 
-                   PelTag::GPS_LATITUDE_REF, 
-                   PelTag::GPS_LATITUDE, 
-                   PelTag::GPS_LONGITUDE_REF, 
-                   PelTag::GPS_LONGITUDE, 
+      return array(PelTag::GPS_VERSION_ID,
+                   PelTag::GPS_LATITUDE_REF,
+                   PelTag::GPS_LATITUDE,
+                   PelTag::GPS_LONGITUDE_REF,
+                   PelTag::GPS_LONGITUDE,
                    PelTag::GPS_ALTITUDE_REF,
                    PelTag::GPS_ALTITUDE,
                    PelTag::GPS_TIME_STAMP,
@@ -728,21 +728,21 @@ class PelIfd implements IteratorAggregate, ArrayAccess {
                    PelTag::GPS_DIFFERENTIAL);
 
     case PelIfd::INTEROPERABILITY:
-      return array(PelTag::INTEROPERABILITY_INDEX, 
+      return array(PelTag::INTEROPERABILITY_INDEX,
                    PelTag::INTEROPERABILITY_VERSION,
-                   PelTag::RELATED_IMAGE_FILE_FORMAT, 
-                   PelTag::RELATED_IMAGE_WIDTH, 
+                   PelTag::RELATED_IMAGE_FILE_FORMAT,
+                   PelTag::RELATED_IMAGE_WIDTH,
                    PelTag::RELATED_IMAGE_LENGTH);
 
       /* TODO: Where do these tags belong?
 PelTag::FILL_ORDER,
-PelTag::DOCUMENT_NAME, 
-PelTag::TRANSFER_RANGE, 
-PelTag::JPEG_PROC, 
-PelTag::BATTERY_LEVEL, 
-PelTag::IPTC_NAA, 
-PelTag::INTER_COLOR_PROFILE, 
-PelTag::CFA_REPEAT_PATTERN_DIM, 
+PelTag::DOCUMENT_NAME,
+PelTag::TRANSFER_RANGE,
+PelTag::JPEG_PROC,
+PelTag::BATTERY_LEVEL,
+PelTag::IPTC_NAA,
+PelTag::INTER_COLOR_PROFILE,
+PelTag::CFA_REPEAT_PATTERN_DIM,
       */
     }
   }
@@ -926,7 +926,7 @@ PelTag::CFA_REPEAT_PATTERN_DIM,
     return $this->entries;
   }
 
-  
+
   /**
    * Return an iterator for all entries contained in this IFD.
    *
@@ -944,7 +944,7 @@ PelTag::CFA_REPEAT_PATTERN_DIM,
   function getIterator() {
     return new ArrayIterator($this->entries);
   }
-  
+
 
   /**
    * Returns available thumbnail data.
@@ -963,7 +963,7 @@ PelTag::CFA_REPEAT_PATTERN_DIM,
     else
       return '';
   }
-  
+
 
   /**
    * Make this directory point to a new directory.
@@ -1059,7 +1059,7 @@ PelTag::CFA_REPEAT_PATTERN_DIM,
 
     Pel::debug('Bytes from IDF will start at offset %d within Exif data',
                $offset);
-    
+
     $n = count($this->entries) + count($this->sub);
     if ($this->thumb_data != null) {
       /* We need two extra entries for the thumbnail offset and
@@ -1081,7 +1081,7 @@ PelTag::CFA_REPEAT_PATTERN_DIM,
       $bytes .= PelConvert::shortToBytes($entry->getTag(), $order);
       $bytes .= PelConvert::shortToBytes($entry->getFormat(), $order);
       $bytes .= PelConvert::longToBytes($entry->getComponents(), $order);
-      
+
       /*
        * Size? If bigger than 4 bytes, the actual data is not in
        * the entry but somewhere else.
@@ -1113,18 +1113,18 @@ PelTag::CFA_REPEAT_PATTERN_DIM,
       $bytes .= PelConvert::longToBytes(1, $order);
       $bytes .= PelConvert::longToBytes($this->thumb_data->getSize(),
                                         $order);
-      
+
       $bytes .= PelConvert::shortToBytes(PelTag::JPEG_INTERCHANGE_FORMAT,
                                          $order);
       $bytes .= PelConvert::shortToBytes(PelFormat::LONG, $order);
       $bytes .= PelConvert::longToBytes(1, $order);
       $bytes .= PelConvert::longToBytes($end, $order);
-      
+
       $extra_bytes .= $this->thumb_data->getBytes();
       $end += $this->thumb_data->getSize();
     }
 
-    
+
     /* Find bytes from sub IFDs. */
     $sub_bytes = '';
     foreach ($this->sub as $type => $sub) {
@@ -1158,7 +1158,7 @@ PelTag::CFA_REPEAT_PATTERN_DIM,
     }
 
     Pel::debug('Link to next IFD: %d', $link);
-    
+
     $bytes .= PelConvert::longtoBytes($link, $order);
 
     $bytes .= $extra_bytes . $sub_bytes;
@@ -1169,7 +1169,7 @@ PelTag::CFA_REPEAT_PATTERN_DIM,
     return $bytes;
   }
 
-  
+
   /**
    * Turn this directory into text.
    *
@@ -1179,7 +1179,7 @@ PelTag::CFA_REPEAT_PATTERN_DIM,
   function __toString() {
     $str = Pel::fmt("Dumping IFD %s with %d entries...\n",
                     $this->getName(), count($this->entries));
-    
+
     foreach ($this->entries as $entry)
       $str .= $entry->__toString();
 

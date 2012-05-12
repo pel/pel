@@ -49,7 +49,7 @@ require_once('PelEntry.php');
  * @subpackage Exception
  */
 class PelOverflowException extends PelException {
-  
+
   /**
    * Construct a new overflow exception.
    *
@@ -102,7 +102,7 @@ abstract class PelEntryNumber extends PelEntry {
    * @var int
    */
   protected $max;
-  
+
   /**
    * The dimension of the number held.
    *
@@ -155,7 +155,7 @@ abstract class PelEntryNumber extends PelEntry {
   function setValueArray($value) {
     foreach ($value as $v)
       $this->validateNumber($v);
-    
+
     $this->components = count($value);
     $this->value      = $value;
   }
@@ -236,7 +236,7 @@ abstract class PelEntryNumber extends PelEntry {
    */
   abstract function numberToBytes($number, $order);
 
-  
+
   /**
    * Turn this entry into bytes.
    *

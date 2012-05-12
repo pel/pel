@@ -167,7 +167,7 @@ class PelEntryShort extends PelEntryNumber {
         return Pel::tra('JPEG compression');
       default:
         return $this->value[0];
-      
+
       }
 
     case PelTag::PLANAR_CONFIGURATION:
@@ -180,7 +180,7 @@ class PelEntryShort extends PelEntryNumber {
       default:
         return $this->value[0];
       }
-      
+
     case PelTag::SENSING_METHOD:
       //CC (e->components, 1, v);
       switch ($this->value[0]) {
@@ -285,7 +285,7 @@ class PelEntryShort extends PelEntryNumber {
       default:
         return $this->value[0];
       }
-   
+
     case PelTag::ORIENTATION:
       //CC (e->components, 1, v);
       switch ($this->value[0]) {
@@ -326,9 +326,9 @@ class PelEntryShort extends PelEntryNumber {
         return 'YCbCr4:2:2';
       if ($this->value[0] == 2 && $this->value[1] == 2)
         return 'YCbCr4:2:0';
-      
+
       return $this->value[0] . ', ' . $this->value[1];
-   
+
     case PelTag::PHOTOMETRIC_INTERPRETATION:
       //CC (e->components, 1, v);
       switch ($this->value[0]) {
@@ -339,10 +339,10 @@ class PelEntryShort extends PelEntryNumber {
       default:
         return $this->value[0];
       }
-   
+
     case PelTag::COLOR_SPACE:
-      //CC (e->components, 1, v); 
-      switch ($this->value[0]) { 
+      //CC (e->components, 1, v);
+      switch ($this->value[0]) {
       case 1:
         return 'sRGB';
       case 2:
@@ -429,7 +429,7 @@ class PelEntryShort extends PelEntryNumber {
       default:
         return $this->value[0];
       }
-   
+
     case PelTag::WHITE_BALANCE:
       //CC (e->components, 1, v);
       switch ($this->value[0]) {
@@ -526,7 +526,7 @@ class PelEntryShort extends PelEntryNumber {
         return Pel::fmt('Within rectangle (width %d, height %d) around (x,y) = (%d,%d)',
                         $this->value[0], $this->value[1],
                         $this->value[2], $this->value[3]);
-        
+
       default:
         return Pel::fmt('Unexpected number of components (%d, expected 2, 3, or 4).', $this->components);
       }
