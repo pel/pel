@@ -197,7 +197,7 @@ class PelJpegMarker {
   static function isValid($m) {
     return ($m >= self::SOF0 && $m <= self::COM);
   }
-  
+
   /**
    * Turn a JPEG marker into bytes.
    *

@@ -31,7 +31,7 @@ echo -n "Generating MO files... "
 for lang in *.po; do
     dir=../locale/${lang%.po}/LC_MESSAGES
     mkdir -p $dir
-    msgfmt --output-file $dir/pel.mo $lang    
+    msgfmt --output-file $dir/pel.mo $lang
 done
 echo "done."
 cd ..

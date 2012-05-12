@@ -108,7 +108,7 @@ class PelExif extends PelJpegContent {
       throw new PelInvalidDataException('Expected at least 6 bytes of Exif ' .
                                         'data, found just %d bytes.',
                                         $d->getSize());
-    
+
     /* Verify the Exif header */
     if ($d->strcmp(0, self::EXIF_HEADER)) {
       $d->setWindowStart(strlen(self::EXIF_HEADER));
@@ -158,7 +158,7 @@ class PelExif extends PelJpegContent {
     return self::EXIF_HEADER . $this->tiff->getBytes();
   }
 
-  
+
   /**
    * Return a string representation of this object.
    *

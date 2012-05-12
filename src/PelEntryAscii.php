@@ -139,7 +139,7 @@ class PelEntryAscii extends PelEntry {
    * or to the {@link __construct constructor}.
    */
   function getText($brief = false) {
-    return $this->str;      
+    return $this->str;
   }
 
 }
@@ -234,7 +234,7 @@ class PelEntryTime extends PelEntryAscii {
     $this->setValue($timestamp, $type);
   }
 
-  
+
   /**
    * Return the timestamp of the entry.
    *
@@ -261,7 +261,7 @@ class PelEntryTime extends PelEntryAscii {
       $seconds = $this->convertJdToUnix($this->day_count);
       if ($seconds === false)
         /* We get false if the Julian Day Count is outside the range
-         * of a UNIX timestamp. */ 
+         * of a UNIX timestamp. */
         return false;
       else
         return $seconds + $this->seconds;
@@ -373,7 +373,7 @@ class PelEntryTime extends PelEntryAscii {
 
   /**
    * Converts a Julian Day count to a year/month/day triple.
-   * 
+   *
    * @param int the Julian Day count.
    * @return array an array with three entries: year, month, day.
    */
@@ -480,7 +480,7 @@ class PelEntryCopyright extends PelEntryAscii {
     parent::__construct(PelTag::COPYRIGHT);
     $this->setValue($photographer, $editor);
   }
-  
+
 
   /**
    * Update the copyright information.
@@ -547,7 +547,7 @@ class PelEntryCopyright extends PelEntryAscii {
 
     if ($this->photographer != '' && $this->editor != '')
       return $this->photographer . $p . ' - ' . $this->editor . $e;
-    
+
     if ($this->photographer != '')
       return $this->photographer . $p;
 
