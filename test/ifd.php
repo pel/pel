@@ -80,4 +80,3 @@ class IFDTestCase extends UnitTestCase {
 
 }
 
-?>

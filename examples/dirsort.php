@@ -24,15 +24,12 @@
 
 /* $Id$ */
 
-error_reporting(E_ALL);
-
 /* a printf() variant that appends a newline to the output. */
 function println(/* fmt, args... */) {
     $args = func_get_args();
     $fmt = array_shift($args);
     vprintf($fmt . "\n", $args);
 }
-
 
 /* Make PEL speak the users language, if it is available. */
 setlocale(LC_ALL, '');
@@ -105,5 +102,3 @@ foreach ($argv as $file) {
   rename($file, $new);
 }
 
-
-?>

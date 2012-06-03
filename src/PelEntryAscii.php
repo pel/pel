@@ -558,4 +558,3 @@ class PelEntryCopyright extends PelEntryAscii {
   }
 }
 
-?>

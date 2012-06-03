@@ -31,8 +31,6 @@
  * images will typically have identical timestamps --- then the next
  * available time will be used. */
 
-error_reporting(E_ALL);
-
 /* a printf() variant that appends a newline to the output. */
 function println(/* fmt, args... */) {
     $args = func_get_args();
@@ -112,5 +110,3 @@ foreach ($argv as $file) {
   rename($file, $new);
 }
 
-
-?>

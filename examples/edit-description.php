@@ -24,10 +24,6 @@
 
 /* $Id$ */
 
-/* Error reporting is good.  Having PHP report all errors means that
- * one finds programming errors more quickly. */
-error_reporting(E_ALL);
-
 /* a printf() variant that appends a newline to the output. */
 function println(/* fmt, args... */) {
     $args = func_get_args();
@@ -207,5 +203,3 @@ if ($desc == null) {
 println('Writing file "%s".', $output);
 $file->saveFile($output);
 
-/* The End. */
-?>

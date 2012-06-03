@@ -146,4 +146,3 @@ class DataWindowTestCase extends UnitTestCase {
 
 }
 
-?>

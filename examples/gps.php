@@ -38,8 +38,6 @@
  * - addGpsInfo() adds several Exif tags to your JPEG file.
  */
 
-error_reporting(E_ALL);
-
 require_once(dirname(__FILE__) . '/../src/PelJpeg.php');
 
 /**
@@ -177,4 +175,3 @@ function addGpsInfo($input, $output, $description, $comment, $model,
   file_put_contents($output, $jpeg->getBytes());
 }
 
-?>

@@ -297,4 +297,3 @@ class SRationalTestCase extends UnitTestCase {
 
 }
 
-?>

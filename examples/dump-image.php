@@ -24,8 +24,6 @@
 
 /* $Id$ */
 
-error_reporting(E_ALL);
-
 /* Make PEL speak the users language, if it is available. */
 setlocale(LC_ALL, '');
 
@@ -95,4 +93,3 @@ if (count(Pel::getExceptions()) > 0) {
     print("\n" . $e->__toString());
 }
 
-?>

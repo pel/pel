@@ -118,4 +118,3 @@ class PelJpegComment extends PelJpegContent {
 
 }
 
-?>

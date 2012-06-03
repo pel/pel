@@ -172,4 +172,3 @@ class PelExif extends PelJpegContent {
 
 }
 
-?>

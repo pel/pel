@@ -94,4 +94,3 @@ class UndefinedTestCase extends UnitTestCase {
 
 }
 
-?>

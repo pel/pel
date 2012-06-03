@@ -156,4 +156,3 @@ class AsciiTestCase extends UnitTestCase {
 
 }
 
-?>

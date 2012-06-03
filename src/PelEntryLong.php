@@ -178,5 +178,3 @@ class PelEntrySLong extends PelEntryNumber {
   }
 }
 
-
-?>

@@ -277,4 +277,3 @@ class PelEntryWindowsString extends PelEntry {
 
 }
 
-?>
