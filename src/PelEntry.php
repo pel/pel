@@ -346,7 +346,7 @@ abstract class PelEntry {
    * @param mixed the new value.
    *
    * @abstract
-   */
+   
   function setValue($value) {
     /* This (fake) abstract method is here to make it possible for the
      * documentation to refer to PelEntry::setValue().
@@ -354,9 +354,9 @@ abstract class PelEntry {
      * It cannot declared abstract in the proper PHP way, for then PHP
      * wont allow subclasses to define it with two arguments (which is
      * what PelEntryCopyright does).
-     */
+     
     throw new PelException('setValue() is abstract.');
-  }
+  }*/
 
 
   /**
