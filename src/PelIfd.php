@@ -371,6 +371,15 @@ class PelIfd implements IteratorAggregate, ArrayAccess {
                                                  PelFormat::ASCII);
 
         $v = explode("\0", trim($data->getBytes(), ' '));
+        
+        
+        // without this fix: code returns PHP illegal offset warnings
+        if(!array_key_exists(1, $v))
+        {
+            $v[1] = null;
+        }
+        
+        
         return new PelEntryCopyright($v[0], $v[1]);
 
       case PelTag::EXIF_VERSION:
