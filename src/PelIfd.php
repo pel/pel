@@ -371,6 +371,18 @@ class PelIfd implements IteratorAggregate, ArrayAccess {
                                                  PelFormat::ASCII);
 
         $v = explode("\0", trim($data->getBytes(), ' '));
+        
+        
+        // @Fix: Austin's fix for images with weird copyright exif
+        // without this fix: code returns PHP illegal offset warnings
+        if(!array_key_exists(1, $v))
+        {
+            // idk what else to do here but this fixes it
+            // plz work
+            $v[1] = null;
+        }
+        
+        
         return new PelEntryCopyright($v[0], $v[1]);
 
       case PelTag::EXIF_VERSION:
