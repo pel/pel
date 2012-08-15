@@ -1,6 +1,7 @@
 <?php
 
-/*  PEL: PHP Exif Library.  A library with support for reading and
+/**
+ *  PEL: PHP Exif Library.  A library with support for reading and
  *  writing all Exif headers in JPEG and TIFF images using PHP.
  *
  *  Copyright (C) 2005, 2007  Martin Geisler.
@@ -48,73 +49,73 @@ require_once('PelJpegContent.php');
  */
 class PelJpegComment extends PelJpegContent {
 
-  /**
-   * The comment.
-   *
-   * @var string
-   */
-  private $comment = '';
+    /**
+     * The comment.
+     *
+     * @var string
+     */
+    private $comment = '';
 
-  /**
-   * Construct a new JPEG comment.
-   *
-   * The new comment will contain the string given.
-   */
-  function __construct($comment = '') {
-    $this->comment = $comment;
-  }
-
-
-  /**
-   * Load and parse data.
-   *
-   * This will load the comment from the data window passed.
-   */
-  function load(PelDataWindow $d) {
-    $this->comment = $d->getBytes();
-  }
+    /**
+     * Construct a new JPEG comment.
+     *
+     * The new comment will contain the string given.
+     */
+    function __construct($comment = '') {
+        $this->comment = $comment;
+    }
 
 
-  /**
-   * Update the value with a new comment.
-   *
-   * Any old comment will be overwritten.
-   *
-   * @param string the new comment.
-   */
-  function setValue($comment) {
-    $this->comment = $comment;
-  }
+    /**
+     * Load and parse data.
+     *
+     * This will load the comment from the data window passed.
+     */
+    function load(PelDataWindow $d) {
+        $this->comment = $d->getBytes();
+    }
 
 
-  /**
-   * Get the comment.
-   *
-   * @return string the comment.
-   */
-  function getValue() {
-    return $this->comment;
-  }
+    /**
+     * Update the value with a new comment.
+     *
+     * Any old comment will be overwritten.
+     *
+     * @param string the new comment.
+     */
+    function setValue($comment) {
+        $this->comment = $comment;
+    }
 
 
-  /**
-   * Turn this comment into bytes.
-   *
-   * @return string bytes representing this comment.
-   */
-  function getBytes() {
-    return $this->comment;
-  }
+    /**
+     * Get the comment.
+     *
+     * @return string the comment.
+     */
+    function getValue() {
+        return $this->comment;
+    }
 
 
-  /**
-   * Return a string representation of this object.
-   *
-   * @return string the same as {@link getValue()}.
-   */
-  function __toString() {
-    return $this->getValue();
-  }
+    /**
+     * Turn this comment into bytes.
+     *
+     * @return string bytes representing this comment.
+     */
+    function getBytes() {
+        return $this->comment;
+    }
+
+
+    /**
+     * Return a string representation of this object.
+     *
+     * @return string the same as {@link getValue()}.
+     */
+    function __toString() {
+        return $this->getValue();
+    }
 
 }
 

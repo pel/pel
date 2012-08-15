@@ -1,6 +1,7 @@
 <?php
 
-/*  PEL: PHP Exif Library.  A library with support for reading and
+/**
+ *  PEL: PHP Exif Library.  A library with support for reading and
  *  writing all Exif headers in JPEG and TIFF images using PHP.
  *
  *  Copyright (C) 2004, 2005  Martin Geisler.
@@ -54,28 +55,28 @@ require_once('PelDataWindow.php');
  * @package PEL
  */
 class PelJpegContent {
-  private $data = null;
+    private $data = null;
 
-  /**
-   * Make a new piece of JPEG content.
-   *
-   * @param PelDataWindow the content.
-   */
-  function __construct(PelDataWindow $data) {
-    $this->data = $data;
-  }
+    /**
+     * Make a new piece of JPEG content.
+     *
+     * @param PelDataWindow the content.
+     */
+    function __construct(PelDataWindow $data) {
+        $this->data = $data;
+    }
 
 
-  /**
-   * Return the bytes of the content.
-   *
-   * @return string bytes representing this JPEG content.  These bytes
-   * will match the bytes given to {@link __construct the
-   * constructor}.
-   */
-  function getBytes() {
-    return $this->data->getBytes();
-  }
+    /**
+     * Return the bytes of the content.
+     *
+     * @return string bytes representing this JPEG content.  These bytes
+     * will match the bytes given to {@link __construct the
+     * constructor}.
+     */
+    function getBytes() {
+        return $this->data->getBytes();
+    }
 
 }
 
