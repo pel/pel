@@ -9,5 +9,5 @@ before_script:
   - pear install PHP_CodeSniffer
   - phpenv rehash
 script: 
-  - phpcs src
+  - phpcs src --standard=./phpcs_ruleset.xml
   - php test/run-tests.php
