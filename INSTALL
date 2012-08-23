@@ -14,10 +14,23 @@ PEL requires PHP version 5.
 Installation
 ************
 
-The preferred way of installing PEL is using the pear installer:
+The preferred way of installing PEL is using the PEAR installer:
 
   pear channel-discover pearhub.org
   pear install pearhub/pel
+
+You can also use git to install it using:
+
+  git clone git://github.com/lsolesen/pel.git
+  git checkout <tag name>
+
+Finally, you can install PEL by extracting it to a local directory. You can find
+the compressed files here: https://github.com/lsolesen/pel/downloads.
+
+Make sure that you extract the files to a path included in your include path:
+You can set the include path using.
+
+  set_include_path('/path/to/pel' . PATH_SEPARATOR . get_include_path());
 
 
 Upgrading
