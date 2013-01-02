@@ -1,0 +1,25 @@
+{
+    "name": "lsolesen/pel",
+    "type": "library",
+    "description": "PHP Exif Library. A library for reading and writing Exif headers in JPEG and TIFF images using PHP.",
+    "keywords": [
+        "template"
+    ],
+    "homepage": "http://lsolesen.github.com/pel/",
+    "authors": [
+        {
+            "name": "Lars Olesen",
+            "email": "lars@intraface.dk",
+            "homepage": "http://intraface.dk",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "php": ">=5.0.0"
+    },
+    "autoload": {
+        "files": [
+            "src/Pel.php"
+        ]
+    }
+}
