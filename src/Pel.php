@@ -141,7 +141,7 @@ class Pel {
      * @param int $quality an integer between 0 and 100 with 75 being
      * average quality and 95 very good quality.
      */
-    function setJPEGQuality($quality) {
+    public static function setJPEGQuality($quality) {
         self::$quality = $quality;
     }
 
@@ -151,7 +151,7 @@ class Pel {
      *
      * @return int the quality.
      */
-    function getJPEGQuality() {
+    public static function getJPEGQuality() {
         return self::$quality;
     }
 
