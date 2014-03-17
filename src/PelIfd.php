@@ -372,6 +372,7 @@ class PelIfd implements IteratorAggregate, ArrayAccess {
                         PelFormat::ASCII);
 
                         $v = explode("\0", trim($data->getBytes(), ' '));
+                        if (!isset($v[1])) $v[1] = '';
                         return new PelEntryCopyright($v[0], $v[1]);
 
                     case PelTag::EXIF_VERSION:
