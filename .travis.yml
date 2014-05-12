@@ -1,14 +1,17 @@
 language: php
+
 php:
   - 5.2
   - 5.3
   - 5.4
-before_script:
+  - 5.5
+
+install:
   - wget http://downloads.sourceforge.net/project/simpletest/simpletest/simpletest_1.1/simpletest_1.1.0.tar.gz
   - tar -xvzf simpletest_1.1.0.tar.gz
   - pear install PHP_CodeSniffer
   - phpenv rehash
+
 script: 
   - php test/run-tests.php
   - phpcs src
-
