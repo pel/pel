@@ -329,11 +329,13 @@ class PelJpeg {
 
         /* Search through all sections looking for APP0 or APP1. */
         for ($i = 0; $i < count($this->sections); $i++) {
-            if ($this->sections[$i][0] == PelJpegMarker::APP0) {
-                $app0_offset = $i;
-            } elseif ($this->sections[$i][0] == PelJpegMarker::APP1) {
-                $app1_offset = $i;
-                break;
+            if (!empty($this->sections[$i][0])) {
+                if ($this->sections[$i][0] == PelJpegMarker::APP0) {
+                    $app0_offset = $i;
+                } elseif ($this->sections[$i][0] == PelJpegMarker::APP1) {
+                    $app1_offset = $i;
+                    break;
+                }
             }
         }
 
@@ -348,6 +350,40 @@ class PelJpeg {
 
 
     /**
+     * Set ICC data.
+     *
+     * Use this to set the ICC data in the image. This will overwrite
+     * any old ICC information in the image.
+     *
+     * @param PelJpegContent the ICC data.
+     */
+    function setICC(PelJpegContent $icc) {
+        $app1_offset = 1;
+        $app2_offset = -1;
+
+        /* Search through all sections looking for APP0 or APP1. */
+        for ($i = 0; $i < count($this->sections); $i++) {
+            if (!empty($this->sections[$i][0])) {
+                if ($this->sections[$i][0] == PelJpegMarker::APP1) {
+                    $app1_offset = $i;
+                } elseif ($this->sections[$i][0] == PelJpegMarker::APP2) {
+                    $app2_offset = $i;
+                    break;
+                }
+            }
+        }
+
+        /* Store the Exif data at the appropriate place, either where the
+         * old Exif data was stored ($app1_offset) or right after APP0
+         * ($app0_offset+1). */
+        if ($app2_offset > 0)
+        $this->sections[$app1_offset][1] = $icc;
+        else
+        $this->insertSection(PelJpegMarker::APP2, $icc, $app1_offset+1);
+    }
+
+
+    /**
      * Get Exif data.
      *
      * Use this to get the @{link PelExif Exif data} stored.
@@ -357,9 +393,22 @@ class PelJpeg {
      */
     function getExif() {
         $exif = $this->getSection(PelJpegMarker::APP1);
-        if ($exif instanceof PelExif)
-        return $exif;
-        else
+        if ($exif instanceof PelExif) return $exif;
+        return null;
+    }
+
+
+    /**
+     * Get ICC data.
+     *
+     * Use this to get the @{link PelJpegContent ICC data} stored.
+     *
+     * @return PelJpegContent the ICC data found or null if the image has no
+     * ICC data.
+     */
+    function getICC() {
+        $icc = $this->getSection(PelJpegMarker::APP2);
+        if ($icc instanceof PelJpegContent) return $icc;
         return null;
     }
 
