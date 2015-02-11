@@ -141,7 +141,7 @@ class Pel {
      * @param int $quality an integer between 0 and 100 with 75 being
      * average quality and 95 very good quality.
      */
-    function setJPEGQuality($quality) {
+    public static function setJPEGQuality($quality) {
         self::$quality = $quality;
     }
 
@@ -151,7 +151,7 @@ class Pel {
      *
      * @return int the quality.
      */
-    function getJPEGQuality() {
+    public static function getJPEGQuality() {
         return self::$quality;
     }
 
@@ -188,7 +188,7 @@ class Pel {
      *
      * @return array the exceptions.
      */
-    static function getExceptions() {
+    public static function getExceptions() {
         return self::$exceptions;
     }
 
@@ -199,7 +199,7 @@ class Pel {
      * Use this function before a call to some method if you intend to
      * check for exceptions afterwards.
      */
-    static function clearExceptions() {
+    public static function clearExceptions() {
         self::$exceptions = array();
     }
 
@@ -215,7 +215,7 @@ class Pel {
      *
      * @param PelException $e the exceptions.
      */
-    static function maybeThrow(PelException $e) {
+    public static function maybeThrow(PelException $e) {
         if (self::$strict) {
             throw $e;
         } else {
@@ -242,7 +242,7 @@ class Pel {
      * @param boolean $flag use true to enable strict parsing, false to
      * diable.
      */
-    function setStrictParsing($flag) {
+    public static function setStrictParsing($flag) {
         self::$strict = $flag;
     }
 
@@ -253,7 +253,7 @@ class Pel {
      * @return boolean true if strict parsing is in effect, false
      * otherwise.
      */
-    function getStrictParsing() {
+    public static function getStrictParsing() {
         return self::$strict;
     }
 
@@ -264,7 +264,7 @@ class Pel {
      * @param boolean $flag use true to enable debug output, false to
      * diable.
      */
-    function setDebug($flag) {
+    public static function setDebug($flag) {
         self::$debug = $flag;
     }
 
@@ -274,7 +274,7 @@ class Pel {
      *
      * @return boolean true if debug is enabled, false otherwise.
      */
-    function getDebug() {
+    public static function getDebug() {
         return self::$debug;
     }
 
@@ -292,7 +292,7 @@ class Pel {
      * arguments will be available for the format string as usual with
      * sprintf().
      */
-    static function debug() {
+    public static function debug() {
         if (self::$debug) {
             $args = func_get_args();
             $str = array_shift($args);
@@ -315,7 +315,7 @@ class Pel {
      * arguments will be available for the format string as usual with
      * sprintf().
      */
-    static function warning() {
+    public static function warning() {
         if (self::$debug) {
             $args = func_get_args();
             $str = array_shift($args);
@@ -337,7 +337,7 @@ class Pel {
      * @return string the translated string, or the original string if
      * no translation could be found.
      */
-    static function tra($str) {
+    public static function tra($str) {
         return dgettext('pel', $str);
     }
 
@@ -362,7 +362,7 @@ class Pel {
      * @return string the translated string, or the original string if
      * no translation could be found.
      */
-    static function fmt() {
+    public static function fmt() {
         $args = func_get_args();
         $str = array_shift($args);
         return vsprintf(dgettext('pel', $str), $args);
