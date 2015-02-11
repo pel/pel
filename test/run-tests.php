@@ -26,8 +26,8 @@
 
 error_reporting(E_ALL);
 
-require_once('simpletest/unit_tester.php');
-require_once('simpletest/reporter.php');
+require_once('../vendor/lastcraft/simpletest/unit_tester.php');
+require_once('../vendor/lastcraft/simpletest/reporter.php');
 
 if (!empty($argc) AND $argc > 1) {
   // If command line arguments are given, then only test those.

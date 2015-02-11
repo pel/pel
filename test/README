@@ -26,13 +26,12 @@ The image tests are not distributed with PEL, but can be found at
 Running the Test Suite
 **********************
 
-First the SimpleTest framework has to be downloaded from
+First the SimpleTest framework has to be downloaded via composer in 
+the project's top directory
 
-  http://sourceforge.net/projects/simpletest
-
-Unpack it in a directory called 'simpletest' placed alongside the PEL
-directory, that is, in '../../simpletest' relative to this directory.
-
+```bash
+composer update
+```
 Now run the run-tests.php script and observe the results --- it should
 tell you that all tests were executed successfully.
 
