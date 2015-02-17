@@ -319,6 +319,7 @@ class PelEntryTime extends PelEntryAscii {
                 /* Clean the timestamp: some timestamps are broken other
                  * separators than ':' and ' '. */
                 $d = preg_split('/[^0-9]+/', $timestamp);
+                for ($i=0; $i<6; $i++) if (empty($d[$i])) $d[$i] = 0;
                 $this->day_count = $this->convertGregorianToJd($d[0], $d[1], $d[2]);
                 $this->seconds   = $d[3]*3600 + $d[4]*60 + $d[5];
                 break;
@@ -410,7 +411,7 @@ class PelEntryTime extends PelEntryAscii {
      * Converts a Julian Day count to a UNIX timestamp.
      *
      * @param int $jd the Julian Day count.
-
+     *
      * @return mixed $timestamp the integer timestamp or false if the
      * day count cannot be represented as a UNIX timestamp.
      */
@@ -558,4 +559,3 @@ class PelEntryCopyright extends PelEntryAscii {
         return '';
     }
 }
-

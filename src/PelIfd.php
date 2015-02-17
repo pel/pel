@@ -373,8 +373,9 @@ class PelIfd implements IteratorAggregate, ArrayAccess {
 
                         $v = explode("\0", trim($data->getBytes(), ' '));
                         if (!isset($v[1])) {
-                            throw new PelException('Invalid copyright: %s',
-                            $data->getBytes());
+                            Pel::maybeThrow(new PelException('Invalid copyright: %s', $data->getBytes()));
+                            // when not in strict mode, set empty copyright and continue
+                            $v[1] = '';
                         }
                         return new PelEntryCopyright($v[0], $v[1]);
 
