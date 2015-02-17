@@ -22,7 +22,6 @@
  *  Boston, MA 02110-1301 USA
  */
 
-/* $Id$ */
 
 /* An example of how PEL can be used.  The script will read the Exif
  * timestamps in the files given, and rename the files based on that.

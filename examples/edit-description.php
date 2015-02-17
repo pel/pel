@@ -22,7 +22,6 @@
  *  Boston, MA 02110-1301 USA
  */
 
-/* $Id$ */
 
 /* a printf() variant that appends a newline to the output. */
 function println(/* fmt, args... */) {

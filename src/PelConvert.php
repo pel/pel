@@ -22,15 +22,12 @@
  *  Boston, MA 02110-1301 USA
  */
 
-/* $Id$ */
 
 
 /**
  * Routines for converting back and forth between bytes and integers.
  *
  * @author Martin Geisler <mgeisler@users.sourceforge.net>
- * @version $Revision$
- * @date $Date$
  * @license http://www.gnu.org/licenses/gpl.html GNU General Public
  * License (GPL)
  * @package PEL

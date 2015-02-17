@@ -22,7 +22,6 @@
  *  Boston, MA 02110-1301 USA
  */
 
-/* $Id$ */
 
 /* Make PEL speak the users language, if it is available. */
 setlocale(LC_ALL, '');

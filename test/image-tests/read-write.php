@@ -21,7 +21,6 @@
  *  Boston, MA 02110-1301 USA
  */
 
-/* $Id$ */
 set_include_path(dirname(__FILE__) . '/../../src/' . PATH_SEPARATOR . get_include_path());
 
 abstract class WriteEntryTestCase extends UnitTestCase {

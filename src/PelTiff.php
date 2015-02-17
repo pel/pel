@@ -22,15 +22,12 @@
  *  Boston, MA 02110-1301 USA
  */
 
-/* $Id$ */
 
 
 /**
  * Classes for dealing with TIFF data.
  *
  * @author Martin Geisler <mgeisler@users.sourceforge.net>
- * @version $Revision$
- * @date $Date$
  * @license http://www.gnu.org/licenses/gpl.html GNU General Public
  * License (GPL)
  * @package PEL

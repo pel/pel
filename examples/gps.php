@@ -21,7 +21,6 @@
  *  Boston, MA 02110-1301 USA
  */
 
-/* $Id$ */
 
 /* Contributed by Andac Aydin (aandac@gmx.de).
  *
