@@ -3,6 +3,7 @@ reading and writing Exif headers in JPEG and TIFF images using PHP.
 
 Copyright (C) 2004, 2005, 2006, 2007  Martin Geisler.
 Copyright (c) 2008, 2009 Lars Olesen
+Copyright (c) 2015 Johannes Weberhofer
 Licensed under the GNU GPL, see COPYING for details.
 
 
@@ -10,7 +11,8 @@ Credits
 *******
 
 PEL is written by Martin Geisler <mgeisler@users.sourceforge.net> and
-is now maintained by Lars Olesen <lars@legestue.net>
+is now maintained by Lars Olesen <lars@legestue.net> 
+and <jweberhofer@weberhofer.at>
 
 The source started out as a port of the nice, clean C code found in
 libexif.  Most of the translations included with PEL also originates
@@ -22,11 +24,11 @@ Test Image Contributors
 
 Bernhard Bittel: Nikon E950 and E5000 test images.
 
-Stéphanie Bittel: Canon IXUS II test image.
+StÃ©phanie Bittel: Canon IXUS II test image.
 
 Lars Geisler: Nikon Coolscan IV ED test image.
 
-Mikkel Krøigård: Canon PowerShot S60 test image.
+Mikkel KrÃ¸igÃ¥rd: Canon PowerShot S60 test image.
 
 Paul Mitchum: Pentax *ist DS and Olympus C-5050z test images.
 
@@ -42,7 +44,7 @@ Danish: Martin Geisler.
 
 French: Arnaud Launay (for libexif) and David Lesieur.
 
-German: Hans Ulrich Niedermann, Lutz Möller (for libexif).
+German: Hans Ulrich Niedermann, Lutz MÃ¶ller (for libexif).
 
 Japanese: Tadashi Jokagi.
 
