@@ -38,6 +38,7 @@ class AsciiTestCase extends UnitTestCase {
   function testReturnValues() {
     $pattern = new PatternExpectation('/Missing argument 1 for ' .
                                             'PelEntryAscii::__construct()/');
+
     $this->expectError($pattern);
     $this->expectError('Undefined variable: tag');
 
@@ -62,13 +63,12 @@ class AsciiTestCase extends UnitTestCase {
     $this->expectError('Undefined variable: timestamp');
 
     $entry = new PelEntryTime();
-
     $this->expectError($arg2);
     $this->expectError('Undefined variable: timestamp');
 
     $entry = new PelEntryTime(42);
-
     $entry = new PelEntryTime(42, 10);
+
     $this->assertEqual($entry->getComponents(), 20);
     $this->assertEqual($entry->getValue(), 10);
     $this->assertEqual($entry->getValue(PelEntryTime::UNIX_TIMESTAMP), 10);
@@ -101,7 +101,8 @@ class AsciiTestCase extends UnitTestCase {
 
     $entry->setValue('9999:12:31 23:59:59', PelEntryTime::EXIF_STRING);
 
-    $this->assertEqual($entry->getValue(), false);
+    // this test will fail on 32bit machines
+    $this->assertEqual($entry->getValue(), 253402300799);
     $this->assertEqual($entry->getValue(PelEntryTime::EXIF_STRING),
                        '9999:12:31 23:59:59');
     $this->assertEqual($entry->getValue(PelEntryTime::JULIAN_DAY_COUNT),

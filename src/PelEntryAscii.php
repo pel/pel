@@ -413,13 +413,14 @@ class PelEntryTime extends PelEntryAscii {
      * day count cannot be represented as a UNIX timestamp.
      */
     function convertJdToUnix($jd) {
-        $timestamp = ($jd - 2440588) * 86400;
-        if ($timestamp != (int)$timestamp)
+        if ($jd>0) {
+            $timestamp = ($jd - 2440588) * 86400;
+            if ($timestamp >=0 ) {
+                return $timestamp;
+            }
+        }
         return false;
-        else
-        return $timestamp;
     }
-
 }
 
 
