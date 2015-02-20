@@ -1,54 +1,58 @@
 <?php
 
 /**
- *  PEL: PHP Exif Library.  A library with support for reading and
- *  writing all Exif headers in JPEG and TIFF images using PHP.
+ * PEL: PHP Exif Library.
+ * A library with support for reading and
+ * writing all Exif headers in JPEG and TIFF images using PHP.
  *
- *  Copyright (C) 2004, 2005, 2006, 2007  Martin Geisler.
+ * Copyright (C) 2004, 2005, 2006, 2007 Martin Geisler.
  *
- *  This program is free software; you can redistribute it and/or modify
- *  it under the terms of the GNU General Public License as published by
- *  the Free Software Foundation; either version 2 of the License, or
- *  (at your option) any later version.
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2 of the License, or
+ * (at your option) any later version.
  *
- *  This program is distributed in the hope that it will be useful,
- *  but WITHOUT ANY WARRANTY; without even the implied warranty of
- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *  GNU General Public License for more details.
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public License for more details.
  *
- *  You should have received a copy of the GNU General Public License
- *  along with this program in the file COPYING; if not, write to the
- *  Free Software Foundation, Inc., 51 Franklin St, Fifth Floor,
- *  Boston, MA 02110-1301 USA
+ * You should have received a copy of the GNU General Public License
+ * along with this program in the file COPYING; if not, write to the
+ * Free Software Foundation, Inc., 51 Franklin St, Fifth Floor,
+ * Boston, MA 02110-1301 USA
  */
-
-
 
 /**
  * Namespace for functions operating on Exif tags.
  *
  * @author Martin Geisler <mgeisler@users.sourceforge.net>
  * @license http://www.gnu.org/licenses/gpl.html GNU General Public
- * License (GPL)
+ *          License (GPL)
  * @package PEL
  */
 
-/**#@+ Required class definitions. */
-require_once('Pel.php');
-require_once('PelIfd.php');
-/**#@-*/
+/**
+ * #@+ Required class definitions.
+ */
+require_once ('Pel.php');
+require_once ('PelIfd.php');
 
+
+/**
+ * #@-
+ */
 
 /**
  * Class with static methods for Exif tags.
  *
  * This class defines the constants that represents the Exif tags
- * known to PEL.  They are supposed to be used whenever one needs to
+ * known to PEL. They are supposed to be used whenever one needs to
  * specify an Exif tag, and they will be denoted by the pseudo-type
  * {@link PelTag} throughout the documentation.
  *
  * Please note that the constrains on the format and number of
- * components given here are advisory only.  To follow the Exif
+ * components given here are advisory only. To follow the Exif
  * specification one should obey them, but there is nothing that
  * prevents you from creating an {@link IMAGE_LENGTH} entry with two
  * or more components, even though the standard says that there should
@@ -69,7 +73,7 @@ class PelTag {
      *
      * Components: 4.
      */
-    const INTEROPERABILITY_INDEX                            = 0x0001;
+    const INTEROPERABILITY_INDEX = 0x0001;
 
     /**
      * Interoperability version.
@@ -78,7 +82,7 @@ class PelTag {
      *
      * Components: 4.
      */
-    const INTEROPERABILITY_VERSION                          = 0x0002;
+    const INTEROPERABILITY_VERSION = 0x0002;
 
     /**
      * Image width.
@@ -87,7 +91,7 @@ class PelTag {
      *
      * Components: 1.
      */
-    const IMAGE_WIDTH                                       = 0x0100;
+    const IMAGE_WIDTH = 0x0100;
 
     /**
      * Image length.
@@ -96,7 +100,7 @@ class PelTag {
      *
      * Components: 1.
      */
-    const IMAGE_LENGTH                                      = 0x0101;
+    const IMAGE_LENGTH = 0x0101;
 
     /**
      * Number of bits per component.
@@ -105,7 +109,7 @@ class PelTag {
      *
      * Components: 3.
      */
-    const BITS_PER_SAMPLE                                   = 0x0102;
+    const BITS_PER_SAMPLE = 0x0102;
 
     /**
      * Compression scheme.
@@ -114,7 +118,7 @@ class PelTag {
      *
      * Components: 1.
      */
-    const COMPRESSION                                       = 0x0103;
+    const COMPRESSION = 0x0103;
 
     /**
      * Pixel composition.
@@ -123,7 +127,7 @@ class PelTag {
      *
      * Components: 1.
      */
-    const PHOTOMETRIC_INTERPRETATION                        = 0x0106;
+    const PHOTOMETRIC_INTERPRETATION = 0x0106;
 
     /**
      * Fill Orde
@@ -132,7 +136,7 @@ class PelTag {
      *
      * Components: Unknown.
      */
-    const FILL_ORDER                                        = 0x010A;
+    const FILL_ORDER = 0x010A;
 
     /**
      * Document Name
@@ -141,7 +145,7 @@ class PelTag {
      *
      * Components: Unknown.
      */
-    const DOCUMENT_NAME                                     = 0x010D;
+    const DOCUMENT_NAME = 0x010D;
 
     /**
      * Image Description
@@ -150,7 +154,7 @@ class PelTag {
      *
      * Components: any number.
      */
-    const IMAGE_DESCRIPTION                                 = 0x010E;
+    const IMAGE_DESCRIPTION = 0x010E;
 
     /**
      * Manufacturer
@@ -159,7 +163,7 @@ class PelTag {
      *
      * Components: any number.
      */
-    const MAKE                                              = 0x010F;
+    const MAKE = 0x010F;
 
     /**
      * Model
@@ -168,7 +172,7 @@ class PelTag {
      *
      * Components: any number.
      */
-    const MODEL                                             = 0x0110;
+    const MODEL = 0x0110;
 
     /**
      * Strip Offsets
@@ -177,7 +181,7 @@ class PelTag {
      *
      * Components: any number.
      */
-    const STRIP_OFFSETS                                     = 0x0111;
+    const STRIP_OFFSETS = 0x0111;
 
     /**
      * Orientation of image.
@@ -186,7 +190,7 @@ class PelTag {
      *
      * Components: 1.
      */
-    const ORIENTATION                                       = 0x0112;
+    const ORIENTATION = 0x0112;
 
     /**
      * Number of components.
@@ -195,7 +199,7 @@ class PelTag {
      *
      * Components: 1.
      */
-    const SAMPLES_PER_PIXEL                                 = 0x0115;
+    const SAMPLES_PER_PIXEL = 0x0115;
 
     /**
      * Rows per Strip
@@ -204,7 +208,7 @@ class PelTag {
      *
      * Components: 1.
      */
-    const ROWS_PER_STRIP                                    = 0x0116;
+    const ROWS_PER_STRIP = 0x0116;
 
     /**
      * Strip Byte Count
@@ -213,7 +217,7 @@ class PelTag {
      *
      * Components: any number.
      */
-    const STRIP_BYTE_COUNTS                                 = 0x0117;
+    const STRIP_BYTE_COUNTS = 0x0117;
 
     /**
      * Image resolution in width direction.
@@ -222,7 +226,7 @@ class PelTag {
      *
      * Components: 1.
      */
-    const X_RESOLUTION                                      = 0x011A;
+    const X_RESOLUTION = 0x011A;
 
     /**
      * Image resolution in height direction.
@@ -231,7 +235,7 @@ class PelTag {
      *
      * Components: 1.
      */
-    const Y_RESOLUTION                                      = 0x011B;
+    const Y_RESOLUTION = 0x011B;
 
     /**
      * Image data arrangement.
@@ -240,7 +244,7 @@ class PelTag {
      *
      * Components: 1.
      */
-    const PLANAR_CONFIGURATION                              = 0x011C;
+    const PLANAR_CONFIGURATION = 0x011C;
 
     /**
      * Unit of X and Y resolution.
@@ -249,7 +253,7 @@ class PelTag {
      *
      * Components: 1.
      */
-    const RESOLUTION_UNIT                                   = 0x0128;
+    const RESOLUTION_UNIT = 0x0128;
 
     /**
      * Transfer function.
@@ -258,7 +262,7 @@ class PelTag {
      *
      * Components: 3.
      */
-    const TRANSFER_FUNCTION                                 = 0x012D;
+    const TRANSFER_FUNCTION = 0x012D;
 
     /**
      * Software used.
@@ -267,7 +271,7 @@ class PelTag {
      *
      * Components: any number.
      */
-    const SOFTWARE                                          = 0x0131;
+    const SOFTWARE = 0x0131;
 
     /**
      * File change date and time.
@@ -277,7 +281,7 @@ class PelTag {
      *
      * Components: 20.
      */
-    const DATE_TIME                                         = 0x0132;
+    const DATE_TIME = 0x0132;
 
     /**
      * Person who created the image.
@@ -286,7 +290,7 @@ class PelTag {
      *
      * Components: any number.
      */
-    const ARTIST                                            = 0x013B;
+    const ARTIST = 0x013B;
 
     /**
      * White point chromaticity.
@@ -295,7 +299,7 @@ class PelTag {
      *
      * Components: 2.
      */
-    const WHITE_POINT                                       = 0x013E;
+    const WHITE_POINT = 0x013E;
 
     /**
      * Chromaticities of primaries.
@@ -304,7 +308,7 @@ class PelTag {
      *
      * Components: 6.
      */
-    const PRIMARY_CHROMATICITIES                            = 0x013F;
+    const PRIMARY_CHROMATICITIES = 0x013F;
 
     /**
      * Transfer Range
@@ -313,7 +317,7 @@ class PelTag {
      *
      * Components: Unknown.
      */
-    const TRANSFER_RANGE                                    = 0x0156;
+    const TRANSFER_RANGE = 0x0156;
 
     /**
      * JPEGProc
@@ -322,7 +326,7 @@ class PelTag {
      *
      * Components: Unknown.
      */
-    const JPEG_PROC                                         = 0x0200;
+    const JPEG_PROC = 0x0200;
 
     /**
      * Offset to JPEG SOI.
@@ -331,7 +335,7 @@ class PelTag {
      *
      * Components: 1.
      */
-    const JPEG_INTERCHANGE_FORMAT                           = 0x0201;
+    const JPEG_INTERCHANGE_FORMAT = 0x0201;
 
     /**
      * Bytes of JPEG data.
@@ -340,7 +344,7 @@ class PelTag {
      *
      * Components: 1.
      */
-    const JPEG_INTERCHANGE_FORMAT_LENGTH                    = 0x0202;
+    const JPEG_INTERCHANGE_FORMAT_LENGTH = 0x0202;
 
     /**
      * Color space transformation matrix coefficients.
@@ -349,7 +353,7 @@ class PelTag {
      *
      * Components: 3.
      */
-    const YCBCR_COEFFICIENTS                                = 0x0211;
+    const YCBCR_COEFFICIENTS = 0x0211;
 
     /**
      * Subsampling ratio of Y to C.
@@ -358,7 +362,7 @@ class PelTag {
      *
      * Components: 2.
      */
-    const YCBCR_SUB_SAMPLING                                = 0x0212;
+    const YCBCR_SUB_SAMPLING = 0x0212;
 
     /**
      * Y and C positioning.
@@ -367,7 +371,7 @@ class PelTag {
      *
      * Components: 1.
      */
-    const YCBCR_POSITIONING                                 = 0x0213;
+    const YCBCR_POSITIONING = 0x0213;
 
     /**
      * Pair of black and white reference values.
@@ -376,7 +380,7 @@ class PelTag {
      *
      * Components: 6.
      */
-    const REFERENCE_BLACK_WHITE                             = 0x0214;
+    const REFERENCE_BLACK_WHITE = 0x0214;
 
     /**
      * Related Image File Format
@@ -385,7 +389,7 @@ class PelTag {
      *
      * Components: Unknown.
      */
-    const RELATED_IMAGE_FILE_FORMAT                         = 0x1000;
+    const RELATED_IMAGE_FILE_FORMAT = 0x1000;
 
     /**
      * Related Image Width
@@ -394,15 +398,16 @@ class PelTag {
      *
      * Components: Unknown, probably 1.
      */
-    const RELATED_IMAGE_WIDTH                               = 0x1001;
+    const RELATED_IMAGE_WIDTH = 0x1001;
 
-    /** Related Image Length
+    /**
+     * Related Image Length
      *
      * Format: Unknown, probably {@link PelFormat::SHORT}?
      *
      * Components: Unknown, probably 1.
      */
-    const RELATED_IMAGE_LENGTH                              = 0x1002;
+    const RELATED_IMAGE_LENGTH = 0x1002;
 
     /**
      * CFA Repeat Pattern Dim.
@@ -411,7 +416,7 @@ class PelTag {
      *
      * Components: 2.
      */
-    const CFA_REPEAT_PATTERN_DIM                            = 0x828D;
+    const CFA_REPEAT_PATTERN_DIM = 0x828D;
 
     /**
      * Battery level.
@@ -420,7 +425,7 @@ class PelTag {
      *
      * Components: Unknown.
      */
-    const BATTERY_LEVEL                                     = 0x828F;
+    const BATTERY_LEVEL = 0x828F;
 
     /**
      * Copyright holder.
@@ -430,7 +435,7 @@ class PelTag {
      *
      * Components: any number.
      */
-    const COPYRIGHT                                         = 0x8298;
+    const COPYRIGHT = 0x8298;
 
     /**
      * Exposure Time
@@ -439,7 +444,7 @@ class PelTag {
      *
      * Components: 1.
      */
-    const EXPOSURE_TIME                                     = 0x829A;
+    const EXPOSURE_TIME = 0x829A;
 
     /**
      * FNumber
@@ -448,7 +453,7 @@ class PelTag {
      *
      * Components: 1.
      */
-    const FNUMBER                                           = 0x829D;
+    const FNUMBER = 0x829D;
 
     /**
      * IPTC/NAA
@@ -457,7 +462,7 @@ class PelTag {
      *
      * Components: any number.
      */
-    const IPTC_NAA                                          = 0x83BB;
+    const IPTC_NAA = 0x83BB;
 
     /**
      * Exif IFD Pointer
@@ -466,7 +471,7 @@ class PelTag {
      *
      * Components: 1.
      */
-    const EXIF_IFD_POINTER                                  = 0x8769;
+    const EXIF_IFD_POINTER = 0x8769;
 
     /**
      * Inter Color Profile
@@ -475,7 +480,7 @@ class PelTag {
      *
      * Components: any number.
      */
-    const INTER_COLOR_PROFILE                               = 0x8773;
+    const INTER_COLOR_PROFILE = 0x8773;
 
     /**
      * Exposure Program
@@ -484,7 +489,7 @@ class PelTag {
      *
      * Components: 1.
      */
-    const EXPOSURE_PROGRAM                                  = 0x8822;
+    const EXPOSURE_PROGRAM = 0x8822;
 
     /**
      * Spectral Sensitivity
@@ -493,7 +498,7 @@ class PelTag {
      *
      * Components: any number.
      */
-    const SPECTRAL_SENSITIVITY                              = 0x8824;
+    const SPECTRAL_SENSITIVITY = 0x8824;
 
     /**
      * GPS Info IFD Pointer
@@ -502,7 +507,7 @@ class PelTag {
      *
      * Components: 1.
      */
-    const GPS_INFO_IFD_POINTER                              = 0x8825;
+    const GPS_INFO_IFD_POINTER = 0x8825;
 
     /**
      * ISO Speed Ratings
@@ -511,7 +516,7 @@ class PelTag {
      *
      * Components: 2.
      */
-    const ISO_SPEED_RATINGS                                 = 0x8827;
+    const ISO_SPEED_RATINGS = 0x8827;
 
     /**
      * OECF
@@ -520,7 +525,7 @@ class PelTag {
      *
      * Components: any number.
      */
-    const OECF                                              = 0x8828;
+    const OECF = 0x8828;
 
     /**
      * Exif version.
@@ -530,7 +535,7 @@ class PelTag {
      *
      * Components: 4.
      */
-    const EXIF_VERSION                                      = 0x9000;
+    const EXIF_VERSION = 0x9000;
 
     /**
      * Date and time of original data generation.
@@ -540,7 +545,7 @@ class PelTag {
      *
      * Components: 20.
      */
-    const DATE_TIME_ORIGINAL                                = 0x9003;
+    const DATE_TIME_ORIGINAL = 0x9003;
 
     /**
      * Date and time of digital data generation.
@@ -550,7 +555,7 @@ class PelTag {
      *
      * Components: 20.
      */
-    const DATE_TIME_DIGITIZED                               = 0x9004;
+    const DATE_TIME_DIGITIZED = 0x9004;
 
     /**
      * Meaning of each component.
@@ -559,7 +564,7 @@ class PelTag {
      *
      * Components: 4.
      */
-    const COMPONENTS_CONFIGURATION                          = 0x9101;
+    const COMPONENTS_CONFIGURATION = 0x9101;
 
     /**
      * Image compression mode.
@@ -568,7 +573,7 @@ class PelTag {
      *
      * Components: 1.
      */
-    const COMPRESSED_BITS_PER_PIXEL                         = 0x9102;
+    const COMPRESSED_BITS_PER_PIXEL = 0x9102;
 
     /**
      * Shutter speed
@@ -577,7 +582,7 @@ class PelTag {
      *
      * Components: 1.
      */
-    const SHUTTER_SPEED_VALUE                               = 0x9201;
+    const SHUTTER_SPEED_VALUE = 0x9201;
 
     /**
      * Aperture
@@ -586,7 +591,7 @@ class PelTag {
      *
      * Components: 1.
      */
-    const APERTURE_VALUE                                    = 0x9202;
+    const APERTURE_VALUE = 0x9202;
 
     /**
      * Brightness
@@ -595,7 +600,7 @@ class PelTag {
      *
      * Components: 1.
      */
-    const BRIGHTNESS_VALUE                                  = 0x9203;
+    const BRIGHTNESS_VALUE = 0x9203;
 
     /**
      * Exposure Bias
@@ -604,7 +609,7 @@ class PelTag {
      *
      * Components: 1.
      */
-    const EXPOSURE_BIAS_VALUE                               = 0x9204;
+    const EXPOSURE_BIAS_VALUE = 0x9204;
 
     /**
      * Max Aperture Value
@@ -613,7 +618,7 @@ class PelTag {
      *
      * Components: 1.
      */
-    const MAX_APERTURE_VALUE                                = 0x9205;
+    const MAX_APERTURE_VALUE = 0x9205;
 
     /**
      * Subject Distance
@@ -622,7 +627,7 @@ class PelTag {
      *
      * Components: 1.
      */
-    const SUBJECT_DISTANCE                                  = 0x9206;
+    const SUBJECT_DISTANCE = 0x9206;
 
     /**
      * Metering Mode
@@ -631,7 +636,7 @@ class PelTag {
      *
      * Components: 1.
      */
-    const METERING_MODE                                     = 0x9207;
+    const METERING_MODE = 0x9207;
 
     /**
      * Light Source
@@ -640,7 +645,7 @@ class PelTag {
      *
      * Components: 1.
      */
-    const LIGHT_SOURCE                                      = 0x9208;
+    const LIGHT_SOURCE = 0x9208;
 
     /**
      * Flash
@@ -649,7 +654,7 @@ class PelTag {
      *
      * Components: 1.
      */
-    const FLASH                                             = 0x9209;
+    const FLASH = 0x9209;
 
     /**
      * Focal Length
@@ -658,7 +663,7 @@ class PelTag {
      *
      * Components: 1.
      */
-    const FOCAL_LENGTH                                      = 0x920A;
+    const FOCAL_LENGTH = 0x920A;
 
     /**
      * Subject Area
@@ -667,7 +672,7 @@ class PelTag {
      *
      * Components: 4.
      */
-    const SUBJECT_AREA                                      = 0x9214;
+    const SUBJECT_AREA = 0x9214;
 
     /**
      * Maker Note
@@ -676,7 +681,7 @@ class PelTag {
      *
      * Components: any number.
      */
-    const MAKER_NOTE                                        = 0x927C;
+    const MAKER_NOTE = 0x927C;
 
     /**
      * User Comment
@@ -686,7 +691,7 @@ class PelTag {
      *
      * Components: any number.
      */
-    const USER_COMMENT                                      = 0x9286;
+    const USER_COMMENT = 0x9286;
 
     /**
      * SubSec Time
@@ -695,7 +700,7 @@ class PelTag {
      *
      * Components: any number.
      */
-    const SUB_SEC_TIME                                      = 0x9290;
+    const SUB_SEC_TIME = 0x9290;
 
     /**
      * SubSec Time Original
@@ -704,7 +709,7 @@ class PelTag {
      *
      * Components: any number.
      */
-    const SUB_SEC_TIME_ORIGINAL                             = 0x9291;
+    const SUB_SEC_TIME_ORIGINAL = 0x9291;
 
     /**
      * SubSec Time Digitized
@@ -713,7 +718,7 @@ class PelTag {
      *
      * Components: any number.
      */
-    const SUB_SEC_TIME_DIGITIZED                            = 0x9292;
+    const SUB_SEC_TIME_DIGITIZED = 0x9292;
 
     /**
      * Windows XP Title
@@ -723,8 +728,7 @@ class PelTag {
      *
      * Components: any number.
      */
-    const XP_TITLE                                          = 0x9C9B;
-
+    const XP_TITLE = 0x9C9B;
 
     /**
      * Windows XP Comment
@@ -734,8 +738,7 @@ class PelTag {
      *
      * Components: any number.
      */
-    const XP_COMMENT                                        = 0x9C9C;
-
+    const XP_COMMENT = 0x9C9C;
 
     /**
      * Windows XP Author
@@ -745,8 +748,7 @@ class PelTag {
      *
      * Components: any number.
      */
-    const XP_AUTHOR                                         = 0x9C9D;
-
+    const XP_AUTHOR = 0x9C9D;
 
     /**
      * Windows XP Keywords
@@ -756,8 +758,7 @@ class PelTag {
      *
      * Components: any number.
      */
-    const XP_KEYWORDS                                       = 0x9C9E;
-
+    const XP_KEYWORDS = 0x9C9E;
 
     /**
      * Windows XP Subject
@@ -767,8 +768,7 @@ class PelTag {
      *
      * Components: any number.
      */
-    const XP_SUBJECT                                        = 0x9C9F;
-
+    const XP_SUBJECT = 0x9C9F;
 
     /**
      * Supported Flashpix version
@@ -778,7 +778,7 @@ class PelTag {
      *
      * Components: 4.
      */
-    const FLASH_PIX_VERSION                                 = 0xA000;
+    const FLASH_PIX_VERSION = 0xA000;
 
     /**
      * Color space information.
@@ -787,7 +787,7 @@ class PelTag {
      *
      * Components: 1.
      */
-    const COLOR_SPACE                                       = 0xA001;
+    const COLOR_SPACE = 0xA001;
 
     /**
      * Valid image width.
@@ -796,7 +796,7 @@ class PelTag {
      *
      * Components: 1.
      */
-    const PIXEL_X_DIMENSION                                 = 0xA002;
+    const PIXEL_X_DIMENSION = 0xA002;
 
     /**
      * Valid image height.
@@ -805,7 +805,7 @@ class PelTag {
      *
      * Components: 1.
      */
-    const PIXEL_Y_DIMENSION                                 = 0xA003;
+    const PIXEL_Y_DIMENSION = 0xA003;
 
     /**
      * Related audio file.
@@ -814,7 +814,7 @@ class PelTag {
      *
      * Components: any number.
      */
-    const RELATED_SOUND_FILE                                = 0xA004;
+    const RELATED_SOUND_FILE = 0xA004;
 
     /**
      * Interoperability IFD Pointer
@@ -823,7 +823,7 @@ class PelTag {
      *
      * Components: 1.
      */
-    const INTEROPERABILITY_IFD_POINTER                      = 0xA005;
+    const INTEROPERABILITY_IFD_POINTER = 0xA005;
 
     /**
      * Flash energy.
@@ -832,7 +832,7 @@ class PelTag {
      *
      * Components: 1.
      */
-    const FLASH_ENERGY                                      = 0xA20B;
+    const FLASH_ENERGY = 0xA20B;
 
     /**
      * Spatial frequency response.
@@ -841,7 +841,7 @@ class PelTag {
      *
      * Components: any number.
      */
-    const SPATIAL_FREQUENCY_RESPONSE                        = 0xA20C;
+    const SPATIAL_FREQUENCY_RESPONSE = 0xA20C;
 
     /**
      * Focal plane X resolution.
@@ -850,7 +850,7 @@ class PelTag {
      *
      * Components: 1.
      */
-    const FOCAL_PLANE_X_RESOLUTION                          = 0xA20E;
+    const FOCAL_PLANE_X_RESOLUTION = 0xA20E;
 
     /**
      * Focal plane Y resolution.
@@ -859,7 +859,7 @@ class PelTag {
      *
      * Components: 1.
      */
-    const FOCAL_PLANE_Y_RESOLUTION                          = 0xA20F;
+    const FOCAL_PLANE_Y_RESOLUTION = 0xA20F;
 
     /**
      * Focal plane resolution unit.
@@ -868,7 +868,7 @@ class PelTag {
      *
      * Components: 1.
      */
-    const FOCAL_PLANE_RESOLUTION_UNIT                       = 0xA210;
+    const FOCAL_PLANE_RESOLUTION_UNIT = 0xA210;
 
     /**
      * Subject location.
@@ -877,7 +877,7 @@ class PelTag {
      *
      * Components: 1.
      */
-    const SUBJECT_LOCATION                                  = 0xA214;
+    const SUBJECT_LOCATION = 0xA214;
 
     /**
      * Exposure index.
@@ -886,7 +886,7 @@ class PelTag {
      *
      * Components: 1.
      */
-    const EXPOSURE_INDEX                                    = 0xA215;
+    const EXPOSURE_INDEX = 0xA215;
 
     /**
      * Sensing method.
@@ -895,7 +895,7 @@ class PelTag {
      *
      * Components: 1.
      */
-    const SENSING_METHOD                                    = 0xA217;
+    const SENSING_METHOD = 0xA217;
 
     /**
      * File source.
@@ -904,7 +904,7 @@ class PelTag {
      *
      * Components: 1.
      */
-    const FILE_SOURCE                                       = 0xA300;
+    const FILE_SOURCE = 0xA300;
 
     /**
      * Scene type.
@@ -913,7 +913,7 @@ class PelTag {
      *
      * Components: 1.
      */
-    const SCENE_TYPE                                        = 0xA301;
+    const SCENE_TYPE = 0xA301;
 
     /**
      * CFA pattern.
@@ -922,7 +922,7 @@ class PelTag {
      *
      * Components: any number.
      */
-    const CFA_PATTERN                                       = 0xA302;
+    const CFA_PATTERN = 0xA302;
 
     /**
      * Custom image processing.
@@ -931,7 +931,7 @@ class PelTag {
      *
      * Components: 1.
      */
-    const CUSTOM_RENDERED                                   = 0xA401;
+    const CUSTOM_RENDERED = 0xA401;
 
     /**
      * Exposure mode.
@@ -940,7 +940,7 @@ class PelTag {
      *
      * Components: 1.
      */
-    const EXPOSURE_MODE                                     = 0xA402;
+    const EXPOSURE_MODE = 0xA402;
 
     /**
      * White balance.
@@ -949,7 +949,7 @@ class PelTag {
      *
      * Components: 1.
      */
-    const WHITE_BALANCE                                     = 0xA403;
+    const WHITE_BALANCE = 0xA403;
 
     /**
      * Digital zoom ratio.
@@ -958,7 +958,7 @@ class PelTag {
      *
      * Components: 1.
      */
-    const DIGITAL_ZOOM_RATIO                                = 0xA404;
+    const DIGITAL_ZOOM_RATIO = 0xA404;
 
     /**
      * Focal length in 35mm film.
@@ -967,7 +967,7 @@ class PelTag {
      *
      * Components: 1.
      */
-    const FOCAL_LENGTH_IN_35MM_FILM      = 0xA405;
+    const FOCAL_LENGTH_IN_35MM_FILM = 0xA405;
 
     /**
      * Scene capture type.
@@ -976,7 +976,7 @@ class PelTag {
      *
      * Components: 1.
      */
-    const SCENE_CAPTURE_TYPE                                = 0xA406;
+    const SCENE_CAPTURE_TYPE = 0xA406;
 
     /**
      * Gain control.
@@ -985,7 +985,7 @@ class PelTag {
      *
      * Components: 1.
      */
-    const GAIN_CONTROL                                      = 0xA407;
+    const GAIN_CONTROL = 0xA407;
 
     /**
      * Contrast.
@@ -994,7 +994,7 @@ class PelTag {
      *
      * Components: 1.
      */
-    const CONTRAST                                          = 0xA408;
+    const CONTRAST = 0xA408;
 
     /**
      * Saturation.
@@ -1003,7 +1003,7 @@ class PelTag {
      *
      * Components: 1.
      */
-    const SATURATION                                        = 0xA409;
+    const SATURATION = 0xA409;
 
     /**
      * Sharpness.
@@ -1012,16 +1012,16 @@ class PelTag {
      *
      * Components: 1.
      */
-    const SHARPNESS                                         = 0xA40A;
+    const SHARPNESS = 0xA40A;
 
     /**
      * Device settings description.
      *
      * This tag indicates information on the picture-taking conditions
-     * of a particular camera model.  The tag is used only to indicate
+     * of a particular camera model. The tag is used only to indicate
      * the picture-taking conditions in the reader.
      */
-    const DEVICE_SETTING_DESCRIPTION                        = 0xA40B;
+    const DEVICE_SETTING_DESCRIPTION = 0xA40B;
 
     /**
      * Subject distance range.
@@ -1030,7 +1030,7 @@ class PelTag {
      *
      * Components: 1.
      */
-    const SUBJECT_DISTANCE_RANGE                            = 0xA40C;
+    const SUBJECT_DISTANCE_RANGE = 0xA40C;
 
     /**
      * Image unique ID.
@@ -1039,7 +1039,7 @@ class PelTag {
      *
      * Components: 32.
      */
-    const IMAGE_UNIQUE_ID                                   = 0xA420;
+    const IMAGE_UNIQUE_ID = 0xA420;
 
     /**
      * Gamma.
@@ -1048,7 +1048,7 @@ class PelTag {
      *
      * Components: 1.
      */
-    const GAMMA                                             = 0xA500;
+    const GAMMA = 0xA500;
 
     /**
      * PrintIM
@@ -1057,7 +1057,7 @@ class PelTag {
      *
      * Components: unknown.
      */
-    const PRINT_IM                                          = 0xC4A5;
+    const PRINT_IM = 0xC4A5;
 
     /**
      * GPS tag version.
@@ -1066,7 +1066,7 @@ class PelTag {
      *
      * Components: 4.
      */
-    const GPS_VERSION_ID                                    = 0x0000;
+    const GPS_VERSION_ID = 0x0000;
 
     /**
      * North or South Latitude.
@@ -1075,7 +1075,7 @@ class PelTag {
      *
      * Components: 2.
      */
-    const GPS_LATITUDE_REF                                  = 0x0001;
+    const GPS_LATITUDE_REF = 0x0001;
 
     /**
      * Latitude.
@@ -1084,7 +1084,7 @@ class PelTag {
      *
      * Components: 3.
      */
-    const GPS_LATITUDE                                      = 0x0002;
+    const GPS_LATITUDE = 0x0002;
 
     /**
      * East or West Longitude.
@@ -1093,7 +1093,7 @@ class PelTag {
      *
      * Components: 2.
      */
-    const GPS_LONGITUDE_REF                                 = 0x0003;
+    const GPS_LONGITUDE_REF = 0x0003;
 
     /**
      * Longitude.
@@ -1102,7 +1102,7 @@ class PelTag {
      *
      * Components: 3.
      */
-    const GPS_LONGITUDE                                     = 0x0004;
+    const GPS_LONGITUDE = 0x0004;
 
     /**
      * Altitude reference.
@@ -1111,7 +1111,7 @@ class PelTag {
      *
      * Components: 1.
      */
-    const GPS_ALTITUDE_REF                                  = 0x0005;
+    const GPS_ALTITUDE_REF = 0x0005;
 
     /**
      * Altitude.
@@ -1120,7 +1120,7 @@ class PelTag {
      *
      * Components: 1.
      */
-    const GPS_ALTITUDE                                      = 0x0006;
+    const GPS_ALTITUDE = 0x0006;
 
     /**
      * GPS time (atomic clock).
@@ -1129,7 +1129,7 @@ class PelTag {
      *
      * Components: 3.
      */
-    const GPS_TIME_STAMP                                    = 0x0007;
+    const GPS_TIME_STAMP = 0x0007;
 
     /**
      * GPS satellites used for measurement.
@@ -1138,7 +1138,7 @@ class PelTag {
      *
      * Components: Any.
      */
-    const GPS_SATELLITES                                    = 0x0008;
+    const GPS_SATELLITES = 0x0008;
 
     /**
      * GPS receiver status.
@@ -1147,7 +1147,7 @@ class PelTag {
      *
      * Components: 2.
      */
-    const GPS_STATUS                                        = 0x0009;
+    const GPS_STATUS = 0x0009;
 
     /**
      * GPS measurement mode.
@@ -1156,7 +1156,7 @@ class PelTag {
      *
      * Components: 2.
      */
-    const GPS_MEASURE_MODE                                  = 0x000A;
+    const GPS_MEASURE_MODE = 0x000A;
 
     /**
      * Measurement precision.
@@ -1165,7 +1165,7 @@ class PelTag {
      *
      * Components: 1.
      */
-    const GPS_DOP                                           = 0x000B;
+    const GPS_DOP = 0x000B;
 
     /**
      * Speed unit.
@@ -1174,7 +1174,7 @@ class PelTag {
      *
      * Components: 2.
      */
-    const GPS_SPEED_REF                                     = 0x000C;
+    const GPS_SPEED_REF = 0x000C;
 
     /**
      * Speed of GPS receiver.
@@ -1183,7 +1183,7 @@ class PelTag {
      *
      * Components: 1.
      */
-    const GPS_SPEED                                         = 0x000D;
+    const GPS_SPEED = 0x000D;
 
     /**
      * Reference for direction of movement.
@@ -1192,7 +1192,7 @@ class PelTag {
      *
      * Components: 2.
      */
-    const GPS_TRACK_REF                                     = 0x000E;
+    const GPS_TRACK_REF = 0x000E;
 
     /**
      * Direction of movement.
@@ -1201,7 +1201,7 @@ class PelTag {
      *
      * Components: 1.
      */
-    const GPS_TRACK                                         = 0x000F;
+    const GPS_TRACK = 0x000F;
 
     /**
      * Reference for direction of image.
@@ -1210,7 +1210,7 @@ class PelTag {
      *
      * Components: 2.
      */
-    const GPS_IMG_DIRECTION_REF                             = 0x0010;
+    const GPS_IMG_DIRECTION_REF = 0x0010;
 
     /**
      * Direction of image.
@@ -1219,7 +1219,7 @@ class PelTag {
      *
      * Components: 1.
      */
-    const GPS_IMG_DIRECTION                                 = 0x0011;
+    const GPS_IMG_DIRECTION = 0x0011;
 
     /**
      * Geodetic survey data used.
@@ -1228,7 +1228,7 @@ class PelTag {
      *
      * Components: Any.
      */
-    const GPS_MAP_DATUM                                     = 0x0012;
+    const GPS_MAP_DATUM = 0x0012;
 
     /**
      * Reference for latitude of destination.
@@ -1237,7 +1237,7 @@ class PelTag {
      *
      * Components: 2.
      */
-    const GPS_DEST_LATITUDE_REF                             = 0x0013;
+    const GPS_DEST_LATITUDE_REF = 0x0013;
 
     /**
      * Latitude of destination.
@@ -1246,7 +1246,7 @@ class PelTag {
      *
      * Components: 3.
      */
-    const GPS_DEST_LATITUDE                                 = 0x0014;
+    const GPS_DEST_LATITUDE = 0x0014;
 
     /**
      * Reference for longitude of destination.
@@ -1255,7 +1255,7 @@ class PelTag {
      *
      * Components: 2.
      */
-    const GPS_DEST_LONGITUDE_REF                            = 0x0015;
+    const GPS_DEST_LONGITUDE_REF = 0x0015;
 
     /**
      * Longitude of destination.
@@ -1264,7 +1264,7 @@ class PelTag {
      *
      * Components: 3.
      */
-    const GPS_DEST_LONGITUDE                                = 0x0016;
+    const GPS_DEST_LONGITUDE = 0x0016;
 
     /**
      * Reference for bearing of destination.
@@ -1273,7 +1273,7 @@ class PelTag {
      *
      * Components: 2.
      */
-    const GPS_DEST_BEARING_REF                              = 0x0017;
+    const GPS_DEST_BEARING_REF = 0x0017;
 
     /**
      * Bearing of destination.
@@ -1282,7 +1282,7 @@ class PelTag {
      *
      * Components: 1.
      */
-    const GPS_DEST_BEARING                                  = 0x0018;
+    const GPS_DEST_BEARING = 0x0018;
 
     /**
      * Reference for distance to destination.
@@ -1291,7 +1291,7 @@ class PelTag {
      *
      * Components: 2.
      */
-    const GPS_DEST_DISTANCE_REF                             = 0x0019;
+    const GPS_DEST_DISTANCE_REF = 0x0019;
 
     /**
      * Distance to destination.
@@ -1300,7 +1300,7 @@ class PelTag {
      *
      * Components: 1.
      */
-    const GPS_DEST_DISTANCE                                 = 0x001A;
+    const GPS_DEST_DISTANCE = 0x001A;
 
     /**
      * Name of GPS processing method.
@@ -1309,7 +1309,7 @@ class PelTag {
      *
      * Components: Any.
      */
-    const GPS_PROCESSING_METHOD                             = 0x001B;
+    const GPS_PROCESSING_METHOD = 0x001B;
 
     /**
      * Name of GPS area.
@@ -1318,7 +1318,7 @@ class PelTag {
      *
      * Components: Any.
      */
-    const GPS_AREA_INFORMATION                              = 0x001C;
+    const GPS_AREA_INFORMATION = 0x001C;
 
     /**
      * GPS date.
@@ -1327,7 +1327,7 @@ class PelTag {
      *
      * Components: 11.
      */
-    const GPS_DATE_STAMP                                    = 0x001D;
+    const GPS_DATE_STAMP = 0x001D;
 
     /**
      * GPS differential correction.
@@ -1336,320 +1336,319 @@ class PelTag {
      *
      * Components: 1.
      */
-    const GPS_DIFFERENTIAL                                  = 0x001E;
+    const GPS_DIFFERENTIAL = 0x001E;
 
 
     /**
      * Returns a short name for an Exif tag.
      *
      * @param int the IFD type of the tag, one of {@link PelIfd::IFD0},
-     * {@link PelIfd::IFD1}, {@link PelIfd::EXIF}, {@link PelIfd::GPS},
-     * or {@link PelIfd::INTEROPERABILITY}.
+     *        {@link PelIfd::IFD1}, {@link PelIfd::EXIF}, {@link PelIfd::GPS},
+     *        or {@link PelIfd::INTEROPERABILITY}.
      *
      * @param PelTag the tag.
      *
      * @return string the short name of the tag, e.g., 'ImageWidth' for
-     * the {@link IMAGE_WIDTH} tag.  If the tag is not known, the string
-     * 'Unknown:0xTTTT' will be returned where 'TTTT' is the hexadecimal
-     * representation of the tag.
+     *         the {@link IMAGE_WIDTH} tag. If the tag is not known, the string
+     *         'Unknown:0xTTTT' will be returned where 'TTTT' is the hexadecimal
+     *         representation of the tag.
      */
     static function getName($type, $tag) {
-
         switch ($type) {
-            case PelIfd::IFD0:
-            case PelIfd::IFD1:
-            case PelIfd::EXIF:
-            case PelIfd::INTEROPERABILITY:
+            case PelIfd::IFD0 :
+            case PelIfd::IFD1 :
+            case PelIfd::EXIF :
+            case PelIfd::INTEROPERABILITY :
 
                 switch ($tag) {
-                    case self::INTEROPERABILITY_INDEX:
+                    case self::INTEROPERABILITY_INDEX :
                         return 'InteroperabilityIndex';
-                    case self::INTEROPERABILITY_VERSION:
+                    case self::INTEROPERABILITY_VERSION :
                         return 'InteroperabilityVersion';
-                    case self::IMAGE_WIDTH:
+                    case self::IMAGE_WIDTH :
                         return 'ImageWidth';
-                    case self::IMAGE_LENGTH:
+                    case self::IMAGE_LENGTH :
                         return 'ImageLength';
-                    case self::BITS_PER_SAMPLE:
+                    case self::BITS_PER_SAMPLE :
                         return 'BitsPerSample';
-                    case self::COMPRESSION:
+                    case self::COMPRESSION :
                         return 'Compression';
-                    case self::PHOTOMETRIC_INTERPRETATION:
+                    case self::PHOTOMETRIC_INTERPRETATION :
                         return 'PhotometricInterpretation';
-                    case self::FILL_ORDER:
+                    case self::FILL_ORDER :
                         return 'FillOrder';
-                    case self::DOCUMENT_NAME:
+                    case self::DOCUMENT_NAME :
                         return 'DocumentName';
-                    case self::IMAGE_DESCRIPTION:
+                    case self::IMAGE_DESCRIPTION :
                         return 'ImageDescription';
-                    case self::MAKE:
+                    case self::MAKE :
                         return 'Make';
-                    case self::MODEL:
+                    case self::MODEL :
                         return 'Model';
-                    case self::STRIP_OFFSETS:
+                    case self::STRIP_OFFSETS :
                         return 'StripOffsets';
-                    case self::ORIENTATION:
+                    case self::ORIENTATION :
                         return 'Orientation';
-                    case self::SAMPLES_PER_PIXEL:
+                    case self::SAMPLES_PER_PIXEL :
                         return 'SamplesPerPixel';
-                    case self::ROWS_PER_STRIP:
+                    case self::ROWS_PER_STRIP :
                         return 'RowsPerStrip';
-                    case self::STRIP_BYTE_COUNTS:
+                    case self::STRIP_BYTE_COUNTS :
                         return 'StripByteCounts';
-                    case self::X_RESOLUTION:
+                    case self::X_RESOLUTION :
                         return 'XResolution';
-                    case self::Y_RESOLUTION:
+                    case self::Y_RESOLUTION :
                         return 'YResolution';
-                    case self::PLANAR_CONFIGURATION:
+                    case self::PLANAR_CONFIGURATION :
                         return 'PlanarConfiguration';
-                    case self::RESOLUTION_UNIT:
+                    case self::RESOLUTION_UNIT :
                         return 'ResolutionUnit';
-                    case self::TRANSFER_FUNCTION:
+                    case self::TRANSFER_FUNCTION :
                         return 'TransferFunction';
-                    case self::SOFTWARE:
+                    case self::SOFTWARE :
                         return 'Software';
-                    case self::DATE_TIME:
+                    case self::DATE_TIME :
                         return 'DateTime';
-                    case self::ARTIST:
+                    case self::ARTIST :
                         return 'Artist';
-                    case self::WHITE_POINT:
+                    case self::WHITE_POINT :
                         return 'WhitePoint';
-                    case self::PRIMARY_CHROMATICITIES:
+                    case self::PRIMARY_CHROMATICITIES :
                         return 'PrimaryChromaticities';
-                    case self::TRANSFER_RANGE:
+                    case self::TRANSFER_RANGE :
                         return 'TransferRange';
-                    case self::JPEG_PROC:
+                    case self::JPEG_PROC :
                         return 'JPEGProc';
-                    case self::JPEG_INTERCHANGE_FORMAT:
+                    case self::JPEG_INTERCHANGE_FORMAT :
                         return 'JPEGInterchangeFormat';
-                    case self::JPEG_INTERCHANGE_FORMAT_LENGTH:
+                    case self::JPEG_INTERCHANGE_FORMAT_LENGTH :
                         return 'JPEGInterchangeFormatLength';
-                    case self::YCBCR_COEFFICIENTS:
+                    case self::YCBCR_COEFFICIENTS :
                         return 'YCbCrCoefficients';
-                    case self::YCBCR_SUB_SAMPLING:
+                    case self::YCBCR_SUB_SAMPLING :
                         return 'YCbCrSubSampling';
-                    case self::YCBCR_POSITIONING:
+                    case self::YCBCR_POSITIONING :
                         return 'YCbCrPositioning';
-                    case self::REFERENCE_BLACK_WHITE:
+                    case self::REFERENCE_BLACK_WHITE :
                         return 'ReferenceBlackWhite';
-                    case self::RELATED_IMAGE_FILE_FORMAT:
+                    case self::RELATED_IMAGE_FILE_FORMAT :
                         return 'RelatedImageFileFormat';
-                    case self::RELATED_IMAGE_WIDTH:
+                    case self::RELATED_IMAGE_WIDTH :
                         return 'RelatedImageWidth';
-                    case self::RELATED_IMAGE_LENGTH:
+                    case self::RELATED_IMAGE_LENGTH :
                         return 'RelatedImageLength';
-                    case self::CFA_REPEAT_PATTERN_DIM:
+                    case self::CFA_REPEAT_PATTERN_DIM :
                         return 'CFARepeatPatternDim';
-                    case self::CFA_PATTERN:
+                    case self::CFA_PATTERN :
                         return 'CFAPattern';
-                    case self::BATTERY_LEVEL:
+                    case self::BATTERY_LEVEL :
                         return 'BatteryLevel';
-                    case self::COPYRIGHT:
+                    case self::COPYRIGHT :
                         return 'Copyright';
-                    case self::EXPOSURE_TIME:
+                    case self::EXPOSURE_TIME :
                         return 'ExposureTime';
-                    case self::FNUMBER:
+                    case self::FNUMBER :
                         return 'FNumber';
-                    case self::IPTC_NAA:
+                    case self::IPTC_NAA :
                         return 'IPTC/NAA';
-                    case self::EXIF_IFD_POINTER:
+                    case self::EXIF_IFD_POINTER :
                         return 'ExifIFDPointer';
-                    case self::INTER_COLOR_PROFILE:
+                    case self::INTER_COLOR_PROFILE :
                         return 'InterColorProfile';
-                    case self::EXPOSURE_PROGRAM:
+                    case self::EXPOSURE_PROGRAM :
                         return 'ExposureProgram';
-                    case self::SPECTRAL_SENSITIVITY:
+                    case self::SPECTRAL_SENSITIVITY :
                         return 'SpectralSensitivity';
-                    case self::GPS_INFO_IFD_POINTER:
+                    case self::GPS_INFO_IFD_POINTER :
                         return 'GPSInfoIFDPointer';
-                    case self::ISO_SPEED_RATINGS:
+                    case self::ISO_SPEED_RATINGS :
                         return 'ISOSpeedRatings';
-                    case self::OECF:
+                    case self::OECF :
                         return 'OECF';
-                    case self::EXIF_VERSION:
+                    case self::EXIF_VERSION :
                         return 'ExifVersion';
-                    case self::DATE_TIME_ORIGINAL:
+                    case self::DATE_TIME_ORIGINAL :
                         return 'DateTimeOriginal';
-                    case self::DATE_TIME_DIGITIZED:
+                    case self::DATE_TIME_DIGITIZED :
                         return 'DateTimeDigitized';
-                    case self::COMPONENTS_CONFIGURATION:
+                    case self::COMPONENTS_CONFIGURATION :
                         return 'ComponentsConfiguration';
-                    case self::COMPRESSED_BITS_PER_PIXEL:
+                    case self::COMPRESSED_BITS_PER_PIXEL :
                         return 'CompressedBitsPerPixel';
-                    case self::SHUTTER_SPEED_VALUE:
+                    case self::SHUTTER_SPEED_VALUE :
                         return 'ShutterSpeedValue';
-                    case self::APERTURE_VALUE:
+                    case self::APERTURE_VALUE :
                         return 'ApertureValue';
-                    case self::BRIGHTNESS_VALUE:
+                    case self::BRIGHTNESS_VALUE :
                         return 'BrightnessValue';
-                    case self::EXPOSURE_BIAS_VALUE:
+                    case self::EXPOSURE_BIAS_VALUE :
                         return 'ExposureBiasValue';
-                    case self::MAX_APERTURE_VALUE:
+                    case self::MAX_APERTURE_VALUE :
                         return 'MaxApertureValue';
-                    case self::SUBJECT_DISTANCE:
+                    case self::SUBJECT_DISTANCE :
                         return 'SubjectDistance';
-                    case self::METERING_MODE:
+                    case self::METERING_MODE :
                         return 'MeteringMode';
-                    case self::LIGHT_SOURCE:
+                    case self::LIGHT_SOURCE :
                         return 'LightSource';
-                    case self::FLASH:
+                    case self::FLASH :
                         return 'Flash';
-                    case self::FOCAL_LENGTH:
+                    case self::FOCAL_LENGTH :
                         return 'FocalLength';
-                    case self::MAKER_NOTE:
+                    case self::MAKER_NOTE :
                         return 'MakerNote';
-                    case self::USER_COMMENT:
+                    case self::USER_COMMENT :
                         return 'UserComment';
-                    case self::SUB_SEC_TIME:
+                    case self::SUB_SEC_TIME :
                         return 'SubSecTime';
-                    case self::SUB_SEC_TIME_ORIGINAL:
+                    case self::SUB_SEC_TIME_ORIGINAL :
                         return 'SubSecTimeOriginal';
-                    case self::SUB_SEC_TIME_DIGITIZED:
+                    case self::SUB_SEC_TIME_DIGITIZED :
                         return 'SubSecTimeDigitized';
-                    case self::XP_TITLE:
+                    case self::XP_TITLE :
                         return 'WindowsXPTitle';
-                    case self::XP_COMMENT:
+                    case self::XP_COMMENT :
                         return 'WindowsXPComment';
-                    case self::XP_AUTHOR:
+                    case self::XP_AUTHOR :
                         return 'WindowsXPAuthor';
-                    case self::XP_KEYWORDS:
+                    case self::XP_KEYWORDS :
                         return 'WindowsXPKeywords';
-                    case self::XP_SUBJECT:
+                    case self::XP_SUBJECT :
                         return 'WindowsXPSubject';
-                    case self::FLASH_PIX_VERSION:
+                    case self::FLASH_PIX_VERSION :
                         return 'FlashPixVersion';
-                    case self::COLOR_SPACE:
+                    case self::COLOR_SPACE :
                         return 'ColorSpace';
-                    case self::PIXEL_X_DIMENSION:
+                    case self::PIXEL_X_DIMENSION :
                         return 'PixelXDimension';
-                    case self::PIXEL_Y_DIMENSION:
+                    case self::PIXEL_Y_DIMENSION :
                         return 'PixelYDimension';
-                    case self::RELATED_SOUND_FILE:
+                    case self::RELATED_SOUND_FILE :
                         return 'RelatedSoundFile';
-                    case self::INTEROPERABILITY_IFD_POINTER:
+                    case self::INTEROPERABILITY_IFD_POINTER :
                         return 'InteroperabilityIFDPointer';
-                    case self::FLASH_ENERGY:
+                    case self::FLASH_ENERGY :
                         return 'FlashEnergy';
-                    case self::SPATIAL_FREQUENCY_RESPONSE:
+                    case self::SPATIAL_FREQUENCY_RESPONSE :
                         return 'SpatialFrequencyResponse';
-                    case self::FOCAL_PLANE_X_RESOLUTION:
+                    case self::FOCAL_PLANE_X_RESOLUTION :
                         return 'FocalPlaneXResolution';
-                    case self::FOCAL_PLANE_Y_RESOLUTION:
+                    case self::FOCAL_PLANE_Y_RESOLUTION :
                         return 'FocalPlaneYResolution';
-                    case self::FOCAL_PLANE_RESOLUTION_UNIT:
+                    case self::FOCAL_PLANE_RESOLUTION_UNIT :
                         return 'FocalPlaneResolutionUnit';
-                    case self::SUBJECT_LOCATION:
+                    case self::SUBJECT_LOCATION :
                         return 'SubjectLocation';
-                    case self::EXPOSURE_INDEX:
+                    case self::EXPOSURE_INDEX :
                         return 'ExposureIndex';
-                    case self::SENSING_METHOD:
+                    case self::SENSING_METHOD :
                         return 'SensingMethod';
-                    case self::FILE_SOURCE:
+                    case self::FILE_SOURCE :
                         return 'FileSource';
-                    case self::SCENE_TYPE:
+                    case self::SCENE_TYPE :
                         return 'SceneType';
-                    case self::SUBJECT_AREA:
+                    case self::SUBJECT_AREA :
                         return 'SubjectArea';
-                    case self::CUSTOM_RENDERED:
+                    case self::CUSTOM_RENDERED :
                         return 'CustomRendered';
-                    case self::EXPOSURE_MODE:
+                    case self::EXPOSURE_MODE :
                         return 'ExposureMode';
-                    case self::WHITE_BALANCE:
+                    case self::WHITE_BALANCE :
                         return 'WhiteBalance';
-                    case self::DIGITAL_ZOOM_RATIO:
+                    case self::DIGITAL_ZOOM_RATIO :
                         return 'DigitalZoomRatio';
-                    case self::FOCAL_LENGTH_IN_35MM_FILM:
+                    case self::FOCAL_LENGTH_IN_35MM_FILM :
                         return 'FocalLengthIn35mmFilm';
-                    case self::SCENE_CAPTURE_TYPE:
+                    case self::SCENE_CAPTURE_TYPE :
                         return 'SceneCaptureType';
-                    case self::GAIN_CONTROL:
+                    case self::GAIN_CONTROL :
                         return 'GainControl';
-                    case self::CONTRAST:
+                    case self::CONTRAST :
                         return 'Contrast';
-                    case self::SATURATION:
+                    case self::SATURATION :
                         return 'Saturation';
-                    case self::SHARPNESS:
+                    case self::SHARPNESS :
                         return 'Sharpness';
-                    case self::DEVICE_SETTING_DESCRIPTION:
+                    case self::DEVICE_SETTING_DESCRIPTION :
                         return 'DeviceSettingDescription';
-                    case self::SUBJECT_DISTANCE_RANGE:
+                    case self::SUBJECT_DISTANCE_RANGE :
                         return 'SubjectDistanceRange';
-                    case self::IMAGE_UNIQUE_ID:
+                    case self::IMAGE_UNIQUE_ID :
                         return 'ImageUniqueID';
-                    case self::GAMMA:
+                    case self::GAMMA :
                         return 'Gamma';
-                    case self::PRINT_IM:
+                    case self::PRINT_IM :
                         return 'PrintIM';
                 }
 
-            case PelIfd::GPS:
+            case PelIfd::GPS :
                 switch ($tag) {
-                    case self::GPS_VERSION_ID:
+                    case self::GPS_VERSION_ID :
                         return 'GPSVersionID';
-                    case self::GPS_LATITUDE_REF:
+                    case self::GPS_LATITUDE_REF :
                         return 'GPSLatitudeRef';
-                    case self::GPS_LATITUDE:
+                    case self::GPS_LATITUDE :
                         return 'GPSLatitude';
-                    case self::GPS_LONGITUDE_REF:
+                    case self::GPS_LONGITUDE_REF :
                         return 'GPSLongitudeRef';
-                    case self::GPS_LONGITUDE:
+                    case self::GPS_LONGITUDE :
                         return 'GPSLongitude';
-                    case self::GPS_ALTITUDE_REF:
+                    case self::GPS_ALTITUDE_REF :
                         return 'GPSAltitudeRef';
-                    case self::GPS_ALTITUDE:
+                    case self::GPS_ALTITUDE :
                         return 'GPSAltitude';
-                    case self::GPS_TIME_STAMP:
+                    case self::GPS_TIME_STAMP :
                         return 'GPSTimeStamp';
-                    case self::GPS_SATELLITES:
+                    case self::GPS_SATELLITES :
                         return 'GPSSatellites';
-                    case self::GPS_STATUS:
+                    case self::GPS_STATUS :
                         return 'GPSStatus';
-                    case self::GPS_MEASURE_MODE:
+                    case self::GPS_MEASURE_MODE :
                         return 'GPSMeasureMode';
-                    case self::GPS_DOP:
+                    case self::GPS_DOP :
                         return 'GPSDOP';
-                    case self::GPS_SPEED_REF:
+                    case self::GPS_SPEED_REF :
                         return 'GPSSpeedRef';
-                    case self::GPS_SPEED:
+                    case self::GPS_SPEED :
                         return 'GPSSpeed';
-                    case self::GPS_TRACK_REF:
+                    case self::GPS_TRACK_REF :
                         return 'GPSTrackRef';
-                    case self::GPS_TRACK:
+                    case self::GPS_TRACK :
                         return 'GPSTrack';
-                    case self::GPS_IMG_DIRECTION_REF:
+                    case self::GPS_IMG_DIRECTION_REF :
                         return 'GPSImgDirectionRef';
-                    case self::GPS_IMG_DIRECTION:
+                    case self::GPS_IMG_DIRECTION :
                         return 'GPSImgDirection';
-                    case self::GPS_MAP_DATUM:
+                    case self::GPS_MAP_DATUM :
                         return 'GPSMapDatum';
-                    case self::GPS_DEST_LATITUDE_REF:
+                    case self::GPS_DEST_LATITUDE_REF :
                         return 'GPSDestLatitudeRef';
-                    case self::GPS_DEST_LATITUDE:
+                    case self::GPS_DEST_LATITUDE :
                         return 'GPSDestLatitude';
-                    case self::GPS_DEST_LONGITUDE_REF:
+                    case self::GPS_DEST_LONGITUDE_REF :
                         return 'GPSDestLongitudeRef';
-                    case self::GPS_DEST_LONGITUDE:
+                    case self::GPS_DEST_LONGITUDE :
                         return 'GPSDestLongitude';
-                    case self::GPS_DEST_BEARING_REF:
+                    case self::GPS_DEST_BEARING_REF :
                         return 'GPSDestBearingRef';
-                    case self::GPS_DEST_BEARING:
+                    case self::GPS_DEST_BEARING :
                         return 'GPSDestBearing';
-                    case self::GPS_DEST_DISTANCE_REF:
+                    case self::GPS_DEST_DISTANCE_REF :
                         return 'GPSDestDistanceRef';
-                    case self::GPS_DEST_DISTANCE:
+                    case self::GPS_DEST_DISTANCE :
                         return 'GPSDestDistance';
-                    case self::GPS_PROCESSING_METHOD:
+                    case self::GPS_PROCESSING_METHOD :
                         return 'GPSProcessingMethod';
-                    case self::GPS_AREA_INFORMATION:
+                    case self::GPS_AREA_INFORMATION :
                         return 'GPSAreaInformation';
-                    case self::GPS_DATE_STAMP:
+                    case self::GPS_DATE_STAMP :
                         return 'GPSDateStamp';
-                    case self::GPS_DIFFERENTIAL:
+                    case self::GPS_DIFFERENTIAL :
                         return 'GPSDifferential';
                 }
 
-            default:
-                return Pel::fmt('Unknown: 0x%04X', $tag);
+            default :
+                return Pel::fmt ( 'Unknown: 0x%04X', $tag );
         }
     }
 
@@ -1658,315 +1657,313 @@ class PelTag {
      * Returns a title for an Exif tag.
      *
      * @param int the IFD type of the tag, one of {@link PelIfd::IFD0},
-     * {@link PelIfd::IFD1}, {@link PelIfd::EXIF}, {@link PelIfd::GPS},
-     * or {@link PelIfd::INTEROPERABILITY}.
+     *        {@link PelIfd::IFD1}, {@link PelIfd::EXIF}, {@link PelIfd::GPS},
+     *        or {@link PelIfd::INTEROPERABILITY}.
      *
      * @param PelTag the tag.
      *
      * @return string the title of the tag, e.g., 'Image Width' for the
-     * {@link IMAGE_WIDTH} tag.  If the tag isn't known, the string
-     * 'Unknown Tag: 0xTT' will be returned where 'TT' is the
-     * hexadecimal representation of the tag.
+     *         {@link IMAGE_WIDTH} tag. If the tag isn't known, the string
+     *         'Unknown Tag: 0xTT' will be returned where 'TT' is the
+     *         hexadecimal representation of the tag.
      */
     function getTitle($type, $tag) {
-
         switch ($type) {
-            case PelIfd::IFD0:
-            case PelIfd::IFD1:
-            case PelIfd::EXIF:
-            case PelIfd::INTEROPERABILITY:
+            case PelIfd::IFD0 :
+            case PelIfd::IFD1 :
+            case PelIfd::EXIF :
+            case PelIfd::INTEROPERABILITY :
 
                 switch ($tag) {
-                    case self::INTEROPERABILITY_INDEX:
-                        return Pel::tra('Interoperability Index');
-                    case self::INTEROPERABILITY_VERSION:
-                        return Pel::tra('Interoperability Version');
-                    case self::IMAGE_WIDTH:
-                        return Pel::tra('Image Width');
-                    case self::IMAGE_LENGTH:
-                        return Pel::tra('Image Length');
-                    case self::BITS_PER_SAMPLE:
-                        return Pel::tra('Bits per Sample');
-                    case self::COMPRESSION:
-                        return Pel::tra('Compression');
-                    case self::PHOTOMETRIC_INTERPRETATION:
-                        return Pel::tra('Photometric Interpretation');
-                    case self::FILL_ORDER:
-                        return Pel::tra('Fill Order');
-                    case self::DOCUMENT_NAME:
-                        return Pel::tra('Document Name');
-                    case self::IMAGE_DESCRIPTION:
-                        return Pel::tra('Image Description');
-                    case self::MAKE:
-                        return Pel::tra('Manufacturer');
-                    case self::MODEL:
-                        return Pel::tra('Model');
-                    case self::STRIP_OFFSETS:
-                        return Pel::tra('Strip Offsets');
-                    case self::ORIENTATION:
-                        return Pel::tra('Orientation');
-                    case self::SAMPLES_PER_PIXEL:
-                        return Pel::tra('Samples per Pixel');
-                    case self::ROWS_PER_STRIP:
-                        return Pel::tra('Rows per Strip');
-                    case self::STRIP_BYTE_COUNTS:
-                        return Pel::tra('Strip Byte Count');
-                    case self::X_RESOLUTION:
-                        return Pel::tra('x-Resolution');
-                    case self::Y_RESOLUTION:
-                        return Pel::tra('y-Resolution');
-                    case self::PLANAR_CONFIGURATION:
-                        return Pel::tra('Planar Configuration');
-                    case self::RESOLUTION_UNIT:
-                        return Pel::tra('Resolution Unit');
-                    case self::TRANSFER_FUNCTION:
-                        return Pel::tra('Transfer Function');
-                    case self::SOFTWARE:
-                        return Pel::tra('Software');
-                    case self::DATE_TIME:
-                        return Pel::tra('Date and Time');
-                    case self::ARTIST:
-                        return Pel::tra('Artist');
-                    case self::WHITE_POINT:
-                        return Pel::tra('White Point');
-                    case self::PRIMARY_CHROMATICITIES:
-                        return Pel::tra('Primary Chromaticities');
-                    case self::TRANSFER_RANGE:
-                        return Pel::tra('Transfer Range');
-                    case self::JPEG_PROC:
-                        return Pel::tra('JPEG Process');
-                    case self::JPEG_INTERCHANGE_FORMAT:
-                        return Pel::tra('JPEG Interchange Format');
-                    case self::JPEG_INTERCHANGE_FORMAT_LENGTH:
-                        return Pel::tra('JPEG Interchange Format Length');
-                    case self::YCBCR_COEFFICIENTS:
-                        return Pel::tra('YCbCr Coefficients');
-                    case self::YCBCR_SUB_SAMPLING:
-                        return Pel::tra('YCbCr Sub-Sampling');
-                    case self::YCBCR_POSITIONING:
-                        return Pel::tra('YCbCr Positioning');
-                    case self::REFERENCE_BLACK_WHITE:
-                        return Pel::tra('Reference Black/White');
-                    case self::RELATED_IMAGE_FILE_FORMAT:
-                        return Pel::tra('Related Image File Format');
-                    case self::RELATED_IMAGE_WIDTH:
-                        return Pel::tra('Related Image Width');
-                    case self::RELATED_IMAGE_LENGTH:
-                        return Pel::tra('Related Image Length');
-                    case self::CFA_REPEAT_PATTERN_DIM:
-                        return Pel::tra('CFA Repeat Pattern Dim');
-                    case self::CFA_PATTERN:
-                        return Pel::tra('CFA Pattern');
-                    case self::BATTERY_LEVEL:
-                        return Pel::tra('Battery Level');
-                    case self::COPYRIGHT:
-                        return Pel::tra('Copyright');
-                    case self::EXPOSURE_TIME:
-                        return Pel::tra('Exposure Time');
-                    case self::FNUMBER:
-                        return Pel::tra('FNumber');
-                    case self::IPTC_NAA:
-                        return Pel::tra('IPTC/NAA');
-                    case self::EXIF_IFD_POINTER:
-                        return Pel::tra('Exif IFD Pointer');
-                    case self::INTER_COLOR_PROFILE:
-                        return Pel::tra('Inter Color Profile');
-                    case self::EXPOSURE_PROGRAM:
-                        return Pel::tra('Exposure Program');
-                    case self::SPECTRAL_SENSITIVITY:
-                        return Pel::tra('Spectral Sensitivity');
-                    case self::GPS_INFO_IFD_POINTER:
-                        return Pel::tra('GPS Info IFD Pointer');
-                    case self::ISO_SPEED_RATINGS:
-                        return Pel::tra('ISO Speed Ratings');
-                    case self::OECF:
-                        return Pel::tra('OECF');
-                    case self::EXIF_VERSION:
-                        return Pel::tra('Exif Version');
-                    case self::DATE_TIME_ORIGINAL:
-                        return Pel::tra('Date and Time (original)');
-                    case self::DATE_TIME_DIGITIZED:
-                        return Pel::tra('Date and Time (digitized)');
-                    case self::COMPONENTS_CONFIGURATION:
-                        return Pel::tra('Components Configuration');
-                    case self::COMPRESSED_BITS_PER_PIXEL:
-                        return Pel::tra('Compressed Bits per Pixel');
-                    case self::SHUTTER_SPEED_VALUE:
-                        return Pel::tra('Shutter speed');
-                    case self::APERTURE_VALUE:
-                        return Pel::tra('Aperture');
-                    case self::BRIGHTNESS_VALUE:
-                        return Pel::tra('Brightness');
-                    case self::EXPOSURE_BIAS_VALUE:
-                        return Pel::tra('Exposure Bias');
-                    case self::MAX_APERTURE_VALUE:
-                        return Pel::tra('Max Aperture Value');
-                    case self::SUBJECT_DISTANCE:
-                        return Pel::tra('Subject Distance');
-                    case self::METERING_MODE:
-                        return Pel::tra('Metering Mode');
-                    case self::LIGHT_SOURCE:
-                        return Pel::tra('Light Source');
-                    case self::FLASH:
-                        return Pel::tra('Flash');
-                    case self::FOCAL_LENGTH:
-                        return Pel::tra('Focal Length');
-                    case self::MAKER_NOTE:
-                        return Pel::tra('Maker Note');
-                    case self::USER_COMMENT:
-                        return Pel::tra('User Comment');
-                    case self::SUB_SEC_TIME:
-                        return Pel::tra('SubSec Time');
-                    case self::SUB_SEC_TIME_ORIGINAL:
-                        return Pel::tra('SubSec Time Original');
-                    case self::SUB_SEC_TIME_DIGITIZED:
-                        return Pel::tra('SubSec Time Digitized');
-                    case self::XP_TITLE:
+                    case self::INTEROPERABILITY_INDEX :
+                        return Pel::tra ( 'Interoperability Index' );
+                    case self::INTEROPERABILITY_VERSION :
+                        return Pel::tra ( 'Interoperability Version' );
+                    case self::IMAGE_WIDTH :
+                        return Pel::tra ( 'Image Width' );
+                    case self::IMAGE_LENGTH :
+                        return Pel::tra ( 'Image Length' );
+                    case self::BITS_PER_SAMPLE :
+                        return Pel::tra ( 'Bits per Sample' );
+                    case self::COMPRESSION :
+                        return Pel::tra ( 'Compression' );
+                    case self::PHOTOMETRIC_INTERPRETATION :
+                        return Pel::tra ( 'Photometric Interpretation' );
+                    case self::FILL_ORDER :
+                        return Pel::tra ( 'Fill Order' );
+                    case self::DOCUMENT_NAME :
+                        return Pel::tra ( 'Document Name' );
+                    case self::IMAGE_DESCRIPTION :
+                        return Pel::tra ( 'Image Description' );
+                    case self::MAKE :
+                        return Pel::tra ( 'Manufacturer' );
+                    case self::MODEL :
+                        return Pel::tra ( 'Model' );
+                    case self::STRIP_OFFSETS :
+                        return Pel::tra ( 'Strip Offsets' );
+                    case self::ORIENTATION :
+                        return Pel::tra ( 'Orientation' );
+                    case self::SAMPLES_PER_PIXEL :
+                        return Pel::tra ( 'Samples per Pixel' );
+                    case self::ROWS_PER_STRIP :
+                        return Pel::tra ( 'Rows per Strip' );
+                    case self::STRIP_BYTE_COUNTS :
+                        return Pel::tra ( 'Strip Byte Count' );
+                    case self::X_RESOLUTION :
+                        return Pel::tra ( 'x-Resolution' );
+                    case self::Y_RESOLUTION :
+                        return Pel::tra ( 'y-Resolution' );
+                    case self::PLANAR_CONFIGURATION :
+                        return Pel::tra ( 'Planar Configuration' );
+                    case self::RESOLUTION_UNIT :
+                        return Pel::tra ( 'Resolution Unit' );
+                    case self::TRANSFER_FUNCTION :
+                        return Pel::tra ( 'Transfer Function' );
+                    case self::SOFTWARE :
+                        return Pel::tra ( 'Software' );
+                    case self::DATE_TIME :
+                        return Pel::tra ( 'Date and Time' );
+                    case self::ARTIST :
+                        return Pel::tra ( 'Artist' );
+                    case self::WHITE_POINT :
+                        return Pel::tra ( 'White Point' );
+                    case self::PRIMARY_CHROMATICITIES :
+                        return Pel::tra ( 'Primary Chromaticities' );
+                    case self::TRANSFER_RANGE :
+                        return Pel::tra ( 'Transfer Range' );
+                    case self::JPEG_PROC :
+                        return Pel::tra ( 'JPEG Process' );
+                    case self::JPEG_INTERCHANGE_FORMAT :
+                        return Pel::tra ( 'JPEG Interchange Format' );
+                    case self::JPEG_INTERCHANGE_FORMAT_LENGTH :
+                        return Pel::tra ( 'JPEG Interchange Format Length' );
+                    case self::YCBCR_COEFFICIENTS :
+                        return Pel::tra ( 'YCbCr Coefficients' );
+                    case self::YCBCR_SUB_SAMPLING :
+                        return Pel::tra ( 'YCbCr Sub-Sampling' );
+                    case self::YCBCR_POSITIONING :
+                        return Pel::tra ( 'YCbCr Positioning' );
+                    case self::REFERENCE_BLACK_WHITE :
+                        return Pel::tra ( 'Reference Black/White' );
+                    case self::RELATED_IMAGE_FILE_FORMAT :
+                        return Pel::tra ( 'Related Image File Format' );
+                    case self::RELATED_IMAGE_WIDTH :
+                        return Pel::tra ( 'Related Image Width' );
+                    case self::RELATED_IMAGE_LENGTH :
+                        return Pel::tra ( 'Related Image Length' );
+                    case self::CFA_REPEAT_PATTERN_DIM :
+                        return Pel::tra ( 'CFA Repeat Pattern Dim' );
+                    case self::CFA_PATTERN :
+                        return Pel::tra ( 'CFA Pattern' );
+                    case self::BATTERY_LEVEL :
+                        return Pel::tra ( 'Battery Level' );
+                    case self::COPYRIGHT :
+                        return Pel::tra ( 'Copyright' );
+                    case self::EXPOSURE_TIME :
+                        return Pel::tra ( 'Exposure Time' );
+                    case self::FNUMBER :
+                        return Pel::tra ( 'FNumber' );
+                    case self::IPTC_NAA :
+                        return Pel::tra ( 'IPTC/NAA' );
+                    case self::EXIF_IFD_POINTER :
+                        return Pel::tra ( 'Exif IFD Pointer' );
+                    case self::INTER_COLOR_PROFILE :
+                        return Pel::tra ( 'Inter Color Profile' );
+                    case self::EXPOSURE_PROGRAM :
+                        return Pel::tra ( 'Exposure Program' );
+                    case self::SPECTRAL_SENSITIVITY :
+                        return Pel::tra ( 'Spectral Sensitivity' );
+                    case self::GPS_INFO_IFD_POINTER :
+                        return Pel::tra ( 'GPS Info IFD Pointer' );
+                    case self::ISO_SPEED_RATINGS :
+                        return Pel::tra ( 'ISO Speed Ratings' );
+                    case self::OECF :
+                        return Pel::tra ( 'OECF' );
+                    case self::EXIF_VERSION :
+                        return Pel::tra ( 'Exif Version' );
+                    case self::DATE_TIME_ORIGINAL :
+                        return Pel::tra ( 'Date and Time (original)' );
+                    case self::DATE_TIME_DIGITIZED :
+                        return Pel::tra ( 'Date and Time (digitized)' );
+                    case self::COMPONENTS_CONFIGURATION :
+                        return Pel::tra ( 'Components Configuration' );
+                    case self::COMPRESSED_BITS_PER_PIXEL :
+                        return Pel::tra ( 'Compressed Bits per Pixel' );
+                    case self::SHUTTER_SPEED_VALUE :
+                        return Pel::tra ( 'Shutter speed' );
+                    case self::APERTURE_VALUE :
+                        return Pel::tra ( 'Aperture' );
+                    case self::BRIGHTNESS_VALUE :
+                        return Pel::tra ( 'Brightness' );
+                    case self::EXPOSURE_BIAS_VALUE :
+                        return Pel::tra ( 'Exposure Bias' );
+                    case self::MAX_APERTURE_VALUE :
+                        return Pel::tra ( 'Max Aperture Value' );
+                    case self::SUBJECT_DISTANCE :
+                        return Pel::tra ( 'Subject Distance' );
+                    case self::METERING_MODE :
+                        return Pel::tra ( 'Metering Mode' );
+                    case self::LIGHT_SOURCE :
+                        return Pel::tra ( 'Light Source' );
+                    case self::FLASH :
+                        return Pel::tra ( 'Flash' );
+                    case self::FOCAL_LENGTH :
+                        return Pel::tra ( 'Focal Length' );
+                    case self::MAKER_NOTE :
+                        return Pel::tra ( 'Maker Note' );
+                    case self::USER_COMMENT :
+                        return Pel::tra ( 'User Comment' );
+                    case self::SUB_SEC_TIME :
+                        return Pel::tra ( 'SubSec Time' );
+                    case self::SUB_SEC_TIME_ORIGINAL :
+                        return Pel::tra ( 'SubSec Time Original' );
+                    case self::SUB_SEC_TIME_DIGITIZED :
+                        return Pel::tra ( 'SubSec Time Digitized' );
+                    case self::XP_TITLE :
                         return 'Windows XP Title';
-                    case self::XP_COMMENT:
+                    case self::XP_COMMENT :
                         return 'Windows XP Comment';
-                    case self::XP_AUTHOR:
+                    case self::XP_AUTHOR :
                         return 'Windows XP Author';
-                    case self::XP_KEYWORDS:
+                    case self::XP_KEYWORDS :
                         return 'Windows XP Keywords';
-                    case self::XP_SUBJECT:
+                    case self::XP_SUBJECT :
                         return 'Windows XP Subject';
-                    case self::FLASH_PIX_VERSION:
-                        return Pel::tra('FlashPix Version');
-                    case self::COLOR_SPACE:
-                        return Pel::tra('Color Space');
-                    case self::PIXEL_X_DIMENSION:
-                        return Pel::tra('Pixel x-Dimension');
-                    case self::PIXEL_Y_DIMENSION:
-                        return Pel::tra('Pixel y-Dimension');
-                    case self::RELATED_SOUND_FILE:
-                        return Pel::tra('Related Sound File');
-                    case self::INTEROPERABILITY_IFD_POINTER:
-                        return Pel::tra('Interoperability IFD Pointer');
-                    case self::FLASH_ENERGY:
-                        return Pel::tra('Flash Energy');
-                    case self::SPATIAL_FREQUENCY_RESPONSE:
-                        return Pel::tra('Spatial Frequency Response');
-                    case self::FOCAL_PLANE_X_RESOLUTION:
-                        return Pel::tra('Focal Plane x-Resolution');
-                    case self::FOCAL_PLANE_Y_RESOLUTION:
-                        return Pel::tra('Focal Plane y-Resolution');
-                    case self::FOCAL_PLANE_RESOLUTION_UNIT:
-                        return Pel::tra('Focal Plane Resolution Unit');
-                    case self::SUBJECT_LOCATION:
-                        return Pel::tra('Subject Location');
-                    case self::EXPOSURE_INDEX:
-                        return Pel::tra('Exposure index');
-                    case self::SENSING_METHOD:
-                        return Pel::tra('Sensing Method');
-                    case self::FILE_SOURCE:
-                        return Pel::tra('File Source');
-                    case self::SCENE_TYPE:
-                        return Pel::tra('Scene Type');
-                    case self::SUBJECT_AREA:
-                        return Pel::tra('Subject Area');
-                    case self::CUSTOM_RENDERED:
-                        return Pel::tra('Custom Rendered');
-                    case self::EXPOSURE_MODE:
-                        return Pel::tra('Exposure Mode');
-                    case self::WHITE_BALANCE:
-                        return Pel::tra('White Balance');
-                    case self::DIGITAL_ZOOM_RATIO:
-                        return Pel::tra('Digital Zoom Ratio');
-                    case self::FOCAL_LENGTH_IN_35MM_FILM:
-                        return Pel::tra('Focal Length In 35mm Film');
-                    case self::SCENE_CAPTURE_TYPE:
-                        return Pel::tra('Scene Capture Type');
-                    case self::GAIN_CONTROL:
-                        return Pel::tra('Gain Control');
-                    case self::CONTRAST:
-                        return Pel::tra('Contrast');
-                    case self::SATURATION:
-                        return Pel::tra('Saturation');
-                    case self::SHARPNESS:
-                        return Pel::tra('Sharpness');
-                    case self::DEVICE_SETTING_DESCRIPTION:
-                        return Pel::tra('Device Setting Description');
-                    case self::SUBJECT_DISTANCE_RANGE:
-                        return Pel::tra('Subject Distance Range');
-                    case self::IMAGE_UNIQUE_ID:
-                        return Pel::tra('Image Unique ID');
-                    case self::GAMMA:
-                        return Pel::tra('Gamma');
-                    case self::PRINT_IM:
-                        return Pel::tra('Print IM');
+                    case self::FLASH_PIX_VERSION :
+                        return Pel::tra ( 'FlashPix Version' );
+                    case self::COLOR_SPACE :
+                        return Pel::tra ( 'Color Space' );
+                    case self::PIXEL_X_DIMENSION :
+                        return Pel::tra ( 'Pixel x-Dimension' );
+                    case self::PIXEL_Y_DIMENSION :
+                        return Pel::tra ( 'Pixel y-Dimension' );
+                    case self::RELATED_SOUND_FILE :
+                        return Pel::tra ( 'Related Sound File' );
+                    case self::INTEROPERABILITY_IFD_POINTER :
+                        return Pel::tra ( 'Interoperability IFD Pointer' );
+                    case self::FLASH_ENERGY :
+                        return Pel::tra ( 'Flash Energy' );
+                    case self::SPATIAL_FREQUENCY_RESPONSE :
+                        return Pel::tra ( 'Spatial Frequency Response' );
+                    case self::FOCAL_PLANE_X_RESOLUTION :
+                        return Pel::tra ( 'Focal Plane x-Resolution' );
+                    case self::FOCAL_PLANE_Y_RESOLUTION :
+                        return Pel::tra ( 'Focal Plane y-Resolution' );
+                    case self::FOCAL_PLANE_RESOLUTION_UNIT :
+                        return Pel::tra ( 'Focal Plane Resolution Unit' );
+                    case self::SUBJECT_LOCATION :
+                        return Pel::tra ( 'Subject Location' );
+                    case self::EXPOSURE_INDEX :
+                        return Pel::tra ( 'Exposure index' );
+                    case self::SENSING_METHOD :
+                        return Pel::tra ( 'Sensing Method' );
+                    case self::FILE_SOURCE :
+                        return Pel::tra ( 'File Source' );
+                    case self::SCENE_TYPE :
+                        return Pel::tra ( 'Scene Type' );
+                    case self::SUBJECT_AREA :
+                        return Pel::tra ( 'Subject Area' );
+                    case self::CUSTOM_RENDERED :
+                        return Pel::tra ( 'Custom Rendered' );
+                    case self::EXPOSURE_MODE :
+                        return Pel::tra ( 'Exposure Mode' );
+                    case self::WHITE_BALANCE :
+                        return Pel::tra ( 'White Balance' );
+                    case self::DIGITAL_ZOOM_RATIO :
+                        return Pel::tra ( 'Digital Zoom Ratio' );
+                    case self::FOCAL_LENGTH_IN_35MM_FILM :
+                        return Pel::tra ( 'Focal Length In 35mm Film' );
+                    case self::SCENE_CAPTURE_TYPE :
+                        return Pel::tra ( 'Scene Capture Type' );
+                    case self::GAIN_CONTROL :
+                        return Pel::tra ( 'Gain Control' );
+                    case self::CONTRAST :
+                        return Pel::tra ( 'Contrast' );
+                    case self::SATURATION :
+                        return Pel::tra ( 'Saturation' );
+                    case self::SHARPNESS :
+                        return Pel::tra ( 'Sharpness' );
+                    case self::DEVICE_SETTING_DESCRIPTION :
+                        return Pel::tra ( 'Device Setting Description' );
+                    case self::SUBJECT_DISTANCE_RANGE :
+                        return Pel::tra ( 'Subject Distance Range' );
+                    case self::IMAGE_UNIQUE_ID :
+                        return Pel::tra ( 'Image Unique ID' );
+                    case self::GAMMA :
+                        return Pel::tra ( 'Gamma' );
+                    case self::PRINT_IM :
+                        return Pel::tra ( 'Print IM' );
                 }
 
-            case PelIfd::GPS:
+            case PelIfd::GPS :
                 switch ($tag) {
-                    case self::GPS_VERSION_ID:
+                    case self::GPS_VERSION_ID :
                         return 'GPSVersionID';
-                    case self::GPS_LATITUDE_REF:
+                    case self::GPS_LATITUDE_REF :
                         return 'GPSLatitudeRef';
-                    case self::GPS_LATITUDE:
+                    case self::GPS_LATITUDE :
                         return 'GPSLatitude';
-                    case self::GPS_LONGITUDE_REF:
+                    case self::GPS_LONGITUDE_REF :
                         return 'GPSLongitudeRef';
-                    case self::GPS_LONGITUDE:
+                    case self::GPS_LONGITUDE :
                         return 'GPSLongitude';
-                    case self::GPS_ALTITUDE_REF:
+                    case self::GPS_ALTITUDE_REF :
                         return 'GPSAltitudeRef';
-                    case self::GPS_ALTITUDE:
+                    case self::GPS_ALTITUDE :
                         return 'GPSAltitude';
-                    case self::GPS_TIME_STAMP:
+                    case self::GPS_TIME_STAMP :
                         return 'GPSTimeStamp';
-                    case self::GPS_SATELLITES:
+                    case self::GPS_SATELLITES :
                         return 'GPSSatellites';
-                    case self::GPS_STATUS:
+                    case self::GPS_STATUS :
                         return 'GPSStatus';
-                    case self::GPS_MEASURE_MODE:
+                    case self::GPS_MEASURE_MODE :
                         return 'GPSMeasureMode';
-                    case self::GPS_DOP:
+                    case self::GPS_DOP :
                         return 'GPSDOP';
-                    case self::GPS_SPEED_REF:
+                    case self::GPS_SPEED_REF :
                         return 'GPSSpeedRef';
-                    case self::GPS_SPEED:
+                    case self::GPS_SPEED :
                         return 'GPSSpeed';
-                    case self::GPS_TRACK_REF:
+                    case self::GPS_TRACK_REF :
                         return 'GPSTrackRef';
-                    case self::GPS_TRACK:
+                    case self::GPS_TRACK :
                         return 'GPSTrack';
-                    case self::GPS_IMG_DIRECTION_REF:
+                    case self::GPS_IMG_DIRECTION_REF :
                         return 'GPSImgDirectionRef';
-                    case self::GPS_IMG_DIRECTION:
+                    case self::GPS_IMG_DIRECTION :
                         return 'GPSImgDirection';
-                    case self::GPS_MAP_DATUM:
+                    case self::GPS_MAP_DATUM :
                         return 'GPSMapDatum';
-                    case self::GPS_DEST_LATITUDE_REF:
+                    case self::GPS_DEST_LATITUDE_REF :
                         return 'GPSDestLatitudeRef';
-                    case self::GPS_DEST_LATITUDE:
+                    case self::GPS_DEST_LATITUDE :
                         return 'GPSDestLatitude';
-                    case self::GPS_DEST_LONGITUDE_REF:
+                    case self::GPS_DEST_LONGITUDE_REF :
                         return 'GPSDestLongitudeRef';
-                    case self::GPS_DEST_LONGITUDE:
+                    case self::GPS_DEST_LONGITUDE :
                         return 'GPSDestLongitude';
-                    case self::GPS_DEST_BEARING_REF:
+                    case self::GPS_DEST_BEARING_REF :
                         return 'GPSDestBearingRef';
-                    case self::GPS_DEST_BEARING:
+                    case self::GPS_DEST_BEARING :
                         return 'GPSDestBearing';
-                    case self::GPS_DEST_DISTANCE_REF:
+                    case self::GPS_DEST_DISTANCE_REF :
                         return 'GPSDestDistanceRef';
-                    case self::GPS_DEST_DISTANCE:
+                    case self::GPS_DEST_DISTANCE :
                         return 'GPSDestDistance';
-                    case self::GPS_PROCESSING_METHOD:
+                    case self::GPS_PROCESSING_METHOD :
                         return 'GPSProcessingMethod';
-                    case self::GPS_AREA_INFORMATION:
+                    case self::GPS_AREA_INFORMATION :
                         return 'GPSAreaInformation';
-                    case self::GPS_DATE_STAMP:
+                    case self::GPS_DATE_STAMP :
                         return 'GPSDateStamp';
-                    case self::GPS_DIFFERENTIAL:
+                    case self::GPS_DIFFERENTIAL :
                         return 'GPSDifferential';
                 }
 
-            default:
-                return Pel::fmt('Unknown Tag: 0x%04X', $tag);
+            default :
+                return Pel::fmt ( 'Unknown Tag: 0x%04X', $tag );
         }
     }
-
 }
 

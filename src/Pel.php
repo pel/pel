@@ -1,59 +1,57 @@
 <?php
 
 /**
- *  PEL: PHP Exif Library.  A library with support for reading and
- *  writing all Exif headers in JPEG and TIFF images using PHP.
+ * PEL: PHP Exif Library.
+ * A library with support for reading and
+ * writing all Exif headers in JPEG and TIFF images using PHP.
  *
- *  Copyright (C) 2004, 2005, 2006, 2007  Martin Geisler.
+ * Copyright (C) 2004, 2005, 2006, 2007 Martin Geisler.
  *
- *  This program is free software; you can redistribute it and/or modify
- *  it under the terms of the GNU General Public License as published by
- *  the Free Software Foundation; either version 2 of the License, or
- *  (at your option) any later version.
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2 of the License, or
+ * (at your option) any later version.
  *
- *  This program is distributed in the hope that it will be useful,
- *  but WITHOUT ANY WARRANTY; without even the implied warranty of
- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *  GNU General Public License for more details.
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public License for more details.
  *
- *  You should have received a copy of the GNU General Public License
- *  along with this program in the file COPYING; if not, write to the
- *  Free Software Foundation, Inc., 51 Franklin St, Fifth Floor,
- *  Boston, MA 02110-1301 USA
+ * You should have received a copy of the GNU General Public License
+ * along with this program in the file COPYING; if not, write to the
+ * Free Software Foundation, Inc., 51 Franklin St, Fifth Floor,
+ * Boston, MA 02110-1301 USA
  */
-
-
 
 /**
  * Miscellaneous stuff for the overall behavior of PEL.
  *
  * @author Martin Geisler <mgeisler@users.sourceforge.net>
  * @license http://www.gnu.org/licenses/gpl.html GNU General Public
- * License (GPL)
+ *          License (GPL)
  * @package PEL
  */
 
-
-/* Initialize Gettext, if available.  This must be done before any
+/*
+ * Initialize Gettext, if available. This must be done before any
  * part of PEL calls Pel::tra() or Pel::fmt() --- this is ensured if
  * every piece of code using those two functions require() this file.
- *
  * If Gettext is not available, wrapper functions will be created,
  * allowing PEL to function, but without any translations.
- *
- * The PEL translations are stored in './locale'.  It is important to
+ * The PEL translations are stored in './locale'. It is important to
  * use an absolute path here because the lookups will be relative to
- * the current directory. */
-
-if (function_exists('dgettext')) {
-    bindtextdomain('pel', dirname(__FILE__) . '/locale');
+ * the current directory.
+ */
+if (function_exists ( 'dgettext' )) {
+    bindtextdomain ( 'pel', dirname ( __FILE__ ) . '/locale' );
 } else {
+
 
     /**
      * Pretend to lookup a message in a specific domain.
      *
      * This is just a stub which will return the original message
-     * untranslated.  The function will only be defined if the Gettext
+     * untranslated. The function will only be defined if the Gettext
      * extension has not already defined it.
      *
      * @param string $domain the domain.
@@ -97,7 +95,7 @@ class Pel {
      * Flag for strictness of parsing.
      *
      * If this variable is set to true, then most errors while loading
-     * images will result in exceptions being thrown.  Otherwise a
+     * images will result in exceptions being thrown. Otherwise a
      * warning will be emitted (using {@link Pel::warning}) and the
      * exceptions will be appended to {@link Pel::$exceptions}.
      *
@@ -115,7 +113,7 @@ class Pel {
      * When {@link Pel::$strict} is set to false exceptions will be
      * accumulated here instead of being thrown.
      */
-    private static $exceptions = array();
+    private static $exceptions = array ();
 
     /**
      * Quality setting for encoding JPEG images.
@@ -136,7 +134,7 @@ class Pel {
      * Set the JPEG encoding quality.
      *
      * @param int $quality an integer between 0 and 100 with 75 being
-     * average quality and 95 very good quality.
+     *        average quality and 95 very good quality.
      */
     public static function setJPEGQuality($quality) {
         self::$quality = $quality;
@@ -157,7 +155,7 @@ class Pel {
      * Return list of stored exceptions.
      *
      * When PEL is parsing in non-strict mode, it will store most
-     * exceptions instead of throwing them.  Use this method to get hold
+     * exceptions instead of throwing them. Use this method to get hold
      * of them when a call returns.
      *
      * Code for using this could look like this:
@@ -170,12 +168,12 @@ class Pel {
      *
      * // Check for exceptions.
      * foreach (Pel::getExceptions() as $e) {
-     *     printf("Exception: %s\n", $e->getMessage());
-     *     if ($e instanceof PelEntryException) {
-     *       // Warn about entries that couldn't be loaded.
-     *       printf("Warning: Problem with %s.\n",
-     *              PelTag::getName($e->getType(), $e->getTag()));
-     *     }
+     * printf("Exception: %s\n", $e->getMessage());
+     * if ($e instanceof PelEntryException) {
+     * // Warn about entries that couldn't be loaded.
+     * printf("Warning: Problem with %s.\n",
+     * PelTag::getName($e->getType(), $e->getTag()));
+     * }
      * }
      * </code>
      *
@@ -197,7 +195,7 @@ class Pel {
      * check for exceptions afterwards.
      */
     public static function clearExceptions() {
-        self::$exceptions = array();
+        self::$exceptions = array ();
     }
 
 
@@ -205,7 +203,7 @@ class Pel {
      * Conditionally throw an exception.
      *
      * This method will throw the passed exception when strict parsing
-     * in effect (see {@link setStrictParsing()}).  Otherwise the
+     * in effect (see {@link setStrictParsing()}). Otherwise the
      * exception is stored (it can be accessed with {@link
      * getExceptions()}) and a warning is issued (with {@link
      * Pel::warning}).
@@ -216,9 +214,8 @@ class Pel {
         if (self::$strict) {
             throw $e;
         } else {
-            self::$exceptions[] = $e;
-            self::warning('%s (%s:%s)', $e->getMessage(),
-            basename($e->getFile()), $e->getLine());
+            self::$exceptions [] = $e;
+            self::warning ( '%s (%s:%s)', $e->getMessage (), basename ( $e->getFile () ), $e->getLine () );
         }
     }
 
@@ -227,7 +224,7 @@ class Pel {
      * Enable/disable strict parsing.
      *
      * If strict parsing is enabled, then most errors while loading
-     * images will result in exceptions being thrown.  Otherwise a
+     * images will result in exceptions being thrown. Otherwise a
      * warning will be emitted (using {@link Pel::warning}) and the
      * exceptions will be stored for later use via {@link
      * getExceptions()}.
@@ -237,7 +234,7 @@ class Pel {
      * possible.
      *
      * @param boolean $flag use true to enable strict parsing, false to
-     * diable.
+     *        diable.
      */
     public static function setStrictParsing($flag) {
         self::$strict = $flag;
@@ -248,7 +245,7 @@ class Pel {
      * Get current setting for strict parsing.
      *
      * @return boolean true if strict parsing is in effect, false
-     * otherwise.
+     *         otherwise.
      */
     public static function getStrictParsing() {
         return self::$strict;
@@ -259,7 +256,7 @@ class Pel {
      * Enable/disable debugging output.
      *
      * @param boolean $flag use true to enable debug output, false to
-     * diable.
+     *        diable.
      */
     public static function setDebug($flag) {
         self::$debug = $flag;
@@ -285,15 +282,15 @@ class Pel {
      *
      * @param string $format the format string.
      *
-     * @param mixed $args,... any number of arguments can be given.  The
-     * arguments will be available for the format string as usual with
-     * sprintf().
+     * @param mixed $args,... any number of arguments can be given. The
+     *        arguments will be available for the format string as usual with
+     *        sprintf().
      */
     public static function debug() {
         if (self::$debug) {
-            $args = func_get_args();
-            $str = array_shift($args);
-            vprintf($str . "\n", $args);
+            $args = func_get_args ();
+            $str = array_shift ( $args );
+            vprintf ( $str . "\n", $args );
         }
     }
 
@@ -308,15 +305,15 @@ class Pel {
      *
      * @param string $format the format string.
      *
-     * @param mixed $args,... any number of arguments can be given.  The
-     * arguments will be available for the format string as usual with
-     * sprintf().
+     * @param mixed $args,... any number of arguments can be given. The
+     *        arguments will be available for the format string as usual with
+     *        sprintf().
      */
     public static function warning() {
         if (self::$debug) {
-            $args = func_get_args();
-            $str = array_shift($args);
-            vprintf('Warning: ' . $str . "\n", $args);
+            $args = func_get_args ();
+            $str = array_shift ( $args );
+            vprintf ( 'Warning: ' . $str . "\n", $args );
         }
     }
 
@@ -324,7 +321,7 @@ class Pel {
     /**
      * Translate a string.
      *
-     * This static function will use Gettext to translate a string.  By
+     * This static function will use Gettext to translate a string. By
      * always using this function for static string one is assured that
      * the translation will be taken from the correct text domain.
      * Dynamic strings should be passed to {@link fmt} instead.
@@ -332,10 +329,10 @@ class Pel {
      * @param string the string that should be translated.
      *
      * @return string the translated string, or the original string if
-     * no translation could be found.
+     *         no translation could be found.
      */
     public static function tra($str) {
-        return dgettext('pel', $str);
+        return dgettext ( 'pel', $str );
     }
 
 
@@ -343,27 +340,26 @@ class Pel {
      * Translate and format a string.
      *
      * This static function will first use Gettext to translate a format
-     * string, which will then have access to any extra arguments.  By
+     * string, which will then have access to any extra arguments. By
      * always using this function for dynamic string one is assured that
-     * the translation will be taken from the correct text domain.  If
+     * the translation will be taken from the correct text domain. If
      * the string is static, use {@link tra} instead as it will be
      * faster.
      *
-     * @param string $format the format string.  This will be translated
-     * before being used as a format string.
+     * @param string $format the format string. This will be translated
+     *        before being used as a format string.
      *
-     * @param mixed $args,... any number of arguments can be given.  The
-     * arguments will be available for the format string as usual with
-     * sprintf().
+     * @param mixed $args,... any number of arguments can be given. The
+     *        arguments will be available for the format string as usual with
+     *        sprintf().
      *
      * @return string the translated string, or the original string if
-     * no translation could be found.
+     *         no translation could be found.
      */
     public static function fmt() {
-        $args = func_get_args();
-        $str = array_shift($args);
-        return vsprintf(dgettext('pel', $str), $args);
+        $args = func_get_args ();
+        $str = array_shift ( $args );
+        return vsprintf ( dgettext ( 'pel', $str ), $args );
     }
-
 }
 

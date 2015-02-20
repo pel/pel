@@ -1,43 +1,47 @@
 <?php
 
 /**
- *  PEL: PHP Exif Library.  A library with support for reading and
- *  writing all Exif headers in JPEG and TIFF images using PHP.
+ * PEL: PHP Exif Library.
+ * A library with support for reading and
+ * writing all Exif headers in JPEG and TIFF images using PHP.
  *
- *  Copyright (C) 2004, 2005, 2006  Martin Geisler.
+ * Copyright (C) 2004, 2005, 2006 Martin Geisler.
  *
- *  This program is free software; you can redistribute it and/or modify
- *  it under the terms of the GNU General Public License as published by
- *  the Free Software Foundation; either version 2 of the License, or
- *  (at your option) any later version.
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2 of the License, or
+ * (at your option) any later version.
  *
- *  This program is distributed in the hope that it will be useful,
- *  but WITHOUT ANY WARRANTY; without even the implied warranty of
- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *  GNU General Public License for more details.
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public License for more details.
  *
- *  You should have received a copy of the GNU General Public License
- *  along with this program in the file COPYING; if not, write to the
- *  Free Software Foundation, Inc., 51 Franklin St, Fifth Floor,
- *  Boston, MA 02110-1301 USA
+ * You should have received a copy of the GNU General Public License
+ * along with this program in the file COPYING; if not, write to the
+ * Free Software Foundation, Inc., 51 Franklin St, Fifth Floor,
+ * Boston, MA 02110-1301 USA
  */
-
-
 
 /**
  * Abstract class for numbers.
  *
  * @author Martin Geisler <mgeisler@users.sourceforge.net>
  * @license http://www.gnu.org/licenses/gpl.html GNU General Public
- * License (GPL)
+ *          License (GPL)
  * @package PEL
  */
 
-/**#@+ Required class definitions. */
-require_once('PelException.php');
-require_once('PelEntry.php');
-/**#@-*/
+/**
+ * #@+ Required class definitions.
+ */
+require_once ('PelException.php');
+require_once ('PelEntry.php');
 
+
+/**
+ * #@-
+ */
 
 /**
  * Exception cast when numbers overflow.
@@ -47,6 +51,7 @@ require_once('PelEntry.php');
  * @subpackage Exception
  */
 class PelOverflowException extends PelException {
+
 
     /**
      * Construct a new overflow exception.
@@ -58,8 +63,7 @@ class PelOverflowException extends PelException {
      * @param int the maximum allowed value.
      */
     function __construct($v, $min, $max) {
-        parent::__construct('Value %.0f out of range [%.0f, %.0f]',
-        $v, $min, $max);
+        parent::__construct ( 'Value %.0f out of range [%.0f, %.0f]', $v, $min, $max );
     }
 }
 
@@ -79,7 +83,7 @@ abstract class PelEntryNumber extends PelEntry {
      *
      * @var array
      */
-    protected $value = array();
+    protected $value = array ();
 
     /**
      * The minimum allowed value.
@@ -116,24 +120,24 @@ abstract class PelEntryNumber extends PelEntry {
      * Change the value.
      *
      * This method can change both the number of components and the
-     * value of the components.  Range checks will be made on the new
+     * value of the components. Range checks will be made on the new
      * value, and a {@link PelOverflowException} will be thrown if the
      * value is found to be outside the legal range.
      *
-     * The method accept several number arguments.  The {@link getValue}
+     * The method accept several number arguments. The {@link getValue}
      * method will always return an array except for when a single
      * number is given here.
      *
-     * @param int|array $value... the new value(s).  This can be zero or
-     * more numbers, that is, either integers or arrays.  The input will
-     * be checked to ensure that the numbers are within the valid range.
-     * If not, then a {@link PelOverflowException} will be thrown.
+     * @param int|array $value... the new value(s). This can be zero or
+     *        more numbers, that is, either integers or arrays. The input will
+     *        be checked to ensure that the numbers are within the valid range.
+     *        If not, then a {@link PelOverflowException} will be thrown.
      *
      * @see getValue
      */
     function setValue($value) {
-        $value = func_get_args();
-        $this->setValueArray($value);
+        $value = func_get_args ();
+        $this->setValueArray ( $value );
     }
 
 
@@ -141,21 +145,21 @@ abstract class PelEntryNumber extends PelEntry {
      * Change the value.
      *
      * This method can change both the number of components and the
-     * value of the components.  Range checks will be made on the new
+     * value of the components. Range checks will be made on the new
      * value, and a {@link PelOverflowException} will be thrown if the
      * value is found to be outside the legal range.
      *
-     * @param array the new values.  The array must contain the new
-     * numbers.
+     * @param array the new values. The array must contain the new
+     *        numbers.
      *
      * @see getValue
      */
     function setValueArray($value) {
-        foreach ($value as $v)
-        $this->validateNumber($v);
+        foreach ( $value as $v )
+            $this->validateNumber ( $v );
 
-        $this->components = count($value);
-        $this->value      = $value;
+        $this->components = count ( $value );
+        $this->value = $value;
     }
 
 
@@ -163,13 +167,13 @@ abstract class PelEntryNumber extends PelEntry {
      * Return the numeric value held.
      *
      * @return int|array this will either be a single number if there is
-     * only one component, or an array of numbers otherwise.
+     *         only one component, or an array of numbers otherwise.
      */
     function getValue() {
         if ($this->components == 1)
-        return $this->value[0];
+            return $this->value [0];
         else
-        return $this->value;
+            return $this->value;
     }
 
 
@@ -177,27 +181,23 @@ abstract class PelEntryNumber extends PelEntry {
      * Validate a number.
      *
      * This method will check that the number given is within the range
-     * given my {@link getMin()} and {@link getMax()}, inclusive.  If
+     * given my {@link getMin()} and {@link getMax()}, inclusive. If
      * not, then a {@link PelOverflowException} is thrown.
      *
      * @param int|array the number in question.
      *
      * @return void nothing, but will throw a {@link
-     * PelOverflowException} if the number is found to be outside the
-     * legal range and {@link Pel::$strict} is true.
+     *         PelOverflowException} if the number is found to be outside the
+     *         legal range and {@link Pel::$strict} is true.
      */
     function validateNumber($n) {
         if ($this->dimension == 1) {
             if ($n < $this->min || $n > $this->max)
-            Pel::maybeThrow(new PelOverflowException($n,
-            $this->min,
-            $this->max));
+                Pel::maybeThrow ( new PelOverflowException ( $n, $this->min, $this->max ) );
         } else {
-            for ($i = 0; $i < $this->dimension; $i++)
-            if ($n[$i] < $this->min || $n[$i] > $this->max)
-            Pel::maybeThrow(new PelOverflowException($n[$i],
-            $this->min,
-            $this->max));
+            for($i = 0; $i < $this->dimension; $i ++)
+                if ($n [$i] < $this->min || $n [$i] > $this->max)
+                    Pel::maybeThrow ( new PelOverflowException ( $n [$i], $this->min, $this->max ) );
         }
     }
 
@@ -211,9 +211,9 @@ abstract class PelEntryNumber extends PelEntry {
      * @param int|array the number to be added.
      */
     function addNumber($n) {
-        $this->validateNumber($n);
-        $this->value[] = $n;
-        $this->components++;
+        $this->validateNumber ( $n );
+        $this->value [] = $n;
+        $this->components ++;
     }
 
 
@@ -228,7 +228,7 @@ abstract class PelEntryNumber extends PelEntry {
      * @param int the number that should be converted.
      *
      * @param PelByteOrder one of {@link PelConvert::LITTLE_ENDIAN} and
-     * {@link PelConvert::BIG_ENDIAN}, specifying the target byte order.
+     *        {@link PelConvert::BIG_ENDIAN}, specifying the target byte order.
      *
      * @return string bytes representing the number given.
      */
@@ -239,19 +239,19 @@ abstract class PelEntryNumber extends PelEntry {
      * Turn this entry into bytes.
      *
      * @param PelByteOrder the desired byte order, which must be either
-     * {@link PelConvert::LITTLE_ENDIAN} or {@link
-     * PelConvert::BIG_ENDIAN}.
+     *        {@link PelConvert::LITTLE_ENDIAN} or {@link
+     *        PelConvert::BIG_ENDIAN}.
      *
      * @return string bytes representing this entry.
      */
     function getBytes($o) {
         $bytes = '';
-        for ($i = 0; $i < $this->components; $i++) {
+        for($i = 0; $i < $this->components; $i ++) {
             if ($this->dimension == 1) {
-                $bytes .= $this->numberToBytes($this->value[$i], $o);
+                $bytes .= $this->numberToBytes ( $this->value [$i], $o );
             } else {
-                for ($j = 0; $j < $this->dimension; $j++) {
-                    $bytes .= $this->numberToBytes($this->value[$i][$j], $o);
+                for($j = 0; $j < $this->dimension; $j ++) {
+                    $bytes .= $this->numberToBytes ( $this->value [$i] [$j], $o );
                 }
             }
         }
@@ -270,10 +270,10 @@ abstract class PelEntryNumber extends PelEntry {
      * @param int the number which will be formatted.
      *
      * @param boolean it could be that there is both a verbose and a
-     * brief formatting available, and this argument controls that.
+     *        brief formatting available, and this argument controls that.
      *
      * @return string the number formatted as a string suitable for
-     * display.
+     *         display.
      */
     function formatNumber($number, $brief = false) {
         return $number;
@@ -283,24 +283,23 @@ abstract class PelEntryNumber extends PelEntry {
     /**
      * Get the numeric value of this entry as text.
      *
-     * @param boolean use brief output?  The numbers will be separated
-     * by a single space if brief output is requested, otherwise a space
-     * and a comma will be used.
+     * @param boolean use brief output? The numbers will be separated
+     *        by a single space if brief output is requested, otherwise a space
+     *        and a comma will be used.
      *
      * @return string the numbers(s) held by this entry.
      */
     function getText($brief = false) {
         if ($this->components == 0)
-        return '';
+            return '';
 
-        $str = $this->formatNumber($this->value[0]);
-        for ($i = 1; $i < $this->components; $i++) {
+        $str = $this->formatNumber ( $this->value [0] );
+        for($i = 1; $i < $this->components; $i ++) {
             $str .= ($brief ? ' ' : ', ');
-            $str .= $this->formatNumber($this->value[$i]);
+            $str .= $this->formatNumber ( $this->value [$i] );
         }
 
         return $str;
     }
-
 }
 

@@ -1,49 +1,53 @@
 <?php
 
 /**
- *  PEL: PHP Exif Library.  A library with support for reading and
- *  writing all Exif headers in JPEG and TIFF images using PHP.
+ * PEL: PHP Exif Library.
+ * A library with support for reading and
+ * writing all Exif headers in JPEG and TIFF images using PHP.
  *
- *  Copyright (C) 2004, 2005  Martin Geisler.
+ * Copyright (C) 2004, 2005 Martin Geisler.
  *
- *  This program is free software; you can redistribute it and/or modify
- *  it under the terms of the GNU General Public License as published by
- *  the Free Software Foundation; either version 2 of the License, or
- *  (at your option) any later version.
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2 of the License, or
+ * (at your option) any later version.
  *
- *  This program is distributed in the hope that it will be useful,
- *  but WITHOUT ANY WARRANTY; without even the implied warranty of
- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *  GNU General Public License for more details.
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public License for more details.
  *
- *  You should have received a copy of the GNU General Public License
- *  along with this program in the file COPYING; if not, write to the
- *  Free Software Foundation, Inc., 51 Franklin St, Fifth Floor,
- *  Boston, MA 02110-1301 USA
+ * You should have received a copy of the GNU General Public License
+ * along with this program in the file COPYING; if not, write to the
+ * Free Software Foundation, Inc., 51 Franklin St, Fifth Floor,
+ * Boston, MA 02110-1301 USA
  */
-
-
 
 /**
  * Classes for dealing with Exif data.
  *
  * @author Martin Geisler <mgeisler@users.sourceforge.net>
  * @license http://www.gnu.org/licenses/gpl.html GNU General Public
- * License (GPL)
+ *          License (GPL)
  * @package PEL
  */
 
-/**#@+ Required class definitions. */
-require_once('PelJpegContent.php');
-require_once('PelException.php');
-require_once('PelFormat.php');
-require_once('PelEntry.php');
-require_once('PelTiff.php');
-require_once('PelIfd.php');
-require_once('PelTag.php');
-require_once('Pel.php');
-/**#@-*/
+/**
+ * #@+ Required class definitions.
+ */
+require_once ('PelJpegContent.php');
+require_once ('PelException.php');
+require_once ('PelFormat.php');
+require_once ('PelEntry.php');
+require_once ('PelTiff.php');
+require_once ('PelIfd.php');
+require_once ('PelTag.php');
+require_once ('Pel.php');
 
+
+/**
+ * #@-
+ */
 
 /**
  * Class representing Exif data.
@@ -53,7 +57,7 @@ require_once('Pel.php');
  *
  * The interesting method in this class is {@link getTiff()} which
  * will return the {@link PelTiff} object which really holds the data
- * which one normally think of when talking about Exif data.  This is
+ * which one normally think of when talking about Exif data. This is
  * because Exif data is stored as an extension of the TIFF file
  * format.
  *
@@ -87,7 +91,6 @@ class PelExif extends PelJpegContent {
      * the true holder of the Exif {@link PelEntry entries}.
      */
     function __construct() {
-
     }
 
 
@@ -95,28 +98,26 @@ class PelExif extends PelJpegContent {
      * Load and parse Exif data.
      *
      * This will populate the object with Exif data, contained as a
-     * {@link PelTiff} object.  This TIFF object can be accessed with
+     * {@link PelTiff} object. This TIFF object can be accessed with
      * the {@link getTiff()} method.
      */
     function load(PelDataWindow $d) {
-        Pel::debug('Parsing %d bytes of Exif data...', $d->getSize());
+        Pel::debug ( 'Parsing %d bytes of Exif data...', $d->getSize () );
 
         /* There must be at least 6 bytes for the Exif header. */
-        if ($d->getSize() < 6)
-        throw new PelInvalidDataException('Expected at least 6 bytes of Exif ' .
-                                        'data, found just %d bytes.',
-        $d->getSize());
+        if ($d->getSize () < 6)
+            throw new PelInvalidDataException ( 'Expected at least 6 bytes of Exif ' . 'data, found just %d bytes.', $d->getSize () );
 
-        /* Verify the Exif header */
-        if ($d->strcmp(0, self::EXIF_HEADER)) {
-            $d->setWindowStart(strlen(self::EXIF_HEADER));
+            /* Verify the Exif header */
+        if ($d->strcmp ( 0, self::EXIF_HEADER )) {
+            $d->setWindowStart ( strlen ( self::EXIF_HEADER ) );
         } else {
-            throw new PelInvalidDataException('Exif header not found.');
+            throw new PelInvalidDataException ( 'Exif header not found.' );
         }
 
         /* The rest of the data is TIFF data. */
-        $this->tiff = new PelTiff();
-        $this->tiff->load($d);
+        $this->tiff = new PelTiff ();
+        $this->tiff->load ( $d );
     }
 
 
@@ -153,20 +154,18 @@ class PelExif extends PelJpegContent {
      * @return string bytes representing this object.
      */
     function getBytes() {
-        return self::EXIF_HEADER . $this->tiff->getBytes();
+        return self::EXIF_HEADER . $this->tiff->getBytes ();
     }
 
 
     /**
      * Return a string representation of this object.
      *
-     * @return string a string describing this object.  This is mostly
-     * useful for debugging.
+     * @return string a string describing this object. This is mostly
+     *         useful for debugging.
      */
     function __toString() {
-        return Pel::tra("Dumping Exif data...\n") .
-        $this->tiff->__toString();
+        return Pel::tra ( "Dumping Exif data...\n" ) . $this->tiff->__toString ();
     }
-
 }
 
