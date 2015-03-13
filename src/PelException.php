@@ -53,7 +53,7 @@ class PelException extends Exception
      *            will be used as a format string for vprintf(). The remaining
      *            arguments will be available for the format string as usual with
      *            vprintf().
-     *            
+     *
      * @param mixed $args,...
      *            any number of arguments to be used with
      *            the format string.
@@ -86,4 +86,3 @@ class PelInvalidDataException extends PelException
 class PelInvalidArgumentException extends PelException
 {
 }
-

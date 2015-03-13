@@ -65,7 +65,7 @@ class PelJpegContent
      * @param
      *            PelDataWindow the content.
      */
-    function __construct(PelDataWindow $data)
+    public function __construct(PelDataWindow $data)
     {
         $this->data = $data;
     }
@@ -77,9 +77,8 @@ class PelJpegContent
      *         will match the bytes given to {@link __construct the
      *         constructor}.
      */
-    function getBytes()
+    public function getBytes()
     {
         return $this->data->getBytes();
     }
 }
-

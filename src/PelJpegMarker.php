@@ -379,11 +379,11 @@ class PelJpegMarker
      *
      * @param
      *            PelJpegMarker the byte that will be checked.
-     *            
+     *
      * @return boolean if the byte is recognized true is returned,
      *         otherwise false will be returned.
      */
-    static function isValid($m)
+    public static function isValid($m)
     {
         return ($m >= self::SOF0 && $m <= self::COM);
     }
@@ -393,12 +393,12 @@ class PelJpegMarker
      *
      * @param
      *            PelJpegMarker the marker.
-     *            
+     *
      * @return string the marker as a string. This will be a string
      *         with just a single byte since all JPEG markers are simply single
      *         bytes.
      */
-    static function getBytes($m)
+    public static function getBytes($m)
     {
         return chr($m);
     }
@@ -408,11 +408,11 @@ class PelJpegMarker
      *
      * @param
      *            PelJpegMarker the marker.
-     *            
+     *
      * @return string the name of the marker, e.g., 'SOI' for the Start
      *         of Image marker.
      */
-    static function getName($m)
+    public static function getName($m)
     {
         switch ($m) {
             case self::SOF0:
@@ -553,10 +553,10 @@ class PelJpegMarker
      *
      * @param
      *            PelJpegMarker the marker.
-     *            
+     *
      * @return string the description of the marker.
      */
-    static function getDescription($m)
+    public static function getDescription($m)
     {
         switch ($m) {
             case self::SOF0:
@@ -692,4 +692,3 @@ class PelJpegMarker
         }
     }
 }
-

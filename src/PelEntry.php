@@ -81,7 +81,7 @@ class PelEntryException extends PelException
      *         {@link PelIfd::EXIF}, {@link PelIfd::GPS}, or {@link
      *         PelIfd::INTEROPERABILITY}. If no type is set, null is returned.
      */
-    function getIfdType()
+    public function getIfdType()
     {
         return $this->type;
     }
@@ -91,7 +91,7 @@ class PelEntryException extends PelException
      *
      * @return PelTag the tag. If no tag is set, null is returned.
      */
-    function getTag()
+    public function getTag()
     {
         return $this->tag;
     }
@@ -115,17 +115,17 @@ class PelUnexpectedFormatException extends PelEntryException
      *
      * @param
      *            int the type of IFD.
-     *            
+     *
      * @param
      *            PelTag the tag for which the violation was found.
-     *            
+     *
      * @param
      *            PelFormat the format found.
-     *            
+     *
      * @param
      *            PelFormat the expected format.
      */
-    function __construct($type, $tag, $found, $expected)
+    public function __construct($type, $tag, $found, $expected)
     {
         parent::__construct('Unexpected format found for %s tag: PelFormat::%s. ' . 'Expected PelFormat::%s instead.', PelTag::getName($type, $tag), strtoupper(PelFormat::getName($found)), strtoupper(PelFormat::getName($expected)));
         $this->tag = $tag;
@@ -155,17 +155,17 @@ class PelWrongComponentCountException extends PelEntryException
      *
      * @param
      *            int the type of IFD.
-     *            
+     *
      * @param
      *            PelTag the tag for which the violation was found.
-     *            
+     *
      * @param
      *            int the number of components found.
-     *            
+     *
      * @param
      *            int the expected number of components.
      */
-    function __construct($type, $tag, $found, $expected)
+    public function __construct($type, $tag, $found, $expected)
     {
         parent::__construct('Wrong number of components found for %s tag: %d. ' . 'Expected %d.', PelTag::getName($type, $tag), $found, $expected);
         $this->tag = $tag;
@@ -249,7 +249,7 @@ abstract class PelEntry
      *
      * @return PelTag the tag of this entry.
      */
-    function getTag()
+    public function getTag()
     {
         return $this->tag;
     }
@@ -263,7 +263,7 @@ abstract class PelEntry
      *         sub-IFD, {@link PelIfd::GPS} for the GPS sub-IFD, or {@link
      *         PelIfd::INTEROPERABILITY} for the interoperability sub-IFD.
      */
-    function getIfdType()
+    public function getIfdType()
     {
         return $this->ifd_type;
     }
@@ -279,7 +279,7 @@ abstract class PelEntry
      *            {@link PelIfd::INTEROPERABILITY} for the interoperability
      *            sub-IFD.
      */
-    function setIfdType($type)
+    public function setIfdType($type)
     {
         $this->ifd_type = $type;
     }
@@ -289,7 +289,7 @@ abstract class PelEntry
      *
      * @return PelFormat the format of this entry.
      */
-    function getFormat()
+    public function getFormat()
     {
         return $this->format;
     }
@@ -299,7 +299,7 @@ abstract class PelEntry
      *
      * @return int the number of components of this entry.
      */
-    function getComponents()
+    public function getComponents()
     {
         return $this->components;
     }
@@ -310,10 +310,10 @@ abstract class PelEntry
      * @param
      *            PelByteOrder the desired byte order, which must be either
      *            {@link Convert::LITTLE_ENDIAN} or {@link Convert::BIG_ENDIAN}.
-     *            
+     *
      * @return string bytes representing this entry.
      */
-    function getBytes($o)
+    public function getBytes($o)
     {
         return $this->bytes;
     }
@@ -328,10 +328,10 @@ abstract class PelEntry
      * @param
      *            boolean some values can be returned in a long or more
      *            brief form, and this parameter controls that.
-     *            
+     *
      * @return string the value as text.
      */
-    abstract function getText($brief = false);
+    abstract public function getText($brief = false);
 
     /**
      * Get the value of this entry.
@@ -342,7 +342,7 @@ abstract class PelEntry
      *
      * @return mixed the unformatted value.
      */
-    abstract function getValue();
+    abstract public function getValue();
 
     /**
      * Set the value of this entry.
@@ -351,11 +351,11 @@ abstract class PelEntry
      *
      * @param
      *            mixed the new value.
-     *            
+     *
      * @abstract
      *
      */
-    function setValue($value)
+    public function setValue($value)
     {
         /*
          * This (fake) abstract method is here to make it possible for the
@@ -373,15 +373,15 @@ abstract class PelEntry
      * @return string a string representation of this entry. This is
      *         mostly for debugging.
      */
-    function __toString()
+    public function __toString()
     {
         $str = Pel::fmt("  Tag: 0x%04X (%s)\n", $this->tag, PelTag::getName($this->ifd_type, $this->tag));
         $str .= Pel::fmt("    Format    : %d (%s)\n", $this->format, PelFormat::getName($this->format));
         $str .= Pel::fmt("    Components: %d\n", $this->components);
-        if ($this->getTag() != PelTag::MAKER_NOTE && $this->getTag() != PelTag::PRINT_IM)
+        if ($this->getTag() != PelTag::MAKER_NOTE && $this->getTag() != PelTag::PRINT_IM) {
             $str .= Pel::fmt("    Value     : %s\n", print_r($this->getValue(), true));
+        }
         $str .= Pel::fmt("    Text      : %s\n", $this->getText());
         return $str;
     }
 }
-

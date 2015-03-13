@@ -41,10 +41,12 @@ class UndefinedTestCase extends UnitTestCase
     {
         $pattern = new PatternExpectation('/Missing argument 1 for PelEntryUndefined::__construct()/');
         $this->expectError($pattern);
+        $pattern = new PatternExpectation('/Undefined variable: tag/');
+        $this->expectError($pattern);
         $entry = new PelEntryUndefined();
-        
+
         $entry = new PelEntryUndefined(42);
-        
+
         $entry = new PelEntryUndefined(42, 'foo bar baz');
         $this->assertEqual($entry->getComponents(), 11);
         $this->assertEqual($entry->getValue(), 'foo bar baz');
@@ -56,7 +58,7 @@ class UndefinedTestCase extends UnitTestCase
         $this->assertEqual($entry->getComponents(), 8);
         $this->assertEqual($entry->getValue(), '');
         $this->assertEqual($entry->getEncoding(), 'ASCII');
-        
+
         $entry->setValue('Hello!');
         $this->assertEqual($entry->getComponents(), 14);
         $this->assertEqual($entry->getValue(), 'Hello!');
@@ -65,26 +67,28 @@ class UndefinedTestCase extends UnitTestCase
 
     function testVersion()
     {
-        $pattern = new PatternExpectation('/Missing argument 1 for ' . 'PelEntryVersion::__construct()/');
+        $pattern = new PatternExpectation('/Missing argument 1 for PelEntryVersion::__construct()/');
+        $this->expectError($pattern);
+        $pattern = new PatternExpectation('/Undefined variable: tag/');
         $this->expectError($pattern);
         $entry = new PelEntryVersion();
-        
+
         $entry = new PelEntryVersion(42);
-        
+
         $this->assertEqual($entry->getValue(), 0.0);
-        
+
         $entry->setValue(2.0);
         $this->assertEqual($entry->getValue(), 2.0);
         $this->assertEqual($entry->getText(false), 'Version 2.0');
         $this->assertEqual($entry->getText(true), '2.0');
         $this->assertEqual($entry->getBytes(PelConvert::LITTLE_ENDIAN), '0200');
-        
+
         $entry->setValue(2.1);
         $this->assertEqual($entry->getValue(), 2.1);
         $this->assertEqual($entry->getText(false), 'Version 2.1');
         $this->assertEqual($entry->getText(true), '2.1');
         $this->assertEqual($entry->getBytes(PelConvert::LITTLE_ENDIAN), '0210');
-        
+
         $entry->setValue(2.01);
         $this->assertEqual($entry->getValue(), 2.01);
         $this->assertEqual($entry->getText(false), 'Version 2.01');
@@ -92,4 +96,3 @@ class UndefinedTestCase extends UnitTestCase
         $this->assertEqual($entry->getBytes(PelConvert::LITTLE_ENDIAN), '0201');
     }
 }
-

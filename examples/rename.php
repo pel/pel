@@ -34,7 +34,8 @@
  */
 
 /* a printf() variant that appends a newline to the output. */
-function println(/* fmt, args... */) {
+function println($args)
+{
     $args = func_get_args();
     $fmt = array_shift($args);
     vprintf($fmt . "\n", $args);
@@ -79,10 +80,9 @@ if (empty($argv)) {
 ini_set('memory_limit', '32M');
 
 foreach ($argv as $file) {
-    
     println('Reading file "%s".', $file);
     $data = new PelDataWindow(file_get_contents($file));
-    
+
     if (PelJpeg::isValid($data)) {
         $jpeg = new PelJpeg();
         $jpeg->load($data);
@@ -94,23 +94,22 @@ foreach ($argv as $file) {
         println('Unrecognized image format! Skipping.');
         continue;
     }
-    
+
     $ifd0 = $tiff->getIfd();
     $entry = $ifd0->getEntry(PelTag::DATE_TIME);
-    
+
     if ($entry == null) {
         println('Skipping %s because no DATE_TIME tag was found.', $file);
         continue;
     }
-    
+
     $time = $entry->getValue();
-    
+
     do {
         $new = gmdate('Y:m:d-H:i:s', $time) . strchr($file, '.');
         println('Trying file name %s', $new);
         $time ++;
     } while (file_exists($new));
-    
+
     rename($file, $new);
 }
-

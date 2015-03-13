@@ -67,12 +67,12 @@ class PelEntryUndefined extends PelEntry
      *            e.g., {@link PelTag::SCENE_TYPE}, {@link
      *            PelTag::MAKER_NOTE} or any other tag with format {@link
      *            PelFormat::UNDEFINED}.
-     *            
+     *
      * @param
      *            string the data that this entry will be holding. Since
      *            the format is undefined, no checking will be done on the data.
      */
-    function __construct($tag, $data = '')
+    public function __construct($tag, $data = '')
     {
         $this->tag = $tag;
         $this->format = PelFormat::UNDEFINED;
@@ -86,7 +86,7 @@ class PelEntryUndefined extends PelEntry
      *            string the data that this entry will be holding. Since
      *            the format is undefined, no checking will be done on the data.
      */
-    function setValue($data)
+    public function setValue($data)
     {
         $this->components = strlen($data);
         $this->bytes = $data;
@@ -97,7 +97,7 @@ class PelEntryUndefined extends PelEntry
      *
      * @return string the data that this entry is holding.
      */
-    function getValue()
+    public function getValue()
     {
         return $this->bytes;
     }
@@ -110,14 +110,14 @@ class PelEntryUndefined extends PelEntry
      * @param
      *            boolean some values can be returned in a long or more
      *            brief form, and this parameter controls that.
-     *            
+     *
      * @return string the value as text.
      */
-    function getText($brief = false)
+    public function getText($brief = false)
     {
         switch ($this->tag) {
             case PelTag::FILE_SOURCE:
-                
+
                 // CC (e->components, 1, v);
                 switch (ord($this->bytes{0})) {
                     case 0x03:
@@ -125,9 +125,9 @@ class PelEntryUndefined extends PelEntry
                     default:
                         return sprintf('0x%02X', ord($this->bytes{0}));
                 }
-            
+                break;
             case PelTag::SCENE_TYPE:
-                
+
                 // CC (e->components, 1, v);
                 switch (ord($this->bytes{0})) {
                     case 0x01:
@@ -135,9 +135,9 @@ class PelEntryUndefined extends PelEntry
                     default:
                         return sprintf('0x%02X', ord($this->bytes{0}));
                 }
-            
+                break;
             case PelTag::COMPONENTS_CONFIGURATION:
-                
+
                 // CC (e->components, 4, v);
                 $v = '';
                 for ($i = 0; $i < 4; $i ++) {
@@ -167,16 +167,17 @@ class PelEntryUndefined extends PelEntry
                             $v .= 'reserved';
                             break;
                     }
-                    if ($i < 3)
+                    if ($i < 3) {
                         $v .= ' ';
+                    }
                 }
                 return $v;
-            
+                break;
             case PelTag::MAKER_NOTE:
-                
+
                 // TODO: handle maker notes.
                 return $this->components . ' bytes unknown MakerNote data';
-            
+                break;
             default:
                 return '(undefined)';
         }
@@ -234,13 +235,13 @@ class PelEntryUserComment extends PelEntryUndefined
      *
      * @param
      *            string the new user comment.
-     *            
+     *
      * @param
      *            string the encoding of the comment. This should be either
      *            'ASCII', 'JIS', 'Unicode', or the empty string specifying an
      *            undefined encoding.
      */
-    function __construct($comment = '', $encoding = 'ASCII')
+    public function __construct($comment = '', $encoding = 'ASCII')
     {
         parent::__construct(PelTag::USER_COMMENT);
         $this->setValue($comment, $encoding);
@@ -251,13 +252,13 @@ class PelEntryUserComment extends PelEntryUndefined
      *
      * @param
      *            string the new user comment.
-     *            
+     *
      * @param
      *            string the encoding of the comment. This should be either
      *            'ASCII', 'JIS', 'Unicode', or the empty string specifying an
      *            unknown encoding.
      */
-    function setValue($comment = '', $encoding = 'ASCII')
+    public function setValue($comment = '', $encoding = 'ASCII')
     {
         $this->comment = $comment;
         $this->encoding = $encoding;
@@ -273,7 +274,7 @@ class PelEntryUserComment extends PelEntryUndefined
      *
      * @return string the user comment.
      */
-    function getValue()
+    public function getValue()
     {
         return $this->comment;
     }
@@ -283,7 +284,7 @@ class PelEntryUserComment extends PelEntryUndefined
      *
      * @return string the encoding of the user comment.
      */
-    function getEncoding()
+    public function getEncoding()
     {
         return $this->encoding;
     }
@@ -293,7 +294,7 @@ class PelEntryUserComment extends PelEntryUndefined
      *
      * @return string the user comment.
      */
-    function getText($brief = false)
+    public function getText($brief = false)
     {
         return $this->comment;
     }
@@ -342,13 +343,13 @@ class PelEntryVersion extends PelEntryUndefined
      *            PelTag the tag. This should be one of {@link
      *            PelTag::EXIF_VERSION}, {@link PelTag::FLASH_PIX_VERSION},
      *            or {@link PelTag::INTEROPERABILITY_VERSION}.
-     *            
+     *
      * @param
      *            float the version. The size of the entries leave room for
      *            exactly four digits: two digits on either side of the decimal
      *            point.
      */
-    function __construct($tag, $version = 0.0)
+    public function __construct($tag, $version = 0.0)
     {
         parent::__construct($tag);
         $this->setValue($version);
@@ -362,7 +363,7 @@ class PelEntryVersion extends PelEntryUndefined
      *            exactly four digits: two digits on either side of the decimal
      *            point.
      */
-    function setValue($version = 0.0)
+    public function setValue($version = 0.0)
     {
         $this->version = $version;
         $major = floor($version);
@@ -377,7 +378,7 @@ class PelEntryVersion extends PelEntryUndefined
      *         given to {@link setValue} or {@link __construct the
      *         constructor}.
      */
-    function getValue()
+    public function getValue()
     {
         return $this->version;
     }
@@ -390,45 +391,50 @@ class PelEntryVersion extends PelEntryUndefined
      *            output omits the word 'Version' so the result is just 'Exif x.y'
      *            instead of 'Exif Version x.y' if the entry holds information
      *            about the Exif version --- the output for FlashPix is similar.
-     *            
+     *
      * @return string the version number with the type of the tag,
      *         either 'Exif' or 'FlashPix'.
      */
-    function getText($brief = false)
+    public function getText($brief = false)
     {
         $v = $this->version;
-        
+
         /*
          * Versions numbers like 2.0 would be output as just 2 if we don't
          * add the '.0' ourselves.
          */
-        if (floor($this->version) == $this->version)
+        if (floor($this->version) == $this->version) {
             $v .= '.0';
-        
+        }
+
         switch ($this->tag) {
             case PelTag::EXIF_VERSION:
-                if ($brief)
+                if ($brief) {
                     return Pel::fmt('Exif %s', $v);
-                else
+                } else {
                     return Pel::fmt('Exif Version %s', $v);
-            
+                }
+                break;
             case PelTag::FLASH_PIX_VERSION:
-                if ($brief)
+                if ($brief) {
                     return Pel::fmt('FlashPix %s', $v);
-                else
+                } else {
                     return Pel::fmt('FlashPix Version %s', $v);
-            
+                }
+                break;
             case PelTag::INTEROPERABILITY_VERSION:
-                if ($brief)
+                if ($brief) {
                     return Pel::fmt('Interoperability %s', $v);
-                else
+                } else {
                     return Pel::fmt('Interoperability Version %s', $v);
+                }
+                break;
         }
-        
-        if ($brief)
+
+        if ($brief) {
             return $v;
-        else
+        } else {
             return Pel::fmt('Version %s', $v);
+        }
     }
 }
-

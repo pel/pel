@@ -45,7 +45,6 @@
 if (function_exists('dgettext')) {
     bindtextdomain('pel', dirname(__FILE__) . '/locale');
 } else {
-
     /**
      * Pretend to lookup a message in a specific domain.
      *
@@ -55,10 +54,10 @@ if (function_exists('dgettext')) {
      *
      * @param string $domain
      *            the domain.
-     *            
+     *
      * @param string $str
      *            the message to be translated.
-     *            
+     *
      * @return string the original, untranslated message.
      */
     function dgettext($domain, $str)
@@ -287,7 +286,7 @@ class Pel
      *
      * @param string $format
      *            the format string.
-     *            
+     *
      * @param mixed $args,...
      *            any number of arguments can be given. The
      *            arguments will be available for the format string as usual with
@@ -312,7 +311,7 @@ class Pel
      *
      * @param string $format
      *            the format string.
-     *            
+     *
      * @param mixed $args,...
      *            any number of arguments can be given. The
      *            arguments will be available for the format string as usual with
@@ -337,7 +336,7 @@ class Pel
      *
      * @param
      *            string the string that should be translated.
-     *            
+     *
      * @return string the translated string, or the original string if
      *         no translation could be found.
      */
@@ -359,12 +358,12 @@ class Pel
      * @param string $format
      *            the format string. This will be translated
      *            before being used as a format string.
-     *            
+     *
      * @param mixed $args,...
      *            any number of arguments can be given. The
      *            arguments will be available for the format string as usual with
      *            sprintf().
-     *            
+     *
      * @return string the translated string, or the original string if
      *         no translation could be found.
      */
@@ -375,4 +374,3 @@ class Pel
         return vsprintf(dgettext('pel', $str), $args);
     }
 }
-

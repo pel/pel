@@ -25,7 +25,8 @@
  */
 
 /* a printf() variant that appends a newline to the output. */
-function println(/* fmt, args... */) {
+function println($args)
+{
     $args = func_get_args();
     $fmt = array_shift($args);
     vprintf($fmt . "\n", $args);
@@ -106,9 +107,7 @@ $scaled_h = $original_h * $scale;
 
 /* Now create the scaled image. */
 $scaled = ImageCreateTrueColor($scaled_w, $scaled_h);
-ImageCopyResampled($scaled, $original, 0, 0, /* dst (x,y) */
-                   0, 0, /* src (x,y) */
-                   $scaled_w, $scaled_h, $original_w, $original_h);
+ImageCopyResampled($scaled, $original, 0, 0, 0, 0, $scaled_w, $scaled_h, $original_w, $original_h);
 
 /*
  * We want the raw JPEG data from $scaled. Luckily, one can create a
@@ -120,11 +119,10 @@ $output_jpeg = new PelJpeg($scaled);
 $exif = $input_jpeg->getExif();
 
 /* If no Exif data was present, then $exif is null. */
-if ($exif != null)
+if ($exif != null) {
     $output_jpeg->setExif($exif);
-    
-    /* We can now save the scaled image. */
+}
+
+/* We can now save the scaled image. */
 println('Writing file "%s".', $output);
 $output_jpeg->saveFile($output);
-
-

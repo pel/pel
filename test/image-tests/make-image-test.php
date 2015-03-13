@@ -30,8 +30,9 @@
  * step which will verify that a future parse of the image gives the
  * same results.
  */
-if (count($argv) != 2)
+if (count($argv) != 2) {
     exit("Usage: $argv[0] <image>\n");
+}
 
 $basename = substr($argv[1], 0, - strlen(strrchr($argv[1], '.')));
 $image_filename = $argv[1];
@@ -41,7 +42,8 @@ $test_name = str_replace('-', '_', $basename);
 
 $indent = 0;
 
-function println(/* fmt, args... */) {
+function println($args)
+{
     global $indent;
     $args = func_get_args();
     $str = array_shift($args);
@@ -62,9 +64,9 @@ function quote($str)
 function entryToTest($name, PelEntry $entry)
 {
     println('$this->assertIsA(%s, \'%s\');', $name, get_class($entry));
-    
+
     println('$this->assertEqual(%s->getValue(), %s);', $name, var_export($entry->getValue(), true));
-    
+
     println('$this->assertEqual(%s->getText(), \'%s\');', $name, quote($entry->getText()));
 }
 
@@ -72,22 +74,22 @@ function ifdToTest($name, $number, PelIfd $ifd)
 {
     println();
     println('/* Start of IDF %s%d. */', $name, $number);
-    
+
     $entries = $ifd->getEntries();
     println('$this->assertEqual(count(%s%d->getEntries()), %d);', $name, $number, count($entries));
-    
+
     foreach ($entries as $tag => $entry) {
         println();
         println('$entry = %s%d->getEntry(%d); // %s', $name, $number, $tag, PelTag::getName($ifd->getType(), $tag));
         entryToTest('$entry', $entry);
     }
-    
+
     println();
     println('/* Sub IFDs of %s%d. */', $name, $number);
-    
+
     $sub_ifds = $ifd->getSubIfds();
     println('$this->assertEqual(count(%s%d->getSubIfds()), %d);', $name, $number, count($sub_ifds));
-    
+
     $n = 0;
     $sub_name = $name . $number . '_';
     foreach ($sub_ifds as $type => $sub_ifd) {
@@ -96,9 +98,9 @@ function ifdToTest($name, $number, PelIfd $ifd)
         ifdToTest($sub_name, $n, $sub_ifd);
         $n ++;
     }
-    
+
     println();
-    
+
     if (strlen($ifd->getThumbnailData()) > 0) {
         println('$thumb_data = file_get_contents(dirname(__FILE__) .');
         println('                                \'/%s\');', $GLOBALS['thumb_filename']);
@@ -106,17 +108,17 @@ function ifdToTest($name, $number, PelIfd $ifd)
     } else {
         println('$this->assertEqual(%s%d->getThumbnailData(), \'\');', $name, $number);
     }
-    
+
     println();
     println('/* Next IFD. */');
-    
+
     $next = $ifd->getNextIfd();
     println('%s%d = %s%d->getNextIfd();', $name, $number + 1, $name, $number);
-    
+
     if ($next instanceof PelIfd) {
         println('$this->assertIsA(%s%d, \'PelIfd\');', $name, $number + 1);
         println('/* End of IFD %s%d. */', $name, $number);
-        
+
         ifdToTest($name, $number + 1, $next);
     } else {
         println('$this->assertNull(%s%d);', $name, $number + 1);
@@ -240,7 +242,7 @@ if (count($exceptions) == 0) {
     println('$exceptions = Pel::getExceptions();');
     for ($i = 0; $i < count($exceptions); $i ++) {
         println('$this->assertIsA($exceptions[%d], \'%s\');', $i, get_class($exceptions[$i]));
-        
+
         println('$this->assertEqual($exceptions[%d]->getMessage(),', $i);
         println('                   \'%s\');', quote($exceptions[$i]->getMessage()));
     }

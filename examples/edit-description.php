@@ -25,7 +25,8 @@
  */
 
 /* a printf() variant that appends a newline to the output. */
-function println(/* fmt, args... */) {
+function println($args)
+{
     $args = func_get_args();
     $fmt = array_shift($args);
     vprintf($fmt . "\n", $args);
@@ -119,7 +120,7 @@ if (PelJpeg::isValid($data)) {
      * getBytes method), so we store $jpeg as $file too.
      */
     $jpeg = $file = new PelJpeg();
-    
+
     /*
      * We then load the data from the PelDataWindow into our PelJpeg
      * object. No copying of data will be done, the PelJpeg object will
@@ -127,28 +128,28 @@ if (PelJpeg::isValid($data)) {
      * required.
      */
     $jpeg->load($data);
-    
+
     /*
      * The PelJpeg object contains a number of sections, one of which
      * might be our Exif data. The getExif() method is a convenient way
      * of getting the right section with a minimum of fuzz.
      */
     $exif = $jpeg->getExif();
-    
+
     if ($exif == null) {
         /*
          * Ups, there is no APP1 section in the JPEG file. This is where
          * the Exif data should be.
          */
         println('No APP1 section found, added new.');
-        
+
         /*
          * In this case we simply create a new APP1 section (a PelExif
          * object) and adds it to the PelJpeg object.
          */
         $exif = new PelExif();
         $jpeg->setExif($exif);
-        
+
         /* We then create an empty TIFF structure in the APP1 section. */
         $tiff = new PelTiff();
         $exif->setTiff($tiff);
@@ -212,14 +213,14 @@ $desc = $ifd0->getEntry(PelTag::IMAGE_DESCRIPTION);
 if ($desc == null) {
     /* The was no description in the image. */
     println('Added new IMAGE_DESCRIPTION entry with "%s".', $description);
-    
+
     /*
      * In this case we simply create a new PelEntryAscii object to hold
      * the description. The constructor for PelEntryAscii needs to know
      * the tag and contents of the new entry.
      */
     $desc = new PelEntryAscii(PelTag::IMAGE_DESCRIPTION, $description);
-    
+
     /*
      * This will insert the newly created entry with the description
      * into the IFD.
@@ -228,7 +229,7 @@ if ($desc == null) {
 } else {
     /* An old description was found in the image. */
     println('Updating IMAGE_DESCRIPTION entry from "%s" to "%s".', $desc->getValue(), $description);
-    
+
     /* The description is simply updated with the new description. */
     $desc->setValue($description);
 }
@@ -242,4 +243,3 @@ if ($desc == null) {
  */
 println('Writing file "%s".', $output);
 $file->saveFile($output);
-

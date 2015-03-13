@@ -1345,23 +1345,23 @@ class PelTag
      *            int the IFD type of the tag, one of {@link PelIfd::IFD0},
      *            {@link PelIfd::IFD1}, {@link PelIfd::EXIF}, {@link PelIfd::GPS},
      *            or {@link PelIfd::INTEROPERABILITY}.
-     *            
+     *
      * @param
      *            PelTag the tag.
-     *            
+     *
      * @return string the short name of the tag, e.g., 'ImageWidth' for
      *         the {@link IMAGE_WIDTH} tag. If the tag is not known, the string
      *         'Unknown:0xTTTT' will be returned where 'TTTT' is the hexadecimal
      *         representation of the tag.
      */
-    static function getName($type, $tag)
+    public static function getName($type, $tag)
     {
         switch ($type) {
             case PelIfd::IFD0:
             case PelIfd::IFD1:
             case PelIfd::EXIF:
             case PelIfd::INTEROPERABILITY:
-                
+
                 switch ($tag) {
                     case self::INTEROPERABILITY_INDEX:
                         return 'InteroperabilityIndex';
@@ -1582,7 +1582,7 @@ class PelTag
                     case self::PRINT_IM:
                         return 'PrintIM';
                 }
-            
+            // otherwise return unknown
             case PelIfd::GPS:
                 switch ($tag) {
                     case self::GPS_VERSION_ID:
@@ -1648,7 +1648,7 @@ class PelTag
                     case self::GPS_DIFFERENTIAL:
                         return 'GPSDifferential';
                 }
-            
+            // otherwise return unknown
             default:
                 return Pel::fmt('Unknown: 0x%04X', $tag);
         }
@@ -1661,23 +1661,23 @@ class PelTag
      *            int the IFD type of the tag, one of {@link PelIfd::IFD0},
      *            {@link PelIfd::IFD1}, {@link PelIfd::EXIF}, {@link PelIfd::GPS},
      *            or {@link PelIfd::INTEROPERABILITY}.
-     *            
+     *
      * @param
      *            PelTag the tag.
-     *            
+     *
      * @return string the title of the tag, e.g., 'Image Width' for the
      *         {@link IMAGE_WIDTH} tag. If the tag isn't known, the string
      *         'Unknown Tag: 0xTT' will be returned where 'TT' is the
      *         hexadecimal representation of the tag.
      */
-    function getTitle($type, $tag)
+    public function getTitle($type, $tag)
     {
         switch ($type) {
             case PelIfd::IFD0:
             case PelIfd::IFD1:
             case PelIfd::EXIF:
             case PelIfd::INTEROPERABILITY:
-                
+
                 switch ($tag) {
                     case self::INTEROPERABILITY_INDEX:
                         return Pel::tra('Interoperability Index');
@@ -1898,7 +1898,7 @@ class PelTag
                     case self::PRINT_IM:
                         return Pel::tra('Print IM');
                 }
-            
+                return Pel::fmt('Unknown Tag: 0x%04X', $tag);
             case PelIfd::GPS:
                 switch ($tag) {
                     case self::GPS_VERSION_ID:
@@ -1964,10 +1964,9 @@ class PelTag
                     case self::GPS_DIFFERENTIAL:
                         return 'GPSDifferential';
                 }
-            
+                return Pel::fmt('Unknown Tag: 0x%04X', $tag);
             default:
                 return Pel::fmt('Unknown Tag: 0x%04X', $tag);
         }
     }
 }
-

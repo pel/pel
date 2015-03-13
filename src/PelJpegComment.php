@@ -62,7 +62,7 @@ class PelJpegComment extends PelJpegContent
      *
      * The new comment will contain the string given.
      */
-    function __construct($comment = '')
+    public function __construct($comment = '')
     {
         $this->comment = $comment;
     }
@@ -72,7 +72,7 @@ class PelJpegComment extends PelJpegContent
      *
      * This will load the comment from the data window passed.
      */
-    function load(PelDataWindow $d)
+    public function load(PelDataWindow $d)
     {
         $this->comment = $d->getBytes();
     }
@@ -85,7 +85,7 @@ class PelJpegComment extends PelJpegContent
      * @param
      *            string the new comment.
      */
-    function setValue($comment)
+    public function setValue($comment)
     {
         $this->comment = $comment;
     }
@@ -95,7 +95,7 @@ class PelJpegComment extends PelJpegContent
      *
      * @return string the comment.
      */
-    function getValue()
+    public function getValue()
     {
         return $this->comment;
     }
@@ -105,7 +105,7 @@ class PelJpegComment extends PelJpegContent
      *
      * @return string bytes representing this comment.
      */
-    function getBytes()
+    public function getBytes()
     {
         return $this->comment;
     }
@@ -115,9 +115,8 @@ class PelJpegComment extends PelJpegContent
      *
      * @return string the same as {@link getValue()}.
      */
-    function __toString()
+    public function __toString()
     {
         return $this->getValue();
     }
 }
-

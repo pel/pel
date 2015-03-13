@@ -90,7 +90,7 @@ print($img);
 /* Deal with any exceptions: */
 if (count(Pel::getExceptions()) > 0) {
     print("\nThe following errors were encountered while loading the image:\n");
-    foreach (Pel::getExceptions() as $e)
+    foreach (Pel::getExceptions() as $e) {
         print("\n" . $e->__toString());
+    }
 }
-

@@ -89,8 +89,10 @@ class PelExif extends PelJpegContent
      * {@link setTiff()} to change the {@link PelTiff} object, which is
      * the true holder of the Exif {@link PelEntry entries}.
      */
-    function __construct()
-    {}
+    public function __construct()
+    {
+        // nothing to be done
+    }
 
     /**
      * Load and parse Exif data.
@@ -99,21 +101,21 @@ class PelExif extends PelJpegContent
      * {@link PelTiff} object. This TIFF object can be accessed with
      * the {@link getTiff()} method.
      */
-    function load(PelDataWindow $d)
+    public function load(PelDataWindow $d)
     {
         Pel::debug('Parsing %d bytes of Exif data...', $d->getSize());
-        
+
         /* There must be at least 6 bytes for the Exif header. */
-        if ($d->getSize() < 6)
+        if ($d->getSize() < 6) {
             throw new PelInvalidDataException('Expected at least 6 bytes of Exif ' . 'data, found just %d bytes.', $d->getSize());
-            
-            /* Verify the Exif header */
+        }
+        /* Verify the Exif header */
         if ($d->strcmp(0, self::EXIF_HEADER)) {
             $d->setWindowStart(strlen(self::EXIF_HEADER));
         } else {
             throw new PelInvalidDataException('Exif header not found.');
         }
-        
+
         /* The rest of the data is TIFF data. */
         $this->tiff = new PelTiff();
         $this->tiff->load($d);
@@ -129,7 +131,7 @@ class PelExif extends PelJpegContent
      * @param
      *            PelTiff the new TIFF object.
      */
-    function setTiff(PelTiff $tiff)
+    public function setTiff(PelTiff $tiff)
     {
         $this->tiff = $tiff;
     }
@@ -142,7 +144,7 @@ class PelExif extends PelJpegContent
      *
      * @return PelTiff the TIFF object with the Exif data.
      */
-    function getTiff()
+    public function getTiff()
     {
         return $this->tiff;
     }
@@ -152,7 +154,7 @@ class PelExif extends PelJpegContent
      *
      * @return string bytes representing this object.
      */
-    function getBytes()
+    public function getBytes()
     {
         return self::EXIF_HEADER . $this->tiff->getBytes();
     }
@@ -163,9 +165,8 @@ class PelExif extends PelJpegContent
      * @return string a string describing this object. This is mostly
      *         useful for debugging.
      */
-    function __toString()
+    public function __toString()
     {
         return Pel::tra("Dumping Exif data...\n") . $this->tiff->__toString();
     }
 }
-

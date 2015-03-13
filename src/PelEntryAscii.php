@@ -85,14 +85,14 @@ class PelEntryAscii extends PelEntry
      *            one of the constants defined in {@link PelTag}, e.g., {@link
      *            PelTag::IMAGE_DESCRIPTION}, {@link PelTag::MODEL}, or any other
      *            tag with format {@link PelFormat::ASCII}.
-     *            
+     *
      * @param
      *            string the string that this entry will represent. The
      *            string must obey the same rules as the string argument to {@link
      *            setValue}, namely that it should be given without any trailing
      *            NULL character and that it must be plain 7-bit ASCII.
      */
-    function __construct($tag, $str = '')
+    public function __construct($tag, $str = '')
     {
         $this->tag = $tag;
         $this->format = PelFormat::ASCII;
@@ -109,10 +109,10 @@ class PelEntryAscii extends PelEntry
      *            string the new value of the entry. This should be given
      *            without any trailing NULL character. The string must be plain
      *            7-bit ASCII, the string should contain no high bytes.
-     *            
+     *
      * @todo Implement check for high bytes?
      */
-    function setValue($str)
+    public function setValue($str)
     {
         $this->components = strlen($str) + 1;
         $this->str = $str;
@@ -126,7 +126,7 @@ class PelEntryAscii extends PelEntry
      *         The string will be the same as the one given to {@link setValue}
      *         or to the {@link __construct constructor}.
      */
-    function getValue()
+    public function getValue()
     {
         return $this->str;
     }
@@ -138,12 +138,12 @@ class PelEntryAscii extends PelEntry
      *
      * @param
      *            boolean not used with ASCII entries.
-     *            
+     *
      * @return string the string held, without any final NULL character.
      *         The string will be the same as the one given to {@link setValue}
      *         or to the {@link __construct constructor}.
      */
-    function getText($brief = false)
+    public function getText($brief = false)
     {
         return $this->str;
     }
@@ -222,7 +222,7 @@ class PelEntryTime extends PelEntryAscii
      *            one of the constants {@link PelTag::DATE_TIME}, {@link
      *            PelTag::DATE_TIME_ORIGINAL}, or {@link
      *            PelTag::DATE_TIME_DIGITIZED}.
-     *            
+     *
      * @param
      *            int the timestamp held by this entry in the correct form
      *            as indicated by the third argument. For {@link UNIX_TIMESTAMP}
@@ -232,13 +232,13 @@ class PelEntryTime extends PelEntryAscii
      *            floating point number where the integer part denotes the day
      *            count and the fractional part denotes the time of day (0.25 means
      *            6:00, 0.75 means 18:00).
-     *            
+     *
      * @param
      *            int the type of the timestamp. This must be one of
      *            {@link UNIX_TIMESTAMP}, {@link EXIF_STRING}, or
      *            {@link JULIAN_DAY_COUNT}.
      */
-    function __construct($tag, $timestamp, $type = self::UNIX_TIMESTAMP)
+    public function __construct($tag, $timestamp, $type = self::UNIX_TIMESTAMP)
     {
         parent::__construct($tag);
         $this->setValue($timestamp, $type);
@@ -255,7 +255,7 @@ class PelEntryTime extends PelEntryAscii
      *            int the type of the timestamp. This must be one of
      *            {@link UNIX_TIMESTAMP}, {@link EXIF_STRING}, or
      *            {@link JULIAN_DAY_COUNT}.
-     *            
+     *
      * @return int the timestamp held by this entry in the correct form
      *         as indicated by the type argument. For {@link UNIX_TIMESTAMP}
      *         this is an integer counting the number of seconds since January
@@ -265,18 +265,21 @@ class PelEntryTime extends PelEntryAscii
      *         count and the fractional part denotes the time of day (0.25 means
      *         6:00, 0.75 means 18:00).
      */
-    function getValue($type = self::UNIX_TIMESTAMP)
+    public function getValue($type = self::UNIX_TIMESTAMP)
     {
         switch ($type) {
             case self::UNIX_TIMESTAMP:
                 $seconds = $this->convertJdToUnix($this->day_count);
-                if ($seconds === false)
-                /* We get false if the Julian Day Count is outside the range
-                 * of a UNIX timestamp. */
-                return false;
-                else
+                if ($seconds === false) {
+                    /*
+                     * We get false if the Julian Day Count is outside the range
+                     * of a UNIX timestamp.
+                     */
+                    return false;
+                } else {
                     return $seconds + $this->seconds;
-            
+                }
+                break;
             case self::EXIF_STRING:
                 list ($year, $month, $day) = $this->convertJdToGregorian($this->day_count);
                 $hours = (int) ($this->seconds / 3600);
@@ -302,13 +305,13 @@ class PelEntryTime extends PelEntryAscii
      *            floating point number where the integer part denotes the day
      *            count and the fractional part denotes the time of day (0.25 means
      *            6:00, 0.75 means 18:00).
-     *            
+     *
      * @param
      *            int the type of the timestamp. This must be one of
      *            {@link UNIX_TIMESTAMP}, {@link EXIF_STRING}, or
      *            {@link JULIAN_DAY_COUNT}.
      */
-    function setValue($timestamp, $type = self::UNIX_TIMESTAMP)
+    public function setValue($timestamp, $type = self::UNIX_TIMESTAMP)
     {
         // if (empty($timestamp))
         // debug_print_backtrace();
@@ -317,41 +320,43 @@ class PelEntryTime extends PelEntryAscii
                 $this->day_count = $this->convertUnixToJd($timestamp);
                 $this->seconds = $timestamp % 86400;
                 break;
-            
+
             case self::EXIF_STRING:
                 /* Clean the timestamp: some timestamps are broken other
                  * separators than ':' and ' '. */
                 $d = preg_split('/[^0-9]+/', $timestamp);
-                for ($i = 0; $i < 6; $i ++)
-                    if (empty($d[$i]))
+                for ($i = 0; $i < 6; $i ++) {
+                    if (empty($d[$i])) {
                         $d[$i] = 0;
+                    }
+                }
                 $this->day_count = $this->convertGregorianToJd($d[0], $d[1], $d[2]);
                 $this->seconds = $d[3] * 3600 + $d[4] * 60 + $d[5];
                 break;
-            
+
             case self::JULIAN_DAY_COUNT:
                 $this->day_count = (int) floor($timestamp);
                 $this->seconds = (int) (86400 * ($timestamp - floor($timestamp)));
                 break;
-            
+
             default:
                 throw new PelInvalidArgumentException('Expected UNIX_TIMESTAMP (%d), ' . 'EXIF_STRING (%d), or ' . 'JULIAN_DAY_COUNT (%d) for $type, ' . 'got %d.', self::UNIX_TIMESTAMP, self::EXIF_STRING, self::JULIAN_DAY_COUNT, $type);
         }
-        
+
         /*
          * Now finally update the string which will be used when this is
          * turned into bytes.
          */
         parent::setValue($this->getValue(self::EXIF_STRING));
     }
-    
+
     // The following four functions are used for converting back and
     // forth between the date formats. They are used in preference to
     // the ones from the PHP calendar extension to avoid having to
     // fiddle with timezones and to avoid depending on the extension.
     //
     // See http://www.hermetic.ch/cal_stud/jdn.htm#comp for a reference.
-    
+
     /**
      * Converts a date in year/month/day format to a Julian Day count.
      *
@@ -363,12 +368,13 @@ class PelEntryTime extends PelEntryAscii
      *            the day in the month.
      * @return int the Julian Day count.
      */
-    function convertGregorianToJd($year, $month, $day)
+    public function convertGregorianToJd($year, $month, $day)
     {
         // Special case mapping 0/0/0 -> 0
-        if ($year == 0 || $month == 0 || $day == 0)
+        if ($year == 0 || $month == 0 || $day == 0) {
             return 0;
-        
+        }
+
         $m1412 = ($month <= 2) ? - 1 : 0;
         return floor((1461 * ($year + 4800 + $m1412)) / 4) + floor((367 * ($month - 2 - 12 * $m1412)) / 12) - floor((3 * floor(($year + 4900 + $m1412) / 100)) / 4) + $day - 32075;
     }
@@ -380,16 +386,17 @@ class PelEntryTime extends PelEntryAscii
      *            int the Julian Day count.
      * @return array an array with three entries: year, month, day.
      */
-    function convertJdToGregorian($jd)
+    public function convertJdToGregorian($jd)
     {
         // Special case mapping 0 -> 0/0/0
-        if ($jd == 0)
+        if ($jd == 0) {
             return array(
                 0,
                 0,
                 0
             );
-        
+        }
+
         $l = $jd + 68569;
         $n = floor((4 * $l) / 146097);
         $l = $l - floor((146097 * $n + 3) / 4);
@@ -414,7 +421,7 @@ class PelEntryTime extends PelEntryAscii
      *            the timestamp.
      * @return int the Julian Day count.
      */
-    function convertUnixToJd($timestamp)
+    public function convertUnixToJd($timestamp)
     {
         return (int) (floor($timestamp / 86400) + 2440588);
     }
@@ -424,11 +431,11 @@ class PelEntryTime extends PelEntryAscii
      *
      * @param int $jd
      *            the Julian Day count.
-     *            
+     *
      * @return mixed $timestamp the integer timestamp or false if the
      *         day count cannot be represented as a UNIX timestamp.
      */
-    function convertJdToUnix($jd)
+    public function convertJdToUnix($jd)
     {
         if ($jd > 0) {
             $timestamp = ($jd - 2440588) * 86400;
@@ -489,12 +496,12 @@ class PelEntryCopyright extends PelEntryAscii
      * @param
      *            string the photographer copyright. Use the empty string
      *            if there is no photographer copyright.
-     *            
+     *
      * @param
      *            string the editor copyright. Use the empty string if
      *            there is no editor copyright.
      */
-    function __construct($photographer = '', $editor = '')
+    public function __construct($photographer = '', $editor = '')
     {
         parent::__construct(PelTag::COPYRIGHT);
         $this->setValue($photographer, $editor);
@@ -506,23 +513,25 @@ class PelEntryCopyright extends PelEntryAscii
      * @param
      *            string the photographer copyright. Use the empty string
      *            if there is no photographer copyright.
-     *            
+     *
      * @param
      *            string the editor copyright. Use the empty string if
      *            there is no editor copyright.
      */
-    function setValue($photographer = '', $editor = '')
+    public function setValue($photographer = '', $editor = '')
     {
         $this->photographer = $photographer;
         $this->editor = $editor;
-        
-        if ($photographer == '' && $editor != '')
+
+        if ($photographer == '' && $editor != '') {
             $photographer = ' ';
-        
-        if ($editor == '')
+        }
+
+        if ($editor == '') {
             parent::setValue($photographer);
-        else
+        } else {
             parent::setValue($photographer . chr(0x00) . $editor);
+        }
     }
 
     /**
@@ -537,7 +546,7 @@ class PelEntryCopyright extends PelEntryAscii
      *         order, so that the first array index will be the photographer
      *         copyright, and the second will be the editor copyright.
      */
-    function getValue()
+    public function getValue()
     {
         return array(
             $this->photographer,
@@ -557,10 +566,10 @@ class PelEntryCopyright extends PelEntryAscii
      *            '(Editor)' will be appended to the photographer and editor
      *            copyright fields (if present), otherwise the fields will be
      *            returned as is.
-     *            
+     *
      * @return string the copyright information in a string.
      */
-    function getText($brief = false)
+    public function getText($brief = false)
     {
         if ($brief) {
             $p = '';
@@ -569,16 +578,19 @@ class PelEntryCopyright extends PelEntryAscii
             $p = ' ' . Pel::tra('(Photographer)');
             $e = ' ' . Pel::tra('(Editor)');
         }
-        
-        if ($this->photographer != '' && $this->editor != '')
+
+        if ($this->photographer != '' && $this->editor != '') {
             return $this->photographer . $p . ' - ' . $this->editor . $e;
-        
-        if ($this->photographer != '')
+        }
+
+        if ($this->photographer != '') {
             return $this->photographer . $p;
-        
-        if ($this->editor != '')
+        }
+
+        if ($this->editor != '') {
             return $this->editor . $e;
-        
+        }
+
         return '';
     }
 }

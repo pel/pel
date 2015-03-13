@@ -25,7 +25,8 @@
  */
 
 /* a printf() variant that appends a newline to the output. */
-function println(/* fmt, args... */) {
+function println($args)
+{
     $args = func_get_args();
     $fmt = array_shift($args);
     vprintf($fmt . "\n", $args);
@@ -62,10 +63,9 @@ if (empty($argv)) {
 ini_set('memory_limit', '32M');
 
 foreach ($argv as $file) {
-    
     println('Reading file "%s".', $file);
     $data = new PelDataWindow(file_get_contents($file));
-    
+
     if (PelJpeg::isValid($data)) {
         $jpeg = new PelJpeg();
         $jpeg->load($data);
@@ -74,7 +74,7 @@ foreach ($argv as $file) {
             println('Skipping %s because no APP1 section was found.', $file);
             continue;
         }
-        
+
         $tiff = $app1->getTiff();
     } elseif (PelTiff::isValid($data)) {
         $tiff = new PelTiff($data);
@@ -82,24 +82,23 @@ foreach ($argv as $file) {
         println('Unrecognized image format! Skipping.');
         continue;
     }
-    
+
     $ifd0 = $tiff->getIfd();
     $entry = $ifd0->getEntry(PelTag::DATE_TIME);
-    
+
     if ($entry == null) {
         println('Skipping %s because no DATE_TIME tag was found.', $file);
         continue;
     }
-    
+
     $time = $entry->getValue();
-    
+
     $new = gmdate('../Y-m/', $time) . $file;
-    
-    if (file_exists($new))
+
+    if (file_exists($new)) {
         die('Aborting, ' . $new . ' exists!');
-    
+    }
     println('mv %s %s', $file, $new);
-    
+
     rename($file, $new);
 }
-

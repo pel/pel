@@ -168,11 +168,11 @@ class PelFormat
      *
      * @param
      *            PelFormat the format.
-     *            
+     *
      * @return string the name of the format, e.g., 'Ascii' for the
      *         {@link ASCII} format etc.
      */
-    static function getName($type)
+    public static function getName($type)
     {
         switch ($type) {
             case self::ASCII:
@@ -209,11 +209,11 @@ class PelFormat
      *
      * @param
      *            PelFormat the format.
-     *            
+     *
      * @return the size in bytes needed to store one component with the
      *         given format.
      */
-    static function getSize($type)
+    public static function getSize($type)
     {
         switch ($type) {
             case self::ASCII:
@@ -245,4 +245,3 @@ class PelFormat
         }
     }
 }
-

@@ -86,7 +86,6 @@ class PelEntryLong extends PelEntryNumber
      *            should be one of the constants defined in {@link PelTag},
      *            e.g., {@link PelTag::IMAGE_WIDTH}, or any other tag which can
      *            have format {@link PelFormat::LONG}.
-     *            
      * @param int $value...
      *            the long(s) that this entry will
      *            represent or an array of longs. The argument passed must obey
@@ -95,12 +94,13 @@ class PelEntryLong extends PelEntryNumber
      *            between 0 and 4294967295 (inclusive). If not, then a {@link
      *            PelExifOverflowException} will be thrown.
      */
-    function __construct($tag /* $value... */) {
+    public function __construct($tag, $value=null)
+    {
         $this->tag = $tag;
         $this->min = 0;
         $this->max = 4294967295;
         $this->format = PelFormat::LONG;
-        
+
         $value = func_get_args();
         array_shift($value);
         $this->setValueArray($value);
@@ -111,14 +111,12 @@ class PelEntryLong extends PelEntryNumber
      *
      * @param
      *            int the number that should be converted.
-     *            
      * @param
      *            PelByteOrder one of {@link PelConvert::LITTLE_ENDIAN} and
      *            {@link PelConvert::BIG_ENDIAN}, specifying the target byte order.
-     *            
      * @return string bytes representing the number given.
      */
-    function numberToBytes($number, $order)
+    public function numberToBytes($number, $order)
     {
         return PelConvert::longToBytes($number, $order);
     }
@@ -150,7 +148,7 @@ class PelEntrySLong extends PelEntryNumber
      *            PelTag the tag which this entry represents. This
      *            should be one of the constants defined in {@link PelTag}
      *            which have format {@link PelFormat::SLONG}.
-     *            
+     *
      * @param int $value...
      *            the long(s) that this entry will represent
      *            or an array of longs. The argument passed must obey the same
@@ -159,12 +157,13 @@ class PelEntrySLong extends PelEntryNumber
      *            -2147483648 and 2147483647 (inclusive). If not, then a {@link
      *            PelOverflowException} will be thrown.
      */
-    function __construct($tag /* $value... */) {
+    public function __construct($tag, $value=null)
+    {
         $this->tag = $tag;
         $this->min = - 2147483648;
         $this->max = 2147483647;
         $this->format = PelFormat::SLONG;
-        
+
         $value = func_get_args();
         array_shift($value);
         $this->setValueArray($value);
@@ -175,16 +174,15 @@ class PelEntrySLong extends PelEntryNumber
      *
      * @param
      *            int the number that should be converted.
-     *            
+     *
      * @param
      *            PelByteOrder one of {@link PelConvert::LITTLE_ENDIAN} and
      *            {@link PelConvert::BIG_ENDIAN}, specifying the target byte order.
-     *            
+     *
      * @return string bytes representing the number given.
      */
-    function numberToBytes($number, $order)
+    public function numberToBytes($number, $order)
     {
         return PelConvert::sLongToBytes($number, $order);
     }
 }
-

@@ -98,11 +98,11 @@ class PelTiff
      *
      * Use {@link setIfd()} to explicitly set the IFD.
      */
-    function __construct($data = false)
+    public function __construct($data = false)
     {
-        if ($data === false)
+        if ($data === false) {
             return;
-        
+        }
         if (is_string($data)) {
             Pel::debug('Initializing PelTiff object from %s', $data);
             $this->loadFile($data);
@@ -126,19 +126,19 @@ class PelTiff
      *            constructed. This should be valid TIFF data, coming either
      *            directly from a TIFF image or from the Exif data in a JPEG image.
      */
-    function load(PelDataWindow $d)
+    public function load(PelDataWindow $d)
     {
         Pel::debug('Parsing %d bytes of TIFF data...', $d->getSize());
-        
+
         /*
          * There must be at least 8 bytes available: 2 bytes for the byte
          * order, 2 bytes for the TIFF header, and 4 bytes for the offset
          * to the first IFD.
          */
-        if ($d->getSize() < 8)
+        if ($d->getSize() < 8) {
             throw new PelInvalidDataException('Expected at least 8 bytes of TIFF ' . 'data, found just %d bytes.', $d->getSize());
-            
-            /* Byte order */
+        }
+        /* Byte order */
         if ($d->strcmp(0, 'II')) {
             Pel::debug('Found Intel byte order');
             $d->setByteOrder(PelConvert::LITTLE_ENDIAN);
@@ -148,15 +148,15 @@ class PelTiff
         } else {
             throw new PelInvalidDataException('Unknown byte order found in TIFF ' . 'data: 0x%2X%2X', $d->getByte(0), $d->getByte(1));
         }
-        
+
         /* Verify the TIFF header */
-        if ($d->getShort(2) != self::TIFF_HEADER)
+        if ($d->getShort(2) != self::TIFF_HEADER) {
             throw new PelInvalidDataException('Missing TIFF magic value.');
-            
-            /* IFD 0 offset */
+        }
+        /* IFD 0 offset */
         $offset = $d->getLong(4);
         Pel::debug('First IFD at offset %d.', $offset);
-        
+
         if ($offset > 0) {
             /*
              * Parse the first IFD, this will automatically parse the
@@ -173,7 +173,7 @@ class PelTiff
      * @param
      *            string the filename. This must be a readable file.
      */
-    function loadFile($filename)
+    public function loadFile($filename)
     {
         $this->load(new PelDataWindow(file_get_contents($filename)));
     }
@@ -185,11 +185,11 @@ class PelTiff
      *            PelIfd the new first IFD, which must be of type {@link
      *            PelIfd::IFD0}.
      */
-    function setIfd(PelIfd $ifd)
+    public function setIfd(PelIfd $ifd)
     {
-        if ($ifd->getType() != PelIfd::IFD0)
+        if ($ifd->getType() != PelIfd::IFD0) {
             throw new PelInvalidDataException('Invalid type of IFD: %d, expected %d.', $ifd->getType(), PelIfd::IFD0);
-        
+        }
         $this->ifd = $ifd;
     }
 
@@ -199,7 +199,7 @@ class PelTiff
      * @return PelIfd the first IFD contained in the TIFF data, if any.
      *         If there is no IFD null will be returned.
      */
-    function getIfd()
+    public function getIfd()
     {
         return $this->ifd;
     }
@@ -215,19 +215,20 @@ class PelTiff
      *            PelByteOrder the desired byte order of the TIFF data.
      *            This should be one of {@link PelConvert::LITTLE_ENDIAN} or {@link
      *            PelConvert::BIG_ENDIAN}.
-     *            
+     *
      * @return string the bytes representing this object.
      */
-    function getBytes($order = PelConvert::LITTLE_ENDIAN)
+    public function getBytes($order = PelConvert::LITTLE_ENDIAN)
     {
-        if ($order == PelConvert::LITTLE_ENDIAN)
+        if ($order == PelConvert::LITTLE_ENDIAN) {
             $bytes = 'II';
-        else
+        } else {
             $bytes = 'MM';
-            
-            /* TIFF magic number --- fixed value. */
+        }
+
+        /* TIFF magic number --- fixed value. */
         $bytes .= PelConvert::shortToBytes(self::TIFF_HEADER, $order);
-        
+
         if ($this->ifd != null) {
             /*
              * IFD 0 offset. We will always start IDF 0 at an offset of 8
@@ -236,7 +237,7 @@ class PelTiff
              * together).
              */
             $bytes .= PelConvert::longToBytes(8, $order);
-            
+
             /*
              * The argument specifies the offset of this IFD. The IFD will
              * use this to calculate offsets from the entries to their data,
@@ -247,7 +248,7 @@ class PelTiff
         } else {
             $bytes .= PelConvert::longToBytes(0, $order);
         }
-        
+
         return $bytes;
     }
 
@@ -257,12 +258,13 @@ class PelTiff
      * @return string a string describing this object. This is mostly useful
      *         for debugging.
      */
-    function __toString()
+    public function __toString()
     {
         $str = Pel::fmt("Dumping TIFF data...\n");
-        if ($this->ifd != null)
+        if ($this->ifd != null) {
             $str .= $this->ifd->__toString();
-        
+        }
+
         return $str;
     }
 
@@ -275,19 +277,20 @@ class PelTiff
      *
      * @param
      *            PelDataWindow the bytes that will be examined.
-     *            
+     *
      * @return boolean true if the data looks like valid TIFF data,
      *         false otherwise.
-     *        
+     *
      * @see PelJpeg::isValid()
      */
-    static function isValid(PelDataWindow $d)
+    public static function isValid(PelDataWindow $d)
     {
         /* First check that we have enough data. */
-        if ($d->getSize() < 8)
+        if ($d->getSize() < 8) {
             return false;
-            
-            /* Byte order */
+        }
+
+        /* Byte order */
         if ($d->strcmp(0, 'II')) {
             $d->setByteOrder(PelConvert::LITTLE_ENDIAN);
         } elseif ($d->strcmp(0, 'MM')) {
@@ -296,7 +299,7 @@ class PelTiff
         } else {
             return false;
         }
-        
+
         /* Verify the TIFF header */
         return $d->getShort(2) == self::TIFF_HEADER;
     }
