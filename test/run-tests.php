@@ -41,7 +41,7 @@ if (! empty($argc) and $argc > 1) {
         __DIR__ . '/config.local.example.php'
     ));
     $group = new TestSuite('All PEL tests');
-    
+
     // Also test all image tests (if they are available).
     if (is_dir(dirname(__FILE__) . '/image-tests')) {
         $image_tests = array_diff(glob(dirname(__FILE__) . '/image-tests/*.php'), array(
@@ -51,7 +51,7 @@ if (! empty($argc) and $argc > 1) {
         foreach ($image_tests as $image_test) {
             $image_group->addFile($image_test);
         }
-        
+
         $group->add($image_group);
     } else {
         echo "Found no image tests, only core functionality will be tested.\n";
@@ -59,7 +59,7 @@ if (! empty($argc) and $argc > 1) {
     }
 }
 
-foreach ($tests as $test)
+foreach ($tests as $test) {
     $group->addFile($test);
-
+}
 $group->run(new TextReporter());
