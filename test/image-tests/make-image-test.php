@@ -171,6 +171,15 @@ function jpegToTest($name, PelJpeg $jpeg) {
   }
 }
 
+/**
+ * convert a binary string to a sequence of hexadecimals
+ */
+function binstrencode($field) {
+  $field=bin2hex($field);
+  $field=chunk_split($field,2,"\\x");
+  return str_replace('\x00', '\0', "\\x" . substr($field,0,-2));
+}
+
 
 /* All output is buffered so that we can dump it in $test_filename at
  * the end. */
