@@ -1,6 +1,5 @@
 <?php
 
-
 /**
  * PEL: PHP Exif Library.
  * A library with support for reading and
@@ -43,27 +42,28 @@
  * @package PEL
  * @subpackage Exception
  */
-class PelException extends Exception {
-
+class PelException extends Exception
+{
 
     /**
      * Construct a new PEL exception.
      *
-     * @param string $fmt an optional format string can be given. It
-     *        will be used as a format string for vprintf(). The remaining
-     *        arguments will be available for the format string as usual with
-     *        vprintf().
-     *
-     * @param mixed $args,... any number of arguments to be used with
-     *        the format string.
+     * @param string $fmt
+     *            an optional format string can be given. It
+     *            will be used as a format string for vprintf(). The remaining
+     *            arguments will be available for the format string as usual with
+     *            vprintf().
+     *            
+     * @param mixed $args,...
+     *            any number of arguments to be used with
+     *            the format string.
      */
     function __construct(/* fmt, args... */) {
-        $args = func_get_args ();
-        $fmt = array_shift ( $args );
-        parent::__construct ( vsprintf ( $fmt, $args ) );
+        $args = func_get_args();
+        $fmt = array_shift($args);
+        parent::__construct(vsprintf($fmt, $args));
     }
 }
-
 
 /**
  * Exception throw if invalid data is found.
@@ -72,9 +72,9 @@ class PelException extends Exception {
  * @package PEL
  * @subpackage Exception
  */
-class PelInvalidDataException extends PelException {
+class PelInvalidDataException extends PelException
+{
 }
-
 
 /**
  * Exception throw if an invalid argument is passed.
@@ -83,6 +83,7 @@ class PelInvalidDataException extends PelException {
  * @package PEL
  * @subpackage Exception
  */
-class PelInvalidArgumentException extends PelException {
+class PelInvalidArgumentException extends PelException
+{
 }
 

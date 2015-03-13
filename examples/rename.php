@@ -1,7 +1,6 @@
 #!/usr/bin/php
 <?php
 
-
 /**
  * PEL: PHP Exif Library.
  * A library with support for reading and
@@ -36,82 +35,82 @@
 
 /* a printf() variant that appends a newline to the output. */
 function println(/* fmt, args... */) {
-    $args = func_get_args ();
-    $fmt = array_shift ( $args );
-    vprintf ( $fmt . "\n", $args );
+    $args = func_get_args();
+    $fmt = array_shift($args);
+    vprintf($fmt . "\n", $args);
 }
 
 /* Make PEL speak the users language, if it is available. */
-setlocale ( LC_ALL, '' );
+setlocale(LC_ALL, '');
 
 /* Load the required class definitions. */
-require_once (dirname ( __FILE__ ) . '/../src/PelDataWindow.php');
-require_once (dirname ( __FILE__ ) . '/../src/PelJpeg.php');
-require_once (dirname ( __FILE__ ) . '/../src/PelTiff.php');
+require_once (dirname(__FILE__) . '/../src/PelDataWindow.php');
+require_once (dirname(__FILE__) . '/../src/PelJpeg.php');
+require_once (dirname(__FILE__) . '/../src/PelTiff.php');
 
-$prog = array_shift ( $argv );
+$prog = array_shift($argv);
 $error = false;
 
 /* Accept the optional -d command line argument. */
-if (isset ( $argv [0] ) && $argv [0] == '-d') {
+if (isset($argv[0]) && $argv[0] == '-d') {
     Pel::$debug = true;
-    array_shift ( $argv );
+    array_shift($argv);
 }
 
 /*
  * Print usage information if there are no more command line
  * arguments.
  */
-if (empty ( $argv )) {
-    println ( 'Usage: %s [-d] <file> ...', $prog );
-    println ( 'Optional arguments:' );
-    println ( '  -d        turn debug output on.' );
-    println ( 'Mandatory arguments:' );
-    println ( '  file ...  one or more file names.' );
-    println ();
-    println ( 'The files will be renamed based on their Exif timestamp.' );
-    exit ( 1 );
+if (empty($argv)) {
+    println('Usage: %s [-d] <file> ...', $prog);
+    println('Optional arguments:');
+    println('  -d        turn debug output on.');
+    println('Mandatory arguments:');
+    println('  file ...  one or more file names.');
+    println();
+    println('The files will be renamed based on their Exif timestamp.');
+    exit(1);
 }
 
 /*
  * We typically need lots of RAM to parse TIFF images since they tend
  * to be big and uncompressed.
  */
-ini_set ( 'memory_limit', '32M' );
+ini_set('memory_limit', '32M');
 
-foreach ( $argv as $file ) {
-
-    println ( 'Reading file "%s".', $file );
-    $data = new PelDataWindow ( file_get_contents ( $file ) );
-
-    if (PelJpeg::isValid ( $data )) {
-        $jpeg = new PelJpeg ();
-        $jpeg->load ( $data );
-        $app1 = $jpeg->getExif ();
-        $tiff = $app1->getTiff ();
-    } elseif (PelTiff::isValid ( $data )) {
-        $tiff = new PelTiff ( $data );
+foreach ($argv as $file) {
+    
+    println('Reading file "%s".', $file);
+    $data = new PelDataWindow(file_get_contents($file));
+    
+    if (PelJpeg::isValid($data)) {
+        $jpeg = new PelJpeg();
+        $jpeg->load($data);
+        $app1 = $jpeg->getExif();
+        $tiff = $app1->getTiff();
+    } elseif (PelTiff::isValid($data)) {
+        $tiff = new PelTiff($data);
     } else {
-        println ( 'Unrecognized image format! Skipping.' );
+        println('Unrecognized image format! Skipping.');
         continue;
     }
-
-    $ifd0 = $tiff->getIfd ();
-    $entry = $ifd0->getEntry ( PelTag::DATE_TIME );
-
+    
+    $ifd0 = $tiff->getIfd();
+    $entry = $ifd0->getEntry(PelTag::DATE_TIME);
+    
     if ($entry == null) {
-        println ( 'Skipping %s because no DATE_TIME tag was found.', $file );
+        println('Skipping %s because no DATE_TIME tag was found.', $file);
         continue;
     }
-
-    $time = $entry->getValue ();
-
+    
+    $time = $entry->getValue();
+    
     do {
-        $new = gmdate ( 'Y:m:d-H:i:s', $time ) . strchr ( $file, '.' );
-        println ( 'Trying file name %s', $new );
+        $new = gmdate('Y:m:d-H:i:s', $time) . strchr($file, '.');
+        println('Trying file name %s', $new);
         $time ++;
-    } while ( file_exists ( $new ) );
-
-    rename ( $file, $new );
+    } while (file_exists($new));
+    
+    rename($file, $new);
 }
 

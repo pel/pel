@@ -37,7 +37,6 @@
  */
 require_once ('PelJpegContent.php');
 
-
 /**
  * #@-
  */
@@ -48,7 +47,8 @@ require_once ('PelJpegContent.php');
  * @author Martin Geisler <mgeisler@users.sourceforge.net>
  * @package PEL
  */
-class PelJpegComment extends PelJpegContent {
+class PelJpegComment extends PelJpegContent
+{
 
     /**
      * The comment.
@@ -57,66 +57,67 @@ class PelJpegComment extends PelJpegContent {
      */
     private $comment = '';
 
-
     /**
      * Construct a new JPEG comment.
      *
      * The new comment will contain the string given.
      */
-    function __construct($comment = '') {
+    function __construct($comment = '')
+    {
         $this->comment = $comment;
     }
-
 
     /**
      * Load and parse data.
      *
      * This will load the comment from the data window passed.
      */
-    function load(PelDataWindow $d) {
-        $this->comment = $d->getBytes ();
+    function load(PelDataWindow $d)
+    {
+        $this->comment = $d->getBytes();
     }
-
 
     /**
      * Update the value with a new comment.
      *
      * Any old comment will be overwritten.
      *
-     * @param string the new comment.
+     * @param
+     *            string the new comment.
      */
-    function setValue($comment) {
+    function setValue($comment)
+    {
         $this->comment = $comment;
     }
-
 
     /**
      * Get the comment.
      *
      * @return string the comment.
      */
-    function getValue() {
+    function getValue()
+    {
         return $this->comment;
     }
-
 
     /**
      * Turn this comment into bytes.
      *
      * @return string bytes representing this comment.
      */
-    function getBytes() {
+    function getBytes()
+    {
         return $this->comment;
     }
-
 
     /**
      * Return a string representation of this object.
      *
      * @return string the same as {@link getValue()}.
      */
-    function __toString() {
-        return $this->getValue ();
+    function __toString()
+    {
+        return $this->getValue();
     }
 }
 

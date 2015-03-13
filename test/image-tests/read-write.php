@@ -1,209 +1,230 @@
 <?php
 
-/*  PEL: PHP Exif Library.  A library with support for reading and
- *  writing all Exif headers in JPEG and TIFF images using PHP.
+/*
+ * PEL: PHP Exif Library. A library with support for reading and
+ * writing all Exif headers in JPEG and TIFF images using PHP.
  *
- *  Copyright (C) 2004, 2006, 2007  Martin Geisler.
+ * Copyright (C) 2004, 2006, 2007 Martin Geisler.
  *
- *  This program is free software; you can redistribute it and/or modify
- *  it under the terms of the GNU General Public License as published by
- *  the Free Software Foundation; either version 2 of the License, or
- *  (at your option) any later version.
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2 of the License, or
+ * (at your option) any later version.
  *
- *  This program is distributed in the hope that it will be useful,
- *  but WITHOUT ANY WARRANTY; without even the implied warranty of
- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *  GNU General Public License for more details.
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public License for more details.
  *
- *  You should have received a copy of the GNU General Public License
- *  along with this program in the file COPYING; if not, write to the
- *  Free Software Foundation, Inc., 51 Franklin St, Fifth Floor,
- *  Boston, MA 02110-1301 USA
+ * You should have received a copy of the GNU General Public License
+ * along with this program in the file COPYING; if not, write to the
+ * Free Software Foundation, Inc., 51 Franklin St, Fifth Floor,
+ * Boston, MA 02110-1301 USA
  */
-
 set_include_path(dirname(__FILE__) . '/../../src/' . PATH_SEPARATOR . get_include_path());
 
-abstract class WriteEntryTestCase extends UnitTestCase {
+abstract class WriteEntryTestCase extends UnitTestCase
+{
 
-  protected $entries = array();
+    protected $entries = array();
 
-  function testWriteRead() {
-    Pel::setStrictParsing(true);
-
-    $ifd = new PelIfd(PelIfd::IFD0);
-    $this->assertTrue($ifd->isLastIfd());
-
-    foreach ($this->entries as $entry) {
-      $ifd->addEntry($entry);
+    function testWriteRead()
+    {
+        Pel::setStrictParsing(true);
+        
+        $ifd = new PelIfd(PelIfd::IFD0);
+        $this->assertTrue($ifd->isLastIfd());
+        
+        foreach ($this->entries as $entry) {
+            $ifd->addEntry($entry);
+        }
+        
+        $tiff = new PelTiff();
+        $this->assertNull($tiff->getIfd());
+        $tiff->setIfd($ifd);
+        $this->assertNotNull($tiff->getIfd());
+        
+        $exif = new PelExif();
+        $this->assertNull($exif->getTiff());
+        $exif->setTiff($tiff);
+        $this->assertNotNull($exif->getTiff());
+        
+        $jpeg = new PelJpeg(dirname(__FILE__) . '/no-exif.jpg');
+        $this->assertNull($jpeg->getExif());
+        $jpeg->setExif($exif);
+        $this->assertNotNull($jpeg->getExif());
+        
+        $jpeg->saveFile('test-output.jpg');
+        $this->assertTrue(file_exists('test-output.jpg'));
+        $this->assertTrue(filesize('test-output.jpg') > 0);
+        
+        /* Now read the file and see if the entries are still there. */
+        $jpeg = new PelJpeg('test-output.jpg');
+        
+        $exif = $jpeg->getExif();
+        $this->assertIsA($exif, 'PelExif');
+        
+        $tiff = $exif->getTiff();
+        $this->assertIsA($tiff, 'PelTiff');
+        
+        $ifd = $tiff->getIfd();
+        $this->assertIsA($ifd, 'PelIfd');
+        
+        $this->assertEqual($ifd->getType(), PelIfd::IFD0);
+        $this->assertTrue($ifd->isLastIfd());
+        
+        foreach ($this->entries as $entry) {
+            $this->assertEqual($ifd->getEntry($entry->getTag())
+                ->getValue(), $entry->getValue());
+        }
+        
+        unlink('test-output.jpg');
     }
+}
 
-    $tiff = new PelTiff();
-    $this->assertNull($tiff->getIfd());
-    $tiff->setIfd($ifd);
-    $this->assertNotNull($tiff->getIfd());
+class WriteByteTestCase extends WriteEntryTestCase
+{
 
-    $exif = new PelExif();
-    $this->assertNull($exif->getTiff());
-    $exif->setTiff($tiff);
-    $this->assertNotNull($exif->getTiff());
-
-    $jpeg = new PelJpeg(dirname(__FILE__) . '/no-exif.jpg');
-    $this->assertNull($jpeg->getExif());
-    $jpeg->setExif($exif);
-    $this->assertNotNull($jpeg->getExif());
-
-    $jpeg->saveFile('test-output.jpg');
-    $this->assertTrue(file_exists('test-output.jpg'));
-    $this->assertTrue(filesize('test-output.jpg') > 0);
-
-    /* Now read the file and see if the entries are still there. */
-    $jpeg = new PelJpeg('test-output.jpg');
-
-    $exif = $jpeg->getExif();
-    $this->assertIsA($exif, 'PelExif');
-
-    $tiff = $exif->getTiff();
-    $this->assertIsA($tiff, 'PelTiff');
-
-    $ifd = $tiff->getIfd();
-    $this->assertIsA($ifd, 'PelIfd');
-
-    $this->assertEqual($ifd->getType(), PelIfd::IFD0);
-    $this->assertTrue($ifd->isLastIfd());
-
-    foreach ($this->entries as $entry) {
-      $this->assertEqual($ifd->getEntry($entry->getTag())->getValue(),
-                         $entry->getValue());
+    function __construct()
+    {
+        require_once ('PelEntryByte.php');
+        
+        $this->entries[] = new PelEntryByte(0xF001, 0);
+        $this->entries[] = new PelEntryByte(0xF002, 1);
+        $this->entries[] = new PelEntryByte(0xF003, 2);
+        $this->entries[] = new PelEntryByte(0xF004, 253);
+        $this->entries[] = new PelEntryByte(0xF005, 254);
+        $this->entries[] = new PelEntryByte(0xF006, 255);
+        
+        $this->entries[] = new PelEntryByte(0xF007, 0, 1, 2, 253, 254, 255);
+        $this->entries[] = new PelEntryByte(0xF008);
+        
+        parent::__construct('PEL Byte Read/Write Tests');
     }
-
-    unlink('test-output.jpg');
-  }
-
 }
 
+class WriteSByteTestCase extends WriteEntryTestCase
+{
 
-class WriteByteTestCase extends WriteEntryTestCase {
-  function __construct() {
-    require_once('PelEntryByte.php');
-
-    $this->entries[] = new PelEntryByte(0xF001, 0);
-    $this->entries[] = new PelEntryByte(0xF002, 1);
-    $this->entries[] = new PelEntryByte(0xF003, 2);
-    $this->entries[] = new PelEntryByte(0xF004, 253);
-    $this->entries[] = new PelEntryByte(0xF005, 254);
-    $this->entries[] = new PelEntryByte(0xF006, 255);
-
-    $this->entries[] = new PelEntryByte(0xF007, 0, 1, 2, 253, 254, 255);
-    $this->entries[] = new PelEntryByte(0xF008);
-
-    parent::__construct('PEL Byte Read/Write Tests');
-  }
+    function __construct()
+    {
+        require_once ('PelEntryByte.php');
+        
+        $this->entries[] = new PelEntrySByte(0xF101, - 128);
+        $this->entries[] = new PelEntrySByte(0xF102, - 127);
+        $this->entries[] = new PelEntrySByte(0xF103, - 1);
+        $this->entries[] = new PelEntrySByte(0xF104, 0);
+        $this->entries[] = new PelEntrySByte(0xF105, 1);
+        $this->entries[] = new PelEntrySByte(0xF106, 126);
+        $this->entries[] = new PelEntrySByte(0xF107, 127);
+        
+        $this->entries[] = new PelEntrySByte(0xF108, - 128, - 1, 0, 1, 127);
+        $this->entries[] = new PelEntrySByte(0xF109);
+        
+        parent::__construct('PEL SByte Read/Write Tests');
+    }
 }
 
-class WriteSByteTestCase extends WriteEntryTestCase {
-  function __construct() {
-    require_once('PelEntryByte.php');
+class WriteShortTestCase extends WriteEntryTestCase
+{
 
-    $this->entries[] = new PelEntrySByte(0xF101, -128);
-    $this->entries[] = new PelEntrySByte(0xF102, -127);
-    $this->entries[] = new PelEntrySByte(0xF103, -1);
-    $this->entries[] = new PelEntrySByte(0xF104, 0);
-    $this->entries[] = new PelEntrySByte(0xF105, 1);
-    $this->entries[] = new PelEntrySByte(0xF106, 126);
-    $this->entries[] = new PelEntrySByte(0xF107, 127);
-
-    $this->entries[] = new PelEntrySByte(0xF108, -128, -1, 0, 1, 127);
-    $this->entries[] = new PelEntrySByte(0xF109);
-
-    parent::__construct('PEL SByte Read/Write Tests');
-  }
+    function __construct()
+    {
+        require_once ('PelEntryShort.php');
+        
+        $this->entries[] = new PelEntryShort(0xF201, 0);
+        $this->entries[] = new PelEntryShort(0xF202, 1);
+        $this->entries[] = new PelEntryShort(0xF203, 2);
+        $this->entries[] = new PelEntryShort(0xF204, 65533);
+        $this->entries[] = new PelEntryShort(0xF205, 65534);
+        $this->entries[] = new PelEntryShort(0xF206, 65535);
+        
+        $this->entries[] = new PelEntryShort(0xF208, 0, 1, 65534, 65535);
+        $this->entries[] = new PelEntryShort(0xF209);
+        
+        parent::__construct('PEL Short Read/Write Tests');
+    }
 }
 
-class WriteShortTestCase extends WriteEntryTestCase {
-  function __construct() {
-    require_once('PelEntryShort.php');
+class WriteSShortTestCase extends WriteEntryTestCase
+{
 
-    $this->entries[] = new PelEntryShort(0xF201, 0);
-    $this->entries[] = new PelEntryShort(0xF202, 1);
-    $this->entries[] = new PelEntryShort(0xF203, 2);
-    $this->entries[] = new PelEntryShort(0xF204, 65533);
-    $this->entries[] = new PelEntryShort(0xF205, 65534);
-    $this->entries[] = new PelEntryShort(0xF206, 65535);
-
-    $this->entries[] = new PelEntryShort(0xF208, 0, 1, 65534, 65535);
-    $this->entries[] = new PelEntryShort(0xF209);
-
-    parent::__construct('PEL Short Read/Write Tests');
-  }
+    function __construct()
+    {
+        require_once ('PelEntryShort.php');
+        
+        $this->entries[] = new PelEntrySShort(0xF301, - 32768);
+        $this->entries[] = new PelEntrySShort(0xF302, - 32767);
+        $this->entries[] = new PelEntrySShort(0xF303, - 1);
+        $this->entries[] = new PelEntrySShort(0xF304, 0);
+        $this->entries[] = new PelEntrySShort(0xF305, 1);
+        $this->entries[] = new PelEntrySShort(0xF306, 32766);
+        $this->entries[] = new PelEntrySShort(0xF307, 32767);
+        
+        $this->entries[] = new PelEntrySShort(0xF308, - 32768, - 1, 0, 1, 32767);
+        $this->entries[] = new PelEntrySShort(0xF309);
+        
+        parent::__construct('PEL SShort Read/Write Tests');
+    }
 }
 
-class WriteSShortTestCase extends WriteEntryTestCase {
-  function __construct() {
-    require_once('PelEntryShort.php');
+class WriteLongTestCase extends WriteEntryTestCase
+{
 
-    $this->entries[] = new PelEntrySShort(0xF301, -32768);
-    $this->entries[] = new PelEntrySShort(0xF302, -32767);
-    $this->entries[] = new PelEntrySShort(0xF303, -1);
-    $this->entries[] = new PelEntrySShort(0xF304, 0);
-    $this->entries[] = new PelEntrySShort(0xF305, 1);
-    $this->entries[] = new PelEntrySShort(0xF306, 32766);
-    $this->entries[] = new PelEntrySShort(0xF307, 32767);
-
-    $this->entries[] = new PelEntrySShort(0xF308, -32768, -1, 0, 1, 32767);
-    $this->entries[] = new PelEntrySShort(0xF309);
-
-    parent::__construct('PEL SShort Read/Write Tests');
-  }
+    function __construct()
+    {
+        require_once ('PelEntryLong.php');
+        
+        $this->entries[] = new PelEntryLong(0xF401, 0);
+        $this->entries[] = new PelEntryLong(0xF402, 1);
+        $this->entries[] = new PelEntryLong(0xF403, 2);
+        $this->entries[] = new PelEntryLong(0xF404, 4294967293);
+        $this->entries[] = new PelEntryLong(0xF405, 4294967294);
+        $this->entries[] = new PelEntryLong(0xF406, 4294967295);
+        
+        $this->entries[] = new PelEntryLong(0xF408, 0, 1, 4294967295);
+        $this->entries[] = new PelEntryLong(0xF409);
+        
+        parent::__construct('PEL Long Read/Write Tests');
+    }
 }
 
-class WriteLongTestCase extends WriteEntryTestCase {
-  function __construct() {
-    require_once('PelEntryLong.php');
+class WriteSLongTestCase extends WriteEntryTestCase
+{
 
-    $this->entries[] = new PelEntryLong(0xF401, 0);
-    $this->entries[] = new PelEntryLong(0xF402, 1);
-    $this->entries[] = new PelEntryLong(0xF403, 2);
-    $this->entries[] = new PelEntryLong(0xF404, 4294967293);
-    $this->entries[] = new PelEntryLong(0xF405, 4294967294);
-    $this->entries[] = new PelEntryLong(0xF406, 4294967295);
-
-    $this->entries[] = new PelEntryLong(0xF408, 0, 1, 4294967295);
-    $this->entries[] = new PelEntryLong(0xF409);
-
-    parent::__construct('PEL Long Read/Write Tests');
-  }
+    function __construct()
+    {
+        require_once ('PelEntryLong.php');
+        
+        $this->entries[] = new PelEntrySLong(0xF501, - 2147483648);
+        $this->entries[] = new PelEntrySLong(0xF502, - 2147483647);
+        $this->entries[] = new PelEntrySLong(0xF503, - 1);
+        $this->entries[] = new PelEntrySLong(0xF504, 0);
+        $this->entries[] = new PelEntrySLong(0xF505, 1);
+        $this->entries[] = new PelEntrySLong(0xF506, 2147483646);
+        $this->entries[] = new PelEntrySLong(0xF507, 2147483647);
+        
+        $this->entries[] = new PelEntrySLong(0xF508, - 2147483648, 0, 2147483647);
+        $this->entries[] = new PelEntrySLong(0xF509);
+        
+        parent::__construct('PEL SLong Read/Write Tests');
+    }
 }
 
-class WriteSLongTestCase extends WriteEntryTestCase {
-  function __construct() {
-    require_once('PelEntryLong.php');
+class WriteAsciiTestCase extends WriteEntryTestCase
+{
 
-    $this->entries[] = new PelEntrySLong(0xF501, -2147483648);
-    $this->entries[] = new PelEntrySLong(0xF502, -2147483647);
-    $this->entries[] = new PelEntrySLong(0xF503, -1);
-    $this->entries[] = new PelEntrySLong(0xF504, 0);
-    $this->entries[] = new PelEntrySLong(0xF505, 1);
-    $this->entries[] = new PelEntrySLong(0xF506, 2147483646);
-    $this->entries[] = new PelEntrySLong(0xF507, 2147483647);
-
-    $this->entries[] = new PelEntrySLong(0xF508, -2147483648, 0, 2147483647);
-    $this->entries[] = new PelEntrySLong(0xF509);
-
-    parent::__construct('PEL SLong Read/Write Tests');
-  }
-}
-
-class WriteAsciiTestCase extends WriteEntryTestCase {
-  function __construct() {
-    require_once('PelEntryAscii.php');
-
-    $this->entries[] = new PelEntryAscii(0xF601);
-    $this->entries[] = new PelEntryAscii(0xF602, '');
-    $this->entries[] = new PelEntryAscii(0xF603, 'Hello World!');
-    $this->entries[] = new PelEntryAscii(0xF604, "\x00\x01\x02...\xFD\xFE\xFF");
-
-    parent::__construct('PEL Ascii Read/Write Tests');
-  }
+    function __construct()
+    {
+        require_once ('PelEntryAscii.php');
+        
+        $this->entries[] = new PelEntryAscii(0xF601);
+        $this->entries[] = new PelEntryAscii(0xF602, '');
+        $this->entries[] = new PelEntryAscii(0xF603, 'Hello World!');
+        $this->entries[] = new PelEntryAscii(0xF604, "\x00\x01\x02...\xFD\xFE\xFF");
+        
+        parent::__construct('PEL Ascii Read/Write Tests');
+    }
 }
 
 ?>

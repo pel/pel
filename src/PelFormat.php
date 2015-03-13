@@ -1,6 +1,5 @@
 <?php
 
-
 /**
  * PEL: PHP Exif Library.
  * A library with support for reading and
@@ -47,7 +46,8 @@
  * @author Martin Geisler <mgeisler@users.sourceforge.net>
  * @package PEL
  */
-class PelFormat {
+class PelFormat
+{
 
     /**
      * Unsigned byte.
@@ -163,83 +163,85 @@ class PelFormat {
      */
     const DOUBLE = 12;
 
-
     /**
      * Returns the name of a format.
      *
-     * @param PelFormat the format.
-     *
+     * @param
+     *            PelFormat the format.
+     *            
      * @return string the name of the format, e.g., 'Ascii' for the
      *         {@link ASCII} format etc.
      */
-    static function getName($type) {
+    static function getName($type)
+    {
         switch ($type) {
-            case self::ASCII :
+            case self::ASCII:
                 return 'Ascii';
-            case self::BYTE :
+            case self::BYTE:
                 return 'Byte';
-            case self::SHORT :
+            case self::SHORT:
                 return 'Short';
-            case self::LONG :
+            case self::LONG:
                 return 'Long';
-            case self::RATIONAL :
+            case self::RATIONAL:
                 return 'Rational';
-            case self::SBYTE :
+            case self::SBYTE:
                 return 'SByte';
-            case self::SSHORT :
+            case self::SSHORT:
                 return 'SShort';
-            case self::SLONG :
+            case self::SLONG:
                 return 'SLong';
-            case self::SRATIONAL :
+            case self::SRATIONAL:
                 return 'SRational';
-            case self::FLOAT :
+            case self::FLOAT:
                 return 'Float';
-            case self::DOUBLE :
+            case self::DOUBLE:
                 return 'Double';
-            case self::UNDEFINED :
+            case self::UNDEFINED:
                 return 'Undefined';
-            default :
-                return Pel::fmt ( 'Unknown format: 0x%X', $type );
+            default:
+                return Pel::fmt('Unknown format: 0x%X', $type);
         }
     }
-
 
     /**
      * Return the size of components in a given format.
      *
-     * @param PelFormat the format.
-     *
+     * @param
+     *            PelFormat the format.
+     *            
      * @return the size in bytes needed to store one component with the
      *         given format.
      */
-    static function getSize($type) {
+    static function getSize($type)
+    {
         switch ($type) {
-            case self::ASCII :
+            case self::ASCII:
                 return 1;
-            case self::BYTE :
+            case self::BYTE:
                 return 1;
-            case self::SHORT :
+            case self::SHORT:
                 return 2;
-            case self::LONG :
+            case self::LONG:
                 return 4;
-            case self::RATIONAL :
+            case self::RATIONAL:
                 return 8;
-            case self::SBYTE :
+            case self::SBYTE:
                 return 1;
-            case self::SSHORT :
+            case self::SSHORT:
                 return 2;
-            case self::SLONG :
+            case self::SLONG:
                 return 4;
-            case self::SRATIONAL :
+            case self::SRATIONAL:
                 return 8;
-            case self::FLOAT :
+            case self::FLOAT:
                 return 4;
-            case self::DOUBLE :
+            case self::DOUBLE:
                 return 8;
-            case self::UNDEFINED :
+            case self::UNDEFINED:
                 return 1;
-            default :
-                return Pel::fmt ( 'Unknown format: 0x%X', $type );
+            default:
+                return Pel::fmt('Unknown format: 0x%X', $type);
         }
     }
 }

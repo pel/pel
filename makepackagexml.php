@@ -15,7 +15,6 @@
  * @version @package-version@
  * @license http://www.gnu.org/licenses/gpl.html GNU General Public
  */
-
 require_once 'PEAR/PackageFileManager2.php';
 
 $version = '0.9.2';
@@ -25,36 +24,34 @@ $url = 'http://downloads.sf.net/pel/PEL-' . $version . '.tgz';
 
 PEAR::setErrorHandling(PEAR_ERROR_DIE);
 $pfm = new PEAR_PackageFileManager2();
-$pfm->setOptions(
-  array(
-    'baseinstalldir'    => 'PEL',
+$pfm->setOptions(array(
+    'baseinstalldir' => 'PEL',
     'filelistgenerator' => 'file',
-    'packagedirectory'  => dirname(__FILE__),
-    'packagefile'       => 'package.xml',
-    'ignore'            => array(
-      'makepackagexml.php',
-      '*.tgz',
-      '*.sh',
-      'test/',
-      'tutorials/',
-      'authors.xml'
+    'packagedirectory' => dirname(__FILE__),
+    'packagefile' => 'package.xml',
+    'ignore' => array(
+        'makepackagexml.php',
+        '*.tgz',
+        '*.sh',
+        'test/',
+        'tutorials/',
+        'authors.xml'
     ),
-    'dir_roles'  => array(
-      'doc'      => 'doc',
-      'examples' => 'doc',
-      'test'     => 'test'
+    'dir_roles' => array(
+        'doc' => 'doc',
+        'examples' => 'doc',
+        'test' => 'test'
     ),
-    'exceptions'        => array(
-      'README'  => 'doc',
-      'AUTHORS' => 'doc',
-      'COPYING' => 'doc',
-      'INSTALL' => 'doc',
-      'NEWS'    => 'doc',
-      'TODO'    => 'doc'
+    'exceptions' => array(
+        'README' => 'doc',
+        'AUTHORS' => 'doc',
+        'COPYING' => 'doc',
+        'INSTALL' => 'doc',
+        'NEWS' => 'doc',
+        'TODO' => 'doc'
     ),
-    'simpleoutput' => true,
-  )
-);
+    'simpleoutput' => true
+));
 
 $pfm->setPackage('PEL');
 $pfm->setSummary('The PHP Exif Library (PEL) lets you fully manipulate Exif (Exchangeable Image File Format) data.');
@@ -82,10 +79,10 @@ $pfm->setPearinstallerDep('1.5.0');
 $pfm->generateContents();
 
 if (isset($_GET['make']) || (isset($_SERVER['argv']) && @$_SERVER['argv'][1] == 'make')) {
-  if ($pfm->writePackageFile()) {
-    exit('package created');
-  }
+    if ($pfm->writePackageFile()) {
+        exit('package created');
+    }
 } else {
-  $pfm->debugPackageFile();
+    $pfm->debugPackageFile();
 }
 ?>

@@ -1,7 +1,6 @@
 #!/usr/bin/php
 <?php
 
-
 /**
  * PEL: PHP Exif Library.
  * A library with support for reading and
@@ -27,80 +26,80 @@
 
 /* a printf() variant that appends a newline to the output. */
 function println(/* fmt, args... */) {
-    $args = func_get_args ();
-    $fmt = array_shift ( $args );
-    vprintf ( $fmt . "\n", $args );
+    $args = func_get_args();
+    $fmt = array_shift($args);
+    vprintf($fmt . "\n", $args);
 }
 
 /* Make PEL speak the users language, if it is available. */
-setlocale ( LC_ALL, '' );
+setlocale(LC_ALL, '');
 
-require_once (dirname ( __FILE__ ) . '/../src/PelDataWindow.php');
-require_once (dirname ( __FILE__ ) . '/../src/PelJpeg.php');
-require_once (dirname ( __FILE__ ) . '/../src/PelTiff.php');
+require_once (dirname(__FILE__) . '/../src/PelDataWindow.php');
+require_once (dirname(__FILE__) . '/../src/PelJpeg.php');
+require_once (dirname(__FILE__) . '/../src/PelTiff.php');
 
-$prog = array_shift ( $argv );
+$prog = array_shift($argv);
 $error = false;
 
-if (isset ( $argv [0] ) && $argv [0] == '-d') {
+if (isset($argv[0]) && $argv[0] == '-d') {
     Pel::$debug = true;
-    array_shift ( $argv );
+    array_shift($argv);
 }
 
-if (empty ( $argv )) {
-    println ( 'Usage: %s [-d] <file> ...', $prog );
-    println ( 'Optional arguments:' );
-    println ( '  -d        turn debug output on.' );
-    println ( 'Mandatory arguments:' );
-    println ( '  file ...  one or more file names.' );
-    exit ( 1 );
+if (empty($argv)) {
+    println('Usage: %s [-d] <file> ...', $prog);
+    println('Optional arguments:');
+    println('  -d        turn debug output on.');
+    println('Mandatory arguments:');
+    println('  file ...  one or more file names.');
+    exit(1);
 }
 
 /*
  * We typically need lots of RAM to parse TIFF images since they tend
  * to be big and uncompressed.
  */
-ini_set ( 'memory_limit', '32M' );
+ini_set('memory_limit', '32M');
 
-foreach ( $argv as $file ) {
-
-    println ( 'Reading file "%s".', $file );
-    $data = new PelDataWindow ( file_get_contents ( $file ) );
-
-    if (PelJpeg::isValid ( $data )) {
-        $jpeg = new PelJpeg ();
-        $jpeg->load ( $data );
-        $app1 = $jpeg->getExif ();
+foreach ($argv as $file) {
+    
+    println('Reading file "%s".', $file);
+    $data = new PelDataWindow(file_get_contents($file));
+    
+    if (PelJpeg::isValid($data)) {
+        $jpeg = new PelJpeg();
+        $jpeg->load($data);
+        $app1 = $jpeg->getExif();
         if ($app1 == null) {
-            println ( 'Skipping %s because no APP1 section was found.', $file );
+            println('Skipping %s because no APP1 section was found.', $file);
             continue;
         }
-
-        $tiff = $app1->getTiff ();
-    } elseif (PelTiff::isValid ( $data )) {
-        $tiff = new PelTiff ( $data );
+        
+        $tiff = $app1->getTiff();
+    } elseif (PelTiff::isValid($data)) {
+        $tiff = new PelTiff($data);
     } else {
-        println ( 'Unrecognized image format! Skipping.' );
+        println('Unrecognized image format! Skipping.');
         continue;
     }
-
-    $ifd0 = $tiff->getIfd ();
-    $entry = $ifd0->getEntry ( PelTag::DATE_TIME );
-
+    
+    $ifd0 = $tiff->getIfd();
+    $entry = $ifd0->getEntry(PelTag::DATE_TIME);
+    
     if ($entry == null) {
-        println ( 'Skipping %s because no DATE_TIME tag was found.', $file );
+        println('Skipping %s because no DATE_TIME tag was found.', $file);
         continue;
     }
-
-    $time = $entry->getValue ();
-
-    $new = gmdate ( '../Y-m/', $time ) . $file;
-
-    if (file_exists ( $new ))
-        die ( 'Aborting, ' . $new . ' exists!' );
-
-    println ( 'mv %s %s', $file, $new );
-
-    rename ( $file, $new );
+    
+    $time = $entry->getValue();
+    
+    $new = gmdate('../Y-m/', $time) . $file;
+    
+    if (file_exists($new))
+        die('Aborting, ' . $new . ' exists!');
+    
+    println('mv %s %s', $file, $new);
+    
+    rename($file, $new);
 }
 

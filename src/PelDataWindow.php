@@ -37,7 +37,6 @@
 require_once ('PelException.php');
 require_once ('PelConvert.php');
 
-
 /**
  * #@-
  */
@@ -48,9 +47,9 @@ require_once ('PelConvert.php');
  * @package PEL
  * @subpackage Exception
  */
-class PelDataWindowOffsetException extends PelException {
+class PelDataWindowOffsetException extends PelException
+{
 }
-
 
 /**
  * An exception thrown when an invalid window is encountered.
@@ -58,16 +57,17 @@ class PelDataWindowOffsetException extends PelException {
  * @package PEL
  * @subpackage Exception
  */
-class PelDataWindowWindowException extends PelException {
+class PelDataWindowWindowException extends PelException
+{
 }
-
 
 /**
  * The window.
  *
  * @package PEL
  */
-class PelDataWindow {
+class PelDataWindow
+{
 
     /**
      * The data held by this window.
@@ -114,66 +114,68 @@ class PelDataWindow {
      */
     private $size = 0;
 
-
     /**
      * Construct a new data window with the data supplied.
      *
-     * @param mixed the data that this window will contain. This can
-     *        either be given as a string (interpreted litteraly as a sequence
-     *        of bytes) or a PHP image resource handle. The data will be copied
-     *        into the new data window.
-     *
-     * @param boolean the initial byte order of the window. This must
-     *        be either {@link PelConvert::LITTLE_ENDIAN} or {@link
-     *        PelConvert::BIG_ENDIAN}. This will be used when integers are
-     *        read from the data, and it can be changed later with {@link
-     *        setByteOrder()}.
+     * @param
+     *            mixed the data that this window will contain. This can
+     *            either be given as a string (interpreted litteraly as a sequence
+     *            of bytes) or a PHP image resource handle. The data will be copied
+     *            into the new data window.
+     *            
+     * @param
+     *            boolean the initial byte order of the window. This must
+     *            be either {@link PelConvert::LITTLE_ENDIAN} or {@link
+     *            PelConvert::BIG_ENDIAN}. This will be used when integers are
+     *            read from the data, and it can be changed later with {@link
+     *            setByteOrder()}.
      */
-    function __construct($data = '', $endianess = PelConvert::LITTLE_ENDIAN) {
-        if (is_string ( $data )) {
+    function __construct($data = '', $endianess = PelConvert::LITTLE_ENDIAN)
+    {
+        if (is_string($data)) {
             $this->data = $data;
-        } elseif (is_resource ( $data ) && get_resource_type ( $data ) == 'gd') {
+        } elseif (is_resource($data) && get_resource_type($data) == 'gd') {
             /*
              * The ImageJpeg() function insists on printing the bytes
              * instead of returning them in a more civil way as a string, so
              * we have to buffer the output...
              */
-            ob_start ();
-            ImageJpeg ( $data, null, Pel::getJPEGQuality () );
-            $this->data = ob_get_clean ();
+            ob_start();
+            ImageJpeg($data, null, Pel::getJPEGQuality());
+            $this->data = ob_get_clean();
         } else {
-            throw new PelInvalidArgumentException ( 'Bad type for $data: %s', gettype ( $data ) );
+            throw new PelInvalidArgumentException('Bad type for $data: %s', gettype($data));
         }
-
+        
         $this->order = $endianess;
-        $this->size = strlen ( $this->data );
+        $this->size = strlen($this->data);
     }
-
 
     /**
      * Get the size of the data window.
      *
      * @return int the number of bytes covered by the window. The
      *         allowed offsets go from 0 up to this number minus one.
-     *
+     *        
      * @see getBytes()
      */
-    function getSize() {
+    function getSize()
+    {
         return $this->size;
     }
-
 
     /**
      * Change the byte order of the data.
      *
-     * @param PelByteOrder the new byte order. This must be either
-     *        {@link PelConvert::LITTLE_ENDIAN} or {@link
-     *        PelConvert::BIG_ENDIAN}.
+     * @param
+     *            PelByteOrder the new byte order. This must be either
+     *            {@link PelConvert::LITTLE_ENDIAN} or {@link
+     *            PelConvert::BIG_ENDIAN}.
      */
-    function setByteOrder($o) {
+    function setByteOrder($o)
+    {
         $this->order = $o;
     }
-
 
     /**
      * Get the currently used byte order.
@@ -181,7 +183,8 @@ class PelDataWindow {
      * @return PelByteOrder this will be either {@link
      *         PelConvert::LITTLE_ENDIAN} or {@link PelConvert::BIG_ENDIAN}.
      */
-    function getByteOrder() {
+    function getByteOrder()
+    {
         return $this->order;
     }
 
@@ -191,75 +194,79 @@ class PelDataWindow {
      * calculated from this new start offset, and the size of the window
      * will shrink to keep the end of the window in place.
      */
-    function setWindowStart($start) {
+    function setWindowStart($start)
+    {
         if ($start < 0 || $start > $this->size)
-            throw new PelDataWindowWindowException ( 'Window [%d, %d] does ' . 'not fit in window [0, %d]', $start, $this->size, $this->size );
-
+            throw new PelDataWindowWindowException('Window [%d, %d] does ' . 'not fit in window [0, %d]', $start, $this->size, $this->size);
+        
         $this->start += $start;
         $this->size -= $start;
     }
-
 
     /**
      * Adjust the size of the window.
      *
      * The size can only be made smaller.
      *
-     * @param int the desired size of the window. If the argument is
-     *        negative, the window will be shrunk by the argument.
+     * @param
+     *            int the desired size of the window. If the argument is
+     *            negative, the window will be shrunk by the argument.
      */
-    function setWindowSize($size) {
+    function setWindowSize($size)
+    {
         if ($size < 0)
             $size += $this->size;
-
+        
         if ($size < 0 || $size > $this->size)
-            throw new PelDataWindowWindowException ( 'Window [0, %d] ' . 'does not fit in window [0, %d]', $size, $this->size );
+            throw new PelDataWindowWindowException('Window [0, %d] ' . 'does not fit in window [0, %d]', $size, $this->size);
         $this->size = $size;
     }
-
 
     /**
      * Make a new data window with the same data as the this window.
      *
-     * @param mixed if an integer is supplied, then it will be the start
-     *        of the window in the clone. If left unspecified, then the clone
-     *        will inherit the start from this object.
-     *
-     * @param mixed if an integer is supplied, then it will be the size
-     *        of the window in the clone. If left unspecified, then the clone
-     *        will inherit the size from this object.
-     *
+     * @param
+     *            mixed if an integer is supplied, then it will be the start
+     *            of the window in the clone. If left unspecified, then the clone
+     *            will inherit the start from this object.
+     *            
+     * @param
+     *            mixed if an integer is supplied, then it will be the size
+     *            of the window in the clone. If left unspecified, then the clone
+     *            will inherit the size from this object.
+     *            
      * @return PelDataWindow a new window that operates on the same data
      *         as this window, but (optionally) with a smaller window size.
      */
-    function getClone($start = false, $size = false) {
+    function getClone($start = false, $size = false)
+    {
         $c = clone $this;
-
-        if (is_int ( $start ))
-            $c->setWindowStart ( $start );
-
-        if (is_int ( $size ))
-            $c->setWindowSize ( $size );
-
+        
+        if (is_int($start))
+            $c->setWindowStart($start);
+        
+        if (is_int($size))
+            $c->setWindowSize($size);
+        
         return $c;
     }
-
 
     /**
      * Validate an offset against the current window.
      *
-     * @param int the offset to be validated. If the offset is negative
-     *        or if it is greater than or equal to the current window size,
-     *        then a {@link PelDataWindowOffsetException} is thrown.
-     *
+     * @param
+     *            int the offset to be validated. If the offset is negative
+     *            or if it is greater than or equal to the current window size,
+     *            then a {@link PelDataWindowOffsetException} is thrown.
+     *            
      * @return void if the offset is valid nothing is returned, if it is
      *         invalid a new {@link PelDataWindowOffsetException} is thrown.
      */
-    private function validateOffset($o) {
+    private function validateOffset($o)
+    {
         if ($o < 0 || $o >= $this->size)
-            throw new PelDataWindowOffsetException ( 'Offset %d not within [%d, %d]', $o, 0, $this->size - 1 );
+            throw new PelDataWindowOffsetException('Offset %d not within [%d, %d]', $o, 0, $this->size - 1);
     }
-
 
     /**
      * Return some or all bytes visible in the window.
@@ -268,273 +275,291 @@ class PelDataWindow {
      * function in PHP with the exception that it works within the
      * window of accessible bytes and does strict range checking.
      *
-     * @param int the offset to the first byte returned. If a negative
-     *        number is given, then the counting will be from the end of the
-     *        window. Invalid offsets will result in a {@link
-     *        PelDataWindowOffsetException} being thrown.
-     *
-     * @param int the size of the sub-window. If a negative number is
-     *        given, then that many bytes will be omitted from the result.
-     *
+     * @param
+     *            int the offset to the first byte returned. If a negative
+     *            number is given, then the counting will be from the end of the
+     *            window. Invalid offsets will result in a {@link
+     *            PelDataWindowOffsetException} being thrown.
+     *            
+     * @param
+     *            int the size of the sub-window. If a negative number is
+     *            given, then that many bytes will be omitted from the result.
+     *            
      * @return string a subset of the bytes in the window. This will
      *         always return no more than {@link getSize()} bytes.
      */
-    function getBytes($start = false, $size = false) {
-        if (is_int ( $start )) {
+    function getBytes($start = false, $size = false)
+    {
+        if (is_int($start)) {
             if ($start < 0)
                 $start += $this->size;
-
-            $this->validateOffset ( $start );
+            
+            $this->validateOffset($start);
         } else {
             $start = 0;
         }
-
-        if (is_int ( $size )) {
+        
+        if (is_int($size)) {
             if ($size <= 0)
                 $size += $this->size - $start;
-
-            $this->validateOffset ( $start + $size );
+            
+            $this->validateOffset($start + $size);
         } else {
             $size = $this->size - $start;
         }
-
-        return substr ( $this->data, $this->start + $start, $size );
+        
+        return substr($this->data, $this->start + $start, $size);
     }
-
 
     /**
      * Return an unsigned byte from the data.
      *
-     * @param int the offset into the data. An offset of zero will
-     *        return the first byte in the current allowed window. The last
-     *        valid offset is equal to {@link getSize()}-1. Invalid offsets
-     *        will result in a {@link PelDataWindowOffsetException} being
-     *        thrown.
-     *
+     * @param
+     *            int the offset into the data. An offset of zero will
+     *            return the first byte in the current allowed window. The last
+     *            valid offset is equal to {@link getSize()}-1. Invalid offsets
+     *            will result in a {@link PelDataWindowOffsetException} being
+     *            thrown.
+     *            
      * @return int the unsigned byte found at offset.
      */
-    function getByte($o = 0) {
+    function getByte($o = 0)
+    {
         /*
          * Validate the offset --- this throws an exception if offset is
          * out of range.
          */
-        $this->validateOffset ( $o );
-
+        $this->validateOffset($o);
+        
         /* Translate the offset into an offset into the data. */
         $o += $this->start;
-
+        
         /* Return an unsigned byte. */
-        return PelConvert::bytesToByte ( $this->data, $o );
+        return PelConvert::bytesToByte($this->data, $o);
     }
-
 
     /**
      * Return a signed byte from the data.
      *
-     * @param int the offset into the data. An offset of zero will
-     *        return the first byte in the current allowed window. The last
-     *        valid offset is equal to {@link getSize()}-1. Invalid offsets
-     *        will result in a {@link PelDataWindowOffsetException} being
-     *        thrown.
-     *
+     * @param
+     *            int the offset into the data. An offset of zero will
+     *            return the first byte in the current allowed window. The last
+     *            valid offset is equal to {@link getSize()}-1. Invalid offsets
+     *            will result in a {@link PelDataWindowOffsetException} being
+     *            thrown.
+     *            
      * @return int the signed byte found at offset.
      */
-    function getSByte($o = 0) {
+    function getSByte($o = 0)
+    {
         /*
          * Validate the offset --- this throws an exception if offset is
          * out of range.
          */
-        $this->validateOffset ( $o );
-
+        $this->validateOffset($o);
+        
         /* Translate the offset into an offset into the data. */
         $o += $this->start;
-
+        
         /* Return a signed byte. */
-        return PelConvert::bytesToSByte ( $this->data, $o );
+        return PelConvert::bytesToSByte($this->data, $o);
     }
-
 
     /**
      * Return an unsigned short read from the data.
      *
-     * @param int the offset into the data. An offset of zero will
-     *        return the first short available in the current allowed window.
-     *        The last valid offset is equal to {@link getSize()}-2. Invalid
-     *        offsets will result in a {@link PelDataWindowOffsetException}
-     *        being thrown.
-     *
+     * @param
+     *            int the offset into the data. An offset of zero will
+     *            return the first short available in the current allowed window.
+     *            The last valid offset is equal to {@link getSize()}-2. Invalid
+     *            offsets will result in a {@link PelDataWindowOffsetException}
+     *            being thrown.
+     *            
      * @return int the unsigned short found at offset.
      */
-    function getShort($o = 0) {
+    function getShort($o = 0)
+    {
         /*
          * Validate the offset+1 to see if we can safely get two bytes ---
          * this throws an exception if offset is out of range.
          */
-        $this->validateOffset ( $o );
-        $this->validateOffset ( $o + 1 );
-
+        $this->validateOffset($o);
+        $this->validateOffset($o + 1);
+        
         /* Translate the offset into an offset into the data. */
         $o += $this->start;
-
+        
         /* Return an unsigned short. */
-        return PelConvert::bytesToShort ( $this->data, $o, $this->order );
+        return PelConvert::bytesToShort($this->data, $o, $this->order);
     }
-
 
     /**
      * Return a signed short read from the data.
      *
-     * @param int the offset into the data. An offset of zero will
-     *        return the first short available in the current allowed window.
-     *        The last valid offset is equal to {@link getSize()}-2. Invalid
-     *        offsets will result in a {@link PelDataWindowOffsetException}
-     *        being thrown.
-     *
+     * @param
+     *            int the offset into the data. An offset of zero will
+     *            return the first short available in the current allowed window.
+     *            The last valid offset is equal to {@link getSize()}-2. Invalid
+     *            offsets will result in a {@link PelDataWindowOffsetException}
+     *            being thrown.
+     *            
      * @return int the signed short found at offset.
      */
-    function getSShort($o = 0) {
+    function getSShort($o = 0)
+    {
         /*
          * Validate the offset+1 to see if we can safely get two bytes ---
          * this throws an exception if offset is out of range.
          */
-        $this->validateOffset ( $o );
-        $this->validateOffset ( $o + 1 );
-
+        $this->validateOffset($o);
+        $this->validateOffset($o + 1);
+        
         /* Translate the offset into an offset into the data. */
         $o += $this->start;
-
+        
         /* Return a signed short. */
-        return PelConvert::bytesToSShort ( $this->data, $o, $this->order );
+        return PelConvert::bytesToSShort($this->data, $o, $this->order);
     }
-
 
     /**
      * Return an unsigned long read from the data.
      *
-     * @param int the offset into the data. An offset of zero will
-     *        return the first long available in the current allowed window.
-     *        The last valid offset is equal to {@link getSize()}-4. Invalid
-     *        offsets will result in a {@link PelDataWindowOffsetException}
-     *        being thrown.
-     *
+     * @param
+     *            int the offset into the data. An offset of zero will
+     *            return the first long available in the current allowed window.
+     *            The last valid offset is equal to {@link getSize()}-4. Invalid
+     *            offsets will result in a {@link PelDataWindowOffsetException}
+     *            being thrown.
+     *            
      * @return int the unsigned long found at offset.
      */
-    function getLong($o = 0) {
+    function getLong($o = 0)
+    {
         /*
          * Validate the offset+3 to see if we can safely get four bytes
          * --- this throws an exception if offset is out of range.
          */
-        $this->validateOffset ( $o );
-        $this->validateOffset ( $o + 3 );
-
+        $this->validateOffset($o);
+        $this->validateOffset($o + 3);
+        
         /* Translate the offset into an offset into the data. */
         $o += $this->start;
-
+        
         /* Return an unsigned long. */
-        return PelConvert::bytesToLong ( $this->data, $o, $this->order );
+        return PelConvert::bytesToLong($this->data, $o, $this->order);
     }
-
 
     /**
      * Return a signed long read from the data.
      *
-     * @param int the offset into the data. An offset of zero will
-     *        return the first long available in the current allowed window.
-     *        The last valid offset is equal to {@link getSize()}-4. Invalid
-     *        offsets will result in a {@link PelDataWindowOffsetException}
-     *        being thrown.
-     *
+     * @param
+     *            int the offset into the data. An offset of zero will
+     *            return the first long available in the current allowed window.
+     *            The last valid offset is equal to {@link getSize()}-4. Invalid
+     *            offsets will result in a {@link PelDataWindowOffsetException}
+     *            being thrown.
+     *            
      * @return int the signed long found at offset.
      */
-    function getSLong($o = 0) {
+    function getSLong($o = 0)
+    {
         /*
          * Validate the offset+3 to see if we can safely get four bytes
          * --- this throws an exception if offset is out of range.
          */
-        $this->validateOffset ( $o );
-        $this->validateOffset ( $o + 3 );
-
+        $this->validateOffset($o);
+        $this->validateOffset($o + 3);
+        
         /* Translate the offset into an offset into the data. */
         $o += $this->start;
-
+        
         /* Return a signed long. */
-        return PelConvert::bytesToSLong ( $this->data, $o, $this->order );
+        return PelConvert::bytesToSLong($this->data, $o, $this->order);
     }
-
 
     /**
      * Return an unsigned rational read from the data.
      *
-     * @param int the offset into the data. An offset of zero will
-     *        return the first rational available in the current allowed
-     *        window. The last valid offset is equal to {@link getSize()}-8.
-     *        Invalid offsets will result in a {@link
-     *        PelDataWindowOffsetException} being thrown.
-     *
+     * @param
+     *            int the offset into the data. An offset of zero will
+     *            return the first rational available in the current allowed
+     *            window. The last valid offset is equal to {@link getSize()}-8.
+     *            Invalid offsets will result in a {@link
+     *            PelDataWindowOffsetException} being thrown.
+     *            
      * @return array the unsigned rational found at offset. A rational
      *         number is represented as an array of two numbers: the enumerator
      *         and denominator. Both of these numbers will be unsigned longs.
      */
-    function getRational($o = 0) {
-        return array ($this->getLong ( $o ),$this->getLong ( $o + 4 ) );
+    function getRational($o = 0)
+    {
+        return array(
+            $this->getLong($o),
+            $this->getLong($o + 4)
+        );
     }
-
 
     /**
      * Return a signed rational read from the data.
      *
-     * @param int the offset into the data. An offset of zero will
-     *        return the first rational available in the current allowed
-     *        window. The last valid offset is equal to {@link getSize()}-8.
-     *        Invalid offsets will result in a {@link
-     *        PelDataWindowOffsetException} being thrown.
-     *
+     * @param
+     *            int the offset into the data. An offset of zero will
+     *            return the first rational available in the current allowed
+     *            window. The last valid offset is equal to {@link getSize()}-8.
+     *            Invalid offsets will result in a {@link
+     *            PelDataWindowOffsetException} being thrown.
+     *            
      * @return array the signed rational found at offset. A rational
      *         number is represented as an array of two numbers: the enumerator
      *         and denominator. Both of these numbers will be signed longs.
      */
-    function getSRational($o = 0) {
-        return array ($this->getSLong ( $o ),$this->getSLong ( $o + 4 ) );
+    function getSRational($o = 0)
+    {
+        return array(
+            $this->getSLong($o),
+            $this->getSLong($o + 4)
+        );
     }
-
 
     /**
      * String comparison on substrings.
      *
-     * @param int the offset into the data. An offset of zero will make
-     *        the comparison start with the very first byte available in the
-     *        window. The last valid offset is equal to {@link getSize()}
-     *        minus the length of the string. If the string is too long, then
-     *        a {@link PelDataWindowOffsetException} will be thrown.
-     *
-     * @param string the string to compare with.
-     *
+     * @param
+     *            int the offset into the data. An offset of zero will make
+     *            the comparison start with the very first byte available in the
+     *            window. The last valid offset is equal to {@link getSize()}
+     *            minus the length of the string. If the string is too long, then
+     *            a {@link PelDataWindowOffsetException} will be thrown.
+     *            
+     * @param
+     *            string the string to compare with.
+     *            
      * @return boolean true if the string given matches the data in the
      *         window, at the specified offset, false otherwise. The comparison
      *         will stop as soon as a mismatch if found.
      */
-    function strcmp($o, $str) {
+    function strcmp($o, $str)
+    {
         /*
          * Validate the offset of the final character we might have to
          * check.
          */
-        $s = strlen ( $str );
-        $this->validateOffset ( $o );
-        $this->validateOffset ( $o + $s - 1 );
-
+        $s = strlen($str);
+        $this->validateOffset($o);
+        $this->validateOffset($o + $s - 1);
+        
         /* Translate the offset into an offset into the data. */
         $o += $this->start;
-
+        
         /* Check each character, return as soon as the answer is known. */
-        for($i = 0; $i < $s; $i ++) {
-            if ($this->data {$o + $i} != $str {$i})
+        for ($i = 0; $i < $s; $i ++) {
+            if ($this->data{$o + $i} != $str{$i})
                 return false;
         }
-
+        
         /* All characters matches each other, return true. */
         return true;
     }
-
 
     /**
      * Return a string representation of the data window.
@@ -543,9 +568,9 @@ class PelDataWindow {
      *         the number of bytes accessible, the total number of bytes, and
      *         the window start and stop.
      */
-    function __toString() {
-        return Pel::fmt ( 'DataWindow: %d bytes in [%d, %d] of %d bytes', $this->size, $this->start, $this->start +
-             $this->size, strlen ( $this->data ) );
+    function __toString()
+    {
+        return Pel::fmt('DataWindow: %d bytes in [%d, %d] of %d bytes', $this->size, $this->start, $this->start + $this->size, strlen($this->data));
     }
 }
 

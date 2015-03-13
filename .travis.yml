@@ -13,4 +13,4 @@ install:
 
 script: 
   - php test/run-tests.php
-  - phpcs src
+  - phpcs --standard=psr2 src

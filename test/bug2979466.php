@@ -21,30 +21,30 @@
  * Free Software Foundation, Inc., 51 Franklin St, Fifth Floor,
  * Boston, MA 02110-1301 USA
  */
-set_include_path ( dirname ( __FILE__ ) . '/../src/' . PATH_SEPARATOR . get_include_path () );
+set_include_path(dirname(__FILE__) . '/../src/' . PATH_SEPARATOR . get_include_path());
 
-if (realpath ( $_SERVER ['PHP_SELF'] ) == __FILE__) {
+if (realpath($_SERVER['PHP_SELF']) == __FILE__) {
     require_once 'simpletest/autorun.php';
 }
 
+class Bug2979466TestCase extends UnitTestCase
+{
 
-class Bug2979466TestCase extends UnitTestCase {
-
-
-    function __construct() {
-        parent::__construct ( 'Bug2979466 Test' );
+    function __construct()
+    {
+        parent::__construct('Bug2979466 Test');
     }
 
-
-    function testThisDoesNotWorkAsExpected() {
-        $file = dirname ( __FILE__ ) . '/images/bug2979466.jpg';
-	// TODO Out of memory
-	return;
+    function testThisDoesNotWorkAsExpected()
+    {
+        $file = dirname(__FILE__) . '/images/bug2979466.jpg';
+        // TODO Out of memory
+        return;
         try {
             require_once 'PelJpeg.php';
-            $jpeg = new PelJpeg ( $file );
-        } catch ( Exception $e ) {
-            $this->fail ( 'Test should not throw an exception' );
+            $jpeg = new PelJpeg($file);
+        } catch (Exception $e) {
+            $this->fail('Test should not throw an exception');
         }
     }
 }

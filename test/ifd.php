@@ -22,64 +22,64 @@
  * Free Software Foundation, Inc., 51 Franklin St, Fifth Floor,
  * Boston, MA 02110-1301 USA
  */
-set_include_path ( dirname ( __FILE__ ) . '/../src/' . PATH_SEPARATOR . get_include_path () );
+set_include_path(dirname(__FILE__) . '/../src/' . PATH_SEPARATOR . get_include_path());
 
-if (realpath ( $_SERVER ['PHP_SELF'] ) == __FILE__) {
+if (realpath($_SERVER['PHP_SELF']) == __FILE__) {
     require_once 'simpletest/autorun.php';
 }
 
+class IFDTestCase extends UnitTestCase
+{
 
-class IFDTestCase extends UnitTestCase {
-
-
-    function __construct() {
+    function __construct()
+    {
         require_once ('PelIfd.php');
         require_once ('PelTag.php');
         require_once ('PelEntryAscii.php');
-        parent::__construct ( 'PEL IFD Tests' );
+        parent::__construct('PEL IFD Tests');
     }
 
-
-    function testIteratorAggretate() {
-        $ifd = new PelIfd ( PelIfd::IFD0 );
-
-        $this->assertEqual ( sizeof ( $ifd->getIterator () ), 0 );
-
-        $desc = new PelEntryAscii ( PelTag::IMAGE_DESCRIPTION, 'Hello?' );
-        $date = new PelEntryTime ( PelTag::DATE_TIME, 12345678 );
-
-        $ifd->addEntry ( $desc );
-        $ifd->addEntry ( $date );
-
-        $this->assertEqual ( sizeof ( $ifd->getIterator () ), 2 );
-
-        $entries = array ();
-        foreach ( $ifd as $tag => $entry ) {
-            $entries [$tag] = $entry;
+    function testIteratorAggretate()
+    {
+        $ifd = new PelIfd(PelIfd::IFD0);
+        
+        $this->assertEqual(sizeof($ifd->getIterator()), 0);
+        
+        $desc = new PelEntryAscii(PelTag::IMAGE_DESCRIPTION, 'Hello?');
+        $date = new PelEntryTime(PelTag::DATE_TIME, 12345678);
+        
+        $ifd->addEntry($desc);
+        $ifd->addEntry($date);
+        
+        $this->assertEqual(sizeof($ifd->getIterator()), 2);
+        
+        $entries = array();
+        foreach ($ifd as $tag => $entry) {
+            $entries[$tag] = $entry;
         }
-
-        $this->assertIdentical ( $entries [PelTag::IMAGE_DESCRIPTION], $desc );
-        $this->assertIdentical ( $entries [PelTag::DATE_TIME], $date );
+        
+        $this->assertIdentical($entries[PelTag::IMAGE_DESCRIPTION], $desc);
+        $this->assertIdentical($entries[PelTag::DATE_TIME], $date);
     }
 
-
-    function testArrayAccess() {
-        $ifd = new PelIfd ( PelIfd::IFD0 );
-
-        $this->assertEqual ( sizeof ( $ifd->getIterator () ), 0 );
-
-        $desc = new PelEntryAscii ( PelTag::IMAGE_DESCRIPTION, 'Hello?' );
-        $date = new PelEntryTime ( PelTag::DATE_TIME, 12345678 );
-
-        $ifd [] = $desc;
-        $ifd [] = $date;
-
-        $this->assertIdentical ( $ifd [PelTag::IMAGE_DESCRIPTION], $desc );
-        $this->assertIdentical ( $ifd [PelTag::DATE_TIME], $date );
-
-        unset ( $ifd [PelTag::DATE_TIME] );
-
-        $this->assertFalse ( isset ( $ifd [PelTag::DATE_TIME] ) );
+    function testArrayAccess()
+    {
+        $ifd = new PelIfd(PelIfd::IFD0);
+        
+        $this->assertEqual(sizeof($ifd->getIterator()), 0);
+        
+        $desc = new PelEntryAscii(PelTag::IMAGE_DESCRIPTION, 'Hello?');
+        $date = new PelEntryTime(PelTag::DATE_TIME, 12345678);
+        
+        $ifd[] = $desc;
+        $ifd[] = $date;
+        
+        $this->assertIdentical($ifd[PelTag::IMAGE_DESCRIPTION], $desc);
+        $this->assertIdentical($ifd[PelTag::DATE_TIME], $date);
+        
+        unset($ifd[PelTag::DATE_TIME]);
+        
+        $this->assertFalse(isset($ifd[PelTag::DATE_TIME]));
     }
 }
 

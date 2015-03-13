@@ -21,9 +21,9 @@
  * Free Software Foundation, Inc., 51 Franklin St, Fifth Floor,
  * Boston, MA 02110-1301 USA
  */
-set_include_path ( dirname ( __FILE__ ) . '/../src/' . PATH_SEPARATOR . get_include_path () );
+set_include_path(dirname(__FILE__) . '/../src/' . PATH_SEPARATOR . get_include_path());
 
-if (realpath ( $_SERVER ['PHP_SELF'] ) == __FILE__) {
+if (realpath($_SERVER['PHP_SELF']) == __FILE__) {
     require_once 'simpletest/autorun.php';
 }
 
@@ -31,63 +31,64 @@ require_once 'Pel.php';
 require_once 'PelDataWindow.php';
 require_once 'PelJpeg.php';
 
+class Gh16TestCase extends UnitTestCase
+{
 
-class Gh16TestCase extends UnitTestCase {
     protected $file;
 
-
-    function __construct() {
-        parent::__construct ( 'Gh-16 Test' );
+    function __construct()
+    {
+        parent::__construct('Gh-16 Test');
     }
 
-
-    function setUp() {
-        $this->file = dirname ( __FILE__ ) . '/images/gh-16-tmp.jpg';
-        $file = dirname ( __FILE__ ) . '/images/gh-16.jpg';
-        copy ( $file, $this->file );
+    function setUp()
+    {
+        $this->file = dirname(__FILE__) . '/images/gh-16-tmp.jpg';
+        $file = dirname(__FILE__) . '/images/gh-16.jpg';
+        copy($file, $this->file);
     }
 
-
-    function tearDown() {
-        unlink ( $this->file );
+    function tearDown()
+    {
+        unlink($this->file);
     }
 
-
-    function testThisDoesNotWorkAsExpected() {
+    function testThisDoesNotWorkAsExpected()
+    {
         $subject = "Превед, медвед!";
-
-        $data = new PelDataWindow ( file_get_contents ( $this->file ) );
-
-        if (PelJpeg::isValid ( $data )) {
-
-            $jpeg = new PelJpeg ();
-            $jpeg->load ( $data );
-            $exif = $jpeg->getExif ();
-
+        
+        $data = new PelDataWindow(file_get_contents($this->file));
+        
+        if (PelJpeg::isValid($data)) {
+            
+            $jpeg = new PelJpeg();
+            $jpeg->load($data);
+            $exif = $jpeg->getExif();
+            
             if (null == $exif) {
-                $exif = new PelExif ();
-                $jpeg->setExif ( $exif );
-                $tiff = new PelTiff ();
-                $exif->setTiff ( $tiff );
+                $exif = new PelExif();
+                $jpeg->setExif($exif);
+                $tiff = new PelTiff();
+                $exif->setTiff($tiff);
             }
-
-            $tiff = $exif->getTiff ();
-
-            $ifd0 = $tiff->getIfd ();
+            
+            $tiff = $exif->getTiff();
+            
+            $ifd0 = $tiff->getIfd();
             if (null == $ifd0) {
-                $ifd0 = new PelIfd ( PelIfd::IFD0 );
-                $tiff->setIfd ( $ifd0 );
+                $ifd0 = new PelIfd(PelIfd::IFD0);
+                $tiff->setIfd($ifd0);
             }
         }
-        $ifd0->addEntry ( new PelEntryWindowsString ( PelTag::XP_SUBJECT, $subject ) );
-
-        file_put_contents ( $this->file, $jpeg->getBytes () );
-
-        $jpeg = new PelJpeg ( $this->file );
-        $exif = $jpeg->getExif ();
-        $tiff = $exif->getTiff ();
-        $ifd0 = $tiff->getIfd ();
-        $written_subject = $ifd0->getEntry ( PelTag::XP_SUBJECT );
-        $this->assertEqual ( $subject, $written_subject->getValue () );
+        $ifd0->addEntry(new PelEntryWindowsString(PelTag::XP_SUBJECT, $subject));
+        
+        file_put_contents($this->file, $jpeg->getBytes());
+        
+        $jpeg = new PelJpeg($this->file);
+        $exif = $jpeg->getExif();
+        $tiff = $exif->getTiff();
+        $ifd0 = $tiff->getIfd();
+        $written_subject = $ifd0->getEntry(PelTag::XP_SUBJECT);
+        $this->assertEqual($subject, $written_subject->getValue());
     }
 }

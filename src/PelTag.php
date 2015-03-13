@@ -38,7 +38,6 @@
 require_once ('Pel.php');
 require_once ('PelIfd.php');
 
-
 /**
  * #@-
  */
@@ -64,7 +63,8 @@ require_once ('PelIfd.php');
  * @author Martin Geisler <mgeisler@users.sourceforge.net>
  * @package PEL
  */
-class PelTag {
+class PelTag
+{
 
     /**
      * Interoperability index.
@@ -1338,631 +1338,635 @@ class PelTag {
      */
     const GPS_DIFFERENTIAL = 0x001E;
 
-
     /**
      * Returns a short name for an Exif tag.
      *
-     * @param int the IFD type of the tag, one of {@link PelIfd::IFD0},
-     *        {@link PelIfd::IFD1}, {@link PelIfd::EXIF}, {@link PelIfd::GPS},
-     *        or {@link PelIfd::INTEROPERABILITY}.
-     *
-     * @param PelTag the tag.
-     *
+     * @param
+     *            int the IFD type of the tag, one of {@link PelIfd::IFD0},
+     *            {@link PelIfd::IFD1}, {@link PelIfd::EXIF}, {@link PelIfd::GPS},
+     *            or {@link PelIfd::INTEROPERABILITY}.
+     *            
+     * @param
+     *            PelTag the tag.
+     *            
      * @return string the short name of the tag, e.g., 'ImageWidth' for
      *         the {@link IMAGE_WIDTH} tag. If the tag is not known, the string
      *         'Unknown:0xTTTT' will be returned where 'TTTT' is the hexadecimal
      *         representation of the tag.
      */
-    static function getName($type, $tag) {
+    static function getName($type, $tag)
+    {
         switch ($type) {
-            case PelIfd::IFD0 :
-            case PelIfd::IFD1 :
-            case PelIfd::EXIF :
-            case PelIfd::INTEROPERABILITY :
-
+            case PelIfd::IFD0:
+            case PelIfd::IFD1:
+            case PelIfd::EXIF:
+            case PelIfd::INTEROPERABILITY:
+                
                 switch ($tag) {
-                    case self::INTEROPERABILITY_INDEX :
+                    case self::INTEROPERABILITY_INDEX:
                         return 'InteroperabilityIndex';
-                    case self::INTEROPERABILITY_VERSION :
+                    case self::INTEROPERABILITY_VERSION:
                         return 'InteroperabilityVersion';
-                    case self::IMAGE_WIDTH :
+                    case self::IMAGE_WIDTH:
                         return 'ImageWidth';
-                    case self::IMAGE_LENGTH :
+                    case self::IMAGE_LENGTH:
                         return 'ImageLength';
-                    case self::BITS_PER_SAMPLE :
+                    case self::BITS_PER_SAMPLE:
                         return 'BitsPerSample';
-                    case self::COMPRESSION :
+                    case self::COMPRESSION:
                         return 'Compression';
-                    case self::PHOTOMETRIC_INTERPRETATION :
+                    case self::PHOTOMETRIC_INTERPRETATION:
                         return 'PhotometricInterpretation';
-                    case self::FILL_ORDER :
+                    case self::FILL_ORDER:
                         return 'FillOrder';
-                    case self::DOCUMENT_NAME :
+                    case self::DOCUMENT_NAME:
                         return 'DocumentName';
-                    case self::IMAGE_DESCRIPTION :
+                    case self::IMAGE_DESCRIPTION:
                         return 'ImageDescription';
-                    case self::MAKE :
+                    case self::MAKE:
                         return 'Make';
-                    case self::MODEL :
+                    case self::MODEL:
                         return 'Model';
-                    case self::STRIP_OFFSETS :
+                    case self::STRIP_OFFSETS:
                         return 'StripOffsets';
-                    case self::ORIENTATION :
+                    case self::ORIENTATION:
                         return 'Orientation';
-                    case self::SAMPLES_PER_PIXEL :
+                    case self::SAMPLES_PER_PIXEL:
                         return 'SamplesPerPixel';
-                    case self::ROWS_PER_STRIP :
+                    case self::ROWS_PER_STRIP:
                         return 'RowsPerStrip';
-                    case self::STRIP_BYTE_COUNTS :
+                    case self::STRIP_BYTE_COUNTS:
                         return 'StripByteCounts';
-                    case self::X_RESOLUTION :
+                    case self::X_RESOLUTION:
                         return 'XResolution';
-                    case self::Y_RESOLUTION :
+                    case self::Y_RESOLUTION:
                         return 'YResolution';
-                    case self::PLANAR_CONFIGURATION :
+                    case self::PLANAR_CONFIGURATION:
                         return 'PlanarConfiguration';
-                    case self::RESOLUTION_UNIT :
+                    case self::RESOLUTION_UNIT:
                         return 'ResolutionUnit';
-                    case self::TRANSFER_FUNCTION :
+                    case self::TRANSFER_FUNCTION:
                         return 'TransferFunction';
-                    case self::SOFTWARE :
+                    case self::SOFTWARE:
                         return 'Software';
-                    case self::DATE_TIME :
+                    case self::DATE_TIME:
                         return 'DateTime';
-                    case self::ARTIST :
+                    case self::ARTIST:
                         return 'Artist';
-                    case self::WHITE_POINT :
+                    case self::WHITE_POINT:
                         return 'WhitePoint';
-                    case self::PRIMARY_CHROMATICITIES :
+                    case self::PRIMARY_CHROMATICITIES:
                         return 'PrimaryChromaticities';
-                    case self::TRANSFER_RANGE :
+                    case self::TRANSFER_RANGE:
                         return 'TransferRange';
-                    case self::JPEG_PROC :
+                    case self::JPEG_PROC:
                         return 'JPEGProc';
-                    case self::JPEG_INTERCHANGE_FORMAT :
+                    case self::JPEG_INTERCHANGE_FORMAT:
                         return 'JPEGInterchangeFormat';
-                    case self::JPEG_INTERCHANGE_FORMAT_LENGTH :
+                    case self::JPEG_INTERCHANGE_FORMAT_LENGTH:
                         return 'JPEGInterchangeFormatLength';
-                    case self::YCBCR_COEFFICIENTS :
+                    case self::YCBCR_COEFFICIENTS:
                         return 'YCbCrCoefficients';
-                    case self::YCBCR_SUB_SAMPLING :
+                    case self::YCBCR_SUB_SAMPLING:
                         return 'YCbCrSubSampling';
-                    case self::YCBCR_POSITIONING :
+                    case self::YCBCR_POSITIONING:
                         return 'YCbCrPositioning';
-                    case self::REFERENCE_BLACK_WHITE :
+                    case self::REFERENCE_BLACK_WHITE:
                         return 'ReferenceBlackWhite';
-                    case self::RELATED_IMAGE_FILE_FORMAT :
+                    case self::RELATED_IMAGE_FILE_FORMAT:
                         return 'RelatedImageFileFormat';
-                    case self::RELATED_IMAGE_WIDTH :
+                    case self::RELATED_IMAGE_WIDTH:
                         return 'RelatedImageWidth';
-                    case self::RELATED_IMAGE_LENGTH :
+                    case self::RELATED_IMAGE_LENGTH:
                         return 'RelatedImageLength';
-                    case self::CFA_REPEAT_PATTERN_DIM :
+                    case self::CFA_REPEAT_PATTERN_DIM:
                         return 'CFARepeatPatternDim';
-                    case self::CFA_PATTERN :
+                    case self::CFA_PATTERN:
                         return 'CFAPattern';
-                    case self::BATTERY_LEVEL :
+                    case self::BATTERY_LEVEL:
                         return 'BatteryLevel';
-                    case self::COPYRIGHT :
+                    case self::COPYRIGHT:
                         return 'Copyright';
-                    case self::EXPOSURE_TIME :
+                    case self::EXPOSURE_TIME:
                         return 'ExposureTime';
-                    case self::FNUMBER :
+                    case self::FNUMBER:
                         return 'FNumber';
-                    case self::IPTC_NAA :
+                    case self::IPTC_NAA:
                         return 'IPTC/NAA';
-                    case self::EXIF_IFD_POINTER :
+                    case self::EXIF_IFD_POINTER:
                         return 'ExifIFDPointer';
-                    case self::INTER_COLOR_PROFILE :
+                    case self::INTER_COLOR_PROFILE:
                         return 'InterColorProfile';
-                    case self::EXPOSURE_PROGRAM :
+                    case self::EXPOSURE_PROGRAM:
                         return 'ExposureProgram';
-                    case self::SPECTRAL_SENSITIVITY :
+                    case self::SPECTRAL_SENSITIVITY:
                         return 'SpectralSensitivity';
-                    case self::GPS_INFO_IFD_POINTER :
+                    case self::GPS_INFO_IFD_POINTER:
                         return 'GPSInfoIFDPointer';
-                    case self::ISO_SPEED_RATINGS :
+                    case self::ISO_SPEED_RATINGS:
                         return 'ISOSpeedRatings';
-                    case self::OECF :
+                    case self::OECF:
                         return 'OECF';
-                    case self::EXIF_VERSION :
+                    case self::EXIF_VERSION:
                         return 'ExifVersion';
-                    case self::DATE_TIME_ORIGINAL :
+                    case self::DATE_TIME_ORIGINAL:
                         return 'DateTimeOriginal';
-                    case self::DATE_TIME_DIGITIZED :
+                    case self::DATE_TIME_DIGITIZED:
                         return 'DateTimeDigitized';
-                    case self::COMPONENTS_CONFIGURATION :
+                    case self::COMPONENTS_CONFIGURATION:
                         return 'ComponentsConfiguration';
-                    case self::COMPRESSED_BITS_PER_PIXEL :
+                    case self::COMPRESSED_BITS_PER_PIXEL:
                         return 'CompressedBitsPerPixel';
-                    case self::SHUTTER_SPEED_VALUE :
+                    case self::SHUTTER_SPEED_VALUE:
                         return 'ShutterSpeedValue';
-                    case self::APERTURE_VALUE :
+                    case self::APERTURE_VALUE:
                         return 'ApertureValue';
-                    case self::BRIGHTNESS_VALUE :
+                    case self::BRIGHTNESS_VALUE:
                         return 'BrightnessValue';
-                    case self::EXPOSURE_BIAS_VALUE :
+                    case self::EXPOSURE_BIAS_VALUE:
                         return 'ExposureBiasValue';
-                    case self::MAX_APERTURE_VALUE :
+                    case self::MAX_APERTURE_VALUE:
                         return 'MaxApertureValue';
-                    case self::SUBJECT_DISTANCE :
+                    case self::SUBJECT_DISTANCE:
                         return 'SubjectDistance';
-                    case self::METERING_MODE :
+                    case self::METERING_MODE:
                         return 'MeteringMode';
-                    case self::LIGHT_SOURCE :
+                    case self::LIGHT_SOURCE:
                         return 'LightSource';
-                    case self::FLASH :
+                    case self::FLASH:
                         return 'Flash';
-                    case self::FOCAL_LENGTH :
+                    case self::FOCAL_LENGTH:
                         return 'FocalLength';
-                    case self::MAKER_NOTE :
+                    case self::MAKER_NOTE:
                         return 'MakerNote';
-                    case self::USER_COMMENT :
+                    case self::USER_COMMENT:
                         return 'UserComment';
-                    case self::SUB_SEC_TIME :
+                    case self::SUB_SEC_TIME:
                         return 'SubSecTime';
-                    case self::SUB_SEC_TIME_ORIGINAL :
+                    case self::SUB_SEC_TIME_ORIGINAL:
                         return 'SubSecTimeOriginal';
-                    case self::SUB_SEC_TIME_DIGITIZED :
+                    case self::SUB_SEC_TIME_DIGITIZED:
                         return 'SubSecTimeDigitized';
-                    case self::XP_TITLE :
+                    case self::XP_TITLE:
                         return 'WindowsXPTitle';
-                    case self::XP_COMMENT :
+                    case self::XP_COMMENT:
                         return 'WindowsXPComment';
-                    case self::XP_AUTHOR :
+                    case self::XP_AUTHOR:
                         return 'WindowsXPAuthor';
-                    case self::XP_KEYWORDS :
+                    case self::XP_KEYWORDS:
                         return 'WindowsXPKeywords';
-                    case self::XP_SUBJECT :
+                    case self::XP_SUBJECT:
                         return 'WindowsXPSubject';
-                    case self::FLASH_PIX_VERSION :
+                    case self::FLASH_PIX_VERSION:
                         return 'FlashPixVersion';
-                    case self::COLOR_SPACE :
+                    case self::COLOR_SPACE:
                         return 'ColorSpace';
-                    case self::PIXEL_X_DIMENSION :
+                    case self::PIXEL_X_DIMENSION:
                         return 'PixelXDimension';
-                    case self::PIXEL_Y_DIMENSION :
+                    case self::PIXEL_Y_DIMENSION:
                         return 'PixelYDimension';
-                    case self::RELATED_SOUND_FILE :
+                    case self::RELATED_SOUND_FILE:
                         return 'RelatedSoundFile';
-                    case self::INTEROPERABILITY_IFD_POINTER :
+                    case self::INTEROPERABILITY_IFD_POINTER:
                         return 'InteroperabilityIFDPointer';
-                    case self::FLASH_ENERGY :
+                    case self::FLASH_ENERGY:
                         return 'FlashEnergy';
-                    case self::SPATIAL_FREQUENCY_RESPONSE :
+                    case self::SPATIAL_FREQUENCY_RESPONSE:
                         return 'SpatialFrequencyResponse';
-                    case self::FOCAL_PLANE_X_RESOLUTION :
+                    case self::FOCAL_PLANE_X_RESOLUTION:
                         return 'FocalPlaneXResolution';
-                    case self::FOCAL_PLANE_Y_RESOLUTION :
+                    case self::FOCAL_PLANE_Y_RESOLUTION:
                         return 'FocalPlaneYResolution';
-                    case self::FOCAL_PLANE_RESOLUTION_UNIT :
+                    case self::FOCAL_PLANE_RESOLUTION_UNIT:
                         return 'FocalPlaneResolutionUnit';
-                    case self::SUBJECT_LOCATION :
+                    case self::SUBJECT_LOCATION:
                         return 'SubjectLocation';
-                    case self::EXPOSURE_INDEX :
+                    case self::EXPOSURE_INDEX:
                         return 'ExposureIndex';
-                    case self::SENSING_METHOD :
+                    case self::SENSING_METHOD:
                         return 'SensingMethod';
-                    case self::FILE_SOURCE :
+                    case self::FILE_SOURCE:
                         return 'FileSource';
-                    case self::SCENE_TYPE :
+                    case self::SCENE_TYPE:
                         return 'SceneType';
-                    case self::SUBJECT_AREA :
+                    case self::SUBJECT_AREA:
                         return 'SubjectArea';
-                    case self::CUSTOM_RENDERED :
+                    case self::CUSTOM_RENDERED:
                         return 'CustomRendered';
-                    case self::EXPOSURE_MODE :
+                    case self::EXPOSURE_MODE:
                         return 'ExposureMode';
-                    case self::WHITE_BALANCE :
+                    case self::WHITE_BALANCE:
                         return 'WhiteBalance';
-                    case self::DIGITAL_ZOOM_RATIO :
+                    case self::DIGITAL_ZOOM_RATIO:
                         return 'DigitalZoomRatio';
-                    case self::FOCAL_LENGTH_IN_35MM_FILM :
+                    case self::FOCAL_LENGTH_IN_35MM_FILM:
                         return 'FocalLengthIn35mmFilm';
-                    case self::SCENE_CAPTURE_TYPE :
+                    case self::SCENE_CAPTURE_TYPE:
                         return 'SceneCaptureType';
-                    case self::GAIN_CONTROL :
+                    case self::GAIN_CONTROL:
                         return 'GainControl';
-                    case self::CONTRAST :
+                    case self::CONTRAST:
                         return 'Contrast';
-                    case self::SATURATION :
+                    case self::SATURATION:
                         return 'Saturation';
-                    case self::SHARPNESS :
+                    case self::SHARPNESS:
                         return 'Sharpness';
-                    case self::DEVICE_SETTING_DESCRIPTION :
+                    case self::DEVICE_SETTING_DESCRIPTION:
                         return 'DeviceSettingDescription';
-                    case self::SUBJECT_DISTANCE_RANGE :
+                    case self::SUBJECT_DISTANCE_RANGE:
                         return 'SubjectDistanceRange';
-                    case self::IMAGE_UNIQUE_ID :
+                    case self::IMAGE_UNIQUE_ID:
                         return 'ImageUniqueID';
-                    case self::GAMMA :
+                    case self::GAMMA:
                         return 'Gamma';
-                    case self::PRINT_IM :
+                    case self::PRINT_IM:
                         return 'PrintIM';
                 }
-
-            case PelIfd::GPS :
+            
+            case PelIfd::GPS:
                 switch ($tag) {
-                    case self::GPS_VERSION_ID :
+                    case self::GPS_VERSION_ID:
                         return 'GPSVersionID';
-                    case self::GPS_LATITUDE_REF :
+                    case self::GPS_LATITUDE_REF:
                         return 'GPSLatitudeRef';
-                    case self::GPS_LATITUDE :
+                    case self::GPS_LATITUDE:
                         return 'GPSLatitude';
-                    case self::GPS_LONGITUDE_REF :
+                    case self::GPS_LONGITUDE_REF:
                         return 'GPSLongitudeRef';
-                    case self::GPS_LONGITUDE :
+                    case self::GPS_LONGITUDE:
                         return 'GPSLongitude';
-                    case self::GPS_ALTITUDE_REF :
+                    case self::GPS_ALTITUDE_REF:
                         return 'GPSAltitudeRef';
-                    case self::GPS_ALTITUDE :
+                    case self::GPS_ALTITUDE:
                         return 'GPSAltitude';
-                    case self::GPS_TIME_STAMP :
+                    case self::GPS_TIME_STAMP:
                         return 'GPSTimeStamp';
-                    case self::GPS_SATELLITES :
+                    case self::GPS_SATELLITES:
                         return 'GPSSatellites';
-                    case self::GPS_STATUS :
+                    case self::GPS_STATUS:
                         return 'GPSStatus';
-                    case self::GPS_MEASURE_MODE :
+                    case self::GPS_MEASURE_MODE:
                         return 'GPSMeasureMode';
-                    case self::GPS_DOP :
+                    case self::GPS_DOP:
                         return 'GPSDOP';
-                    case self::GPS_SPEED_REF :
+                    case self::GPS_SPEED_REF:
                         return 'GPSSpeedRef';
-                    case self::GPS_SPEED :
+                    case self::GPS_SPEED:
                         return 'GPSSpeed';
-                    case self::GPS_TRACK_REF :
+                    case self::GPS_TRACK_REF:
                         return 'GPSTrackRef';
-                    case self::GPS_TRACK :
+                    case self::GPS_TRACK:
                         return 'GPSTrack';
-                    case self::GPS_IMG_DIRECTION_REF :
+                    case self::GPS_IMG_DIRECTION_REF:
                         return 'GPSImgDirectionRef';
-                    case self::GPS_IMG_DIRECTION :
+                    case self::GPS_IMG_DIRECTION:
                         return 'GPSImgDirection';
-                    case self::GPS_MAP_DATUM :
+                    case self::GPS_MAP_DATUM:
                         return 'GPSMapDatum';
-                    case self::GPS_DEST_LATITUDE_REF :
+                    case self::GPS_DEST_LATITUDE_REF:
                         return 'GPSDestLatitudeRef';
-                    case self::GPS_DEST_LATITUDE :
+                    case self::GPS_DEST_LATITUDE:
                         return 'GPSDestLatitude';
-                    case self::GPS_DEST_LONGITUDE_REF :
+                    case self::GPS_DEST_LONGITUDE_REF:
                         return 'GPSDestLongitudeRef';
-                    case self::GPS_DEST_LONGITUDE :
+                    case self::GPS_DEST_LONGITUDE:
                         return 'GPSDestLongitude';
-                    case self::GPS_DEST_BEARING_REF :
+                    case self::GPS_DEST_BEARING_REF:
                         return 'GPSDestBearingRef';
-                    case self::GPS_DEST_BEARING :
+                    case self::GPS_DEST_BEARING:
                         return 'GPSDestBearing';
-                    case self::GPS_DEST_DISTANCE_REF :
+                    case self::GPS_DEST_DISTANCE_REF:
                         return 'GPSDestDistanceRef';
-                    case self::GPS_DEST_DISTANCE :
+                    case self::GPS_DEST_DISTANCE:
                         return 'GPSDestDistance';
-                    case self::GPS_PROCESSING_METHOD :
+                    case self::GPS_PROCESSING_METHOD:
                         return 'GPSProcessingMethod';
-                    case self::GPS_AREA_INFORMATION :
+                    case self::GPS_AREA_INFORMATION:
                         return 'GPSAreaInformation';
-                    case self::GPS_DATE_STAMP :
+                    case self::GPS_DATE_STAMP:
                         return 'GPSDateStamp';
-                    case self::GPS_DIFFERENTIAL :
+                    case self::GPS_DIFFERENTIAL:
                         return 'GPSDifferential';
                 }
-
-            default :
-                return Pel::fmt ( 'Unknown: 0x%04X', $tag );
+            
+            default:
+                return Pel::fmt('Unknown: 0x%04X', $tag);
         }
     }
-
 
     /**
      * Returns a title for an Exif tag.
      *
-     * @param int the IFD type of the tag, one of {@link PelIfd::IFD0},
-     *        {@link PelIfd::IFD1}, {@link PelIfd::EXIF}, {@link PelIfd::GPS},
-     *        or {@link PelIfd::INTEROPERABILITY}.
-     *
-     * @param PelTag the tag.
-     *
+     * @param
+     *            int the IFD type of the tag, one of {@link PelIfd::IFD0},
+     *            {@link PelIfd::IFD1}, {@link PelIfd::EXIF}, {@link PelIfd::GPS},
+     *            or {@link PelIfd::INTEROPERABILITY}.
+     *            
+     * @param
+     *            PelTag the tag.
+     *            
      * @return string the title of the tag, e.g., 'Image Width' for the
      *         {@link IMAGE_WIDTH} tag. If the tag isn't known, the string
      *         'Unknown Tag: 0xTT' will be returned where 'TT' is the
      *         hexadecimal representation of the tag.
      */
-    function getTitle($type, $tag) {
+    function getTitle($type, $tag)
+    {
         switch ($type) {
-            case PelIfd::IFD0 :
-            case PelIfd::IFD1 :
-            case PelIfd::EXIF :
-            case PelIfd::INTEROPERABILITY :
-
+            case PelIfd::IFD0:
+            case PelIfd::IFD1:
+            case PelIfd::EXIF:
+            case PelIfd::INTEROPERABILITY:
+                
                 switch ($tag) {
-                    case self::INTEROPERABILITY_INDEX :
-                        return Pel::tra ( 'Interoperability Index' );
-                    case self::INTEROPERABILITY_VERSION :
-                        return Pel::tra ( 'Interoperability Version' );
-                    case self::IMAGE_WIDTH :
-                        return Pel::tra ( 'Image Width' );
-                    case self::IMAGE_LENGTH :
-                        return Pel::tra ( 'Image Length' );
-                    case self::BITS_PER_SAMPLE :
-                        return Pel::tra ( 'Bits per Sample' );
-                    case self::COMPRESSION :
-                        return Pel::tra ( 'Compression' );
-                    case self::PHOTOMETRIC_INTERPRETATION :
-                        return Pel::tra ( 'Photometric Interpretation' );
-                    case self::FILL_ORDER :
-                        return Pel::tra ( 'Fill Order' );
-                    case self::DOCUMENT_NAME :
-                        return Pel::tra ( 'Document Name' );
-                    case self::IMAGE_DESCRIPTION :
-                        return Pel::tra ( 'Image Description' );
-                    case self::MAKE :
-                        return Pel::tra ( 'Manufacturer' );
-                    case self::MODEL :
-                        return Pel::tra ( 'Model' );
-                    case self::STRIP_OFFSETS :
-                        return Pel::tra ( 'Strip Offsets' );
-                    case self::ORIENTATION :
-                        return Pel::tra ( 'Orientation' );
-                    case self::SAMPLES_PER_PIXEL :
-                        return Pel::tra ( 'Samples per Pixel' );
-                    case self::ROWS_PER_STRIP :
-                        return Pel::tra ( 'Rows per Strip' );
-                    case self::STRIP_BYTE_COUNTS :
-                        return Pel::tra ( 'Strip Byte Count' );
-                    case self::X_RESOLUTION :
-                        return Pel::tra ( 'x-Resolution' );
-                    case self::Y_RESOLUTION :
-                        return Pel::tra ( 'y-Resolution' );
-                    case self::PLANAR_CONFIGURATION :
-                        return Pel::tra ( 'Planar Configuration' );
-                    case self::RESOLUTION_UNIT :
-                        return Pel::tra ( 'Resolution Unit' );
-                    case self::TRANSFER_FUNCTION :
-                        return Pel::tra ( 'Transfer Function' );
-                    case self::SOFTWARE :
-                        return Pel::tra ( 'Software' );
-                    case self::DATE_TIME :
-                        return Pel::tra ( 'Date and Time' );
-                    case self::ARTIST :
-                        return Pel::tra ( 'Artist' );
-                    case self::WHITE_POINT :
-                        return Pel::tra ( 'White Point' );
-                    case self::PRIMARY_CHROMATICITIES :
-                        return Pel::tra ( 'Primary Chromaticities' );
-                    case self::TRANSFER_RANGE :
-                        return Pel::tra ( 'Transfer Range' );
-                    case self::JPEG_PROC :
-                        return Pel::tra ( 'JPEG Process' );
-                    case self::JPEG_INTERCHANGE_FORMAT :
-                        return Pel::tra ( 'JPEG Interchange Format' );
-                    case self::JPEG_INTERCHANGE_FORMAT_LENGTH :
-                        return Pel::tra ( 'JPEG Interchange Format Length' );
-                    case self::YCBCR_COEFFICIENTS :
-                        return Pel::tra ( 'YCbCr Coefficients' );
-                    case self::YCBCR_SUB_SAMPLING :
-                        return Pel::tra ( 'YCbCr Sub-Sampling' );
-                    case self::YCBCR_POSITIONING :
-                        return Pel::tra ( 'YCbCr Positioning' );
-                    case self::REFERENCE_BLACK_WHITE :
-                        return Pel::tra ( 'Reference Black/White' );
-                    case self::RELATED_IMAGE_FILE_FORMAT :
-                        return Pel::tra ( 'Related Image File Format' );
-                    case self::RELATED_IMAGE_WIDTH :
-                        return Pel::tra ( 'Related Image Width' );
-                    case self::RELATED_IMAGE_LENGTH :
-                        return Pel::tra ( 'Related Image Length' );
-                    case self::CFA_REPEAT_PATTERN_DIM :
-                        return Pel::tra ( 'CFA Repeat Pattern Dim' );
-                    case self::CFA_PATTERN :
-                        return Pel::tra ( 'CFA Pattern' );
-                    case self::BATTERY_LEVEL :
-                        return Pel::tra ( 'Battery Level' );
-                    case self::COPYRIGHT :
-                        return Pel::tra ( 'Copyright' );
-                    case self::EXPOSURE_TIME :
-                        return Pel::tra ( 'Exposure Time' );
-                    case self::FNUMBER :
-                        return Pel::tra ( 'FNumber' );
-                    case self::IPTC_NAA :
-                        return Pel::tra ( 'IPTC/NAA' );
-                    case self::EXIF_IFD_POINTER :
-                        return Pel::tra ( 'Exif IFD Pointer' );
-                    case self::INTER_COLOR_PROFILE :
-                        return Pel::tra ( 'Inter Color Profile' );
-                    case self::EXPOSURE_PROGRAM :
-                        return Pel::tra ( 'Exposure Program' );
-                    case self::SPECTRAL_SENSITIVITY :
-                        return Pel::tra ( 'Spectral Sensitivity' );
-                    case self::GPS_INFO_IFD_POINTER :
-                        return Pel::tra ( 'GPS Info IFD Pointer' );
-                    case self::ISO_SPEED_RATINGS :
-                        return Pel::tra ( 'ISO Speed Ratings' );
-                    case self::OECF :
-                        return Pel::tra ( 'OECF' );
-                    case self::EXIF_VERSION :
-                        return Pel::tra ( 'Exif Version' );
-                    case self::DATE_TIME_ORIGINAL :
-                        return Pel::tra ( 'Date and Time (original)' );
-                    case self::DATE_TIME_DIGITIZED :
-                        return Pel::tra ( 'Date and Time (digitized)' );
-                    case self::COMPONENTS_CONFIGURATION :
-                        return Pel::tra ( 'Components Configuration' );
-                    case self::COMPRESSED_BITS_PER_PIXEL :
-                        return Pel::tra ( 'Compressed Bits per Pixel' );
-                    case self::SHUTTER_SPEED_VALUE :
-                        return Pel::tra ( 'Shutter speed' );
-                    case self::APERTURE_VALUE :
-                        return Pel::tra ( 'Aperture' );
-                    case self::BRIGHTNESS_VALUE :
-                        return Pel::tra ( 'Brightness' );
-                    case self::EXPOSURE_BIAS_VALUE :
-                        return Pel::tra ( 'Exposure Bias' );
-                    case self::MAX_APERTURE_VALUE :
-                        return Pel::tra ( 'Max Aperture Value' );
-                    case self::SUBJECT_DISTANCE :
-                        return Pel::tra ( 'Subject Distance' );
-                    case self::METERING_MODE :
-                        return Pel::tra ( 'Metering Mode' );
-                    case self::LIGHT_SOURCE :
-                        return Pel::tra ( 'Light Source' );
-                    case self::FLASH :
-                        return Pel::tra ( 'Flash' );
-                    case self::FOCAL_LENGTH :
-                        return Pel::tra ( 'Focal Length' );
-                    case self::MAKER_NOTE :
-                        return Pel::tra ( 'Maker Note' );
-                    case self::USER_COMMENT :
-                        return Pel::tra ( 'User Comment' );
-                    case self::SUB_SEC_TIME :
-                        return Pel::tra ( 'SubSec Time' );
-                    case self::SUB_SEC_TIME_ORIGINAL :
-                        return Pel::tra ( 'SubSec Time Original' );
-                    case self::SUB_SEC_TIME_DIGITIZED :
-                        return Pel::tra ( 'SubSec Time Digitized' );
-                    case self::XP_TITLE :
+                    case self::INTEROPERABILITY_INDEX:
+                        return Pel::tra('Interoperability Index');
+                    case self::INTEROPERABILITY_VERSION:
+                        return Pel::tra('Interoperability Version');
+                    case self::IMAGE_WIDTH:
+                        return Pel::tra('Image Width');
+                    case self::IMAGE_LENGTH:
+                        return Pel::tra('Image Length');
+                    case self::BITS_PER_SAMPLE:
+                        return Pel::tra('Bits per Sample');
+                    case self::COMPRESSION:
+                        return Pel::tra('Compression');
+                    case self::PHOTOMETRIC_INTERPRETATION:
+                        return Pel::tra('Photometric Interpretation');
+                    case self::FILL_ORDER:
+                        return Pel::tra('Fill Order');
+                    case self::DOCUMENT_NAME:
+                        return Pel::tra('Document Name');
+                    case self::IMAGE_DESCRIPTION:
+                        return Pel::tra('Image Description');
+                    case self::MAKE:
+                        return Pel::tra('Manufacturer');
+                    case self::MODEL:
+                        return Pel::tra('Model');
+                    case self::STRIP_OFFSETS:
+                        return Pel::tra('Strip Offsets');
+                    case self::ORIENTATION:
+                        return Pel::tra('Orientation');
+                    case self::SAMPLES_PER_PIXEL:
+                        return Pel::tra('Samples per Pixel');
+                    case self::ROWS_PER_STRIP:
+                        return Pel::tra('Rows per Strip');
+                    case self::STRIP_BYTE_COUNTS:
+                        return Pel::tra('Strip Byte Count');
+                    case self::X_RESOLUTION:
+                        return Pel::tra('x-Resolution');
+                    case self::Y_RESOLUTION:
+                        return Pel::tra('y-Resolution');
+                    case self::PLANAR_CONFIGURATION:
+                        return Pel::tra('Planar Configuration');
+                    case self::RESOLUTION_UNIT:
+                        return Pel::tra('Resolution Unit');
+                    case self::TRANSFER_FUNCTION:
+                        return Pel::tra('Transfer Function');
+                    case self::SOFTWARE:
+                        return Pel::tra('Software');
+                    case self::DATE_TIME:
+                        return Pel::tra('Date and Time');
+                    case self::ARTIST:
+                        return Pel::tra('Artist');
+                    case self::WHITE_POINT:
+                        return Pel::tra('White Point');
+                    case self::PRIMARY_CHROMATICITIES:
+                        return Pel::tra('Primary Chromaticities');
+                    case self::TRANSFER_RANGE:
+                        return Pel::tra('Transfer Range');
+                    case self::JPEG_PROC:
+                        return Pel::tra('JPEG Process');
+                    case self::JPEG_INTERCHANGE_FORMAT:
+                        return Pel::tra('JPEG Interchange Format');
+                    case self::JPEG_INTERCHANGE_FORMAT_LENGTH:
+                        return Pel::tra('JPEG Interchange Format Length');
+                    case self::YCBCR_COEFFICIENTS:
+                        return Pel::tra('YCbCr Coefficients');
+                    case self::YCBCR_SUB_SAMPLING:
+                        return Pel::tra('YCbCr Sub-Sampling');
+                    case self::YCBCR_POSITIONING:
+                        return Pel::tra('YCbCr Positioning');
+                    case self::REFERENCE_BLACK_WHITE:
+                        return Pel::tra('Reference Black/White');
+                    case self::RELATED_IMAGE_FILE_FORMAT:
+                        return Pel::tra('Related Image File Format');
+                    case self::RELATED_IMAGE_WIDTH:
+                        return Pel::tra('Related Image Width');
+                    case self::RELATED_IMAGE_LENGTH:
+                        return Pel::tra('Related Image Length');
+                    case self::CFA_REPEAT_PATTERN_DIM:
+                        return Pel::tra('CFA Repeat Pattern Dim');
+                    case self::CFA_PATTERN:
+                        return Pel::tra('CFA Pattern');
+                    case self::BATTERY_LEVEL:
+                        return Pel::tra('Battery Level');
+                    case self::COPYRIGHT:
+                        return Pel::tra('Copyright');
+                    case self::EXPOSURE_TIME:
+                        return Pel::tra('Exposure Time');
+                    case self::FNUMBER:
+                        return Pel::tra('FNumber');
+                    case self::IPTC_NAA:
+                        return Pel::tra('IPTC/NAA');
+                    case self::EXIF_IFD_POINTER:
+                        return Pel::tra('Exif IFD Pointer');
+                    case self::INTER_COLOR_PROFILE:
+                        return Pel::tra('Inter Color Profile');
+                    case self::EXPOSURE_PROGRAM:
+                        return Pel::tra('Exposure Program');
+                    case self::SPECTRAL_SENSITIVITY:
+                        return Pel::tra('Spectral Sensitivity');
+                    case self::GPS_INFO_IFD_POINTER:
+                        return Pel::tra('GPS Info IFD Pointer');
+                    case self::ISO_SPEED_RATINGS:
+                        return Pel::tra('ISO Speed Ratings');
+                    case self::OECF:
+                        return Pel::tra('OECF');
+                    case self::EXIF_VERSION:
+                        return Pel::tra('Exif Version');
+                    case self::DATE_TIME_ORIGINAL:
+                        return Pel::tra('Date and Time (original)');
+                    case self::DATE_TIME_DIGITIZED:
+                        return Pel::tra('Date and Time (digitized)');
+                    case self::COMPONENTS_CONFIGURATION:
+                        return Pel::tra('Components Configuration');
+                    case self::COMPRESSED_BITS_PER_PIXEL:
+                        return Pel::tra('Compressed Bits per Pixel');
+                    case self::SHUTTER_SPEED_VALUE:
+                        return Pel::tra('Shutter speed');
+                    case self::APERTURE_VALUE:
+                        return Pel::tra('Aperture');
+                    case self::BRIGHTNESS_VALUE:
+                        return Pel::tra('Brightness');
+                    case self::EXPOSURE_BIAS_VALUE:
+                        return Pel::tra('Exposure Bias');
+                    case self::MAX_APERTURE_VALUE:
+                        return Pel::tra('Max Aperture Value');
+                    case self::SUBJECT_DISTANCE:
+                        return Pel::tra('Subject Distance');
+                    case self::METERING_MODE:
+                        return Pel::tra('Metering Mode');
+                    case self::LIGHT_SOURCE:
+                        return Pel::tra('Light Source');
+                    case self::FLASH:
+                        return Pel::tra('Flash');
+                    case self::FOCAL_LENGTH:
+                        return Pel::tra('Focal Length');
+                    case self::MAKER_NOTE:
+                        return Pel::tra('Maker Note');
+                    case self::USER_COMMENT:
+                        return Pel::tra('User Comment');
+                    case self::SUB_SEC_TIME:
+                        return Pel::tra('SubSec Time');
+                    case self::SUB_SEC_TIME_ORIGINAL:
+                        return Pel::tra('SubSec Time Original');
+                    case self::SUB_SEC_TIME_DIGITIZED:
+                        return Pel::tra('SubSec Time Digitized');
+                    case self::XP_TITLE:
                         return 'Windows XP Title';
-                    case self::XP_COMMENT :
+                    case self::XP_COMMENT:
                         return 'Windows XP Comment';
-                    case self::XP_AUTHOR :
+                    case self::XP_AUTHOR:
                         return 'Windows XP Author';
-                    case self::XP_KEYWORDS :
+                    case self::XP_KEYWORDS:
                         return 'Windows XP Keywords';
-                    case self::XP_SUBJECT :
+                    case self::XP_SUBJECT:
                         return 'Windows XP Subject';
-                    case self::FLASH_PIX_VERSION :
-                        return Pel::tra ( 'FlashPix Version' );
-                    case self::COLOR_SPACE :
-                        return Pel::tra ( 'Color Space' );
-                    case self::PIXEL_X_DIMENSION :
-                        return Pel::tra ( 'Pixel x-Dimension' );
-                    case self::PIXEL_Y_DIMENSION :
-                        return Pel::tra ( 'Pixel y-Dimension' );
-                    case self::RELATED_SOUND_FILE :
-                        return Pel::tra ( 'Related Sound File' );
-                    case self::INTEROPERABILITY_IFD_POINTER :
-                        return Pel::tra ( 'Interoperability IFD Pointer' );
-                    case self::FLASH_ENERGY :
-                        return Pel::tra ( 'Flash Energy' );
-                    case self::SPATIAL_FREQUENCY_RESPONSE :
-                        return Pel::tra ( 'Spatial Frequency Response' );
-                    case self::FOCAL_PLANE_X_RESOLUTION :
-                        return Pel::tra ( 'Focal Plane x-Resolution' );
-                    case self::FOCAL_PLANE_Y_RESOLUTION :
-                        return Pel::tra ( 'Focal Plane y-Resolution' );
-                    case self::FOCAL_PLANE_RESOLUTION_UNIT :
-                        return Pel::tra ( 'Focal Plane Resolution Unit' );
-                    case self::SUBJECT_LOCATION :
-                        return Pel::tra ( 'Subject Location' );
-                    case self::EXPOSURE_INDEX :
-                        return Pel::tra ( 'Exposure index' );
-                    case self::SENSING_METHOD :
-                        return Pel::tra ( 'Sensing Method' );
-                    case self::FILE_SOURCE :
-                        return Pel::tra ( 'File Source' );
-                    case self::SCENE_TYPE :
-                        return Pel::tra ( 'Scene Type' );
-                    case self::SUBJECT_AREA :
-                        return Pel::tra ( 'Subject Area' );
-                    case self::CUSTOM_RENDERED :
-                        return Pel::tra ( 'Custom Rendered' );
-                    case self::EXPOSURE_MODE :
-                        return Pel::tra ( 'Exposure Mode' );
-                    case self::WHITE_BALANCE :
-                        return Pel::tra ( 'White Balance' );
-                    case self::DIGITAL_ZOOM_RATIO :
-                        return Pel::tra ( 'Digital Zoom Ratio' );
-                    case self::FOCAL_LENGTH_IN_35MM_FILM :
-                        return Pel::tra ( 'Focal Length In 35mm Film' );
-                    case self::SCENE_CAPTURE_TYPE :
-                        return Pel::tra ( 'Scene Capture Type' );
-                    case self::GAIN_CONTROL :
-                        return Pel::tra ( 'Gain Control' );
-                    case self::CONTRAST :
-                        return Pel::tra ( 'Contrast' );
-                    case self::SATURATION :
-                        return Pel::tra ( 'Saturation' );
-                    case self::SHARPNESS :
-                        return Pel::tra ( 'Sharpness' );
-                    case self::DEVICE_SETTING_DESCRIPTION :
-                        return Pel::tra ( 'Device Setting Description' );
-                    case self::SUBJECT_DISTANCE_RANGE :
-                        return Pel::tra ( 'Subject Distance Range' );
-                    case self::IMAGE_UNIQUE_ID :
-                        return Pel::tra ( 'Image Unique ID' );
-                    case self::GAMMA :
-                        return Pel::tra ( 'Gamma' );
-                    case self::PRINT_IM :
-                        return Pel::tra ( 'Print IM' );
+                    case self::FLASH_PIX_VERSION:
+                        return Pel::tra('FlashPix Version');
+                    case self::COLOR_SPACE:
+                        return Pel::tra('Color Space');
+                    case self::PIXEL_X_DIMENSION:
+                        return Pel::tra('Pixel x-Dimension');
+                    case self::PIXEL_Y_DIMENSION:
+                        return Pel::tra('Pixel y-Dimension');
+                    case self::RELATED_SOUND_FILE:
+                        return Pel::tra('Related Sound File');
+                    case self::INTEROPERABILITY_IFD_POINTER:
+                        return Pel::tra('Interoperability IFD Pointer');
+                    case self::FLASH_ENERGY:
+                        return Pel::tra('Flash Energy');
+                    case self::SPATIAL_FREQUENCY_RESPONSE:
+                        return Pel::tra('Spatial Frequency Response');
+                    case self::FOCAL_PLANE_X_RESOLUTION:
+                        return Pel::tra('Focal Plane x-Resolution');
+                    case self::FOCAL_PLANE_Y_RESOLUTION:
+                        return Pel::tra('Focal Plane y-Resolution');
+                    case self::FOCAL_PLANE_RESOLUTION_UNIT:
+                        return Pel::tra('Focal Plane Resolution Unit');
+                    case self::SUBJECT_LOCATION:
+                        return Pel::tra('Subject Location');
+                    case self::EXPOSURE_INDEX:
+                        return Pel::tra('Exposure index');
+                    case self::SENSING_METHOD:
+                        return Pel::tra('Sensing Method');
+                    case self::FILE_SOURCE:
+                        return Pel::tra('File Source');
+                    case self::SCENE_TYPE:
+                        return Pel::tra('Scene Type');
+                    case self::SUBJECT_AREA:
+                        return Pel::tra('Subject Area');
+                    case self::CUSTOM_RENDERED:
+                        return Pel::tra('Custom Rendered');
+                    case self::EXPOSURE_MODE:
+                        return Pel::tra('Exposure Mode');
+                    case self::WHITE_BALANCE:
+                        return Pel::tra('White Balance');
+                    case self::DIGITAL_ZOOM_RATIO:
+                        return Pel::tra('Digital Zoom Ratio');
+                    case self::FOCAL_LENGTH_IN_35MM_FILM:
+                        return Pel::tra('Focal Length In 35mm Film');
+                    case self::SCENE_CAPTURE_TYPE:
+                        return Pel::tra('Scene Capture Type');
+                    case self::GAIN_CONTROL:
+                        return Pel::tra('Gain Control');
+                    case self::CONTRAST:
+                        return Pel::tra('Contrast');
+                    case self::SATURATION:
+                        return Pel::tra('Saturation');
+                    case self::SHARPNESS:
+                        return Pel::tra('Sharpness');
+                    case self::DEVICE_SETTING_DESCRIPTION:
+                        return Pel::tra('Device Setting Description');
+                    case self::SUBJECT_DISTANCE_RANGE:
+                        return Pel::tra('Subject Distance Range');
+                    case self::IMAGE_UNIQUE_ID:
+                        return Pel::tra('Image Unique ID');
+                    case self::GAMMA:
+                        return Pel::tra('Gamma');
+                    case self::PRINT_IM:
+                        return Pel::tra('Print IM');
                 }
-
-            case PelIfd::GPS :
+            
+            case PelIfd::GPS:
                 switch ($tag) {
-                    case self::GPS_VERSION_ID :
+                    case self::GPS_VERSION_ID:
                         return 'GPSVersionID';
-                    case self::GPS_LATITUDE_REF :
+                    case self::GPS_LATITUDE_REF:
                         return 'GPSLatitudeRef';
-                    case self::GPS_LATITUDE :
+                    case self::GPS_LATITUDE:
                         return 'GPSLatitude';
-                    case self::GPS_LONGITUDE_REF :
+                    case self::GPS_LONGITUDE_REF:
                         return 'GPSLongitudeRef';
-                    case self::GPS_LONGITUDE :
+                    case self::GPS_LONGITUDE:
                         return 'GPSLongitude';
-                    case self::GPS_ALTITUDE_REF :
+                    case self::GPS_ALTITUDE_REF:
                         return 'GPSAltitudeRef';
-                    case self::GPS_ALTITUDE :
+                    case self::GPS_ALTITUDE:
                         return 'GPSAltitude';
-                    case self::GPS_TIME_STAMP :
+                    case self::GPS_TIME_STAMP:
                         return 'GPSTimeStamp';
-                    case self::GPS_SATELLITES :
+                    case self::GPS_SATELLITES:
                         return 'GPSSatellites';
-                    case self::GPS_STATUS :
+                    case self::GPS_STATUS:
                         return 'GPSStatus';
-                    case self::GPS_MEASURE_MODE :
+                    case self::GPS_MEASURE_MODE:
                         return 'GPSMeasureMode';
-                    case self::GPS_DOP :
+                    case self::GPS_DOP:
                         return 'GPSDOP';
-                    case self::GPS_SPEED_REF :
+                    case self::GPS_SPEED_REF:
                         return 'GPSSpeedRef';
-                    case self::GPS_SPEED :
+                    case self::GPS_SPEED:
                         return 'GPSSpeed';
-                    case self::GPS_TRACK_REF :
+                    case self::GPS_TRACK_REF:
                         return 'GPSTrackRef';
-                    case self::GPS_TRACK :
+                    case self::GPS_TRACK:
                         return 'GPSTrack';
-                    case self::GPS_IMG_DIRECTION_REF :
+                    case self::GPS_IMG_DIRECTION_REF:
                         return 'GPSImgDirectionRef';
-                    case self::GPS_IMG_DIRECTION :
+                    case self::GPS_IMG_DIRECTION:
                         return 'GPSImgDirection';
-                    case self::GPS_MAP_DATUM :
+                    case self::GPS_MAP_DATUM:
                         return 'GPSMapDatum';
-                    case self::GPS_DEST_LATITUDE_REF :
+                    case self::GPS_DEST_LATITUDE_REF:
                         return 'GPSDestLatitudeRef';
-                    case self::GPS_DEST_LATITUDE :
+                    case self::GPS_DEST_LATITUDE:
                         return 'GPSDestLatitude';
-                    case self::GPS_DEST_LONGITUDE_REF :
+                    case self::GPS_DEST_LONGITUDE_REF:
                         return 'GPSDestLongitudeRef';
-                    case self::GPS_DEST_LONGITUDE :
+                    case self::GPS_DEST_LONGITUDE:
                         return 'GPSDestLongitude';
-                    case self::GPS_DEST_BEARING_REF :
+                    case self::GPS_DEST_BEARING_REF:
                         return 'GPSDestBearingRef';
-                    case self::GPS_DEST_BEARING :
+                    case self::GPS_DEST_BEARING:
                         return 'GPSDestBearing';
-                    case self::GPS_DEST_DISTANCE_REF :
+                    case self::GPS_DEST_DISTANCE_REF:
                         return 'GPSDestDistanceRef';
-                    case self::GPS_DEST_DISTANCE :
+                    case self::GPS_DEST_DISTANCE:
                         return 'GPSDestDistance';
-                    case self::GPS_PROCESSING_METHOD :
+                    case self::GPS_PROCESSING_METHOD:
                         return 'GPSProcessingMethod';
-                    case self::GPS_AREA_INFORMATION :
+                    case self::GPS_AREA_INFORMATION:
                         return 'GPSAreaInformation';
-                    case self::GPS_DATE_STAMP :
+                    case self::GPS_DATE_STAMP:
                         return 'GPSDateStamp';
-                    case self::GPS_DIFFERENTIAL :
+                    case self::GPS_DIFFERENTIAL:
                         return 'GPSDifferential';
                 }
-
-            default :
-                return Pel::fmt ( 'Unknown Tag: 0x%04X', $tag );
+            
+            default:
+                return Pel::fmt('Unknown Tag: 0x%04X', $tag);
         }
     }
 }

@@ -37,7 +37,6 @@
  */
 require_once ('PelDataWindow.php');
 
-
 /**
  * #@-
  */
@@ -55,19 +54,21 @@ require_once ('PelDataWindow.php');
  * @author Martin Geisler <mgeisler@users.sourceforge.net>
  * @package PEL
  */
-class PelJpegContent {
-    private $data = null;
+class PelJpegContent
+{
 
+    private $data = null;
 
     /**
      * Make a new piece of JPEG content.
      *
-     * @param PelDataWindow the content.
+     * @param
+     *            PelDataWindow the content.
      */
-    function __construct(PelDataWindow $data) {
+    function __construct(PelDataWindow $data)
+    {
         $this->data = $data;
     }
-
 
     /**
      * Return the bytes of the content.
@@ -76,8 +77,9 @@ class PelJpegContent {
      *         will match the bytes given to {@link __construct the
      *         constructor}.
      */
-    function getBytes() {
-        return $this->data->getBytes ();
+    function getBytes()
+    {
+        return $this->data->getBytes();
     }
 }
 

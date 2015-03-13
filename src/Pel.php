@@ -42,10 +42,9 @@
  * use an absolute path here because the lookups will be relative to
  * the current directory.
  */
-if (function_exists ( 'dgettext' )) {
-    bindtextdomain ( 'pel', dirname ( __FILE__ ) . '/locale' );
+if (function_exists('dgettext')) {
+    bindtextdomain('pel', dirname(__FILE__) . '/locale');
 } else {
-
 
     /**
      * Pretend to lookup a message in a specific domain.
@@ -54,17 +53,19 @@ if (function_exists ( 'dgettext' )) {
      * untranslated. The function will only be defined if the Gettext
      * extension has not already defined it.
      *
-     * @param string $domain the domain.
-     *
-     * @param string $str the message to be translated.
-     *
+     * @param string $domain
+     *            the domain.
+     *            
+     * @param string $str
+     *            the message to be translated.
+     *            
      * @return string the original, untranslated message.
      */
-    function dgettext($domain, $str) {
+    function dgettext($domain, $str)
+    {
         return $str;
     }
 }
-
 
 /**
  * Class with miscellaneous static methods.
@@ -78,7 +79,8 @@ if (function_exists ( 'dgettext' )) {
  * @author Martin Geisler <mgeisler@users.sourceforge.net>
  * @package PEL
  */
-class Pel {
+class Pel
+{
 
     /**
      * Flag for controlling debug information.
@@ -113,7 +115,7 @@ class Pel {
      * When {@link Pel::$strict} is set to false exceptions will be
      * accumulated here instead of being thrown.
      */
-    private static $exceptions = array ();
+    private static $exceptions = array();
 
     /**
      * Quality setting for encoding JPEG images.
@@ -129,27 +131,27 @@ class Pel {
      */
     private static $quality = 75;
 
-
     /**
      * Set the JPEG encoding quality.
      *
-     * @param int $quality an integer between 0 and 100 with 75 being
-     *        average quality and 95 very good quality.
+     * @param int $quality
+     *            an integer between 0 and 100 with 75 being
+     *            average quality and 95 very good quality.
      */
-    public static function setJPEGQuality($quality) {
+    public static function setJPEGQuality($quality)
+    {
         self::$quality = $quality;
     }
-
 
     /**
      * Get current setting for JPEG encoding quality.
      *
      * @return int the quality.
      */
-    public static function getJPEGQuality() {
+    public static function getJPEGQuality()
+    {
         return self::$quality;
     }
-
 
     /**
      * Return list of stored exceptions.
@@ -183,10 +185,10 @@ class Pel {
      *
      * @return array the exceptions.
      */
-    public static function getExceptions() {
+    public static function getExceptions()
+    {
         return self::$exceptions;
     }
-
 
     /**
      * Clear list of stored exceptions.
@@ -194,10 +196,10 @@ class Pel {
      * Use this function before a call to some method if you intend to
      * check for exceptions afterwards.
      */
-    public static function clearExceptions() {
-        self::$exceptions = array ();
+    public static function clearExceptions()
+    {
+        self::$exceptions = array();
     }
-
 
     /**
      * Conditionally throw an exception.
@@ -208,17 +210,18 @@ class Pel {
      * getExceptions()}) and a warning is issued (with {@link
      * Pel::warning}).
      *
-     * @param PelException $e the exceptions.
+     * @param PelException $e
+     *            the exceptions.
      */
-    public static function maybeThrow(PelException $e) {
+    public static function maybeThrow(PelException $e)
+    {
         if (self::$strict) {
             throw $e;
         } else {
-            self::$exceptions [] = $e;
-            self::warning ( '%s (%s:%s)', $e->getMessage (), basename ( $e->getFile () ), $e->getLine () );
+            self::$exceptions[] = $e;
+            self::warning('%s (%s:%s)', $e->getMessage(), basename($e->getFile()), $e->getLine());
         }
     }
-
 
     /**
      * Enable/disable strict parsing.
@@ -233,13 +236,14 @@ class Pel {
      * but an effort will be made to skip over as much garbage as
      * possible.
      *
-     * @param boolean $flag use true to enable strict parsing, false to
-     *        diable.
+     * @param boolean $flag
+     *            use true to enable strict parsing, false to
+     *            diable.
      */
-    public static function setStrictParsing($flag) {
+    public static function setStrictParsing($flag)
+    {
         self::$strict = $flag;
     }
-
 
     /**
      * Get current setting for strict parsing.
@@ -247,31 +251,32 @@ class Pel {
      * @return boolean true if strict parsing is in effect, false
      *         otherwise.
      */
-    public static function getStrictParsing() {
+    public static function getStrictParsing()
+    {
         return self::$strict;
     }
-
 
     /**
      * Enable/disable debugging output.
      *
-     * @param boolean $flag use true to enable debug output, false to
-     *        diable.
+     * @param boolean $flag
+     *            use true to enable debug output, false to
+     *            diable.
      */
-    public static function setDebug($flag) {
+    public static function setDebug($flag)
+    {
         self::$debug = $flag;
     }
-
 
     /**
      * Get current setting for debug output.
      *
      * @return boolean true if debug is enabled, false otherwise.
      */
-    public static function getDebug() {
+    public static function getDebug()
+    {
         return self::$debug;
     }
-
 
     /**
      * Conditionally output debug information.
@@ -280,20 +285,22 @@ class Pel {
      * terminates the output with a newline, and that it only outputs
      * something if the {@link Pel::$debug} is true.
      *
-     * @param string $format the format string.
-     *
-     * @param mixed $args,... any number of arguments can be given. The
-     *        arguments will be available for the format string as usual with
-     *        sprintf().
+     * @param string $format
+     *            the format string.
+     *            
+     * @param mixed $args,...
+     *            any number of arguments can be given. The
+     *            arguments will be available for the format string as usual with
+     *            sprintf().
      */
-    public static function debug() {
+    public static function debug()
+    {
         if (self::$debug) {
-            $args = func_get_args ();
-            $str = array_shift ( $args );
-            vprintf ( $str . "\n", $args );
+            $args = func_get_args();
+            $str = array_shift($args);
+            vprintf($str . "\n", $args);
         }
     }
-
 
     /**
      * Conditionally output a warning.
@@ -303,20 +310,22 @@ class Pel {
      * newline, and that it only outputs something if the PEL_DEBUG
      * defined to some true value.
      *
-     * @param string $format the format string.
-     *
-     * @param mixed $args,... any number of arguments can be given. The
-     *        arguments will be available for the format string as usual with
-     *        sprintf().
+     * @param string $format
+     *            the format string.
+     *            
+     * @param mixed $args,...
+     *            any number of arguments can be given. The
+     *            arguments will be available for the format string as usual with
+     *            sprintf().
      */
-    public static function warning() {
+    public static function warning()
+    {
         if (self::$debug) {
-            $args = func_get_args ();
-            $str = array_shift ( $args );
-            vprintf ( 'Warning: ' . $str . "\n", $args );
+            $args = func_get_args();
+            $str = array_shift($args);
+            vprintf('Warning: ' . $str . "\n", $args);
         }
     }
-
 
     /**
      * Translate a string.
@@ -326,15 +335,16 @@ class Pel {
      * the translation will be taken from the correct text domain.
      * Dynamic strings should be passed to {@link fmt} instead.
      *
-     * @param string the string that should be translated.
-     *
+     * @param
+     *            string the string that should be translated.
+     *            
      * @return string the translated string, or the original string if
      *         no translation could be found.
      */
-    public static function tra($str) {
-        return dgettext ( 'pel', $str );
+    public static function tra($str)
+    {
+        return dgettext('pel', $str);
     }
-
 
     /**
      * Translate and format a string.
@@ -346,20 +356,23 @@ class Pel {
      * the string is static, use {@link tra} instead as it will be
      * faster.
      *
-     * @param string $format the format string. This will be translated
-     *        before being used as a format string.
-     *
-     * @param mixed $args,... any number of arguments can be given. The
-     *        arguments will be available for the format string as usual with
-     *        sprintf().
-     *
+     * @param string $format
+     *            the format string. This will be translated
+     *            before being used as a format string.
+     *            
+     * @param mixed $args,...
+     *            any number of arguments can be given. The
+     *            arguments will be available for the format string as usual with
+     *            sprintf().
+     *            
      * @return string the translated string, or the original string if
      *         no translation could be found.
      */
-    public static function fmt() {
-        $args = func_get_args ();
-        $str = array_shift ( $args );
-        return vsprintf ( dgettext ( 'pel', $str ), $args );
+    public static function fmt()
+    {
+        $args = func_get_args();
+        $str = array_shift($args);
+        return vsprintf(dgettext('pel', $str), $args);
     }
 }
 

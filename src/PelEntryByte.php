@@ -40,7 +40,6 @@
  */
 require_once ('PelEntryNumber.php');
 
-
 /**
  * #@-
  */
@@ -55,8 +54,8 @@ require_once ('PelEntryNumber.php');
  * @author Martin Geisler <mgeisler@users.sourceforge.net>
  * @package PEL
  */
-class PelEntryByte extends PelEntryNumber {
-
+class PelEntryByte extends PelEntryNumber
+{
 
     /**
      * Make a new entry that can hold an unsigned byte.
@@ -65,43 +64,46 @@ class PelEntryByte extends PelEntryNumber {
      * getValue} method will always return an array except for when a
      * single integer argument is given here.
      *
-     * @param PelTag the tag which this entry represents. This
-     *        should be one of the constants defined in {@link PelTag}
-     *        which has format {@link PelFormat::BYTE}.
-     *
-     * @param int $value... the byte(s) that this entry will represent.
-     *        The argument passed must obey the same rules as the argument to
-     *        {@link setValue}, namely that it should be within range of an
-     *        unsigned byte, that is between 0 and 255 (inclusive). If not,
-     *        then a {@link PelOverflowException} will be thrown.
+     * @param
+     *            PelTag the tag which this entry represents. This
+     *            should be one of the constants defined in {@link PelTag}
+     *            which has format {@link PelFormat::BYTE}.
+     *            
+     * @param int $value...
+     *            the byte(s) that this entry will represent.
+     *            The argument passed must obey the same rules as the argument to
+     *            {@link setValue}, namely that it should be within range of an
+     *            unsigned byte, that is between 0 and 255 (inclusive). If not,
+     *            then a {@link PelOverflowException} will be thrown.
      */
     function __construct($tag /* $value... */) {
         $this->tag = $tag;
         $this->min = 0;
         $this->max = 255;
         $this->format = PelFormat::BYTE;
-
-        $value = func_get_args ();
-        array_shift ( $value );
-        $this->setValueArray ( $value );
+        
+        $value = func_get_args();
+        array_shift($value);
+        $this->setValueArray($value);
     }
-
 
     /**
      * Convert a number into bytes.
      *
-     * @param int the number that should be converted.
-     *
-     * @param PelByteOrder one of {@link PelConvert::LITTLE_ENDIAN} and
-     *        {@link PelConvert::BIG_ENDIAN}, specifying the target byte order.
-     *
+     * @param
+     *            int the number that should be converted.
+     *            
+     * @param
+     *            PelByteOrder one of {@link PelConvert::LITTLE_ENDIAN} and
+     *            {@link PelConvert::BIG_ENDIAN}, specifying the target byte order.
+     *            
      * @return string bytes representing the number given.
      */
-    function numberToBytes($number, $order) {
-        return chr ( $number );
+    function numberToBytes($number, $order)
+    {
+        return chr($number);
     }
 }
-
 
 /**
  * Class for holding signed bytes.
@@ -113,8 +115,8 @@ class PelEntryByte extends PelEntryNumber {
  * @author Martin Geisler <mgeisler@users.sourceforge.net>
  * @package PEL
  */
-class PelEntrySByte extends PelEntryNumber {
-
+class PelEntrySByte extends PelEntryNumber
+{
 
     /**
      * Make a new entry that can hold a signed byte.
@@ -123,43 +125,46 @@ class PelEntrySByte extends PelEntryNumber {
      * method will always return an array except for when a single
      * integer argument is given here.
      *
-     * @param PelTag the tag which this entry represents. This
-     *        should be one of the constants defined in {@link PelTag}
-     *        which has format {@link PelFormat::BYTE}.
-     *
-     * @param int $value... the byte(s) that this entry will represent.
-     *        The argument passed must obey the same rules as the argument to
-     *        {@link setValue}, namely that it should be within range of a
-     *        signed byte, that is between -128 and 127 (inclusive). If not,
-     *        then a {@link PelOverflowException} will be thrown.
+     * @param
+     *            PelTag the tag which this entry represents. This
+     *            should be one of the constants defined in {@link PelTag}
+     *            which has format {@link PelFormat::BYTE}.
+     *            
+     * @param int $value...
+     *            the byte(s) that this entry will represent.
+     *            The argument passed must obey the same rules as the argument to
+     *            {@link setValue}, namely that it should be within range of a
+     *            signed byte, that is between -128 and 127 (inclusive). If not,
+     *            then a {@link PelOverflowException} will be thrown.
      */
     function __construct($tag /* $value... */) {
         $this->tag = $tag;
         $this->min = - 128;
         $this->max = 127;
         $this->format = PelFormat::SBYTE;
-
-        $value = func_get_args ();
-        array_shift ( $value );
-        $this->setValueArray ( $value );
+        
+        $value = func_get_args();
+        array_shift($value);
+        $this->setValueArray($value);
     }
-
 
     /**
      * Convert a number into bytes.
      *
-     * @param int the number that should be converted.
-     *
-     * @param PelByteOrder one of {@link PelConvert::LITTLE_ENDIAN} and
-     *        {@link PelConvert::BIG_ENDIAN}, specifying the target byte order.
-     *
+     * @param
+     *            int the number that should be converted.
+     *            
+     * @param
+     *            PelByteOrder one of {@link PelConvert::LITTLE_ENDIAN} and
+     *            {@link PelConvert::BIG_ENDIAN}, specifying the target byte order.
+     *            
      * @return string bytes representing the number given.
      */
-    function numberToBytes($number, $order) {
-        return chr ( $number );
+    function numberToBytes($number, $order)
+    {
+        return chr($number);
     }
 }
-
 
 /**
  * Class used to manipulate strings in the format Windows XP uses.
@@ -195,7 +200,8 @@ class PelEntrySByte extends PelEntryNumber {
  * @author Martin Geisler <mgeisler@users.sourceforge.net>
  * @package PEL
  */
-class PelEntryWindowsString extends PelEntry {
+class PelEntryWindowsString extends PelEntry
+{
 
     /**
      * The string hold by this entry.
@@ -208,26 +214,27 @@ class PelEntryWindowsString extends PelEntry {
      */
     private $str;
 
-
     /**
      * Make a new PelEntry that can hold a Windows XP specific string.
      *
-     * @param int the tag which this entry represents. This should be
-     *        one of {@link PelTag::XP_TITLE}, {@link PelTag::XP_COMMENT},
-     *        {@link PelTag::XP_AUTHOR}, {@link PelTag::XP_KEYWORD}, and {@link
-     *        PelTag::XP_SUBJECT} tags. If another tag is used, then this
-     *        entry will be incorrectly reloaded as a {@link PelEntryByte}.
-     *
-     * @param string the string that this entry will represent. It will
-     *        be passed to {@link setValue} and thus has to obey its
-     *        requirements.
+     * @param
+     *            int the tag which this entry represents. This should be
+     *            one of {@link PelTag::XP_TITLE}, {@link PelTag::XP_COMMENT},
+     *            {@link PelTag::XP_AUTHOR}, {@link PelTag::XP_KEYWORD}, and {@link
+     *            PelTag::XP_SUBJECT} tags. If another tag is used, then this
+     *            entry will be incorrectly reloaded as a {@link PelEntryByte}.
+     *            
+     * @param
+     *            string the string that this entry will represent. It will
+     *            be passed to {@link setValue} and thus has to obey its
+     *            requirements.
      */
-    function __construct($tag, $str = '') {
+    function __construct($tag, $str = '')
+    {
         $this->tag = $tag;
         $this->format = PelFormat::BYTE;
-        $this->setValue ( $str );
+        $this->setValue($str);
     }
-
 
     /**
      * Give the entry a new value.
@@ -235,21 +242,22 @@ class PelEntryWindowsString extends PelEntry {
      * This will overwrite the previous value. The value can be
      * retrieved later with the {@link getValue} method.
      *
-     * @param string the new value of the entry. This should be use the
-     *        Latin-1 encoding and be given without any extra NULL characters.
+     * @param
+     *            string the new value of the entry. This should be use the
+     *            Latin-1 encoding and be given without any extra NULL characters.
      */
-    function setValue($str) {
-        $l = strlen ( $str );
-
+    function setValue($str)
+    {
+        $l = strlen($str);
+        
         $this->components = 2 * ($l + 1);
         $this->str = $str;
         $this->bytes = '';
-        for($i = 0; $i < $l; $i ++)
-            $this->bytes .= $str {$i} . chr ( 0x00 );
-
-        $this->bytes .= chr ( 0x00 ) . chr ( 0x00 );
+        for ($i = 0; $i < $l; $i ++)
+            $this->bytes .= $str{$i} . chr(0x00);
+        
+        $this->bytes .= chr(0x00) . chr(0x00);
     }
-
 
     /**
      * Return the string of the entry.
@@ -258,23 +266,25 @@ class PelEntryWindowsString extends PelEntry {
      *         characters. The string will be the same as the one given to
      *         {@link setValue} or to the {@link __construct constructor}.
      */
-    function getValue() {
+    function getValue()
+    {
         return $this->str;
     }
-
 
     /**
      * Return the string of the entry.
      *
      * This methods returns the same as {@link getValue}.
      *
-     * @param boolean not used.
-     *
+     * @param
+     *            boolean not used.
+     *            
      * @return string the string held, without any extra NULL
      *         characters. The string will be the same as the one given to
      *         {@link setValue} or to the {@link __construct constructor}.
      */
-    function getText($brief = false) {
+    function getText($brief = false)
+    {
         return $this->str;
     }
 }

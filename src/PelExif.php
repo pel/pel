@@ -44,7 +44,6 @@ require_once ('PelIfd.php');
 require_once ('PelTag.php');
 require_once ('Pel.php');
 
-
 /**
  * #@-
  */
@@ -64,7 +63,8 @@ require_once ('Pel.php');
  * @author Martin Geisler <mgeisler@users.sourceforge.net>
  * @package PEL
  */
-class PelExif extends PelJpegContent {
+class PelExif extends PelJpegContent
+{
 
     /**
      * Exif header.
@@ -81,7 +81,6 @@ class PelExif extends PelJpegContent {
      */
     private $tiff = null;
 
-
     /**
      * Construct a new Exif object.
      *
@@ -90,9 +89,8 @@ class PelExif extends PelJpegContent {
      * {@link setTiff()} to change the {@link PelTiff} object, which is
      * the true holder of the Exif {@link PelEntry entries}.
      */
-    function __construct() {
-    }
-
+    function __construct()
+    {}
 
     /**
      * Load and parse Exif data.
@@ -101,25 +99,25 @@ class PelExif extends PelJpegContent {
      * {@link PelTiff} object. This TIFF object can be accessed with
      * the {@link getTiff()} method.
      */
-    function load(PelDataWindow $d) {
-        Pel::debug ( 'Parsing %d bytes of Exif data...', $d->getSize () );
-
+    function load(PelDataWindow $d)
+    {
+        Pel::debug('Parsing %d bytes of Exif data...', $d->getSize());
+        
         /* There must be at least 6 bytes for the Exif header. */
-        if ($d->getSize () < 6)
-            throw new PelInvalidDataException ( 'Expected at least 6 bytes of Exif ' . 'data, found just %d bytes.', $d->getSize () );
-
+        if ($d->getSize() < 6)
+            throw new PelInvalidDataException('Expected at least 6 bytes of Exif ' . 'data, found just %d bytes.', $d->getSize());
+            
             /* Verify the Exif header */
-        if ($d->strcmp ( 0, self::EXIF_HEADER )) {
-            $d->setWindowStart ( strlen ( self::EXIF_HEADER ) );
+        if ($d->strcmp(0, self::EXIF_HEADER)) {
+            $d->setWindowStart(strlen(self::EXIF_HEADER));
         } else {
-            throw new PelInvalidDataException ( 'Exif header not found.' );
+            throw new PelInvalidDataException('Exif header not found.');
         }
-
+        
         /* The rest of the data is TIFF data. */
-        $this->tiff = new PelTiff ();
-        $this->tiff->load ( $d );
+        $this->tiff = new PelTiff();
+        $this->tiff->load($d);
     }
-
 
     /**
      * Change the TIFF information.
@@ -128,12 +126,13 @@ class PelExif extends PelJpegContent {
      * used to change this data from one {@link PelTiff} object to
      * another.
      *
-     * @param PelTiff the new TIFF object.
+     * @param
+     *            PelTiff the new TIFF object.
      */
-    function setTiff(PelTiff $tiff) {
+    function setTiff(PelTiff $tiff)
+    {
         $this->tiff = $tiff;
     }
-
 
     /**
      * Get the underlying TIFF object.
@@ -143,20 +142,20 @@ class PelExif extends PelJpegContent {
      *
      * @return PelTiff the TIFF object with the Exif data.
      */
-    function getTiff() {
+    function getTiff()
+    {
         return $this->tiff;
     }
-
 
     /**
      * Produce bytes for the Exif data.
      *
      * @return string bytes representing this object.
      */
-    function getBytes() {
-        return self::EXIF_HEADER . $this->tiff->getBytes ();
+    function getBytes()
+    {
+        return self::EXIF_HEADER . $this->tiff->getBytes();
     }
-
 
     /**
      * Return a string representation of this object.
@@ -164,8 +163,9 @@ class PelExif extends PelJpegContent {
      * @return string a string describing this object. This is mostly
      *         useful for debugging.
      */
-    function __toString() {
-        return Pel::tra ( "Dumping Exif data...\n" ) . $this->tiff->__toString ();
+    function __toString()
+    {
+        return Pel::tra("Dumping Exif data...\n") . $this->tiff->__toString();
     }
 }
 

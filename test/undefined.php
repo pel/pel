@@ -22,74 +22,74 @@
  * Free Software Foundation, Inc., 51 Franklin St, Fifth Floor,
  * Boston, MA 02110-1301 USA
  */
-set_include_path ( dirname ( __FILE__ ) . '/../src/' . PATH_SEPARATOR . get_include_path () );
+set_include_path(dirname(__FILE__) . '/../src/' . PATH_SEPARATOR . get_include_path());
 
-if (realpath ( $_SERVER ['PHP_SELF'] ) == __FILE__) {
+if (realpath($_SERVER['PHP_SELF']) == __FILE__) {
     require_once 'simpletest/autorun.php';
 }
 
+class UndefinedTestCase extends UnitTestCase
+{
 
-class UndefinedTestCase extends UnitTestCase {
-
-
-    function __construct() {
+    function __construct()
+    {
         require_once ('PelEntryUndefined.php');
-        parent::__construct ( 'PEL Exif Undefined Tests' );
+        parent::__construct('PEL Exif Undefined Tests');
     }
 
-
-    function testReturnValues() {
-        $pattern = new PatternExpectation ( '/Missing argument 1 for PelEntryUndefined::__construct()/' );
-        $this->expectError ( $pattern );
-        $entry = new PelEntryUndefined ();
-
-        $entry = new PelEntryUndefined ( 42 );
-
-        $entry = new PelEntryUndefined ( 42, 'foo bar baz' );
-        $this->assertEqual ( $entry->getComponents (), 11 );
-        $this->assertEqual ( $entry->getValue (), 'foo bar baz' );
+    function testReturnValues()
+    {
+        $pattern = new PatternExpectation('/Missing argument 1 for PelEntryUndefined::__construct()/');
+        $this->expectError($pattern);
+        $entry = new PelEntryUndefined();
+        
+        $entry = new PelEntryUndefined(42);
+        
+        $entry = new PelEntryUndefined(42, 'foo bar baz');
+        $this->assertEqual($entry->getComponents(), 11);
+        $this->assertEqual($entry->getValue(), 'foo bar baz');
     }
 
-
-    function testUsercomment() {
-        $entry = new PelEntryUserComment ();
-        $this->assertEqual ( $entry->getComponents (), 8 );
-        $this->assertEqual ( $entry->getValue (), '' );
-        $this->assertEqual ( $entry->getEncoding (), 'ASCII' );
-
-        $entry->setValue ( 'Hello!' );
-        $this->assertEqual ( $entry->getComponents (), 14 );
-        $this->assertEqual ( $entry->getValue (), 'Hello!' );
-        $this->assertEqual ( $entry->getEncoding (), 'ASCII' );
+    function testUsercomment()
+    {
+        $entry = new PelEntryUserComment();
+        $this->assertEqual($entry->getComponents(), 8);
+        $this->assertEqual($entry->getValue(), '');
+        $this->assertEqual($entry->getEncoding(), 'ASCII');
+        
+        $entry->setValue('Hello!');
+        $this->assertEqual($entry->getComponents(), 14);
+        $this->assertEqual($entry->getValue(), 'Hello!');
+        $this->assertEqual($entry->getEncoding(), 'ASCII');
     }
 
-
-    function testVersion() {
-        $pattern = new PatternExpectation ( '/Missing argument 1 for ' . 'PelEntryVersion::__construct()/' );
-        $this->expectError ( $pattern );
-        $entry = new PelEntryVersion ();
-
-        $entry = new PelEntryVersion ( 42 );
-
-        $this->assertEqual ( $entry->getValue (), 0.0 );
-
-        $entry->setValue ( 2.0 );
-        $this->assertEqual ( $entry->getValue (), 2.0 );
-        $this->assertEqual ( $entry->getText ( false ), 'Version 2.0' );
-        $this->assertEqual ( $entry->getText ( true ), '2.0' );
-        $this->assertEqual ( $entry->getBytes ( PelConvert::LITTLE_ENDIAN ), '0200' );
-
-        $entry->setValue ( 2.1 );
-        $this->assertEqual ( $entry->getValue (), 2.1 );
-        $this->assertEqual ( $entry->getText ( false ), 'Version 2.1' );
-        $this->assertEqual ( $entry->getText ( true ), '2.1' );
-        $this->assertEqual ( $entry->getBytes ( PelConvert::LITTLE_ENDIAN ), '0210' );
-
-        $entry->setValue ( 2.01 );
-        $this->assertEqual ( $entry->getValue (), 2.01 );
-        $this->assertEqual ( $entry->getText ( false ), 'Version 2.01' );
-        $this->assertEqual ( $entry->getText ( true ), '2.01' );
-        $this->assertEqual ( $entry->getBytes ( PelConvert::LITTLE_ENDIAN ), '0201' );
+    function testVersion()
+    {
+        $pattern = new PatternExpectation('/Missing argument 1 for ' . 'PelEntryVersion::__construct()/');
+        $this->expectError($pattern);
+        $entry = new PelEntryVersion();
+        
+        $entry = new PelEntryVersion(42);
+        
+        $this->assertEqual($entry->getValue(), 0.0);
+        
+        $entry->setValue(2.0);
+        $this->assertEqual($entry->getValue(), 2.0);
+        $this->assertEqual($entry->getText(false), 'Version 2.0');
+        $this->assertEqual($entry->getText(true), '2.0');
+        $this->assertEqual($entry->getBytes(PelConvert::LITTLE_ENDIAN), '0200');
+        
+        $entry->setValue(2.1);
+        $this->assertEqual($entry->getValue(), 2.1);
+        $this->assertEqual($entry->getText(false), 'Version 2.1');
+        $this->assertEqual($entry->getText(true), '2.1');
+        $this->assertEqual($entry->getBytes(PelConvert::LITTLE_ENDIAN), '0210');
+        
+        $entry->setValue(2.01);
+        $this->assertEqual($entry->getValue(), 2.01);
+        $this->assertEqual($entry->getText(false), 'Version 2.01');
+        $this->assertEqual($entry->getText(true), '2.01');
+        $this->assertEqual($entry->getBytes(PelConvert::LITTLE_ENDIAN), '0201');
     }
 }
 

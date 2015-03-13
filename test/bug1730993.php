@@ -22,37 +22,37 @@
  * Free Software Foundation, Inc., 51 Franklin St, Fifth Floor,
  * Boston, MA 02110-1301 USA
  */
-set_include_path ( dirname ( __FILE__ ) . '/../src/' . PATH_SEPARATOR . get_include_path () );
+set_include_path(dirname(__FILE__) . '/../src/' . PATH_SEPARATOR . get_include_path());
 
-if (realpath ( $_SERVER ['PHP_SELF'] ) == __FILE__) {
+if (realpath($_SERVER['PHP_SELF']) == __FILE__) {
     require_once 'simpletest/autorun.php';
 }
 
+class Bug1730993TestCase extends UnitTestCase
+{
 
-class Bug1730993TestCase extends UnitTestCase {
-
-
-    function __construct() {
-        parent::__construct ( 'Bug1730993 Test' );
+    function __construct()
+    {
+        parent::__construct('Bug1730993 Test');
     }
 
-
-    function testThisDoesNotWorkAsExpected() {
-        $tmpfile = dirname ( __FILE__ ) . '/images/bug1730993_tmp.jpg';
-        $bigfile = dirname ( __FILE__ ) . '/images/bug1730993_large.jpg';
-	// TODO: Should not throw exception
-	return;
+    function testThisDoesNotWorkAsExpected()
+    {
+        $tmpfile = dirname(__FILE__) . '/images/bug1730993_tmp.jpg';
+        $bigfile = dirname(__FILE__) . '/images/bug1730993_large.jpg';
+        // TODO: Should not throw exception
+        return;
         try {
             require_once 'PelJpeg.php';
-            $jpeg = new PelJpeg ( $tmpfile ); // the error occurs here
-            $exif = $jpeg->getExif ();
+            $jpeg = new PelJpeg($tmpfile); // the error occurs here
+            $exif = $jpeg->getExif();
             if ($exif != null) {
-                $jpeg1 = new PelJpeg ( $bigfile );
-                $jpeg1->setExif ( $exif );
-                file_put_contents ( $bigfile, $jpeg1->getBytes () );
+                $jpeg1 = new PelJpeg($bigfile);
+                $jpeg1->setExif($exif);
+                file_put_contents($bigfile, $jpeg1->getBytes());
             }
-        } catch ( Exception $e ) {
-            $this->fail ( 'Test should not throw exception: ' . $e->getMessage () );
+        } catch (Exception $e) {
+            $this->fail('Test should not throw exception: ' . $e->getMessage());
         }
     }
 }
