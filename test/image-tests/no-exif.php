@@ -32,23 +32,21 @@ if (realpath($_SERVER["PHP_SELF"]) == __FILE__) {
 class no_exif extends UnitTestCase
 {
 
-    function __construct()
+    public function __construct()
     {
         require_once (dirname(__FILE__) . '/../../src/PelJpeg.php');
         parent::__construct('PEL no-exif.jpg Tests');
     }
 
-    function testRead()
+    public function testRead()
     {
         Pel::clearExceptions();
         Pel::setStrictParsing(false);
         $jpeg = new PelJpeg(dirname(__FILE__) . '/no-exif.jpg');
-        
+
         $exif = $jpeg->getExif();
         $this->assertNull($exif);
-        
+
         $this->assertTrue(count(Pel::getExceptions()) == 0);
     }
 }
-
-?>

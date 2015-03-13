@@ -37,7 +37,7 @@ abstract class NumberTestCase extends UnitTestCase
 
     protected $num;
 
-    function __construct($min, $max)
+    public function __construct($min, $max)
     {
         Pel::setStrictParsing(true);
         $this->min = $min;
@@ -45,11 +45,11 @@ abstract class NumberTestCase extends UnitTestCase
         parent::__construct('PEL Exif Number Tests');
     }
 
-    function testOverflow()
+    public function testOverflow()
     {
         $this->num->setValue(0);
         $this->assertEqual($this->num->getValue(), 0);
-        
+
         $caught = false;
         try {
             $this->num->setValue($this->min - 1);
@@ -58,7 +58,7 @@ abstract class NumberTestCase extends UnitTestCase
         }
         $this->assertTrue($caught);
         $this->assertEqual($this->num->getValue(), 0);
-        
+
         $caught = false;
         try {
             $this->num->setValue($this->max + 1);
@@ -67,7 +67,7 @@ abstract class NumberTestCase extends UnitTestCase
         }
         $this->assertTrue($caught);
         $this->assertEqual($this->num->getValue(), 0);
-        
+
         $caught = false;
         try {
             $this->num->setValue(0, $this->max + 1);
@@ -76,7 +76,7 @@ abstract class NumberTestCase extends UnitTestCase
         }
         $this->assertTrue($caught);
         $this->assertEqual($this->num->getValue(), 0);
-        
+
         $caught = false;
         try {
             $this->num->setValue(0, $this->min - 1);
@@ -87,7 +87,7 @@ abstract class NumberTestCase extends UnitTestCase
         $this->assertEqual($this->num->getValue(), 0);
     }
 
-    function testReturnValues()
+    public function testReturnValues()
     {
         $this->num->setValue(1, 2, 3);
         $this->assertEqual($this->num->getValue(), array(
@@ -96,19 +96,19 @@ abstract class NumberTestCase extends UnitTestCase
             3
         ));
         $this->assertEqual($this->num->getText(), '1, 2, 3');
-        
+
         $this->num->setValue(1);
         $this->assertEqual($this->num->getValue(), 1);
         $this->assertEqual($this->num->getText(), '1');
-        
+
+        $pattern = new PatternExpectation('/Missing argument 1 for PelEntryNumber::setValue()/');
+        $this->expectError($pattern);
         $this->num->setValue();
-        $this->assertEqual($this->num->getValue(), array());
-        $this->assertEqual($this->num->getText(), '');
-        
+
         $this->num->setValue($this->max);
         $this->assertEqual($this->num->getValue(), $this->max);
         $this->assertEqual($this->num->getText(), $this->max);
-        
+
         $this->num->setValue($this->min);
         $this->assertEqual($this->num->getValue(), $this->min);
         $this->assertEqual($this->num->getText(), $this->min);
@@ -118,7 +118,7 @@ abstract class NumberTestCase extends UnitTestCase
 class ByteTestCase extends NumberTestCase
 {
 
-    function __construct()
+    public function __construct()
     {
         require_once ('PelEntryByte.php');
         $this->num = new PelEntryByte(42);
@@ -129,7 +129,7 @@ class ByteTestCase extends NumberTestCase
 class SByteTestCase extends NumberTestCase
 {
 
-    function __construct()
+    public function __construct()
     {
         require_once ('PelEntryByte.php');
         $this->num = new PelEntrySByte(42);
@@ -140,7 +140,7 @@ class SByteTestCase extends NumberTestCase
 class ShortTestCase extends NumberTestCase
 {
 
-    function __construct()
+    public function __construct()
     {
         require_once ('PelEntryShort.php');
         $this->num = new PelEntryShort(42);
@@ -151,7 +151,7 @@ class ShortTestCase extends NumberTestCase
 class SShortTestCase extends NumberTestCase
 {
 
-    function __construct()
+    public function __construct()
     {
         require_once ('PelEntryShort.php');
         $this->num = new PelEntrySShort(42);
@@ -162,7 +162,7 @@ class SShortTestCase extends NumberTestCase
 class LongTestCase extends NumberTestCase
 {
 
-    function __construct()
+    public function __construct()
     {
         require_once ('PelEntryLong.php');
         $this->num = new PelEntryLong(42);
@@ -173,7 +173,7 @@ class LongTestCase extends NumberTestCase
 class SLongTestCase extends NumberTestCase
 {
 
-    function __construct()
+    public function __construct()
     {
         require_once ('PelEntryLong.php');
         $this->num = new PelEntrySLong(42);
@@ -184,13 +184,13 @@ class SLongTestCase extends NumberTestCase
 class RationalTestCase extends UnitTestCase
 {
 
-    function __construct()
+    public function __construct()
     {
         require_once ('PelEntryRational.php');
         parent::__construct('PEL Exif Rational Tests');
     }
 
-    function testOverflow()
+    public function testOverflow()
     {
         $entry = new PelEntryRational(42, array(
             1,
@@ -200,7 +200,7 @@ class RationalTestCase extends UnitTestCase
             1,
             2
         ));
-        
+
         $caught = false;
         try {
             $entry->setValue(array(
@@ -221,7 +221,7 @@ class RationalTestCase extends UnitTestCase
             1,
             2
         ));
-        
+
         $caught = false;
         try {
             $entry->setValue(array(
@@ -239,7 +239,7 @@ class RationalTestCase extends UnitTestCase
             1,
             2
         ));
-        
+
         $caught = false;
         try {
             $entry->setValue(array(
@@ -259,17 +259,18 @@ class RationalTestCase extends UnitTestCase
         ));
     }
 
-    function testReturnValues()
+    public function testReturnValues()
     {
-        $entry = new PelEntryRational();
         $pattern = new PatternExpectation('/Missing argument 1 for PelEntryRational::__construct()/');
         $this->expectError($pattern);
-        $this->expectError('Undefined variable: tag');
-        
+        $pattern = new PatternExpectation('/Undefined variable: tag/');
+        $this->expectError($pattern);
+        $entry = new PelEntryRational();
+
         $entry = new PelEntryRational(42);
         $this->assertEqual($entry->getValue(), array());
         $this->assertEqual($entry->getText(), '');
-        
+
         $entry->setValue(array(
             1,
             2
@@ -295,7 +296,7 @@ class RationalTestCase extends UnitTestCase
             )
         ));
         $this->assertEqual($entry->getText(), '1/2, 3/4, 5/6');
-        
+
         $entry->setValue(array(
             7,
             8
@@ -305,12 +306,11 @@ class RationalTestCase extends UnitTestCase
             8
         ));
         $this->assertEqual($entry->getText(), '7/8');
-        
-        $entry = new PelEntryRational();
+
         $pattern = new PatternExpectation('/Missing argument 1 for PelEntryNumber::setValue()/');
         $this->expectError($pattern);
         $entry->setValue();
-        
+
         $entry->setValue(array(
             0,
             4294967295
@@ -326,13 +326,13 @@ class RationalTestCase extends UnitTestCase
 class SRationalTestCase extends UnitTestCase
 {
 
-    function __construct()
+    public function __construct()
     {
         require_once ('PelEntryRational.php');
         parent::__construct('PEL Exif SRational Tests');
     }
 
-    function testOverflow()
+    public function testOverflow()
     {
         $entry = new PelEntrySRational(42, array(
             - 1,
@@ -342,7 +342,7 @@ class SRationalTestCase extends UnitTestCase
             - 1,
             2
         ));
-        
+
         $caught = false;
         try {
             $entry->setValue(array(
@@ -360,7 +360,7 @@ class SRationalTestCase extends UnitTestCase
             - 1,
             2
         ));
-        
+
         $caught = false;
         try {
             $entry->setValue(array(
@@ -378,7 +378,7 @@ class SRationalTestCase extends UnitTestCase
             - 1,
             2
         ));
-        
+
         $caught = false;
         try {
             $entry->setValue(array(
@@ -398,15 +398,17 @@ class SRationalTestCase extends UnitTestCase
         ));
     }
 
-    function testReturnValues()
+    public function testReturnValues()
     {
         $pattern = new PatternExpectation('/Missing argument 1 for PelEntrySRational::__construct()/');
         $this->expectError($pattern);
+        $pattern = new PatternExpectation('/Undefined variable: tag/');
+        $this->expectError($pattern);
         $entry = new PelEntrySRational();
-        
+
         $entry = new PelEntrySRational(42);
         $this->assertEqual($entry->getValue(), array());
-        
+
         $entry->setValue(array(
             - 1,
             2
@@ -432,7 +434,7 @@ class SRationalTestCase extends UnitTestCase
             )
         ));
         $this->assertEqual($entry->getText(), '-1/2, 3/4, -5/6');
-        
+
         $entry->setValue(array(
             - 7,
             - 8
@@ -442,9 +444,11 @@ class SRationalTestCase extends UnitTestCase
             - 8
         ));
         $this->assertEqual($entry->getText(), '7/8');
-        
+
+        $pattern = new PatternExpectation('/Missing argument 1 for PelEntryNumber::setValue()/');
+        $this->expectError($pattern);
         $entry->setValue();
-        
+
         $entry->setValue(array(
             0,
             2147483647
@@ -456,4 +460,3 @@ class SRationalTestCase extends UnitTestCase
         $this->assertEqual($entry->getText(), '0/2147483647');
     }
 }
-
