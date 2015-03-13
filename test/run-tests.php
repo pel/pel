@@ -35,8 +35,8 @@ if (! empty ( $argc ) and $argc > 1) {
     $group = new TestSuite ( 'Selected PEL tests' );
 } else {
     // otherwive test all .php files, except this file (run-tests.php).
-    $tests = array_diff ( glob ( dirname ( __FILE__ ) . '/*.php' ), array ('run-tests.php','config.local.php',
-        'config.local.example.php' ) );
+    $tests = array_diff ( glob ( __DIR__ . '/*.php' ), array (__DIR__ .'/run-tests.php',__DIR__ .'/config.local.php',
+        __DIR__ .'/config.local.example.php' ) );
     $group = new TestSuite ( 'All PEL tests' );
 
     // Also test all image tests (if they are available).
