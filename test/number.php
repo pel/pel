@@ -219,7 +219,7 @@ class RationalTestCase extends UnitTestCase {
 
     function testReturnValues() {
         $entry = new PelEntryRational ();
-        $pattern = new PatternExpectation ( '/Missing argument 1 for ' . 'PelEntryRational::__construct()/' );
+        $pattern = new PatternExpectation ( '/Missing argument 1 for PelEntryRational::__construct()/' );
         $this->expectError ( $pattern );
         $this->expectError ( 'Undefined variable: tag' );
 
@@ -235,9 +235,10 @@ class RationalTestCase extends UnitTestCase {
         $this->assertEqual ( $entry->getValue (), array (7,8 ) );
         $this->assertEqual ( $entry->getText (), '7/8' );
 
+        $entry = new PelEntryRational ();
+        $pattern = new PatternExpectation ( '/Missing argument 1 for PelEntryNumber::setValue()/' );
+        $this->expectError ( $pattern );
         $entry->setValue ();
-        $this->assertEqual ( $entry->getValue (), array () );
-        $this->assertEqual ( $entry->getText (), '' );
 
         $entry->setValue ( array (0,4294967295 ) );
         $this->assertEqual ( $entry->getValue (), array (0,4294967295 ) );
@@ -289,10 +290,9 @@ class SRationalTestCase extends UnitTestCase {
 
 
     function testReturnValues() {
-        $entry = new PelEntrySRational ();
-        $pattern = new PatternExpectation ( '/Missing argument 1 for ' . 'PelEntrySRational::__construct()/' );
+        $pattern = new PatternExpectation ( '/Missing argument 1 for PelEntrySRational::__construct()/' );
         $this->expectError ( $pattern );
-        $this->expectError ( 'Undefined variable: tag' );
+        $entry = new PelEntrySRational ();
 
         $entry = new PelEntrySRational ( 42 );
         $this->assertEqual ( $entry->getValue (), array () );
@@ -306,8 +306,6 @@ class SRationalTestCase extends UnitTestCase {
         $this->assertEqual ( $entry->getText (), '7/8' );
 
         $entry->setValue ();
-        $this->assertEqual ( $entry->getValue (), array () );
-        $this->assertEqual ( $entry->getText (), '' );
 
         $entry->setValue ( array (0,2147483647 ) );
         $this->assertEqual ( $entry->getValue (), array (0,2147483647 ) );

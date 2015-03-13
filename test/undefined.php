@@ -39,10 +39,9 @@ class UndefinedTestCase extends UnitTestCase {
 
 
     function testReturnValues() {
-        $entry = new PelEntryUndefined ();
-        $pattern = new PatternExpectation ( '/Missing argument 1 for ' . 'PelEntryUndefined::__construct()/' );
+        $pattern = new PatternExpectation ( '/Missing argument 1 for PelEntryUndefined::__construct()/' );
         $this->expectError ( $pattern );
-        $this->expectError ( 'Undefined variable: tag' );
+        $entry = new PelEntryUndefined ();
 
         $entry = new PelEntryUndefined ( 42 );
 
@@ -66,10 +65,9 @@ class UndefinedTestCase extends UnitTestCase {
 
 
     function testVersion() {
-        $entry = new PelEntryVersion ();
         $pattern = new PatternExpectation ( '/Missing argument 1 for ' . 'PelEntryVersion::__construct()/' );
         $this->expectError ( $pattern );
-        $this->expectError ( 'Undefined variable: tag' );
+        $entry = new PelEntryVersion ();
 
         $entry = new PelEntryVersion ( 42 );
 
