@@ -21,6 +21,6 @@
         "lastcraft/simpletest": ">=1.1"
     },
     "autoload": {
-        "psr-0": {"lsolesen\\pel\\": "src/"}
+        "psr-4": {"lsolesen\\pel\\": "src/"}
     }
 }
