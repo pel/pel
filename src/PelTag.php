@@ -22,6 +22,7 @@
  * Free Software Foundation, Inc., 51 Franklin St, Fifth Floor,
  * Boston, MA 02110-1301 USA
  */
+namespace lsolesen\pel;
 
 /**
  * Namespace for functions operating on Exif tags.
@@ -30,16 +31,6 @@
  * @license http://www.gnu.org/licenses/gpl.html GNU General Public
  *          License (GPL)
  * @package PEL
- */
-
-/**
- * #@+ Required class definitions.
- */
-require_once ('Pel.php');
-require_once ('PelIfd.php');
-
-/**
- * #@-
  */
 
 /**
@@ -1341,13 +1332,13 @@ class PelTag
     /**
      * Returns a short name for an Exif tag.
      *
-     * @param
-     *            int the IFD type of the tag, one of {@link PelIfd::IFD0},
+     * @param int $type
+     *            the IFD type of the tag, one of {@link PelIfd::IFD0},
      *            {@link PelIfd::IFD1}, {@link PelIfd::EXIF}, {@link PelIfd::GPS},
      *            or {@link PelIfd::INTEROPERABILITY}.
      *
-     * @param
-     *            PelTag the tag.
+     * @param PelTag $tag
+     *            the tag.
      *
      * @return string the short name of the tag, e.g., 'ImageWidth' for
      *         the {@link IMAGE_WIDTH} tag. If the tag is not known, the string
@@ -1657,13 +1648,13 @@ class PelTag
     /**
      * Returns a title for an Exif tag.
      *
-     * @param
-     *            int the IFD type of the tag, one of {@link PelIfd::IFD0},
+     * @param int $type
+     *            the IFD type of the tag, one of {@link PelIfd::IFD0},
      *            {@link PelIfd::IFD1}, {@link PelIfd::EXIF}, {@link PelIfd::GPS},
      *            or {@link PelIfd::INTEROPERABILITY}.
      *
-     * @param
-     *            PelTag the tag.
+     * @param PelTag $tag
+     *            the tag.
      *
      * @return string the title of the tag, e.g., 'Image Width' for the
      *         {@link IMAGE_WIDTH} tag. If the tag isn't known, the string

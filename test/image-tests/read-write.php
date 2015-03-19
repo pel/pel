@@ -21,7 +21,22 @@
  * Free Software Foundation, Inc., 51 Franklin St, Fifth Floor,
  * Boston, MA 02110-1301 USA
  */
-set_include_path(dirname(__FILE__) . '/../../src/' . PATH_SEPARATOR . get_include_path());
+if (realpath($_SERVER['PHP_SELF']) == __FILE__) {
+    require_once '../../autoload.php';
+    require_once '../../vendor/lastcraft/simpletest/autorun.php';
+}
+use lsolesen\pel\Pel;
+use lsolesen\pel\PelEntryByte;
+use lsolesen\pel\PelIfd;
+use lsolesen\pel\PelTiff;
+use lsolesen\pel\PelExif;
+use lsolesen\pel\PelJpeg;
+use lsolesen\pel\PelEntrySByte;
+use lsolesen\pel\PelEntryShort;
+use lsolesen\pel\PelEntrySShort;
+use lsolesen\pel\PelEntryLong;
+use lsolesen\pel\PelEntrySLong;
+use lsolesen\pel\PelEntryAscii;
 
 abstract class WriteEntryTestCase extends UnitTestCase
 {
@@ -62,13 +77,13 @@ abstract class WriteEntryTestCase extends UnitTestCase
         $jpeg = new PelJpeg('test-output.jpg');
 
         $exif = $jpeg->getExif();
-        $this->assertIsA($exif, 'PelExif');
+        $this->assertIsA($exif, 'lsolesen\pel\PelExif');
 
         $tiff = $exif->getTiff();
-        $this->assertIsA($tiff, 'PelTiff');
+        $this->assertIsA($tiff, 'lsolesen\pel\PelTiff');
 
         $ifd = $tiff->getIfd();
-        $this->assertIsA($ifd, 'PelIfd');
+        $this->assertIsA($ifd, 'lsolesen\pel\PelIfd');
 
         $this->assertEqual($ifd->getType(), PelIfd::IFD0);
         $this->assertTrue($ifd->isLastIfd());
@@ -87,8 +102,6 @@ class WriteByteTestCase extends WriteEntryTestCase
 
     public function __construct()
     {
-        require_once ('PelEntryByte.php');
-
         $this->entries[] = new PelEntryByte(0xF001, 0);
         $this->entries[] = new PelEntryByte(0xF002, 1);
         $this->entries[] = new PelEntryByte(0xF003, 2);
@@ -108,8 +121,6 @@ class WriteSByteTestCase extends WriteEntryTestCase
 
     public function __construct()
     {
-        require_once ('PelEntryByte.php');
-
         $this->entries[] = new PelEntrySByte(0xF101, - 128);
         $this->entries[] = new PelEntrySByte(0xF102, - 127);
         $this->entries[] = new PelEntrySByte(0xF103, - 1);
@@ -130,8 +141,6 @@ class WriteShortTestCase extends WriteEntryTestCase
 
     public function __construct()
     {
-        require_once ('PelEntryShort.php');
-
         $this->entries[] = new PelEntryShort(0xF201, 0);
         $this->entries[] = new PelEntryShort(0xF202, 1);
         $this->entries[] = new PelEntryShort(0xF203, 2);
@@ -151,8 +160,6 @@ class WriteSShortTestCase extends WriteEntryTestCase
 
     public function __construct()
     {
-        require_once ('PelEntryShort.php');
-
         $this->entries[] = new PelEntrySShort(0xF301, - 32768);
         $this->entries[] = new PelEntrySShort(0xF302, - 32767);
         $this->entries[] = new PelEntrySShort(0xF303, - 1);
@@ -173,8 +180,6 @@ class WriteLongTestCase extends WriteEntryTestCase
 
     public function __construct()
     {
-        require_once ('PelEntryLong.php');
-
         $this->entries[] = new PelEntryLong(0xF401, 0);
         $this->entries[] = new PelEntryLong(0xF402, 1);
         $this->entries[] = new PelEntryLong(0xF403, 2);
@@ -194,8 +199,6 @@ class WriteSLongTestCase extends WriteEntryTestCase
 
     public function __construct()
     {
-        require_once ('PelEntryLong.php');
-
         $this->entries[] = new PelEntrySLong(0xF501, - 2147483648);
         $this->entries[] = new PelEntrySLong(0xF502, - 2147483647);
         $this->entries[] = new PelEntrySLong(0xF503, - 1);
@@ -216,8 +219,6 @@ class WriteAsciiTestCase extends WriteEntryTestCase
 
     public function __construct()
     {
-        require_once ('PelEntryAscii.php');
-
         $this->entries[] = new PelEntryAscii(0xF601);
         $this->entries[] = new PelEntryAscii(0xF602, '');
         $this->entries[] = new PelEntryAscii(0xF603, 'Hello World!');

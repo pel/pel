@@ -22,49 +22,9 @@
  * Free Software Foundation, Inc., 51 Franklin St, Fifth Floor,
  * Boston, MA 02110-1301 USA
  */
+namespace lsolesen\pel;
 
-/**
- * Miscellaneous stuff for the overall behavior of PEL.
- *
- * @author Martin Geisler <mgeisler@users.sourceforge.net>
- * @license http://www.gnu.org/licenses/gpl.html GNU General Public
- *          License (GPL)
- * @package PEL
- */
-
-/*
- * Initialize Gettext, if available. This must be done before any
- * part of PEL calls Pel::tra() or Pel::fmt() --- this is ensured if
- * every piece of code using those two functions require() this file.
- * If Gettext is not available, wrapper functions will be created,
- * allowing PEL to function, but without any translations.
- * The PEL translations are stored in './locale'. It is important to
- * use an absolute path here because the lookups will be relative to
- * the current directory.
- */
-if (function_exists('dgettext')) {
-    bindtextdomain('pel', dirname(__FILE__) . '/locale');
-} else {
-    /**
-     * Pretend to lookup a message in a specific domain.
-     *
-     * This is just a stub which will return the original message
-     * untranslated. The function will only be defined if the Gettext
-     * extension has not already defined it.
-     *
-     * @param string $domain
-     *            the domain.
-     *
-     * @param string $str
-     *            the message to be translated.
-     *
-     * @return string the original, untranslated message.
-     */
-    function dgettext($domain, $str)
-    {
-        return $str;
-    }
-}
+require_once 'GettextInitializer.php';
 
 /**
  * Class with miscellaneous static methods.
@@ -334,8 +294,8 @@ class Pel
      * the translation will be taken from the correct text domain.
      * Dynamic strings should be passed to {@link fmt} instead.
      *
-     * @param
-     *            string the string that should be translated.
+     * @param string $str
+     *            the string that should be translated.
      *
      * @return string the translated string, or the original string if
      *         no translation could be found.

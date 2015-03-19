@@ -41,9 +41,11 @@ setlocale(LC_ALL, '');
  * example can handle both JPEG and TIFF it loads the PelDataWindow
  * class too.
  */
-require_once (dirname(__FILE__) . '/../src/PelDataWindow.php');
-require_once (dirname(__FILE__) . '/../src/PelJpeg.php');
-require_once (dirname(__FILE__) . '/../src/PelTiff.php');
+require_once '../autoload.php';
+
+use lsolesen\pel\PelDataWindow;
+use lsolesen\pel\PelJpeg;
+use lsolesen\pel\PelTiff;
 
 /*
  * Store the name of the script in $prog and remove this first part of

@@ -22,11 +22,22 @@
  * Free Software Foundation, Inc., 51 Franklin St, Fifth Floor,
  * Boston, MA 02110-1301 USA
  */
-set_include_path(dirname(__FILE__) . '/../src/' . PATH_SEPARATOR . get_include_path());
-
 if (realpath($_SERVER['PHP_SELF']) == __FILE__) {
-    require_once 'simpletest/autorun.php';
+    require_once '../autoload.php';
+    require_once '../vendor/lastcraft/simpletest/autorun.php';
 }
+
+use \lsolesen\pel\PelEntryByte;
+use \lsolesen\pel\Pel;
+use \lsolesen\pel\PelEntrySByte;
+use \lsolesen\pel\PelEntryShort;
+use \lsolesen\pel\PelEntrySShort;
+use \lsolesen\pel\PelEntryLong;
+use \lsolesen\pel\PelEntrySLong;
+use \lsolesen\pel\PelEntryRational;
+use \lsolesen\pel\PelEntrySRational;
+use \lsolesen\pel\PelEntryUndefined;
+use \lsolesen\pel\PelOverflowException;
 
 abstract class NumberTestCase extends UnitTestCase
 {
@@ -101,7 +112,7 @@ abstract class NumberTestCase extends UnitTestCase
         $this->assertEqual($this->num->getValue(), 1);
         $this->assertEqual($this->num->getText(), '1');
 
-        $pattern = new PatternExpectation('/Missing argument 1 for PelEntryNumber::setValue()/');
+        $pattern = new PatternExpectation('/Missing argument 1 for lsolesen.pel.PelEntryNumber::setValue()/');
         $this->expectError($pattern);
         $this->num->setValue();
 
@@ -120,7 +131,6 @@ class ByteTestCase extends NumberTestCase
 
     public function __construct()
     {
-        require_once ('PelEntryByte.php');
         $this->num = new PelEntryByte(42);
         parent::__construct(0, 255);
     }
@@ -131,7 +141,6 @@ class SByteTestCase extends NumberTestCase
 
     public function __construct()
     {
-        require_once ('PelEntryByte.php');
         $this->num = new PelEntrySByte(42);
         parent::__construct(- 128, 127);
     }
@@ -142,7 +151,6 @@ class ShortTestCase extends NumberTestCase
 
     public function __construct()
     {
-        require_once ('PelEntryShort.php');
         $this->num = new PelEntryShort(42);
         parent::__construct(0, 65535);
     }
@@ -153,7 +161,7 @@ class SShortTestCase extends NumberTestCase
 
     public function __construct()
     {
-        require_once ('PelEntryShort.php');
+
         $this->num = new PelEntrySShort(42);
         parent::__construct(- 32768, 32767);
     }
@@ -164,7 +172,7 @@ class LongTestCase extends NumberTestCase
 
     public function __construct()
     {
-        require_once ('PelEntryLong.php');
+
         $this->num = new PelEntryLong(42);
         parent::__construct(0, 4294967295);
     }
@@ -175,7 +183,7 @@ class SLongTestCase extends NumberTestCase
 
     public function __construct()
     {
-        require_once ('PelEntryLong.php');
+
         $this->num = new PelEntrySLong(42);
         parent::__construct(- 2147483648, 2147483647);
     }
@@ -186,7 +194,7 @@ class RationalTestCase extends UnitTestCase
 
     public function __construct()
     {
-        require_once ('PelEntryRational.php');
+
         parent::__construct('PEL Exif Rational Tests');
     }
 
@@ -261,7 +269,7 @@ class RationalTestCase extends UnitTestCase
 
     public function testReturnValues()
     {
-        $pattern = new PatternExpectation('/Missing argument 1 for PelEntryRational::__construct()/');
+        $pattern = new PatternExpectation('/Missing argument 1 for lsolesen.pel.PelEntryRational::__construct()/');
         $this->expectError($pattern);
         $pattern = new PatternExpectation('/Undefined variable: tag/');
         $this->expectError($pattern);
@@ -307,7 +315,7 @@ class RationalTestCase extends UnitTestCase
         ));
         $this->assertEqual($entry->getText(), '7/8');
 
-        $pattern = new PatternExpectation('/Missing argument 1 for PelEntryNumber::setValue()/');
+        $pattern = new PatternExpectation('/Missing argument 1 for lsolesen.pel.PelEntryNumber::setValue()/');
         $this->expectError($pattern);
         $entry->setValue();
 
@@ -328,7 +336,7 @@ class SRationalTestCase extends UnitTestCase
 
     public function __construct()
     {
-        require_once ('PelEntryRational.php');
+
         parent::__construct('PEL Exif SRational Tests');
     }
 
@@ -400,7 +408,7 @@ class SRationalTestCase extends UnitTestCase
 
     public function testReturnValues()
     {
-        $pattern = new PatternExpectation('/Missing argument 1 for PelEntrySRational::__construct()/');
+        $pattern = new PatternExpectation('/Missing argument 1 for lsolesen.pel.PelEntrySRational::__construct()/');
         $this->expectError($pattern);
         $pattern = new PatternExpectation('/Undefined variable: tag/');
         $this->expectError($pattern);
@@ -445,7 +453,7 @@ class SRationalTestCase extends UnitTestCase
         ));
         $this->assertEqual($entry->getText(), '7/8');
 
-        $pattern = new PatternExpectation('/Missing argument 1 for PelEntryNumber::setValue()/');
+        $pattern = new PatternExpectation('/Missing argument 1 for lsolesen.pel.PelEntryNumber::setValue()/');
         $this->expectError($pattern);
         $entry->setValue();
 

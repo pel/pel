@@ -22,24 +22,27 @@
  * Free Software Foundation, Inc., 51 Franklin St, Fifth Floor,
  * Boston, MA 02110-1301 USA
  */
-set_include_path(dirname(__FILE__) . '/../src/' . PATH_SEPARATOR . get_include_path());
-
 if (realpath($_SERVER['PHP_SELF']) == __FILE__) {
-    require_once 'simpletest/autorun.php';
+    require_once '../autoload.php';
+    require_once '../vendor/lastcraft/simpletest/autorun.php';
 }
+
+use lsolesen\pel\PelEntryUndefined;
+use lsolesen\pel\PelEntryUserComment;
+use lsolesen\pel\PelEntryVersion;
+use lsolesen\pel\PelConvert;
 
 class UndefinedTestCase extends UnitTestCase
 {
 
     function __construct()
     {
-        require_once ('PelEntryUndefined.php');
         parent::__construct('PEL Exif Undefined Tests');
     }
 
     function testReturnValues()
     {
-        $pattern = new PatternExpectation('/Missing argument 1 for PelEntryUndefined::__construct()/');
+        $pattern = new PatternExpectation('/Missing argument 1 for lsolesen.pel.PelEntryUndefined::__construct()/');
         $this->expectError($pattern);
         $pattern = new PatternExpectation('/Undefined variable: tag/');
         $this->expectError($pattern);
@@ -67,7 +70,7 @@ class UndefinedTestCase extends UnitTestCase
 
     function testVersion()
     {
-        $pattern = new PatternExpectation('/Missing argument 1 for PelEntryVersion::__construct()/');
+        $pattern = new PatternExpectation('/Missing argument 1 for lsolesen.pel.PelEntryVersion::__construct()/');
         $this->expectError($pattern);
         $pattern = new PatternExpectation('/Undefined variable: tag/');
         $this->expectError($pattern);

@@ -22,6 +22,9 @@
  * Free Software Foundation, Inc., 51 Franklin St, Fifth Floor,
  * Boston, MA 02110-1301 USA
  */
+namespace lsolesen\pel;
+
+use \lsolesen\pel\PelDataWindow;
 
 /**
  * Class representing content in a JPEG file.
@@ -30,15 +33,6 @@
  * @license http://www.gnu.org/licenses/gpl.html GNU General Public
  *          License (GPL)
  * @package PEL
- */
-
-/**
- * #@+ Required class definitions.
- */
-require_once ('PelDataWindow.php');
-
-/**
- * #@-
  */
 
 /**
@@ -62,8 +56,8 @@ class PelJpegContent
     /**
      * Make a new piece of JPEG content.
      *
-     * @param
-     *            PelDataWindow the content.
+     * @param PelDataWindow $data
+     *            the content.
      */
     public function __construct(PelDataWindow $data)
     {

@@ -22,6 +22,7 @@
  * Free Software Foundation, Inc., 51 Franklin St, Fifth Floor,
  * Boston, MA 02110-1301 USA
  */
+namespace lsolesen\pel;
 
 /**
  * Classes for dealing with Exif IFDs.
@@ -33,38 +34,6 @@
  */
 
 /**
- * #@+ Required class definitions.
- */
-require_once ('PelEntryUndefined.php');
-require_once ('PelEntryRational.php');
-require_once ('PelDataWindow.php');
-require_once ('PelEntryAscii.php');
-require_once ('PelEntryShort.php');
-require_once ('PelEntryByte.php');
-require_once ('PelEntryLong.php');
-require_once ('PelException.php');
-require_once ('PelFormat.php');
-require_once ('PelEntry.php');
-require_once ('PelTag.php');
-require_once ('Pel.php');
-
-/**
- * #@-
- */
-
-/**
- * Exception indicating a general problem with the IFD.
- *
- * @author Martin Geisler <mgeisler@users.sourceforge.net>
- * @package PEL
- * @subpackage Exception
- */
-class PelIfdException extends PelException
-{
-    // do nothing
-}
-
-/**
  * Class representing an Image File Directory (IFD).
  *
  * {@link PelTiff TIFF data} is structured as a number of Image File
@@ -74,7 +43,7 @@ class PelIfdException extends PelException
  * @author Martin Geisler <mgeisler@users.sourceforge.net>
  * @package PEL
  */
-class PelIfd implements IteratorAggregate, ArrayAccess
+class PelIfd implements \IteratorAggregate, \ArrayAccess
 {
 
     /**
@@ -195,11 +164,11 @@ class PelIfd implements IteratorAggregate, ArrayAccess
     /**
      * Load data into a Image File Directory (IFD).
      *
-     * @param
-     *            PelDataWindow the data window that will provide the data.
+     * @param PelDataWindow $d
+     *            the data window that will provide the data.
      *
-     * @param
-     *            int the offset within the window where the directory will
+     * @param int $offset
+     *            the offset within the window where the directory will
      *            be found.
      */
     public function load(PelDataWindow $d, $offset)
@@ -334,17 +303,17 @@ class PelIfd implements IteratorAggregate, ArrayAccess
      * requirements for a given tag (if any) can be found in the
      * documentation for {@link PelTag}.
      *
-     * @param
-     *            PelTag the tag of the entry.
+     * @param PelTag $tag
+     *            the tag of the entry.
      *
-     * @param
-     *            PelFormat the format of the entry.
+     * @param PelFormat $format
+     *            the format of the entry.
      *
-     * @param
-     *            int the components in the entry.
+     * @param int $components
+     *            the components in the entry.
      *
-     * @param
-     *            PelDataWindow the data which will be used to construct the
+     * @param PelDataWindow $data
+     *            the data which will be used to construct the
      *            entry.
      *
      * @return PelEntry a newly created entry, holding the data given.
@@ -516,15 +485,15 @@ class PelIfd implements IteratorAggregate, ArrayAccess
      * available data and adjust as necessary. Only then is the
      * thumbnail data loaded.
      *
-     * @param
-     *            PelDataWindow the data from which the thumbnail will be
+     * @param PelDataWindow $d
+     *            the data from which the thumbnail will be
      *            extracted.
      *
-     * @param
-     *            int the offset into the data.
+     * @param int $offset
+     *            the offset into the data.
      *
-     * @param
-     *            int the length of the thumbnail.
+     * @param int $length
+     *            the length of the thumbnail.
      */
     private function safeSetThumbnail(PelDataWindow $d, $offset, $length)
     {
@@ -556,8 +525,8 @@ class PelIfd implements IteratorAggregate, ArrayAccess
      * adjusted until one if found. An {@link PelIfdException} might be
      * thrown (depending on {@link Pel::$strict}) this case.
      *
-     * @param
-     *            PelDataWindow the thumbnail data.
+     * @param PelDataWindow $d
+     *            the thumbnail data.
      */
     public function setThumbnail(PelDataWindow $d)
     {
@@ -596,8 +565,8 @@ class PelIfd implements IteratorAggregate, ArrayAccess
      * treated as private tags and will be allowed everywhere (use this
      * for testing or for implementing your own types of tags).
      *
-     * @param
-     *            PelTag the tag.
+     * @param PelTag $tag
+     *            the tag.
      *
      * @return boolean true if the tag is considered valid in this IFD,
      *         false otherwise.
@@ -783,8 +752,8 @@ class PelIfd implements IteratorAggregate, ArrayAccess
     /**
      * Get the name of an IFD type.
      *
-     * @param
-     *            int one of {@link PelIfd::IFD0}, {@link PelIfd::IFD1},
+     * @param int $type
+     *            one of {@link PelIfd::IFD0}, {@link PelIfd::IFD1},
      *            {@link PelIfd::EXIF}, {@link PelIfd::GPS}, or {@link
      *            PelIfd::INTEROPERABILITY}.
      *
@@ -821,8 +790,8 @@ class PelIfd implements IteratorAggregate, ArrayAccess
     /**
      * Adds an entry to the directory.
      *
-     * @param
-     *            PelEntry the entry that will be added. If the entry is not
+     * @param PelEntry $e
+     *            the entry that will be added. If the entry is not
      *            valid in this IFD (as per {@link isValidTag()}) an
      *            {@link PelInvalidDataException} is thrown.
      *
@@ -852,8 +821,8 @@ class PelIfd implements IteratorAggregate, ArrayAccess
      * // ... do something with the F-number.
      * </code>
      *
-     * @param
-     *            PelTag the offset to check.
+     * @param PelTag $tag
+     *            the offset to check.
      *
      * @return boolean whether the tag exists.
      */
@@ -873,8 +842,8 @@ class PelIfd implements IteratorAggregate, ArrayAccess
      * $entry = $ifd[PelTag::FNUMBER];
      * </code>
      *
-     * @param
-     *            PelTag the tag to return. It is an error to ask for a tag
+     * @param PelTag $tag
+     *            the tag to return. It is an error to ask for a tag
      *            which is not in the IFD, just like asking for a non-existant
      *            array entry.
      *
@@ -899,11 +868,11 @@ class PelIfd implements IteratorAggregate, ArrayAccess
      * Note that the actual array index passed is ignored! Instead the
      * {@link PelTag} from the entry is used.
      *
-     * @param
-     *            PelTag the offset to update.
+     * @param PelTag $tag
+     *            the offset to update.
      *
-     * @param
-     *            PelEntry the new value.
+     * @param PelEntry $e
+     *            the new value.
      */
     public function offsetSet($tag, $e)
     {
@@ -926,8 +895,8 @@ class PelIfd implements IteratorAggregate, ArrayAccess
      * unset($ifd[PelTag::EXPOSURE_BIAS_VALUE])
      * </code>
      *
-     * @param
-     *            PelTag the offset to delete.
+     * @param PelTag $tag
+     *            the offset to delete.
      */
     public function offsetUnset($tag)
     {
@@ -937,8 +906,8 @@ class PelIfd implements IteratorAggregate, ArrayAccess
     /**
      * Retrieve an entry.
      *
-     * @param
-     *            PelTag the tag identifying the entry.
+     * @param PelTag $tag
+     *            the tag identifying the entry.
      *
      * @return PelEntry the entry associated with the tag, or null if no
      *         such entry exists.
@@ -983,7 +952,7 @@ class PelIfd implements IteratorAggregate, ArrayAccess
      */
     public function getIterator()
     {
-        return new ArrayIterator($this->entries);
+        return new \ArrayIterator($this->entries);
     }
 
     /**
@@ -1009,8 +978,8 @@ class PelIfd implements IteratorAggregate, ArrayAccess
     /**
      * Make this directory point to a new directory.
      *
-     * @param
-     *            PelIfd the IFD that this directory will point to.
+     * @param PelIfd $i
+     *            the IFD that this directory will point to.
      */
     public function setNextIfd(PelIfd $i)
     {
@@ -1044,8 +1013,8 @@ class PelIfd implements IteratorAggregate, ArrayAccess
      *
      * Any previous sub-IFD of the same type will be overwritten.
      *
-     * @param
-     *            PelIfd the sub IFD. The type of must be one of {@link
+     * @param PelIfd $sub
+     *            the sub IFD. The type of must be one of {@link
      *            PelIfd::EXIF}, {@link PelIfd::GPS}, or {@link
      *            PelIfd::INTEROPERABILITY}.
      */
@@ -1057,8 +1026,8 @@ class PelIfd implements IteratorAggregate, ArrayAccess
     /**
      * Return a sub IFD.
      *
-     * @param
-     *            int the type of the sub IFD. This must be one of {@link
+     * @param int $type
+     *            the type of the sub IFD. This must be one of {@link
      *            PelIfd::EXIF}, {@link PelIfd::GPS}, or {@link
      *            PelIfd::INTEROPERABILITY}.
      *
@@ -1092,11 +1061,11 @@ class PelIfd implements IteratorAggregate, ArrayAccess
      * specified byte order. The offsets will be calculated from the
      * offset given.
      *
-     * @param
-     *            int the offset of the first byte of this directory.
+     * @param int $offset
+     *            the offset of the first byte of this directory.
      *
-     * @param
-     *            PelByteOrder the byte order that should be used when
+     * @param PelByteOrder $order
+     *            the byte order that should be used when
      *            turning integers into bytes. This should be one of {@link
      *            PelConvert::LITTLE_ENDIAN} and {@link PelConvert::BIG_ENDIAN}.
      */

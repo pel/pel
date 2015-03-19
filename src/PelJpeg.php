@@ -22,6 +22,7 @@
  * Free Software Foundation, Inc., 51 Franklin St, Fifth Floor,
  * Boston, MA 02110-1301 USA
  */
+namespace lsolesen\pel;
 
 /**
  * Classes representing JPEG data.
@@ -31,51 +32,14 @@
  * @package PEL
  */
 
-/**
- * #@+ Required class definitions.
- */
-require_once ('PelJpegComment.php');
-require_once ('PelJpegContent.php');
-require_once ('PelDataWindow.php');
-require_once ('PelJpegMarker.php');
-require_once ('PelException.php');
-require_once ('PelExif.php');
-require_once ('Pel.php');
 
-/**
- * #@-
- */
-
-/**
- * Exception thrown when an invalid marker is found.
- *
- * This exception is thrown when PEL expects to find a {@link
- * PelJpegMarker} and instead finds a byte that isn't a known marker.
- *
- * @author Martin Geisler <mgeisler@users.sourceforge.net>
- * @package PEL
- * @subpackage Exception
- */
-class PelJpegInvalidMarkerException extends PelException
-{
-
-    /**
-     * Construct a new invalid marker exception.
-     *
-     * The exception will contain a message describing the error,
-     * including the byte found and the offset of the offending byte.
-     *
-     * @param
-     *            int the byte found.
-     *
-     * @param
-     *            int the offset in the data.
-     */
-    public function __construct($marker, $offset)
-    {
-        parent::__construct('Invalid marker found at offset %d: 0x%2X', $offset, $marker);
-    }
-}
+// require_once ('PelJpegComment.php');
+// require_once ('PelJpegContent.php');
+// require_once ('PelDataWindow.php');
+// require_once ('PelJpegMarker.php');
+// require_once ('PelException.php');
+// require_once ('PelExif.php');
+// require_once ('Pel.php');
 
 /**
  * Class for handling JPEG data.
@@ -228,7 +192,7 @@ class PelJpeg
             $marker = $d->getByte($i);
 
             if (! PelJpegMarker::isValid($marker)) {
-                throw new PelJpegInvalidMarkerException($marker, $i);
+                throw new \lsolesen\pel\PelJpegInvalidMarkerException($marker, $i);
             }
 
             /*

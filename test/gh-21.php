@@ -21,14 +21,11 @@
  * Free Software Foundation, Inc., 51 Franklin St, Fifth Floor,
  * Boston, MA 02110-1301 USA
  */
-set_include_path(dirname(__FILE__) . '/../src/' . PATH_SEPARATOR . get_include_path());
-
 if (realpath($_SERVER['PHP_SELF']) == __FILE__) {
-    require_once 'simpletest/autorun.php';
+    require_once '../autoload.php';
+    require_once '../vendor/lastcraft/simpletest/autorun.php';
 }
-
-require_once 'Pel.php';
-require_once 'PelJpeg.php';
+use lsolesen\pel\PelJpeg;
 
 class Gh21TestCase extends UnitTestCase
 {
@@ -56,28 +53,28 @@ class Gh21TestCase extends UnitTestCase
     {
         $scale = 0.75;
         $input_jpeg = new PelJpeg($this->file);
-        
+
         $original = ImageCreateFromString($input_jpeg->getBytes());
         $original_w = ImagesX($original);
         $original_h = ImagesY($original);
-        
+
         $scaled_w = $original_w * $scale;
         $scaled_h = $original_h * $scale;
-        
+
         $scaled = ImageCreateTrueColor($scaled_w, $scaled_h);
         ImageCopyResampled($scaled, $original, 0, 0, /* dst (x,y) */
                   0, 0, /* src (x,y) */
                   $scaled_w, $scaled_h, $original_w, $original_h);
-        
+
         $output_jpeg = new PelJpeg($scaled);
-        
+
         $exif = $input_jpeg->getExif();
-        
+
         if ($exif != null)
             $output_jpeg->setExif($exif);
-        
+
         file_put_contents($this->file, $output_jpeg->getBytes());
-        
+
         $jpeg = new PelJpeg($this->file);
         $exifin = $jpeg->getExif();
         $this->assertEqual($exif, $exifin);

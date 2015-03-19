@@ -34,10 +34,10 @@ function println($args)
 
 /* Make PEL speak the users language, if it is available. */
 setlocale(LC_ALL, '');
-
-require_once (dirname(__FILE__) . '/../src/PelDataWindow.php');
-require_once (dirname(__FILE__) . '/../src/PelJpeg.php');
-require_once (dirname(__FILE__) . '/../src/PelTiff.php');
+require_once '../autoload.php';
+use lsolesen\pel\PelDataWindow;
+use lsolesen\pel\PelJpeg;
+use lsolesen\pel\PelTiff;
 
 $prog = array_shift($argv);
 $error = false;

@@ -36,7 +36,10 @@ function println($args)
 setlocale(LC_ALL, '');
 
 /* Load the required PEL files for handling JPEG images. */
-require_once (dirname(__FILE__) . '/../src/PelJpeg.php');
+require_once '../autoload.php';
+use lsolesen\pel\PelDataWindow;
+use lsolesen\pel\PelJpeg;
+use lsolesen\pel\PelTiff;
 
 /*
  * Store the name of the script in $prog and remove this first part of

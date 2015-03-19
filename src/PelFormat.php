@@ -22,6 +22,7 @@
  * Free Software Foundation, Inc., 51 Franklin St, Fifth Floor,
  * Boston, MA 02110-1301 USA
  */
+namespace lsolesen\pel;
 
 /**
  * Namespace for functions operating on Exif formats.
@@ -166,8 +167,8 @@ class PelFormat
     /**
      * Returns the name of a format.
      *
-     * @param
-     *            PelFormat the format.
+     * @param PelFormat $type
+     *            the format.
      *
      * @return string the name of the format, e.g., 'Ascii' for the
      *         {@link ASCII} format etc.
@@ -207,8 +208,8 @@ class PelFormat
     /**
      * Return the size of components in a given format.
      *
-     * @param
-     *            PelFormat the format.
+     * @param PelFormat $type
+     *            the format.
      *
      * @return the size in bytes needed to store one component with the
      *         given format.

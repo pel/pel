@@ -34,7 +34,10 @@
  * used in Exif data.
  * - addGpsInfo() adds several Exif tags to your JPEG file.
  */
-require_once (dirname(__FILE__) . '/../src/PelJpeg.php');
+require_once '../autoload.php';
+use lsolesen\pel\PelDataWindow;
+use lsolesen\pel\PelJpeg;
+use lsolesen\pel\PelTiff;
 
 /**
  * Convert a decimal degree into degrees, minutes, and seconds.

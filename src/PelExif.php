@@ -22,6 +22,7 @@
  * Free Software Foundation, Inc., 51 Franklin St, Fifth Floor,
  * Boston, MA 02110-1301 USA
  */
+namespace lsolesen\pel;
 
 /**
  * Classes for dealing with Exif data.
@@ -30,22 +31,6 @@
  * @license http://www.gnu.org/licenses/gpl.html GNU General Public
  *          License (GPL)
  * @package PEL
- */
-
-/**
- * #@+ Required class definitions.
- */
-require_once ('PelJpegContent.php');
-require_once ('PelException.php');
-require_once ('PelFormat.php');
-require_once ('PelEntry.php');
-require_once ('PelTiff.php');
-require_once ('PelIfd.php');
-require_once ('PelTag.php');
-require_once ('Pel.php');
-
-/**
- * #@-
  */
 
 /**
@@ -100,6 +85,8 @@ class PelExif extends PelJpegContent
      * This will populate the object with Exif data, contained as a
      * {@link PelTiff} object. This TIFF object can be accessed with
      * the {@link getTiff()} method.
+     *
+     * @param PelDataWindow $d
      */
     public function load(PelDataWindow $d)
     {
@@ -128,8 +115,8 @@ class PelExif extends PelJpegContent
      * used to change this data from one {@link PelTiff} object to
      * another.
      *
-     * @param
-     *            PelTiff the new TIFF object.
+     * @param PelTiff $tiff
+     *            the new TIFF object.
      */
     public function setTiff(PelTiff $tiff)
     {

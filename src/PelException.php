@@ -22,6 +22,7 @@
  * Free Software Foundation, Inc., 51 Franklin St, Fifth Floor,
  * Boston, MA 02110-1301 USA
  */
+namespace lsolesen\pel;
 
 /**
  * Standard PEL exception.
@@ -42,7 +43,7 @@
  * @package PEL
  * @subpackage Exception
  */
-class PelException extends Exception
+class PelException extends \Exception
 {
 
     /**
@@ -58,31 +59,10 @@ class PelException extends Exception
      *            any number of arguments to be used with
      *            the format string.
      */
-    function __construct(/* fmt, args... */) {
+    public function __construct()
+    {
         $args = func_get_args();
         $fmt = array_shift($args);
         parent::__construct(vsprintf($fmt, $args));
     }
-}
-
-/**
- * Exception throw if invalid data is found.
- *
- * @author Martin Geisler <mgeisler@users.sourceforge.net>
- * @package PEL
- * @subpackage Exception
- */
-class PelInvalidDataException extends PelException
-{
-}
-
-/**
- * Exception throw if an invalid argument is passed.
- *
- * @author Martin Geisler <mgeisler@users.sourceforge.net>
- * @package PEL
- * @subpackage Exception
- */
-class PelInvalidArgumentException extends PelException
-{
 }

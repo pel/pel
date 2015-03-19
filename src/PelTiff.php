@@ -22,6 +22,7 @@
  * Free Software Foundation, Inc., 51 Franklin St, Fifth Floor,
  * Boston, MA 02110-1301 USA
  */
+namespace lsolesen\pel;
 
 /**
  * Classes for dealing with TIFF data.
@@ -30,17 +31,6 @@
  * @license http://www.gnu.org/licenses/gpl.html GNU General Public
  *          License (GPL)
  * @package PEL
- */
-
-/**
- * #@+ Required class definitions.
- */
-require_once ('PelDataWindow.php');
-require_once ('PelIfd.php');
-require_once ('Pel.php');
-
-/**
- * #@-
  */
 
 /**
@@ -97,6 +87,8 @@ class PelTiff
      * object.
      *
      * Use {@link setIfd()} to explicitly set the IFD.
+     *
+     * @param boolean|string|PelDataWindow $data;
      */
     public function __construct($data = false)
     {
@@ -122,6 +114,7 @@ class PelTiff
      * PelInvalidDataException} is thrown, explaining the problem.
      *
      * @param
+     *            d
      *            PelDataWindow the data from which the object will be
      *            constructed. This should be valid TIFF data, coming either
      *            directly from a TIFF image or from the Exif data in a JPEG image.
@@ -170,8 +163,8 @@ class PelTiff
     /**
      * Load data from a file into a TIFF object.
      *
-     * @param
-     *            string the filename. This must be a readable file.
+     * @param string $filename
+     *            the filename. This must be a readable file.
      */
     public function loadFile($filename)
     {
@@ -181,8 +174,8 @@ class PelTiff
     /**
      * Set the first IFD.
      *
-     * @param
-     *            PelIfd the new first IFD, which must be of type {@link
+     * @param PelIfd $ifd
+     *            the new first IFD, which must be of type {@link
      *            PelIfd::IFD0}.
      */
     public function setIfd(PelIfd $ifd)
@@ -211,8 +204,8 @@ class PelTiff
      * little-endian} or {@link PelConvert::BIG_ENDIAN big-endian} byte
      * order, and so this method takes an argument specifying that.
      *
-     * @param
-     *            PelByteOrder the desired byte order of the TIFF data.
+     * @param PelByteOrder $order
+     *            the desired byte order of the TIFF data.
      *            This should be one of {@link PelConvert::LITTLE_ENDIAN} or {@link
      *            PelConvert::BIG_ENDIAN}.
      *
@@ -275,8 +268,8 @@ class PelTiff
      * if the data could be a valid TIFF data. This means that the
      * check is more like a heuristic than a rigorous check.
      *
-     * @param
-     *            PelDataWindow the bytes that will be examined.
+     * @param PelDataWindow $d
+     *            the bytes that will be examined.
      *
      * @return boolean true if the data looks like valid TIFF data,
      *         false otherwise.

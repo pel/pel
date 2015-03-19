@@ -22,6 +22,7 @@
  * Free Software Foundation, Inc., 51 Franklin St, Fifth Floor,
  * Boston, MA 02110-1301 USA
  */
+namespace lsolesen\pel;
 
 /**
  * Classes for dealing with Exif entries.
@@ -37,141 +38,6 @@
  *          License (GPL)
  * @package PEL
  */
-
-/**
- * #@+ Required class definitions.
- */
-require_once ('PelException.php');
-require_once ('PelFormat.php');
-require_once ('PelTag.php');
-require_once ('Pel.php');
-
-/**
- * #@-
- */
-
-/**
- * Exception indicating a problem with an entry.
- *
- * @author Martin Geisler <mgeisler@users.sourceforge.net>
- * @package PEL
- * @subpackage Exception
- */
-class PelEntryException extends PelException
-{
-
-    /**
-     * The IFD type (if known).
-     *
-     * @var int
-     */
-    protected $type;
-
-    /**
-     * The tag of the entry (if known).
-     *
-     * @var PelTag
-     */
-    protected $tag;
-
-    /**
-     * Get the IFD type associated with the exception.
-     *
-     * @return int one of {@link PelIfd::IFD0}, {@link PelIfd::IFD1},
-     *         {@link PelIfd::EXIF}, {@link PelIfd::GPS}, or {@link
-     *         PelIfd::INTEROPERABILITY}. If no type is set, null is returned.
-     */
-    public function getIfdType()
-    {
-        return $this->type;
-    }
-
-    /**
-     * Get the tag associated with the exception.
-     *
-     * @return PelTag the tag. If no tag is set, null is returned.
-     */
-    public function getTag()
-    {
-        return $this->tag;
-    }
-}
-
-/**
- * Exception indicating that an unexpected format was found.
- *
- * The documentation for each tag in {@link PelTag} will detail any
- * constrains.
- *
- * @author Martin Geisler <mgeisler@users.sourceforge.net>
- * @package PEL
- * @subpackage Exception
- */
-class PelUnexpectedFormatException extends PelEntryException
-{
-
-    /**
-     * Construct a new exception indicating an invalid format.
-     *
-     * @param
-     *            int the type of IFD.
-     *
-     * @param
-     *            PelTag the tag for which the violation was found.
-     *
-     * @param
-     *            PelFormat the format found.
-     *
-     * @param
-     *            PelFormat the expected format.
-     */
-    public function __construct($type, $tag, $found, $expected)
-    {
-        parent::__construct('Unexpected format found for %s tag: PelFormat::%s. ' . 'Expected PelFormat::%s instead.', PelTag::getName($type, $tag), strtoupper(PelFormat::getName($found)), strtoupper(PelFormat::getName($expected)));
-        $this->tag = $tag;
-        $this->type = $type;
-    }
-}
-
-/**
- * Exception indicating that an unexpected number of components was
- * found.
- *
- * Some tags have strict limits as to the allowed number of
- * components, and this exception is thrown if the data violates such
- * a constraint. The documentation for each tag in {@link PelTag}
- * explains the expected number of components.
- *
- * @author Martin Geisler <mgeisler@users.sourceforge.net>
- * @package PEL
- * @subpackage Exception
- */
-class PelWrongComponentCountException extends PelEntryException
-{
-
-    /**
-     * Construct a new exception indicating a wrong number of
-     * components.
-     *
-     * @param
-     *            int the type of IFD.
-     *
-     * @param
-     *            PelTag the tag for which the violation was found.
-     *
-     * @param
-     *            int the number of components found.
-     *
-     * @param
-     *            int the expected number of components.
-     */
-    public function __construct($type, $tag, $found, $expected)
-    {
-        parent::__construct('Wrong number of components found for %s tag: %d. ' . 'Expected %d.', PelTag::getName($type, $tag), $found, $expected);
-        $this->tag = $tag;
-        $this->type = $type;
-    }
-}
 
 /**
  * Common ancestor class of all {@link PelIfd} entries.

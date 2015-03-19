@@ -22,6 +22,7 @@
  * Free Software Foundation, Inc., 51 Franklin St, Fifth Floor,
  * Boston, MA 02110-1301 USA
  */
+namespace lsolesen\pel;
 
 /**
  * A container for bytes with a limited window of accessible bytes.
@@ -30,36 +31,7 @@
  * @license http://www.gnu.org/licenses/gpl.html GNU General Public License (GPL)
  * @package PEL
  */
-
-/**
- * #@+ Required class definitions.
- */
-require_once ('PelException.php');
 require_once ('PelConvert.php');
-
-/**
- * #@-
- */
-
-/**
- * An exception thrown when an invalid offset is encountered.
- *
- * @package PEL
- * @subpackage Exception
- */
-class PelDataWindowOffsetException extends PelException
-{
-}
-
-/**
- * An exception thrown when an invalid window is encountered.
- *
- * @package PEL
- * @subpackage Exception
- */
-class PelDataWindowWindowException extends PelException
-{
-}
 
 /**
  * The window.

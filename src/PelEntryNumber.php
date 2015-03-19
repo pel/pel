@@ -22,6 +22,7 @@
  * Free Software Foundation, Inc., 51 Franklin St, Fifth Floor,
  * Boston, MA 02110-1301 USA
  */
+namespace lsolesen\pel;
 
 /**
  * Abstract class for numbers.
@@ -31,44 +32,6 @@
  *          License (GPL)
  * @package PEL
  */
-
-/**
- * #@+ Required class definitions.
- */
-require_once ('PelException.php');
-require_once ('PelEntry.php');
-
-/**
- * #@-
- */
-
-/**
- * Exception cast when numbers overflow.
- *
- * @author Martin Geisler <mgeisler@users.sourceforge.net>
- * @package PEL
- * @subpackage Exception
- */
-class PelOverflowException extends PelException
-{
-
-    /**
-     * Construct a new overflow exception.
-     *
-     * @param
-     *            int the value that is out of range.
-     *
-     * @param
-     *            int the minimum allowed value.
-     *
-     * @param
-     *            int the maximum allowed value.
-     */
-    public function __construct($v, $min, $max)
-    {
-        parent::__construct('Value %.0f out of range [%.0f, %.0f]', $v, $min, $max);
-    }
-}
 
 /**
  * Class for holding numbers.

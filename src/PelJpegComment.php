@@ -22,6 +22,7 @@
  * Free Software Foundation, Inc., 51 Franklin St, Fifth Floor,
  * Boston, MA 02110-1301 USA
  */
+namespace lsolesen\pel;
 
 /**
  * Class for dealing with JPEG comments.
@@ -30,15 +31,6 @@
  * @license http://www.gnu.org/licenses/gpl.html GNU General Public
  *          License (GPL)
  * @package PEL
- */
-
-/**
- * #@+ Required class definitions.
- */
-require_once ('PelJpegContent.php');
-
-/**
- * #@-
  */
 
 /**
@@ -61,6 +53,8 @@ class PelJpegComment extends PelJpegContent
      * Construct a new JPEG comment.
      *
      * The new comment will contain the string given.
+     *
+     * @param string $comment
      */
     public function __construct($comment = '')
     {
@@ -71,6 +65,8 @@ class PelJpegComment extends PelJpegContent
      * Load and parse data.
      *
      * This will load the comment from the data window passed.
+     *
+     * @param PelDataWindow $d
      */
     public function load(PelDataWindow $d)
     {
@@ -82,8 +78,8 @@ class PelJpegComment extends PelJpegContent
      *
      * Any old comment will be overwritten.
      *
-     * @param
-     *            string the new comment.
+     * @param string $comment
+     *            the new comment.
      */
     public function setValue($comment)
     {

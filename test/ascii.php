@@ -21,28 +21,29 @@
  * Free Software Foundation, Inc., 51 Franklin St, Fifth Floor,
  * Boston, MA 02110-1301 USA
  */
-set_include_path(dirname(__FILE__) . '/../src/' . PATH_SEPARATOR . get_include_path());
-
 if (realpath($_SERVER['PHP_SELF']) == __FILE__) {
-    require_once 'simpletest/autorun.php';
+    require_once '../autoload.php';
+    require_once '../vendor/lastcraft/simpletest/autorun.php';
 }
+use lsolesen\pel\PelEntryAscii;
+use lsolesen\pel\PelEntryTime;
+use lsolesen\pel\PelEntryCopyright;
+use lsolesen\pel\PelTag;
+use lsolesen\pel\PelConvert;
 
 class AsciiTestCase extends UnitTestCase
 {
 
     function __construct()
     {
-        include_once 'PelEntryAscii.php';
         parent::__construct('PEL Exif ASCII Tests');
     }
 
     function testReturnValues()
     {
-        $pattern = new PatternExpectation('/Missing argument 1 for ' . 'PelEntryAscii::__construct()/');
-
+        $pattern = new PatternExpectation('/Missing argument 1 for lsolesen.pel.PelEntryAscii::__construct()/');
         $this->expectError($pattern);
         $this->expectError('Undefined variable: tag');
-
         $entry = new PelEntryAscii();
 
         $entry = new PelEntryAscii(42);
@@ -54,8 +55,8 @@ class AsciiTestCase extends UnitTestCase
 
     function testTime()
     {
-        $arg1 = new PatternExpectation('/Missing argument 1 for ' . 'PelEntryTime::__construct()/');
-        $arg2 = new PatternExpectation('/Missing argument 2 for ' . 'PelEntryTime::__construct()/');
+        $arg1 = new PatternExpectation('/Missing argument 1 for lsolesen.pel.PelEntryTime::__construct()/');
+        $arg2 = new PatternExpectation('/Missing argument 2 for lsolesen.pel.PelEntryTime::__construct()/');
 
         $this->expectError($arg1);
         $this->expectError($arg2);

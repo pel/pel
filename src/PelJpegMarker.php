@@ -22,6 +22,9 @@
  * Free Software Foundation, Inc., 51 Franklin St, Fifth Floor,
  * Boston, MA 02110-1301 USA
  */
+namespace lsolesen\pel;
+
+use \lsolesen\pel\Pel;
 
 /**
  * Classes for dealing with JPEG markers.
@@ -30,15 +33,6 @@
  * @license http://www.gnu.org/licenses/gpl.html GNU General Public
  *          License (GPL)
  * @package PEL
- */
-
-/**
- * #@+ Required class definitions.
- */
-require_once ('Pel.php');
-
-/**
- * #@-
  */
 
 /**
@@ -391,8 +385,8 @@ class PelJpegMarker
     /**
      * Turn a JPEG marker into bytes.
      *
-     * @param
-     *            PelJpegMarker the marker.
+     * @param PelJpegMarker $m
+     *            the marker.
      *
      * @return string the marker as a string. This will be a string
      *         with just a single byte since all JPEG markers are simply single
@@ -406,8 +400,8 @@ class PelJpegMarker
     /**
      * Return the short name for a marker.
      *
-     * @param
-     *            PelJpegMarker the marker.
+     * @param PelJpegMarker $m
+     *            the marker.
      *
      * @return string the name of the marker, e.g., 'SOI' for the Start
      *         of Image marker.
@@ -551,8 +545,8 @@ class PelJpegMarker
     /**
      * Returns a description of a JPEG marker.
      *
-     * @param
-     *            PelJpegMarker the marker.
+     * @param PelJpegMarker $m
+     *            the marker.
      *
      * @return string the description of the marker.
      */

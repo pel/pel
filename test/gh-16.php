@@ -21,15 +21,14 @@
  * Free Software Foundation, Inc., 51 Franklin St, Fifth Floor,
  * Boston, MA 02110-1301 USA
  */
-set_include_path(dirname(__FILE__) . '/../src/' . PATH_SEPARATOR . get_include_path());
-
 if (realpath($_SERVER['PHP_SELF']) == __FILE__) {
-    require_once 'simpletest/autorun.php';
+    require_once '../autoload.php';
+    require_once '../vendor/lastcraft/simpletest/autorun.php';
 }
-
-require_once 'Pel.php';
-require_once 'PelDataWindow.php';
-require_once 'PelJpeg.php';
+use lsolesen\pel\PelDataWindow;
+use lsolesen\pel\PelJpeg;
+use lsolesen\pel\PelEntryWindowsString;
+use lsolesen\pel\PelTag;
 
 class Gh16TestCase extends UnitTestCase
 {
@@ -56,24 +55,24 @@ class Gh16TestCase extends UnitTestCase
     function testThisDoesNotWorkAsExpected()
     {
         $subject = "Превед, медвед!";
-        
+
         $data = new PelDataWindow(file_get_contents($this->file));
-        
+
         if (PelJpeg::isValid($data)) {
-            
+
             $jpeg = new PelJpeg();
             $jpeg->load($data);
             $exif = $jpeg->getExif();
-            
+
             if (null == $exif) {
                 $exif = new PelExif();
                 $jpeg->setExif($exif);
                 $tiff = new PelTiff();
                 $exif->setTiff($tiff);
             }
-            
+
             $tiff = $exif->getTiff();
-            
+
             $ifd0 = $tiff->getIfd();
             if (null == $ifd0) {
                 $ifd0 = new PelIfd(PelIfd::IFD0);
@@ -81,9 +80,9 @@ class Gh16TestCase extends UnitTestCase
             }
         }
         $ifd0->addEntry(new PelEntryWindowsString(PelTag::XP_SUBJECT, $subject));
-        
+
         file_put_contents($this->file, $jpeg->getBytes());
-        
+
         $jpeg = new PelJpeg($this->file);
         $exif = $jpeg->getExif();
         $tiff = $exif->getTiff();

@@ -22,6 +22,18 @@
  * Free Software Foundation, Inc., 51 Franklin St, Fifth Floor,
  * Boston, MA 02110-1301 USA
  */
+if (realpath($_SERVER['PHP_SELF']) == __FILE__) {
+    require_once '../autoload.php';
+    require_once '../vendor/lastcraft/simpletest/autorun.php';
+}
+use lsolesen\pel\PelJpeg;
+use lsolesen\pel\PelEntryTime;
+use lsolesen\pel\PelExif;
+use lsolesen\pel\PelTiff;
+use lsolesen\pel\PelIfd;
+use lsolesen\pel\PelTag;
+use lsolesen\pel\PelEntryAscii;
+
 class Bug3017880TestCase extends UnitTestCase
 {
 
@@ -38,28 +50,28 @@ class Bug3017880TestCase extends UnitTestCase
             $success = 1; // return true by default, as this function may not resave the file, but it's still success
             $resave_file = 0;
             $jpeg = new PelJpeg($filename);
-            
+
             // should all exif data on photo be cleared (gd and iu will always strip it anyway, so only
             // force strip if you know the image you're branding is an original)
             // $jpeg->clearExif();
-            
+
             if ($exif === null) {
                 $exif = new PelExif();
                 $jpeg->setExif($exif);
                 $tiff = new PelTiff();
                 $exif->setTiff($tiff);
             }
-            
+
             $tiff = $exif->getTiff();
             $ifd0 = $tiff->getIfd();
             if ($ifd0 == null) {
                 $ifd0 = new PelIfd(PelIfd::IFD0);
                 $tiff->setIfd($ifd0);
             }
-            
+
             $software_name = 'Example V2';
             $software = $ifd0->getEntry(PelTag::SOFTWARE);
-            
+
             if ($software == null) {
                 $software = new PelEntryAscii(PelTag::SOFTWARE, $software_name);
                 $ifd0->addEntry($software);
@@ -70,7 +82,7 @@ class Bug3017880TestCase extends UnitTestCase
                 $resave_file = 1;
                 echo 'update';
             }
-            
+
             if ($resave_file == 1 && ! file_put_contents($filename, $jpeg->getBytes())) {
                 // if it was okay to resave the file, but it did not save correctly
                 $success = 0;
