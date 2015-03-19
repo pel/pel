@@ -12,5 +12,5 @@ install:
   - phpenv rehash
 
 script: 
-  - phpcs --runtime-set ignore_warnings_on_exit --standard=psr2 src
+  - phpcs --runtime-set ignore_warnings_on_exit true --standard=psr2 src
   - php test/run-tests.php
