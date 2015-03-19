@@ -25,9 +25,9 @@
  */
 error_reporting(E_ALL);
 
-require_once '../autoload.php';
-require_once (dirname(dirname(__FILE__)) . '/vendor/lastcraft/simpletest/unit_tester.php');
-require_once (dirname(dirname(__FILE__)) . '/vendor/lastcraft/simpletest/reporter.php');
+require_once dirname(dirname(__FILE__)) . '/autoload.php';
+require_once dirname(dirname(__FILE__)) . '/vendor/lastcraft/simpletest/unit_tester.php';
+require_once dirname(dirname(__FILE__)) . '/vendor/lastcraft/simpletest/reporter.php';
 
 if (! empty($argc) and $argc > 1) {
     // If command line arguments are given, then only test those.
