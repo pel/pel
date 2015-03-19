@@ -24,8 +24,6 @@
  */
 namespace lsolesen\pel;
 
-require_once 'GettextInitializer.php';
-
 /**
  * Class with miscellaneous static methods.
  *
@@ -40,6 +38,14 @@ require_once 'GettextInitializer.php';
  */
 class Pel
 {
+
+    /**
+     * Flag that controls if dgettext can be used.
+     * Is set to true or fals at the first access
+     *
+     * @var unknown
+     */
+    private static $hasdgetext = null;
 
     /**
      * Flag for controlling debug information.
@@ -302,7 +308,7 @@ class Pel
      */
     public static function tra($str)
     {
-        return dgettext('pel', $str);
+        return self::dgettextWrapper('pel', $str);
     }
 
     /**
@@ -331,6 +337,29 @@ class Pel
     {
         $args = func_get_args();
         $str = array_shift($args);
-        return vsprintf(dgettext('pel', $str), $args);
+        return vsprintf(self::dgettextWrapper('pel', $str), $args);
+    }
+
+    /**
+     * Warapper for dgettext.
+     * The untranslated stub will be return in the case that dgettext is not available.
+     *
+     * @param string $domain
+     * @param string $str
+     * @return string
+     */
+    private static function dgettextWrapper($domain, $str)
+    {
+        if (self::$hasdgetext === null) {
+            self::$hasdgetext = function_exists('dgettext');
+            if (self::$hasdgetext === true) {
+                bindtextdomain('pel', __DIR__ . '/locale');
+            }
+        }
+        if (self::$hasdgetext) {
+            return dgettext($domain, $str);
+        } else {
+            return $str;
+        }
     }
 }
