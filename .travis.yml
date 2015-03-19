@@ -12,5 +12,5 @@ install:
   - phpenv rehash
 
 script: 
-  - php test/run-tests.php
   - phpcs --standard=psr2 src
+  - php test/run-tests.php
