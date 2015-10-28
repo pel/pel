@@ -244,6 +244,18 @@ class PelTiff
 
         return $bytes;
     }
+    
+    /**
+     * Save the TIF object as a TIF image in a file.
+     *
+     * @param
+     *            string the filename to save in. An existing file with the
+     *            same name will be overwritten!
+     */
+    public function saveFile($filename)
+    {
+        file_put_contents($filename, $this->getBytes());
+    }
 
     /**
      * Return a string representation of this object.
