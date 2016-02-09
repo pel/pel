@@ -19,7 +19,8 @@
         "php": ">=5.0.0"
     },
     "require-dev" : {
-        "lastcraft/simpletest": ">=1.1"
+        "lastcraft/simpletest": ">=1.1",
+        "squizlabs/php_codesniffer": "2.*"
     },
     "autoload": {
         "psr-4": {"lsolesen\\pel\\": "src/"}
