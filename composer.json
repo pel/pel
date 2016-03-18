@@ -12,9 +12,15 @@
             "email": "lars@intraface.dk",
             "homepage": "http://intraface.dk",
             "role": "Developer"
+        },
+        {
+            "name": "Martin Geisler",
+            "email": "http://geisler.net",
+            "homepage": "martin@geisler.net",
+            "role": "Developer"
         }
     ],
-    "license": "GNU GPL",
+    "license": "GPL-2.0",
     "require": {
         "php": ">=5.0.0"
     },
