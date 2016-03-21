@@ -331,7 +331,6 @@ class PelIfd implements \IteratorAggregate, \ArrayAccess
             case self::IFD1:
             case self::EXIF:
             case self::INTEROPERABILITY:
-
                 switch ($tag) {
                     case PelTag::DATE_TIME:
                     case PelTag::DATE_TIME_ORIGINAL:
@@ -402,7 +401,6 @@ class PelIfd implements \IteratorAggregate, \ArrayAccess
                 }
             // This point can be reached! Continue with default.
             case self::GPS:
-
             default:
                 /* Then handle the basic formats. */
                 switch ($format) {

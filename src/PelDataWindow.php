@@ -25,15 +25,6 @@
 namespace lsolesen\pel;
 
 /**
- * A container for bytes with a limited window of accessible bytes.
- *
- * @author Martin Geisler <mgeisler@users.sourceforge.net>
- * @license http://www.gnu.org/licenses/gpl.html GNU General Public License (GPL)
- * @package PEL
- */
-require_once ('PelConvert.php');
-
-/**
  * The window.
  *
  * @package PEL

@@ -80,5 +80,3 @@ class Gh21TestCase extends UnitTestCase
         $this->assertEqual($exif, $exifin);
     }
 }
-
-

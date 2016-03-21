@@ -129,13 +129,11 @@ class PelEntrySRational extends PelEntrySLong
 
         switch ($this->tag) {
             case PelTag::SHUTTER_SPEED_VALUE:
-
                 // CC (e->components, 1, v);
                 // if (!v_srat.denominator) return (NULL);
                 return Pel::fmt('%.0f/%.0f sec. (APEX: %d)', $v[0], $v[1], pow(sqrt(2), $v[0] / $v[1]));
 
             case PelTag::BRIGHTNESS_VALUE:
-
                 // CC (e->components, 1, v);
                 //
                 // TODO: figure out the APEX thing, or remove this so that it is
@@ -144,7 +142,6 @@ class PelEntrySRational extends PelEntrySLong
             // FIXME: How do I calculate the APEX value?
 
             case PelTag::EXPOSURE_BIAS_VALUE:
-
                 // CC (e->components, 1, v);
                 // if (!v_srat.denominator) return (NULL);
                 return sprintf('%s%.01f', $v[0] * $v[1] > 0 ? '+' : '', $v[0] / $v[1]);

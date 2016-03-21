@@ -133,30 +133,25 @@ class PelEntryRational extends PelEntryLong
 
         switch ($this->tag) {
             case PelTag::FNUMBER:
-
                 // CC (e->components, 1, v);
                 return Pel::fmt('f/%.01f', $v[0] / $v[1]);
 
             case PelTag::APERTURE_VALUE:
-
                 // CC (e->components, 1, v);
                 // if (!v_rat.denominator) return (NULL);
                 return Pel::fmt('f/%.01f', pow(2, $v[0] / $v[1] / 2));
 
             case PelTag::FOCAL_LENGTH:
-
                 // CC (e->components, 1, v);
                 // if (!v_rat.denominator) return (NULL);
                 return Pel::fmt('%.1f mm', $v[0] / $v[1]);
 
             case PelTag::SUBJECT_DISTANCE:
-
                 // CC (e->components, 1, v);
                 // if (!v_rat.denominator) return (NULL);
                 return Pel::fmt('%.1f m', $v[0] / $v[1]);
 
             case PelTag::EXPOSURE_TIME:
-
                 // CC (e->components, 1, v);
                 // if (!v_rat.denominator) return (NULL);
                 if ($v[0] / $v[1] < 1) {

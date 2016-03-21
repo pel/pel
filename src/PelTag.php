@@ -1352,7 +1352,6 @@ class PelTag
             case PelIfd::IFD1:
             case PelIfd::EXIF:
             case PelIfd::INTEROPERABILITY:
-
                 switch ($tag) {
                     case self::INTEROPERABILITY_INDEX:
                         return 'InteroperabilityIndex';
@@ -1668,7 +1667,6 @@ class PelTag
             case PelIfd::IFD1:
             case PelIfd::EXIF:
             case PelIfd::INTEROPERABILITY:
-
                 switch ($tag) {
                     case self::INTEROPERABILITY_INDEX:
                         return Pel::tra('Interoperability Index');
