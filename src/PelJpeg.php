@@ -22,24 +22,8 @@
  * Free Software Foundation, Inc., 51 Franklin St, Fifth Floor,
  * Boston, MA 02110-1301 USA
  */
+
 namespace lsolesen\pel;
-
-/**
- * Classes representing JPEG data.
- *
- * @author Martin Geisler <mgeisler@users.sourceforge.net>
- * @license http://www.gnu.org/licenses/gpl.html GNU General Public License (GPL)
- * @package PEL
- */
-
-
-// require_once ('PelJpegComment.php');
-// require_once ('PelJpegContent.php');
-// require_once ('PelDataWindow.php');
-// require_once ('PelJpegMarker.php');
-// require_once ('PelException.php');
-// require_once ('PelExif.php');
-// require_once ('Pel.php');
 
 /**
  * Class for handling JPEG data.
@@ -307,7 +291,8 @@ class PelJpeg
         $app1_offset = - 1;
 
         /* Search through all sections looking for APP0 or APP1. */
-        for ($i = 0; $i < count($this->sections); $i ++) {
+        $sections_count = count($this->sections);
+        for ($i = 0; $i < $sections_count; $i ++) {
             if (! empty($this->sections[$i][0])) {
                 if ($this->sections[$i][0] == PelJpegMarker::APP0) {
                     $app0_offset = $i;
@@ -345,7 +330,8 @@ class PelJpeg
         $app2_offset = - 1;
 
         /* Search through all sections looking for APP0 or APP1. */
-        for ($i = 0; $i < count($this->sections); $i ++) {
+        $count_sections = count($this->sections);
+        for ($i = 0; $i < $count_sections; $i ++) {
             if (! empty($this->sections[$i][0])) {
                 if ($this->sections[$i][0] == PelJpegMarker::APP1) {
                     $app1_offset = $i;
@@ -410,7 +396,8 @@ class PelJpeg
      */
     public function clearExif()
     {
-        for ($i = 0; $i < count($this->sections); $i ++) {
+        $sections_count = count($this->sections);
+        for ($i = 0; $i < $sections_count; $i ++) {
             if ($this->sections[$i][0] == PelJpegMarker::APP1) {
                 unset($this->sections[$i]);
                 return;
@@ -611,7 +598,8 @@ class PelJpeg
     public function __toString()
     {
         $str = Pel::tra("Dumping JPEG data...\n");
-        for ($i = 0; $i < count($this->sections); $i ++) {
+        $count_sections = count($this->sections);
+        for ($i = 0; $i < $count_sections; $i ++) {
             $m = $this->sections[$i][0];
             $c = $this->sections[$i][1];
             $str .= Pel::fmt("Section %d (marker 0x%02X - %s):\n", $i, $m, PelJpegMarker::getName($m));
