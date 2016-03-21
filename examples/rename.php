@@ -46,6 +46,7 @@ setlocale(LC_ALL, '');
 
 /* Load the required class definitions. */
 require_once '../autoload.php';
+
 use lsolesen\pel\PelDataWindow;
 use lsolesen\pel\PelJpeg;
 use lsolesen\pel\PelTiff;
@@ -55,7 +56,7 @@ $error = false;
 
 /* Accept the optional -d command line argument. */
 if (isset($argv[0]) && $argv[0] == '-d') {
-    Pel::$debug = true;
+    Pel::setDebug(true);
     array_shift($argv);
 }
 
