@@ -21,21 +21,12 @@
  * Free Software Foundation, Inc., 51 Franklin St, Fifth Floor,
  * Boston, MA 02110-1301 USA
  */
-if (realpath($_SERVER['PHP_SELF']) == __FILE__) {
-    require_once '../../autoload.php';
-    require_once '../../vendor/lastcraft/simpletest/autorun.php';
-}
+
 use lsolesen\pel\Pel;
 use lsolesen\pel\PelJpeg;
 
-class no_exif extends UnitTestCase
+class NoExifTest extends \PHPUnit_Framework_TestCase
 {
-
-    public function __construct()
-    {
-        parent::__construct('PEL no-exif.jpg Tests');
-    }
-
     public function testRead()
     {
         Pel::clearExceptions();

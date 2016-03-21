@@ -21,24 +21,15 @@
  * Free Software Foundation, Inc., 51 Franklin St, Fifth Floor,
  * Boston, MA 02110-1301 USA
  */
-if (realpath($_SERVER['PHP_SELF']) == __FILE__) {
-    require_once '../autoload.php';
-    require_once '../vendor/lastcraft/simpletest/autorun.php';
-}
+
 use lsolesen\pel\PelDataWindow;
 use lsolesen\pel\PelJpeg;
 use lsolesen\pel\PelEntryWindowsString;
 use lsolesen\pel\PelTag;
 
-class Gh16TestCase extends UnitTestCase
+class GH16Test extends \PHPUnit_Framework_TestCase
 {
-
     protected $file;
-
-    function __construct()
-    {
-        parent::__construct('Gh-16 Test');
-    }
 
     function setUp()
     {
@@ -88,6 +79,6 @@ class Gh16TestCase extends UnitTestCase
         $tiff = $exif->getTiff();
         $ifd0 = $tiff->getIfd();
         $written_subject = $ifd0->getEntry(PelTag::XP_SUBJECT);
-        $this->assertEqual($subject, $written_subject->getValue());
+        $this->assertEquals($subject, $written_subject->getValue());
     }
 }
