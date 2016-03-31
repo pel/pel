@@ -1,14 +1,44 @@
-NEWS file for PEL: PHP Exif Library.  A library with support for
-reading and writing Exif headers in JPEG and TIFF images using PHP.
+## CHANGELOG
 
-Copyright (C) 2004, 2005, 2006, 2007  Martin Geisler.
-Licensed under the GNU GPL, see COPYING for details.
-
-
-PEL Version 0.9.2  March 9th 2010
-*********************************
+## 0.9.4 - 2016-03-21
 
 Notes:
+
+This is mainly a cleanup version and better composer integration.
+We added Scrutinizer, which should make sure that the code improves
+in the future.
+
+Changes:
+
+* Improved performance of PelJpeg.
+
+* Fixed wrong usage of private variable in examples.
+
+
+## 0.9.3 - 2015-08-08
+
+Notes:
+
+This is a major update, and should have been the first tag of the
+0.10.0 series. If you want to use the latest stable version without
+namespaces, you should use 0.9.2.
+
+Changes:
+
+* Introduced namespaces.
+
+* Added composer support and made it available on
+  [packagist.org](https://packagist.org/packages/lsolesen/pel) and
+  introduced PSR-4 autoloader.
+
+* Major cleanup of the code and following PSR-2 standards.
+
+
+## 0.9.2 - 2010-03-09
+
+Notes:
+
+This release is the last release before introducing namespaces.
 
 Added a static method, Pel::setJPEGQuality(), for controlling the
 quality for encoding JPEG images. Fixed bug in conversion between
@@ -28,10 +58,10 @@ Changes:
 
 * PEL 0.9.1 introduced a dependency on the calendar extension for PHP.
   The necessary functions have now been reimplemented in pure PHP. The
-  patch was supplied by François Pirsch, thanks.
+  patch was supplied by Francois Pirsch, thanks.
 
 * Fixed doc comment for PelEntryTime, the variables for date() was
-  swapped. Thanks François Pirsch.
+  swapped. Thanks Francois Pirsch.
 
 * Added static Pel::setJPEGQuality() and Pel::getJPEGQuality() method
   for setting and getting the quality used when PelJpeg automatically
@@ -46,8 +76,7 @@ Changes:
   for this.
 
 
-PEL Version 0.9.1  December 19th 2006
-*************************************
+## 0.9.1 - 2016-12-19
 
 Notes:
 
@@ -102,8 +131,7 @@ Changes:
 
 * Rewrote make-release.sh script to work with Subversion.
 
-PEL Version 0.9  January 8th 2006
-*********************************
+## 0.9.0 - 2006-01-08
 
 Notes:
 
@@ -213,8 +241,7 @@ Changes:
   generating the API documentation.
 
 
-PEL Version 0.8  February 18th 2005
-***********************************
+## 0.8.0 - 2005-02-18
 
 Notes:
 
@@ -253,8 +280,7 @@ Changes:
 * Fixed (some) of the XHTML errors in the phpDocumentor template.
 
 
-PEL Version 0.7  October 10th 2004
-**********************************
+## 0.7.0 - 2004-10-10
 
 Notes:
 
@@ -290,8 +316,7 @@ Changes:
 * Removed trailing newlines at the end of Pel.php and PelConvert.php.
 
 
-PEL Version 0.6  July 21st 2004
-*******************************
+## 0.6 - 2004-07-21
 
 Notes:
 
@@ -335,8 +360,7 @@ Changes:
 * Fixed the output of PelEntryRationals::getText().
 
 
-PEL Version 0.5  June 28th, 2004
-********************************
+## 0.5.0 - 2004-06-28
 
 Notes:
 
@@ -375,8 +399,7 @@ Changes:
 * Updated documentation, PEL is now fully documented.
 
 
-PEL Version 0.4  June 9th, 2004
-*******************************
+## 0.4.0 - 2004-06-09
 
 Notes:
 
@@ -395,7 +418,7 @@ Changes:
 * Marked strings for translation throughout the source code.
 
 * Added German, French, and Spanish translations taken from libexif.
-  The translations were made by Lutz Müller, Arnaud Launay, and Fabian
+  The translations were made by Lutz Mï¿½ller, Arnaud Launay, and Fabian
   Mandelbaum, respectively.
 
 * Added Danish translation.
@@ -409,8 +432,7 @@ Changes:
   README and INSTALL files.
 
 
-PEL Version 0.3  May 25th, 2004
-*******************************
+## 0.3.0 - 2004-05-25
 
 Notes:
 
@@ -444,8 +466,7 @@ Changes:
 * Updated documentation all over.
 
 
-PEL Version 0.2  May 16th, 2004
-*******************************
+## 0.2.0 - 2004-05-16
 
 Notes:
 
@@ -474,8 +495,7 @@ Changes:
 * Updated doc comments all over.
 
 
-PEL Version 0.1  May 8th, 2004
-******************************
+## 0.1.0 - 2004-05-08
 
 Notes:
 
@@ -486,17 +506,3 @@ whole thing can be turned into bytes and saved as a valid JPEG file.
 
 The API is still subject to change, and will remain so until version
 1.0 is reached.
-
-
-
- LocalWords:  PEL PelExifEntryVersion PelExifEntryUserComment SimpleTest IXUS
- LocalWords:  getValue setValue PelExifEntry DSC getBytes PelDataWindow IFD EOI
- LocalWords:  PelIfd PelExifIfd sprintf Gettext Launay Arnaud Mandelbaum Lutz
- LocalWords:  libexif PelTiff PelJpegMarker getSection PelJpeg PelJpegSection
- LocalWords:  PelJpegContent getText Ricoh Fujifilm PelEntryRationals Coolscan
- LocalWords:  isValid isValidMarker PelConvert PelExif PelEntry PelEntryTime XP
- LocalWords:  php longToBytes sLongToBytes PowerShot phpDocumentor Achim PelTag
- LocalWords:  PelWrongComponentCountException PelEntryAscii PelEntryString LUX
- LocalWords:  newFromData PelEntryException Olympos Leica PelFormat getSize
- LocalWords:  newEntryFromData Bogusz Jakub UserComment IFDs getValidTags
- LocalWords:  getTitle getName getDescription getSubIfd foreach
