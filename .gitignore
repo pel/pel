@@ -8,3 +8,4 @@ vendor
 composer.lock
 ChangeLog
 build-base*
+.blackfire.travis.ini
