@@ -326,7 +326,6 @@ class PelIfd implements \IteratorAggregate, \ArrayAccess
          * class.
          */
         switch ($this->type) {
-
             case self::IFD0:
             case self::IFD1:
             case self::EXIF:

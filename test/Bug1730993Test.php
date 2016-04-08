@@ -1,4 +1,5 @@
 <?php
+
 /**
  * PEL: PHP Exif Library.
  * A library with support for reading and
@@ -21,30 +22,30 @@
  * Free Software Foundation, Inc., 51 Franklin St, Fifth Floor,
  * Boston, MA 02110-1301 USA
  */
-if (realpath($_SERVER['PHP_SELF']) == __FILE__) {
-    require_once '../autoload.php';
-    require_once '../vendor/lastcraft/simpletest/autorun.php';
-}
+
 use lsolesen\pel\PelJpeg;
 
-class Bug2979466TestCase extends UnitTestCase
+class Bug1730993Test extends \PHPUnit_Framework_TestCase
 {
-
-    function __construct()
-    {
-        parent::__construct('Bug2979466 Test');
-    }
-
     function testThisDoesNotWorkAsExpected()
     {
-        $file = dirname(__FILE__) . '/images/bug2979466.jpg';
-        // TODO Out of memory
-        return;
+        $tmpfile = dirname(__FILE__) . '/images/bug1730993_tmp.jpg';
+        $bigfile = dirname(__FILE__) . '/images/bug1730993_large.jpg';
+        // TODO: Should not throw exception
+        $this->markTestIncomplete(
+          'This test fails and should be fixed.'
+        );
         try {
             require_once 'PelJpeg.php';
-            $jpeg = new PelJpeg($file);
+            $jpeg = new PelJpeg($tmpfile); // the error occurs here
+            $exif = $jpeg->getExif();
+            if ($exif != null) {
+                $jpeg1 = new PelJpeg($bigfile);
+                $jpeg1->setExif($exif);
+                file_put_contents($bigfile, $jpeg1->getBytes());
+            }
         } catch (Exception $e) {
-            $this->fail('Test should not throw an exception');
+            $this->fail('Test should not throw exception: ' . $e->getMessage());
         }
     }
 }

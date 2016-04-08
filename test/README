@@ -7,7 +7,7 @@ Licensed under the GNU GPL, see COPYING for details.
 PEL Test Suite
 **************
 
-This directory holds the SimpleTest test suite for PEL.  The test
+This directory holds the PHPUnit test suite for PEL. The test
 suite consists of a number of core tests which exercise the basic
 functionality of PEL.
 
@@ -18,26 +18,22 @@ can read the data in the image, and that it keeps interpreting the
 data in the same way.  This ensures stability in the development
 process by making sure that PEL keeps reading images in the same way.
 
-The image tests are not distributed with PEL, but can be found at
-
-  http://pel.sourceforge.net/
-
 
 Running the Test Suite
 **********************
 
-First the SimpleTest framework has to be downloaded via composer in 
-the project's top directory
+First the make sure PHPUnit is downloaded. You can do so in
+the project's top directory via composer
 
 ```bash
 composer update
 ```
-Now run the run-tests.php script and observe the results --- it should
-tell you that all tests were executed successfully.
 
-You can run a subset of the available tests by giving the file names
-as command line arguments to run-tests.php.
+Now from the top of the project, you can run
 
+```bash
+phpunit
+```
 
 Failing Tests
 *************
@@ -45,12 +41,8 @@ Failing Tests
 Should one or more of the tests fail, then first ensure that
 SimpleTest is placed correctly so that run-tests.php can find it. If
 everything seems correct, then please report the error to the PEL
-Development List:
+developers:
 
-  http://lists.sourceforge.net/lists/listinfo/pel-devel
-
-or use the SourceForge tracker system found here
-
-  http://sourceforge.net/tracker/?group_id=108380
+  https://github.com/lsolesen/pel/issues
 
 Remember to include all the output in your bug report.
