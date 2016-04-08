@@ -1,11 +1,12 @@
-README file for PEL Test Suite.
+# README file for PEL Test Suite
 
-Copyright (C) 2005, 2006  Martin Geisler.
-Licensed under the GNU GPL, see COPYING for details.
+The tests run automatically on each commit on TravisCI. Status for the
+master branch is:
+
+[![Build Status](https://secure.travis-ci.org/lsolesen/pel.png?branch=master)](http://travis-ci.org/lsolesen/pel)
 
 
-PEL Test Suite
-**************
+## PEL Test Suite
 
 This directory holds the PHPUnit test suite for PEL. The test
 suite consists of a number of core tests which exercise the basic
@@ -19,8 +20,7 @@ data in the same way.  This ensures stability in the development
 process by making sure that PEL keeps reading images in the same way.
 
 
-Running the Test Suite
-**********************
+## Running the Test Suite
 
 First the make sure PHPUnit is downloaded. You can do so in
 the project's top directory via composer
@@ -35,8 +35,7 @@ Now from the top of the project, you can run
 phpunit
 ```
 
-Failing Tests
-*************
+## Failing Tests
 
 Should one or more of the tests fail, then first ensure that
 SimpleTest is placed correctly so that run-tests.php can find it. If

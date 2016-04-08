@@ -1,23 +1,30 @@
-INSTALL file for PEL: PHP Exif Library.  A library with support for
-reading and writing Exif headers in JPEG and TIFF images using PHP.
-
-Copyright (C) 2004, 2005, 2006, 2007  Martin Geisler.
-Licensed under the GNU GPL, see COPYING for details.
+# INSTALL
 
 
-Requirements
-************
+## Requirements
 
 PEL requires PHP version 5.
 
 
-Installation
-************
+## Installation
 
-The preferred way of installing PEL is using the PEAR installer:
+### Composer
 
-  pear channel-discover pearhub.org
-  pear install pearhub/pel
+The preferred way of installing PEL is through composer. Simply add a
+dependency on ´lsolesen/pel´ to your projects composer.json.
+
+    {
+        "require": {
+            "lsolesen/pel": "0.9.*"
+        }
+    }
+
+For a system-wide installation via Composer, you can run:
+
+    composer global require "lsolesen/pel=0.9.*"
+
+
+### Clone via git
 
 You can also use git to install it using:
 
@@ -33,21 +40,13 @@ You can set the include path using.
   set_include_path('/path/to/pel' . PATH_SEPARATOR . get_include_path());
 
 
-Upgrading
-*********
+## Upgrading
 
 If you have already been using a previous version of PEL, then be sure
-to read the NEWS file before starting with a new version.  The goal of
-the NEWS file is to list the important changes in a more concise way
-that the ChangeLog file (which lists *every* little change).
-
-You can use the pear installer to upgrade:
-
-  pear upgrade pearhub/pel
+to read the CHANGELOG.md file before starting with a new version.
 
 
-Using PEL
-*********
+## Using PEL
 
 Your application should include PelJpeg.php or PelTiff.php for working
 with JPEG or TIFF files.  The files will define the PelJpeg and
@@ -64,6 +63,7 @@ JPEG file given as a command line argument, parse the Exif data
 within, change the image description to 'Edited by PEL', and finally
 save the file again.  All in just six lines of code:
 
+  ```php5
   <?php
   require_once('PelJpeg.php');
 
@@ -73,6 +73,7 @@ save the file again.  All in just six lines of code:
   $entry->setValue('Edited by PEL');
   $jpeg->saveFile($argv[1]);
   ?>
+  ```
 
 See the examples directory for this example (or rather a more
 elaborate version in the file edit-description.php) and others as PHP
@@ -80,8 +81,7 @@ files.  You may have to adjust the path to PHP, found in the very
 first line of the files before you can execute them.
 
 
-Changing PEL
-************
+## Changing PEL
 
 If you find a bug in PEL then please send a report back so that it can
 be fixed in the next version.  You can submit your bugs and other
@@ -91,5 +91,5 @@ requests here:
 
 If you change the code (to fix bugs or to implement enhancements), it
 is highly recommended that you test your changes against known good
-data.  Please see the test/README file for more information about
+data.  Please see the test/README.md file for more information about
 running the PEL test suite.
