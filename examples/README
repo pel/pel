@@ -42,6 +42,8 @@ The examples are:
   rename photos to a filename containing the full date and time taken
   from the DateTime Exif tag.
 
+*gps.php : example to add gps data to image. also supports adding random gps data to image
+
 
 Contributing New Examples
 *************************

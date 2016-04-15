@@ -39,6 +39,13 @@ require_once '../autoload.php';
 use lsolesen\pel\PelDataWindow;
 use lsolesen\pel\PelJpeg;
 use lsolesen\pel\PelTiff;
+use lsolesen\pel\PelExif;
+use lsolesen\pel\PelIfd;
+use lsolesen\pel\PelEntryAscii;
+use lsolesen\pel\PelEntryByte;
+use lsolesen\pel\PelEntryUserComment;
+use lsolesen\pel\PelTag;
+use lsolesen\pel\PelEntryRational;
 
 /**
  * Convert a decimal degree into degrees, minutes, and seconds.
@@ -172,7 +179,13 @@ function addGpsInfo($input, $output, $description, $comment, $model, $longitude,
     $ifd0->addSubIfd($inter_ifd);
 
     $ifd0->addEntry(new PelEntryAscii(PelTag::MODEL, $model));
+
     $ifd0->addEntry(new PelEntryAscii(PelTag::DATE_TIME, $date_time));
+
+
+
+
+
     $ifd0->addEntry(new PelEntryAscii(PelTag::IMAGE_DESCRIPTION, $description));
 
     $gps_ifd->addEntry(new PelEntryByte(PelTag::GPS_VERSION_ID, 2, 2, 0, 0));
@@ -213,3 +226,225 @@ function addGpsInfo($input, $output, $description, $comment, $model, $longitude,
     /* Finally we store the data in the output file. */
     file_put_contents($output, $jpeg->getBytes());
 }
+
+
+/**
+ * Add GPS information to an image basic metadata.
+ * Any old Exif data
+ * is discarded.
+ *
+ * @param
+ *            string the input folder path
+ *
+ * @param
+ *            string the output folder path. An updated copy of the input
+ *            images will be saved here with the same name.
+ *
+ * @param
+ *            float min_latitude. (optional)
+ *
+ * @param
+ *            float max_latitude.(optional)
+
+ * @param
+ *            float min_longitude. (optional)
+ *
+ * @param
+ *            float max_longitude.(optional)
+ *
+ * @param
+ *            float min_altitude. (optional)
+ *
+ * @param
+ *            float max_altitude.(optional)
+ *
+
+ */
+function addRandomGPSData($inputFolderPath , $outputFolderPath , $min_latitude = -90 , $max_latitude=90 , $min_longitude = -90 , $max_longitude = 90 , $altitude_min = -10000 , $altitude_max = 50000)
+{
+
+    if($min_latitude < -90)
+    {
+        $min_latitude = -90;
+    }
+
+    if($max_latitude > 90)
+    {
+        $max_latitude = 90;
+    }
+
+    if($min_longitude < -90)
+    {
+        $min_longitude = -90;
+    }
+
+    if($max_longitude > 90)
+    {
+        $max_longitude = 90;
+    }
+
+
+    $input_path = dirname(__DIR__)."".$inputFolderPath;
+    $output_path = dirname(__DIR__)."".$outputFolderPath;
+
+    $images = allJPEGsFromFolder($input_path);
+
+    foreach($images as $image_path)
+    {
+        $lati = randomDouble($min_latitude , $max_latitude , 4);
+        $longi = randomDouble($min_longitude , $max_longitude , 4);
+        $altitude = randomDouble($altitude_min , $altitude_max , 4);
+
+
+        $input = $input_path."".$image_path;
+        /* Load the given image into a PelJpeg object */
+        $jpeg = new PelJpeg($input);
+
+        /*
+         * Create and add empty Exif data to the image (this throws away any
+         * old Exif data in the image).
+         */
+        $exif = new PelExif();
+        $jpeg->setExif($exif);
+
+        /*
+         * Create and add TIFF data to the Exif data (Exif data is actually
+         * stored in a TIFF format).
+         */
+        $tiff = new PelTiff();
+        $exif->setTiff($tiff);
+
+        /*
+         * Create first Image File Directory and associate it with the TIFF
+         * data.
+         */
+        $ifd0 = new PelIfd(PelIfd::IFD0);
+        $tiff->setIfd($ifd0);
+
+        /*
+         * Create a sub-IFD for holding GPS information. GPS data must be
+         * below the first IFD.
+         */
+        $gps_ifd = new PelIfd(PelIfd::GPS);
+        $ifd0->addSubIfd($gps_ifd);
+
+        /*
+         * The USER_COMMENT tag must be put in a Exif sub-IFD under the
+         * first IFD.
+         */
+
+        /*
+        $exif_ifd = new PelIfd(PelIfd::EXIF);
+        $exif_ifd->addEntry(new PelEntryUserComment($comment));
+        $ifd0->addSubIfd($exif_ifd);
+
+        $inter_ifd = new PelIfd(PelIfd::INTEROPERABILITY);
+        $ifd0->addSubIfd($inter_ifd);
+
+        $ifd0->addEntry(new PelEntryAscii(PelTag::MODEL, $model));
+
+        $ifd0->addEntry(new PelEntryAscii(PelTag::DATE_TIME, $date_time));
+*/
+
+
+
+
+      //  $ifd0->addEntry(new PelEntryAscii(PelTag::IMAGE_DESCRIPTION, $description));
+
+        $gps_ifd->addEntry(new PelEntryByte(PelTag::GPS_VERSION_ID, 2, 2, 0, 0));
+
+        /*
+         * Use the convertDecimalToDMS function to convert the latitude from
+         * something like 12.34� to 12� 20' 42"
+         */
+        list ($hours, $minutes, $seconds) = convertDecimalToDMS($lati);
+
+        /* We interpret a negative latitude as being south. */
+        $latitude_ref = ($lati < 0) ? 'S' : 'N';
+
+        $gps_ifd->addEntry(new PelEntryAscii(PelTag::GPS_LATITUDE_REF, $latitude_ref));
+        $gps_ifd->addEntry(new PelEntryRational(PelTag::GPS_LATITUDE, $hours, $minutes, $seconds));
+
+        /* The longitude works like the latitude. */
+        list ($hours, $minutes, $seconds) = convertDecimalToDMS($longi);
+        $longitude_ref = ($longi < 0) ? 'W' : 'E';
+
+        $gps_ifd->addEntry(new PelEntryAscii(PelTag::GPS_LONGITUDE_REF, $longitude_ref));
+        $gps_ifd->addEntry(new PelEntryRational(PelTag::GPS_LONGITUDE, $hours, $minutes, $seconds));
+
+        /*
+         * Add the altitude. The absolute value is stored here, the sign is
+         * stored in the GPS_ALTITUDE_REF tag below.
+         */
+        $gps_ifd->addEntry(new PelEntryRational(PelTag::GPS_ALTITUDE, array(
+            abs($altitude),
+            1
+        )));
+        /*
+         * The reference is set to 1 (true) if the altitude is below sea
+         * level, or 0 (false) otherwise.
+         */
+        $gps_ifd->addEntry(new PelEntryByte(PelTag::GPS_ALTITUDE_REF, (int) ($altitude < 0)));
+
+        $output = $output_path."".$image_path;
+
+
+        /* Finally we store the data in the output file. */
+
+        file_put_contents($output, $jpeg->getBytes());
+
+    }
+}
+
+
+// sample usage
+//$input_folder_path = "/examples/InputFolder/";
+//$output_folder_path = "/examples/OutputFolder/";
+//addRandomGPSData($input_folder_path , $output_folder_path);
+
+
+
+function allJPEGsFromFolder($folder_path)
+{
+    $arrRawImages = scandir($folder_path);
+
+    $arrImages = array();
+    for($i = 2 ; $i<sizeof($arrRawImages) ; $i++)
+    {
+        $URL = "".$arrRawImages[$i];
+        $arrImages[] = $URL;
+    }
+
+
+    return $arrImages;
+
+}
+
+
+function randomDouble($min , $max , $numDigits = 4)
+{
+
+    if($min > $max)
+    {
+        $min = $max;
+        $max = $min;
+    }
+
+
+    $randNumber = $min +mt_rand()/mt_getrandmax()*($max-$min);
+
+    $randNumber = number_format($randNumber , $numDigits);
+
+    return $randNumber;
+
+}
+
+
+
+
+
+
+
+
+
+
