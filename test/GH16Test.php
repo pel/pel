@@ -55,7 +55,7 @@ class GH16Test extends \PHPUnit_Framework_TestCase
             $jpeg->load($data);
             $exif = $jpeg->getExif();
 
-            if (null == $exif) {
+            if (null === $exif) {
                 $exif = new PelExif();
                 $jpeg->setExif($exif);
                 $tiff = new PelTiff();
@@ -65,7 +65,7 @@ class GH16Test extends \PHPUnit_Framework_TestCase
             $tiff = $exif->getTiff();
 
             $ifd0 = $tiff->getIfd();
-            if (null == $ifd0) {
+            if (null === $ifd0) {
                 $ifd0 = new PelIfd(PelIfd::IFD0);
                 $tiff->setIfd($ifd0);
             }

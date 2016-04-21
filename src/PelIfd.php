@@ -965,7 +965,7 @@ class PelIfd implements \IteratorAggregate, \ArrayAccess
      */
     public function getThumbnailData()
     {
-        if ($this->thumb_data != null) {
+        if ($this->thumb_data !== null) {
             return $this->thumb_data->getBytes();
         } else {
             return '';
@@ -1002,7 +1002,7 @@ class PelIfd implements \IteratorAggregate, \ArrayAccess
      */
     public function isLastIfd()
     {
-        return $this->next == null;
+        return $this->next === null;
     }
 
     /**
@@ -1074,7 +1074,7 @@ class PelIfd implements \IteratorAggregate, \ArrayAccess
         Pel::debug('Bytes from IDF will start at offset %d within Exif data', $offset);
 
         $n = count($this->entries) + count($this->sub);
-        if ($this->thumb_data != null) {
+        if ($this->thumb_data !== null) {
             /*
              * We need two extra entries for the thumbnail offset and
              * length.
@@ -1119,7 +1119,7 @@ class PelIfd implements \IteratorAggregate, \ArrayAccess
             }
         }
 
-        if ($this->thumb_data != null) {
+        if ($this->thumb_data !== null) {
             Pel::debug('Appending %d bytes of thumbnail data at %d', $this->thumb_data->getSize(), $end);
             // TODO: make PelEntry a class that can be constructed with
             // arguments corresponding to the newt four lines.
@@ -1199,7 +1199,7 @@ class PelIfd implements \IteratorAggregate, \ArrayAccess
         foreach ($this->sub as $type => $ifd) {
             $str .= $ifd->__toString();
         }
-        if ($this->next != null) {
+        if ($this->next !== null) {
             $str .= $this->next->__toString();
         }
         return $str;

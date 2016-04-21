@@ -54,7 +54,7 @@ class Bug3017880Test extends \PHPUnit_Framework_TestCase
 
             $tiff = $exif->getTiff();
             $ifd0 = $tiff->getIfd();
-            if ($ifd0 == null) {
+            if ($ifd0 === null) {
                 $ifd0 = new PelIfd(PelIfd::IFD0);
                 $tiff->setIfd($ifd0);
             }
@@ -62,7 +62,7 @@ class Bug3017880Test extends \PHPUnit_Framework_TestCase
             $software_name = 'Example V2';
             $software = $ifd0->getEntry(PelTag::SOFTWARE);
 
-            if ($software == null) {
+            if ($software === null) {
                 $software = new PelEntryAscii(PelTag::SOFTWARE, $software_name);
                 $ifd0->addEntry($software);
                 $resave_file = 1;
