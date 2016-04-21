@@ -39,7 +39,7 @@ class Bug1730993Test extends \PHPUnit_Framework_TestCase
             require_once 'PelJpeg.php';
             $jpeg = new PelJpeg($tmpfile); // the error occurs here
             $exif = $jpeg->getExif();
-            if ($exif != null) {
+            if ($exif !== null) {
                 $jpeg1 = new PelJpeg($bigfile);
                 $jpeg1->setExif($exif);
                 file_put_contents($bigfile, $jpeg1->getBytes());

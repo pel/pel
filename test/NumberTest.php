@@ -32,7 +32,6 @@ use \lsolesen\pel\PelEntryLong;
 use \lsolesen\pel\PelEntrySLong;
 use \lsolesen\pel\PelEntryRational;
 use \lsolesen\pel\PelEntrySRational;
-use \lsolesen\pel\PelEntryUndefined;
 use \lsolesen\pel\PelOverflowException;
 
 abstract class NumberTest extends \PHPUnit_Framework_TestCase

@@ -70,7 +70,7 @@ class GH21Test extends \PHPUnit_Framework_TestCase
 
         $exif = $input_jpeg->getExif();
 
-        if ($exif != null) {
+        if ($exif !== null) {
             $output_jpeg->setExif($exif);
         }
 

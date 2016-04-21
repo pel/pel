@@ -24,7 +24,6 @@
  */
 
 use lsolesen\pel\PelJpeg;
-use lsolesen\pel\PelEntryTime;
 use lsolesen\pel\PelExif;
 use lsolesen\pel\PelTiff;
 use lsolesen\pel\PelIfd;
@@ -55,7 +54,7 @@ class Bug3017880Test extends \PHPUnit_Framework_TestCase
 
             $tiff = $exif->getTiff();
             $ifd0 = $tiff->getIfd();
-            if ($ifd0 == null) {
+            if ($ifd0 === null) {
                 $ifd0 = new PelIfd(PelIfd::IFD0);
                 $tiff->setIfd($ifd0);
             }
@@ -63,7 +62,7 @@ class Bug3017880Test extends \PHPUnit_Framework_TestCase
             $software_name = 'Example V2';
             $software = $ifd0->getEntry(PelTag::SOFTWARE);
 
-            if ($software == null) {
+            if ($software === null) {
                 $software = new PelEntryAscii(PelTag::SOFTWARE, $software_name);
                 $ifd0->addEntry($software);
                 $resave_file = 1;
@@ -74,7 +73,6 @@ class Bug3017880Test extends \PHPUnit_Framework_TestCase
 
             if ($resave_file == 1 && ! file_put_contents($filename, $jpeg->getBytes())) {
                 // if it was okay to resave the file, but it did not save correctly
-                $success = 0;
             }
         } catch (Exception $e) {
             $this->fail('Test should not throw an exception');

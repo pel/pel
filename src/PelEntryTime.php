@@ -206,8 +206,6 @@ class PelEntryTime extends PelEntryAscii
      */
     public function setValue($timestamp, $type = self::UNIX_TIMESTAMP)
     {
-        // if (empty($timestamp))
-        // debug_print_backtrace();
         switch ($type) {
             case self::UNIX_TIMESTAMP:
                 $this->day_count = $this->convertUnixToJd($timestamp);
