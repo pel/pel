@@ -24,7 +24,6 @@
  */
 
 use lsolesen\pel\PelJpeg;
-use lsolesen\pel\PelEntryTime;
 use lsolesen\pel\PelExif;
 use lsolesen\pel\PelTiff;
 use lsolesen\pel\PelIfd;
