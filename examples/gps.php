@@ -36,7 +36,6 @@
  */
 require_once '../autoload.php';
 
-use lsolesen\pel\PelDataWindow;
 use lsolesen\pel\PelJpeg;
 use lsolesen\pel\PelTiff;
 
