@@ -73,7 +73,6 @@ class Bug3017880Test extends \PHPUnit_Framework_TestCase
 
             if ($resave_file == 1 && ! file_put_contents($filename, $jpeg->getBytes())) {
                 // if it was okay to resave the file, but it did not save correctly
-                $success = 0;
             }
         } catch (Exception $e) {
             $this->fail('Test should not throw an exception');
