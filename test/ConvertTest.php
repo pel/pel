@@ -71,7 +71,9 @@ class ConvertTest extends \PHPUnit_Framework_TestCase
     function testSLongLittle()
     {
         // TODO: Does not work on 64bit systems!
-        return;
+        $this->markTestIncomplete(
+            'Does not work on 64bit systems!'
+        );
         $o = PelConvert::LITTLE_ENDIAN;
 
         /*
@@ -98,7 +100,9 @@ class ConvertTest extends \PHPUnit_Framework_TestCase
     function testSLongBig()
     {
         // TODO: Does not work on 64bit systems
-        return;
+        $this->markTestIncomplete(
+            'Does not work on 64bit systems!'
+        );
 
         $o = PelConvert::BIG_ENDIAN;
 
