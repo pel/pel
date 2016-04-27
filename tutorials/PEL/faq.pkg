@@ -236,28 +236,6 @@ if ($exif != null) {
 </refsect1>
 
 
-<refsect1 id="{@id commercial-use}">
-
-  <title>Can I use PEL for a commercial application?</title>
-
-  <para>Yes, no problem as long as you do not distribute your
-  application under another license than the GNU GPL.</para>
-
-  <para>As you should know, PEL is licensed to you under the
-  conditions of the GNU GPL.  The license deals
-  <emphasis>only</emphasis> with the distribution of PEL and any
-  derivative works based on PEL, the license has nothing to say over
-  how you may use PEL.</para>
-
-  <para>So if you do not distribute your code, then you can use it for
-  whatever you want, including writing a website (commercial or not)
-  that integrates PEL.  Please see
-  {@link http://www.gnu.org/licenses/gpl-faq.html#GPLRequireSourcePostedPublic
-  this question} in the GPL FAQ.</para>
-
-</refsect1>
-
-
 <refsect1 id="{@id unanswered-question}">
 
   <title>My question is not answered here!</title>
