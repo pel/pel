@@ -8,25 +8,18 @@
  *
  * For licensing, see LICENSE.md distributed with this source code.
  */
-if (realpath($_SERVER['PHP_SELF']) == __FILE__) {
-    require_once '../autoload.php';
-    require_once '../vendor/lastcraft/simpletest/autorun.php';
-}
+
 use lsolesen\pel\PelJpeg;
 
-class Bug2979466TestCase extends UnitTestCase
+class Bug2979466Test extends \PHPUnit_Framework_TestCase
 {
-
-    function __construct()
-    {
-        parent::__construct('Bug2979466 Test');
-    }
-
     function testThisDoesNotWorkAsExpected()
     {
         $file = dirname(__FILE__) . '/images/bug2979466.jpg';
         // TODO Out of memory
-        return;
+        $this->markTestIncomplete(
+          'This test fails and should be fixed.'
+        );
         try {
             require_once 'PelJpeg.php';
             $jpeg = new PelJpeg($file);

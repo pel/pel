@@ -1,12 +1,6 @@
-README file for PEL Examples.
+# README file for PEL Examples
 
-Copyright (C) 2005  Martin Geisler.
-
-For licensing, see LICENSE.md distributed with this source code.
-
-
-PEL Examples
-************
+## PEL Examples
 
 This directory contains various examples of how PEL can be used in
 small scripts.  The scripts are meant to be executed from the command
@@ -14,7 +8,9 @@ line and they assume that you have PHP installed as /usr/bin/php.  If
 that is not the case, then please adjust the first line before
 executing the scripts, or simply execute them as
 
-  % php <script> <arguments>
+```
+% php <script> <arguments>
+```
 
 and let your shell find the PHP executable.
 
@@ -39,13 +35,16 @@ The examples are:
   The script is heavely commented, and should be used as a good
   reference as to how PEL works and how it should be used.
 
+* gps.php: shows how to add GPS information to an image using PEL.
+
 * rename.php: a script similar to dirsort.php, only that this one will
   rename photos to a filename containing the full date and time taken
   from the DateTime Exif tag.
 
+* resize.php: a script to resize images.
 
-Contributing New Examples
-*************************
+
+## Contributing New Examples
 
 More examples are needed!  If you have a neat example of how PEL can
 be used, then please contribute it to PEL.  Please submit it as a new
@@ -53,5 +52,5 @@ item in the Github issue tracker:
 
   http://github.com/lsolesen/pel/issues
 
-It will then be included in the next release of PEL, of course with
-full credit in the AUTHORS file.
+Or issue a pull request. It will then be included in the next release
+of PEL, of course with full credit in the AUTHORS file.

@@ -9,26 +9,16 @@
  *
  * For licensing, see LICENSE.md distributed with this source code.
  */
-if (realpath($_SERVER['PHP_SELF']) == __FILE__) {
-    require_once '../autoload.php';
-    require_once '../vendor/lastcraft/simpletest/autorun.php';
-}
+
 use lsolesen\pel\PelJpeg;
-use lsolesen\pel\PelEntryTime;
 use lsolesen\pel\PelExif;
 use lsolesen\pel\PelTiff;
 use lsolesen\pel\PelIfd;
 use lsolesen\pel\PelTag;
 use lsolesen\pel\PelEntryAscii;
 
-class Bug3017880TestCase extends UnitTestCase
+class Bug3017880Test extends \PHPUnit_Framework_TestCase
 {
-
-    function __construct()
-    {
-        parent::__construct('Bug3017880 Test');
-    }
-
     function testThisDoesNotWorkAsExpected()
     {
         $filename = dirname(__FILE__) . '/images/bug3017880.jpg';
@@ -51,7 +41,7 @@ class Bug3017880TestCase extends UnitTestCase
 
             $tiff = $exif->getTiff();
             $ifd0 = $tiff->getIfd();
-            if ($ifd0 == null) {
+            if ($ifd0 === null) {
                 $ifd0 = new PelIfd(PelIfd::IFD0);
                 $tiff->setIfd($ifd0);
             }
@@ -59,20 +49,17 @@ class Bug3017880TestCase extends UnitTestCase
             $software_name = 'Example V2';
             $software = $ifd0->getEntry(PelTag::SOFTWARE);
 
-            if ($software == null) {
+            if ($software === null) {
                 $software = new PelEntryAscii(PelTag::SOFTWARE, $software_name);
                 $ifd0->addEntry($software);
                 $resave_file = 1;
-                echo 'null';
             } else {
                 $software->setValue($software_name);
                 $resave_file = 1;
-                echo 'update';
             }
 
             if ($resave_file == 1 && ! file_put_contents($filename, $jpeg->getBytes())) {
                 // if it was okay to resave the file, but it did not save correctly
-                $success = 0;
             }
         } catch (Exception $e) {
             $this->fail('Test should not throw an exception');

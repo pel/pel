@@ -119,7 +119,6 @@ class PelEntryShort extends PelEntryNumber
     {
         switch ($this->tag) {
             case PelTag::METERING_MODE:
-
                 // CC (e->components, 1, v);
                 switch ($this->value[0]) {
                     case 0:
@@ -143,7 +142,6 @@ class PelEntryShort extends PelEntryNumber
                 }
                 break;
             case PelTag::COMPRESSION:
-
                 // CC (e->components, 1, v);
                 switch ($this->value[0]) {
                     case 1:
@@ -155,7 +153,6 @@ class PelEntryShort extends PelEntryNumber
                 }
                 break;
             case PelTag::PLANAR_CONFIGURATION:
-
                 // CC (e->components, 1, v);
                 switch ($this->value[0]) {
                     case 1:
@@ -167,7 +164,6 @@ class PelEntryShort extends PelEntryNumber
                 }
                 break;
             case PelTag::SENSING_METHOD:
-
                 // CC (e->components, 1, v);
                 switch ($this->value[0]) {
                     case 1:
@@ -189,7 +185,6 @@ class PelEntryShort extends PelEntryNumber
                 }
                 break;
             case PelTag::LIGHT_SOURCE:
-
                 // CC (e->components, 1, v);
                 switch ($this->value[0]) {
                     case 0:
@@ -238,7 +233,6 @@ class PelEntryShort extends PelEntryNumber
                 break;
             case PelTag::FOCAL_PLANE_RESOLUTION_UNIT:
             case PelTag::RESOLUTION_UNIT:
-
                 // CC (e->components, 1, v);
                 switch ($this->value[0]) {
                     case 2:
@@ -250,7 +244,6 @@ class PelEntryShort extends PelEntryNumber
                 }
                 break;
             case PelTag::EXPOSURE_PROGRAM:
-
                 // CC (e->components, 1, v);
                 switch ($this->value[0]) {
                     case 0:
@@ -276,7 +269,6 @@ class PelEntryShort extends PelEntryNumber
                 }
                 break;
             case PelTag::ORIENTATION:
-
                 // CC (e->components, 1, v);
                 switch ($this->value[0]) {
                     case 1:
@@ -300,7 +292,6 @@ class PelEntryShort extends PelEntryNumber
                 }
                 break;
             case PelTag::YCBCR_POSITIONING:
-
                 // CC (e->components, 1, v);
                 switch ($this->value[0]) {
                     case 1:
@@ -312,7 +303,6 @@ class PelEntryShort extends PelEntryNumber
                 }
                 break;
             case PelTag::YCBCR_SUB_SAMPLING:
-
                 // CC (e->components, 2, v);
                 if ($this->value[0] == 2 && $this->value[1] == 1) {
                     return 'YCbCr4:2:2';
@@ -324,7 +314,6 @@ class PelEntryShort extends PelEntryNumber
                 return $this->value[0] . ', ' . $this->value[1];
                 break;
             case PelTag::PHOTOMETRIC_INTERPRETATION:
-
                 // CC (e->components, 1, v);
                 switch ($this->value[0]) {
                     case 2:
@@ -336,7 +325,6 @@ class PelEntryShort extends PelEntryNumber
                 }
                 break;
             case PelTag::COLOR_SPACE:
-
                 // CC (e->components, 1, v);
                 switch ($this->value[0]) {
                     case 1:
@@ -350,7 +338,6 @@ class PelEntryShort extends PelEntryNumber
                 }
                 break;
             case PelTag::FLASH:
-
                 // CC (e->components, 1, v);
                 switch ($this->value[0]) {
                     case 0x0000:
@@ -404,7 +391,6 @@ class PelEntryShort extends PelEntryNumber
                 }
                 break;
             case PelTag::CUSTOM_RENDERED:
-
                 // CC (e->components, 1, v);
                 switch ($this->value[0]) {
                     case 0:
@@ -416,7 +402,6 @@ class PelEntryShort extends PelEntryNumber
                 }
                 break;
             case PelTag::EXPOSURE_MODE:
-
                 // CC (e->components, 1, v);
                 switch ($this->value[0]) {
                     case 0:
@@ -430,7 +415,6 @@ class PelEntryShort extends PelEntryNumber
                 }
                 break;
             case PelTag::WHITE_BALANCE:
-
                 // CC (e->components, 1, v);
                 switch ($this->value[0]) {
                     case 0:
@@ -442,7 +426,6 @@ class PelEntryShort extends PelEntryNumber
                 }
                 break;
             case PelTag::SCENE_CAPTURE_TYPE:
-
                 // CC (e->components, 1, v);
                 switch ($this->value[0]) {
                     case 0:
@@ -458,7 +441,6 @@ class PelEntryShort extends PelEntryNumber
                 }
                 break;
             case PelTag::GAIN_CONTROL:
-
                 // CC (e->components, 1, v);
                 switch ($this->value[0]) {
                     case 0:
@@ -476,7 +458,6 @@ class PelEntryShort extends PelEntryNumber
                 }
                 break;
             case PelTag::SATURATION:
-
                 // CC (e->components, 1, v);
                 switch ($this->value[0]) {
                     case 0:
@@ -491,7 +472,6 @@ class PelEntryShort extends PelEntryNumber
                 break;
             case PelTag::CONTRAST:
             case PelTag::SHARPNESS:
-
                 // CC (e->components, 1, v);
                 switch ($this->value[0]) {
                     case 0:
@@ -505,7 +485,6 @@ class PelEntryShort extends PelEntryNumber
                 }
                 break;
             case PelTag::SUBJECT_DISTANCE_RANGE:
-
                 // CC (e->components, 1, v);
                 switch ($this->value[0]) {
                     case 0:

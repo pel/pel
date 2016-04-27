@@ -207,7 +207,7 @@ class PelTiff
         /* TIFF magic number --- fixed value. */
         $bytes .= PelConvert::shortToBytes(self::TIFF_HEADER, $order);
 
-        if ($this->ifd != null) {
+        if ($this->ifd !== null) {
             /*
              * IFD 0 offset. We will always start IDF 0 at an offset of 8
              * bytes (2 bytes for byte order, another 2 bytes for the TIFF
@@ -239,7 +239,7 @@ class PelTiff
     public function __toString()
     {
         $str = Pel::fmt("Dumping TIFF data...\n");
-        if ($this->ifd != null) {
+        if ($this->ifd !== null) {
             $str .= $this->ifd->__toString();
         }
 

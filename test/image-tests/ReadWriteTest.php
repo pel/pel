@@ -8,10 +8,7 @@
  *
  * For licensing, see LICENSE.md distributed with this source code.
  */
-if (realpath($_SERVER['PHP_SELF']) == __FILE__) {
-    require_once '../../autoload.php';
-    require_once '../../vendor/lastcraft/simpletest/autorun.php';
-}
+
 use lsolesen\pel\Pel;
 use lsolesen\pel\PelEntryByte;
 use lsolesen\pel\PelIfd;
@@ -25,9 +22,8 @@ use lsolesen\pel\PelEntryLong;
 use lsolesen\pel\PelEntrySLong;
 use lsolesen\pel\PelEntryAscii;
 
-abstract class WriteEntryTestCase extends UnitTestCase
+abstract class WriteEntryTestCase extends \PHPUnit_Framework_TestCase
 {
-
     protected $entries = array();
 
     public function testWriteRead()
@@ -64,19 +60,19 @@ abstract class WriteEntryTestCase extends UnitTestCase
         $jpeg = new PelJpeg('test-output.jpg');
 
         $exif = $jpeg->getExif();
-        $this->assertIsA($exif, 'lsolesen\pel\PelExif');
+        $this->assertInstanceOf('lsolesen\pel\PelExif', $exif);
 
         $tiff = $exif->getTiff();
-        $this->assertIsA($tiff, 'lsolesen\pel\PelTiff');
+        $this->assertInstanceOf('lsolesen\pel\PelTiff', $tiff);
 
         $ifd = $tiff->getIfd();
-        $this->assertIsA($ifd, 'lsolesen\pel\PelIfd');
+        $this->assertInstanceOf('lsolesen\pel\PelIfd', $ifd);
 
-        $this->assertEqual($ifd->getType(), PelIfd::IFD0);
+        $this->assertEquals($ifd->getType(), PelIfd::IFD0);
         $this->assertTrue($ifd->isLastIfd());
 
         foreach ($this->entries as $entry) {
-            $this->assertEqual($ifd->getEntry($entry->getTag())
+            $this->assertEquals($ifd->getEntry($entry->getTag())
                 ->getValue(), $entry->getValue());
         }
 
@@ -86,7 +82,6 @@ abstract class WriteEntryTestCase extends UnitTestCase
 
 class WriteByteTestCase extends WriteEntryTestCase
 {
-
     public function __construct()
     {
         $this->entries[] = new PelEntryByte(0xF001, 0);
@@ -105,7 +100,6 @@ class WriteByteTestCase extends WriteEntryTestCase
 
 class WriteSByteTestCase extends WriteEntryTestCase
 {
-
     public function __construct()
     {
         $this->entries[] = new PelEntrySByte(0xF101, - 128);
@@ -125,7 +119,6 @@ class WriteSByteTestCase extends WriteEntryTestCase
 
 class WriteShortTestCase extends WriteEntryTestCase
 {
-
     public function __construct()
     {
         $this->entries[] = new PelEntryShort(0xF201, 0);
@@ -144,7 +137,6 @@ class WriteShortTestCase extends WriteEntryTestCase
 
 class WriteSShortTestCase extends WriteEntryTestCase
 {
-
     public function __construct()
     {
         $this->entries[] = new PelEntrySShort(0xF301, - 32768);
@@ -164,7 +156,6 @@ class WriteSShortTestCase extends WriteEntryTestCase
 
 class WriteLongTestCase extends WriteEntryTestCase
 {
-
     public function __construct()
     {
         $this->entries[] = new PelEntryLong(0xF401, 0);
@@ -183,7 +174,6 @@ class WriteLongTestCase extends WriteEntryTestCase
 
 class WriteSLongTestCase extends WriteEntryTestCase
 {
-
     public function __construct()
     {
         $this->entries[] = new PelEntrySLong(0xF501, - 2147483648);
@@ -203,7 +193,6 @@ class WriteSLongTestCase extends WriteEntryTestCase
 
 class WriteAsciiTestCase extends WriteEntryTestCase
 {
-
     public function __construct()
     {
         $this->entries[] = new PelEntryAscii(0xF601);

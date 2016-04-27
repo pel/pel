@@ -8,24 +8,15 @@
  *
  * For licensing, see LICENSE.md distributed with this source code.
  */
-if (realpath($_SERVER['PHP_SELF']) == __FILE__) {
-    require_once '../autoload.php';
-    require_once '../vendor/lastcraft/simpletest/autorun.php';
-}
+
 use lsolesen\pel\PelDataWindow;
 use lsolesen\pel\PelJpeg;
 use lsolesen\pel\PelEntryWindowsString;
 use lsolesen\pel\PelTag;
 
-class Gh16TestCase extends UnitTestCase
+class GH16Test extends \PHPUnit_Framework_TestCase
 {
-
     protected $file;
-
-    function __construct()
-    {
-        parent::__construct('Gh-16 Test');
-    }
 
     function setUp()
     {
@@ -51,7 +42,7 @@ class Gh16TestCase extends UnitTestCase
             $jpeg->load($data);
             $exif = $jpeg->getExif();
 
-            if (null == $exif) {
+            if (null === $exif) {
                 $exif = new PelExif();
                 $jpeg->setExif($exif);
                 $tiff = new PelTiff();
@@ -61,7 +52,7 @@ class Gh16TestCase extends UnitTestCase
             $tiff = $exif->getTiff();
 
             $ifd0 = $tiff->getIfd();
-            if (null == $ifd0) {
+            if (null === $ifd0) {
                 $ifd0 = new PelIfd(PelIfd::IFD0);
                 $tiff->setIfd($ifd0);
             }
@@ -75,6 +66,6 @@ class Gh16TestCase extends UnitTestCase
         $tiff = $exif->getTiff();
         $ifd0 = $tiff->getIfd();
         $written_subject = $ifd0->getEntry(PelTag::XP_SUBJECT);
-        $this->assertEqual($subject, $written_subject->getValue());
+        $this->assertEquals($subject, $written_subject->getValue());
     }
 }

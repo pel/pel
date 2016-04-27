@@ -9,31 +9,24 @@
  *
  * For licensing, see LICENSE.md distributed with this source code.
  */
-if (realpath($_SERVER['PHP_SELF']) == __FILE__) {
-    require_once '../autoload.php';
-    require_once '../vendor/lastcraft/simpletest/autorun.php';
-}
+
 use lsolesen\pel\PelJpeg;
 
-class Bug1730993TestCase extends UnitTestCase
+class Bug1730993Test extends \PHPUnit_Framework_TestCase
 {
-
-    function __construct()
-    {
-        parent::__construct('Bug1730993 Test');
-    }
-
     function testThisDoesNotWorkAsExpected()
     {
         $tmpfile = dirname(__FILE__) . '/images/bug1730993_tmp.jpg';
         $bigfile = dirname(__FILE__) . '/images/bug1730993_large.jpg';
         // TODO: Should not throw exception
-        return;
+        $this->markTestIncomplete(
+          'This test fails and should be fixed.'
+        );
         try {
             require_once 'PelJpeg.php';
             $jpeg = new PelJpeg($tmpfile); // the error occurs here
             $exif = $jpeg->getExif();
-            if ($exif != null) {
+            if ($exif !== null) {
                 $jpeg1 = new PelJpeg($bigfile);
                 $jpeg1->setExif($exif);
                 file_put_contents($bigfile, $jpeg1->getBytes());

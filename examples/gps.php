@@ -22,7 +22,7 @@
  * - addGpsInfo() adds several Exif tags to your JPEG file.
  */
 require_once '../autoload.php';
-use lsolesen\pel\PelDataWindow;
+
 use lsolesen\pel\PelJpeg;
 use lsolesen\pel\PelTiff;
 

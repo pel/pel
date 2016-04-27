@@ -1,7 +1,6 @@
-PEL: PHP Exif Library
-=====================
+# PEL: PHP Exif Library
 
-[![Build Status](https://secure.travis-ci.org/lsolesen/pel.png?branch=master)](http://travis-ci.org/lsolesen/pel)
+[![Build Status](https://secure.travis-ci.org/lsolesen/pel.png?branch=master)](http://travis-ci.org/lsolesen/pel) [![Code Coverage](https://scrutinizer-ci.com/g/lsolesen/pel/badges/coverage.png?b=master)](https://scrutinizer-ci.com/g/lsolesen/pel/?branch=master) [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/lsolesen/pel/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/lsolesen/pel/?branch=master) [![Latest Stable Version](https://poser.pugx.org/lsolesen/pel/v/stable)](https://packagist.org/packages/lsolesen/pel) [![Total Downloads](https://poser.pugx.org/lsolesen/pel/downloads)](https://packagist.org/packages/lsolesen/pel) [![License](https://poser.pugx.org/lsolesen/pel/license)](https://packagist.org/packages/lsolesen/pel)
 
 README file for PEL: PHP Exif Library.  A library with support for
 reading and writing Exif headers in JPEG and TIFF images using PHP.
@@ -11,8 +10,7 @@ Copyright (C) 2004, 2005, 2006  Martin Geisler.
 For licensing, see LICENSE.md distributed with this source code.
 
 
-Description
-***********
+## Description
 
 The PHP Exif Library (PEL) makes it easy to develop programs that will
 read and write the Exif metadata headers found in JPEG and TIFF
@@ -31,18 +29,17 @@ Also, please go to the PEL development mailing list (look below) and
 share your ideas about how the API should look like.
 
 
-Documentation Overview
-**********************
+## Documentation Overview
 
-* README: gives you a short introduction to PEL (this file).
-* INSTALL: explain how to install and get going with PEL.
-* NEWS: contains important information about changes in PEL.
+* README.markdown: gives you a short introduction to PEL (this file).
+* INSTALL.md: explain how to install and get going with PEL.
+* CHANGELOG.md: contains important information about changes in PEL.
 * examples/: small self-contained examples of how to use PEL.
 * AUTHORS: list of people who have helped.
 * run run-phpdoc.sh to generate API-documention or see it online at http://lsolesen.github.com/pel
 
-Features of PEL
-***************
+
+## Features of PEL
 
 * Reads and writes Exif metadata from both JPEG and TIFF images.
 * Supports reading and writing all Exif tags.
@@ -52,22 +49,22 @@ Features of PEL
 * Documented with PhpDocumentor (http://phpdoc.org/).
 
 
-Helping out
-***********
+## Helping out
 
 Help will be very much appreciated. You can report issues, run the test
 suite, add patches. The best way to help out is applying patches and
 helping out with the tests. See instructions in the test/ directory.
 
+All changes to code should be issued through a pull request, and other
+maintainers should review the code and merge it.
 
-Languages
-*********
+
+## Languages
 
 To work with the translations, you need the gettext package installed.
 
 
-Getting Support
-***************
+## Getting Support
 
 The first place you should consult for support is the documentation
 supplied with PEL, found in the doc/ directory.  There you will find a
@@ -93,8 +90,7 @@ repository before submitting a bug report. The code found there is
 generally very stable.
 
 
-Contributing Test Images
-************************
+## Contributing Test Images
 
 To make PEL as stable as possible, it is tested with images from a
 number of different camera models.
@@ -104,8 +100,7 @@ existing test images and read the README file found there for
 instructions.
 
 
-Credits
-*******
+## Credits
 
 Please see the AUTHORS file for a list of people who have contributed
-to PEL.
+to PEL. See the full list of [code contributors](https://github.com/lsolesen/pel/graphs/contributors).

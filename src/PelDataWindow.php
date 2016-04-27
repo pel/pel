@@ -12,14 +12,6 @@
 namespace lsolesen\pel;
 
 /**
- * A container for bytes with a limited window of accessible bytes.
- *
- * @author Martin Geisler <mgeisler@users.sourceforge.net>
- * @package PEL
- */
-require_once ('PelConvert.php');
-
-/**
  * The window.
  *
  * @package PEL

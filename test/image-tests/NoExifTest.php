@@ -8,21 +8,12 @@
  *
  * For licensing, see LICENSE.md distributed with this source code.
  */
-if (realpath($_SERVER['PHP_SELF']) == __FILE__) {
-    require_once '../../autoload.php';
-    require_once '../../vendor/lastcraft/simpletest/autorun.php';
-}
+
 use lsolesen\pel\Pel;
 use lsolesen\pel\PelJpeg;
 
-class no_exif extends UnitTestCase
+class NoExifTest extends \PHPUnit_Framework_TestCase
 {
-
-    public function __construct()
-    {
-        parent::__construct('PEL no-exif.jpg Tests');
-    }
-
     public function testRead()
     {
         Pel::clearExceptions();

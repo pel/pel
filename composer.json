@@ -12,6 +12,12 @@
             "email": "lars@intraface.dk",
             "homepage": "http://intraface.dk",
             "role": "Developer"
+        },
+        {
+            "name": "Martin Geisler",
+            "email": "martin@geisler.net",
+            "homepage": "http://geisler.net",
+            "role": "Developer"
         }
     ],
     "license": [
@@ -22,8 +28,10 @@
         "php": ">=5.0.0"
     },
     "require-dev" : {
-        "lastcraft/simpletest": ">=1.1",
-        "squizlabs/php_codesniffer": "2.*"
+        "ext-gd": "*",
+        "phpunit/phpunit": "4.4.*",
+        "squizlabs/php_codesniffer": "2.*",
+        "satooshi/php-coveralls": "dev-master"
     },
     "autoload": {
         "psr-4": {"lsolesen\\pel\\": "src/"}

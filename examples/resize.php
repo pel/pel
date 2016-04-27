@@ -24,9 +24,8 @@ setlocale(LC_ALL, '');
 
 /* Load the required PEL files for handling JPEG images. */
 require_once '../autoload.php';
-use lsolesen\pel\PelDataWindow;
+
 use lsolesen\pel\PelJpeg;
-use lsolesen\pel\PelTiff;
 
 /*
  * Store the name of the script in $prog and remove this first part of
@@ -40,7 +39,7 @@ $error = false;
  * extra information is printed out when the image is parsed.
  */
 if (isset($argv[0]) && $argv[0] == '-d') {
-    Pel::$debug = true;
+    Pel::setDebug(true);
     array_shift($argv);
 }
 

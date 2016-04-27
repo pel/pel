@@ -311,12 +311,10 @@ class PelIfd implements \IteratorAggregate, \ArrayAccess
          * class.
          */
         switch ($this->type) {
-
             case self::IFD0:
             case self::IFD1:
             case self::EXIF:
             case self::INTEROPERABILITY:
-
                 switch ($tag) {
                     case PelTag::DATE_TIME:
                     case PelTag::DATE_TIME_ORIGINAL:
@@ -387,7 +385,6 @@ class PelIfd implements \IteratorAggregate, \ArrayAccess
                 }
             // This point can be reached! Continue with default.
             case self::GPS:
-
             default:
                 /* Then handle the basic formats. */
                 switch ($format) {
@@ -953,7 +950,7 @@ class PelIfd implements \IteratorAggregate, \ArrayAccess
      */
     public function getThumbnailData()
     {
-        if ($this->thumb_data != null) {
+        if ($this->thumb_data !== null) {
             return $this->thumb_data->getBytes();
         } else {
             return '';
@@ -990,7 +987,7 @@ class PelIfd implements \IteratorAggregate, \ArrayAccess
      */
     public function isLastIfd()
     {
-        return $this->next == null;
+        return $this->next === null;
     }
 
     /**
@@ -1062,7 +1059,7 @@ class PelIfd implements \IteratorAggregate, \ArrayAccess
         Pel::debug('Bytes from IDF will start at offset %d within Exif data', $offset);
 
         $n = count($this->entries) + count($this->sub);
-        if ($this->thumb_data != null) {
+        if ($this->thumb_data !== null) {
             /*
              * We need two extra entries for the thumbnail offset and
              * length.
@@ -1107,7 +1104,7 @@ class PelIfd implements \IteratorAggregate, \ArrayAccess
             }
         }
 
-        if ($this->thumb_data != null) {
+        if ($this->thumb_data !== null) {
             Pel::debug('Appending %d bytes of thumbnail data at %d', $this->thumb_data->getSize(), $end);
             // TODO: make PelEntry a class that can be constructed with
             // arguments corresponding to the newt four lines.
@@ -1187,7 +1184,7 @@ class PelIfd implements \IteratorAggregate, \ArrayAccess
         foreach ($this->sub as $type => $ifd) {
             $str .= $ifd->__toString();
         }
-        if ($this->next != null) {
+        if ($this->next !== null) {
             $str .= $this->next->__toString();
         }
         return $str;
