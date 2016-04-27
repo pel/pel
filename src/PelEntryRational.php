@@ -8,7 +8,7 @@
  * Copyright (C) 2004, 2005, 2006 Martin Geisler.
  *
  * Dual licensed. For the full copyright and license information, please view
- * the COPYING.LESSER and COPYING files that are distributed with this source code.
+ * the COPYING.MIT and COPYING.GPL files that are distributed with this source code.
  */
 namespace lsolesen\pel;
 

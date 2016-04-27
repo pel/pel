@@ -58,7 +58,7 @@ $pfm->setDescription('The PHP Exif Library (PEL) lets you fully manipulate Exif 
 
 Using PEL, one can fully modify the Exif data, meaning that it can be both read and written. Completely new Exif data can also be added to images. PEL is written completely in PHP and depends on nothing except a standard installation of PHP, version 5. PEL is hosted on SourceForge.');
 $pfm->setUri($url);
-$pfm->setLicense('LGPL License', 'http://www.gnu.org/licenses/lgpl.html');
+$pfm->setLicense('MIT License', 'https://opensource.org/licenses/MIT');
 $pfm->addMaintainer('lead', 'mgeisler', 'Martin Geisler', 'mgeisler@mgeisler.net');
 $pfm->addMaintainer('helper', 'lsolesen', 'Lars Olesen', 'lars@legestue.net');
 

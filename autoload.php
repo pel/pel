@@ -7,7 +7,7 @@
  * Copyright (C) 2015, Johannes Weberhofer.
  *
  * Dual licensed. For the full copyright and license information, please view
- * the COPYING.LESSER and COPYING files that are distributed with this source code.
+ * the COPYING.MIT and COPYING.GPL files that are distributed with this source code.
  */
 
 /**
