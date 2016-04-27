@@ -1,8 +1,7 @@
 # Danish translation for the PHP Exif Library (PEL).
 # Copyright (C) 2004, 2005, 2006 Martin Geisler
 # Martin Geisler <mgeisler@mgeisler.net>, 2004.
-# Dual licensed. For the full copyright and license information, please view
-# the COPYING.MIT and COPYING.GPL files that are distributed with this source code.
+# For licensing, see LICENSE.md distributed with this source code.
 #
 msgid ""
 msgstr ""

@@ -5,8 +5,7 @@
 #
 #  Copyright (C) 2004, 2005, 2006  Martin Geisler.
 #
-# Dual licensed. For the full copyright and license information, please view
-# the COPYING.MIT and COPYING.GPL files that are distributed with this source code.
+# For licensing, see LICENSE.md distributed with this source code.
 
 # $Id$
 
@@ -98,8 +97,8 @@ echo "ChangeLog file for PEL: PHP Exif Library.  A library with support for
 reading and writing Exif headers in JPEG and TIFF images using PHP.
 
 Copyright (C) 2004, 2005, 2006  Martin Geisler.
-Dual licensed. For the full copyright and license information, please view
-the COPYING.MIT and COPYING.GPL files that are distributed with this source code.
+
+For licensing, see LICENSE.md distributed with this source code.
 
 " > ChangeLog
 svn2cl --include-rev --group-by-day --separate-daylogs  \

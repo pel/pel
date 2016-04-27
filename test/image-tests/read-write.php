@@ -6,8 +6,7 @@
  *
  * Copyright (C) 2004, 2006, 2007 Martin Geisler.
  *
- * Dual licensed. For the full copyright and license information, please view
- * the COPYING.MIT and COPYING.GPL files that are distributed with this source code.
+ * For licensing, see LICENSE.md distributed with this source code.
  */
 if (realpath($_SERVER['PHP_SELF']) == __FILE__) {
     require_once '../../autoload.php';

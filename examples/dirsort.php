@@ -8,8 +8,7 @@
  *
  * Copyright (C) 2004, 2006 Martin Geisler.
  *
- * Dual licensed. For the full copyright and license information, please view
- * the COPYING.MIT and COPYING.GPL files that are distributed with this source code.
+ * For licensing, see LICENSE.md distributed with this source code.
  */
 
 /* a printf() variant that appends a newline to the output. */
