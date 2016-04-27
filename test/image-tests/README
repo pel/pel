@@ -2,8 +2,7 @@ README file for PEL Test Images.
 
 Copyright (C) 2004, 2005, 2006  Martin Geisler.
 
-Dual licensed. For the full copyright and license information, please view
-the COPYING.MIT and COPYING.GPL files that are distributed with this source code.
+For licensing, see LICENSE.md distributed with this source code.
 
 
 PEL Test Images
@@ -27,7 +26,7 @@ Now run the run-tests.php script in the test directory.  It should
 automatically pickup the new tests.
 
 The images can be used by anybody, but may only be redistributed under
-the GNU GPL.  See the file COPYING for the details.
+the GNU GPL.  See the file LICENSE.md for the details.
 
 
 Contributing Test Images

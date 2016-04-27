@@ -1,3 +1,60 @@
+Software License Agreement
+==========================
+
+PEL: PHP Exif Library - A library with support for reading and writing Exif
+headers in JPEG and TIFF images using PHP.
+
+Copyright (C) 2004-2016 Martin Geisler. All rights reserved.
+
+Licensed under the terms of any of the following licenses at your
+choice:
+
+ - MIT License (the "MIT")
+   https://opensource.org/licenses/MIT
+   (See Appendix A)
+
+ - GNU General Public License Version 3 or later (the "GPL")
+   http://www.gnu.org/licenses/gpl.html
+   (See Appendix B)
+
+You are not required to, but if you want to explicitly declare the
+license you have chosen to be bound to when using, reproducing,
+modifying and distributing this software, just include a text file
+titled "legal.txt" in your version of this software, indicating your
+license choice. In any case, your choice will not restrict any
+recipient of your version of this software to use, reproduce, modify
+and distribute this software under any of the above licenses.
+
+
+Appendix A: The MIT License
+---------------------------
+
+```
+The MIT License (MIT)
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in
+all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+THE SOFTWARE.
+```
+
+Appendix B: The GPL License
+---------------------------
+
+```
                     GNU GENERAL PUBLIC LICENSE
                        Version 3, 29 June 2007
 
@@ -672,3 +729,4 @@ may consider it more useful to permit linking proprietary applications with
 the library.  If this is what you want to do, use the GNU Lesser General
 Public License instead of this License.  But first, please read
 <http://www.gnu.org/philosophy/why-not-lgpl.html>.
+```

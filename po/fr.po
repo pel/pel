@@ -3,8 +3,7 @@
 # Copyright (C) 2004, 2005, 2006 Martin Geisler
 # Arnaud Launay <asl@launay.org>, 2002.
 # David Lesieur <david@davidlesieur.com>, 2006.
-# Dual licensed. For the full copyright and license information, please view
-# the COPYING.MIT and COPYING.GPL files that are distributed with this source code.
+# For licensing, see LICENSE.md distributed with this source code.
 #
 msgid ""
 msgstr ""

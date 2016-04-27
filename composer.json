@@ -15,8 +15,8 @@
         }
     ],
     "license": [
-        "GPL-3.0",
-        "MIT"
+        "MIT",
+        "GPL-3.0"
     ],
     "require": {
         "php": ">=5.0.0"
