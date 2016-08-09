@@ -121,7 +121,7 @@ class PelTag
     const PHOTOMETRIC_INTERPRETATION = 0x0106;
 
     /**
-     * Fill Orde
+     * Fill Order
      *
      * Format: Unknown.
      *
@@ -132,9 +132,9 @@ class PelTag
     /**
      * Document Name
      *
-     * Format: Unknown.
+     * Format: {@link PelEntryAscii}.
      *
-     * Components: Unknown.
+     * Components: any number.
      */
     const DOCUMENT_NAME = 0x010D;
 
@@ -399,6 +399,15 @@ class PelTag
      * Components: Unknown, probably 1.
      */
     const RELATED_IMAGE_LENGTH = 0x1002;
+
+    /**
+     * Rating
+     *
+     * Format: {@link PelFormat::SHORT}
+     *
+     * Components: 1.
+    */
+    const RATING = 0x4746;
 
     /**
      * CFA Repeat Pattern Dim.
@@ -1429,6 +1438,8 @@ class PelTag
                         return 'RelatedImageWidth';
                     case self::RELATED_IMAGE_LENGTH:
                         return 'RelatedImageLength';
+                    case self::RATING:
+                        return 'Rating';
                     case self::CFA_REPEAT_PATTERN_DIM:
                         return 'CFARepeatPatternDim';
                     case self::CFA_PATTERN:
@@ -1744,6 +1755,8 @@ class PelTag
                         return Pel::tra('Related Image Width');
                     case self::RELATED_IMAGE_LENGTH:
                         return Pel::tra('Related Image Length');
+                    case self::RATING:
+                        return Pel::tra('Rating');
                     case self::CFA_REPEAT_PATTERN_DIM:
                         return Pel::tra('CFA Repeat Pattern Dim');
                     case self::CFA_PATTERN:
