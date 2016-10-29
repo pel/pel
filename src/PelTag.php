@@ -1332,7 +1332,7 @@ class PelTag
     /**
      * Values for tags short names.
      */
-    const EXIF_TAGS_SHORT = array(
+    protected static $exifTagsShort= array(
         self::INTEROPERABILITY_INDEX         => 'InteroperabilityIndex',
         self::INTEROPERABILITY_VERSION       => 'InteroperabilityVersion',
         self::IMAGE_WIDTH                    => 'ImageWidth',
@@ -1447,7 +1447,7 @@ class PelTag
     /**
      * Values for tags titles.
      */
-    const EXIF_TAGS_TITLE = array(
+    protected static $exifTagsTitle = array(
         self::INTEROPERABILITY_INDEX         => 'Interoperability Index',
         self::INTEROPERABILITY_VERSION       => 'Interoperability Version',
         self::IMAGE_WIDTH                    => 'Image Width',
@@ -1562,7 +1562,7 @@ class PelTag
     /**
      * Values for gps tags short names.
      */
-    const GPS_TAGS_SHORT = array(
+    protected static $gpsTagsShort = array(
         self::GPS_VERSION_ID         => 'GPSVersionID',
         self::GPS_LATITUDE_REF       => 'GPSLatitudeRef',
         self::GPS_LATITUDE           => 'GPSLatitude',
@@ -1597,11 +1597,6 @@ class PelTag
     );
 
     /**
-     * Values for gps tags titles.
-     */
-    const GPS_TAGS_TITLE = self::GPS_TAGS_SHORT;
-
-    /**
      * Returns a string from container with key $tag and subcontainer index of $idx
      *
      * @param array $container
@@ -1632,12 +1627,12 @@ class PelTag
      */
     public static function getTagByName($name)
     {
-        $k = array_search($name, self::EXIF_TAGS_SHORT);
+        $k = array_search($name, self::$exifTagsShort);
         if ($k !== false) {
             return $k;
         }
 
-        return array_search($name, static::GPS_TAGS_SHORT);
+        return array_search($name, static::$gpsTagsShort);
     }
 
     /**
@@ -1677,9 +1672,9 @@ class PelTag
             case PelIfd::IFD1:
             case PelIfd::EXIF:
             case PelIfd::INTEROPERABILITY:
-                return self::getValue(self::EXIF_TAGS_SHORT, $tag);
+                return self::getValue(self::$exifTagsShort, $tag);
             case PelIfd::GPS:
-                return self::getValue(self::GPS_TAGS_SHORT, $tag);
+                return self::getValue(self::$gpsTagsShort, $tag);
         }
 
         return self::unknownTag($tag);
@@ -1708,9 +1703,9 @@ class PelTag
             case PelIfd::IFD1:
             case PelIfd::EXIF:
             case PelIfd::INTEROPERABILITY:
-                return Pel::tra(self::getValue(self::EXIF_TAGS_TITLE, $tag));
+                return Pel::tra(self::getValue(self::$exifTagsTitle, $tag));
             case PelIfd::GPS:
-                return Pel::tra(self::getValue(self::GPS_TAGS_TITLE, $tag));
+                return Pel::tra(self::getValue(self::$gpsTagsShort, $tag));
         }
 
         return self::unknownTag($tag);
