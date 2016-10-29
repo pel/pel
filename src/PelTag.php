@@ -24,14 +24,14 @@
  */
 namespace lsolesen\pel;
 
-/**
- * Namespace for functions operating on Exif tags.
- *
- * @author Martin Geisler <mgeisler@users.sourceforge.net>
- * @license http://www.gnu.org/licenses/gpl.html GNU General Public
- *          License (GPL)
- * @package PEL
- */
+    /**
+     * Namespace for functions operating on Exif tags.
+     *
+     * @author Martin Geisler <mgeisler@users.sourceforge.net>
+     * @license http://www.gnu.org/licenses/gpl.html GNU General Public
+     *          License (GPL)
+     * @package PEL
+     */
 
 /**
  * Class with static methods for Exif tags.
@@ -1329,381 +1329,390 @@ class PelTag
      */
     const GPS_DIFFERENTIAL = 0x001E;
 
-	/**
-	 * Values for tags short names.
-	 */
-	const EXIF_TAGS_SHORT = array(
-		self::INTEROPERABILITY_INDEX         => 'InteroperabilityIndex',
-		self::INTEROPERABILITY_VERSION       => 'InteroperabilityVersion',
-		self::IMAGE_WIDTH                    => 'ImageWidth',
-		self::IMAGE_LENGTH                   => 'ImageLength',
-		self::BITS_PER_SAMPLE                => 'BitsPerSample',
-		self::COMPRESSION                    => 'Compression',
-		self::PHOTOMETRIC_INTERPRETATION     => 'PhotometricInterpretation',
-		self::FILL_ORDER                     => 'FillOrder',
-		self::DOCUMENT_NAME                  => 'DocumentName',
-		self::IMAGE_DESCRIPTION              => 'ImageDescription',
-		self::MAKE                           => 'Make',
-		self::MODEL                          => 'Model',
-		self::STRIP_OFFSETS                  => 'StripOffsets',
-		self::ORIENTATION                    => 'Orientation',
-		self::SAMPLES_PER_PIXEL              => 'SamplesPerPixel',
-		self::ROWS_PER_STRIP                 => 'RowsPerStrip',
-		self::STRIP_BYTE_COUNTS              => 'StripByteCounts',
-		self::X_RESOLUTION                   => 'XResolution',
-		self::Y_RESOLUTION                   => 'YResolution',
-		self::PLANAR_CONFIGURATION           => 'PlanarConfiguration',
-		self::RESOLUTION_UNIT                => 'ResolutionUnit',
-		self::TRANSFER_FUNCTION              => 'TransferFunction',
-		self::SOFTWARE                       => 'Software',
-		self::DATE_TIME                      => 'DateTime',
-		self::ARTIST                         => 'Artist',
-		self::WHITE_POINT                    => 'WhitePoint',
-		self::PRIMARY_CHROMATICITIES         => 'PrimaryChromaticities',
-		self::TRANSFER_RANGE                 => 'TransferRange',
-		self::JPEG_PROC                      => 'JPEGProc',
-		self::JPEG_INTERCHANGE_FORMAT        => 'JPEGInterchangeFormat',
-		self::JPEG_INTERCHANGE_FORMAT_LENGTH => 'JPEGInterchangeFormatLength',
-		self::YCBCR_COEFFICIENTS             => 'YCbCrCoefficients',
-		self::YCBCR_SUB_SAMPLING             => 'YCbCrSubSampling',
-		self::YCBCR_POSITIONING              => 'YCbCrPositioning',
-		self::REFERENCE_BLACK_WHITE          => 'ReferenceBlackWhite',
-		self::RELATED_IMAGE_FILE_FORMAT      => 'RelatedImageFileFormat',
-		self::RELATED_IMAGE_WIDTH            => 'RelatedImageWidth',
-		self::RELATED_IMAGE_LENGTH           => 'RelatedImageLength',
-		self::CFA_REPEAT_PATTERN_DIM         => 'CFARepeatPatternDim',
-		self::CFA_PATTERN                    => 'CFAPattern',
-		self::BATTERY_LEVEL                  => 'BatteryLevel',
-		self::COPYRIGHT                      => 'Copyright',
-		self::EXPOSURE_TIME                  => 'ExposureTime',
-		self::FNUMBER                        => 'FNumber',
-		self::IPTC_NAA                       => 'IPTC/NAA',
-		self::EXIF_IFD_POINTER               => 'ExifIFDPointer',
-		self::INTER_COLOR_PROFILE            => 'InterColorProfile',
-		self::EXPOSURE_PROGRAM               => 'ExposureProgram',
-		self::SPECTRAL_SENSITIVITY           => 'SpectralSensitivity',
-		self::GPS_INFO_IFD_POINTER           => 'GPSInfoIFDPointer',
-		self::ISO_SPEED_RATINGS              => 'ISOSpeedRatings',
-		self::OECF                           => 'OECF',
-		self::EXIF_VERSION                   => 'ExifVersion',
-		self::DATE_TIME_ORIGINAL             => 'DateTimeOriginal',
-		self::DATE_TIME_DIGITIZED            => 'DateTimeDigitized',
-		self::COMPONENTS_CONFIGURATION       => 'ComponentsConfiguration',
-		self::COMPRESSED_BITS_PER_PIXEL      => 'CompressedBitsPerPixel',
-		self::SHUTTER_SPEED_VALUE            => 'ShutterSpeedValue',
-		self::APERTURE_VALUE                 => 'ApertureValue',
-		self::BRIGHTNESS_VALUE               => 'BrightnessValue',
-		self::EXPOSURE_BIAS_VALUE            => 'ExposureBiasValue',
-		self::MAX_APERTURE_VALUE             => 'MaxApertureValue',
-		self::SUBJECT_DISTANCE               => 'SubjectDistance',
-		self::METERING_MODE                  => 'MeteringMode',
-		self::LIGHT_SOURCE                   => 'LightSource',
-		self::FLASH                          => 'Flash',
-		self::FOCAL_LENGTH                   => 'FocalLength',
-		self::MAKER_NOTE                     => 'MakerNote',
-		self::USER_COMMENT                   => 'UserComment',
-		self::SUB_SEC_TIME                   => 'SubSecTime',
-		self::SUB_SEC_TIME_ORIGINAL          => 'SubSecTimeOriginal',
-		self::SUB_SEC_TIME_DIGITIZED         => 'SubSecTimeDigitized',
-		self::XP_TITLE                       => 'WindowsXPTitle',
-		self::XP_COMMENT                     => 'WindowsXPComment',
-		self::XP_AUTHOR                      => 'WindowsXPAuthor',
-		self::XP_KEYWORDS                    => 'WindowsXPKeywords',
-		self::XP_SUBJECT                     => 'WindowsXPSubject',
-		self::FLASH_PIX_VERSION              => 'FlashPixVersion',
-		self::COLOR_SPACE                    => 'ColorSpace',
-		self::PIXEL_X_DIMENSION              => 'PixelXDimension',
-		self::PIXEL_Y_DIMENSION              => 'PixelYDimension',
-		self::RELATED_SOUND_FILE             => 'RelatedSoundFile',
-		self::INTEROPERABILITY_IFD_POINTER   => 'InteroperabilityIFDPointer',
-		self::FLASH_ENERGY                   => 'FlashEnergy',
-		self::SPATIAL_FREQUENCY_RESPONSE     => 'SpatialFrequencyResponse',
-		self::FOCAL_PLANE_X_RESOLUTION       => 'FocalPlaneXResolution',
-		self::FOCAL_PLANE_Y_RESOLUTION       => 'FocalPlaneYResolution',
-		self::FOCAL_PLANE_RESOLUTION_UNIT    => 'FocalPlaneResolutionUnit',
-		self::SUBJECT_LOCATION               => 'SubjectLocation',
-		self::EXPOSURE_INDEX                 => 'ExposureIndex',
-		self::SENSING_METHOD                 => 'SensingMethod',
-		self::FILE_SOURCE                    => 'FileSource',
-		self::SCENE_TYPE                     => 'SceneType',
-		self::SUBJECT_AREA                   => 'SubjectArea',
-		self::CUSTOM_RENDERED                => 'CustomRendered',
-		self::EXPOSURE_MODE                  => 'ExposureMode',
-		self::WHITE_BALANCE                  => 'WhiteBalance',
-		self::DIGITAL_ZOOM_RATIO             => 'DigitalZoomRatio',
-		self::FOCAL_LENGTH_IN_35MM_FILM      => 'FocalLengthIn35mmFilm',
-		self::SCENE_CAPTURE_TYPE             => 'SceneCaptureType',
-		self::GAIN_CONTROL                   => 'GainControl',
-		self::CONTRAST                       => 'Contrast',
-		self::SATURATION                     => 'Saturation',
-		self::SHARPNESS                      => 'Sharpness',
-		self::DEVICE_SETTING_DESCRIPTION     => 'DeviceSettingDescription',
-		self::SUBJECT_DISTANCE_RANGE         => 'SubjectDistanceRange',
-		self::IMAGE_UNIQUE_ID                => 'ImageUniqueID',
-		self::GAMMA                          => 'Gamma',
-		self::PRINT_IM                       => 'PrintIM',
-	);
+    /**
+     * Values for tags short names.
+     */
+    const EXIF_TAGS_SHORT = array(
+        self::INTEROPERABILITY_INDEX         => 'InteroperabilityIndex',
+        self::INTEROPERABILITY_VERSION       => 'InteroperabilityVersion',
+        self::IMAGE_WIDTH                    => 'ImageWidth',
+        self::IMAGE_LENGTH                   => 'ImageLength',
+        self::BITS_PER_SAMPLE                => 'BitsPerSample',
+        self::COMPRESSION                    => 'Compression',
+        self::PHOTOMETRIC_INTERPRETATION     => 'PhotometricInterpretation',
+        self::FILL_ORDER                     => 'FillOrder',
+        self::DOCUMENT_NAME                  => 'DocumentName',
+        self::IMAGE_DESCRIPTION              => 'ImageDescription',
+        self::MAKE                           => 'Make',
+        self::MODEL                          => 'Model',
+        self::STRIP_OFFSETS                  => 'StripOffsets',
+        self::ORIENTATION                    => 'Orientation',
+        self::SAMPLES_PER_PIXEL              => 'SamplesPerPixel',
+        self::ROWS_PER_STRIP                 => 'RowsPerStrip',
+        self::STRIP_BYTE_COUNTS              => 'StripByteCounts',
+        self::X_RESOLUTION                   => 'XResolution',
+        self::Y_RESOLUTION                   => 'YResolution',
+        self::PLANAR_CONFIGURATION           => 'PlanarConfiguration',
+        self::RESOLUTION_UNIT                => 'ResolutionUnit',
+        self::TRANSFER_FUNCTION              => 'TransferFunction',
+        self::SOFTWARE                       => 'Software',
+        self::DATE_TIME                      => 'DateTime',
+        self::ARTIST                         => 'Artist',
+        self::WHITE_POINT                    => 'WhitePoint',
+        self::PRIMARY_CHROMATICITIES         => 'PrimaryChromaticities',
+        self::TRANSFER_RANGE                 => 'TransferRange',
+        self::JPEG_PROC                      => 'JPEGProc',
+        self::JPEG_INTERCHANGE_FORMAT        => 'JPEGInterchangeFormat',
+        self::JPEG_INTERCHANGE_FORMAT_LENGTH => 'JPEGInterchangeFormatLength',
+        self::YCBCR_COEFFICIENTS             => 'YCbCrCoefficients',
+        self::YCBCR_SUB_SAMPLING             => 'YCbCrSubSampling',
+        self::YCBCR_POSITIONING              => 'YCbCrPositioning',
+        self::REFERENCE_BLACK_WHITE          => 'ReferenceBlackWhite',
+        self::RELATED_IMAGE_FILE_FORMAT      => 'RelatedImageFileFormat',
+        self::RELATED_IMAGE_WIDTH            => 'RelatedImageWidth',
+        self::RELATED_IMAGE_LENGTH           => 'RelatedImageLength',
+        self::CFA_REPEAT_PATTERN_DIM         => 'CFARepeatPatternDim',
+        self::CFA_PATTERN                    => 'CFAPattern',
+        self::BATTERY_LEVEL                  => 'BatteryLevel',
+        self::COPYRIGHT                      => 'Copyright',
+        self::EXPOSURE_TIME                  => 'ExposureTime',
+        self::FNUMBER                        => 'FNumber',
+        self::IPTC_NAA                       => 'IPTC/NAA',
+        self::EXIF_IFD_POINTER               => 'ExifIFDPointer',
+        self::INTER_COLOR_PROFILE            => 'InterColorProfile',
+        self::EXPOSURE_PROGRAM               => 'ExposureProgram',
+        self::SPECTRAL_SENSITIVITY           => 'SpectralSensitivity',
+        self::GPS_INFO_IFD_POINTER           => 'GPSInfoIFDPointer',
+        self::ISO_SPEED_RATINGS              => 'ISOSpeedRatings',
+        self::OECF                           => 'OECF',
+        self::EXIF_VERSION                   => 'ExifVersion',
+        self::DATE_TIME_ORIGINAL             => 'DateTimeOriginal',
+        self::DATE_TIME_DIGITIZED            => 'DateTimeDigitized',
+        self::COMPONENTS_CONFIGURATION       => 'ComponentsConfiguration',
+        self::COMPRESSED_BITS_PER_PIXEL      => 'CompressedBitsPerPixel',
+        self::SHUTTER_SPEED_VALUE            => 'ShutterSpeedValue',
+        self::APERTURE_VALUE                 => 'ApertureValue',
+        self::BRIGHTNESS_VALUE               => 'BrightnessValue',
+        self::EXPOSURE_BIAS_VALUE            => 'ExposureBiasValue',
+        self::MAX_APERTURE_VALUE             => 'MaxApertureValue',
+        self::SUBJECT_DISTANCE               => 'SubjectDistance',
+        self::METERING_MODE                  => 'MeteringMode',
+        self::LIGHT_SOURCE                   => 'LightSource',
+        self::FLASH                          => 'Flash',
+        self::FOCAL_LENGTH                   => 'FocalLength',
+        self::MAKER_NOTE                     => 'MakerNote',
+        self::USER_COMMENT                   => 'UserComment',
+        self::SUB_SEC_TIME                   => 'SubSecTime',
+        self::SUB_SEC_TIME_ORIGINAL          => 'SubSecTimeOriginal',
+        self::SUB_SEC_TIME_DIGITIZED         => 'SubSecTimeDigitized',
+        self::XP_TITLE                       => 'WindowsXPTitle',
+        self::XP_COMMENT                     => 'WindowsXPComment',
+        self::XP_AUTHOR                      => 'WindowsXPAuthor',
+        self::XP_KEYWORDS                    => 'WindowsXPKeywords',
+        self::XP_SUBJECT                     => 'WindowsXPSubject',
+        self::FLASH_PIX_VERSION              => 'FlashPixVersion',
+        self::COLOR_SPACE                    => 'ColorSpace',
+        self::PIXEL_X_DIMENSION              => 'PixelXDimension',
+        self::PIXEL_Y_DIMENSION              => 'PixelYDimension',
+        self::RELATED_SOUND_FILE             => 'RelatedSoundFile',
+        self::INTEROPERABILITY_IFD_POINTER   => 'InteroperabilityIFDPointer',
+        self::FLASH_ENERGY                   => 'FlashEnergy',
+        self::SPATIAL_FREQUENCY_RESPONSE     => 'SpatialFrequencyResponse',
+        self::FOCAL_PLANE_X_RESOLUTION       => 'FocalPlaneXResolution',
+        self::FOCAL_PLANE_Y_RESOLUTION       => 'FocalPlaneYResolution',
+        self::FOCAL_PLANE_RESOLUTION_UNIT    => 'FocalPlaneResolutionUnit',
+        self::SUBJECT_LOCATION               => 'SubjectLocation',
+        self::EXPOSURE_INDEX                 => 'ExposureIndex',
+        self::SENSING_METHOD                 => 'SensingMethod',
+        self::FILE_SOURCE                    => 'FileSource',
+        self::SCENE_TYPE                     => 'SceneType',
+        self::SUBJECT_AREA                   => 'SubjectArea',
+        self::CUSTOM_RENDERED                => 'CustomRendered',
+        self::EXPOSURE_MODE                  => 'ExposureMode',
+        self::WHITE_BALANCE                  => 'WhiteBalance',
+        self::DIGITAL_ZOOM_RATIO             => 'DigitalZoomRatio',
+        self::FOCAL_LENGTH_IN_35MM_FILM      => 'FocalLengthIn35mmFilm',
+        self::SCENE_CAPTURE_TYPE             => 'SceneCaptureType',
+        self::GAIN_CONTROL                   => 'GainControl',
+        self::CONTRAST                       => 'Contrast',
+        self::SATURATION                     => 'Saturation',
+        self::SHARPNESS                      => 'Sharpness',
+        self::DEVICE_SETTING_DESCRIPTION     => 'DeviceSettingDescription',
+        self::SUBJECT_DISTANCE_RANGE         => 'SubjectDistanceRange',
+        self::IMAGE_UNIQUE_ID                => 'ImageUniqueID',
+        self::GAMMA                          => 'Gamma',
+        self::PRINT_IM                       => 'PrintIM',
+    );
 
-	/**
-	 * Values for tags titles.
-	 */
-	const EXIF_TAGS_TITLE = array(
-		self::INTEROPERABILITY_INDEX         => 'Interoperability Index',
-		self::INTEROPERABILITY_VERSION       => 'Interoperability Version',
-		self::IMAGE_WIDTH                    => 'Image Width',
-		self::IMAGE_LENGTH                   => 'Image Length',
-		self::BITS_PER_SAMPLE                => 'Bits per Sample',
-		self::COMPRESSION                    => 'Compression',
-		self::PHOTOMETRIC_INTERPRETATION     => 'Photometric Interpretation',
-		self::FILL_ORDER                     => 'Fill Order',
-		self::DOCUMENT_NAME                  => 'Document Name',
-		self::IMAGE_DESCRIPTION              => 'Image Description',
-		self::MAKE                           => 'Manufacturer',
-		self::MODEL                          => 'Model',
-		self::STRIP_OFFSETS                  => 'Strip Offsets',
-		self::ORIENTATION                    => 'Orientation',
-		self::SAMPLES_PER_PIXEL              => 'Samples per Pixel',
-		self::ROWS_PER_STRIP                 => 'Rows per Strip',
-		self::STRIP_BYTE_COUNTS              => 'Strip Byte Count',
-		self::X_RESOLUTION                   => 'x-Resolution',
-		self::Y_RESOLUTION                   => 'y-Resolution',
-		self::PLANAR_CONFIGURATION           => 'Planar Configuration',
-		self::RESOLUTION_UNIT                => 'Resolution Unit',
-		self::TRANSFER_FUNCTION              => 'Transfer Function',
-		self::SOFTWARE                       => 'Software',
-		self::DATE_TIME                      => 'Date and Time',
-		self::ARTIST                         => 'Artist',
-		self::WHITE_POINT                    => 'White Point',
-		self::PRIMARY_CHROMATICITIES         => 'Primary Chromaticities',
-		self::TRANSFER_RANGE                 => 'Transfer Range',
-		self::JPEG_PROC                      => 'JPEG Process',
-		self::JPEG_INTERCHANGE_FORMAT        => 'JPEG Interchange Format',
-		self::JPEG_INTERCHANGE_FORMAT_LENGTH => 'JPEG Interchange Format Length',
-		self::YCBCR_COEFFICIENTS             => 'YCbCr Coefficients',
-		self::YCBCR_SUB_SAMPLING             => 'YCbCr Sub-Sampling',
-		self::YCBCR_POSITIONING              => 'YCbCr Positioning',
-		self::REFERENCE_BLACK_WHITE          => 'Reference Black/White',
-		self::RELATED_IMAGE_FILE_FORMAT      => 'Related Image File Format',
-		self::RELATED_IMAGE_WIDTH            => 'Related Image Width',
-		self::RELATED_IMAGE_LENGTH           => 'Related Image Length',
-		self::CFA_REPEAT_PATTERN_DIM         => 'CFA Repeat Pattern Dim',
-		self::CFA_PATTERN                    => 'CFA Pattern',
-		self::BATTERY_LEVEL                  => 'Battery Level',
-		self::COPYRIGHT                      => 'Copyright',
-		self::EXPOSURE_TIME                  => 'Exposure Time',
-		self::FNUMBER                        => 'FNumber',
-		self::IPTC_NAA                       => 'IPTC/NAA',
-		self::EXIF_IFD_POINTER               => 'Exif IFD Pointer',
-		self::INTER_COLOR_PROFILE            => 'Inter Color Profile',
-		self::EXPOSURE_PROGRAM               => 'Exposure Program',
-		self::SPECTRAL_SENSITIVITY           => 'Spectral Sensitivity',
-		self::GPS_INFO_IFD_POINTER           => 'GPS Info IFD Pointer',
-		self::ISO_SPEED_RATINGS              => 'ISO Speed Ratings',
-		self::OECF                           => 'OECF',
-		self::EXIF_VERSION                   => 'Exif Version',
-		self::DATE_TIME_ORIGINAL             => 'Date and Time (original)',
-		self::DATE_TIME_DIGITIZED            => 'Date and Time (digitized)',
-		self::COMPONENTS_CONFIGURATION       => 'Components Configuration',
-		self::COMPRESSED_BITS_PER_PIXEL      => 'Compressed Bits per Pixel',
-		self::SHUTTER_SPEED_VALUE            => 'Shutter speed',
-		self::APERTURE_VALUE                 => 'Aperture',
-		self::BRIGHTNESS_VALUE               => 'Brightness',
-		self::EXPOSURE_BIAS_VALUE            => 'Exposure Bias',
-		self::MAX_APERTURE_VALUE             => 'Max Aperture Value',
-		self::SUBJECT_DISTANCE               => 'Subject Distance',
-		self::METERING_MODE                  => 'Metering Mode',
-		self::LIGHT_SOURCE                   => 'Light Source',
-		self::FLASH                          => 'Flash',
-		self::FOCAL_LENGTH                   => 'Focal Length',
-		self::MAKER_NOTE                     => 'Maker Note',
-		self::USER_COMMENT                   => 'User Comment',
-		self::SUB_SEC_TIME                   => 'SubSec Time',
-		self::SUB_SEC_TIME_ORIGINAL          => 'SubSec Time Original',
-		self::SUB_SEC_TIME_DIGITIZED         => 'SubSec Time Digitized',
-		self::XP_TITLE                       => 'Windows XP Title',
-		self::XP_COMMENT                     => 'Windows XP Comment',
-		self::XP_AUTHOR                      => 'Windows XP Author',
-		self::XP_KEYWORDS                    => 'Windows XP Keywords',
-		self::XP_SUBJECT                     => 'Windows XP Subject',
-		self::FLASH_PIX_VERSION              => 'FlashPix Version',
-		self::COLOR_SPACE                    => 'Color Space',
-		self::PIXEL_X_DIMENSION              => 'Pixel x-Dimension',
-		self::PIXEL_Y_DIMENSION              => 'Pixel y-Dimension',
-		self::RELATED_SOUND_FILE             => 'Related Sound File',
-		self::INTEROPERABILITY_IFD_POINTER   => 'Interoperability IFD Pointer',
-		self::FLASH_ENERGY                   => 'Flash Energy',
-		self::SPATIAL_FREQUENCY_RESPONSE     => 'Spatial Frequency Response',
-		self::FOCAL_PLANE_X_RESOLUTION       => 'Focal Plane x-Resolution',
-		self::FOCAL_PLANE_Y_RESOLUTION       => 'Focal Plane y-Resolution',
-		self::FOCAL_PLANE_RESOLUTION_UNIT    => 'Focal Plane Resolution Unit',
-		self::SUBJECT_LOCATION               => 'Subject Location',
-		self::EXPOSURE_INDEX                 => 'Exposure index',
-		self::SENSING_METHOD                 => 'Sensing Method',
-		self::FILE_SOURCE                    => 'File Source',
-		self::SCENE_TYPE                     => 'Scene Type',
-		self::SUBJECT_AREA                   => 'Subject Area',
-		self::CUSTOM_RENDERED                => 'Custom Rendered',
-		self::EXPOSURE_MODE                  => 'Exposure Mode',
-		self::WHITE_BALANCE                  => 'White Balance',
-		self::DIGITAL_ZOOM_RATIO             => 'Digital Zoom Ratio',
-		self::FOCAL_LENGTH_IN_35MM_FILM      => 'Focal Length In 35mm Film',
-		self::SCENE_CAPTURE_TYPE             => 'Scene Capture Type',
-		self::GAIN_CONTROL                   => 'Gain Control',
-		self::CONTRAST                       => 'Contrast',
-		self::SATURATION                     => 'Saturation',
-		self::SHARPNESS                      => 'Sharpness',
-		self::DEVICE_SETTING_DESCRIPTION     => 'Device Setting Description',
-		self::SUBJECT_DISTANCE_RANGE         => 'Subject Distance Range',
-		self::IMAGE_UNIQUE_ID                => 'Image Unique ID',
-		self::GAMMA                          => 'Gamma',
-		self::PRINT_IM                       => 'Print IM',
-	);
+    /**
+     * Values for tags titles.
+     */
+    const EXIF_TAGS_TITLE = array(
+        self::INTEROPERABILITY_INDEX         => 'Interoperability Index',
+        self::INTEROPERABILITY_VERSION       => 'Interoperability Version',
+        self::IMAGE_WIDTH                    => 'Image Width',
+        self::IMAGE_LENGTH                   => 'Image Length',
+        self::BITS_PER_SAMPLE                => 'Bits per Sample',
+        self::COMPRESSION                    => 'Compression',
+        self::PHOTOMETRIC_INTERPRETATION     => 'Photometric Interpretation',
+        self::FILL_ORDER                     => 'Fill Order',
+        self::DOCUMENT_NAME                  => 'Document Name',
+        self::IMAGE_DESCRIPTION              => 'Image Description',
+        self::MAKE                           => 'Manufacturer',
+        self::MODEL                          => 'Model',
+        self::STRIP_OFFSETS                  => 'Strip Offsets',
+        self::ORIENTATION                    => 'Orientation',
+        self::SAMPLES_PER_PIXEL              => 'Samples per Pixel',
+        self::ROWS_PER_STRIP                 => 'Rows per Strip',
+        self::STRIP_BYTE_COUNTS              => 'Strip Byte Count',
+        self::X_RESOLUTION                   => 'x-Resolution',
+        self::Y_RESOLUTION                   => 'y-Resolution',
+        self::PLANAR_CONFIGURATION           => 'Planar Configuration',
+        self::RESOLUTION_UNIT                => 'Resolution Unit',
+        self::TRANSFER_FUNCTION              => 'Transfer Function',
+        self::SOFTWARE                       => 'Software',
+        self::DATE_TIME                      => 'Date and Time',
+        self::ARTIST                         => 'Artist',
+        self::WHITE_POINT                    => 'White Point',
+        self::PRIMARY_CHROMATICITIES         => 'Primary Chromaticities',
+        self::TRANSFER_RANGE                 => 'Transfer Range',
+        self::JPEG_PROC                      => 'JPEG Process',
+        self::JPEG_INTERCHANGE_FORMAT        => 'JPEG Interchange Format',
+        self::JPEG_INTERCHANGE_FORMAT_LENGTH => 'JPEG Interchange Format Length',
+        self::YCBCR_COEFFICIENTS             => 'YCbCr Coefficients',
+        self::YCBCR_SUB_SAMPLING             => 'YCbCr Sub-Sampling',
+        self::YCBCR_POSITIONING              => 'YCbCr Positioning',
+        self::REFERENCE_BLACK_WHITE          => 'Reference Black/White',
+        self::RELATED_IMAGE_FILE_FORMAT      => 'Related Image File Format',
+        self::RELATED_IMAGE_WIDTH            => 'Related Image Width',
+        self::RELATED_IMAGE_LENGTH           => 'Related Image Length',
+        self::CFA_REPEAT_PATTERN_DIM         => 'CFA Repeat Pattern Dim',
+        self::CFA_PATTERN                    => 'CFA Pattern',
+        self::BATTERY_LEVEL                  => 'Battery Level',
+        self::COPYRIGHT                      => 'Copyright',
+        self::EXPOSURE_TIME                  => 'Exposure Time',
+        self::FNUMBER                        => 'FNumber',
+        self::IPTC_NAA                       => 'IPTC/NAA',
+        self::EXIF_IFD_POINTER               => 'Exif IFD Pointer',
+        self::INTER_COLOR_PROFILE            => 'Inter Color Profile',
+        self::EXPOSURE_PROGRAM               => 'Exposure Program',
+        self::SPECTRAL_SENSITIVITY           => 'Spectral Sensitivity',
+        self::GPS_INFO_IFD_POINTER           => 'GPS Info IFD Pointer',
+        self::ISO_SPEED_RATINGS              => 'ISO Speed Ratings',
+        self::OECF                           => 'OECF',
+        self::EXIF_VERSION                   => 'Exif Version',
+        self::DATE_TIME_ORIGINAL             => 'Date and Time (original)',
+        self::DATE_TIME_DIGITIZED            => 'Date and Time (digitized)',
+        self::COMPONENTS_CONFIGURATION       => 'Components Configuration',
+        self::COMPRESSED_BITS_PER_PIXEL      => 'Compressed Bits per Pixel',
+        self::SHUTTER_SPEED_VALUE            => 'Shutter speed',
+        self::APERTURE_VALUE                 => 'Aperture',
+        self::BRIGHTNESS_VALUE               => 'Brightness',
+        self::EXPOSURE_BIAS_VALUE            => 'Exposure Bias',
+        self::MAX_APERTURE_VALUE             => 'Max Aperture Value',
+        self::SUBJECT_DISTANCE               => 'Subject Distance',
+        self::METERING_MODE                  => 'Metering Mode',
+        self::LIGHT_SOURCE                   => 'Light Source',
+        self::FLASH                          => 'Flash',
+        self::FOCAL_LENGTH                   => 'Focal Length',
+        self::MAKER_NOTE                     => 'Maker Note',
+        self::USER_COMMENT                   => 'User Comment',
+        self::SUB_SEC_TIME                   => 'SubSec Time',
+        self::SUB_SEC_TIME_ORIGINAL          => 'SubSec Time Original',
+        self::SUB_SEC_TIME_DIGITIZED         => 'SubSec Time Digitized',
+        self::XP_TITLE                       => 'Windows XP Title',
+        self::XP_COMMENT                     => 'Windows XP Comment',
+        self::XP_AUTHOR                      => 'Windows XP Author',
+        self::XP_KEYWORDS                    => 'Windows XP Keywords',
+        self::XP_SUBJECT                     => 'Windows XP Subject',
+        self::FLASH_PIX_VERSION              => 'FlashPix Version',
+        self::COLOR_SPACE                    => 'Color Space',
+        self::PIXEL_X_DIMENSION              => 'Pixel x-Dimension',
+        self::PIXEL_Y_DIMENSION              => 'Pixel y-Dimension',
+        self::RELATED_SOUND_FILE             => 'Related Sound File',
+        self::INTEROPERABILITY_IFD_POINTER   => 'Interoperability IFD Pointer',
+        self::FLASH_ENERGY                   => 'Flash Energy',
+        self::SPATIAL_FREQUENCY_RESPONSE     => 'Spatial Frequency Response',
+        self::FOCAL_PLANE_X_RESOLUTION       => 'Focal Plane x-Resolution',
+        self::FOCAL_PLANE_Y_RESOLUTION       => 'Focal Plane y-Resolution',
+        self::FOCAL_PLANE_RESOLUTION_UNIT    => 'Focal Plane Resolution Unit',
+        self::SUBJECT_LOCATION               => 'Subject Location',
+        self::EXPOSURE_INDEX                 => 'Exposure index',
+        self::SENSING_METHOD                 => 'Sensing Method',
+        self::FILE_SOURCE                    => 'File Source',
+        self::SCENE_TYPE                     => 'Scene Type',
+        self::SUBJECT_AREA                   => 'Subject Area',
+        self::CUSTOM_RENDERED                => 'Custom Rendered',
+        self::EXPOSURE_MODE                  => 'Exposure Mode',
+        self::WHITE_BALANCE                  => 'White Balance',
+        self::DIGITAL_ZOOM_RATIO             => 'Digital Zoom Ratio',
+        self::FOCAL_LENGTH_IN_35MM_FILM      => 'Focal Length In 35mm Film',
+        self::SCENE_CAPTURE_TYPE             => 'Scene Capture Type',
+        self::GAIN_CONTROL                   => 'Gain Control',
+        self::CONTRAST                       => 'Contrast',
+        self::SATURATION                     => 'Saturation',
+        self::SHARPNESS                      => 'Sharpness',
+        self::DEVICE_SETTING_DESCRIPTION     => 'Device Setting Description',
+        self::SUBJECT_DISTANCE_RANGE         => 'Subject Distance Range',
+        self::IMAGE_UNIQUE_ID                => 'Image Unique ID',
+        self::GAMMA                          => 'Gamma',
+        self::PRINT_IM                       => 'Print IM',
+    );
 
-	/**
-	 * Values for gps tags short names.
-	 */
-	const GPS_TAGS_SHORT = array(
-		self::GPS_VERSION_ID         => 'GPSVersionID',
-		self::GPS_LATITUDE_REF       => 'GPSLatitudeRef',
-		self::GPS_LATITUDE           => 'GPSLatitude',
-		self::GPS_LONGITUDE_REF      => 'GPSLongitudeRef',
-		self::GPS_LONGITUDE          => 'GPSLongitude',
-		self::GPS_ALTITUDE_REF       => 'GPSAltitudeRef',
-		self::GPS_ALTITUDE           => 'GPSAltitude',
-		self::GPS_TIME_STAMP         => 'GPSTimeStamp',
-		self::GPS_SATELLITES         => 'GPSSatellites',
-		self::GPS_STATUS             => 'GPSStatus',
-		self::GPS_MEASURE_MODE       => 'GPSMeasureMode',
-		self::GPS_DOP                => 'GPSDOP',
-		self::GPS_SPEED_REF          => 'GPSSpeedRef',
-		self::GPS_SPEED              => 'GPSSpeed',
-		self::GPS_TRACK_REF          => 'GPSTrackRef',
-		self::GPS_TRACK              => 'GPSTrack',
-		self::GPS_IMG_DIRECTION_REF  => 'GPSImgDirectionRef',
-		self::GPS_IMG_DIRECTION      => 'GPSImgDirection',
-		self::GPS_MAP_DATUM          => 'GPSMapDatum',
-		self::GPS_DEST_LATITUDE_REF  => 'GPSDestLatitudeRef',
-		self::GPS_DEST_LATITUDE      => 'GPSDestLatitude',
-		self::GPS_DEST_LONGITUDE_REF => 'GPSDestLongitudeRef',
-		self::GPS_DEST_LONGITUDE     => 'GPSDestLongitude',
-		self::GPS_DEST_BEARING_REF   => 'GPSDestBearingRef',
-		self::GPS_DEST_BEARING       => 'GPSDestBearing',
-		self::GPS_DEST_DISTANCE_REF  => 'GPSDestDistanceRef',
-		self::GPS_DEST_DISTANCE      => 'GPSDestDistance',
-		self::GPS_PROCESSING_METHOD  => 'GPSProcessingMethod',
-		self::GPS_AREA_INFORMATION   => 'GPSAreaInformation',
-		self::GPS_DATE_STAMP         => 'GPSDateStamp',
-		self::GPS_DIFFERENTIAL       => 'GPSDifferential',
-	);
+    /**
+     * Values for gps tags short names.
+     */
+    const GPS_TAGS_SHORT = array(
+        self::GPS_VERSION_ID         => 'GPSVersionID',
+        self::GPS_LATITUDE_REF       => 'GPSLatitudeRef',
+        self::GPS_LATITUDE           => 'GPSLatitude',
+        self::GPS_LONGITUDE_REF      => 'GPSLongitudeRef',
+        self::GPS_LONGITUDE          => 'GPSLongitude',
+        self::GPS_ALTITUDE_REF       => 'GPSAltitudeRef',
+        self::GPS_ALTITUDE           => 'GPSAltitude',
+        self::GPS_TIME_STAMP         => 'GPSTimeStamp',
+        self::GPS_SATELLITES         => 'GPSSatellites',
+        self::GPS_STATUS             => 'GPSStatus',
+        self::GPS_MEASURE_MODE       => 'GPSMeasureMode',
+        self::GPS_DOP                => 'GPSDOP',
+        self::GPS_SPEED_REF          => 'GPSSpeedRef',
+        self::GPS_SPEED              => 'GPSSpeed',
+        self::GPS_TRACK_REF          => 'GPSTrackRef',
+        self::GPS_TRACK              => 'GPSTrack',
+        self::GPS_IMG_DIRECTION_REF  => 'GPSImgDirectionRef',
+        self::GPS_IMG_DIRECTION      => 'GPSImgDirection',
+        self::GPS_MAP_DATUM          => 'GPSMapDatum',
+        self::GPS_DEST_LATITUDE_REF  => 'GPSDestLatitudeRef',
+        self::GPS_DEST_LATITUDE      => 'GPSDestLatitude',
+        self::GPS_DEST_LONGITUDE_REF => 'GPSDestLongitudeRef',
+        self::GPS_DEST_LONGITUDE     => 'GPSDestLongitude',
+        self::GPS_DEST_BEARING_REF   => 'GPSDestBearingRef',
+        self::GPS_DEST_BEARING       => 'GPSDestBearing',
+        self::GPS_DEST_DISTANCE_REF  => 'GPSDestDistanceRef',
+        self::GPS_DEST_DISTANCE      => 'GPSDestDistance',
+        self::GPS_PROCESSING_METHOD  => 'GPSProcessingMethod',
+        self::GPS_AREA_INFORMATION   => 'GPSAreaInformation',
+        self::GPS_DATE_STAMP         => 'GPSDateStamp',
+        self::GPS_DIFFERENTIAL       => 'GPSDifferential',
+    );
 
-	/**
-	 * Values for gps tags titles.
-	 */
-	const GPS_TAGS_TITLE = self::GPS_TAGS_SHORT;
+    /**
+     * Values for gps tags titles.
+     */
+    const GPS_TAGS_TITLE = self::GPS_TAGS_SHORT;
 
-	/**
-	 * Returns a string from container with key $tag and subcontainer index of $idx
-	 *
-	 * @param array $container
-	 *            {@link PelTag::EXIF_TAGS_SHORT}, {@link PelTag::EXIF_TAGS_TITLE},
-	 *            {@link PelTag::GPS_TAGS_SHORT} or {@link PelTag::GPS_TAGS_TITLE} container.
-	 * @param PelTag $tag
-	 *            the tag.
-	 *
-	 * @return string short name or long name of the tag.
-	 */
-	public static function getValue( $container, $tag ) {
-		if ( isset( $container[ $tag ] ) ) {
-			return $container[ $tag ];
-		}
+    /**
+     * Returns a string from container with key $tag and subcontainer index of $idx
+     *
+     * @param array $container
+     *            {@link PelTag::EXIF_TAGS_SHORT}, {@link PelTag::EXIF_TAGS_TITLE},
+     *            {@link PelTag::GPS_TAGS_SHORT} or {@link PelTag::GPS_TAGS_TITLE} container.
+     * @param PelTag $tag
+     *            the tag.
+     *
+     * @return string short name or long name of the tag.
+     */
+    public static function getValue($container, $tag)
+    {
+        if (isset($container[ $tag ])) {
+            return $container[ $tag ];
+        }
 
-		return self::unknownTag($tag);
-	}
+        return self::unknownTag($tag);
+    }
 
-	/**
-	 * Reverse lookup of a tag id by its short name. Return false for the unknown tag name.
-	 * @param string $name
-	 *            tag short name.
-	 * @return mixed (bool|int)
-	 *            the tag.
-	 */
-	public static function getTagByName( $name ) {
-		$k = array_search( $name, self::EXIF_TAGS_SHORT );
-		if ( $k !== false ) {
-			return $k;
-		}
-		return array_search( $name, static::GPS_TAGS_SHORT );
-	}
+    /**
+     * Reverse lookup of a tag id by its short name. Return false for the unknown tag name.
+     *
+     * @param string $name
+     *            tag short name.
+     *
+     * @return mixed (bool|int)
+     *            the tag.
+     */
+    public static function getTagByName($name)
+    {
+        $k = array_search($name, self::EXIF_TAGS_SHORT);
+        if ($k !== false) {
+            return $k;
+        }
 
-	/**
-	 * Returns string defining unknown tag.
-	 * @param int $tag
-	 *            the tag.
-	 *
-	 * @return string
-	 *            description string.
-	 */
-	protected static function unknownTag($tag) {
-		return Pel::fmt( 'Unknown: 0x%04X', $tag );
-	}
+        return array_search($name, static::GPS_TAGS_SHORT);
+    }
 
-	/**
-	 * Returns a short name for an Exif tag.
-	 *
-	 * @param int $type
-	 *            the IFD type of the tag, one of {@link PelIfd::IFD0},
-	 *            {@link PelIfd::IFD1}, {@link PelIfd::EXIF}, {@link PelIfd::GPS},
-	 *            or {@link PelIfd::INTEROPERABILITY}.
-	 *
-	 * @param PelTag $tag
-	 *            the tag.
-	 *
-	 * @return string the short name of the tag, e.g., 'ImageWidth' for
-	 *         the {@link IMAGE_WIDTH} tag. If the tag is not known, the string
-	 *         'Unknown:0xTTTT' will be returned where 'TTTT' is the hexadecimal
-	 *         representation of the tag.
-	 */
-	public static function getName( $type, $tag ) {
-		switch ( $type ) {
-			case PelIfd::IFD0:
-			case PelIfd::IFD1:
-			case PelIfd::EXIF:
-			case PelIfd::INTEROPERABILITY:
-				return self::getValue( self::EXIF_TAGS_SHORT, $tag);
-			case PelIfd::GPS:
-				return self::getValue( self::GPS_TAGS_SHORT, $tag );
-		}
+    /**
+     * Returns string defining unknown tag.
+     *
+     * @param int $tag
+     *            the tag.
+     *
+     * @return string
+     *            description string.
+     */
+    protected static function unknownTag($tag)
+    {
+        return Pel::fmt('Unknown: 0x%04X', $tag);
+    }
 
-		return self::unknownTag($tag);
-	}
+    /**
+     * Returns a short name for an Exif tag.
+     *
+     * @param int $type
+     *            the IFD type of the tag, one of {@link PelIfd::IFD0},
+     *            {@link PelIfd::IFD1}, {@link PelIfd::EXIF}, {@link PelIfd::GPS},
+     *            or {@link PelIfd::INTEROPERABILITY}.
+     *
+     * @param PelTag $tag
+     *            the tag.
+     *
+     * @return string the short name of the tag, e.g., 'ImageWidth' for
+     *         the {@link IMAGE_WIDTH} tag. If the tag is not known, the string
+     *         'Unknown:0xTTTT' will be returned where 'TTTT' is the hexadecimal
+     *         representation of the tag.
+     */
+    public static function getName($type, $tag)
+    {
+        switch ($type) {
+            case PelIfd::IFD0:
+            case PelIfd::IFD1:
+            case PelIfd::EXIF:
+            case PelIfd::INTEROPERABILITY:
+                return self::getValue(self::EXIF_TAGS_SHORT, $tag);
+            case PelIfd::GPS:
+                return self::getValue(self::GPS_TAGS_SHORT, $tag);
+        }
 
-	/**
-	 * Returns a title for an Exif tag.
-	 *
-	 * @param int $type
-	 *            the IFD type of the tag, one of {@link PelIfd::IFD0},
-	 *            {@link PelIfd::IFD1}, {@link PelIfd::EXIF}, {@link PelIfd::GPS},
-	 *            or {@link PelIfd::INTEROPERABILITY}.
-	 *
-	 * @param PelTag $tag
-	 *            the tag.
-	 *
-	 * @return string the title of the tag, e.g., 'Image Width' for the
-	 *         {@link IMAGE_WIDTH} tag. If the tag isn't known, the string
-	 *         'Unknown Tag: 0xTT' will be returned where 'TT' is the
-	 *         hexadecimal representation of the tag.
-	 */
-	public function getTitle( $type, $tag ) {
-		switch ( $type ) {
-			case PelIfd::IFD0:
-			case PelIfd::IFD1:
-			case PelIfd::EXIF:
-			case PelIfd::INTEROPERABILITY:
-				return Pel::tra( self::getValue( self::EXIF_TAGS_TITLE, $tag ) );
-			case PelIfd::GPS:
-				return Pel::tra( self::getValue( self::GPS_TAGS_TITLE, $tag ) );
-		}
+        return self::unknownTag($tag);
+    }
 
-		return self::unknownTag($tag);
-	}
+    /**
+     * Returns a title for an Exif tag.
+     *
+     * @param int $type
+     *            the IFD type of the tag, one of {@link PelIfd::IFD0},
+     *            {@link PelIfd::IFD1}, {@link PelIfd::EXIF}, {@link PelIfd::GPS},
+     *            or {@link PelIfd::INTEROPERABILITY}.
+     *
+     * @param PelTag $tag
+     *            the tag.
+     *
+     * @return string the title of the tag, e.g., 'Image Width' for the
+     *         {@link IMAGE_WIDTH} tag. If the tag isn't known, the string
+     *         'Unknown Tag: 0xTT' will be returned where 'TT' is the
+     *         hexadecimal representation of the tag.
+     */
+    public function getTitle($type, $tag)
+    {
+        switch ($type) {
+            case PelIfd::IFD0:
+            case PelIfd::IFD1:
+            case PelIfd::EXIF:
+            case PelIfd::INTEROPERABILITY:
+                return Pel::tra(self::getValue(self::EXIF_TAGS_TITLE, $tag));
+            case PelIfd::GPS:
+                return Pel::tra(self::getValue(self::GPS_TAGS_TITLE, $tag));
+        }
+
+        return self::unknownTag($tag);
+    }
 }
