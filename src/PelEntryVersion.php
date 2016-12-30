@@ -90,8 +90,7 @@ class PelEntryVersion extends PelEntryUndefined
      */
     public function __construct($tag, $version = 0.0)
     {
-        parent::__construct($tag);
-        $this->setValue($version);
+        parent::__construct($tag, $version);
     }
 
     /**
