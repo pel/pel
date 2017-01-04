@@ -32,12 +32,15 @@ class UndefinedTest extends TestCase
 {
 
     /**
-     * @requires != PHP 7.1
      * @expectedException PHPUnit_Framework_Error
      */
     function testPelEntryConstructorWithoutArguments()
     {
-        $entry = new PelEntryUndefined();
+        if (version_compare(PHP_VERSION, '7.1.0') >= 0) {
+            $this->markTestSkipped('Test does not run on PHP 7.1.0+');
+        } else {
+            $entry = new PelEntryUndefined();
+        }
     }
 
     function testReturnValues()
@@ -63,12 +66,15 @@ class UndefinedTest extends TestCase
     }
 
     /**
-     * @requires != PHP 7.1
      * @expectedException PHPUnit_Framework_Error
      */
     function testVersionWithoutArgument()
     {
-        $entry = new PelEntryVersion();
+        if (version_compare(PHP_VERSION, '7.1.0') >= 0) {
+            $this->markTestSkipped('Test does not run on PHP 7.1.0+');
+        } else {
+            $entry = new PelEntryVersion();
+        }
     }
 
     function testVersion()

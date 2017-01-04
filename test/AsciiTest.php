@@ -32,12 +32,15 @@ class AsciiTest extends TestCase
 {
 
     /**
-     * @requires != PHP 7.1
      * @expectedException PHPUnit_Framework_Error
      */
     function testConstructorWithNoValues()
     {
-        $entry = new PelEntryAscii();
+        if (version_compare(PHP_VERSION, '7.1.0') >= 0) {
+            $this->markTestSkipped('Test does not run on PHP 7.1.0+');
+        } else {
+            $entry = new PelEntryAscii();
+        }
     }
 
     function testReturnValues()
@@ -50,21 +53,27 @@ class AsciiTest extends TestCase
     }
 
     /**
-     * @requires != PHP 7.1
      * @expectedException PHPUnit_Framework_Error
      */
     function testTimeWithNoConstructorArgument()
     {
-        $entry = new PelEntryTime();
+        if (version_compare(PHP_VERSION, '7.1.0') >= 0) {
+            $this->markTestSkipped('Test does not run on PHP 7.1.0+');
+        } else {
+            $entry = new PelEntryTime();
+        }
     }
 
     /**
-     * @requires != PHP 7.1
      * @expectedException PHPUnit_Framework_Error
      */
     function testTimeWithNoOneConstructorArgument()
     {
-        $entry = new PelEntryTime(42);
+        if (version_compare(PHP_VERSION, '7.1.0') >= 0) {
+            $this->markTestSkipped('Test does not run on PHP 7.1.0+');
+        } else {
+            $entry = new PelEntryTime(42);
+        }
     }
 
     function testTime()
