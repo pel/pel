@@ -166,7 +166,7 @@ class PelEntryRational extends PelEntryLong
                 $minutes = $this->value[1][0] / $this->value[1][1];
                 $seconds = $this->value[2][0] / $this->value[2][1];
 
-                return sprintf('%s� %s\' %s" (%.2f�)', $degrees, $minutes, $seconds, $degrees + $minutes / 60 + $seconds / 3600);
+                return sprintf('%s° %s\' %s" (%.2f°)', $degrees, $minutes, $seconds, $degrees + $minutes / 60 + $seconds / 3600);
 
             default:
                 return parent::getText($brief);
