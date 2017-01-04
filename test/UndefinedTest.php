@@ -30,13 +30,18 @@ use lsolesen\pel\PelConvert;
 
 class UndefinedTest extends \PHPUnit_Framework_TestCase
 {
-    /**
-     * @expectedException              PHPUnit_Framework_Error
-     * @expectedExceptionMessageRegExp /Missing argument 1 for lsolesen.pel.PelEntryUndefined::__construct()/
-     */
     function testPelEntryConstructorWithoutArguments()
     {
-        $entry = new PelEntryUndefined();
+        // Exception is handled manually, as PHP71+ throws another exception than older versions
+        $failure = true;
+        try {
+            $entry = new PelEntryUndefined();
+        } catch (Exception $e) {
+            $failure = false;
+        }
+        if ($failure) {
+            throw new Exception('Invoking the constructor without parameter must throw an exception!');
+        }
     }
 
     function testReturnValues()
@@ -61,13 +66,18 @@ class UndefinedTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals($entry->getEncoding(), 'ASCII');
     }
 
-    /**
-     * @expectedException              PHPUnit_Framework_Error
-     * @expectedExceptionMessageRegExp /Missing argument 1 for lsolesen.pel.PelEntryVersion::__construct()/
-     */
     function testVersionWithoutArgument()
     {
-        $entry = new PelEntryVersion();
+        // Exception is handled manually, as PHP71+ throws another exception than older versions
+        $failure = true;
+        try {
+            $entry = new PelEntryVersion();
+        } catch (Exception $e) {
+            $failure = false;
+        }
+        if ($failure) {
+            throw new Exception('Invoking the constructor without parameter must throw an exception!');
+        }
     }
 
     function testVersion()

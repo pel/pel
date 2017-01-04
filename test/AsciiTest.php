@@ -30,14 +30,18 @@ use lsolesen\pel\PelConvert;
 class AsciiTest extends \PHPUnit_Framework_TestCase
 {
 
-    /**
-     * @expectedException PHPUnit_Framework_Error
-     * @expectedMessage Undefined variable: tag
-     * @expectedExceptionMessageRegExp /.*argument .* lsolesen.pel.PelEntryAscii::__construct()/
-     */
     function testConstructorWithNoValues()
     {
-        $entry = new PelEntryAscii();
+        // Exception is handled manually, as PHP71+ throws another exception than older versions
+        $failure = true;
+        try {
+            $entry = new PelEntryAscii();
+        } catch (Exception $e) {
+            $failure = false;
+        }
+        if ($failure) {
+            throw new Exception('Invoking the constructor without parameter must throw an exception!');
+        }
     }
 
     function testReturnValues()
@@ -49,25 +53,32 @@ class AsciiTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals($entry->getValue(), 'foo bar baz');
     }
 
-    /**
-     * @expectedException PHPUnit_Framework_Error
-     * @expectedMessage Undefined variable: tag
-     * @expectedMessage Undefined variable: timestamp
-     * @expectedExceptionMessageRegExp /Missing argument 1 for lsolesen.pel.PelEntryTime::__construct()/
-     */
     function testTimeWithNoConstructorArgument()
     {
-        $entry = new PelEntryTime();
+        // Exception is handled manually, as PHP71+ throws another exception than older versions
+        $failure = true;
+        try {
+            $entry = new PelEntryTime();
+        } catch (Exception $e) {
+            $failure = false;
+        }
+        if ($failure) {
+            throw new Exception('Invoking the constructor without parameter must throw an exception!');
+        }
     }
 
-    /**
-     * @expectedException PHPUnit_Framework_Error
-     * @expectedMessage Undefined variable: timestamp
-     * @expectedExceptionMessageRegExp /Missing argument 2 for lsolesen.pel.PelEntryTime::__construct()/
-     */
     function testTimeWithNoOneConstructorArgument()
     {
-        $entry = new PelEntryTime(42);
+        // Exception is handled manually, as PHP71+ throws another exception than older versions
+        $failure = true;
+        try {
+            $entry = new PelEntryTime(42);
+        } catch (Exception $e) {
+            $failure = false;
+        }
+        if ($failure) {
+            throw new Exception('Invoking the constructor without parameter must throw an exception!');
+        }
     }
 
     function testTime()
