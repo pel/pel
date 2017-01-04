@@ -507,7 +507,9 @@ class PelIfd implements \IteratorAggregate, \ArrayAccess
              */
             if ($offset + $length > $d->getSize()) {
                 Pel::maybeThrow(
-                    new PelIfdException('Thumbnail length %d bytes ' . 'adjusted to %d bytes.', $length,
+                    new PelIfdException(
+                        'Thumbnail length %d bytes ' . 'adjusted to %d bytes.',
+                        $length,
                         $d->getSize() - $offset));
                 $length = $d->getSize() - $offset;
             }

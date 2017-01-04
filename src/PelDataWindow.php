@@ -162,8 +162,11 @@ class PelDataWindow
     public function setWindowStart($start)
     {
         if ($start < 0 || $start > $this->size) {
-            throw new PelDataWindowWindowException('Window [%d, %d] does ' . 'not fit in window [0, %d]', $start,
-                $this->size, $this->size);
+            throw new PelDataWindowWindowException(
+                'Window [%d, %d] does ' . 'not fit in window [0, %d]',
+                $start,
+                $this->size,
+                $this->size);
         }
         $this->start += $start;
         $this->size -= $start;
@@ -183,7 +186,9 @@ class PelDataWindow
             $size += $this->size;
         }
         if ($size < 0 || $size > $this->size) {
-            throw new PelDataWindowWindowException('Window [0, %d] ' . 'does not fit in window [0, %d]', $size,
+            throw new PelDataWindowWindowException(
+                'Window [0, %d] ' . 'does not fit in window [0, %d]',
+                $size,
                 $this->size);
         }
         $this->size = $size;
