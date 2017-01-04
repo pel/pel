@@ -31,22 +31,11 @@ class AsciiTest extends \PHPUnit_Framework_TestCase
 {
 
     /**
-     * @requires < PHP 7.1
      * @expectedException PHPUnit_Framework_Error
      * @expectedMessage Undefined variable: tag
-     * @expectedExceptionMessageRegExp /Missing argument 1 for lsolesen.pel.PelEntryAscii::__construct()/
+     * @expectedExceptionMessageRegExp /.*argument .* lsolesen.pel.PelEntryAscii::__construct()/
      */
     function testConstructorWithNoValues()
-    {
-        $entry = new PelEntryAscii();
-    }
-
-    /**
-     * @requires >= PHP 7.1
-     * @expectedException ArgumentCountError
-     * @expectedExceptionMessageRegExp /Too few arguments to function lsolesen\pel\PelEntryAscii.*least 1 expected/
-     */
-    function testConstructorWithNoValuesPhp71Plus()
     {
         $entry = new PelEntryAscii();
     }
