@@ -21,7 +21,6 @@
  * Free Software Foundation, Inc., 51 Franklin St, Fifth Floor,
  * Boston, MA 02110-1301 USA
  */
-
 use lsolesen\pel\PelEntryAscii;
 use lsolesen\pel\PelEntryTime;
 use lsolesen\pel\PelEntryCopyright;
@@ -30,12 +29,24 @@ use lsolesen\pel\PelConvert;
 
 class AsciiTest extends \PHPUnit_Framework_TestCase
 {
+
     /**
-     * @expectedException              PHPUnit_Framework_Error
-     * @expectedMessage                Undefined variable: tag
+     * @requires < PHP 7.1
+     * @expectedException PHPUnit_Framework_Error
+     * @expectedMessage Undefined variable: tag
      * @expectedExceptionMessageRegExp /Missing argument 1 for lsolesen.pel.PelEntryAscii::__construct()/
      */
     function testConstructorWithNoValues()
+    {
+        $entry = new PelEntryAscii();
+    }
+
+    /**
+     * @requires >= PHP 7.1
+     * @expectedException ArgumentCountError
+     * @expectedExceptionMessageRegExp /Too few arguments to function lsolesen\pel\PelEntryAscii.*least 1 expected/
+     */
+    function testConstructorWithNoValuesPhp71Plus()
     {
         $entry = new PelEntryAscii();
     }
@@ -50,9 +61,9 @@ class AsciiTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @expectedException              PHPUnit_Framework_Error
-     * @expectedMessage                Undefined variable: tag
-     * @expectedMessage                Undefined variable: timestamp
+     * @expectedException PHPUnit_Framework_Error
+     * @expectedMessage Undefined variable: tag
+     * @expectedMessage Undefined variable: timestamp
      * @expectedExceptionMessageRegExp /Missing argument 1 for lsolesen.pel.PelEntryTime::__construct()/
      */
     function testTimeWithNoConstructorArgument()
@@ -61,8 +72,8 @@ class AsciiTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @expectedException              PHPUnit_Framework_Error
-     * @expectedMessage                Undefined variable: timestamp
+     * @expectedException PHPUnit_Framework_Error
+     * @expectedMessage Undefined variable: timestamp
      * @expectedExceptionMessageRegExp /Missing argument 2 for lsolesen.pel.PelEntryTime::__construct()/
      */
     function testTimeWithNoOneConstructorArgument()
