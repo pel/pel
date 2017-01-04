@@ -154,7 +154,8 @@ class PelIfd implements \IteratorAggregate, \ArrayAccess
      */
     public function __construct($type)
     {
-        if ($type != PelIfd::IFD0 && $type != PelIfd::IFD1 && $type != PelIfd::EXIF && $type != PelIfd::GPS && $type != PelIfd::INTEROPERABILITY) {
+        if ($type != PelIfd::IFD0 && $type != PelIfd::IFD1 && $type != PelIfd::EXIF && $type != PelIfd::GPS &&
+             $type != PelIfd::INTEROPERABILITY) {
             throw new PelIfdException('Unknown IFD type: %d', $type);
         }
 
@@ -193,7 +194,12 @@ class PelIfd implements \IteratorAggregate, \ArrayAccess
         for ($i = 0; $i < $n; $i ++) {
             // TODO: increment window start instead of using offsets.
             $tag = $d->getShort($offset + 12 * $i);
-            Pel::debug('Loading entry with tag 0x%04X: %s (%d of %d)...', $tag, PelTag::getName($this->type, $tag), $i + 1, $n);
+            Pel::debug(
+                'Loading entry with tag 0x%04X: %s (%d of %d)...',
+                $tag,
+                PelTag::getName($this->type, $tag),
+                $i + 1,
+                $n);
 
             switch ($tag) {
                 case PelTag::EXIF_IFD_POINTER:
@@ -303,8 +309,8 @@ class PelIfd implements \IteratorAggregate, \ArrayAccess
      * requirements for a given tag (if any) can be found in the
      * documentation for {@link PelTag}.
      *
-     * @param PelTag $tag
-     *            the tag of the entry.
+     * @param integer $tag
+     *            the tag of the entry as defined in {@link PelTag}.
      *
      * @param PelFormat $format
      *            the format of the entry.
@@ -504,7 +510,11 @@ class PelIfd implements \IteratorAggregate, \ArrayAccess
              * check the length before we store the thumbnail.
              */
             if ($offset + $length > $d->getSize()) {
-                Pel::maybeThrow(new PelIfdException('Thumbnail length %d bytes ' . 'adjusted to %d bytes.', $length, $d->getSize() - $offset));
+                Pel::maybeThrow(
+                    new PelIfdException(
+                        'Thumbnail length %d bytes ' . 'adjusted to %d bytes.',
+                        $length,
+                        $d->getSize() - $offset));
                 $length = $d->getSize() - $offset;
             }
 
@@ -1147,6 +1157,9 @@ class PelIfd implements \IteratorAggregate, \ArrayAccess
                 $tag = PelTag::GPS_INFO_IFD_POINTER;
             } elseif ($type == PelIfd::INTEROPERABILITY) {
                 $tag = PelTag::INTEROPERABILITY_IFD_POINTER;
+            } else {
+                // PelConvert::BIG_ENDIAN is the default used by PelConvert
+                $tag = PelConvert::BIG_ENDIAN;
             }
             /* Make an aditional entry with the pointer. */
             $bytes .= PelConvert::shortToBytes($tag, $order);
