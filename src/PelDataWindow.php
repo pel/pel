@@ -557,7 +557,11 @@ class PelDataWindow
      */
     public function __toString()
     {
-        return Pel::fmt('DataWindow: %d bytes in [%d, %d] of %d bytes', $this->size, $this->start,
-            $this->start + $this->size, strlen($this->data));
+        return Pel::fmt(
+            'DataWindow: %d bytes in [%d, %d] of %d bytes',
+            $this->size,
+            $this->start,
+            $this->start + $this->size,
+            strlen($this->data));
     }
 }

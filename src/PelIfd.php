@@ -194,8 +194,12 @@ class PelIfd implements \IteratorAggregate, \ArrayAccess
         for ($i = 0; $i < $n; $i ++) {
             // TODO: increment window start instead of using offsets.
             $tag = $d->getShort($offset + 12 * $i);
-            Pel::debug('Loading entry with tag 0x%04X: %s (%d of %d)...', $tag, PelTag::getName($this->type, $tag),
-                $i + 1, $n);
+            Pel::debug(
+                'Loading entry with tag 0x%04X: %s (%d of %d)...',
+                $tag,
+                PelTag::getName($this->type, $tag),
+                $i + 1,
+                $n);
 
             switch ($tag) {
                 case PelTag::EXIF_IFD_POINTER:
