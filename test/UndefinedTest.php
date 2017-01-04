@@ -26,14 +26,13 @@ use lsolesen\pel\PelEntryUndefined;
 use lsolesen\pel\PelEntryUserComment;
 use lsolesen\pel\PelEntryVersion;
 use lsolesen\pel\PelConvert;
+use PHPUnit\Framework\TestCase;
 
-class UndefinedTest extends \PHPUnit_Framework_TestCase
+class UndefinedTest extends TestCase
 {
 
     /**
-     * @requires < PHP 7.1
      * @expectedException PHPUnit_Framework_Error
-     * @expectedExceptionMessageRegExp /Missing argument 1 for lsolesen.pel.PelEntryUndefined::__construct()/
      */
     function testPelEntryConstructorWithoutArguments()
     {
@@ -63,9 +62,7 @@ class UndefinedTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @requires < PHP 7.1
      * @expectedException PHPUnit_Framework_Error
-     * @expectedExceptionMessageRegExp /Missing argument 1 for lsolesen.pel.PelEntryVersion::__construct()/
      */
     function testVersionWithoutArgument()
     {

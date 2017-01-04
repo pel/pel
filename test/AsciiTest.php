@@ -21,20 +21,18 @@
  * Free Software Foundation, Inc., 51 Franklin St, Fifth Floor,
  * Boston, MA 02110-1301 USA
  */
-use lsolesen\pel\PelEntryAscii;
-use lsolesen\pel\PelEntryTime;
-use lsolesen\pel\PelEntryCopyright;
-use lsolesen\pel\PelTag;
 use lsolesen\pel\PelConvert;
+use lsolesen\pel\PelEntryAscii;
+use lsolesen\pel\PelEntryCopyright;
+use lsolesen\pel\PelEntryTime;
+use lsolesen\pel\PelTag;
+use PHPUnit\Framework\TestCase;
 
-class AsciiTest extends \PHPUnit_Framework_TestCase
+class AsciiTest extends TestCase
 {
 
     /**
-     * @requires < PHP 7.1
      * @expectedException PHPUnit_Framework_Error
-     * @expectedMessage Undefined variable: tag
-     * @expectedExceptionMessageRegExp /.*argument .* lsolesen.pel.PelEntryAscii::__construct()/
      */
     function testConstructorWithNoValues()
     {
@@ -51,11 +49,7 @@ class AsciiTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @requires < PHP 7.1
      * @expectedException PHPUnit_Framework_Error
-     * @expectedMessage Undefined variable: tag
-     * @expectedMessage Undefined variable: timestamp
-     * @expectedExceptionMessageRegExp /Missing argument 1 for lsolesen.pel.PelEntryTime::__construct()/
      */
     function testTimeWithNoConstructorArgument()
     {
@@ -63,10 +57,7 @@ class AsciiTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @requires < PHP 7.1
      * @expectedException PHPUnit_Framework_Error
-     * @expectedMessage Undefined variable: timestamp
-     * @expectedExceptionMessageRegExp /Missing argument 2 for lsolesen.pel.PelEntryTime::__construct()/
      */
     function testTimeWithNoOneConstructorArgument()
     {
