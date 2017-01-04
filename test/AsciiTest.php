@@ -32,6 +32,7 @@ class AsciiTest extends TestCase
 {
 
     /**
+     * @requires != PHP 7.1
      * @expectedException PHPUnit_Framework_Error
      */
     function testConstructorWithNoValues()
@@ -49,6 +50,7 @@ class AsciiTest extends TestCase
     }
 
     /**
+     * @requires != PHP 7.1
      * @expectedException PHPUnit_Framework_Error
      */
     function testTimeWithNoConstructorArgument()
@@ -57,6 +59,7 @@ class AsciiTest extends TestCase
     }
 
     /**
+     * @requires != PHP 7.1
      * @expectedException PHPUnit_Framework_Error
      */
     function testTimeWithNoOneConstructorArgument()

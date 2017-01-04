@@ -32,6 +32,7 @@ class UndefinedTest extends TestCase
 {
 
     /**
+     * @requires != PHP 7.1
      * @expectedException PHPUnit_Framework_Error
      */
     function testPelEntryConstructorWithoutArguments()
@@ -62,6 +63,7 @@ class UndefinedTest extends TestCase
     }
 
     /**
+     * @requires != PHP 7.1
      * @expectedException PHPUnit_Framework_Error
      */
     function testVersionWithoutArgument()
