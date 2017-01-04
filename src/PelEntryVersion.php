@@ -65,7 +65,7 @@ namespace lsolesen\pel;
  * @author Martin Geisler <mgeisler@users.sourceforge.net>
  * @package PEL
  */
-class PelEntryVersion extends PelEntryUndefined
+class PelEntryVersion extends PelEntry
 {
 
     /**
@@ -90,7 +90,8 @@ class PelEntryVersion extends PelEntryUndefined
      */
     public function __construct($tag, $version = 0.0)
     {
-        parent::__construct($tag);
+        $this->tag = $tag;
+        $this->format = PelFormat::UNDEFINED;
         $this->setValue($version);
     }
 
@@ -107,7 +108,9 @@ class PelEntryVersion extends PelEntryUndefined
         $this->version = $version;
         $major = floor($version);
         $minor = ($version - $major) * 100;
-        parent::setValue(sprintf('%02.0f%02.0f', $major, $minor));
+        $strValue = sprintf('%02.0f%02.0f', $major, $minor);
+        $this->components = strlen($strValue);
+        $this->bytes = $strValue;
     }
 
     /**

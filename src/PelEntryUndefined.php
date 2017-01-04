@@ -60,17 +60,14 @@ class PelEntryUndefined extends PelEntry
      *            PelTag::MAKER_NOTE} or any other tag with format {@link
      *            PelFormat::UNDEFINED}.
      *
-     * @param string|NULL $data
+     * @param string $data
      *            the data that this entry will be holding. Since
      *            the format is undefined, no checking will be done on the data. If no data are given, a empty string will be stored
      */
-    public function __construct($tag, $data = null)
+    public function __construct($tag, $data = '')
     {
         $this->tag = $tag;
         $this->format = PelFormat::UNDEFINED;
-        if ($data === null) {
-            $data = '';
-        }
         $this->setValue($data);
     }
 
