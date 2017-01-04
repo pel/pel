@@ -31,14 +31,12 @@ use PHPUnit\Framework\TestCase;
 class AsciiTest extends TestCase
 {
 
-    /**
-     * @expectedException PHPUnit_Framework_Error
-     */
     function testConstructorWithNoValues()
     {
         if (version_compare(PHP_VERSION, '7.1.0') >= 0) {
             $this->markTestSkipped('Test does not run on PHP 7.1.0+');
         } else {
+            $this->expectException(PHPUnit_Framework_Exception::class);
             $entry = new PelEntryAscii();
         }
     }
@@ -52,26 +50,22 @@ class AsciiTest extends TestCase
         $this->assertEquals($entry->getValue(), 'foo bar baz');
     }
 
-    /**
-     * @expectedException PHPUnit_Framework_Error
-     */
     function testTimeWithNoConstructorArgument()
     {
         if (version_compare(PHP_VERSION, '7.1.0') >= 0) {
             $this->markTestSkipped('Test does not run on PHP 7.1.0+');
         } else {
+            $this->expectException(PHPUnit_Framework_Exception::class);
             $entry = new PelEntryTime();
         }
     }
 
-    /**
-     * @expectedException PHPUnit_Framework_Error
-     */
     function testTimeWithNoOneConstructorArgument()
     {
         if (version_compare(PHP_VERSION, '7.1.0') >= 0) {
             $this->markTestSkipped('Test does not run on PHP 7.1.0+');
         } else {
+            $this->expectException(PHPUnit_Framework_Exception::class);
             $entry = new PelEntryTime(42);
         }
     }

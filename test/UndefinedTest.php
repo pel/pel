@@ -31,14 +31,12 @@ use PHPUnit\Framework\TestCase;
 class UndefinedTest extends TestCase
 {
 
-    /**
-     * @expectedException PHPUnit_Framework_Error
-     */
     function testPelEntryConstructorWithoutArguments()
     {
         if (version_compare(PHP_VERSION, '7.1.0') >= 0) {
             $this->markTestSkipped('Test does not run on PHP 7.1.0+');
         } else {
+            $this->expectException(PHPUnit_Framework_Exception::class);
             $entry = new PelEntryUndefined();
         }
     }
@@ -65,14 +63,12 @@ class UndefinedTest extends TestCase
         $this->assertEquals($entry->getEncoding(), 'ASCII');
     }
 
-    /**
-     * @expectedException PHPUnit_Framework_Error
-     */
     function testVersionWithoutArgument()
     {
         if (version_compare(PHP_VERSION, '7.1.0') >= 0) {
             $this->markTestSkipped('Test does not run on PHP 7.1.0+');
         } else {
+            $this->expectException(PHPUnit_Framework_Exception::class);
             $entry = new PelEntryVersion();
         }
     }
