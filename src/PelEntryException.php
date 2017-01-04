@@ -46,7 +46,7 @@ namespace lsolesen\pel;
  * @package PEL
  * @subpackage Exception
  */
-class PelEntryException extends \lsolesen\pel\PelException
+class PelEntryException extends PelException
 {
 
     /**
