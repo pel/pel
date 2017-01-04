@@ -78,13 +78,13 @@ class PelEntryVersion extends PelEntryUndefined
     /**
      * Make a new entry for holding a version.
      *
-     * @param
-     *            PelTag the tag. This should be one of {@link
+     * @param integer $tag
+     *            This should be one of {@link
      *            PelTag::EXIF_VERSION}, {@link PelTag::FLASH_PIX_VERSION},
      *            or {@link PelTag::INTEROPERABILITY_VERSION}.
      *
-     * @param
-     *            float the version. The size of the entries leave room for
+     * @param float $version
+     *            The size of the entries leave room for
      *            exactly four digits: two digits on either side of the decimal
      *            point.
      */
@@ -97,8 +97,8 @@ class PelEntryVersion extends PelEntryUndefined
     /**
      * Set the version held by this entry.
      *
-     * @param
-     *            float the version. The size of the entries leave room for
+     * @param float $version
+     *            The size of the entries leave room for
      *            exactly four digits: two digits on either side of the decimal
      *            point.
      */
@@ -113,7 +113,7 @@ class PelEntryVersion extends PelEntryUndefined
     /**
      * Return the version held by this entry.
      *
-     * @return float the version. This will be the same as the value
+     * @return float This will be the same as the value
      *         given to {@link setValue} or {@link __construct the
      *         constructor}.
      */
@@ -126,7 +126,7 @@ class PelEntryVersion extends PelEntryUndefined
      * Return a text string with the version.
      *
      * @param
-     *            boolean controls if the output should be brief. Brief
+     *            boolean $brief controls if the output should be brief. Brief
      *            output omits the word 'Version' so the result is just 'Exif x.y'
      *            instead of 'Exif Version x.y' if the entry holds information
      *            about the Exif version --- the output for FlashPix is similar.
