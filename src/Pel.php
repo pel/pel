@@ -43,7 +43,7 @@ class Pel
      * Flag that controls if dgettext can be used.
      * Is set to true or fals at the first access
      *
-     * @var unknown
+     * @var boolean|NULL
      */
     private static $hasdgetext = null;
 
@@ -253,12 +253,12 @@ class Pel
      * @param string $format
      *            the format string.
      *
-     * @param mixed $args,...
+     * @param mixed ...$args
      *            any number of arguments can be given. The
      *            arguments will be available for the format string as usual with
      *            sprintf().
      */
-    public static function debug()
+    public static function debug($format)
     {
         if (self::$debug) {
             $args = func_get_args();
@@ -278,12 +278,12 @@ class Pel
      * @param string $format
      *            the format string.
      *
-     * @param mixed $args,...
+     * @param mixed ...$args
      *            any number of arguments can be given. The
      *            arguments will be available for the format string as usual with
      *            sprintf().
      */
-    public static function warning()
+    public static function warning($format)
     {
         if (self::$debug) {
             $args = func_get_args();
@@ -325,7 +325,7 @@ class Pel
      *            the format string. This will be translated
      *            before being used as a format string.
      *
-     * @param mixed $args,...
+     * @param mixed ...$args
      *            any number of arguments can be given. The
      *            arguments will be available for the format string as usual with
      *            sprintf().
@@ -333,7 +333,7 @@ class Pel
      * @return string the translated string, or the original string if
      *         no translation could be found.
      */
-    public static function fmt()
+    public static function fmt($format)
     {
         $args = func_get_args();
         $str = array_shift($args);

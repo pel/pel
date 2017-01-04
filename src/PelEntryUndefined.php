@@ -53,16 +53,16 @@ class PelEntryUndefined extends PelEntry
     /**
      * Make a new PelEntry that can hold undefined data.
      *
-     * @param
-     *            PelTag the tag which this entry represents. This
+     * @param integer $tag
+     *            which this entry represents. This
      *            should be one of the constants defined in {@link PelTag},
      *            e.g., {@link PelTag::SCENE_TYPE}, {@link
      *            PelTag::MAKER_NOTE} or any other tag with format {@link
      *            PelFormat::UNDEFINED}.
      *
-     * @param
-     *            string the data that this entry will be holding. Since
-     *            the format is undefined, no checking will be done on the data.
+     * @param string $data
+     *            the data that this entry will be holding. Since
+     *            the format is undefined, no checking will be done on the data. If no data are given, a empty string will be stored
      */
     public function __construct($tag, $data = '')
     {
@@ -74,8 +74,8 @@ class PelEntryUndefined extends PelEntry
     /**
      * Set the data of this undefined entry.
      *
-     * @param
-     *            string the data that this entry will be holding. Since
+     * @param string $data
+     *            the data that this entry will be holding. Since
      *            the format is undefined, no checking will be done on the data.
      */
     public function setValue($data)
