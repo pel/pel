@@ -591,10 +591,13 @@ class PelJpeg
      * @param
      *            string the filename to save in. An existing file with the
      *            same name will be overwritten!
+     *
+     * @return integer|FALSE The number of bytes that were written to the
+     *         file, or FALSE on failure.
      */
     public function saveFile($filename)
     {
-        file_put_contents($filename, $this->getBytes());
+        return file_put_contents($filename, $this->getBytes());
     }
 
     /**
