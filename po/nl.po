@@ -1,8 +1,8 @@
 # Dutch translation for the PHP Exif Library (PEL).
 # Copyright (C) 2004, 2005, 2006 Martin Geisler
-# This file is distributed under the term of the GPL.
-#
 # First Author: Erik Oskam <info@eowd.nl>, 2010
+# For licensing, see LICENSE.md distributed with this source code.
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: PEL\n"

@@ -20,7 +20,10 @@
             "role": "Developer"
         }
     ],
-    "license": "GPL-2.0",
+    "license": [
+        "MIT",
+        "GPL-3.0"
+    ],
     "require": {
         "php": ">=5.0.0"
     },

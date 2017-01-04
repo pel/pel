@@ -1,8 +1,8 @@
 # Polish translation for the PHP Exif Library (PEL).
 # Originally from libexif.
 # Copyright (C) 2005 Martin Geisler
-# This file is distributed under the term of the GPL.
 # Jakub Bogusz <qboosh@pld-linux.org>, 2005.
+# For licensing, see LICENSE.md distributed with this source code.
 #
 msgid ""
 msgstr ""
