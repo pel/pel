@@ -125,8 +125,8 @@ class PelEntryVersion extends PelEntryUndefined
     /**
      * Return a text string with the version.
      *
-     * @param
-     *            boolean $brief controls if the output should be brief. Brief
+     * @param boolean $brief
+     *            controls if the output should be brief. Brief
      *            output omits the word 'Version' so the result is just 'Exif x.y'
      *            instead of 'Exif Version x.y' if the entry holds information
      *            about the Exif version --- the output for FlashPix is similar.

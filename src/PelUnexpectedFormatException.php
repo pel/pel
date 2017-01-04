@@ -49,7 +49,7 @@ namespace lsolesen\pel;
  * @package PEL
  * @subpackage Exception
  */
-class PelUnexpectedFormatException extends \lsolesen\pel\PelEntryException
+class PelUnexpectedFormatException extends PelEntryException
 {
 
     /**
