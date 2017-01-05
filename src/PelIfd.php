@@ -312,8 +312,8 @@ class PelIfd implements \IteratorAggregate, \ArrayAccess
      * @param integer $tag
      *            the tag of the entry as defined in {@link PelTag}.
      *
-     * @param PelFormat $format
-     *            the format of the entry.
+     * @param integer $format
+     *            the format of the entry as defined in {@link PelFormat}.
      *
      * @param int $components
      *            the components in the entry.
