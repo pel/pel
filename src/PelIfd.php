@@ -602,6 +602,7 @@ class PelIfd implements \IteratorAggregate, \ArrayAccess
                     PelTag::BITS_PER_SAMPLE,
                     PelTag::COMPRESSION,
                     PelTag::PHOTOMETRIC_INTERPRETATION,
+                    PelTag::DOCUMENT_NAME,
                     PelTag::IMAGE_DESCRIPTION,
                     PelTag::MAKE,
                     PelTag::MODEL,
@@ -634,7 +635,8 @@ class PelIfd implements \IteratorAggregate, \ArrayAccess
                     PelTag::XP_COMMENT,
                     PelTag::XP_AUTHOR,
                     PelTag::XP_KEYWORDS,
-                    PelTag::XP_SUBJECT
+                    PelTag::XP_SUBJECT,
+                    PelTag::RATING
                 );
 
             case PelIfd::EXIF:
@@ -745,7 +747,6 @@ class PelIfd implements \IteratorAggregate, \ArrayAccess
             /*
              * TODO: Where do these tags belong?
              * PelTag::FILL_ORDER,
-             * PelTag::DOCUMENT_NAME,
              * PelTag::TRANSFER_RANGE,
              * PelTag::JPEG_PROC,
              * PelTag::BATTERY_LEVEL,
