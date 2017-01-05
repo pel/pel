@@ -1,11 +1,11 @@
 <?php
-
-/**
+/*
  * PEL: PHP Exif Library.
  * A library with support for reading and
  * writing all Exif headers in JPEG and TIFF images using PHP.
  *
  * Copyright (C) 2004, 2005 Martin Geisler.
+ * Copyright (C) 2017 Johannes Weberhofer.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -27,15 +27,6 @@ namespace lsolesen\pel;
 /**
  * Namespace for functions operating on Exif formats.
  *
- * @author Martin Geisler <mgeisler@users.sourceforge.net>
- * @license http://www.gnu.org/licenses/gpl.html GNU General Public
- *          License (GPL)
- * @package PEL
- */
-
-/**
- * Namespace for functions operating on Exif formats.
- *
  * This class defines the constants that are to be used whenever one
  * has to refer to the format of an Exif tag. They will be
  * collectively denoted by the pseudo-type PelFormat throughout the
@@ -45,7 +36,11 @@ namespace lsolesen\pel;
  * single argument which should be one of the class constants.
  *
  * @author Martin Geisler <mgeisler@users.sourceforge.net>
- * @package PEL
+ * @author Johannes Weberhofer <jweberhofer@weberhofer.at>
+ * @license http://www.gnu.org/licenses/gpl.html GNU General Public
+ *          License (GPL)
+ * @package
+ *
  */
 class PelFormat
 {
@@ -165,84 +160,68 @@ class PelFormat
     const DOUBLE = 12;
 
     /**
-     * Returns the name of a format.
+     * Values for format's short names
+     */
+    protected static $formatName = array(
+        self::ASCII => 'Ascii',
+        self::BYTE => 'Byte',
+        self::SHORT => 'Short',
+        self::LONG => 'Long',
+        self::RATIONAL => 'Rational',
+        self::SBYTE => 'SByte',
+        self::SSHORT => 'SShort',
+        self::SLONG => 'SLong',
+        self::SRATIONAL => 'SRational',
+        self::FLOAT => 'Float',
+        self::DOUBLE => 'Double',
+        self::UNDEFINED => 'Undefined'
+    );
+
+    protected static $formatLength = array(
+        self::ASCII => 1,
+        self::BYTE => 1,
+        self::SHORT => 2,
+        self::LONG => 4,
+        self::RATIONAL => 8,
+        self::SBYTE => 1,
+        self::SSHORT => 2,
+        self::SLONG => 4,
+        self::SRATIONAL => 8,
+        self::FLOAT => 4,
+        self::DOUBLE => 8,
+        self::UNDEFINED => 1
+    );
+
+    /**
+     * Returns the name of a format like 'Ascii' for the {@link ASCII} format
      *
-     * @param PelFormat $type
-     *            the format.
-     *
-     * @return string the name of the format, e.g., 'Ascii' for the
-     *         {@link ASCII} format etc.
+     * @param integer $type
+     *            as defined in {@link PelFormat}
+     * @return string
      */
     public static function getName($type)
     {
-        switch ($type) {
-            case self::ASCII:
-                return 'Ascii';
-            case self::BYTE:
-                return 'Byte';
-            case self::SHORT:
-                return 'Short';
-            case self::LONG:
-                return 'Long';
-            case self::RATIONAL:
-                return 'Rational';
-            case self::SBYTE:
-                return 'SByte';
-            case self::SSHORT:
-                return 'SShort';
-            case self::SLONG:
-                return 'SLong';
-            case self::SRATIONAL:
-                return 'SRational';
-            case self::FLOAT:
-                return 'Float';
-            case self::DOUBLE:
-                return 'Double';
-            case self::UNDEFINED:
-                return 'Undefined';
-            default:
-                return Pel::fmt('Unknown format: 0x%X', $type);
+        if (array_key_exists($type, self::$formatName)) {
+            return self::$formatName[$type];
+        } else {
+            return Pel::fmt('Unknown format: 0x%X', $type);
         }
     }
 
     /**
-     * Return the size of components in a given format.
+     * Return the size of components in a given format in bytes needed to store one component with the
+     * given format.
      *
-     * @param PelFormat $type
-     *            the format.
-     *
-     * @return the size in bytes needed to store one component with the
-     *         given format.
+     * @param integer $type
+     *            as defined in {@link PelFormat}
+     * @return integer|string
      */
     public static function getSize($type)
     {
-        switch ($type) {
-            case self::ASCII:
-                return 1;
-            case self::BYTE:
-                return 1;
-            case self::SHORT:
-                return 2;
-            case self::LONG:
-                return 4;
-            case self::RATIONAL:
-                return 8;
-            case self::SBYTE:
-                return 1;
-            case self::SSHORT:
-                return 2;
-            case self::SLONG:
-                return 4;
-            case self::SRATIONAL:
-                return 8;
-            case self::FLOAT:
-                return 4;
-            case self::DOUBLE:
-                return 8;
-            case self::UNDEFINED:
-                return 1;
-            default:
-                return Pel::fmt('Unknown format: 0x%X', $type);
+        if (array_key_exists($type, self::$formatLength)) {
+            return self::$formatLength[$type];
+        } else {
+            return Pel::fmt('Unknown format: 0x%X', $type);
         }
     }
 }
