@@ -54,16 +54,6 @@ class PelEntryUndefinedTest extends TestCase
         $this->assertEquals($entry->getEncoding(), 'ASCII');
     }
 
-    function testVersionWithoutArgument()
-    {
-        if (version_compare(PHP_VERSION, '7.1.0') >= 0) {
-            $this->markTestSkipped('Test does not run on PHP 7.1.0+');
-        } else {
-            $this->expectException(PHPUnit_Framework_Exception::class);
-            $entry = new PelEntryVersion();
-        }
-    }
-
     function testVersion()
     {
         $entry = new PelEntryVersion(42);
