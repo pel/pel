@@ -5,7 +5,8 @@
  * A library with support for reading and
  * writing all Exif headers in JPEG and TIFF images using PHP.
  *
- * Copyright (C) 2004, 2005, 2006 Martin Geisler.
+ * Copyright (C) 2004, 2006 Martin Geisler.
+ * Copyright (C) 2017 Johannes Weberhofer
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -22,57 +23,13 @@
  * Free Software Foundation, Inc., 51 Franklin St, Fifth Floor,
  * Boston, MA 02110-1301 USA
  */
-use lsolesen\pel\PelEntryUndefined;
-use lsolesen\pel\PelEntryUserComment;
+
 use lsolesen\pel\PelEntryVersion;
 use lsolesen\pel\PelConvert;
 use PHPUnit\Framework\TestCase;
 
-class UndefinedTest extends TestCase
+class PelEntryVersionTest extends TestCase
 {
-
-    function testPelEntryConstructorWithoutArguments()
-    {
-        if (version_compare(PHP_VERSION, '7.1.0') >= 0) {
-            $this->markTestSkipped('Test does not run on PHP 7.1.0+');
-        } else {
-            $this->expectException(PHPUnit_Framework_Exception::class);
-            $entry = new PelEntryUndefined();
-        }
-    }
-
-    function testReturnValues()
-    {
-        $entry = new PelEntryUndefined(42);
-
-        $entry = new PelEntryUndefined(42, 'foo bar baz');
-        $this->assertEquals($entry->getComponents(), 11);
-        $this->assertEquals($entry->getValue(), 'foo bar baz');
-    }
-
-    function testUsercomment()
-    {
-        $entry = new PelEntryUserComment();
-        $this->assertEquals($entry->getComponents(), 8);
-        $this->assertEquals($entry->getValue(), '');
-        $this->assertEquals($entry->getEncoding(), 'ASCII');
-
-        $entry->setValue('Hello!');
-        $this->assertEquals($entry->getComponents(), 14);
-        $this->assertEquals($entry->getValue(), 'Hello!');
-        $this->assertEquals($entry->getEncoding(), 'ASCII');
-    }
-
-    function testVersionWithoutArgument()
-    {
-        if (version_compare(PHP_VERSION, '7.1.0') >= 0) {
-            $this->markTestSkipped('Test does not run on PHP 7.1.0+');
-        } else {
-            $this->expectException(PHPUnit_Framework_Exception::class);
-            $entry = new PelEntryVersion();
-        }
-    }
-
     function testVersion()
     {
         $entry = new PelEntryVersion(42);
