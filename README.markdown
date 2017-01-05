@@ -44,6 +44,7 @@ share your ideas about how the API should look like.
 * Supports reading and writing all Exif tags.
 * Supports internationalization.
 * Extensible object-oriented design.
+* PhpUnit tested
 * Documented with PhpDocumentor (http://phpdoc.org/).
 
 
