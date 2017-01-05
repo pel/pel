@@ -186,7 +186,7 @@ class PelJpeg
             $marker = $d->getByte($i);
 
             if (!PelJpegMarker::isValid($marker)) {
-                throw new \lsolesen\pel\PelJpegInvalidMarkerException($marker, $i);
+                throw new PelJpegInvalidMarkerException($marker, $i);
             }
 
             /*

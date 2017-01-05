@@ -26,8 +26,9 @@
 use PHPUnit\Framework\TestCase;
 use lsolesen\pel\PelJpegMarker;
 use lsolesen\pel\Pel;
+use lsolesen\pel\PelJpegInvalidMarkerException;
 
-class PelJpegMartkerTest extends TestCase
+class PelJpegMarkerTest extends TestCase
 {
 
     function testNames()
@@ -48,5 +49,14 @@ class PelJpegMartkerTest extends TestCase
         $this->assertEquals($jpegMarker::getDescription(PelJpegMarker::APP3), Pel::fmt('Application segment %d', 3));
         $this->assertEquals($jpegMarker::getDescription(PelJpegMarker::JPG11), Pel::fmt('Extension %d', 11));
         $this->assertEquals($jpegMarker::getDescription(100), Pel::fmt('Unknown marker: 0x%02X', 100));
+    }
+
+    /**
+     * @expectedException lsolesen\pel\PelJpegInvalidMarkerException
+     * @throws PelJpegInvalidMarkerException
+     */
+    function testInvalidMarkerException()
+    {
+        throw new PelJpegInvalidMarkerException(1, 2);
     }
 }
