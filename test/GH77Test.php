@@ -30,7 +30,7 @@ use lsolesen\pel\Pel;
 use lsolesen\pel\PelTag;
 
 
-class Gh77Test extends \PHPUnit_Framework_TestCase
+class GH77Test extends \PHPUnit_Framework_TestCase
 {
     function testReturnModul()
     {
