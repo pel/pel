@@ -246,6 +246,21 @@ class PelTiff
     }
 
     /**
+     * Save the TIFF object as a TIFF image in a file.
+     *
+     * @param
+     *            string the filename to save in. An existing file with the
+     *            same name will be overwritten!
+     *
+     * @return integer|FALSE The number of bytes that were written to the
+     *         file, or FALSE on failure.
+     */
+    public function saveFile($filename)
+    {
+        return file_put_contents($filename, $this->getBytes());
+    }
+
+    /**
      * Return a string representation of this object.
      *
      * @return string a string describing this object. This is mostly useful
