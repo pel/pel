@@ -424,7 +424,7 @@ class PelIfd implements \IteratorAggregate, \ArrayAccess
                         return $v;
 
                     case PelFormat::ASCII:
-                        return new PelEntryAscii($tag, $data->getBytes(0, - 1));
+                        return new PelEntryAscii($tag, rtrim($data->getBytes(0, - 1), "\0"));
 
                     case PelFormat::SHORT:
                         $v = new PelEntryShort($tag);
