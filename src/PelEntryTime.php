@@ -109,15 +109,15 @@ class PelEntryTime extends PelEntryAscii
     /**
      * Make a new entry for holding a timestamp.
      *
-     * @param
-     *            int the Exif tag which this entry represents. There are
+     * @param integer $tag
+     *            the Exif tag which this entry represents. There are
      *            only three standard tags which hold timestamp, so this should be
      *            one of the constants {@link PelTag::DATE_TIME}, {@link
      *            PelTag::DATE_TIME_ORIGINAL}, or {@link
      *            PelTag::DATE_TIME_DIGITIZED}.
      *
-     * @param
-     *            int the timestamp held by this entry in the correct form
+     * @param integer $timestamp
+     *            the timestamp held by this entry in the correct form
      *            as indicated by the third argument. For {@link UNIX_TIMESTAMP}
      *            this is an integer counting the number of seconds since January
      *            1st 1970, for {@link EXIF_STRING} this is a string of the form
@@ -126,8 +126,8 @@ class PelEntryTime extends PelEntryAscii
      *            count and the fractional part denotes the time of day (0.25 means
      *            6:00, 0.75 means 18:00).
      *
-     * @param
-     *            int the type of the timestamp. This must be one of
+     * @param integer $type
+     *            the type of the timestamp. This must be one of
      *            {@link UNIX_TIMESTAMP}, {@link EXIF_STRING}, or
      *            {@link JULIAN_DAY_COUNT}.
      */
@@ -144,12 +144,12 @@ class PelEntryTime extends PelEntryAscii
      * formats: as a standard UNIX timestamp (default), as a fractional
      * Julian Day Count, or as a string.
      *
-     * @param
-     *            int the type of the timestamp. This must be one of
+     * @param integer $type
+     *            the type of the timestamp. This must be one of
      *            {@link UNIX_TIMESTAMP}, {@link EXIF_STRING}, or
      *            {@link JULIAN_DAY_COUNT}.
      *
-     * @return int the timestamp held by this entry in the correct form
+     * @return integer the timestamp held by this entry in the correct form
      *         as indicated by the type argument. For {@link UNIX_TIMESTAMP}
      *         this is an integer counting the number of seconds since January
      *         1st 1970, for {@link EXIF_STRING} this is a string of the form
@@ -182,15 +182,21 @@ class PelEntryTime extends PelEntryAscii
             case self::JULIAN_DAY_COUNT:
                 return $this->day_count + $this->seconds / 86400;
             default:
-                throw new PelInvalidArgumentException('Expected UNIX_TIMESTAMP (%d), ' . 'EXIF_STRING (%d), or ' . 'JULIAN_DAY_COUNT (%d) for $type, ' . 'got %d.', self::UNIX_TIMESTAMP, self::EXIF_STRING, self::JULIAN_DAY_COUNT, $type);
+                throw new PelInvalidArgumentException(
+                    'Expected UNIX_TIMESTAMP (%d), ' . 'EXIF_STRING (%d), or ' . 'JULIAN_DAY_COUNT (%d) for $type, ' .
+                         'got %d.',
+                        self::UNIX_TIMESTAMP,
+                        self::EXIF_STRING,
+                        self::JULIAN_DAY_COUNT,
+                        $type);
         }
     }
 
     /**
      * Update the timestamp held by this entry.
      *
-     * @param
-     *            int the timestamp held by this entry in the correct form
+     * @param integer $timestamp
+     *            the timestamp held by this entry in the correct form
      *            as indicated by the third argument. For {@link UNIX_TIMESTAMP}
      *            this is an integer counting the number of seconds since January
      *            1st 1970, for {@link EXIF_STRING} this is a string of the form
@@ -199,15 +205,13 @@ class PelEntryTime extends PelEntryAscii
      *            count and the fractional part denotes the time of day (0.25 means
      *            6:00, 0.75 means 18:00).
      *
-     * @param
-     *            int the type of the timestamp. This must be one of
+     * @param integer $type
+     *            the type of the timestamp. This must be one of
      *            {@link UNIX_TIMESTAMP}, {@link EXIF_STRING}, or
      *            {@link JULIAN_DAY_COUNT}.
      */
     public function setValue($timestamp, $type = self::UNIX_TIMESTAMP)
     {
-        // if (empty($timestamp))
-        // debug_print_backtrace();
         switch ($type) {
             case self::UNIX_TIMESTAMP:
                 $this->day_count = $this->convertUnixToJd($timestamp);
@@ -233,7 +237,13 @@ class PelEntryTime extends PelEntryAscii
                 break;
 
             default:
-                throw new PelInvalidArgumentException('Expected UNIX_TIMESTAMP (%d), ' . 'EXIF_STRING (%d), or ' . 'JULIAN_DAY_COUNT (%d) for $type, ' . 'got %d.', self::UNIX_TIMESTAMP, self::EXIF_STRING, self::JULIAN_DAY_COUNT, $type);
+                throw new PelInvalidArgumentException(
+                    'Expected UNIX_TIMESTAMP (%d), ' . 'EXIF_STRING (%d), or ' . 'JULIAN_DAY_COUNT (%d) for $type, ' .
+                         'got %d.',
+                        self::UNIX_TIMESTAMP,
+                        self::EXIF_STRING,
+                        self::JULIAN_DAY_COUNT,
+                        $type);
         }
 
         /*
@@ -253,13 +263,13 @@ class PelEntryTime extends PelEntryAscii
     /**
      * Converts a date in year/month/day format to a Julian Day count.
      *
-     * @param int $year
+     * @param integer $year
      *            the year.
-     * @param int $month
+     * @param integer $month
      *            the month, 1 to 12.
-     * @param int $day
+     * @param integer $day
      *            the day in the month.
-     * @return int the Julian Day count.
+     * @return integer the Julian Day count.
      */
     public function convertGregorianToJd($year, $month, $day)
     {
@@ -269,7 +279,8 @@ class PelEntryTime extends PelEntryAscii
         }
 
         $m1412 = ($month <= 2) ? - 1 : 0;
-        return floor((1461 * ($year + 4800 + $m1412)) / 4) + floor((367 * ($month - 2 - 12 * $m1412)) / 12) - floor((3 * floor(($year + 4900 + $m1412) / 100)) / 4) + $day - 32075;
+        return floor((1461 * ($year + 4800 + $m1412)) / 4) + floor((367 * ($month - 2 - 12 * $m1412)) / 12) -
+             floor((3 * floor(($year + 4900 + $m1412) / 100)) / 4) + $day - 32075;
     }
 
     /**
@@ -310,9 +321,9 @@ class PelEntryTime extends PelEntryAscii
     /**
      * Converts a UNIX timestamp to a Julian Day count.
      *
-     * @param int $timestamp
+     * @param integer $timestamp
      *            the timestamp.
-     * @return int the Julian Day count.
+     * @return integer the Julian Day count.
      */
     public function convertUnixToJd($timestamp)
     {
@@ -322,7 +333,7 @@ class PelEntryTime extends PelEntryAscii
     /**
      * Converts a Julian Day count to a UNIX timestamp.
      *
-     * @param int $jd
+     * @param integer $jd
      *            the Julian Day count.
      *
      * @return mixed $timestamp the integer timestamp or false if the

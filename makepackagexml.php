@@ -78,7 +78,7 @@ $pfm->setPearinstallerDep('1.5.0');
 
 $pfm->generateContents();
 
-if (isset($_GET['make']) || (isset($_SERVER['argv']) && @$_SERVER['argv'][1] == 'make')) {
+if (isset($_GET['make']) || (isset($_SERVER['argv']) && $_SERVER['argv'][1] == 'make')) {
     if ($pfm->writePackageFile()) {
         exit('package created');
     }

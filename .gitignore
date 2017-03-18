@@ -5,7 +5,6 @@
 locale/*
 doc/*
 vendor
-composer.lock
 ChangeLog
 build-base*
 .blackfire.travis.ini

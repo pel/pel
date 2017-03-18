@@ -222,7 +222,7 @@ class PelTiff
         /* TIFF magic number --- fixed value. */
         $bytes .= PelConvert::shortToBytes(self::TIFF_HEADER, $order);
 
-        if ($this->ifd != null) {
+        if ($this->ifd !== null) {
             /*
              * IFD 0 offset. We will always start IDF 0 at an offset of 8
              * bytes (2 bytes for byte order, another 2 bytes for the TIFF
@@ -246,6 +246,21 @@ class PelTiff
     }
 
     /**
+     * Save the TIFF object as a TIFF image in a file.
+     *
+     * @param
+     *            string the filename to save in. An existing file with the
+     *            same name will be overwritten!
+     *
+     * @return integer|FALSE The number of bytes that were written to the
+     *         file, or FALSE on failure.
+     */
+    public function saveFile($filename)
+    {
+        return file_put_contents($filename, $this->getBytes());
+    }
+
+    /**
      * Return a string representation of this object.
      *
      * @return string a string describing this object. This is mostly useful
@@ -254,7 +269,7 @@ class PelTiff
     public function __toString()
     {
         $str = Pel::fmt("Dumping TIFF data...\n");
-        if ($this->ifd != null) {
+        if ($this->ifd !== null) {
             $str .= $this->ifd->__toString();
         }
 

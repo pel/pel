@@ -133,6 +133,24 @@ class PelJpeg
     }
 
     /**
+     * JPEG sections start with 0xFF. The first byte that is not
+     * 0xFF is a marker (hopefully).
+     *
+     * @param PelDataWindow $d
+     *
+     * @return integer
+     */
+    protected static function getJpgSectionStart($d)
+    {
+        for ($i = 0; $i < 7; $i ++) {
+            if ($d->getByte($i) != 0xFF) {
+                 break;
+            }
+        }
+        return $i;
+    }
+
+    /**
      * Load data into a JPEG object.
      *
      * The data supplied will be parsed and turned into an object
@@ -163,20 +181,12 @@ class PelJpeg
          * no data left in the window.
          */
         while ($d->getSize() > 0) {
-            /*
-             * JPEG sections start with 0xFF. The first byte that is not
-             * 0xFF is a marker (hopefully).
-             */
-            for ($i = 0; $i < 7; $i ++) {
-                if ($d->getByte($i) != 0xFF) {
-                    break;
-                }
-            }
+            $i = $this->getJpgSectionStart($d);
 
             $marker = $d->getByte($i);
 
-            if (! PelJpegMarker::isValid($marker)) {
-                throw new \lsolesen\pel\PelJpegInvalidMarkerException($marker, $i);
+            if (!PelJpegMarker::isValid($marker)) {
+                throw new PelJpegInvalidMarkerException($marker, $i);
             }
 
             /*
@@ -581,10 +591,13 @@ class PelJpeg
      * @param
      *            string the filename to save in. An existing file with the
      *            same name will be overwritten!
+     *
+     * @return integer|FALSE The number of bytes that were written to the
+     *         file, or FALSE on failure.
      */
     public function saveFile($filename)
     {
-        file_put_contents($filename, $this->getBytes());
+        return file_put_contents($filename, $this->getBytes());
     }
 
     /**
@@ -643,11 +656,7 @@ class PelJpeg
         /* JPEG data is stored in big-endian format. */
         $d->setByteOrder(PelConvert::BIG_ENDIAN);
 
-        for ($i = 0; $i < 7; $i ++) {
-            if ($d->getByte($i) != 0xFF) {
-                break;
-            }
-        }
+        $i = self::getJpgSectionStart($d);
 
         return $d->getByte($i) == PelJpegMarker::SOI;
     }
