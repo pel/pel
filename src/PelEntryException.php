@@ -59,7 +59,7 @@ class PelEntryException extends PelException
     /**
      * The tag of the entry (if known).
      *
-     * @var PelTag
+     * @var int
      */
     protected $tag;
 
@@ -78,7 +78,7 @@ class PelEntryException extends PelException
     /**
      * Get the tag associated with the exception.
      *
-     * @return PelTag the tag. If no tag is set, null is returned.
+     * @return int the tag. If no tag is set, null is returned.
      */
     public function getTag()
     {

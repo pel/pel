@@ -73,7 +73,7 @@ class PelEntryShort extends PelEntryNumber
      * instead of an array with one integer element, which would then
      * have to be extracted.
      *
-     * @param PelTag $tag
+     * @param int $tag
      *            the tag which this entry represents. This should be
      *            one of the constants defined in {@link PelTag}, e.g., {@link
      *            PelTag::IMAGE_WIDTH}, {@link PelTag::ISO_SPEED_RATINGS},

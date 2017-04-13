@@ -56,7 +56,7 @@ class PelEntrySLong extends PelEntryNumber
      * single integer is given.
      *
      * @param
-     *            PelTag the tag which this entry represents. This
+     *            int the tag which this entry represents. This
      *            should be one of the constants defined in {@link PelTag}
      *            which have format {@link PelFormat::SLONG}.
      *

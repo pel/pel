@@ -572,7 +572,7 @@ class PelIfd implements \IteratorAggregate, \ArrayAccess
      * treated as private tags and will be allowed everywhere (use this
      * for testing or for implementing your own types of tags).
      *
-     * @param PelTag $tag
+     * @param int $tag
      *            the tag.
      *
      * @return boolean true if the tag is considered valid in this IFD,
@@ -829,7 +829,7 @@ class PelIfd implements \IteratorAggregate, \ArrayAccess
      * // ... do something with the F-number.
      * </code>
      *
-     * @param PelTag $tag
+     * @param int $tag
      *            the offset to check.
      *
      * @return boolean whether the tag exists.
@@ -850,7 +850,7 @@ class PelIfd implements \IteratorAggregate, \ArrayAccess
      * $entry = $ifd[PelTag::FNUMBER];
      * </code>
      *
-     * @param PelTag $tag
+     * @param int $tag
      *            the tag to return. It is an error to ask for a tag
      *            which is not in the IFD, just like asking for a non-existant
      *            array entry.
@@ -876,8 +876,8 @@ class PelIfd implements \IteratorAggregate, \ArrayAccess
      * Note that the actual array index passed is ignored! Instead the
      * {@link PelTag} from the entry is used.
      *
-     * @param PelTag $tag
-     *            the offset to update.
+     * @param int $tag
+     *            unused.
      *
      * @param PelEntry $e
      *            the new value.
@@ -903,7 +903,7 @@ class PelIfd implements \IteratorAggregate, \ArrayAccess
      * unset($ifd[PelTag::EXPOSURE_BIAS_VALUE])
      * </code>
      *
-     * @param PelTag $tag
+     * @param int $tag
      *            the offset to delete.
      */
     public function offsetUnset($tag)
@@ -914,7 +914,7 @@ class PelIfd implements \IteratorAggregate, \ArrayAccess
     /**
      * Retrieve an entry.
      *
-     * @param PelTag $tag
+     * @param int $tag
      *            the tag identifying the entry.
      *
      * @return PelEntry the entry associated with the tag, or null if no

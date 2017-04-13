@@ -1612,7 +1612,7 @@ class PelTag
      * @param array $container
      *            {@link PelTag::EXIF_TAGS_SHORT}, {@link PelTag::EXIF_TAGS_TITLE},
      *            {@link PelTag::GPS_TAGS_SHORT} or {@link PelTag::GPS_TAGS_TITLE} container.
-     * @param PelTag $tag
+     * @param int $tag
      *            the tag.
      *
      * @return string short name or long name of the tag.
@@ -1645,6 +1645,35 @@ class PelTag
         return array_search($name, static::$gpsTagsShort);
     }
 
+	/**
+	 * Reverse lookup of a EXIF related tag id by its short name. Return false for the unknown tag name.
+	 *
+	 * @param string $name
+	 *            tag short name.
+	 *
+	 * @return mixed (bool|int)
+	 *            the tag.
+	 */
+	public static function getExifTagByName($name)
+	{
+		return array_search($name, static::$exifTagsShort);
+	}
+
+	/**
+	 * Reverse lookup of a GPS related tag id by its short name. Return false for the unknown tag name.
+	 *
+	 * @param string $name
+	 *            tag short name.
+	 *
+	 * @return mixed (bool|int)
+	 *            the tag.
+	 */
+	public static function getGpsTagByName($name)
+	{
+		return array_search($name, static::$gpsTagsShort);
+	}
+
+	/**
     /**
      * Returns string defining unknown tag.
      *
@@ -1667,7 +1696,7 @@ class PelTag
      *            {@link PelIfd::IFD1}, {@link PelIfd::EXIF}, {@link PelIfd::GPS},
      *            or {@link PelIfd::INTEROPERABILITY}.
      *
-     * @param PelTag $tag
+     * @param int $tag
      *            the tag.
      *
      * @return string the short name of the tag, e.g., 'ImageWidth' for
@@ -1698,7 +1727,7 @@ class PelTag
      *            {@link PelIfd::IFD1}, {@link PelIfd::EXIF}, {@link PelIfd::GPS},
      *            or {@link PelIfd::INTEROPERABILITY}.
      *
-     * @param PelTag $tag
+     * @param int $tag
      *            the tag.
      *
      * @return string the title of the tag, e.g., 'Image Width' for the
