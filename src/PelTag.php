@@ -1673,7 +1673,6 @@ class PelTag
 		return array_search($name, static::$gpsTagsShort);
 	}
 
-	/**
     /**
      * Returns string defining unknown tag.
      *
