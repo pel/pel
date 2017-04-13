@@ -56,7 +56,7 @@ class PelEntrySByte extends PelEntryNumber
      * method will always return an array except for when a single
      * integer argument is given here.
      *
-     * @param PelTag $tag
+     * @param int $tag
      *            the tag which this entry represents. This
      *            should be one of the constants defined in {@link PelTag}
      *            which has format {@link PelFormat::BYTE}.
