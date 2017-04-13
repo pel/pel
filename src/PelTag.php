@@ -1645,33 +1645,33 @@ class PelTag
         return array_search($name, static::$gpsTagsShort);
     }
 
-	/**
-	 * Reverse lookup of a EXIF related tag id by its short name. Return false for the unknown tag name.
-	 *
-	 * @param string $name
-	 *            tag short name.
-	 *
-	 * @return mixed (bool|int)
-	 *            the tag.
-	 */
-	public static function getExifTagByName($name)
-	{
-		return array_search($name, static::$exifTagsShort);
-	}
+    /**
+     * Reverse lookup of a EXIF related tag id by its short name. Return false for the unknown tag name.
+     *
+     * @param string $name
+     *            tag short name.
+     *
+     * @return mixed (bool|int)
+     *            the tag.
+     */
+    public static function getExifTagByName($name)
+    {
+        return array_search($name, static::$exifTagsShort);
+    }
 
-	/**
-	 * Reverse lookup of a GPS related tag id by its short name. Return false for the unknown tag name.
-	 *
-	 * @param string $name
-	 *            tag short name.
-	 *
-	 * @return mixed (bool|int)
-	 *            the tag.
-	 */
-	public static function getGpsTagByName($name)
-	{
-		return array_search($name, static::$gpsTagsShort);
-	}
+    /**
+     * Reverse lookup of a GPS related tag id by its short name. Return false for the unknown tag name.
+     *
+     * @param string $name
+     *            tag short name.
+     *
+     * @return mixed (bool|int)
+     *            the tag.
+     */
+    public static function getGpsTagByName($name)
+    {
+        return array_search($name, static::$gpsTagsShort);
+    }
 
     /**
      * Returns string defining unknown tag.
