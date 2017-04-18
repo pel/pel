@@ -92,7 +92,7 @@ abstract class PelEntry
     /**
      * The {@link PelTag} of this entry.
      *
-     * @var PelTag
+     * @var int
      */
     protected $tag;
 
@@ -113,7 +113,7 @@ abstract class PelEntry
     /**
      * Return the tag of this entry.
      *
-     * @return PelTag the tag of this entry.
+     * @return int the tag of this entry.
      */
     public function getTag()
     {

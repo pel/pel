@@ -65,7 +65,7 @@ class PelEntryRational extends PelEntryLong
      * Make a new entry that can hold an unsigned rational.
      *
      * @param
-     *            PelTag the tag which this entry represents. This should
+     *            int the tag which this entry represents. This should
      *            be one of the constants defined in {@link PelTag}, e.g., {@link
      *            PelTag::X_RESOLUTION}, or any other tag which can have format
      *            {@link PelFormat::RATIONAL}.
