@@ -1629,6 +1629,8 @@ class PelTag
     /**
      * Reverse lookup of a tag id by its short name. Return false for the unknown tag name.
      *
+     * @deprecated Use getExifTagByName() and getGpsTagByName() to distinct the type of tag.
+     *
      * @param string $name
      *            tag short name.
      *
