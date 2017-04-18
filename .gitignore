@@ -7,3 +7,4 @@ doc/*
 vendor
 ChangeLog
 build-base*
+.blackfire.travis.ini
