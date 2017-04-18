@@ -136,7 +136,7 @@ class PelEntryCopyright extends PelEntryAscii
      * with either {@link __construct the constructor} or with {@link
      * setValue}.
      *
-     * @return array an array with two strings, the photographer and
+     * @return string[] an array with two strings, the photographer and
      *         editor copyrights. The two fields will be returned in that
      *         order, so that the first array index will be the photographer
      *         copyright, and the second will be the editor copyright.
