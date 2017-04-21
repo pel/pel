@@ -105,6 +105,7 @@ class PelEntryVersion extends PelEntry
      */
     public function setValue($version = 0.0)
     {
+        $version = !empty($version) && is_numeric($version) ? $version : 0.0;
         $this->version = $version;
         $major = floor($version);
         $minor = ($version - $major) * 100;
