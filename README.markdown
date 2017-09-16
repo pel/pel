@@ -27,6 +27,11 @@ important information about API changes.
 Also, please go to the PEL development mailing list (look below) and
 share your ideas about how the API should look like.
 
+## Installation
+
+```
+composer require lsolesen/pel
+```
 
 ## Documentation Overview
 
