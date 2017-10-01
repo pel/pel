@@ -1339,6 +1339,267 @@ class PelTag
     const GPS_DIFFERENTIAL = 0x001E;
 
     /**
+     * Canon camera settings.
+     *
+     * Format: {@link PelFormat::SHORT}.
+     *
+     * Components: Any.
+     */
+    const CANON_CAMERA_SETTINGS = 0x0001;
+
+    /**
+     * Canon focal length.
+     *
+     * Format: {@link PelFormat::SHORT}.
+     *
+     * Components: Any.
+     */
+    const CANON_FOCAL_LENGTH = 0x0002;
+
+    /**
+     * Canon shot info.
+     *
+     * Format: {@link PelFormat::SHORT}.
+     *
+     * Components: Any.
+     */
+    const CANON_SHOT_INFO = 0x0004;
+
+    /**
+     * Canon panorama.
+     *
+     * Format: {@link PelFormat::SHORT}.
+     *
+     * Components: Any.
+     */
+    const CANON_PANORAMA = 0x0005;
+
+    /**
+     * Canon image type.
+     *
+     * Format: {@link PelFormat::ASCII}.
+     *
+     * Components: Any.
+     */
+    const CANON_IMAGE_TYPE = 0x0006;
+
+    /**
+     * Canon firmware version.
+     *
+     * Format: {@link PelFormat::ASCII}.
+     *
+     * Components: Any.
+     */
+    const CANON_FIRMWARE_VERSION = 0x0007;
+
+    /**
+     * Canon file number.
+     *
+     * Format: {@link PelFormat::LONG}.
+     *
+     * Components: Any.
+     */
+    const CANON_FILE_NUMBER = 0x0008;
+
+    /**
+     * Canon owner name.
+     *
+     * Format: {@link PelFormat::ASCII}.
+     *
+     * Components: Any.
+     */
+    const CANON_OWNER_NAME = 0x0009;
+
+    /**
+     * Canon serial number.
+     *
+     * Format: {@link PelFormat::LONG}.
+     *
+     * Components: Any.
+     */
+    const CANON_SERIAL_NUMBER = 0x000c;
+
+    /**
+     * Canon camera info.
+     *
+     * Format: {@link PelFormat::SHORT}.
+     *
+     * Components: Any.
+     */
+    const CANON_CAMERA_INFO = 0x000d;
+
+    /**
+     * Canon custom functions.
+     *
+     * Format: {@link PelFormat::SHORT}.
+     *
+     * Components: Any.
+     */
+    const CANON_CUSTOM_FUNCTIONS = 0x000f;
+
+    /**
+     * Canon model id.
+     *
+     * Format: {@link PelFormat::LONG}.
+     *
+     * Components: Any.
+     */
+    const CANON_MODEL_ID = 0x0010;
+
+    /**
+     * Canon picture info.
+     *
+     * Format: {@link PelFormat::SHORT}.
+     *
+     * Components: Any.
+     */
+    const CANON_PICTURE_INFO = 0x0012;
+
+    /**
+     * Canon thumbnail image valid area.
+     *
+     * Format: {@link PelFormat::SSHORT}.
+     *
+     * Components: Any.
+     */
+    const CANON_THUMBNAIL_IMAGE_VALID_AREA = 0x0013;
+
+    /**
+     * Canon serial number format.
+     *
+     * Format: {@link PelFormat::LONG}.
+     *
+     * Components: Any.
+     */
+    const CANON_SERIAL_NUMBER_FORMAT = 0x0015;
+
+    /**
+     * Canon super macro.
+     *
+     * Format: {@link PelFormat::SSHORT}.
+     *
+     * Components: Any.
+     */
+    const CANON_SUPER_MACRO = 0x001a;
+
+    /**
+     * Canon af info.
+     *
+     * Format: {@link PelFormat::SHORT}.
+     *
+     * Components: Any.
+     */
+    const CANON_AF_INFO = 0x0026;
+
+    /**
+     * Canon original decision data offset.
+     *
+     * Format: {@link PelFormat::SLONG}.
+     *
+     * Components: Any.
+     */
+    const CANON_ORIGINAL_DECISION_DATA_OFFSET = 0x0083;
+
+    /**
+     * Canon white balance table.
+     *
+     * Format: {@link PelFormat::SHORT}.
+     *
+     * Components: Any.
+     */
+    const CANON_WHITE_BALANCE_TABLE = 0x00a4;
+
+    /**
+     * Canon lens model.
+     *
+     * Format: {@link PelFormat::ASCII}.
+     *
+     * Components: Any.
+     */
+    const CANON_LENS_MODEL = 0x0095;
+
+    /**
+     * Canon internal serial number.
+     *
+     * Format: {@link PelFormat::ASCII}.
+     *
+     * Components: Any.
+     */
+    const CANON_INTERNAL_SERIAL_NUMBER = 0x0096;
+
+    /**
+     * Canon dust removal data.
+     *
+     * Format: {@link PelFormat::ASCII}.
+     *
+     * Components: Any.
+     */
+    const CANON_DUST_REMOVAL_DATA = 0x0097;
+
+    /**
+     * Canon custom functions (2).
+     *
+     * Format: {@link PelFormat::SHORT}.
+     *
+     * Components: Any.
+     */
+    const CANON_CUSTOM_FUNCTIONS_2 = 0x0099;
+
+    /**
+     * Canon processing info.
+     *
+     * Format: {@link PelFormat::SHORT}.
+     *
+     * Components: Any.
+     */
+    const CANON_PROCESSING_INFO = 0x00a0;
+
+    /**
+     * Canon measured color.
+     *
+     * Format: {@link PelFormat::SHORT}.
+     *
+     * Components: Any.
+     */
+    const CANON_MEASURED_COLOR = 0x00aa;
+
+    /**
+     * Canon color space.
+     *
+     * Format: {@link PelFormat::SSHORT}.
+     *
+     * Components: Any.
+     */
+    const CANON_COLOR_SPACE = 0x00b4;
+
+    /**
+     * Canon vrd offset.
+     *
+     * Format: {@link PelFormat::LONG}.
+     *
+     * Components: Any.
+     */
+    const CANON_VRD_OFFSET = 0x00d0;
+
+    /**
+     * Canon sensor info.
+     *
+     * Format: {@link PelFormat::SHORT}.
+     *
+     * Components: Any.
+     */
+    const CANON_SENSOR_INFO = 0x00e0;
+
+    /**
+     * Canon color data.
+     *
+     * Format: {@link PelFormat::SHORT}.
+     *
+     * Components: Any.
+     */
+    const CANON_COLOR_DATA = 0x4001;
+
+    /**
      * Values for tags short names.
      */
     protected static $exifTagsShort= array(
@@ -1607,6 +1868,76 @@ class PelTag
     );
 
     /**
+     * Values for canon maker notes tags
+     */
+    protected static $canonTagsTitle = array(
+        self::CANON_CAMERA_SETTINGS => 'Camera Settings',
+        self::CANON_FOCAL_LENGTH => 'Focal Length',
+        self::CANON_SHOT_INFO => 'Shot Info',
+        self::CANON_PANORAMA => 'Panorama',
+        self::CANON_IMAGE_TYPE => 'Image Type',
+        self::CANON_FIRMWARE_VERSION => 'Firmware Version',
+        self::CANON_FILE_NUMBER => 'File Number',
+        self::CANON_OWNER_NAME => 'Owner Name',
+        self::CANON_SERIAL_NUMBER => 'Serial Number',
+        self::CANON_CAMERA_INFO => 'Camera Info',
+        self::CANON_CUSTOM_FUNCTIONS => 'Custom Functions',
+        self::CANON_MODEL_ID => 'Model ID',
+        self::CANON_PICTURE_INFO => 'Picture Info',
+        self::CANON_THUMBNAIL_IMAGE_VALID_AREA => 'Thumbnail Image Valid Area',
+        self::CANON_SERIAL_NUMBER_FORMAT => 'Serial number format',
+        self::CANON_SUPER_MACRO => 'Super macro',
+        self::CANON_AF_INFO => 'AF info',
+        self::CANON_ORIGINAL_DECISION_DATA_OFFSET => 'Original decision data offset',
+        self::CANON_WHITE_BALANCE_TABLE => 'White balance table',
+        self::CANON_LENS_MODEL => 'Lens model',
+        self::CANON_INTERNAL_SERIAL_NUMBER => 'Internal serial number',
+        self::CANON_DUST_REMOVAL_DATA => 'Dust removal data',
+        self::CANON_CUSTOM_FUNCTIONS_2 => 'Custom functions',
+        self::CANON_PROCESSING_INFO => 'Processing info',
+        self::CANON_MEASURED_COLOR => 'Measured color',
+        self::CANON_COLOR_SPACE => 'Color Space',
+        self::CANON_VRD_OFFSET => 'VRD offset',
+        self::CANON_SENSOR_INFO => 'Sensor info',
+        self::CANON_COLOR_DATA => 'Color data'
+    );
+
+    /**
+     * Values for canon maker notes tags
+     */
+    protected static $canonTagsShort = array(
+        self::CANON_CAMERA_SETTINGS => 'CameraSettings',
+        self::CANON_FOCAL_LENGTH => 'FocalLength',
+        self::CANON_SHOT_INFO => 'ShotInfo',
+        self::CANON_PANORAMA => 'Panorama',
+        self::CANON_IMAGE_TYPE => 'ImageType',
+        self::CANON_FIRMWARE_VERSION => 'FirmwareVersion',
+        self::CANON_FILE_NUMBER => 'FileNumber',
+        self::CANON_OWNER_NAME => 'OwnerName',
+        self::CANON_SERIAL_NUMBER => 'SerialNumber',
+        self::CANON_CAMERA_INFO => 'CameraInfo',
+        self::CANON_CUSTOM_FUNCTIONS => 'CustomFunctions',
+        self::CANON_MODEL_ID => 'ModelID',
+        self::CANON_PICTURE_INFO => 'PictureInfo',
+        self::CANON_THUMBNAIL_IMAGE_VALID_AREA => 'ThumbnailImageValidArea',
+        self::CANON_SERIAL_NUMBER_FORMAT => 'Serial Number Format',
+        self::CANON_SUPER_MACRO => 'SuperMacro',
+        self::CANON_AF_INFO => 'AFinfo',
+        self::CANON_ORIGINAL_DECISION_DATA_OFFSET => 'OriginalDecision Data Offset',
+        self::CANON_WHITE_BALANCE_TABLE => 'WhiteBalanceTable',
+        self::CANON_LENS_MODEL => 'LensModel',
+        self::CANON_INTERNAL_SERIAL_NUMBER => 'InternalSerialNumber',
+        self::CANON_DUST_REMOVAL_DATA => 'DustRemovalData',
+        self::CANON_CUSTOM_FUNCTIONS_2 => 'CustomFunctions',
+        self::CANON_PROCESSING_INFO => 'ProcessingInfo',
+        self::CANON_MEASURED_COLOR => 'MeasuredColor',
+        self::CANON_COLOR_SPACE => 'ColorSpace',
+        self::CANON_VRD_OFFSET => 'VRDOffset',
+        self::CANON_SENSOR_INFO => 'SensorInfo',
+        self::CANON_COLOR_DATA => 'ColorData',
+    );
+
+    /**
      * Returns a string from container with key $tag and subcontainer index of $idx
      *
      * @param array $container
@@ -1644,7 +1975,12 @@ class PelTag
             return $k;
         }
 
-        return array_search($name, static::$gpsTagsShort);
+        $k = array_search($name, static::$gpsTagsShort);
+        if ($k !== false) {
+            return $k;
+        }
+
+        return array_search($name, self::$canonTagsShort);
     }
 
     /**
@@ -1715,6 +2051,8 @@ class PelTag
                 return self::getValue(self::$exifTagsShort, $tag);
             case PelIfd::GPS:
                 return self::getValue(self::$gpsTagsShort, $tag);
+            case PelIfd::CANON_MAKER_NOTES:
+                return self::getValue(self::$canonTagsShort, $tag);
         }
 
         return self::unknownTag($tag);
@@ -1746,6 +2084,8 @@ class PelTag
                 return Pel::tra(self::getValue(self::$exifTagsTitle, $tag));
             case PelIfd::GPS:
                 return Pel::tra(self::getValue(self::$gpsTagsShort, $tag));
+            case PelIfd::CANON_MAKER_NOTES:
+                return Pel::tra(self::getValue(self::$canonTagsTitle, $tag));
         }
 
         return self::unknownTag($tag);

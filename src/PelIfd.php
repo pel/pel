@@ -87,6 +87,14 @@ class PelIfd implements \IteratorAggregate, \ArrayAccess
     const INTEROPERABILITY = 4;
 
     /**
+     * Canon Maker Notes IFD.
+     *
+     * Pass this to the constructor when creating an IFD which will be
+     * the canon maker notes sub-IFD.
+     */
+    const CANON_MAKER_NOTES = 5;
+
+    /**
      * The entries held by this directory.
      *
      * Each tag in the directory is represented by a {@link PelEntry}
@@ -155,7 +163,7 @@ class PelIfd implements \IteratorAggregate, \ArrayAccess
     public function __construct($type)
     {
         if ($type != PelIfd::IFD0 && $type != PelIfd::IFD1 && $type != PelIfd::EXIF && $type != PelIfd::GPS &&
-             $type != PelIfd::INTEROPERABILITY) {
+             $type != PelIfd::INTEROPERABILITY && $type != PelIfd::CANON_MAKER_NOTES) {
             throw new PelIfdException('Unknown IFD type: %d', $type);
         }
 
@@ -205,6 +213,7 @@ class PelIfd implements \IteratorAggregate, \ArrayAccess
                 case PelTag::EXIF_IFD_POINTER:
                 case PelTag::GPS_INFO_IFD_POINTER:
                 case PelTag::INTEROPERABILITY_IFD_POINTER:
+                case PelTag::MAKER_NOTE:
                     $o = $d->getLong($offset + 12 * $i + 8);
                     Pel::debug('Found sub IFD at offset %d', $o);
 
@@ -215,6 +224,14 @@ class PelIfd implements \IteratorAggregate, \ArrayAccess
                         $type = PelIfd::GPS;
                     } elseif ($tag == PelTag::INTEROPERABILITY_IFD_POINTER) {
                         $type = PelIfd::INTEROPERABILITY;
+                    } elseif ($tag == PelTag::MAKER_NOTE) {
+                        Pel::debug('Found Maker Notes with ID 0x%04X', $d->getShort($o));
+                        $mkNoteType = $d->getShort($o);
+                        switch($mkNoteType) {
+                            case 0x27: // Canon Maker Notes
+                                $type = PelIfd::CANON_MAKER_NOTES;
+                                break;
+                        }
                     }
 
                     $this->sub[$type] = new PelIfd($type);
@@ -424,7 +441,14 @@ class PelIfd implements \IteratorAggregate, \ArrayAccess
                         return $v;
 
                     case PelFormat::ASCII:
-                        return new PelEntryAscii($tag, rtrim($data->getBytes(0), "\0"));
+                        // cut off string after the first nul byte
+                        $canonicalString = strstr($data->getBytes(0), "\0", true);
+                        if($canonicalString !== false) {
+                            return new PelEntryAscii($tag, $canonicalString);
+                        } else {
+                            // TODO throw exception if string isn't nul-terminated
+                            return new PelEntryAscii($tag, $data->getBytes(0));
+                        }
 
                     case PelFormat::SHORT:
                         $v = new PelEntryShort($tag);
@@ -743,6 +767,38 @@ class PelIfd implements \IteratorAggregate, \ArrayAccess
                     PelTag::RELATED_IMAGE_WIDTH,
                     PelTag::RELATED_IMAGE_LENGTH
                 );
+            case PelIfd::CANON_MAKER_NOTES:
+                return array(
+                    PelTag::CANON_CAMERA_SETTINGS,
+                    PelTag::CANON_FOCAL_LENGTH,
+                    PelTag::CANON_SHOT_INFO,
+                    PelTag::CANON_PANORAMA,
+                    PelTag::CANON_IMAGE_TYPE,
+                    PelTag::CANON_FIRMWARE_VERSION,
+                    PelTag::CANON_FILE_NUMBER,
+                    PelTag::CANON_OWNER_NAME,
+                    PelTag::CANON_SERIAL_NUMBER,
+                    PelTag::CANON_CAMERA_INFO,
+                    PelTag::CANON_CUSTOM_FUNCTIONS,
+                    PelTag::CANON_MODEL_ID,
+                    PelTag::CANON_PICTURE_INFO,
+                    PelTag::CANON_THUMBNAIL_IMAGE_VALID_AREA,
+                    PelTag::CANON_SERIAL_NUMBER_FORMAT,
+                    PelTag::CANON_SUPER_MACRO,
+                    PelTag::CANON_AF_INFO,
+                    PelTag::CANON_ORIGINAL_DECISION_DATA_OFFSET,
+                    PelTag::CANON_WHITE_BALANCE_TABLE,
+                    PelTag::CANON_LENS_MODEL,
+                    PelTag::CANON_INTERNAL_SERIAL_NUMBER,
+                    PelTag::CANON_DUST_REMOVAL_DATA,
+                    PelTag::CANON_CUSTOM_FUNCTIONS_2,
+                    PelTag::CANON_PROCESSING_INFO,
+                    PelTag::CANON_MEASURED_COLOR,
+                    PelTag::CANON_COLOR_SPACE,
+                    PelTag::CANON_VRD_OFFSET,
+                    PelTag::CANON_SENSOR_INFO,
+                    PelTag::CANON_COLOR_DATA
+                );
 
             /*
              * TODO: Where do these tags belong?
@@ -780,6 +836,8 @@ class PelIfd implements \IteratorAggregate, \ArrayAccess
                 return 'GPS';
             case self::INTEROPERABILITY:
                 return 'Interoperability';
+            case self::CANON_MAKER_NOTES:
+                return 'Canon MakerNotes';
             default:
                 throw new PelIfdException('Unknown IFD type: %d', $type);
         }
