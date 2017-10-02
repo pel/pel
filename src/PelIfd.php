@@ -225,9 +225,10 @@ class PelIfd implements \IteratorAggregate, \ArrayAccess
                     } elseif ($tag == PelTag::INTEROPERABILITY_IFD_POINTER) {
                         $type = PelIfd::INTEROPERABILITY;
                     } elseif ($tag == PelTag::MAKER_NOTE) {
-                        Pel::debug('Found Maker Notes with ID 0x%04X', $d->getShort($o));
+                        Pel::debug('Found Maker Notes with ID 0x%04X',
+                        $d->getShort($o));
                         $mkNoteType = $d->getShort($o);
-                        switch($mkNoteType) {
+                        switch ($mkNoteType) {
                             case 0x27: // Canon Maker Notes
                                 $type = PelIfd::CANON_MAKER_NOTES;
                                 break;
@@ -299,10 +300,9 @@ class PelIfd implements \IteratorAggregate, \ArrayAccess
      *
      * @param int $tag
      *            the tag of the entry as defined in {@link PelTag}.
-     *
-     * @return PelEntry a newly created entry, holding the data given.
      */
-    public function loadSingleValue($d, $offset, $i, $tag) {
+    public function loadSingleValue($d, $offset, $i, $tag)
+    {
         $format = $d->getShort($offset + 12 * $i + 2);
         $components = $d->getLong($offset + 12 * $i + 4);
 
@@ -477,12 +477,11 @@ class PelIfd implements \IteratorAggregate, \ArrayAccess
                     case PelFormat::ASCII:
                         // cut off string after the first nul byte
                         $canonicalString = strstr($data->getBytes(0), "\0", true);
-                        if($canonicalString !== false) {
+                        if ($canonicalString !== false) {
                             return new PelEntryAscii($tag, $canonicalString);
-                        } else {
-                            // TODO throw exception if string isn't nul-terminated
-                            return new PelEntryAscii($tag, $data->getBytes(0));
                         }
+                        // TODO throw exception if string isn't nul-terminated
+                        return new PelEntryAscii($tag, $data->getBytes(0));
 
                     case PelFormat::SHORT:
                         $v = new PelEntryShort($tag);
