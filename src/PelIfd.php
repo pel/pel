@@ -231,6 +231,10 @@ class PelIfd implements \IteratorAggregate, \ArrayAccess
                             case 0x27: // Canon Maker Notes
                                 $type = PelIfd::CANON_MAKER_NOTES;
                                 break;
+                            default:
+                                $this->loadSingleValue($d, $offset, $i, $tag);
+                                // no valid maker notes tag found, exit both switch statements
+                                break 2;
                         }
                     }
 
@@ -246,41 +250,7 @@ class PelIfd implements \IteratorAggregate, \ArrayAccess
                     $this->safeSetThumbnail($d, $thumb_offset, $thumb_length);
                     break;
                 default:
-                    $format = $d->getShort($offset + 12 * $i + 2);
-                    $components = $d->getLong($offset + 12 * $i + 4);
-
-                    /*
-                     * The data size. If bigger than 4 bytes, the actual data is
-                     * not in the entry but somewhere else, with the offset stored
-                     * in the entry.
-                     */
-                    $s = PelFormat::getSize($format) * $components;
-                    if ($s > 0) {
-                        $doff = $offset + 12 * $i + 8;
-                        if ($s > 4) {
-                            $doff = $d->getLong($doff);
-                        }
-                        $data = $d->getClone($doff, $s);
-                    } else {
-                        $data = new PelDataWindow();
-                    }
-
-                    try {
-                        $entry = $this->newEntryFromData($tag, $format, $components, $data);
-                        $this->addEntry($entry);
-                    } catch (PelException $e) {
-                        /*
-                         * Throw the exception when running in strict mode, store
-                         * otherwise.
-                         */
-                        Pel::maybeThrow($e);
-                    }
-
-                    /* The format of the thumbnail is stored in this tag. */
-                    // TODO: handle TIFF thumbnail.
-                    // if ($tag == PelTag::COMPRESSION) {
-                    // $this->thumb_format = $data->getShort();
-                    // }
+                    $this->loadSingleValue($d, $offset, $i, $tag);
                     break;
             }
         }
@@ -304,6 +274,70 @@ class PelIfd implements \IteratorAggregate, \ArrayAccess
         } else {
             Pel::debug('Last IFD.');
         }
+    }
+
+    /**
+     * Load a single value which didn't match any special {@link PelTag}.
+     *
+     * This method will add a single value given by the {@link PelDataWindow} and it's offset ($offset) and element counter ($i).
+     *
+     * Please note that the data you pass to this method should come
+     * from an image, that is, it should be raw bytes. If instead you
+     * want to create an entry for holding, say, an short integer, then
+     * create a {@link PelEntryShort} object directly and load the data
+     * into it.
+     *
+     * @param PelDataWindow $d
+     *            the data window that will provide the data.
+     *
+     * @param integer $offset
+     *            the offset within the window where the directory will
+     *            be found.
+     *
+     * @param int $i
+     *            the element's position in the {@link PelDataWindow} $d.
+     *
+     * @param int $tag
+     *            the tag of the entry as defined in {@link PelTag}.
+     *
+     * @return PelEntry a newly created entry, holding the data given.
+     */
+    public function loadSingleValue($d, $offset, $i, $tag) {
+        $format = $d->getShort($offset + 12 * $i + 2);
+        $components = $d->getLong($offset + 12 * $i + 4);
+
+        /*
+         * The data size. If bigger than 4 bytes, the actual data is
+         * not in the entry but somewhere else, with the offset stored
+         * in the entry.
+         */
+        $s = PelFormat::getSize($format) * $components;
+        if ($s > 0) {
+            $doff = $offset + 12 * $i + 8;
+            if ($s > 4) {
+                $doff = $d->getLong($doff);
+            }
+            $data = $d->getClone($doff, $s);
+        } else {
+            $data = new PelDataWindow();
+        }
+
+        try {
+            $entry = $this->newEntryFromData($tag, $format, $components, $data);
+            $this->addEntry($entry);
+        } catch (PelException $e) {
+            /*
+             * Throw the exception when running in strict mode, store
+             * otherwise.
+             */
+            Pel::maybeThrow($e);
+        }
+
+        /* The format of the thumbnail is stored in this tag. */
+        // TODO: handle TIFF thumbnail.
+        // if ($tag == PelTag::COMPRESSION) {
+        // $this->thumb_format = $data->getShort();
+        // }
     }
 
     /**
