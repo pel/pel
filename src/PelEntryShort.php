@@ -132,6 +132,60 @@ class PelEntryShort extends PelEntryNumber
      */
     public function getText($brief = false)
     {
+        if ($this->ifd_type == PelIfd::CANON_SHOT_INFO) {
+            switch ($this->tag) {
+                case PelTag::CANON_SI_WHITE_BALANCE:
+                    // CC (e->components, 1, v);
+                    switch ($this->value[0]) {
+                        case 0:
+                            return Pel::tra('Auto');
+                        case 1:
+                            return Pel::tra('Daylight');
+                        case 2:
+                            return Pel::tra('Cloudy');
+                        case 3:
+                            return Pel::tra('Tungsten');
+                        case 4:
+                            return Pel::tra('Fluorescent');
+                        case 5:
+                            return Pel::tra('Flash');
+                        case 6:
+                            return Pel::tra('Custom');
+                        case 7:
+                            return Pel::tra('Black & White');
+                        case 8:
+                            return Pel::tra('Shade');
+                        case 9:
+                            return Pel::tra('Manual Temperature (Kelvin)');
+                        case 10:
+                            return Pel::tra('PC Set1');
+                        case 11:
+                            return Pel::tra('PC Set2');
+                        case 12:
+                            return Pel::tra('PC Set3');
+                        case 14:
+                            return Pel::tra('Daylight Fluorescent');
+                        case 15:
+                            return Pel::tra('Custom 1');
+                        case 16:
+                            return Pel::tra('Custom 2');
+                        case 17:
+                            return Pel::tra('Underwater');
+                        case 18:
+                            return Pel::tra('Custom 3');
+                        case 19:
+                            return Pel::tra('Custom 4');
+                        case 20:
+                            return Pel::tra('PC Set4');
+                        case 21:
+                            return Pel::tra('PC Set5');
+                        case 23:
+                            return Pel::tra('Auto (ambience priority)');
+                        default:
+                            return $this->value[0];
+                    }
+            }
+        }
         switch ($this->tag) {
             case PelTag::METERING_MODE:
                 // CC (e->components, 1, v);
