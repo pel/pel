@@ -125,16 +125,13 @@ class PelCanonMakerNotes extends PelMakerNotes
 
     private function parsePanorama($parent, $data, $offset, $components)
     {
-
     }
 
     private function parsePictureInfo($parent, $data, $offset, $components)
     {
-
     }
 
     private function parseFileInfo($parent, $data, $offset, $components)
     {
-
     }
 }

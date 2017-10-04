@@ -157,6 +157,7 @@ class PelIfd implements \IteratorAggregate, \ArrayAccess
         self::CANON_CUSTOM_FUNCTIONS
     );
 
+    private static $mkNoteValues = array();
     /**
      * The entries held by this directory.
      *
@@ -288,14 +289,15 @@ class PelIfd implements \IteratorAggregate, \ArrayAccess
                     } elseif ($tag == PelTag::INTEROPERABILITY_IFD_POINTER) {
                         $type = PelIfd::INTEROPERABILITY;
                     } elseif ($tag == PelTag::MAKER_NOTE) {
-                        // TODO get Exif tag 'Make' (0x010F)
-                        $mkNotes = PelMakerNotes::createMakerNotesFromManufacturer('Canon', $this, $d, $components, $o);
-                        if ($mkNotes !== null) {
-                            $mkNotes->load();
-                        } else {
-                            $this->loadSingleValue($d, $offset, $i, $tag);
-                        }
-                        // we either load maker notes as sub ifd or single value. Nothing else to do, so exit switch
+                        // Store maker notes infos, because we need Make tag of IFD0 for MakerNotes
+                        // Thus MakerNotes will be loaded at the end of loading IFD0
+                        PelIfd::$mkNoteValues = array(
+                            'parent' => $this,
+                            'data' => $d,
+                            'components' => $components,
+                            'offset' => $o
+                        );
+                        $this->loadSingleValue($d, $offset, $i, $tag);
                         break;
                     }
 
@@ -334,6 +336,25 @@ class PelIfd implements \IteratorAggregate, \ArrayAccess
             }
         } else {
             Pel::debug('Last IFD.');
+        }
+
+        // if loading is finished and current IFD is IFD0
+        if ($this->type == PelIfd::IFD0) {
+            $mk = PelIfd::$mkNoteValues;
+            // check if there are any maker notes stored
+            if (count($mk) > 0) {
+                // get Make tag and load maker notes if tag is valid
+                $manufacturer = $this->getEntry(PelTag::MAKE);
+                if ($manufacturer !== null) {
+                    $manufacturer = $manufacturer->getValue();
+                    $mkNotes = PelMakerNotes::createMakerNotesFromManufacturer($manufacturer, $mk['parent'], $mk['data'], $mk['components'], $mk['offset']);
+                    if ($mkNotes !== null) {
+                        // remove pre-loaded undefined MakerNotes
+                        $mk['parent']->offsetUnset(PelTag::MAKER_NOTE);
+                        $mkNotes->load();
+                    }
+                }
+            }
         }
     }
 
@@ -1054,7 +1075,7 @@ class PelIfd implements \IteratorAggregate, \ArrayAccess
             case self::CANON_FILE_INFO:
                 return 'Canon File Info';
             case self::CANON_CUSTOM_FUNCTIONS:
-                return 'Canon Custom Function';
+                return 'Canon Custom Functions';
             default:
                 throw new PelIfdException('Unknown IFD type: %d', $type);
         }

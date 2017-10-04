@@ -98,7 +98,7 @@ class CanonIxusIITest extends \PHPUnit_Framework_TestCase
         $this->assertInstanceOf('lsolesen\pel\PelIfd', $ifd0_0);
 
         /* Start of IDF $ifd0_0. */
-        $this->assertEquals(count($ifd0_0->getEntries()), 30);
+        $this->assertEquals(count($ifd0_0->getEntries()), 29);
 
         $entry = $ifd0_0->getEntry(33434); // ExposureTime
         $this->assertInstanceOf('lsolesen\pel\PelEntryRational', $entry);
