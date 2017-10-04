@@ -1017,13 +1017,52 @@ class PelIfd implements \IteratorAggregate, \ArrayAccess
                     PelTag::CANON_SI_TARGET_APERTURE,
                     PelTag::CANON_SI_TARGET_SHUTTER_SPEED,
                     PelTag::CANON_SI_WHITE_BALANCE,
+                    PelTag::CANON_SI_SLOW_SHUTTER,
                     PelTag::CANON_SI_SEQUENCE,
                     PelTag::CANON_SI_AF_POINT_USED,
                     PelTag::CANON_SI_FLASH_BIAS,
+                    PelTag::CANON_SI_AUTO_EXPOSURE_BRACKETING,
                     PelTag::CANON_SI_SUBJECT_DISTANCE,
                     PelTag::CANON_SI_APERTURE_VALUE,
                     PelTag::CANON_SI_SHUTTER_SPEED_VALUE,
-                    PelTag::CANON_SI_MEASURED_EV2
+                    PelTag::CANON_SI_MEASURED_EV2,
+                    PelTag::CANON_SI_CAMERA_TYPE,
+                    PelTag::CANON_SI_AUTO_ROTATE,
+                    PelTag::CANON_SI_ND_FILTER
+                );
+            case PelIfd::CANON_PANORAMA:
+                return array(
+                    PelTag::CANON_PA_PANORAMA_FRAME,
+                    PelTag::CANON_PA_PANORAMA_DIRECTION
+                );
+            case PelIfd::CANON_PICTURE_INFO:
+                return array(
+                    PelTag::CANON_PI_IMAGE_WIDTH,
+                    PelTag::CANON_PI_IMAGE_HEIGHT,
+                    PelTag::CANON_PI_IMAGE_WIDTH_AS_SHOT,
+                    PelTag::CANON_PI_IMAGE_HEIGHT_AS_SHOT,
+                    PelTag::CANON_PI_AF_POINTS_USED,
+                    PelTag::CANON_PI_AF_POINTS_USED_20D
+                );
+            case PelIfd::CANON_FILE_INFO:
+                return array(
+                    PelTag::CANON_FI_FILE_NUMBER,
+                    PelTag::CANON_FI_BRACKET_MODE,
+                    PelTag::CANON_FI_BRACKET_VALUE,
+                    PelTag::CANON_FI_BRACKET_SHOT_NUMBER,
+                    PelTag::CANON_FI_RAW_JPG_QUALITY,
+                    PelTag::CANON_FI_RAW_JPG_SIZE,
+                    PelTag::CANON_FI_NOISE_REDUCTION,
+                    PelTag::CANON_FI_WB_BRACKET_MODE,
+                    PelTag::CANON_FI_WB_BRACKET_VALUE_AB,
+                    PelTag::CANON_FI_WB_BRACKET_VALUE_GM,
+                    PelTag::CANON_FI_FILTER_EFFECT,
+                    PelTag::CANON_FI_TONING_EFFECT,
+                    PelTag::CANON_FI_MACRO_MAGNIFICATION,
+                    PelTag::CANON_FI_LIVE_VIEW_SHOOTING,
+                    PelTag::CANON_FI_FOCUS_DISTANCE_UPPER,
+                    PelTag::CANON_FI_FOCUS_DISTANCE_LOWER,
+                    PelTag::CANON_FI_FLASH_EXPOSURE_LOCK
                 );
 
             /*

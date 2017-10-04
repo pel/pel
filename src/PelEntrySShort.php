@@ -111,6 +111,175 @@ class PelEntrySShort extends PelEntryNumber
      */
     public function getText($brief = false)
     {
+        if ($this->ifd_type == PelIfd::CANON_FILE_INFO) {
+            switch ($this->tag) {
+                case PelTag::CANON_FI_BRACKET_MODE:
+                    // CC (e->components, 1, v);
+                    switch ($this->value[0]) {
+                        case 0:
+                            return Pel::tra('Off');
+                        case 1:
+                            return Pel::tra('AEB');
+                        case 2:
+                            return Pel::tra('FEB');
+                        case 3:
+                            return Pel::tra('ISO');
+                        case 4:
+                            return Pel::tra('WB');
+                        default:
+                            return $this->value[0];
+                    }
+                    break;
+                case PelTag::CANON_FI_RAW_JPG_QUALITY:
+                    // CC (e->components, 1, v);
+                    switch ($this->value[0]) {
+                        case 1:
+                            return Pel::tra('Economy');
+                        case 2:
+                            return Pel::tra('Normal');
+                        case 3:
+                            return Pel::tra('Fine');
+                        case 4:
+                            return Pel::tra('RAW');
+                        case 5:
+                            return Pel::tra('Superfine');
+                        case 130:
+                            return Pel::tra('Normal Movie');
+                        case 131:
+                            return Pel::tra('Movie (2)');
+                        default:
+                            return $this->value[0];
+                    }
+                    break;
+                case PelTag::CANON_FI_RAW_JPG_SIZE:
+                    // CC (e->components, 1, v);
+                    switch ($this->value[0]) {
+                        case 0:
+                            return Pel::tra('Large');
+                        case 1:
+                            return Pel::tra('Medium');
+                        case 2:
+                            return Pel::tra('Small');
+                        case 5:
+                            return Pel::tra('Medium 1');
+                        case 6:
+                            return Pel::tra('Medium 2');
+                        case 7:
+                            return Pel::tra('Medium 3');
+                        case 8:
+                            return Pel::tra('Postcard');
+                        case 9:
+                            return Pel::tra('Widescreen');
+                        case 10:
+                            return Pel::tra('Medium Widescreen');
+                        case 14:
+                            return Pel::tra('Small 1');
+                        case 15:
+                            return Pel::tra('Small 2');
+                        case 16:
+                            return Pel::tra('Small 3');
+                        case 128:
+                            return Pel::tra('640x480 Movie');
+                        case 129:
+                            return Pel::tra('Medium Movie');
+                        case 130:
+                            return Pel::tra('Small Movie');
+                        case 137:
+                            return Pel::tra('1280x720 Movie');
+                        case 142:
+                            return Pel::tra('1920x1080 Movie');
+                        default:
+                            return $this->value[0];
+                    }
+                    break;
+                case PelTag::CANON_FI_NOISE_REDUCTION:
+                    // CC (e->components, 1, v);
+                    switch ($this->value[0]) {
+                        case 0:
+                            return Pel::tra('Off');
+                        case 1:
+                            return Pel::tra('On (1D)');
+                        case 3:
+                            return Pel::tra('On');
+                        case 4:
+                            return Pel::tra('Auto');
+                        default:
+                            return $this->value[0];
+                    }
+                    break;
+                case PelTag::CANON_FI_WB_BRACKET_MODE:
+                    // CC (e->components, 1, v);
+                    switch ($this->value[0]) {
+                        case 0:
+                            return Pel::tra('Off');
+                        case 1:
+                            return Pel::tra('On (shift AB)');
+                        case 2:
+                            return Pel::tra('On (shift GM)');
+                        default:
+                            return $this->value[0];
+                    }
+                    break;
+                case PelTag::CANON_FI_FILTER_EFFECT:
+                    // CC (e->components, 1, v);
+                    switch ($this->value[0]) {
+                        case 0:
+                            return Pel::tra('None');
+                        case 1:
+                            return Pel::tra('Yellow');
+                        case 2:
+                            return Pel::tra('Orange');
+                        case 3:
+                            return Pel::tra('Red');
+                        case 4:
+                            return Pel::tra('Green');
+                        default:
+                            return $this->value[0];
+                    }
+                    break;
+                case PelTag::CANON_FI_TONING_EFFECT:
+                    // CC (e->components, 1, v);
+                    switch ($this->value[0]) {
+                        case 0:
+                            return Pel::tra('None');
+                        case 1:
+                            return Pel::tra('Sepia');
+                        case 2:
+                            return Pel::tra('Blue');
+                        case 3:
+                            return Pel::tra('Purple');
+                        case 4:
+                            return Pel::tra('Green');
+                        default:
+                            return $this->value[0];
+                    }
+                    break;
+                case PelTag::CANON_FI_LIVE_VIEW_SHOOTING:
+                    // CC (e->components, 1, v);
+                    switch ($this->value[0]) {
+                        case 0:
+                            return Pel::tra('Off');
+                        case 1:
+                            return Pel::tra('On');
+                        default:
+                            return $this->value[0];
+                    }
+                    break;
+                case PelTag::CANON_FI_FLASH_EXPOSURE_LOCK:
+                    // CC (e->components, 1, v);
+                    switch ($this->value[0]) {
+                        case 0:
+                            return Pel::tra('Off');
+                        case 1:
+                            return Pel::tra('On');
+                        default:
+                            return $this->value[0];
+                    }
+                    break;
+                default:
+                    return $this->value[0];
+            }
+        }
         switch ($this->tag) {
             case PelTag::CANON_CS_MACRO:
                 // CC (e->components, 1, v);

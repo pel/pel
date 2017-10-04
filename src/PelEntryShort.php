@@ -184,6 +184,125 @@ class PelEntryShort extends PelEntryNumber
                         default:
                             return $this->value[0];
                     }
+                    break;
+                case PelTag::CANON_SI_SLOW_SHUTTER:
+                    // CC (e->components, 1, v);
+                    switch ($this->value[0]) {
+                        case 0:
+                            return Pel::tra('Off');
+                        case 1:
+                            return Pel::tra('Night Scene');
+                        case 2:
+                            return Pel::tra('On');
+                        case 3:
+                            return Pel::tra('None');
+                        default:
+                            return $this->value[0];
+                    }
+                    break;
+                case PelTag::CANON_SI_AF_POINT_USED:
+                    // CC (e->components, 1, v);
+                    switch ($this->value[0]) {
+                        case 0x3000:
+                            return Pel::tra('None (MF)');
+                        case 0x3001:
+                            return Pel::tra('Right');
+                        case 0x3002:
+                            return Pel::tra('Center');
+                        case 0x3003:
+                            return Pel::tra('Center+Right');
+                        case 0x3004:
+                            return Pel::tra('Left');
+                        case 0x3005:
+                            return Pel::tra('Left+Right');
+                        case 0x3006:
+                            return Pel::tra('Left+Center');
+                        case 0x3007:
+                            return Pel::tra('All');
+                        default:
+                            return $this->value[0];
+                    }
+                    break;
+                case PelTag::CANON_SI_AUTO_EXPOSURE_BRACKETING:
+                    // CC (e->components, 1, v);
+                    switch ($this->value[0]) {
+                        case -1:
+                            return Pel::tra('On');
+                        case 0:
+                            return Pel::tra('Off');
+                        case 1:
+                            return Pel::tra('On (shot 1)');
+                        case 2:
+                            return Pel::tra('On (shot 2)');
+                        case 3:
+                            return Pel::tra('On (shot 3)');
+                        default:
+                            return $this->value[0];
+                    }
+                    break;
+                case PelTag::CANON_SI_CAMERA_TYPE:
+                    // CC (e->components, 1, v);
+                    switch ($this->value[0]) {
+                        case 248:
+                            return Pel::tra('EOS High-end');
+                        case 250:
+                            return Pel::tra('Compact');
+                        case 252:
+                            return Pel::tra('EOS Mid-range');
+                        case 255:
+                            return Pel::tra('DV Camera');
+                        default:
+                            return $this->value[0];
+                    }
+                    break;
+                case PelTag::CANON_SI_AUTO_ROTATE:
+                    // CC (e->components, 1, v);
+                    switch ($this->value[0]) {
+                        case 0:
+                            return Pel::tra('None');
+                        case 1:
+                            return Pel::tra('Rotate 90 CW');
+                        case 2:
+                            return Pel::tra('Rotate 180');
+                        case 3:
+                            return Pel::tra('Rotate 270 CW');
+                        default:
+                            return $this->value[0];
+                    }
+                    break;
+                case PelTag::CANON_SI_ND_FILTER:
+                    // CC (e->components, 1, v);
+                    switch ($this->value[0]) {
+                        case 0:
+                            return Pel::tra('Off');
+                        case 1:
+                            return Pel::tra('On');
+                        default:
+                            return $this->value[0];
+                    }
+                    break;
+                default:
+                    return $this->value[0];
+            }
+        }
+        if ($this->ifd_type == PelIfd::CANON_PANORAMA) {
+            switch ($this->tag) {
+                case PelTag::CANON_PA_PANORAMA_DIRECTION:
+                    // CC (e->components, 1, v);
+                    switch ($this->value[0]) {
+                        case 0:
+                            return Pel::tra('Left to Right');
+                        case 1:
+                            return Pel::tra('Right to Left');
+                        case 2:
+                            return Pel::tra('Bottom to Top');
+                        case 3:
+                            return Pel::tra('Top to Bottom');
+                        case 4:
+                            return Pel::tra('2x2 Matrix (Clockwise)');
+                        default:
+                            return $this->value[0];
+                    }
             }
         }
         switch ($this->tag) {

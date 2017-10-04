@@ -1651,14 +1651,46 @@ class PelTag
     const CANON_SI_TARGET_APERTURE = 0x0004;
     const CANON_SI_TARGET_SHUTTER_SPEED = 0x0005;
     const CANON_SI_WHITE_BALANCE = 0x0007;
+    const CANON_SI_SLOW_SHUTTER = 0x0008;
     const CANON_SI_SEQUENCE = 0x0009;
     const CANON_SI_AF_POINT_USED = 0x000e;
     const CANON_SI_FLASH_BIAS = 0x000f;
+    const CANON_SI_AUTO_EXPOSURE_BRACKETING = 0x0010;
     const CANON_SI_SUBJECT_DISTANCE = 0x0013;
     const CANON_SI_APERTURE_VALUE = 0x0015;
     const CANON_SI_SHUTTER_SPEED_VALUE = 0x0016;
     const CANON_SI_MEASURED_EV2 = 0x0017;
     const CANON_SI_CAMERA_TYPE = 0x001a;
+    const CANON_SI_AUTO_ROTATE = 0x001b;
+    const CANON_SI_ND_FILTER = 0x001c;
+
+    const CANON_PA_PANORAMA_FRAME = 0x0002;
+    const CANON_PA_PANORAMA_DIRECTION = 0x0005;
+
+    const CANON_PI_IMAGE_WIDTH = 0x0002;
+    const CANON_PI_IMAGE_HEIGHT = 0x0003;
+    const CANON_PI_IMAGE_WIDTH_AS_SHOT = 0x0004;
+    const CANON_PI_IMAGE_HEIGHT_AS_SHOT = 0x0005;
+    const CANON_PI_AF_POINTS_USED = 0x0016;
+    const CANON_PI_AF_POINTS_USED_20D = 0x001a;
+
+    const CANON_FI_FILE_NUMBER = 0x0001;
+    const CANON_FI_BRACKET_MODE = 0x0003;
+    const CANON_FI_BRACKET_VALUE = 0x0004;
+    const CANON_FI_BRACKET_SHOT_NUMBER = 0x0005;
+    const CANON_FI_RAW_JPG_QUALITY = 0x0006;
+    const CANON_FI_RAW_JPG_SIZE = 0x0007;
+    const CANON_FI_NOISE_REDUCTION = 0x0008;
+    const CANON_FI_WB_BRACKET_MODE = 0x0009;
+    const CANON_FI_WB_BRACKET_VALUE_AB = 0x000c;
+    const CANON_FI_WB_BRACKET_VALUE_GM = 0x000d;
+    const CANON_FI_FILTER_EFFECT = 0x000e;
+    const CANON_FI_TONING_EFFECT = 0x000f;
+    const CANON_FI_MACRO_MAGNIFICATION = 0x0010;
+    const CANON_FI_LIVE_VIEW_SHOOTING = 0x0013;
+    const CANON_FI_FOCUS_DISTANCE_UPPER = 0x0014;
+    const CANON_FI_FOCUS_DISTANCE_LOWER = 0x0015;
+    const CANON_FI_FLASH_EXPOSURE_LOCK = 0x0019;
 
     /**
      * Values for tags short names.
@@ -2021,8 +2053,8 @@ class PelTag
         self::CANON_CS_AF_POINT            => 'AF Point Selected',
         self::CANON_CS_EXPOSURE_PROGRAM    => 'Exposure Mode',
         self::CANON_CS_LENS_TYPE           => 'Lens Type',
-        self::CANON_CS_LENS                => 'Long And Short Focal Length',
-        self::CANON_CS_SHORT_FOCAL         => 'Short Focal',
+        self::CANON_CS_LENS                => 'Long Focal Length',
+        self::CANON_CS_SHORT_FOCAL         => 'Short Focal Length',
         self::CANON_CS_FOCAL_UNITS         => 'Focal Units',
         self::CANON_CS_MAX_APERTURE        => 'Max Aperture',
         self::CANON_CS_MIN_APERTURE        => 'Min Aperture',
@@ -2064,8 +2096,8 @@ class PelTag
         self::CANON_CS_AF_POINT            => 'AFPointSelected',
         self::CANON_CS_EXPOSURE_PROGRAM    => 'ExposureMode',
         self::CANON_CS_LENS_TYPE           => 'LensType',
-        self::CANON_CS_LENS                => 'LongAndShortFocalLength',
-        self::CANON_CS_SHORT_FOCAL         => 'ShortFocal',
+        self::CANON_CS_LENS                => 'LongFocalLength',
+        self::CANON_CS_SHORT_FOCAL         => 'ShortFocalLength',
         self::CANON_CS_FOCAL_UNITS         => 'FocalUnits',
         self::CANON_CS_MAX_APERTURE        => 'MaxAperture',
         self::CANON_CS_MIN_APERTURE        => 'MinAperture',
@@ -2088,38 +2120,132 @@ class PelTag
      * Values for canon shot info tags titles
      */
     protected static $canonSiTagsTitle = array(
-        self::CANON_SI_ISO_SPEED            => 'ISO Speed Used',
-        self::CANON_SI_MEASURED_EV          => 'Measured EV',
-        self::CANON_SI_TARGET_APERTURE      => 'Target Aperture',
-        self::CANON_SI_TARGET_SHUTTER_SPEED => 'Target Shutter Speed',
-        self::CANON_SI_WHITE_BALANCE        => 'White Balance Setting',
-        self::CANON_SI_SEQUENCE             => 'Sequence Number',
-        self::CANON_SI_AF_POINT_USED        => 'AF Point Used',
-        self::CANON_SI_FLASH_BIAS           => 'Flash Bias',
-        self::CANON_SI_SUBJECT_DISTANCE     => 'Subject Distance',
-        self::CANON_SI_APERTURE_VALUE       => 'Aperture',
-        self::CANON_SI_SHUTTER_SPEED_VALUE  => 'Shutter Speed',
-        self::CANON_SI_MEASURED_EV2         => 'Measured EV 2',
-        self::CANON_SI_CAMERA_TYPE          => 'Camera Type'
+        self::CANON_SI_ISO_SPEED                => 'ISO Speed Used',
+        self::CANON_SI_MEASURED_EV              => 'Measured EV',
+        self::CANON_SI_TARGET_APERTURE          => 'Target Aperture',
+        self::CANON_SI_TARGET_SHUTTER_SPEED     => 'Target Shutter Speed',
+        self::CANON_SI_WHITE_BALANCE            => 'White Balance Setting',
+        self::CANON_SI_SLOW_SHUTTER             => 'Slow Shutter',
+        self::CANON_SI_SEQUENCE                 => 'Sequence Number',
+        self::CANON_SI_AF_POINT_USED            => 'AF Point Used',
+        self::CANON_SI_FLASH_BIAS               => 'Flash Bias',
+        self::CANON_SI_AUTO_EXPOSURE_BRACKETING => 'Auto Exposure Bracketing',
+        self::CANON_SI_SUBJECT_DISTANCE         => 'Subject Distance',
+        self::CANON_SI_APERTURE_VALUE           => 'Aperture',
+        self::CANON_SI_SHUTTER_SPEED_VALUE      => 'Shutter Speed',
+        self::CANON_SI_MEASURED_EV2             => 'Measured EV 2',
+        self::CANON_SI_CAMERA_TYPE              => 'Camera Type',
+        self::CANON_SI_AUTO_ROTATE              => 'Auto Rotate',
+        self::CANON_SI_ND_FILTER                => 'ND Filter'
     );
 
     /**
      * Values for canon shot info tags short names
      */
     protected static $canonSiTagsShort = array(
-        self::CANON_SI_ISO_SPEED            => 'ISOSpeedUsed',
-        self::CANON_SI_MEASURED_EV          => 'MeasuredEV',
-        self::CANON_SI_TARGET_APERTURE      => 'TargetAperture',
-        self::CANON_SI_TARGET_SHUTTER_SPEED => 'TargetShutterSpeed',
-        self::CANON_SI_WHITE_BALANCE        => 'WhiteBalanceSetting',
-        self::CANON_SI_SEQUENCE             => 'SequenceNumber',
-        self::CANON_SI_AF_POINT_USED        => 'AFPointUsed',
-        self::CANON_SI_FLASH_BIAS           => 'FlashBias',
-        self::CANON_SI_SUBJECT_DISTANCE     => 'SubjectDistance',
-        self::CANON_SI_APERTURE_VALUE       => 'Aperture',
-        self::CANON_SI_SHUTTER_SPEED_VALUE  => 'ShutterSpeed',
-        self::CANON_SI_MEASURED_EV2         => 'MeasuredEV2',
-        self::CANON_SI_CAMERA_TYPE          => 'CameraType'
+        self::CANON_SI_ISO_SPEED                => 'ISOSpeedUsed',
+        self::CANON_SI_MEASURED_EV              => 'MeasuredEV',
+        self::CANON_SI_TARGET_APERTURE          => 'TargetAperture',
+        self::CANON_SI_TARGET_SHUTTER_SPEED     => 'TargetShutterSpeed',
+        self::CANON_SI_WHITE_BALANCE            => 'WhiteBalanceSetting',
+        self::CANON_SI_SLOW_SHUTTER             => 'SlowShutter',
+        self::CANON_SI_SEQUENCE                 => 'SequenceNumber',
+        self::CANON_SI_AF_POINT_USED            => 'AFPointUsed',
+        self::CANON_SI_FLASH_BIAS               => 'FlashBias',
+        self::CANON_SI_AUTO_EXPOSURE_BRACKETING => 'AutoExposureBracketing',
+        self::CANON_SI_SUBJECT_DISTANCE         => 'SubjectDistance',
+        self::CANON_SI_APERTURE_VALUE           => 'Aperture',
+        self::CANON_SI_SHUTTER_SPEED_VALUE      => 'ShutterSpeed',
+        self::CANON_SI_MEASURED_EV2             => 'MeasuredEV2',
+        self::CANON_SI_CAMERA_TYPE              => 'CameraType',
+        self::CANON_SI_AUTO_ROTATE              => 'AutoRotate',
+        self::CANON_SI_ND_FILTER                => 'NDFilter'
+    );
+
+    /**
+     * Values for canon panorama tags titles
+     */
+    protected static $canonPaTagsTitle = array(
+        self::CANON_PA_PANORAMA_FRAME     => 'Panorama Frame',
+        self::CANON_PA_PANORAMA_DIRECTION => 'Panorama Direction'
+    );
+
+    /**
+     * Values for canon panorama tags short names
+     */
+    protected static $canonPaTagsShort = array(
+        self::CANON_PA_PANORAMA_FRAME     => 'PanoramaFrame',
+        self::CANON_PA_PANORAMA_DIRECTION => 'PanoramaDirection'
+    );
+
+    /**
+     * Values for canon picture info tags titles
+     */
+    protected static $canonPiTagsTitle = array(
+        self::CANON_PI_IMAGE_WIDTH          => 'Image Width',
+        self::CANON_PI_IMAGE_HEIGHT         => 'Image Height',
+        self::CANON_PI_IMAGE_WIDTH_AS_SHOT  => 'Image Width As Shot',
+        self::CANON_PI_IMAGE_HEIGHT_AS_SHOT => 'Image Height As Shot',
+        self::CANON_PI_AF_POINTS_USED       => 'AF Points Used',
+        self::CANON_PI_AF_POINTS_USED_20D   => 'AF Points Used (20D)'
+    );
+
+    /**
+     * Values for canon picture info tags short names
+     */
+    protected static $canonPiTagsShort = array(
+        self::CANON_PI_IMAGE_WIDTH          => 'ImageWidth',
+        self::CANON_PI_IMAGE_HEIGHT         => 'ImageHeight',
+        self::CANON_PI_IMAGE_WIDTH_AS_SHOT  => 'ImageWidthAsShot',
+        self::CANON_PI_IMAGE_HEIGHT_AS_SHOT => 'ImageHeightAsShot',
+        self::CANON_PI_AF_POINTS_USED       => 'AFPointsUsed',
+        self::CANON_PI_AF_POINTS_USED_20D   => 'AFPointsUsed(20D)'
+    );
+
+    /**
+     * Values for canon file info tags titles
+     */
+    protected static $canonFiTagsTitle = array(
+        self::CANON_FI_FILE_NUMBER          => 'File Number',
+        self::CANON_FI_BRACKET_MODE         => 'Bracket Mode',
+        self::CANON_FI_BRACKET_VALUE        => 'Bracket Value',
+        self::CANON_FI_BRACKET_SHOT_NUMBER  => 'Bracket Shot Number',
+        self::CANON_FI_RAW_JPG_QUALITY      => 'Raw Jpg Quality',
+        self::CANON_FI_RAW_JPG_SIZE         => 'Raw Jpg Size',
+        self::CANON_FI_NOISE_REDUCTION      => 'Noise Reduction',
+        self::CANON_FI_WB_BRACKET_MODE      => 'WB Bracket Mode',
+        self::CANON_FI_WB_BRACKET_VALUE_AB  => 'WB Bracket Value AB',
+        self::CANON_FI_WB_BRACKET_VALUE_GM  => 'WB Bracket Value GM',
+        self::CANON_FI_FILTER_EFFECT        => 'Filter Effect',
+        self::CANON_FI_TONING_EFFECT        => 'Toning Effect',
+        self::CANON_FI_MACRO_MAGNIFICATION  => 'Macro Magnification',
+        self::CANON_FI_LIVE_VIEW_SHOOTING   => 'Live View Shooting',
+        self::CANON_FI_FOCUS_DISTANCE_UPPER => 'Focus Distance Upper',
+        self::CANON_FI_FOCUS_DISTANCE_LOWER => 'Focus Distance Lower',
+        self::CANON_FI_FLASH_EXPOSURE_LOCK  => 'Flash Exposure Lock'
+    );
+
+    /**
+     * Values for canon file info tags short names
+     */
+    protected static $canonFiTagsShort = array(
+        self::CANON_FI_FILE_NUMBER          => 'FileNumber',
+        self::CANON_FI_BRACKET_MODE         => 'BracketMode',
+        self::CANON_FI_BRACKET_VALUE        => 'BracketValue',
+        self::CANON_FI_BRACKET_SHOT_NUMBER  => 'BracketShotNumber',
+        self::CANON_FI_RAW_JPG_QUALITY      => 'RawJpgQuality',
+        self::CANON_FI_RAW_JPG_SIZE         => 'RawJpgSize',
+        self::CANON_FI_NOISE_REDUCTION      => 'NoiseReduction',
+        self::CANON_FI_WB_BRACKET_MODE      => 'WBBracketMode',
+        self::CANON_FI_WB_BRACKET_VALUE_AB  => 'WBBracketValueAB',
+        self::CANON_FI_WB_BRACKET_VALUE_GM  => 'WBBracketValueGM',
+        self::CANON_FI_FILTER_EFFECT        => 'FilterEffect',
+        self::CANON_FI_TONING_EFFECT        => 'ToningEffect',
+        self::CANON_FI_MACRO_MAGNIFICATION  => 'MacroMagnification',
+        self::CANON_FI_LIVE_VIEW_SHOOTING   => 'LiveViewShooting',
+        self::CANON_FI_FOCUS_DISTANCE_UPPER => 'FocusDistanceUpper',
+        self::CANON_FI_FOCUS_DISTANCE_LOWER => 'FocusDistanceLower',
+        self::CANON_FI_FLASH_EXPOSURE_LOCK  => 'FlashExposureLock'
     );
 
     /**
@@ -2242,6 +2368,12 @@ class PelTag
                 return self::getValue(self::$canonCsTagsShort, $tag);
             case PelIfd::CANON_SHOT_INFO:
                 return self::getValue(self::$canonSiTagsShort, $tag);
+            case PelIfd::CANON_PANORAMA:
+                return self::getValue(self::$canonPaTagsShort, $tag);
+            case PelIfd::CANON_PICTURE_INFO:
+                return self::getValue(self::$canonPiTagsShort, $tag);
+            case PelIfd::CANON_FILE_INFO:
+                return self::getValue(self::$canonFiTagsShort, $tag);
         }
 
         return self::unknownTag($tag);
@@ -2279,6 +2411,12 @@ class PelTag
                 return self::getValue(self::$canonCsTagsTitle, $tag);
             case PelIfd::CANON_SHOT_INFO:
                 return self::getValue(self::$canonSiTagsTitle, $tag);
+            case PelIfd::CANON_PANORAMA:
+                return self::getValue(self::$canonPaTagsTitle, $tag);
+            case PelIfd::CANON_PICTURE_INFO:
+                return self::getValue(self::$canonPiTagsTitle, $tag);
+            case PelIfd::CANON_FILE_INFO:
+                return self::getValue(self::$canonFiTagsTitle, $tag);
         }
 
         return self::unknownTag($tag);

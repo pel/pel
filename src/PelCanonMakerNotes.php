@@ -125,13 +125,59 @@ class PelCanonMakerNotes extends PelMakerNotes
 
     private function parsePanorama($parent, $data, $offset, $components)
     {
+        $type = PelIfd::CANON_PANORAMA;
+        Pel::debug('Found Canon Panorama sub IFD at offset %d', $offset);
+        $size = $data->getShort($offset);
+        $offset += 2;
+        $elemSize = PelFormat::getSize(PelFormat::SHORT);
+        if ($size / $components !== $elemSize) {
+            // TODO throw
+        }
+        $panoramaIfd = new PelIfd($type);
+
+        for ($i=0; $i<$components; $i++) {
+            $panoramaIfd->loadSingleMakerNotesValue($type, $data, $offset, $size, $i, PelFormat::SHORT);
+        }
+        $parent->addSubIfd($panoramaIfd);
     }
 
     private function parsePictureInfo($parent, $data, $offset, $components)
     {
+        $type = PelIfd::CANON_PICTURE_INFO;
+        Pel::debug('Found Canon Picture Info sub IFD at offset %d', $offset);
+        $size = $data->getShort($offset);
+        $offset += 2;
+        $elemSize = PelFormat::getSize(PelFormat::SHORT);
+        if ($size / $components !== $elemSize) {
+            // TODO throw
+        }
+        $picIfd = new PelIfd($type);
+
+        for ($i=0; $i<$components; $i++) {
+            $picIfd->loadSingleMakerNotesValue($type, $data, $offset, $size, $i, PelFormat::SHORT);
+        }
+        $parent->addSubIfd($picIfd);
     }
 
     private function parseFileInfo($parent, $data, $offset, $components)
     {
+        $type = PelIfd::CANON_FILE_INFO;
+        Pel::debug('Found Canon File Info sub IFD at offset %d', $offset);
+        $size = $data->getShort($offset);
+        $offset += 2;
+        $elemSize = PelFormat::getSize(PelFormat::SSHORT);
+        if ($size === $elemSize*($components-1) + PelFormat::getSize(PelFormat::LONG)) {
+            // TODO throw
+        }
+        $fileIfd = new PelIfd($type);
+
+        for ($i=0; $i<$components; $i++) {
+            $format = PelFormat::SSHORT;
+            if ($i + 1 == PelTag::CANON_FI_FILE_NUMBER) {
+                $format = PelFormat::LONG;
+            }
+            $fileIfd->loadSingleMakerNotesValue($type, $data, $offset, $size, $i, $format);
+        }
+        $parent->addSubIfd($fileIfd);
     }
 }
