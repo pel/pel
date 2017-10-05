@@ -36,6 +36,7 @@ namespace lsolesen\pel;
  * single argument which should be one of the class constants.
  *
  * @author Vinzenz Rosenkranz <vinzenz.rosenkranz@gmail.com>
+ * @author Thanks to Benedikt Rosenkranz <beluro@web.de>
  * @license http://www.gnu.org/licenses/gpl.html GNU General Public
  *          License (GPL)
  * @package
@@ -43,6 +44,106 @@ namespace lsolesen\pel;
  */
 class PelCanonMakerNotes extends PelMakerNotes
 {
+    private $undefinedMakerNotesTags = array(
+        0x0000,
+        0x0003,
+        0x000a,
+        0x000e,
+        0x0011,
+        0x0014,
+        0x0016,
+        0x0017,
+        0x0018,
+        0x0019,
+        0x001b,
+        0x001c,
+        0x001d,
+        0x001f,
+        0x0020,
+        0x0021,
+        0x0022,
+        0x0023,
+        0x0024,
+        0x0025,
+        0x00b5,
+        0x00c0,
+        0x00c1
+    );
+
+    private $undefinedCameraSettingsTags = array(
+        0x0006,
+        0x0008,
+        0x0015,
+        0x001e,
+        0x001f,
+        0x0026,
+        0x002b,
+        0x002c,
+        0x002d
+    );
+
+    private $undefinedShotInfoTags = array(
+        0x0001,
+        0x0006,
+        0x000a,
+        0x000b,
+        0x000c,
+        0x000d,
+        0x0011,
+        0x0012,
+        0x0014,
+        0x0018,
+        0x0019,
+        0x001d,
+        0x001e,
+        0x001f,
+        0x0020,
+        0x0021,
+        0x0022
+    );
+
+    private $undefinedPanoramaTags = array(
+        0x0001,
+        0x0003,
+        0x0004
+    );
+
+    private $undefinedPicInfoTags = array(
+        0x0001,
+        0x0006,
+        0x0007,
+        0x0008,
+        0x0009,
+        0x000a,
+        0x000b,
+        0x000c,
+        0x000d,
+        0x000e,
+        0x000f,
+        0x0010,
+        0x0011,
+        0x0012,
+        0x0013,
+        0x0014,
+        0x0015,
+        0x0017,
+        0x0018,
+        0x0019,
+        0x001b,
+        0x001c
+    );
+
+    private $undefinedFileInfoTags = array(
+        0x0002,
+        0x000a,
+        0x000b,
+        0x0011,
+        0x0012,
+        0x0016,
+        0x0017,
+        0x0018
+    );
+
     public function __construct($parent, $data, $size, $offset)
     {
         parent::__construct($parent, $data, $size, $offset);
@@ -61,6 +162,10 @@ class PelCanonMakerNotes extends PelMakerNotes
             $type = $this->data->getShort($this->offset + 12 * $i + 2);
             $components = $this->data->getLong($this->offset + 12 * $i + 4);
             $data = $this->data->getLong($this->offset + 12 * $i + 8);
+            // check if tag is defined
+            if (in_array($tag, $this->undefinedMakerNotesTags)) {
+                continue;
+            }
             switch ($tag) {
                 case PelTag::CANON_CAMERA_SETTINGS:
                     $this->parseCameraSettings($mkNotesIfd, $this->data, $data, $components);
@@ -100,6 +205,10 @@ class PelCanonMakerNotes extends PelMakerNotes
         $camIfd = new PelIfd($type);
 
         for ($i=0; $i<$components; $i++) {
+            // check if tag is defined
+            if (in_array($i+1, $this->undefinedCameraSettingsTags)) {
+                continue;
+            }
             $camIfd->loadSingleMakerNotesValue($type, $data, $offset, $size, $i, PelFormat::SSHORT);
         }
         $parent->addSubIfd($camIfd);
@@ -118,6 +227,10 @@ class PelCanonMakerNotes extends PelMakerNotes
         $shotIfd = new PelIfd($type);
 
         for ($i=0; $i<$components; $i++) {
+            // check if tag is defined
+            if (in_array($i+1, $this->undefinedShotInfoTags)) {
+                continue;
+            }
             $shotIfd->loadSingleMakerNotesValue($type, $data, $offset, $size, $i, PelFormat::SHORT);
         }
         $parent->addSubIfd($shotIfd);
@@ -136,6 +249,10 @@ class PelCanonMakerNotes extends PelMakerNotes
         $panoramaIfd = new PelIfd($type);
 
         for ($i=0; $i<$components; $i++) {
+            // check if tag is defined
+            if (in_array($i+1, $this->undefinedPanoramaTags)) {
+                continue;
+            }
             $panoramaIfd->loadSingleMakerNotesValue($type, $data, $offset, $size, $i, PelFormat::SHORT);
         }
         $parent->addSubIfd($panoramaIfd);
@@ -154,6 +271,10 @@ class PelCanonMakerNotes extends PelMakerNotes
         $picIfd = new PelIfd($type);
 
         for ($i=0; $i<$components; $i++) {
+            // check if tag is defined
+            if (in_array($i+1, $this->undefinedPicInfoTags)) {
+                continue;
+            }
             $picIfd->loadSingleMakerNotesValue($type, $data, $offset, $size, $i, PelFormat::SHORT);
         }
         $parent->addSubIfd($picIfd);
@@ -172,6 +293,10 @@ class PelCanonMakerNotes extends PelMakerNotes
         $fileIfd = new PelIfd($type);
 
         for ($i=0; $i<$components; $i++) {
+            // check if tag is defined
+            if (in_array($i+1, $this->undefinedFileInfoTags)) {
+                continue;
+            }
             $format = PelFormat::SSHORT;
             if ($i + 1 == PelTag::CANON_FI_FILE_NUMBER) {
                 $format = PelFormat::LONG;

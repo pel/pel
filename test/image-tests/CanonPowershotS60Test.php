@@ -195,10 +195,7 @@ class CanonPowershotS60Test extends \PHPUnit_Framework_TestCase
         $this->assertEquals($entry->getText(), '20.7 mm');
 
         $entry = $ifd0_0->getEntry(37500); // MakerNote
-        $this->assertInstanceOf('lsolesen\pel\PelEntryUndefined', $entry);
-        $expected = "\x11\0\x01\0\x03\0\x2e\0\0\0\x80\x04\0\0\x02\0\x03\0\x04\0\0\0\xdc\x04\0\0\x03\0\x03\0\x04\0\0\0\xe4\x04\0\0\x04\0\x03\0\x22\0\0\0\xec\x04\0\0\0\0\x03\0\x06\0\0\0\x30\x05\0\0\0\0\x03\0\x04\0\0\0\x3c\x05\0\0\x12\0\x03\0\x1c\0\0\0\x44\x05\0\0\x13\0\x03\0\x04\0\0\0\x7c\x05\0\0\x06\0\x02\0\x20\0\0\0\x84\x05\0\0\x07\0\x02\0\x18\0\0\0\xa4\x05\0\0\x08\0\x04\0\x01\0\0\0\x69\x42\x0f\0\x09\0\x02\0\x20\0\0\0\xbc\x05\0\0\x10\0\x04\0\x01\0\0\0\0\0\x39\x01\0\0\x03\0\x05\0\0\0\xdc\x05\0\0\x18\0\x01\0\0\x01\0\0\xe6\x05\0\0\x19\0\x03\0\x01\0\0\0\x01\0\0\0\x0d\0\x03\0\x24\0\0\0\xe6\x06\0\0\0\0\0\0\x5c\0\x02\0\0\0\x02\0\0\0\0\0\0\0\x04\0\0\0\x01\0\x02\0\0\0\0\0\0\0\0\0\0\0\x0f\0\x03\0\x01\0\x01\x40\0\0\xff\x7f\xff\xff\x96\x02\xba\0\x20\0\x9d\0\xc0\0\xff\xff\0\0\0\0\0\0\0\0\0\0\xff\xff\x35\0\x20\x0a\x20\x0a\0\0\0\0\0\0\0\0\xff\x7f\xff\x7f\0\0\0\0\x02\0\x96\x02\x22\x01\xd9\0\0\0\0\0\0\0\0\0\x44\0\x20\0\x80\0\x36\0\x9a\0\x60\0\0\0\0\0\0\0\0\0\x08\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\x01\0\x6a\0\0\0\x9d\0\x60\0\0\0\0\0\x01\0\xfa\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\x09\0\x09\0\x80\x02\xe0\x01\x20\x0a\xd8\0\xd3\x01\x27\0\x2c\xfe\0\0\xd4\x01\x2c\xfe\0\0\xd4\x01\x2c\xfe\0\0\xd4\x01\xd6\xff\xd6\xff\xd6\xff\0\0\0\0\0\0\x2a\0\x2a\0\x2a\0\x20\0\x05\0\0\0\0\0\0\0\0\0\x49\x4d\x47\x3a\x50\x6f\x77\x65\x72\x53\x68\x6f\x74\x20\x53\x36\x30\x20\x4a\x50\x45\x47\0\0\0\0\0\0\0\0\0\0\x46\x69\x72\x6d\x77\x61\x72\x65\x20\x56\x65\x72\x73\x69\x6f\x6e\x20\x31\x2e\x30\x30\0\0\0\0\x51\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\x0a\0\x02\0\x02\0\x80\x02\xe0\x01\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\x48\0\x09\0\x7f\x02\x7c\x02\x7c\x02\x7d\x02\x7a\x02\x80\x02\x7c\x02\x81\x02\x7a\x02\x44\0\0\0\0\0\x58\xff\x02\0\0\0\x0a\0\xfe\xff\0\0\x0a\0\x74\0\xc7\0\x25\0\x01\0\xdc\x03\0\0\0\0\0\0\0\0\0\0\x2a\0\0\0\0\0\x80\0\xe0\0\x49\x49\x2a\0\xae\x03\0\0";
-        $this->assertEquals($entry->getValue(), $expected);
-        $this->assertEquals($entry->getText(), '904 bytes unknown MakerNote data');
+        $this->assertNull($entry);
 
         $entry = $ifd0_0->getEntry(37510); // UserComment
         $this->assertInstanceOf('lsolesen\pel\PelEntryUserComment', $entry);
@@ -287,7 +284,7 @@ class CanonPowershotS60Test extends \PHPUnit_Framework_TestCase
         $this->assertEquals($entry->getText(), 'Standard');
 
         /* Sub IFDs of $ifd0_0. */
-        $this->assertEquals(count($ifd0_0->getSubIfds()), 1);
+        $this->assertEquals(count($ifd0_0->getSubIfds()), 2);
         $ifd0_0_0 = $ifd0_0->getSubIfd(4); // IFD Interoperability
         $this->assertInstanceOf('lsolesen\pel\PelIfd', $ifd0_0_0);
 
@@ -377,6 +374,37 @@ class CanonPowershotS60Test extends \PHPUnit_Framework_TestCase
         $ifd2 = $ifd1->getNextIfd();
         $this->assertNull($ifd2);
         /* End of IFD $ifd1. */
+
+        /* Start of IDF $ifd0_mn  */
+        $ifd0_mn = $ifd0_0->getSubIfd(5); // IFD MakerNotes
+        $this->assertInstanceOf('lsolesen\pel\PelIfd', $ifd0_mn);
+
+        $entry = $ifd0_mn->getEntry(6); // ImageType
+        $this->assertInstanceOf('lsolesen\pel\PelEntryAscii', $entry);
+        $this->assertEquals($entry->getValue(), 'IMG:PowerShot S60 JPEG');
+
+        $entry = $ifd0_mn->getEntry(7); // FirmwareVersion
+        $this->assertInstanceOf('lsolesen\pel\PelEntryAscii', $entry);
+        $this->assertEquals($entry->getValue(), 'Firmware Version 1.00');
+
+        $entry = $ifd0_mn->getEntry(8); // FileNumber
+        $this->assertInstanceOf('lsolesen\pel\PelEntryLong', $entry);
+        $this->assertEquals($entry->getValue(), '1000041');
+
+        /* Start of IDF $ifd0_mn_cs. */
+        $ifd0_mn_cs = $ifd0_mn->getSubIfd(6); // CameraSettings
+        $this->assertInstanceOf('lsolesen\pel\PelIfd', $ifd0_mn_cs);
+        $this->assertEquals(count($ifd0_mn_cs->getEntries()), 37);
+
+        $entry = $ifd0_mn_cs->getEntry(1); // MacroMode
+        $this->assertInstanceOf('lsolesen\pel\PelEntrySShort', $entry);
+        $this->assertEquals($entry->getValue(), '2');
+        $this->assertEquals($entry->getText(), 'Normal');
+
+        $entry = $ifd0_mn_cs->getEntry(9); // RecordMode
+        $this->assertInstanceOf('lsolesen\pel\PelEntrySShort', $entry);
+        $this->assertEquals($entry->getValue(), '1');
+        $this->assertEquals($entry->getText(), 'JPEG');
 
         $this->assertTrue(count(Pel::getExceptions()) == 0);
     }
