@@ -1483,6 +1483,15 @@ class PelTag
     const CANON_SUPER_MACRO = 0x001a;
 
     /**
+     * Canon firmware revision.
+     *
+     * Format: {@link PelFormat::LONG}.
+     *
+     * Components: Any.
+     */
+    const CANON_FIRMWARE_REVISION = 0x001e;
+
+    /**
      * Canon af info.
      *
      * Format: {@link PelFormat::SHORT}.
@@ -1980,6 +1989,7 @@ class PelTag
         self::CANON_THUMBNAIL_IMAGE_VALID_AREA    => 'Thumbnail Image Valid Area',
         self::CANON_SERIAL_NUMBER_FORMAT          => 'Serial number format',
         self::CANON_SUPER_MACRO                   => 'Super macro',
+        self::CANON_FIRMWARE_REVISION             => 'Firmware Revision',
         self::CANON_AF_INFO                       => 'AF info',
         self::CANON_ORIGINAL_DECISION_DATA_OFFSET => 'Original decision data offset',
         self::CANON_WHITE_BALANCE_TABLE           => 'White balance table',
@@ -2015,6 +2025,7 @@ class PelTag
         self::CANON_THUMBNAIL_IMAGE_VALID_AREA    => 'ThumbnailImageValidArea',
         self::CANON_SERIAL_NUMBER_FORMAT          => 'Serial Number Format',
         self::CANON_SUPER_MACRO                   => 'SuperMacro',
+        self::CANON_FIRMWARE_REVISION             => 'FirmwareRevision',
         self::CANON_AF_INFO                       => 'AFinfo',
         self::CANON_ORIGINAL_DECISION_DATA_OFFSET => 'OriginalDecision Data Offset',
         self::CANON_WHITE_BALANCE_TABLE           => 'WhiteBalanceTable',

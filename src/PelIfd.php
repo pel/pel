@@ -956,6 +956,7 @@ class PelIfd implements \IteratorAggregate, \ArrayAccess
                     PelTag::CANON_THUMBNAIL_IMAGE_VALID_AREA,
                     PelTag::CANON_SERIAL_NUMBER_FORMAT,
                     PelTag::CANON_SUPER_MACRO,
+                    PelTag::CANON_FIRMWARE_REVISION,
                     PelTag::CANON_AF_INFO,
                     PelTag::CANON_ORIGINAL_DECISION_DATA_OFFSET,
                     PelTag::CANON_WHITE_BALANCE_TABLE,
