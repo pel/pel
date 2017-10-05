@@ -1102,19 +1102,13 @@ class PelIfd implements \IteratorAggregate, \ArrayAccess
             case self::INTEROPERABILITY:
                 return 'Interoperability';
             case self::CANON_MAKER_NOTES:
-                return 'Canon MakerNotes';
             case self::CANON_CAMERA_SETTINGS:
-                return 'Canon CameraSettings';
             case self::CANON_SHOT_INFO:
-                return 'Canon Shot Info';
             case self::CANON_PANORAMA:
-                return 'Canon Panorama';
             case self::CANON_PICTURE_INFO:
-                return 'Canon Picture Info';
             case self::CANON_FILE_INFO:
-                return 'Canon File Info';
             case self::CANON_CUSTOM_FUNCTIONS:
-                return 'Canon Custom Functions';
+                return 'MakerNotes';
             default:
                 throw new PelIfdException('Unknown IFD type: %d', $type);
         }
