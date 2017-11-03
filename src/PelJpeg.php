@@ -374,9 +374,12 @@ class PelJpeg
      */
     public function getExif()
     {
-        $exif = $this->getSection(PelJpegMarker::APP1);
-        if ($exif instanceof PelExif) {
-            return $exif;
+        $sections_count = count($this->sections);
+        for ($i = 0; $i < $sections_count; $i ++) {
+            $section = $this->getSection(PelJpegMarker::APP1, $i);
+            if ($section instanceof PelExif) {
+                return $section;
+            }
         }
         return null;
     }
@@ -408,7 +411,8 @@ class PelJpeg
     {
         $sections_count = count($this->sections);
         for ($i = 0; $i < $sections_count; $i ++) {
-            if ($this->sections[$i][0] == PelJpegMarker::APP1) {
+            $section = $this->sections[$i][0];
+            if (($section == PelJpegMarker::APP1) && ($section instanceof PelExif)) {
                 unset($this->sections[$i]);
                 return;
             }
