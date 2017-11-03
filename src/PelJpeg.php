@@ -404,17 +404,17 @@ class PelJpeg
     /**
      * Clear any Exif data.
      *
-     * This method will only clear the first @{link PelJpegMarker::APP1}
-     * section found (there should normally be just one).
+     * This method will only clear @{link PelJpegMarker::APP1} EXIF sections found.
      */
     public function clearExif()
     {
         $sections_count = count($this->sections);
         for ($i = 0; $i < $sections_count; $i ++) {
-            $section = $this->sections[$i][0];
-            if (($section == PelJpegMarker::APP1) && ($section instanceof PelExif)) {
+            $s = $this->sections[$i];
+            if (($s[0] == PelJpegMarker::APP1) && ($s[1] instanceof PelExif)) {
                 unset($this->sections[$i]);
-                return;
+                $i--;
+                $sections_count--;
             }
         }
     }
