@@ -408,14 +408,15 @@ class PelJpeg
      */
     public function clearExif()
     {
-        $sections_count = count($this->sections);
-        for ($i = 0; $i < $sections_count; $i ++) {
-            $s = $this->sections[$i];
-            if (($s[0] == PelJpegMarker::APP1) && ($s[1] instanceof PelExif)) {
-                unset($this->sections[$i]);
-                $i--;
-                $sections_count--;
-            }
+        $idx = 0;
+        while($idx < count($this->sections)) {
+	        $s = $this->sections[$idx];
+	        if (($s[0] == PelJpegMarker::APP1) && ($s[1] instanceof PelExif)) {
+		        array_splice($this->sections, $idx, 1);
+		        $idx--;
+	        } else {
+		        ++ $idx;
+	        }
         }
     }
 
