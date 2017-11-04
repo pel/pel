@@ -304,7 +304,7 @@ class PelJpeg
         $sections_count = count($this->sections);
         for ($i = 0; $i < $sections_count; $i ++) {
             if (! empty($this->sections[$i][0])) {
-            	$section = $this->sections[$i];
+                $section = $this->sections[$i];
                 if ($section[0] == PelJpegMarker::APP0) {
                     $app0_offset = $i;
                 } elseif (($section[0] == PelJpegMarker::APP1) && ($section[1] instanceof PelExif)) {
