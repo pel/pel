@@ -410,6 +410,15 @@ class PelTag
     const RATING = 0x4746;
 
     /**
+     * Rating percent
+     *
+     * Format: {@link PelFormat::SHORT}
+     *
+     * Components: 1.
+     */
+    const RATING_PERCENT = 0x4749;
+
+    /**
      * CFA Repeat Pattern Dim.
      *
      * Format: {@link PelFormat::SHORT}.
@@ -556,6 +565,33 @@ class PelTag
      * Components: 20.
      */
     const DATE_TIME_DIGITIZED = 0x9004;
+
+    /**
+     * Offset time (timezone) of file change time.
+     *
+     * Format: {@link PelFormat::ASCII}
+     *
+     * Components: 7.
+     */
+    const OFFSET_TIME = 0x9010;
+
+    /**
+     * Offset time (timezone) of original data generation.
+     *
+     * Format: {@link PelFormat::ASCII}
+     *
+     * Components: 7.
+     */
+    const OFFSET_TIME_ORIGINAL = 0x9011;
+
+    /**
+     * Offset time (timezone) of digital data generation.
+     *
+     * Format: {@link PelFormat::ASCII}
+     *
+     * Components: 7.
+     */
+    const OFFSET_TIME_DIGITIZED = 0x9012;
 
     /**
      * Meaning of each component.
@@ -1381,6 +1417,7 @@ class PelTag
         self::RELATED_IMAGE_WIDTH            => 'RelatedImageWidth',
         self::RELATED_IMAGE_LENGTH           => 'RelatedImageLength',
         self::RATING                         => 'Rating',
+        self::RATING_PERCENT                 => 'RatingPercent',
         self::CFA_REPEAT_PATTERN_DIM         => 'CFARepeatPatternDim',
         self::CFA_PATTERN                    => 'CFAPattern',
         self::BATTERY_LEVEL                  => 'BatteryLevel',
@@ -1398,6 +1435,9 @@ class PelTag
         self::EXIF_VERSION                   => 'ExifVersion',
         self::DATE_TIME_ORIGINAL             => 'DateTimeOriginal',
         self::DATE_TIME_DIGITIZED            => 'DateTimeDigitized',
+        self::OFFSET_TIME                    => 'OffsetTime',
+        self::OFFSET_TIME_ORIGINAL           => 'OffsetTimeOriginal',
+        self::OFFSET_TIME_DIGITIZED          => 'OffsetTimeDigitized',
         self::COMPONENTS_CONFIGURATION       => 'ComponentsConfiguration',
         self::COMPRESSED_BITS_PER_PIXEL      => 'CompressedBitsPerPixel',
         self::SHUTTER_SPEED_VALUE            => 'ShutterSpeedValue',
@@ -1496,6 +1536,8 @@ class PelTag
         self::RELATED_IMAGE_FILE_FORMAT      => 'Related Image File Format',
         self::RELATED_IMAGE_WIDTH            => 'Related Image Width',
         self::RELATED_IMAGE_LENGTH           => 'Related Image Length',
+        self::RATING                         => 'Star Rating',
+        self::RATING_PERCENT                 => 'Percent Rating',
         self::CFA_REPEAT_PATTERN_DIM         => 'CFA Repeat Pattern Dim',
         self::CFA_PATTERN                    => 'CFA Pattern',
         self::BATTERY_LEVEL                  => 'Battery Level',
@@ -1513,6 +1555,9 @@ class PelTag
         self::EXIF_VERSION                   => 'Exif Version',
         self::DATE_TIME_ORIGINAL             => 'Date and Time (original)',
         self::DATE_TIME_DIGITIZED            => 'Date and Time (digitized)',
+        self::OFFSET_TIME                    => 'Timezone',
+        self::OFFSET_TIME_ORIGINAL           => 'Timezone (original)',
+        self::OFFSET_TIME_DIGITIZED          => 'Timezone (digitized)',
         self::COMPONENTS_CONFIGURATION       => 'Components Configuration',
         self::COMPRESSED_BITS_PER_PIXEL      => 'Compressed Bits per Pixel',
         self::SHUTTER_SPEED_VALUE            => 'Shutter speed',
