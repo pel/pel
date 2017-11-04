@@ -636,7 +636,8 @@ class PelIfd implements \IteratorAggregate, \ArrayAccess
                     PelTag::XP_AUTHOR,
                     PelTag::XP_KEYWORDS,
                     PelTag::XP_SUBJECT,
-                    PelTag::RATING
+                    PelTag::RATING,
+                    PelTag::RATING_PERCENT
                 );
 
             case PelIfd::EXIF:
@@ -650,6 +651,9 @@ class PelIfd implements \IteratorAggregate, \ArrayAccess
                     PelTag::EXIF_VERSION,
                     PelTag::DATE_TIME_ORIGINAL,
                     PelTag::DATE_TIME_DIGITIZED,
+                    PelTag::OFFSET_TIME,
+                    PelTag::OFFSET_TIME_ORIGINAL,
+                    PelTag::OFFSET_TIME_DIGITIZED,
                     PelTag::COMPONENTS_CONFIGURATION,
                     PelTag::COMPRESSED_BITS_PER_PIXEL,
                     PelTag::SHUTTER_SPEED_VALUE,
