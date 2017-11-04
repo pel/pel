@@ -304,9 +304,10 @@ class PelJpeg
         $sections_count = count($this->sections);
         for ($i = 0; $i < $sections_count; $i ++) {
             if (! empty($this->sections[$i][0])) {
-                if ($this->sections[$i][0] == PelJpegMarker::APP0) {
+            	$section = $this->sections[$i];
+                if ($section[0] == PelJpegMarker::APP0) {
                     $app0_offset = $i;
-                } elseif ($this->sections[$i][0] == PelJpegMarker::APP1) {
+                } elseif (($section[0] == PelJpegMarker::APP1) && ($section[1] instanceof PelExif)) {
                     $app1_offset = $i;
                     break;
                 }
@@ -365,7 +366,7 @@ class PelJpeg
     }
 
     /**
-     * Get Exif data.
+     * Get first valid APP1 Exif section data.
      *
      * Use this to get the @{link PelExif Exif data} stored.
      *
