@@ -1,4 +1,8 @@
 build:
   environment:
     php:
-      version: 5.6.9 # Common versions: 5.4, 5.5, 5.6, 7.0 or hhvm
+      version: 7.0 # Common versions: 5.4, 5.5, 5.6, 7.0 or hhvm
+checks:
+    php:
+        code_rating: true
+        duplication: true
