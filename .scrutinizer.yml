@@ -1,4 +1,16 @@
 build:
   environment:
+    php: '7.1'
+    
+  tests:
+    override:
+      -
+        command: ./vendor/bin/phpunit --coverage-clover build/logs/clover.xml ./test
+        coverage:
+          file: build/logs/clover.xml
+          format: clover
+
+checks:
     php:
-      version: 5.6.9 # Common versions: 5.4, 5.5, 5.6, 7.0 or hhvm
+        code_rating: true
+        duplication: true
