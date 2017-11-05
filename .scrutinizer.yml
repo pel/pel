@@ -1,16 +1,19 @@
-build:
-  environment:
-    php:
-      version: 7.0.7
-tests:
-        override:
-            -
-                command: 'vendor/bin/phpunit --coverage-clover=clover.file'
-                coverage:
-                    file: 'clover.file'
-                    format: 'clover'
-
+environment:
+  php: '7.1'
+    postgresql: false
+    mongodb: false
+    redis: false
+    memcached: true
+    neo4j: false
+    rabbitmq: false
+        
 checks:
-    php:
-        code_rating: true
-        duplication: true
+  php: true
+    
+filter:
+  excluded_paths:
+    - test/*
+        
+tests:
+  override:
+    - phpcs-run --runtime-set ignore_warnings_on_exit 1 --standard=psr2 src
