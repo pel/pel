@@ -1,11 +1,5 @@
 environment:
   php: '7.1'
-    postgresql: false
-    mongodb: false
-    redis: false
-    memcached: true
-    neo4j: false
-    rabbitmq: false
         
 checks:
   php: true
@@ -16,4 +10,8 @@ filter:
         
 tests:
   override:
-    - phpcs-run --runtime-set ignore_warnings_on_exit 1 --standard=psr2 src
+    -
+      command: - ./vendor/bin/phpunit --coverage-clover build/logs/clover.xml ./test
+      coverage:
+        file: build/logs/clover.xml
+        format: php-clover
