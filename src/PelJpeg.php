@@ -78,7 +78,7 @@ class PelJpeg
      *
      * @var array
      */
-    private $sections = array();
+    protected $sections = array();
 
     /**
      * The JPEG image data.
