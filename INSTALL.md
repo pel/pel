@@ -28,16 +28,16 @@ For a system-wide installation via Composer, you can run:
 
 You can also use git to install it using:
 
-  git clone git://github.com/lsolesen/pel.git
+  git clone git://github.com/pel/pel.git
   git checkout <tag name>
 
 Finally, you can install PEL by extracting it to a local directory. You can find
-the compressed files here: https://github.com/lsolesen/pel/downloads.
+the compressed files here: https://github.com/pel/pel/downloads.
 
 Make sure that you extract the files to a path included in your include path:
 You can set the include path using.
 
-  set_include_path('/path/to/pel' . PATH_SEPARATOR . get_include_path());
+    set_include_path('/path/to/pel' . PATH_SEPARATOR . get_include_path());
 
 
 ## Upgrading
@@ -87,7 +87,7 @@ If you find a bug in PEL then please send a report back so that it can
 be fixed in the next version.  You can submit your bugs and other
 requests here:
 
-  http://github.com/lsolesen/pel/issues
+  http://github.com/pel/pel/issues
 
 If you change the code (to fix bugs or to implement enhancements), it
 is highly recommended that you test your changes against known good
