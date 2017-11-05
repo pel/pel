@@ -2,6 +2,14 @@ build:
   environment:
     php:
       version: 7.0.7
+tests:
+        override:
+            -
+                command: 'vendor/bin/phpunit --coverage-clover=clover.file'
+                coverage:
+                    file: 'clover.file'
+                    format: 'clover'
+
 checks:
     php:
         code_rating: true
