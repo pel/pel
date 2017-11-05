@@ -1,5 +1,6 @@
-environment:
-  php: '7.1'
+build:
+  environment:
+    php: '7.1'
         
 checks:
   php: true
