@@ -1,18 +1,11 @@
 build:
   environment:
     php: '7.1'
-        
-checks:
-  php: true
     
-filter:
-  excluded_paths:
-    - test/*
-        
-tests:
-  override:
-    -
-      command: - ./vendor/bin/phpunit --coverage-clover build/logs/clover.xml ./test
-      coverage:
-        file: build/logs/clover.xml
-        format: php-clover
+  tests:
+    override:
+      -
+        command: - ./vendor/bin/phpunit --coverage-clover build/logs/clover.xml ./test
+        coverage:
+          file: build/logs/clover.xml
+          format: php-clover
