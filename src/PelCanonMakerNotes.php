@@ -65,9 +65,26 @@ class PelCanonMakerNotes extends PelMakerNotes
         0x0023,
         0x0024,
         0x0025,
+        0x0031,
+        0x0035,
+        0x0098,
+        0x009a,
         0x00b5,
         0x00c0,
-        0x00c1
+        0x00c1,
+        0x4008,
+        0x4009,
+        0x4010,
+        0x4011,
+        0x4012,
+        0x4013,
+        0x4015,
+        0x4016,
+        0x4018,
+        0x4019,
+        0x4020,
+        0x4025,
+        0x4027
     );
 
     private $undefinedCameraSettingsTags = array(
@@ -79,7 +96,10 @@ class PelCanonMakerNotes extends PelMakerNotes
         0x0026,
         0x002b,
         0x002c,
-        0x002d
+        0x002d,
+        0x002f,
+        0x0030,
+        0x0031
     );
 
     private $undefinedShotInfoTags = array(
@@ -141,7 +161,14 @@ class PelCanonMakerNotes extends PelMakerNotes
         0x0012,
         0x0016,
         0x0017,
-        0x0018
+        0x0018,
+        0x001a,
+        0x001b,
+        0x001c,
+        0x001d,
+        0x001e,
+        0x001f,
+        0x0020
     );
 
     public function __construct($parent, $data, $size, $offset)
