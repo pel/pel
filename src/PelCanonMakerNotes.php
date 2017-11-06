@@ -177,7 +177,7 @@ class PelCanonMakerNotes extends PelMakerNotes
                     $this->parsePanorama($mkNotesIfd, $this->data, $data, $components);
                     break;
                 case PelTag::CANON_PICTURE_INFO:
-                    $this->parsePictureInfo($mkNotesIfd, $this->data, $data, $components);
+                    // $this->parsePictureInfo($mkNotesIfd, $this->data, $data, $components);
                     break;
                 case PelTag::CANON_FILE_INFO:
                     $this->parseFileInfo($mkNotesIfd, $this->data, $data, $components);
@@ -200,7 +200,7 @@ class PelCanonMakerNotes extends PelMakerNotes
         $offset += 2;
         $elemSize = PelFormat::getSize(PelFormat::SSHORT);
         if ($size / $components !== $elemSize) {
-            // TODO throw
+            throw new PelMakerNotesMalformedException('Size of Canon Camera Settings does not match the number of entries.');
         }
         $camIfd = new PelIfd($type);
 
@@ -217,12 +217,12 @@ class PelCanonMakerNotes extends PelMakerNotes
     private function parseShotInfo($parent, $data, $offset, $components)
     {
         $type = PelIfd::CANON_SHOT_INFO;
-        Pel::debug('Found Canon Camera Settings sub IFD at offset %d', $offset);
+        Pel::debug('Found Canon Shot Info sub IFD at offset %d', $offset);
         $size = $data->getShort($offset);
         $offset += 2;
         $elemSize = PelFormat::getSize(PelFormat::SHORT);
         if ($size / $components !== $elemSize) {
-            // TODO throw
+            throw new PelMakerNotesMalformedException('Size of Canon Shot Info does not match the number of entries.');
         }
         $shotIfd = new PelIfd($type);
 
@@ -244,7 +244,7 @@ class PelCanonMakerNotes extends PelMakerNotes
         $offset += 2;
         $elemSize = PelFormat::getSize(PelFormat::SHORT);
         if ($size / $components !== $elemSize) {
-            // TODO throw
+            throw new PelMakerNotesMalformedException('Size of Canon Panorama does not match the number of entries.');
         }
         $panoramaIfd = new PelIfd($type);
 
@@ -266,12 +266,13 @@ class PelCanonMakerNotes extends PelMakerNotes
         $offset += 2;
         $elemSize = PelFormat::getSize(PelFormat::SHORT);
         if ($size / $components !== $elemSize) {
-            // TODO throw
+            throw new PelMakerNotesMalformedException('Size of Canon Picture Info does not match the number of entries. ' . $size . '/' . $components . ' = ' . $elemSize);
         }
         $picIfd = new PelIfd($type);
 
         for ($i=0; $i<$components; $i++) {
             // check if tag is defined
+            printf("Current Tag: %d\n", ($i+1));
             if (in_array($i+1, $this->undefinedPicInfoTags)) {
                 continue;
             }
@@ -288,7 +289,7 @@ class PelCanonMakerNotes extends PelMakerNotes
         $offset += 2;
         $elemSize = PelFormat::getSize(PelFormat::SSHORT);
         if ($size === $elemSize*($components-1) + PelFormat::getSize(PelFormat::LONG)) {
-            // TODO throw
+            throw new PelMakerNotesMalformedException('Size of Canon File Info does not match the number of entries.');
         }
         $fileIfd = new PelIfd($type);
 
