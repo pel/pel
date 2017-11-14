@@ -33,6 +33,7 @@ class Bug1730993Test extends \PHPUnit_Framework_TestCase
         $bigfile = dirname(__FILE__) . '/images/bug1730993_large.jpg';
 
         try {
+            require_once 'PelJpeg.php';
             $jpeg = new PelJpeg($tmpfile); // the error occurs here
             $exif = $jpeg->getExif();
             if ($exif !== null) {
