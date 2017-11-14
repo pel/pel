@@ -31,7 +31,6 @@ class Bug2979466Test extends \PHPUnit_Framework_TestCase
         $file = dirname(__FILE__) . '/images/bug2979466.jpg';
 
         try {
-            require_once 'PelJpeg.php';
             $jpeg = new PelJpeg($file);
         } catch (Exception $e) {
             $this->fail('Test should not throw an exception');
