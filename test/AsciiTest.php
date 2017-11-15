@@ -34,11 +34,11 @@ class AsciiTest extends TestCase
     function testConstructorWithNoValues()
     {
         if (version_compare(PHP_VERSION, '7.1.0') >= 0) {
-            $this->markTestSkipped('Test does not run on PHP 7.1.0+');
+            $this->expectException(\ArgumentCountError::class);
         } else {
             $this->expectException(PHPUnit_Framework_Exception::class);
-            $entry = new PelEntryAscii();
         }
+        $entry = new PelEntryAscii();
     }
 
     function testReturnValues()
@@ -53,21 +53,21 @@ class AsciiTest extends TestCase
     function testTimeWithNoConstructorArgument()
     {
         if (version_compare(PHP_VERSION, '7.1.0') >= 0) {
-            $this->markTestSkipped('Test does not run on PHP 7.1.0+');
+            $this->expectException(\ArgumentCountError::class);
         } else {
             $this->expectException(PHPUnit_Framework_Exception::class);
-            $entry = new PelEntryTime();
         }
+        $entry = new PelEntryTime();
     }
 
-    function testTimeWithNoOneConstructorArgument()
+    function testTimeWithOnlyOneConstructorArgument()
     {
         if (version_compare(PHP_VERSION, '7.1.0') >= 0) {
-            $this->markTestSkipped('Test does not run on PHP 7.1.0+');
+            $this->expectException(\ArgumentCountError::class);
         } else {
             $this->expectException(PHPUnit_Framework_Exception::class);
-            $entry = new PelEntryTime(42);
         }
+        $entry = new PelEntryTime(42);
     }
 
     function testTime()
