@@ -176,7 +176,7 @@ class PelIfd implements \IteratorAggregate, \ArrayAccess
      *            (internal) the parent IFD type to avoid recursion on IFDs
      *            of the same type. Defaults to NULL.
      */
-    public function load(PelDataWindow $d, $offset, $parentIfdType = NULL)
+    public function load(PelDataWindow $d, $offset, $parentIfdType = null)
     {
         $thumb_offset = 0;
         $thumb_length = 0;
