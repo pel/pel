@@ -22,16 +22,16 @@
  * Boston, MA 02110-1301 USA
  */
 
-use lsolesen\pel\Pel;
-use lsolesen\pel\PelJpeg;
+use \lsolesen\pel\Pel;
+use \lsolesen\pel\PelJpeg;
 
-class CanonPowershotS60Test extends \PHPUnit_Framework_TestCase
+class CanonEos650dTest extends \PHPUnit_Framework_TestCase
 {
     public function testRead()
     {
         Pel::clearExceptions();
         Pel::setStrictParsing(false);
-        $jpeg = new PelJpeg(dirname(__FILE__) . '/canon-powershot-s60.jpg');
+        $jpeg = new PelJpeg(dirname(__FILE__) . '/canon-eos-650d.jpg');
 
         $exif = $jpeg->getExif();
         $this->assertInstanceOf('lsolesen\pel\PelExif', $exif);
@@ -44,7 +44,7 @@ class CanonPowershotS60Test extends \PHPUnit_Framework_TestCase
         $this->assertInstanceOf('lsolesen\pel\PelIfd', $ifd0);
 
         /* Start of IDF $ifd0. */
-        $this->assertEquals(count($ifd0->getEntries()), 8);
+        $this->assertEquals(count($ifd0->getEntries()), 9);
 
         $entry = $ifd0->getEntry(271); // Make
         $this->assertInstanceOf('lsolesen\pel\PelEntryAscii', $entry);
@@ -53,8 +53,8 @@ class CanonPowershotS60Test extends \PHPUnit_Framework_TestCase
 
         $entry = $ifd0->getEntry(272); // Model
         $this->assertInstanceOf('lsolesen\pel\PelEntryAscii', $entry);
-        $this->assertEquals($entry->getValue(), 'Canon PowerShot S60');
-        $this->assertEquals($entry->getText(), 'Canon PowerShot S60');
+        $this->assertEquals($entry->getValue(), 'Canon EOS 650D');
+        $this->assertEquals($entry->getText(), 'Canon EOS 650D');
 
         $entry = $ifd0->getEntry(274); // Orientation
         $this->assertInstanceOf('lsolesen\pel\PelEntryShort', $entry);
@@ -64,18 +64,18 @@ class CanonPowershotS60Test extends \PHPUnit_Framework_TestCase
         $entry = $ifd0->getEntry(282); // XResolution
         $this->assertInstanceOf('lsolesen\pel\PelEntryRational', $entry);
         $this->assertEquals($entry->getValue(), array(
-            0 => 180,
+            0 => 72,
             1 => 1
         ));
-        $this->assertEquals($entry->getText(), '180/1');
+        $this->assertEquals($entry->getText(), '72/1');
 
         $entry = $ifd0->getEntry(283); // YResolution
         $this->assertInstanceOf('lsolesen\pel\PelEntryRational', $entry);
         $this->assertEquals($entry->getValue(), array(
-            0 => 180,
+            0 => 72,
             1 => 1
         ));
-        $this->assertEquals($entry->getText(), '180/1');
+        $this->assertEquals($entry->getText(), '72/1');
 
         $entry = $ifd0->getEntry(296); // ResolutionUnit
         $this->assertInstanceOf('lsolesen\pel\PelEntryShort', $entry);
@@ -84,16 +84,11 @@ class CanonPowershotS60Test extends \PHPUnit_Framework_TestCase
 
         $entry = $ifd0->getEntry(306); // DateTime
         $this->assertInstanceOf('lsolesen\pel\PelEntryTime', $entry);
-        $this->assertEquals($entry->getValue(), 1097316018);
-        $this->assertEquals($entry->getText(), '2004:10:09 10:00:18');
-
-        $entry = $ifd0->getEntry(531); // YCbCrPositioning
-        $this->assertInstanceOf('lsolesen\pel\PelEntryShort', $entry);
-        $this->assertEquals($entry->getValue(), 1);
-        $this->assertEquals($entry->getText(), 'centered');
+        $this->assertEquals($entry->getValue(), 1509974253);
+        $this->assertEquals($entry->getText(), '2017:11:06 13:17:33');
 
         /* Sub IFDs of $ifd0. */
-        $this->assertEquals(count($ifd0->getSubIfds()), 1);
+        $this->assertEquals(count($ifd0->getSubIfds()), 2);
         $ifd0_0 = $ifd0->getSubIfd(2); // IFD Exif
         $this->assertInstanceOf('lsolesen\pel\PelIfd', $ifd0_0);
 
@@ -104,77 +99,53 @@ class CanonPowershotS60Test extends \PHPUnit_Framework_TestCase
         $this->assertInstanceOf('lsolesen\pel\PelEntryRational', $entry);
         $this->assertEquals($entry->getValue(), array(
             0 => 1,
-            1 => 8
+            1 => 800
         ));
-        $this->assertEquals($entry->getText(), '1/8 sec.');
+        $this->assertEquals($entry->getText(), '1/800 sec.');
 
         $entry = $ifd0_0->getEntry(33437); // FNumber
         $this->assertInstanceOf('lsolesen\pel\PelEntryRational', $entry);
         $this->assertEquals($entry->getValue(), array(
-            0 => 53,
+            0 => 63,
             1 => 10
         ));
-        $this->assertEquals($entry->getText(), 'f/5.3');
+        $this->assertEquals($entry->getText(), 'f/6.3');
 
         $entry = $ifd0_0->getEntry(36864); // ExifVersion
         $this->assertInstanceOf('lsolesen\pel\PelEntryVersion', $entry);
-        $this->assertEquals($entry->getValue(), 2.2);
-        $this->assertEquals($entry->getText(), 'Exif Version 2.2');
+        $this->assertEquals($entry->getValue(), 2.3);
+        $this->assertEquals($entry->getText(), 'Exif Version 2.3');
 
         $entry = $ifd0_0->getEntry(36867); // DateTimeOriginal
         $this->assertInstanceOf('lsolesen\pel\PelEntryTime', $entry);
-        $this->assertEquals($entry->getValue(), 1097316018);
-        $this->assertEquals($entry->getText(), '2004:10:09 10:00:18');
+        $this->assertEquals($entry->getValue(), 1497623444);
+        $this->assertEquals($entry->getText(), '2017:06:16 14:30:44');
 
         $entry = $ifd0_0->getEntry(36868); // DateTimeDigitized
         $this->assertInstanceOf('lsolesen\pel\PelEntryTime', $entry);
-        $this->assertEquals($entry->getValue(), 1097316018);
-        $this->assertEquals($entry->getText(), '2004:10:09 10:00:18');
+        $this->assertEquals($entry->getValue(), 1497623444);
+        $this->assertEquals($entry->getText(), '2017:06:16 14:30:44');
 
         $entry = $ifd0_0->getEntry(37121); // ComponentsConfiguration
         $this->assertInstanceOf('lsolesen\pel\PelEntryUndefined', $entry);
         $this->assertEquals($entry->getValue(), "\x01\x02\x03\0");
         $this->assertEquals($entry->getText(), 'Y Cb Cr -');
 
-        $entry = $ifd0_0->getEntry(37122); // CompressedBitsPerPixel
-        $this->assertInstanceOf('lsolesen\pel\PelEntryRational', $entry);
-        $this->assertEquals($entry->getValue(), array(
-            0 => 2,
-            1 => 1
-        ));
-        $this->assertEquals($entry->getText(), '2/1');
-
-        $entry = $ifd0_0->getEntry(37377); // ShutterSpeedValue
-        $this->assertInstanceOf('lsolesen\pel\PelEntrySRational', $entry);
-        $this->assertEquals($entry->getValue(), array(
-            0 => 96,
-            1 => 32
-        ));
-        $this->assertEquals($entry->getText(), '96/32 sec. (APEX: 2)');
-
         $entry = $ifd0_0->getEntry(37378); // ApertureValue
         $this->assertInstanceOf('lsolesen\pel\PelEntryRational', $entry);
         $this->assertEquals($entry->getValue(), array(
-            0 => 154,
-            1 => 32
+            0 => 352256,
+            1 => 65536
         ));
-        $this->assertEquals($entry->getText(), 'f/5.3');
+        $this->assertEquals($entry->getText(), 'f/6.4');
 
         $entry = $ifd0_0->getEntry(37380); // ExposureBiasValue
         $this->assertInstanceOf('lsolesen\pel\PelEntrySRational', $entry);
         $this->assertEquals($entry->getValue(), array(
             0 => 0,
-            1 => 3
+            1 => 1
         ));
         $this->assertEquals($entry->getText(), '0.0');
-
-        $entry = $ifd0_0->getEntry(37381); // MaxApertureValue
-        $this->assertInstanceOf('lsolesen\pel\PelEntryRational', $entry);
-        $this->assertEquals($entry->getValue(), array(
-            0 => 154,
-            1 => 32
-        ));
-        $this->assertEquals($entry->getText(), '154/32');
 
         $entry = $ifd0_0->getEntry(37383); // MeteringMode
         $this->assertInstanceOf('lsolesen\pel\PelEntryShort', $entry);
@@ -189,18 +160,20 @@ class CanonPowershotS60Test extends \PHPUnit_Framework_TestCase
         $entry = $ifd0_0->getEntry(37386); // FocalLength
         $this->assertInstanceOf('lsolesen\pel\PelEntryRational', $entry);
         $this->assertEquals($entry->getValue(), array(
-            0 => 662,
-            1 => 32
+            0 => 600,
+            1 => 1
         ));
-        $this->assertEquals($entry->getText(), '20.7 mm');
+        $this->assertEquals($entry->getText(), '600.0 mm');
 
         $entry = $ifd0_0->getEntry(37500); // MakerNote
         $this->assertNull($entry);
 
         $entry = $ifd0_0->getEntry(37510); // UserComment
         $this->assertInstanceOf('lsolesen\pel\PelEntryUserComment', $entry);
+
         $expected = "\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0";
         $this->assertEquals($entry->getValue(), $expected);
+
         $expected = "\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0";
         $this->assertEquals($entry->getText(), $expected);
 
@@ -214,46 +187,10 @@ class CanonPowershotS60Test extends \PHPUnit_Framework_TestCase
         $this->assertEquals($entry->getValue(), 1);
         $this->assertEquals($entry->getText(), 'sRGB');
 
-        $entry = $ifd0_0->getEntry(40962); // PixelXDimension
-        $this->assertInstanceOf('lsolesen\pel\PelEntryShort', $entry);
-        $this->assertEquals($entry->getValue(), 640);
-        $this->assertEquals($entry->getText(), '640');
-
-        $entry = $ifd0_0->getEntry(40963); // PixelYDimension
-        $this->assertInstanceOf('lsolesen\pel\PelEntryShort', $entry);
-        $this->assertEquals($entry->getValue(), 480);
-        $this->assertEquals($entry->getText(), '480');
-
-        $entry = $ifd0_0->getEntry(41486); // FocalPlaneXResolution
-        $this->assertInstanceOf('lsolesen\pel\PelEntryRational', $entry);
-        $this->assertEquals($entry->getValue(), array(
-            0 => 640000,
-            1 => 283
-        ));
-        $this->assertEquals($entry->getText(), '640000/283');
-
-        $entry = $ifd0_0->getEntry(41487); // FocalPlaneYResolution
-        $this->assertInstanceOf('lsolesen\pel\PelEntryRational', $entry);
-        $this->assertEquals($entry->getValue(), array(
-            0 => 480000,
-            1 => 212
-        ));
-        $this->assertEquals($entry->getText(), '480000/212');
-
         $entry = $ifd0_0->getEntry(41488); // FocalPlaneResolutionUnit
         $this->assertInstanceOf('lsolesen\pel\PelEntryShort', $entry);
         $this->assertEquals($entry->getValue(), 2);
         $this->assertEquals($entry->getText(), 'Inch');
-
-        $entry = $ifd0_0->getEntry(41495); // SensingMethod
-        $this->assertInstanceOf('lsolesen\pel\PelEntryShort', $entry);
-        $this->assertEquals($entry->getValue(), 2);
-        $this->assertEquals($entry->getText(), 'One-chip color area sensor');
-
-        $entry = $ifd0_0->getEntry(41728); // FileSource
-        $this->assertInstanceOf('lsolesen\pel\PelEntryUndefined', $entry);
-        $this->assertEquals($entry->getValue(), "\x03");
-        $this->assertEquals($entry->getText(), 'DSC');
 
         $entry = $ifd0_0->getEntry(41985); // CustomRendered
         $this->assertInstanceOf('lsolesen\pel\PelEntryShort', $entry);
@@ -270,14 +207,6 @@ class CanonPowershotS60Test extends \PHPUnit_Framework_TestCase
         $this->assertEquals($entry->getValue(), 0);
         $this->assertEquals($entry->getText(), 'Auto white balance');
 
-        $entry = $ifd0_0->getEntry(41988); // DigitalZoomRatio
-        $this->assertInstanceOf('lsolesen\pel\PelEntryRational', $entry);
-        $this->assertEquals($entry->getValue(), array(
-            0 => 2592,
-            1 => 2592
-        ));
-        $this->assertEquals($entry->getText(), '2592/2592');
-
         $entry = $ifd0_0->getEntry(41990); // SceneCaptureType
         $this->assertInstanceOf('lsolesen\pel\PelEntryShort', $entry);
         $this->assertEquals($entry->getValue(), 0);
@@ -289,7 +218,7 @@ class CanonPowershotS60Test extends \PHPUnit_Framework_TestCase
         $this->assertInstanceOf('lsolesen\pel\PelIfd', $ifd0_0_0);
 
         /* Start of IDF $ifd0_0_0. */
-        $this->assertEquals(count($ifd0_0_0->getEntries()), 4);
+        $this->assertEquals(count($ifd0_0_0->getEntries()), 2);
 
         $entry = $ifd0_0_0->getEntry(1); // InteroperabilityIndex
         $this->assertInstanceOf('lsolesen\pel\PelEntryAscii', $entry);
@@ -300,16 +229,6 @@ class CanonPowershotS60Test extends \PHPUnit_Framework_TestCase
         $this->assertInstanceOf('lsolesen\pel\PelEntryVersion', $entry);
         $this->assertEquals($entry->getValue(), 1);
         $this->assertEquals($entry->getText(), 'Interoperability Version 1.0');
-
-        $entry = $ifd0_0_0->getEntry(4097); // RelatedImageWidth
-        $this->assertInstanceOf('lsolesen\pel\PelEntryShort', $entry);
-        $this->assertEquals($entry->getValue(), 640);
-        $this->assertEquals($entry->getText(), '640');
-
-        $entry = $ifd0_0_0->getEntry(4098); // RelatedImageLength
-        $this->assertInstanceOf('lsolesen\pel\PelEntryShort', $entry);
-        $this->assertEquals($entry->getValue(), 480);
-        $this->assertEquals($entry->getText(), '480');
 
         /* Sub IFDs of $ifd0_0_0. */
         $this->assertEquals(count($ifd0_0_0->getSubIfds()), 0);
@@ -340,24 +259,24 @@ class CanonPowershotS60Test extends \PHPUnit_Framework_TestCase
 
         $entry = $ifd1->getEntry(259); // Compression
         $this->assertInstanceOf('lsolesen\pel\PelEntryShort', $entry);
-        $this->assertEquals($entry->getValue(), 6);
-        $this->assertEquals($entry->getText(), 'JPEG compression');
+        $this->assertEquals($entry->getValue(), 0);
+        $this->assertEquals($entry->getText(), '0');
 
         $entry = $ifd1->getEntry(282); // XResolution
         $this->assertInstanceOf('lsolesen\pel\PelEntryRational', $entry);
         $this->assertEquals($entry->getValue(), array(
-            0 => 180,
+            0 => 72,
             1 => 1
         ));
-        $this->assertEquals($entry->getText(), '180/1');
+        $this->assertEquals($entry->getText(), '72/1');
 
         $entry = $ifd1->getEntry(283); // YResolution
         $this->assertInstanceOf('lsolesen\pel\PelEntryRational', $entry);
         $this->assertEquals($entry->getValue(), array(
-            0 => 180,
+            0 => 72,
             1 => 1
         ));
-        $this->assertEquals($entry->getText(), '180/1');
+        $this->assertEquals($entry->getText(), '72/1');
 
         $entry = $ifd1->getEntry(296); // ResolutionUnit
         $this->assertInstanceOf('lsolesen\pel\PelEntryShort', $entry);
@@ -367,7 +286,7 @@ class CanonPowershotS60Test extends \PHPUnit_Framework_TestCase
         /* Sub IFDs of $ifd1. */
         $this->assertEquals(count($ifd1->getSubIfds()), 0);
 
-        $thumb_data = file_get_contents(dirname(__FILE__) . '/canon-powershot-s60-thumb.jpg');
+        $thumb_data = file_get_contents(dirname(__FILE__) . '/canon-eos-650d-thumb.jpg');
         $this->assertEquals($ifd1->getThumbnailData(), $thumb_data);
 
         /* Next IFD. */
@@ -381,15 +300,11 @@ class CanonPowershotS60Test extends \PHPUnit_Framework_TestCase
 
         $entry = $ifd0_mn->getEntry(6); // ImageType
         $this->assertInstanceOf('lsolesen\pel\PelEntryAscii', $entry);
-        $this->assertEquals($entry->getValue(), 'IMG:PowerShot S60 JPEG');
+        $this->assertEquals($entry->getValue(), 'Canon EOS 650D');
 
         $entry = $ifd0_mn->getEntry(7); // FirmwareVersion
         $this->assertInstanceOf('lsolesen\pel\PelEntryAscii', $entry);
-        $this->assertEquals($entry->getValue(), 'Firmware Version 1.00');
-
-        $entry = $ifd0_mn->getEntry(8); // FileNumber
-        $this->assertInstanceOf('lsolesen\pel\PelEntryLong', $entry);
-        $this->assertEquals($entry->getValue(), '1000041');
+        $this->assertEquals($entry->getValue(), 'Firmware Version 1.0.4');
 
         /* Start of IDF $ifd0_mn_cs. */
         $ifd0_mn_cs = $ifd0_mn->getSubIfd(6); // CameraSettings
@@ -403,8 +318,14 @@ class CanonPowershotS60Test extends \PHPUnit_Framework_TestCase
 
         $entry = $ifd0_mn_cs->getEntry(9); // RecordMode
         $this->assertInstanceOf('lsolesen\pel\PelEntrySShort', $entry);
-        $this->assertEquals($entry->getValue(), '1');
-        $this->assertEquals($entry->getText(), 'JPEG');
+        $this->assertEquals($entry->getValue(), '6');
+        $this->assertEquals($entry->getText(), 'CR2');
+
+        $entry = $ifd0_mn_cs->getEntry(22); // LensModel
+        $this->assertInstanceOf('lsolesen\pel\PelEntrySShort', $entry);
+        $this->assertEquals($entry->getValue(), 747);
+        // Tamron 150-600mm G2
+        $this->assertEquals($entry->getText(), 'Canon EF 100-400mm f/4.5-5.6L IS II USM or Tamron Lens');
 
         $this->assertTrue(count(Pel::getExceptions()) == 0);
     }

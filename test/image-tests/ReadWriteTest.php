@@ -28,6 +28,7 @@ use lsolesen\pel\PelIfd;
 use lsolesen\pel\PelTiff;
 use lsolesen\pel\PelExif;
 use lsolesen\pel\PelJpeg;
+use lsolesen\pel\PelFormat;
 use lsolesen\pel\PelEntrySByte;
 use lsolesen\pel\PelEntryShort;
 use lsolesen\pel\PelEntrySShort;
@@ -85,8 +86,25 @@ abstract class WriteEntryTestCase extends \PHPUnit_Framework_TestCase
         $this->assertTrue($ifd->isLastIfd());
 
         foreach ($this->entries as $entry) {
-            $this->assertEquals($ifd->getEntry($entry->getTag())
+            $ifdEntry = $ifd->getEntry($entry->getTag());
+            if($ifdEntry->getFormat()
+                == PelFormat::ASCII) {
+                $ifdValue = $ifd->getEntry($entry->getTag())
+                ->getValue();
+                $entryValue = $entry->getValue();
+                // cut off after the first nul byte
+                // since $ifdValue comes from parsed ifd,
+                // it is already cut off
+                $canonicalEntry = strstr($entryValue, "\0", true);
+                // if no nul byte found, use original value
+                if($canonicalEntry === false) {
+                    $canonicalEntry = $entryValue;
+                }
+                $this->assertEquals($ifdValue, $canonicalEntry);
+            } else {
+                $this->assertEquals($ifdEntry
                 ->getValue(), $entry->getValue());
+            }
         }
 
         unlink('test-output.jpg');
