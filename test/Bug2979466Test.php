@@ -23,8 +23,9 @@
  */
 
 use lsolesen\pel\PelJpeg;
+use PHPUnit\Framework\TestCase;
 
-class Bug2979466Test extends \PHPUnit_Framework_TestCase
+class Bug2979466Test extends TestCase
 {
     function testParsingNotFailingOnRecursingIfd()
     {
