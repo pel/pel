@@ -242,12 +242,8 @@ class PelIfd implements \IteratorAggregate, \ArrayAccess
      * @param int $offset
      *            the offset within the window where the directory will
      *            be found.
-     *
-     * @param int $parentIfdType
-     *            (internal) the parent IFD type to avoid recursion on IFDs
-     *            of the same type. Defaults to NULL.
      */
-    public function load(PelDataWindow $d, $offset, $parentIfdType = null)
+    public function load(PelDataWindow $d, $offset)
     {
         $thumb_offset = 0;
         $thumb_length = 0;
@@ -305,11 +301,8 @@ class PelIfd implements \IteratorAggregate, \ArrayAccess
                         break;
                     }
 
-                    /* Avoid attempts to nest IFDs of the same type. */
-                    if ($type !== $parentIfdType) {
-                        $this->sub[$type] = new PelIfd($type);
-                        $this->sub[$type]->load($d, $o, $type);
-                    }
+                    $this->sub[$type] = new PelIfd($type);
+                    $this->sub[$type]->load($d, $o, $type);
                     break;
                 case PelTag::JPEG_INTERCHANGE_FORMAT:
                     $thumb_offset = $d->getLong($offset + 12 * $i + 8);
