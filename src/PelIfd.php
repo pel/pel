@@ -302,7 +302,7 @@ class PelIfd implements \IteratorAggregate, \ArrayAccess
                     }
 
                     $this->sub[$type] = new PelIfd($type);
-                    $this->sub[$type]->load($d, $o, $type);
+                    $this->sub[$type]->load($d, $o);
                     break;
                 case PelTag::JPEG_INTERCHANGE_FORMAT:
                     $thumb_offset = $d->getLong($offset + 12 * $i + 8);
