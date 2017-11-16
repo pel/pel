@@ -304,10 +304,10 @@ class PelIfd implements \IteratorAggregate, \ArrayAccess
                     }
 
                     if ($starting_offset != $o) {
-                      $this->sub[$type] = new PelIfd($type);
-                      $this->sub[$type]->load($d, $o);
+                        $this->sub[$type] = new PelIfd($type);
+                        $this->sub[$type]->load($d, $o);
                     } else {
-                      Pel::maybeThrow(new PelIfdException('Bogus offset to next IFD: %d, same as offset being loaded from.', $o));
+                        Pel::maybeThrow(new PelIfdException('Bogus offset to next IFD: %d, same as offset being loaded from.', $o));
                     }
                     break;
                 case PelTag::JPEG_INTERCHANGE_FORMAT:
