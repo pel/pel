@@ -245,6 +245,8 @@ class PelIfd implements \IteratorAggregate, \ArrayAccess
      */
     public function load(PelDataWindow $d, $offset)
     {
+        $starting_offset = $offset;
+
         $thumb_offset = 0;
         $thumb_length = 0;
 
@@ -301,8 +303,12 @@ class PelIfd implements \IteratorAggregate, \ArrayAccess
                         break;
                     }
 
-                    $this->sub[$type] = new PelIfd($type);
-                    $this->sub[$type]->load($d, $o);
+                    if ($starting_offset != $o) {
+                      $this->sub[$type] = new PelIfd($type);
+                      $this->sub[$type]->load($d, $o);
+                    } else {
+                      Pel::maybeThrow(new PelIfdException('Bogus offset to next IFD: %d, same as offset being loaded from.', $o));
+                    }
                     break;
                 case PelTag::JPEG_INTERCHANGE_FORMAT:
                     $thumb_offset = $d->getLong($offset + 12 * $i + 8);
