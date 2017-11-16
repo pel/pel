@@ -361,6 +361,7 @@ class PelIfd implements \IteratorAggregate, \ArrayAccess
                     }
                 }
             }
+            PelIfd::$mkNoteValues = array(); 
         }
     }
 
