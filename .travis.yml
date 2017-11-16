@@ -23,8 +23,6 @@ install:
 
 before_script:
   - mkdir -p build/logs
-  - php examples/dump-image.php -d test/images/bug2979466.jpg
-  - php examples/dump-image.php -d test/images/gh-77.jpg
 
 script:
   - ./vendor/bin/phpcs --runtime-set ignore_warnings_on_exit 1 --standard=psr2 src
