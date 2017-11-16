@@ -3,7 +3,7 @@
 The tests run automatically on each commit on TravisCI. Status for the
 master branch is:
 
-[![Build Status](https://secure.travis-ci.org/lsolesen/pel.png?branch=master)](http://travis-ci.org/lsolesen/pel)
+[![Build Status](https://secure.travis-ci.org/pel/pel.png?branch=master)](http://travis-ci.org/pel/pel)
 
 
 ## PEL Test Suite
