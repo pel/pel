@@ -246,7 +246,7 @@ class PelIfd implements \IteratorAggregate, \ArrayAccess
      * Stores Maker Notes data for an IFD (Probably PelIfd::EXIF only).
      *
      * @param PelIfd $parent
-                  the parent PelIfd of the current PelIfd
+     *            the parent PelIfd of the current PelIfd
      *
      * @param PelDataWindow $data
      *            the data window that will provide the data.
