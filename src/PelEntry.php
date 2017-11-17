@@ -99,7 +99,7 @@ abstract class PelEntry
     /**
      * The {@link PelFormat} of this entry.
      *
-     * @var PelFormat
+     * @var int
      */
     protected $format;
 
@@ -153,7 +153,7 @@ abstract class PelEntry
     /**
      * Return the format of this entry.
      *
-     * @return PelFormat the format of this entry.
+     * @return int the format of this entry.
      */
     public function getFormat()
     {
