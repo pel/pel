@@ -157,7 +157,16 @@ class PelIfd implements \IteratorAggregate, \ArrayAccess
         self::CANON_CUSTOM_FUNCTIONS
     );
 
-    private static $mkNoteValues = array();
+    /**
+     * The maker notes held by this directory.
+     *
+     * Stores information of the MakerNotes IFD.
+     * Available and required keys are: parent, data, components and offset
+     *
+     * @var array
+     */
+    private $maker_notes = array();
+
     /**
      * The entries held by this directory.
      *
@@ -234,6 +243,40 @@ class PelIfd implements \IteratorAggregate, \ArrayAccess
     }
 
     /**
+     * Stores Maker Notes data for an IFD (Probably PelIfd::EXIF only).
+     *
+     * @param PelIfd $parent
+                  the parent PelIfd of the current PelIfd
+     *
+     * @param PelDataWindow $data
+     *            the data window that will provide the data.
+     *
+     * @param PelIfd $parent
+     *            the components in the entry.
+     *
+     * @param int $offset
+     *            the offset within the window where the directory will
+     *            be found.
+     */
+    public function setMakerNotes($parent, $data, $components, $offset) {
+        $this->maker_notes = array(
+            'parent' => $parent,
+            'data' => $data,
+            'components' => $components,
+            'offset' => $offset
+        );
+    }
+
+    /**
+     * Returns the Maker Notes data for an IFD (Probably PelIfd::EXIF only).
+     *
+     * @return array The maker_notes of IDF
+     */
+    public function getMakerNotes() {
+        return $this->maker_notes;
+    }
+
+    /**
      * Load data into a Image File Directory (IFD).
      *
      * @param PelDataWindow $d
@@ -291,14 +334,9 @@ class PelIfd implements \IteratorAggregate, \ArrayAccess
                     } elseif ($tag == PelTag::INTEROPERABILITY_IFD_POINTER) {
                         $type = PelIfd::INTEROPERABILITY;
                     } elseif ($tag == PelTag::MAKER_NOTE) {
-                        // Store maker notes infos, because we need Make tag of IFD0 for MakerNotes
-                        // Thus MakerNotes will be loaded at the end of loading IFD0
-                        PelIfd::$mkNoteValues = array(
-                            'parent' => $this,
-                            'data' => $d,
-                            'components' => $components,
-                            'offset' => $o
-                        );
+                        // Store maker notes infos, because we need PelTag::MAKE of PelIfd::IFD0 for MakerNotes
+                        // Thus MakerNotes will be loaded at the end of loading PelIfd::IFD0
+                        $this->setMakerNotes($this, $d, $components, $o);
                         $this->loadSingleValue($d, $offset, $i, $tag);
                         break;
                     }
@@ -344,11 +382,11 @@ class PelIfd implements \IteratorAggregate, \ArrayAccess
             Pel::debug('Last IFD.');
         }
 
-        // if loading is finished and current IFD is IFD0
-        if ($this->type == PelIfd::IFD0) {
-            $mk = PelIfd::$mkNoteValues;
-            // check if there are any maker notes stored
-            if (count($mk) > 0) {
+        // Check if we finished loading IFD0 and EXIF IFD is set (EXIF IFD holds the MakerNotes)
+        if ($this->type == PelIfd::IFD0 && isset($this->sub[PelIfd::EXIF])) {
+            // Get MakerNotes from EXIF IFD and check if they are set
+            $mk = $this->sub[PelIfd::EXIF]->getMakerNotes();
+            if (!empty($mk) && count($mk) > 0) {
                 // get Make tag and load maker notes if tag is valid
                 $manufacturer = $this->getEntry(PelTag::MAKE);
                 if ($manufacturer !== null) {
@@ -361,7 +399,6 @@ class PelIfd implements \IteratorAggregate, \ArrayAccess
                     }
                 }
             }
-            PelIfd::$mkNoteValues = array();
         }
     }
 
