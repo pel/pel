@@ -105,7 +105,7 @@ class PelEntryShort extends PelEntryNumber
      * @param int $number
      *            the number that should be converted.
      *
-     * @param PelByteOrder $order
+     * @param boolean $order
      *            one of {@link PelConvert::LITTLE_ENDIAN} and
      *            {@link PelConvert::BIG_ENDIAN}, specifying the target byte order.
      *
@@ -132,6 +132,179 @@ class PelEntryShort extends PelEntryNumber
      */
     public function getText($brief = false)
     {
+        if ($this->ifd_type == PelIfd::CANON_SHOT_INFO) {
+            switch ($this->tag) {
+                case PelTag::CANON_SI_WHITE_BALANCE:
+                    // CC (e->components, 1, v);
+                    switch ($this->value[0]) {
+                        case 0:
+                            return Pel::tra('Auto');
+                        case 1:
+                            return Pel::tra('Daylight');
+                        case 2:
+                            return Pel::tra('Cloudy');
+                        case 3:
+                            return Pel::tra('Tungsten');
+                        case 4:
+                            return Pel::tra('Fluorescent');
+                        case 5:
+                            return Pel::tra('Flash');
+                        case 6:
+                            return Pel::tra('Custom');
+                        case 7:
+                            return Pel::tra('Black & White');
+                        case 8:
+                            return Pel::tra('Shade');
+                        case 9:
+                            return Pel::tra('Manual Temperature (Kelvin)');
+                        case 10:
+                            return Pel::tra('PC Set1');
+                        case 11:
+                            return Pel::tra('PC Set2');
+                        case 12:
+                            return Pel::tra('PC Set3');
+                        case 14:
+                            return Pel::tra('Daylight Fluorescent');
+                        case 15:
+                            return Pel::tra('Custom 1');
+                        case 16:
+                            return Pel::tra('Custom 2');
+                        case 17:
+                            return Pel::tra('Underwater');
+                        case 18:
+                            return Pel::tra('Custom 3');
+                        case 19:
+                            return Pel::tra('Custom 4');
+                        case 20:
+                            return Pel::tra('PC Set4');
+                        case 21:
+                            return Pel::tra('PC Set5');
+                        case 23:
+                            return Pel::tra('Auto (ambience priority)');
+                        default:
+                            return $this->value[0];
+                    }
+                    break;
+                case PelTag::CANON_SI_SLOW_SHUTTER:
+                    // CC (e->components, 1, v);
+                    switch ($this->value[0]) {
+                        case 0:
+                            return Pel::tra('Off');
+                        case 1:
+                            return Pel::tra('Night Scene');
+                        case 2:
+                            return Pel::tra('On');
+                        case 3:
+                            return Pel::tra('None');
+                        default:
+                            return $this->value[0];
+                    }
+                    break;
+                case PelTag::CANON_SI_AF_POINT_USED:
+                    // CC (e->components, 1, v);
+                    switch ($this->value[0]) {
+                        case 0x3000:
+                            return Pel::tra('None (MF)');
+                        case 0x3001:
+                            return Pel::tra('Right');
+                        case 0x3002:
+                            return Pel::tra('Center');
+                        case 0x3003:
+                            return Pel::tra('Center+Right');
+                        case 0x3004:
+                            return Pel::tra('Left');
+                        case 0x3005:
+                            return Pel::tra('Left+Right');
+                        case 0x3006:
+                            return Pel::tra('Left+Center');
+                        case 0x3007:
+                            return Pel::tra('All');
+                        default:
+                            return $this->value[0];
+                    }
+                    break;
+                case PelTag::CANON_SI_AUTO_EXPOSURE_BRACKETING:
+                    // CC (e->components, 1, v);
+                    switch ($this->value[0]) {
+                        case -1:
+                            return Pel::tra('On');
+                        case 0:
+                            return Pel::tra('Off');
+                        case 1:
+                            return Pel::tra('On (shot 1)');
+                        case 2:
+                            return Pel::tra('On (shot 2)');
+                        case 3:
+                            return Pel::tra('On (shot 3)');
+                        default:
+                            return $this->value[0];
+                    }
+                    break;
+                case PelTag::CANON_SI_CAMERA_TYPE:
+                    // CC (e->components, 1, v);
+                    switch ($this->value[0]) {
+                        case 248:
+                            return Pel::tra('EOS High-end');
+                        case 250:
+                            return Pel::tra('Compact');
+                        case 252:
+                            return Pel::tra('EOS Mid-range');
+                        case 255:
+                            return Pel::tra('DV Camera');
+                        default:
+                            return $this->value[0];
+                    }
+                    break;
+                case PelTag::CANON_SI_AUTO_ROTATE:
+                    // CC (e->components, 1, v);
+                    switch ($this->value[0]) {
+                        case 0:
+                            return Pel::tra('None');
+                        case 1:
+                            return Pel::tra('Rotate 90 CW');
+                        case 2:
+                            return Pel::tra('Rotate 180');
+                        case 3:
+                            return Pel::tra('Rotate 270 CW');
+                        default:
+                            return $this->value[0];
+                    }
+                    break;
+                case PelTag::CANON_SI_ND_FILTER:
+                    // CC (e->components, 1, v);
+                    switch ($this->value[0]) {
+                        case 0:
+                            return Pel::tra('Off');
+                        case 1:
+                            return Pel::tra('On');
+                        default:
+                            return $this->value[0];
+                    }
+                    break;
+                default:
+                    return $this->value[0];
+            }
+        }
+        if ($this->ifd_type == PelIfd::CANON_PANORAMA) {
+            switch ($this->tag) {
+                case PelTag::CANON_PA_PANORAMA_DIRECTION:
+                    // CC (e->components, 1, v);
+                    switch ($this->value[0]) {
+                        case 0:
+                            return Pel::tra('Left to Right');
+                        case 1:
+                            return Pel::tra('Right to Left');
+                        case 2:
+                            return Pel::tra('Bottom to Top');
+                        case 3:
+                            return Pel::tra('Top to Bottom');
+                        case 4:
+                            return Pel::tra('2x2 Matrix (Clockwise)');
+                        default:
+                            return $this->value[0];
+                    }
+            }
+        }
         switch ($this->tag) {
             case PelTag::METERING_MODE:
                 // CC (e->components, 1, v);

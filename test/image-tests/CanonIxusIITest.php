@@ -98,7 +98,7 @@ class CanonIxusIITest extends \PHPUnit_Framework_TestCase
         $this->assertInstanceOf('lsolesen\pel\PelIfd', $ifd0_0);
 
         /* Start of IDF $ifd0_0. */
-        $this->assertEquals(count($ifd0_0->getEntries()), 30);
+        $this->assertEquals(count($ifd0_0->getEntries()), 29);
 
         $entry = $ifd0_0->getEntry(33434); // ExposureTime
         $this->assertInstanceOf('lsolesen\pel\PelEntryRational', $entry);
@@ -195,10 +195,7 @@ class CanonIxusIITest extends \PHPUnit_Framework_TestCase
         $this->assertEquals($entry->getText(), '6.7 mm');
 
         $entry = $ifd0_0->getEntry(37500); // MakerNote
-        $this->assertInstanceOf('lsolesen\pel\PelEntryUndefined', $entry);
-        $expected = "\x0e\0\x01\0\x03\0\x2e\0\0\0\x5c\x04\0\0\x02\0\x03\0\x04\0\0\0\xb8\x04\0\0\x03\0\x03\0\x04\0\0\0\xc0\x04\0\0\x04\0\x03\0\x22\0\0\0\xc8\x04\0\0\0\0\x03\0\x06\0\0\0\x0c\x05\0\0\0\0\x03\0\x04\0\0\0\x18\x05\0\0\x12\0\x03\0\x1c\0\0\0\x20\x05\0\0\x13\0\x03\0\x04\0\0\0\x58\x05\0\0\x06\0\x02\0\x20\0\0\0\x60\x05\0\0\x07\0\x02\0\x18\0\0\0\x80\x05\0\0\x08\0\x04\0\x01\0\0\0\x7c\x57\x12\0\x09\0\x02\0\x20\0\0\0\x98\x05\0\0\x10\0\x04\0\x01\0\0\0\0\0\x23\x01\x0d\0\x03\0\x22\0\0\0\xb8\x05\0\0\0\0\0\0\x5c\0\x02\0\0\0\x02\0\0\0\0\0\0\0\x04\0\0\0\x01\0\x02\0\x01\0\0\0\0\0\0\0\0\0\x0f\0\x03\0\x01\0\x01\x40\0\0\0\0\xff\xff\x5a\x01\xad\0\x20\0\x6a\0\xbe\0\0\0\0\0\0\0\0\0\0\0\x01\0\xff\xff\0\0\0\x08\0\x08\0\0\0\0\x03\0\0\0\xff\x7f\0\0\0\0\0\0\x02\0\xd7\0\xd5\0\x9f\0\0\x04\0\0\0\0\0\0\x44\0\0\0\x80\0\x81\0\x6b\0\x9d\0\xf4\xff\x04\0\0\0\0\0\x01\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\x01\0\x36\0\0\0\x6a\0\xa1\0\0\0\0\0\x01\0\xfa\0\x01\0\0\0\0\0\0\0\0\0\0\0\x2b\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\x09\0\x09\0\x80\x02\xe0\x01\0\x08\0\x01\x71\x01\x2a\0\x8e\xfe\0\0\x72\x01\x8e\xfe\0\0\x72\x01\x8e\xfe\0\0\x72\x01\xd0\xff\xd0\xff\xd0\xff\0\0\0\0\0\0\x30\0\x30\0\x30\0\x01\0\x02\0\0\0\0\0\0\0\0\0\x49\x4d\x47\x3a\x44\x49\x47\x49\x54\x41\x4c\x20\x49\x58\x55\x53\x20\x49\x49\x20\x4a\x50\x45\x47\0\0\0\0\0\0\0\0\x46\x69\x72\x6d\x77\x61\x72\x65\x20\x56\x65\x72\x73\x69\x6f\x6e\x20\x31\x2e\x30\x30\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\x44\0\x09\0\xda\x01\xdb\x01\xd1\x01\xd9\x01\xd9\x01\xdb\x01\xdb\x01\xdb\x01\xda\x01\x40\0\0\0\0\0\xa2\xff\x01\0\0\0\x0a\0\0\0\xfb\xff\x0a\0\x20\x03\x6d\0\x01\0\xff\xff\xbb\x03\0\0\0\0\0\0\0\0\0\0\x6c\0\0\0\x06\0";
-        $this->assertEquals($entry->getValue(), $expected);
-        $this->assertEquals($entry->getText(), '590 bytes unknown MakerNote data');
+        $this->assertNull($entry);
 
         $entry = $ifd0_0->getEntry(37510); // UserComment
         $this->assertInstanceOf('lsolesen\pel\PelEntryUserComment', $entry);
@@ -289,7 +286,7 @@ class CanonIxusIITest extends \PHPUnit_Framework_TestCase
         $this->assertEquals($entry->getText(), 'Standard');
 
         /* Sub IFDs of $ifd0_0. */
-        $this->assertEquals(count($ifd0_0->getSubIfds()), 1);
+        $this->assertEquals(count($ifd0_0->getSubIfds()), 2);
         $ifd0_0_0 = $ifd0_0->getSubIfd(4); // IFD Interoperability
         $this->assertInstanceOf('lsolesen\pel\PelIfd', $ifd0_0_0);
 
@@ -379,6 +376,37 @@ class CanonIxusIITest extends \PHPUnit_Framework_TestCase
         $ifd2 = $ifd1->getNextIfd();
         $this->assertNull($ifd2);
         /* End of IFD $ifd1. */
+
+        /* Start of IDF $ifd0_mn  */
+        $ifd0_mn = $ifd0_0->getSubIfd(5); // IFD MakerNotes
+        $this->assertInstanceOf('lsolesen\pel\PelIfd', $ifd0_mn);
+
+        $entry = $ifd0_mn->getEntry(6); // ImageType
+        $this->assertInstanceOf('lsolesen\pel\PelEntryAscii', $entry);
+        $this->assertEquals($entry->getValue(), 'IMG:DIGITAL IXUS II JPEG');
+
+        $entry = $ifd0_mn->getEntry(7); // FirmwareVersion
+        $this->assertInstanceOf('lsolesen\pel\PelEntryAscii', $entry);
+        $this->assertEquals($entry->getValue(), 'Firmware Version 1.00');
+
+        $entry = $ifd0_mn->getEntry(8); // FileNumber
+        $this->assertInstanceOf('lsolesen\pel\PelEntryLong', $entry);
+        $this->assertEquals($entry->getValue(), '1202044');
+
+        /* Start of IDF $ifd0_mn_cs. */
+        $ifd0_mn_cs = $ifd0_mn->getSubIfd(6); // CameraSettings
+        $this->assertInstanceOf('lsolesen\pel\PelIfd', $ifd0_mn_cs);
+        $this->assertEquals(count($ifd0_mn_cs->getEntries()), 37);
+
+        $entry = $ifd0_mn_cs->getEntry(1); // MacroMode
+        $this->assertInstanceOf('lsolesen\pel\PelEntrySShort', $entry);
+        $this->assertEquals($entry->getValue(), '2');
+        $this->assertEquals($entry->getText(), 'Normal');
+
+        $entry = $ifd0_mn_cs->getEntry(9); // RecordMode
+        $this->assertInstanceOf('lsolesen\pel\PelEntrySShort', $entry);
+        $this->assertEquals($entry->getValue(), '1');
+        $this->assertEquals($entry->getText(), 'JPEG');
 
         $this->assertTrue(count(Pel::getExceptions()) == 0);
     }
