@@ -347,8 +347,7 @@ class PelIfd implements \IteratorAggregate, \ArrayAccess
                         $this->sub[$type] = new PelIfd($type);
                         try {
                             $this->sub[$type]->load($d, $o);
-                        }
-                        catch (PelDataWindowOffsetException $e) {
+                        } catch (PelDataWindowOffsetException $e) {
                             unset($this->sub[$type]);
                             Pel::maybeThrow(new PelIfdException($e->getMessage()));
                         }
@@ -768,8 +767,7 @@ class PelIfd implements \IteratorAggregate, \ArrayAccess
             /* Now set the thumbnail normally. */
             try {
                 $this->setThumbnail($d->getClone($offset, $length));
-            }
-            catch (PelDataWindowWindowException $e) {
+            } catch (PelDataWindowWindowException $e) {
                 Pel::maybeThrow(new PelIfdException($e->getMessage()));
             }
         }
