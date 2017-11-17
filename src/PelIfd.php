@@ -1452,7 +1452,7 @@ class PelIfd implements \IteratorAggregate, \ArrayAccess
      * @param int $offset
      *            the offset of the first byte of this directory.
      *
-     * @param PelByteOrder $order
+     * @param boolean $order
      *            the byte order that should be used when
      *            turning integers into bytes. This should be one of {@link
      *            PelConvert::LITTLE_ENDIAN} and {@link PelConvert::BIG_ENDIAN}.
