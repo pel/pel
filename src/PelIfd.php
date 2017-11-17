@@ -258,7 +258,8 @@ class PelIfd implements \IteratorAggregate, \ArrayAccess
      *            the offset within the window where the directory will
      *            be found.
      */
-    public function setMakerNotes($parent, $data, $components, $offset) {
+    public function setMakerNotes($parent, $data, $components, $offset)
+    {
         $this->maker_notes = array(
             'parent' => $parent,
             'data' => $data,
@@ -272,7 +273,8 @@ class PelIfd implements \IteratorAggregate, \ArrayAccess
      *
      * @return array The maker_notes of IDF
      */
-    public function getMakerNotes() {
+    public function getMakerNotes()
+    {
         return $this->maker_notes;
     }
 
