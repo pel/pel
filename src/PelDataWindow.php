@@ -48,7 +48,7 @@ class PelDataWindow
      * example the {@link getShort} function. It must be one of {@link
      * PelConvert::LITTLE_ENDIAN} and {@link PelConvert::BIG_ENDIAN}.
      *
-     * @var PelByteOrder
+     * @var boolean
      * @see setByteOrder, getByteOrder
      */
     private $order;
