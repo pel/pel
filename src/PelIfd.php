@@ -344,11 +344,11 @@ class PelIfd implements \IteratorAggregate, \ArrayAccess
                     }
 
                     if ($starting_offset != $o) {
-                        $this->sub[$type] = new PelIfd($type);
+                        $ifd = new PelIfd($type);
                         try {
-                            $this->sub[$type]->load($d, $o);
+                            $ifd->load($d, $o);
+                            $this->sub[$type] = $ifd;
                         } catch (PelDataWindowOffsetException $e) {
-                            unset($this->sub[$type]);
                             Pel::maybeThrow(new PelIfdException($e->getMessage()));
                         }
                     } else {

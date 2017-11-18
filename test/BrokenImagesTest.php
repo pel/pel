@@ -25,11 +25,20 @@
 use lsolesen\pel\PelJpeg;
 use PHPUnit\Framework\TestCase;
 
-class Bug2979466Test extends TestCase
+class BrokenImagesTest extends TestCase
 {
-    function testParsingNotFailingOnRecursingIfd()
+    public function testWindowWindowExceptionIsCaught()
     {
-        $file = dirname(__FILE__) . '/images/bug2979466.jpg';
-        $jpeg = new PelJpeg($file);
+        new PelJpeg(dirname(__FILE__) . '/broken_images/gh-10-a.jpg');
+    }
+
+    public function testWindowOffsetExceptionIsCaught()
+    {
+        new PelJpeg(dirname(__FILE__) . '/broken_images/gh-10-b.jpg');
+    }
+
+    public function testParsingNotFailingOnRecursingIfd()
+    {
+        new PelJpeg(dirname(__FILE__) . '/broken_images/gh-11.jpg');
     }
 }
