@@ -121,14 +121,17 @@ class PelEntryWindowsString extends PelEntry
      */
     public function setValue($str, $from_exif = false)
     {
+        $zlen = strlen(static::ZEROES);
         if (false !== $from_exif) {
             $s = $str;
+            if (substr($str, -$zlen, $zlen) == static::ZEROES) {
+                $str = substr($str, 0, -$zlen);
+            }
             $str = mb_convert_encoding($str, 'UTF-8', 'UCS-2LE');
         } else {
             $s = mb_convert_encoding( $str, 'UCS-2LE', 'auto' );
         }
 
-        $zlen = strlen(static::ZEROES);
         if (substr($s, -$zlen, $zlen) != static::ZEROES) {
             $s .= static::ZEROES;
         }
