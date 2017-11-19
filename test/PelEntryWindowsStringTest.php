@@ -23,6 +23,8 @@
  * Free Software Foundation, Inc., 51 Franklin St, Fifth Floor,
  * Boston, MA 02110-1301 USA
  */
+
+use lsolesen\pel\PelConvert;
 use lsolesen\pel\PelEntryWindowsString;
 use lsolesen\pel\PelTag;
 use PHPUnit\Framework\TestCase;
@@ -36,12 +38,12 @@ class PelEntryWindowsStringTest extends TestCase
         $test_str_ucs2 = mb_convert_encoding($test_str, 'UCS-2LE', 'auto');
         $test_str_ucs2_zt = $test_str_ucs2 . PelEntryWindowsString::ZEROES;
         $entry = new PelEntryWindowsString(PelTag::XP_TITLE, $test_str);
-        $this->assertNotEquals($entry->getValue(), $entry->getBytes());
+        $this->assertNotEquals($entry->getValue(), $entry->getBytes(PelConvert::LITTLE_ENDIAN));
         $this->assertEquals($entry->getValue(), $test_str);
-        $this->assertEquals($entry->getBytes(), $test_str_ucs2_zt);
+        $this->assertEquals($entry->getBytes(PelConvert::LITTLE_ENDIAN), $test_str_ucs2_zt);
         $entry->setValue($test_str_ucs2, true);
-        $this->assertNotEquals($entry->getValue(), $entry->getBytes());
+        $this->assertNotEquals($entry->getValue(), $entry->getBytes(PelConvert::LITTLE_ENDIAN));
         $this->assertEquals($entry->getValue(), $test_str);
-        $this->assertEquals($entry->getBytes(), $test_str_ucs2_zt);
+        $this->assertEquals($entry->getBytes(PelConvert::LITTLE_ENDIAN), $test_str_ucs2_zt);
     }
 }
