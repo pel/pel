@@ -627,22 +627,7 @@ class PelIfd implements \IteratorAggregate, \ArrayAccess
                         if ($format != PelFormat::BYTE) {
                             throw new PelUnexpectedFormatException($this->type, $tag, $format, PelFormat::BYTE);
                         }
-                        $v = '';
-                        for ($i = 0; $i < $components; $i ++) {
-                            $b = $data->getByte($i);
-                            /*
-                             * Convert the byte to a character if it is non-null ---
-                             * information about the character encoding of these entries
-                             * would be very nice to have! So far my tests have shown
-                             * that characters in the Latin-1 character set are stored in
-                             * a single byte followed by a NULL byte.
-                             */
-                            if ($b != 0) {
-                                $v .= chr($b);
-                            }
-                        }
-
-                        return new PelEntryWindowsString($tag, $v);
+                        return new PelEntryWindowsString($tag, $data->getBytes(), true);
                 }
             // This point can be reached! Continue with default.
             case self::GPS:
