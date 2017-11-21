@@ -32,7 +32,8 @@ use Symfony\Component\Yaml\Yaml;
  */
 class PelSpec
 {
-    protected static $compiled = FALSE;
+    protected static $compiled = false;
+    protected static $ifds = [];
     protected static $tags = [];
 
     protected static function compile()
@@ -42,10 +43,17 @@ class PelSpec
             $finder->files()->in(dirname(__FILE__) . '/../spec')->name('ifd*.yaml');
             foreach ($finder as $file) {
                 $yaml = Yaml::parse($file->getContents());
+                static::$ifds[$yaml['id']] = $yaml['type'];
                 static::$tags[$yaml['id']] = $yaml['tags'];
             }
-            static::$compiled = TRUE;
+            static::$compiled = true;
         }
+    }
+
+    public static function getIfdTypes()
+    {
+        static::compile();
+        return static::$ifds;
     }
 
     public static function getIfdSupportedTagIds($ifd)

@@ -868,27 +868,11 @@ class PelIfd implements \IteratorAggregate, \ArrayAccess
      */
     public static function getTypeName($type)
     {
-        switch ($type) {
-            case self::IFD0:
-                return '0';
-            case self::IFD1:
-                return '1';
-            case self::EXIF:
-                return 'Exif';
-            case self::GPS:
-                return 'GPS';
-            case self::INTEROPERABILITY:
-                return 'Interoperability';
-            case self::CANON_MAKER_NOTES:
-            case self::CANON_CAMERA_SETTINGS:
-            case self::CANON_SHOT_INFO:
-            case self::CANON_PANORAMA:
-            case self::CANON_PICTURE_INFO:
-            case self::CANON_FILE_INFO:
-            case self::CANON_CUSTOM_FUNCTIONS:
-                return 'MakerNotes';
-            default:
-                throw new PelIfdException('Unknown IFD type: %d', $type);
+        $types = PelSpec::getIfdTypes();
+        if (isset($types[$type])) {
+            return $types[$type];
+        } else {
+            throw new PelIfdException('Unknown IFD type: %d', $type);
         }
     }
 

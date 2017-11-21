@@ -1,6 +1,5 @@
 id: 2
-alias:
-  - 'Exif'
+type: Exif
 tags:
     0xA302:
         name: CFA_PATTERN

@@ -1,6 +1,5 @@
 id: 3
-alias:
-  - 'GPS'
+type: GPS
 tags:
     0x0000:
         name: GPS_VERSION_ID
