@@ -33,9 +33,9 @@ class PelTagTest extends TestCase
     const NONEXISTENT_TAG_NAME = 'nonexistent tag name';
     const NONEXISTENT_EXIF_TAG = 0xFCFC;
     const NONEXISTENT_GPS_TAG = 0xFCFC;
-    const EXIF_TAG_NAME = 'ImageDescription';
+    const EXIF_TAG_NAME = 'ExifVersion';
     const GPS_TAG_NAME = 'GPSLongitude';
-    const EXIF_TAG = PelTag::IMAGE_DESCRIPTION;
+    const EXIF_TAG = PelTag::EXIF_VERSION;
     const GPS_TAG = PelTag::GPS_LONGITUDE;
 
     function testReverseLookup()
