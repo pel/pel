@@ -843,7 +843,7 @@ class PelIfd implements \IteratorAggregate, \ArrayAccess
      */
     public function getValidTags()
     {
-        return PelSpec::getIfdSupportedTags($this->type);
+        return PelSpec::getIfdSupportedTagIds($this->type);
         /*
          * TODO: Where do these tags belong?
          * PelTag::FILL_ORDER,

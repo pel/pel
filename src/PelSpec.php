@@ -48,9 +48,9 @@ class PelSpec
         }
     }
 
-    public static function getIfdSupportedTags($ifd)
+    public static function getIfdSupportedTagIds($ifd)
     {
         static::compile();
-        return static::$tags[$ifd];
+        return array_keys(static::$tags[$ifd]);
     }
 }
