@@ -1864,8 +1864,8 @@ class PelTag
     public static function getName($type, $tag)
     {
         $tags = PelSpec::getIfdTags($type);
-        if (isset($tags[$type])) {
-            return $tags[$type]['short'];
+        if (isset($tags[$tag])) {
+            return $tags[$tag]['short'];
         } else {
             return self::unknownTag($tag);
         }
@@ -1890,8 +1890,8 @@ class PelTag
     public function getTitle($type, $tag)
     {
         $tags = PelSpec::getIfdTags($type);
-        if (isset($tags[$type])) {
-            return Pel::tra($tags[$type]['title']);
+        if (isset($tags[$tag])) {
+            return Pel::tra($tags[$tag]['title']);
         } else {
             return self::unknownTag($tag);
         }
