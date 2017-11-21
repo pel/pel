@@ -1738,573 +1738,6 @@ class PelTag
     const CANON_FI_FLASH_EXPOSURE_LOCK = 0x0019;
 
     /**
-     * Values for tags short names.
-     */
-    protected static $exifTagsShort= array(
-        self::INTEROPERABILITY_INDEX         => 'InteroperabilityIndex',
-        self::INTEROPERABILITY_VERSION       => 'InteroperabilityVersion',
-        self::IMAGE_WIDTH                    => 'ImageWidth',
-        self::IMAGE_LENGTH                   => 'ImageLength',
-        self::BITS_PER_SAMPLE                => 'BitsPerSample',
-        self::COMPRESSION                    => 'Compression',
-        self::PHOTOMETRIC_INTERPRETATION     => 'PhotometricInterpretation',
-        self::FILL_ORDER                     => 'FillOrder',
-        self::DOCUMENT_NAME                  => 'DocumentName',
-        self::IMAGE_DESCRIPTION              => 'ImageDescription',
-        self::MAKE                           => 'Make',
-        self::MODEL                          => 'Model',
-        self::STRIP_OFFSETS                  => 'StripOffsets',
-        self::ORIENTATION                    => 'Orientation',
-        self::SAMPLES_PER_PIXEL              => 'SamplesPerPixel',
-        self::ROWS_PER_STRIP                 => 'RowsPerStrip',
-        self::STRIP_BYTE_COUNTS              => 'StripByteCounts',
-        self::X_RESOLUTION                   => 'XResolution',
-        self::Y_RESOLUTION                   => 'YResolution',
-        self::PLANAR_CONFIGURATION           => 'PlanarConfiguration',
-        self::RESOLUTION_UNIT                => 'ResolutionUnit',
-        self::TRANSFER_FUNCTION              => 'TransferFunction',
-        self::SOFTWARE                       => 'Software',
-        self::DATE_TIME                      => 'DateTime',
-        self::ARTIST                         => 'Artist',
-        self::WHITE_POINT                    => 'WhitePoint',
-        self::PRIMARY_CHROMATICITIES         => 'PrimaryChromaticities',
-        self::TRANSFER_RANGE                 => 'TransferRange',
-        self::JPEG_PROC                      => 'JPEGProc',
-        self::JPEG_INTERCHANGE_FORMAT        => 'JPEGInterchangeFormat',
-        self::JPEG_INTERCHANGE_FORMAT_LENGTH => 'JPEGInterchangeFormatLength',
-        self::YCBCR_COEFFICIENTS             => 'YCbCrCoefficients',
-        self::YCBCR_SUB_SAMPLING             => 'YCbCrSubSampling',
-        self::YCBCR_POSITIONING              => 'YCbCrPositioning',
-        self::REFERENCE_BLACK_WHITE          => 'ReferenceBlackWhite',
-        self::RELATED_IMAGE_FILE_FORMAT      => 'RelatedImageFileFormat',
-        self::RELATED_IMAGE_WIDTH            => 'RelatedImageWidth',
-        self::RELATED_IMAGE_LENGTH           => 'RelatedImageLength',
-        self::RATING                         => 'Rating',
-        self::RATING_PERCENT                 => 'RatingPercent',
-        self::CFA_REPEAT_PATTERN_DIM         => 'CFARepeatPatternDim',
-        self::CFA_PATTERN                    => 'CFAPattern',
-        self::BATTERY_LEVEL                  => 'BatteryLevel',
-        self::COPYRIGHT                      => 'Copyright',
-        self::EXPOSURE_TIME                  => 'ExposureTime',
-        self::FNUMBER                        => 'FNumber',
-        self::IPTC_NAA                       => 'IPTC/NAA',
-        self::EXIF_IFD_POINTER               => 'ExifIFDPointer',
-        self::INTER_COLOR_PROFILE            => 'InterColorProfile',
-        self::EXPOSURE_PROGRAM               => 'ExposureProgram',
-        self::SPECTRAL_SENSITIVITY           => 'SpectralSensitivity',
-        self::GPS_INFO_IFD_POINTER           => 'GPSInfoIFDPointer',
-        self::ISO_SPEED_RATINGS              => 'ISOSpeedRatings',
-        self::OECF                           => 'OECF',
-        self::EXIF_VERSION                   => 'ExifVersion',
-        self::DATE_TIME_ORIGINAL             => 'DateTimeOriginal',
-        self::DATE_TIME_DIGITIZED            => 'DateTimeDigitized',
-        self::OFFSET_TIME                    => 'OffsetTime',
-        self::OFFSET_TIME_ORIGINAL           => 'OffsetTimeOriginal',
-        self::OFFSET_TIME_DIGITIZED          => 'OffsetTimeDigitized',
-        self::COMPONENTS_CONFIGURATION       => 'ComponentsConfiguration',
-        self::COMPRESSED_BITS_PER_PIXEL      => 'CompressedBitsPerPixel',
-        self::SHUTTER_SPEED_VALUE            => 'ShutterSpeedValue',
-        self::APERTURE_VALUE                 => 'ApertureValue',
-        self::BRIGHTNESS_VALUE               => 'BrightnessValue',
-        self::EXPOSURE_BIAS_VALUE            => 'ExposureBiasValue',
-        self::MAX_APERTURE_VALUE             => 'MaxApertureValue',
-        self::SUBJECT_DISTANCE               => 'SubjectDistance',
-        self::METERING_MODE                  => 'MeteringMode',
-        self::LIGHT_SOURCE                   => 'LightSource',
-        self::FLASH                          => 'Flash',
-        self::FOCAL_LENGTH                   => 'FocalLength',
-        self::MAKER_NOTE                     => 'MakerNote',
-        self::USER_COMMENT                   => 'UserComment',
-        self::SUB_SEC_TIME                   => 'SubSecTime',
-        self::SUB_SEC_TIME_ORIGINAL          => 'SubSecTimeOriginal',
-        self::SUB_SEC_TIME_DIGITIZED         => 'SubSecTimeDigitized',
-        self::XP_TITLE                       => 'WindowsXPTitle',
-        self::XP_COMMENT                     => 'WindowsXPComment',
-        self::XP_AUTHOR                      => 'WindowsXPAuthor',
-        self::XP_KEYWORDS                    => 'WindowsXPKeywords',
-        self::XP_SUBJECT                     => 'WindowsXPSubject',
-        self::FLASH_PIX_VERSION              => 'FlashPixVersion',
-        self::COLOR_SPACE                    => 'ColorSpace',
-        self::PIXEL_X_DIMENSION              => 'PixelXDimension',
-        self::PIXEL_Y_DIMENSION              => 'PixelYDimension',
-        self::RELATED_SOUND_FILE             => 'RelatedSoundFile',
-        self::INTEROPERABILITY_IFD_POINTER   => 'InteroperabilityIFDPointer',
-        self::FLASH_ENERGY                   => 'FlashEnergy',
-        self::SPATIAL_FREQUENCY_RESPONSE     => 'SpatialFrequencyResponse',
-        self::FOCAL_PLANE_X_RESOLUTION       => 'FocalPlaneXResolution',
-        self::FOCAL_PLANE_Y_RESOLUTION       => 'FocalPlaneYResolution',
-        self::FOCAL_PLANE_RESOLUTION_UNIT    => 'FocalPlaneResolutionUnit',
-        self::SUBJECT_LOCATION               => 'SubjectLocation',
-        self::EXPOSURE_INDEX                 => 'ExposureIndex',
-        self::SENSING_METHOD                 => 'SensingMethod',
-        self::FILE_SOURCE                    => 'FileSource',
-        self::SCENE_TYPE                     => 'SceneType',
-        self::SUBJECT_AREA                   => 'SubjectArea',
-        self::CUSTOM_RENDERED                => 'CustomRendered',
-        self::EXPOSURE_MODE                  => 'ExposureMode',
-        self::WHITE_BALANCE                  => 'WhiteBalance',
-        self::DIGITAL_ZOOM_RATIO             => 'DigitalZoomRatio',
-        self::FOCAL_LENGTH_IN_35MM_FILM      => 'FocalLengthIn35mmFilm',
-        self::SCENE_CAPTURE_TYPE             => 'SceneCaptureType',
-        self::GAIN_CONTROL                   => 'GainControl',
-        self::CONTRAST                       => 'Contrast',
-        self::SATURATION                     => 'Saturation',
-        self::SHARPNESS                      => 'Sharpness',
-        self::DEVICE_SETTING_DESCRIPTION     => 'DeviceSettingDescription',
-        self::SUBJECT_DISTANCE_RANGE         => 'SubjectDistanceRange',
-        self::IMAGE_UNIQUE_ID                => 'ImageUniqueID',
-        self::GAMMA                          => 'Gamma',
-        self::PRINT_IM                       => 'PrintIM',
-    );
-
-    /**
-     * Values for tags titles.
-     */
-    protected static $exifTagsTitle = array(
-        self::INTEROPERABILITY_INDEX         => 'Interoperability Index',
-        self::INTEROPERABILITY_VERSION       => 'Interoperability Version',
-        self::IMAGE_WIDTH                    => 'Image Width',
-        self::IMAGE_LENGTH                   => 'Image Length',
-        self::BITS_PER_SAMPLE                => 'Bits per Sample',
-        self::COMPRESSION                    => 'Compression',
-        self::PHOTOMETRIC_INTERPRETATION     => 'Photometric Interpretation',
-        self::FILL_ORDER                     => 'Fill Order',
-        self::DOCUMENT_NAME                  => 'Document Name',
-        self::IMAGE_DESCRIPTION              => 'Image Description',
-        self::MAKE                           => 'Manufacturer',
-        self::MODEL                          => 'Model',
-        self::STRIP_OFFSETS                  => 'Strip Offsets',
-        self::ORIENTATION                    => 'Orientation',
-        self::SAMPLES_PER_PIXEL              => 'Samples per Pixel',
-        self::ROWS_PER_STRIP                 => 'Rows per Strip',
-        self::STRIP_BYTE_COUNTS              => 'Strip Byte Count',
-        self::X_RESOLUTION                   => 'x-Resolution',
-        self::Y_RESOLUTION                   => 'y-Resolution',
-        self::PLANAR_CONFIGURATION           => 'Planar Configuration',
-        self::RESOLUTION_UNIT                => 'Resolution Unit',
-        self::TRANSFER_FUNCTION              => 'Transfer Function',
-        self::SOFTWARE                       => 'Software',
-        self::DATE_TIME                      => 'Date and Time',
-        self::ARTIST                         => 'Artist',
-        self::WHITE_POINT                    => 'White Point',
-        self::PRIMARY_CHROMATICITIES         => 'Primary Chromaticities',
-        self::TRANSFER_RANGE                 => 'Transfer Range',
-        self::JPEG_PROC                      => 'JPEG Process',
-        self::JPEG_INTERCHANGE_FORMAT        => 'JPEG Interchange Format',
-        self::JPEG_INTERCHANGE_FORMAT_LENGTH => 'JPEG Interchange Format Length',
-        self::YCBCR_COEFFICIENTS             => 'YCbCr Coefficients',
-        self::YCBCR_SUB_SAMPLING             => 'YCbCr Sub-Sampling',
-        self::YCBCR_POSITIONING              => 'YCbCr Positioning',
-        self::REFERENCE_BLACK_WHITE          => 'Reference Black/White',
-        self::RELATED_IMAGE_FILE_FORMAT      => 'Related Image File Format',
-        self::RELATED_IMAGE_WIDTH            => 'Related Image Width',
-        self::RELATED_IMAGE_LENGTH           => 'Related Image Length',
-        self::RATING                         => 'Star Rating',
-        self::RATING_PERCENT                 => 'Percent Rating',
-        self::CFA_REPEAT_PATTERN_DIM         => 'CFA Repeat Pattern Dim',
-        self::CFA_PATTERN                    => 'CFA Pattern',
-        self::BATTERY_LEVEL                  => 'Battery Level',
-        self::COPYRIGHT                      => 'Copyright',
-        self::EXPOSURE_TIME                  => 'Exposure Time',
-        self::FNUMBER                        => 'FNumber',
-        self::IPTC_NAA                       => 'IPTC/NAA',
-        self::EXIF_IFD_POINTER               => 'Exif IFD Pointer',
-        self::INTER_COLOR_PROFILE            => 'Inter Color Profile',
-        self::EXPOSURE_PROGRAM               => 'Exposure Program',
-        self::SPECTRAL_SENSITIVITY           => 'Spectral Sensitivity',
-        self::GPS_INFO_IFD_POINTER           => 'GPS Info IFD Pointer',
-        self::ISO_SPEED_RATINGS              => 'ISO Speed Ratings',
-        self::OECF                           => 'OECF',
-        self::EXIF_VERSION                   => 'Exif Version',
-        self::DATE_TIME_ORIGINAL             => 'Date and Time (original)',
-        self::DATE_TIME_DIGITIZED            => 'Date and Time (digitized)',
-        self::OFFSET_TIME                    => 'Timezone',
-        self::OFFSET_TIME_ORIGINAL           => 'Timezone (original)',
-        self::OFFSET_TIME_DIGITIZED          => 'Timezone (digitized)',
-        self::COMPONENTS_CONFIGURATION       => 'Components Configuration',
-        self::COMPRESSED_BITS_PER_PIXEL      => 'Compressed Bits per Pixel',
-        self::SHUTTER_SPEED_VALUE            => 'Shutter speed',
-        self::APERTURE_VALUE                 => 'Aperture',
-        self::BRIGHTNESS_VALUE               => 'Brightness',
-        self::EXPOSURE_BIAS_VALUE            => 'Exposure Bias',
-        self::MAX_APERTURE_VALUE             => 'Max Aperture Value',
-        self::SUBJECT_DISTANCE               => 'Subject Distance',
-        self::METERING_MODE                  => 'Metering Mode',
-        self::LIGHT_SOURCE                   => 'Light Source',
-        self::FLASH                          => 'Flash',
-        self::FOCAL_LENGTH                   => 'Focal Length',
-        self::MAKER_NOTE                     => 'Maker Note',
-        self::USER_COMMENT                   => 'User Comment',
-        self::SUB_SEC_TIME                   => 'SubSec Time',
-        self::SUB_SEC_TIME_ORIGINAL          => 'SubSec Time Original',
-        self::SUB_SEC_TIME_DIGITIZED         => 'SubSec Time Digitized',
-        self::XP_TITLE                       => 'Windows XP Title',
-        self::XP_COMMENT                     => 'Windows XP Comment',
-        self::XP_AUTHOR                      => 'Windows XP Author',
-        self::XP_KEYWORDS                    => 'Windows XP Keywords',
-        self::XP_SUBJECT                     => 'Windows XP Subject',
-        self::FLASH_PIX_VERSION              => 'FlashPix Version',
-        self::COLOR_SPACE                    => 'Color Space',
-        self::PIXEL_X_DIMENSION              => 'Pixel x-Dimension',
-        self::PIXEL_Y_DIMENSION              => 'Pixel y-Dimension',
-        self::RELATED_SOUND_FILE             => 'Related Sound File',
-        self::INTEROPERABILITY_IFD_POINTER   => 'Interoperability IFD Pointer',
-        self::FLASH_ENERGY                   => 'Flash Energy',
-        self::SPATIAL_FREQUENCY_RESPONSE     => 'Spatial Frequency Response',
-        self::FOCAL_PLANE_X_RESOLUTION       => 'Focal Plane x-Resolution',
-        self::FOCAL_PLANE_Y_RESOLUTION       => 'Focal Plane y-Resolution',
-        self::FOCAL_PLANE_RESOLUTION_UNIT    => 'Focal Plane Resolution Unit',
-        self::SUBJECT_LOCATION               => 'Subject Location',
-        self::EXPOSURE_INDEX                 => 'Exposure index',
-        self::SENSING_METHOD                 => 'Sensing Method',
-        self::FILE_SOURCE                    => 'File Source',
-        self::SCENE_TYPE                     => 'Scene Type',
-        self::SUBJECT_AREA                   => 'Subject Area',
-        self::CUSTOM_RENDERED                => 'Custom Rendered',
-        self::EXPOSURE_MODE                  => 'Exposure Mode',
-        self::WHITE_BALANCE                  => 'White Balance',
-        self::DIGITAL_ZOOM_RATIO             => 'Digital Zoom Ratio',
-        self::FOCAL_LENGTH_IN_35MM_FILM      => 'Focal Length In 35mm Film',
-        self::SCENE_CAPTURE_TYPE             => 'Scene Capture Type',
-        self::GAIN_CONTROL                   => 'Gain Control',
-        self::CONTRAST                       => 'Contrast',
-        self::SATURATION                     => 'Saturation',
-        self::SHARPNESS                      => 'Sharpness',
-        self::DEVICE_SETTING_DESCRIPTION     => 'Device Setting Description',
-        self::SUBJECT_DISTANCE_RANGE         => 'Subject Distance Range',
-        self::IMAGE_UNIQUE_ID                => 'Image Unique ID',
-        self::GAMMA                          => 'Gamma',
-        self::PRINT_IM                       => 'Print IM',
-    );
-
-    /**
-     * Values for gps tags short names.
-     */
-    protected static $gpsTagsShort = array(
-        self::GPS_VERSION_ID         => 'GPSVersionID',
-        self::GPS_LATITUDE_REF       => 'GPSLatitudeRef',
-        self::GPS_LATITUDE           => 'GPSLatitude',
-        self::GPS_LONGITUDE_REF      => 'GPSLongitudeRef',
-        self::GPS_LONGITUDE          => 'GPSLongitude',
-        self::GPS_ALTITUDE_REF       => 'GPSAltitudeRef',
-        self::GPS_ALTITUDE           => 'GPSAltitude',
-        self::GPS_TIME_STAMP         => 'GPSTimeStamp',
-        self::GPS_SATELLITES         => 'GPSSatellites',
-        self::GPS_STATUS             => 'GPSStatus',
-        self::GPS_MEASURE_MODE       => 'GPSMeasureMode',
-        self::GPS_DOP                => 'GPSDOP',
-        self::GPS_SPEED_REF          => 'GPSSpeedRef',
-        self::GPS_SPEED              => 'GPSSpeed',
-        self::GPS_TRACK_REF          => 'GPSTrackRef',
-        self::GPS_TRACK              => 'GPSTrack',
-        self::GPS_IMG_DIRECTION_REF  => 'GPSImgDirectionRef',
-        self::GPS_IMG_DIRECTION      => 'GPSImgDirection',
-        self::GPS_MAP_DATUM          => 'GPSMapDatum',
-        self::GPS_DEST_LATITUDE_REF  => 'GPSDestLatitudeRef',
-        self::GPS_DEST_LATITUDE      => 'GPSDestLatitude',
-        self::GPS_DEST_LONGITUDE_REF => 'GPSDestLongitudeRef',
-        self::GPS_DEST_LONGITUDE     => 'GPSDestLongitude',
-        self::GPS_DEST_BEARING_REF   => 'GPSDestBearingRef',
-        self::GPS_DEST_BEARING       => 'GPSDestBearing',
-        self::GPS_DEST_DISTANCE_REF  => 'GPSDestDistanceRef',
-        self::GPS_DEST_DISTANCE      => 'GPSDestDistance',
-        self::GPS_PROCESSING_METHOD  => 'GPSProcessingMethod',
-        self::GPS_AREA_INFORMATION   => 'GPSAreaInformation',
-        self::GPS_DATE_STAMP         => 'GPSDateStamp',
-        self::GPS_DIFFERENTIAL       => 'GPSDifferential',
-    );
-
-    /**
-     * Values for canon maker notes tags titles
-     */
-    protected static $canonTagsTitle = array(
-        self::CANON_CAMERA_SETTINGS               => 'Camera Settings',
-        self::CANON_FOCAL_LENGTH                  => 'Focal Length',
-        self::CANON_SHOT_INFO                     => 'Shot Info',
-        self::CANON_PANORAMA                      => 'Panorama',
-        self::CANON_IMAGE_TYPE                    => 'Image Type',
-        self::CANON_FIRMWARE_VERSION              => 'Firmware Version',
-        self::CANON_FILE_NUMBER                   => 'File Number',
-        self::CANON_OWNER_NAME                    => 'Owner Name',
-        self::CANON_SERIAL_NUMBER                 => 'Serial Number',
-        self::CANON_CAMERA_INFO                   => 'Camera Info',
-        self::CANON_CUSTOM_FUNCTIONS              => 'Custom Functions',
-        self::CANON_MODEL_ID                      => 'Model ID',
-        self::CANON_PICTURE_INFO                  => 'Picture Info',
-        self::CANON_THUMBNAIL_IMAGE_VALID_AREA    => 'Thumbnail Image Valid Area',
-        self::CANON_SERIAL_NUMBER_FORMAT          => 'Serial number format',
-        self::CANON_SUPER_MACRO                   => 'Super macro',
-        self::CANON_FIRMWARE_REVISION             => 'Firmware Revision',
-        self::CANON_AF_INFO                       => 'AF info',
-        self::CANON_ORIGINAL_DECISION_DATA_OFFSET => 'Original decision data offset',
-        self::CANON_WHITE_BALANCE_TABLE           => 'White balance table',
-        self::CANON_LENS_MODEL                    => 'Lens model',
-        self::CANON_INTERNAL_SERIAL_NUMBER        => 'Internal serial number',
-        self::CANON_DUST_REMOVAL_DATA             => 'Dust removal data',
-        self::CANON_CUSTOM_FUNCTIONS_2            => 'Custom functions',
-        self::CANON_PROCESSING_INFO               => 'Processing info',
-        self::CANON_MEASURED_COLOR                => 'Measured color',
-        self::CANON_COLOR_SPACE                   => 'Color Space',
-        self::CANON_VRD_OFFSET                    => 'VRD offset',
-        self::CANON_SENSOR_INFO                   => 'Sensor info',
-        self::CANON_COLOR_DATA                    => 'Color data'
-    );
-
-    /**
-     * Values for canon maker notes tags short names
-     */
-    protected static $canonTagsShort = array(
-        self::CANON_CAMERA_SETTINGS               => 'CameraSettings',
-        self::CANON_FOCAL_LENGTH                  => 'FocalLength',
-        self::CANON_SHOT_INFO                     => 'ShotInfo',
-        self::CANON_PANORAMA                      => 'Panorama',
-        self::CANON_IMAGE_TYPE                    => 'ImageType',
-        self::CANON_FIRMWARE_VERSION              => 'FirmwareVersion',
-        self::CANON_FILE_NUMBER                   => 'FileNumber',
-        self::CANON_OWNER_NAME                    => 'OwnerName',
-        self::CANON_SERIAL_NUMBER                 => 'SerialNumber',
-        self::CANON_CAMERA_INFO                   => 'CameraInfo',
-        self::CANON_CUSTOM_FUNCTIONS              => 'CustomFunctions',
-        self::CANON_MODEL_ID                      => 'ModelID',
-        self::CANON_PICTURE_INFO                  => 'PictureInfo',
-        self::CANON_THUMBNAIL_IMAGE_VALID_AREA    => 'ThumbnailImageValidArea',
-        self::CANON_SERIAL_NUMBER_FORMAT          => 'Serial Number Format',
-        self::CANON_SUPER_MACRO                   => 'SuperMacro',
-        self::CANON_FIRMWARE_REVISION             => 'FirmwareRevision',
-        self::CANON_AF_INFO                       => 'AFinfo',
-        self::CANON_ORIGINAL_DECISION_DATA_OFFSET => 'OriginalDecision Data Offset',
-        self::CANON_WHITE_BALANCE_TABLE           => 'WhiteBalanceTable',
-        self::CANON_LENS_MODEL                    => 'LensModel',
-        self::CANON_INTERNAL_SERIAL_NUMBER        => 'InternalSerialNumber',
-        self::CANON_DUST_REMOVAL_DATA             => 'DustRemovalData',
-        self::CANON_CUSTOM_FUNCTIONS_2            => 'CustomFunctions',
-        self::CANON_PROCESSING_INFO               => 'ProcessingInfo',
-        self::CANON_MEASURED_COLOR                => 'MeasuredColor',
-        self::CANON_COLOR_SPACE                   => 'ColorSpace',
-        self::CANON_VRD_OFFSET                    => 'VRDOffset',
-        self::CANON_SENSOR_INFO                   => 'SensorInfo',
-        self::CANON_COLOR_DATA                    => 'ColorData'
-    );
-
-    /**
-     * Values for canon camera settings tags titles
-     */
-    protected static $canonCsTagsTitle = array(
-        self::CANON_CS_MACRO               => 'Macro Mode',
-        self::CANON_CS_SELF_TIMER          => 'Self Timer',
-        self::CANON_CS_QUALITY             => 'Quality',
-        self::CANON_CS_FLASH_MODE          => 'Flash Mode',
-        self::CANON_CS_DRIVE_MODE          => 'Drive Mode',
-        self::CANON_CS_FOCUS_MODE          => 'Focus Mode',
-        self::CANON_CS_RECORD_MODE         => 'Record Mode',
-        self::CANON_CS_IMAGE_SIZE          => 'Image Size',
-        self::CANON_CS_EASY_MODE           => 'Easy Shooting Mode',
-        self::CANON_CS_DIGITAL_ZOOM        => 'Digital Zoom',
-        self::CANON_CS_CONTRAST            => 'Contrast',
-        self::CANON_CS_SATURATION          => 'Saturation',
-        self::CANON_CS_SHARPNESS           => 'Sharpness',
-        self::CANON_CS_ISO_SPEED           => 'ISO Speed',
-        self::CANON_CS_METERING_MODE       => 'Metering Mode',
-        self::CANON_CS_FOCUS_TYPE          => 'Focus Type',
-        self::CANON_CS_AF_POINT            => 'AF Point Selected',
-        self::CANON_CS_EXPOSURE_PROGRAM    => 'Exposure Mode',
-        self::CANON_CS_LENS_TYPE           => 'Lens Type',
-        self::CANON_CS_LENS                => 'Long Focal Length',
-        self::CANON_CS_SHORT_FOCAL         => 'Short Focal Length',
-        self::CANON_CS_FOCAL_UNITS         => 'Focal Units',
-        self::CANON_CS_MAX_APERTURE        => 'Max Aperture',
-        self::CANON_CS_MIN_APERTURE        => 'Min Aperture',
-        self::CANON_CS_FLASH_ACTIVITY      => 'Flash Activity',
-        self::CANON_CS_FLASH_DETAILS       => 'Flash Details',
-        self::CANON_CS_FOCUS_CONTINUOUS    => 'Focus Continuous',
-        self::CANON_CS_AE_SETTING          => 'AE Setting',
-        self::CANON_CS_IMAGE_STABILIZATION => 'Image Stabilization',
-        self::CANON_CS_DISPLAY_APERTURE    => 'Display Aperture',
-        self::CANON_CS_ZOOM_SOURCE_WIDTH   => 'Zoom Source Width',
-        self::CANON_CS_ZOOM_TARGET_WIDTH   => 'Zoom Target Width',
-        self::CANON_CS_SPOT_METERING_MODE  => 'Spot Metering Mode',
-        self::CANON_CS_PHOTO_EFFECT        => 'Photo Effect',
-        self::CANON_CS_MANUAL_FLASH_OUTPUT => 'Manual Flash Output',
-        self::CANON_CS_COLOR_TONE          => 'Color Tone',
-        self::CANON_CS_SRAW_QUALITY        => 'SRAW Quality'
-    );
-
-    /**
-     * Values for canon camera settings tags short names
-     */
-    protected static $canonCsTagsShort = array(
-        self::CANON_CS_MACRO               => 'MacroMode',
-        self::CANON_CS_SELF_TIMER          => 'SelfTimer',
-        self::CANON_CS_QUALITY             => 'Quality',
-        self::CANON_CS_FLASH_MODE          => 'FlashMode',
-        self::CANON_CS_DRIVE_MODE          => 'DriveMode',
-        self::CANON_CS_FOCUS_MODE          => 'FocusMode',
-        self::CANON_CS_RECORD_MODE         => 'RecordMode',
-        self::CANON_CS_IMAGE_SIZE          => 'ImageSize',
-        self::CANON_CS_EASY_MODE           => 'EasyShootingMode',
-        self::CANON_CS_DIGITAL_ZOOM        => 'DigitalZoom',
-        self::CANON_CS_CONTRAST            => 'Contrast',
-        self::CANON_CS_SATURATION          => 'Saturation',
-        self::CANON_CS_SHARPNESS           => 'Sharpness',
-        self::CANON_CS_ISO_SPEED           => 'ISOSpeed',
-        self::CANON_CS_METERING_MODE       => 'MeteringMode',
-        self::CANON_CS_FOCUS_TYPE          => 'FocusType',
-        self::CANON_CS_AF_POINT            => 'AFPointSelected',
-        self::CANON_CS_EXPOSURE_PROGRAM    => 'ExposureMode',
-        self::CANON_CS_LENS_TYPE           => 'LensType',
-        self::CANON_CS_LENS                => 'LongFocalLength',
-        self::CANON_CS_SHORT_FOCAL         => 'ShortFocalLength',
-        self::CANON_CS_FOCAL_UNITS         => 'FocalUnits',
-        self::CANON_CS_MAX_APERTURE        => 'MaxAperture',
-        self::CANON_CS_MIN_APERTURE        => 'MinAperture',
-        self::CANON_CS_FLASH_ACTIVITY      => 'FlashActivity',
-        self::CANON_CS_FLASH_DETAILS       => 'FlashDetails',
-        self::CANON_CS_FOCUS_CONTINUOUS    => 'FocusContinuous',
-        self::CANON_CS_AE_SETTING          => 'AESetting',
-        self::CANON_CS_IMAGE_STABILIZATION => 'ImageStabilization',
-        self::CANON_CS_DISPLAY_APERTURE    => 'DisplayAperture',
-        self::CANON_CS_ZOOM_SOURCE_WIDTH   => 'ZoomSourceWidth',
-        self::CANON_CS_ZOOM_TARGET_WIDTH   => 'ZoomTargetWidth',
-        self::CANON_CS_SPOT_METERING_MODE  => 'SpotMeteringMode',
-        self::CANON_CS_PHOTO_EFFECT        => 'PhotoEffect',
-        self::CANON_CS_MANUAL_FLASH_OUTPUT => 'ManualFlashOutput',
-        self::CANON_CS_COLOR_TONE          => 'ColorTone',
-        self::CANON_CS_SRAW_QUALITY        => 'SRAWQuality'
-    );
-
-    /**
-     * Values for canon shot info tags titles
-     */
-    protected static $canonSiTagsTitle = array(
-        self::CANON_SI_ISO_SPEED                => 'ISO Speed Used',
-        self::CANON_SI_MEASURED_EV              => 'Measured EV',
-        self::CANON_SI_TARGET_APERTURE          => 'Target Aperture',
-        self::CANON_SI_TARGET_SHUTTER_SPEED     => 'Target Shutter Speed',
-        self::CANON_SI_WHITE_BALANCE            => 'White Balance Setting',
-        self::CANON_SI_SLOW_SHUTTER             => 'Slow Shutter',
-        self::CANON_SI_SEQUENCE                 => 'Sequence Number',
-        self::CANON_SI_AF_POINT_USED            => 'AF Point Used',
-        self::CANON_SI_FLASH_BIAS               => 'Flash Bias',
-        self::CANON_SI_AUTO_EXPOSURE_BRACKETING => 'Auto Exposure Bracketing',
-        self::CANON_SI_SUBJECT_DISTANCE         => 'Subject Distance',
-        self::CANON_SI_APERTURE_VALUE           => 'Aperture',
-        self::CANON_SI_SHUTTER_SPEED_VALUE      => 'Shutter Speed',
-        self::CANON_SI_MEASURED_EV2             => 'Measured EV 2',
-        self::CANON_SI_CAMERA_TYPE              => 'Camera Type',
-        self::CANON_SI_AUTO_ROTATE              => 'Auto Rotate',
-        self::CANON_SI_ND_FILTER                => 'ND Filter'
-    );
-
-    /**
-     * Values for canon shot info tags short names
-     */
-    protected static $canonSiTagsShort = array(
-        self::CANON_SI_ISO_SPEED                => 'ISOSpeedUsed',
-        self::CANON_SI_MEASURED_EV              => 'MeasuredEV',
-        self::CANON_SI_TARGET_APERTURE          => 'TargetAperture',
-        self::CANON_SI_TARGET_SHUTTER_SPEED     => 'TargetShutterSpeed',
-        self::CANON_SI_WHITE_BALANCE            => 'WhiteBalanceSetting',
-        self::CANON_SI_SLOW_SHUTTER             => 'SlowShutter',
-        self::CANON_SI_SEQUENCE                 => 'SequenceNumber',
-        self::CANON_SI_AF_POINT_USED            => 'AFPointUsed',
-        self::CANON_SI_FLASH_BIAS               => 'FlashBias',
-        self::CANON_SI_AUTO_EXPOSURE_BRACKETING => 'AutoExposureBracketing',
-        self::CANON_SI_SUBJECT_DISTANCE         => 'SubjectDistance',
-        self::CANON_SI_APERTURE_VALUE           => 'Aperture',
-        self::CANON_SI_SHUTTER_SPEED_VALUE      => 'ShutterSpeed',
-        self::CANON_SI_MEASURED_EV2             => 'MeasuredEV2',
-        self::CANON_SI_CAMERA_TYPE              => 'CameraType',
-        self::CANON_SI_AUTO_ROTATE              => 'AutoRotate',
-        self::CANON_SI_ND_FILTER                => 'NDFilter'
-    );
-
-    /**
-     * Values for canon panorama tags titles
-     */
-    protected static $canonPaTagsTitle = array(
-        self::CANON_PA_PANORAMA_FRAME     => 'Panorama Frame',
-        self::CANON_PA_PANORAMA_DIRECTION => 'Panorama Direction'
-    );
-
-    /**
-     * Values for canon panorama tags short names
-     */
-    protected static $canonPaTagsShort = array(
-        self::CANON_PA_PANORAMA_FRAME     => 'PanoramaFrame',
-        self::CANON_PA_PANORAMA_DIRECTION => 'PanoramaDirection'
-    );
-
-    /**
-     * Values for canon picture info tags titles
-     */
-    protected static $canonPiTagsTitle = array(
-        self::CANON_PI_IMAGE_WIDTH          => 'Image Width',
-        self::CANON_PI_IMAGE_HEIGHT         => 'Image Height',
-        self::CANON_PI_IMAGE_WIDTH_AS_SHOT  => 'Image Width As Shot',
-        self::CANON_PI_IMAGE_HEIGHT_AS_SHOT => 'Image Height As Shot',
-        self::CANON_PI_AF_POINTS_USED       => 'AF Points Used',
-        self::CANON_PI_AF_POINTS_USED_20D   => 'AF Points Used (20D)'
-    );
-
-    /**
-     * Values for canon picture info tags short names
-     */
-    protected static $canonPiTagsShort = array(
-        self::CANON_PI_IMAGE_WIDTH          => 'ImageWidth',
-        self::CANON_PI_IMAGE_HEIGHT         => 'ImageHeight',
-        self::CANON_PI_IMAGE_WIDTH_AS_SHOT  => 'ImageWidthAsShot',
-        self::CANON_PI_IMAGE_HEIGHT_AS_SHOT => 'ImageHeightAsShot',
-        self::CANON_PI_AF_POINTS_USED       => 'AFPointsUsed',
-        self::CANON_PI_AF_POINTS_USED_20D   => 'AFPointsUsed(20D)'
-    );
-
-    /**
-     * Values for canon file info tags titles
-     */
-    protected static $canonFiTagsTitle = array(
-        self::CANON_FI_FILE_NUMBER          => 'File Number',
-        self::CANON_FI_BRACKET_MODE         => 'Bracket Mode',
-        self::CANON_FI_BRACKET_VALUE        => 'Bracket Value',
-        self::CANON_FI_BRACKET_SHOT_NUMBER  => 'Bracket Shot Number',
-        self::CANON_FI_RAW_JPG_QUALITY      => 'Raw Jpg Quality',
-        self::CANON_FI_RAW_JPG_SIZE         => 'Raw Jpg Size',
-        self::CANON_FI_NOISE_REDUCTION      => 'Noise Reduction',
-        self::CANON_FI_WB_BRACKET_MODE      => 'WB Bracket Mode',
-        self::CANON_FI_WB_BRACKET_VALUE_AB  => 'WB Bracket Value AB',
-        self::CANON_FI_WB_BRACKET_VALUE_GM  => 'WB Bracket Value GM',
-        self::CANON_FI_FILTER_EFFECT        => 'Filter Effect',
-        self::CANON_FI_TONING_EFFECT        => 'Toning Effect',
-        self::CANON_FI_MACRO_MAGNIFICATION  => 'Macro Magnification',
-        self::CANON_FI_LIVE_VIEW_SHOOTING   => 'Live View Shooting',
-        self::CANON_FI_FOCUS_DISTANCE_UPPER => 'Focus Distance Upper',
-        self::CANON_FI_FOCUS_DISTANCE_LOWER => 'Focus Distance Lower',
-        self::CANON_FI_FLASH_EXPOSURE_LOCK  => 'Flash Exposure Lock'
-    );
-
-    /**
-     * Values for canon file info tags short names
-     */
-    protected static $canonFiTagsShort = array(
-        self::CANON_FI_FILE_NUMBER          => 'FileNumber',
-        self::CANON_FI_BRACKET_MODE         => 'BracketMode',
-        self::CANON_FI_BRACKET_VALUE        => 'BracketValue',
-        self::CANON_FI_BRACKET_SHOT_NUMBER  => 'BracketShotNumber',
-        self::CANON_FI_RAW_JPG_QUALITY      => 'RawJpgQuality',
-        self::CANON_FI_RAW_JPG_SIZE         => 'RawJpgSize',
-        self::CANON_FI_NOISE_REDUCTION      => 'NoiseReduction',
-        self::CANON_FI_WB_BRACKET_MODE      => 'WBBracketMode',
-        self::CANON_FI_WB_BRACKET_VALUE_AB  => 'WBBracketValueAB',
-        self::CANON_FI_WB_BRACKET_VALUE_GM  => 'WBBracketValueGM',
-        self::CANON_FI_FILTER_EFFECT        => 'FilterEffect',
-        self::CANON_FI_TONING_EFFECT        => 'ToningEffect',
-        self::CANON_FI_MACRO_MAGNIFICATION  => 'MacroMagnification',
-        self::CANON_FI_LIVE_VIEW_SHOOTING   => 'LiveViewShooting',
-        self::CANON_FI_FOCUS_DISTANCE_UPPER => 'FocusDistanceUpper',
-        self::CANON_FI_FOCUS_DISTANCE_LOWER => 'FocusDistanceLower',
-        self::CANON_FI_FLASH_EXPOSURE_LOCK  => 'FlashExposureLock'
-    );
-
-    /**
      * Returns a string from container with key $tag and subcontainer index of $idx
      *
      * @param array $container
@@ -2314,6 +1747,8 @@ class PelTag
      *            the tag.
      *
      * @return string short name or long name of the tag.
+     *
+     * @deprecated @todo
      */
     public static function getValue($container, $tag)
     {
@@ -2337,17 +1772,23 @@ class PelTag
      */
     public static function getTagByName($name)
     {
-        $k = array_search($name, self::$exifTagsShort);
+        $k = static::getExifTagByName($name);
         if ($k !== false) {
             return $k;
         }
 
-        $k = array_search($name, static::$gpsTagsShort);
+        $k = static::getGpsTagByName($name);
         if ($k !== false) {
             return $k;
         }
 
-        return array_search($name, self::$canonTagsShort);
+        $tags = PelSpec::getIfdTags(PelIfd::CANON_MAKER_NOTES);
+        foreach ($tags as $id => $tag) {
+          if ($tag['short'] === $name) {
+            return $id;
+          }
+        }
+        return false;
     }
 
     /**
@@ -2361,7 +1802,13 @@ class PelTag
      */
     public static function getExifTagByName($name)
     {
-        return array_search($name, static::$exifTagsShort);
+        $tags = PelSpec::getIfdTags(PelIfd::EXIF);
+        foreach ($tags as $id => $tag) {
+          if ($tag['short'] === $name) {
+            return $id;
+          }
+        }
+        return false;
     }
 
     /**
@@ -2375,7 +1822,13 @@ class PelTag
      */
     public static function getGpsTagByName($name)
     {
-        return array_search($name, static::$gpsTagsShort);
+        $tags = PelSpec::getIfdTags(PelIfd::GPS);
+        foreach ($tags as $id => $tag) {
+          if ($tag['short'] === $name) {
+            return $id;
+          }
+        }
+        return false;
     }
 
     /**
@@ -2410,29 +1863,12 @@ class PelTag
      */
     public static function getName($type, $tag)
     {
-        switch ($type) {
-            case PelIfd::IFD0:
-            case PelIfd::IFD1:
-            case PelIfd::EXIF:
-            case PelIfd::INTEROPERABILITY:
-                return self::getValue(self::$exifTagsShort, $tag);
-            case PelIfd::GPS:
-                return self::getValue(self::$gpsTagsShort, $tag);
-            case PelIfd::CANON_MAKER_NOTES:
-                return self::getValue(self::$canonTagsShort, $tag);
-            case PelIfd::CANON_CAMERA_SETTINGS:
-                return self::getValue(self::$canonCsTagsShort, $tag);
-            case PelIfd::CANON_SHOT_INFO:
-                return self::getValue(self::$canonSiTagsShort, $tag);
-            case PelIfd::CANON_PANORAMA:
-                return self::getValue(self::$canonPaTagsShort, $tag);
-            case PelIfd::CANON_PICTURE_INFO:
-                return self::getValue(self::$canonPiTagsShort, $tag);
-            case PelIfd::CANON_FILE_INFO:
-                return self::getValue(self::$canonFiTagsShort, $tag);
+        $tags = PelSpec::getIfdTags($type);
+        if (isset($tags[$type])) {
+            return $tags[$type]['short'];
+        } else {
+            return self::unknownTag($tag);
         }
-
-        return self::unknownTag($tag);
     }
 
     /**
@@ -2453,28 +1889,11 @@ class PelTag
      */
     public function getTitle($type, $tag)
     {
-        switch ($type) {
-            case PelIfd::IFD0:
-            case PelIfd::IFD1:
-            case PelIfd::EXIF:
-            case PelIfd::INTEROPERABILITY:
-                return Pel::tra(self::getValue(self::$exifTagsTitle, $tag));
-            case PelIfd::GPS:
-                return Pel::tra(self::getValue(self::$gpsTagsShort, $tag));
-            case PelIfd::CANON_MAKER_NOTES:
-                return Pel::tra(self::getValue(self::$canonTagsTitle, $tag));
-            case PelIfd::CANON_CAMERA_SETTINGS:
-                return self::getValue(self::$canonCsTagsTitle, $tag);
-            case PelIfd::CANON_SHOT_INFO:
-                return self::getValue(self::$canonSiTagsTitle, $tag);
-            case PelIfd::CANON_PANORAMA:
-                return self::getValue(self::$canonPaTagsTitle, $tag);
-            case PelIfd::CANON_PICTURE_INFO:
-                return self::getValue(self::$canonPiTagsTitle, $tag);
-            case PelIfd::CANON_FILE_INFO:
-                return self::getValue(self::$canonFiTagsTitle, $tag);
+        $tags = PelSpec::getIfdTags($type);
+        if (isset($tags[$type])) {
+            return Pel::tra($tags[$type]['title']);
+        } else {
+            return self::unknownTag($tag);
         }
-
-        return self::unknownTag($tag);
     }
 }

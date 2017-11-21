@@ -61,4 +61,10 @@ class PelSpec
         static::compile();
         return array_keys(static::$tags[$ifd]);
     }
+
+    public static function getIfdTags($ifd)
+    {
+        static::compile();
+        return static::$tags[$ifd];
+    }
 }
