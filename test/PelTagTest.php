@@ -49,7 +49,7 @@ class PelTagTest extends TestCase
 
         $this->assertSame(static::EXIF_TAG, PelTag::getExifTagByName(self::EXIF_TAG_NAME), 'EXIF tag name');
         $this->assertSame(static::GPS_TAG, PelTag::getGpsTagByName(self::GPS_TAG_NAME), 'GPS tag name');
-        $this->assertEquals(static::EXIF_TAG_NAME, PelTag::getName(PelIfd::IFD0, self::EXIF_TAG), 'EXIF tag');
+        $this->assertEquals(static::EXIF_TAG_NAME, PelTag::getName(PelIfd::EXIF, self::EXIF_TAG), 'EXIF tag');
         $this->assertEquals(static::GPS_TAG_NAME, PelTag::getName(PelIfd::GPS, self::GPS_TAG), 'GPS tag');
     }
 }
