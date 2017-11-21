@@ -1784,9 +1784,9 @@ class PelTag
 
         $tags = PelSpec::getIfdTags(PelIfd::CANON_MAKER_NOTES);
         foreach ($tags as $id => $tag) {
-          if ($tag['short'] === $name) {
-            return $id;
-          }
+            if ($tag['short'] === $name) {
+                return $id;
+            }
         }
         return false;
     }
@@ -1804,9 +1804,9 @@ class PelTag
     {
         $tags = PelSpec::getIfdTags(PelIfd::EXIF);
         foreach ($tags as $id => $tag) {
-          if ($tag['short'] === $name) {
-            return $id;
-          }
+            if ($tag['short'] === $name) {
+                return $id;
+            }
         }
         return false;
     }
@@ -1824,9 +1824,9 @@ class PelTag
     {
         $tags = PelSpec::getIfdTags(PelIfd::GPS);
         foreach ($tags as $id => $tag) {
-          if ($tag['short'] === $name) {
-            return $id;
-          }
+            if ($tag['short'] === $name) {
+                return $id;
+            }
         }
         return false;
     }
