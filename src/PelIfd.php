@@ -844,16 +844,17 @@ class PelIfd implements \IteratorAggregate, \ArrayAccess
     public function getValidTags()
     {
         return PelSpec::getIfdSupportedTagIds($this->type);
-          /*
-           * TODO: Where do these tags belong?
-           * PelTag::FILL_ORDER,
-           * PelTag::TRANSFER_RANGE,
-           * PelTag::JPEG_PROC,
-           * PelTag::BATTERY_LEVEL,
-           * PelTag::IPTC_NAA,
-           * PelTag::INTER_COLOR_PROFILE,
-           * PelTag::CFA_REPEAT_PATTERN_DIM,
-           */
+
+            /*
+             * TODO: Where do these tags belong?
+             * PelTag::FILL_ORDER,
+             * PelTag::TRANSFER_RANGE,
+             * PelTag::JPEG_PROC,
+             * PelTag::BATTERY_LEVEL,
+             * PelTag::IPTC_NAA,
+             * PelTag::INTER_COLOR_PROFILE,
+             * PelTag::CFA_REPEAT_PATTERN_DIM,
+             */
     }
 
     /**
