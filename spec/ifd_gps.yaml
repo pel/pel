@@ -1,0 +1,190 @@
+id: 3
+alias:
+  - 'GPS'
+tags:
+    0x0000:
+        name: GPS_VERSION_ID
+        short: GPSVersionID
+        title: GPSVersionID
+        components: 4
+        format: Byte
+    0x0001:
+        name: GPS_LATITUDE_REF
+        short: GPSLatitudeRef
+        title: GPSLatitudeRef
+        components: 2
+        format: Ascii
+    0x0002:
+        name: GPS_LATITUDE
+        short: GPSLatitude
+        title: GPSLatitude
+        components: 3
+        format: Rational
+    0x0003:
+        name: GPS_LONGITUDE_REF
+        short: GPSLongitudeRef
+        title: GPSLongitudeRef
+        components: 2
+        format: Ascii
+    0x0004:
+        name: GPS_LONGITUDE
+        short: GPSLongitude
+        title: GPSLongitude
+        components: 3
+        format: Rational
+    0x0005:
+        name: GPS_ALTITUDE_REF
+        short: GPSAltitudeRef
+        title: GPSAltitudeRef
+        components: 1
+        format: Byte
+    0x0006:
+        name: GPS_ALTITUDE
+        short: GPSAltitude
+        title: GPSAltitude
+        components: 1
+        format: Rational
+    0x0007:
+        name: GPS_TIME_STAMP
+        short: GPSTimeStamp
+        title: GPSTimeStamp
+        components: 3
+        format: Rational
+    0x0008:
+        name: GPS_SATELLITES
+        short: GPSSatellites
+        title: GPSSatellites
+        components: Any
+        format: Ascii
+    0x0009:
+        name: GPS_STATUS
+        short: GPSStatus
+        title: GPSStatus
+        components: 2
+        format: Ascii
+    0x000A:
+        name: GPS_MEASURE_MODE
+        short: GPSMeasureMode
+        title: GPSMeasureMode
+        components: 2
+        format: Ascii
+    0x000B:
+        name: GPS_DOP
+        short: GPSDOP
+        title: GPSDOP
+        components: 1
+        format: Rational
+    0x000C:
+        name: GPS_SPEED_REF
+        short: GPSSpeedRef
+        title: GPSSpeedRef
+        components: 2
+        format: Ascii
+    0x000D:
+        name: GPS_SPEED
+        short: GPSSpeed
+        title: GPSSpeed
+        components: 1
+        format: Rational
+    0x000E:
+        name: GPS_TRACK_REF
+        short: GPSTrackRef
+        title: GPSTrackRef
+        components: 2
+        format: Ascii
+    0x000F:
+        name: GPS_TRACK
+        short: GPSTrack
+        title: GPSTrack
+        components: 1
+        format: Rational
+    0x0010:
+        name: GPS_IMG_DIRECTION_REF
+        short: GPSImgDirectionRef
+        title: GPSImgDirectionRef
+        components: 2
+        format: Ascii
+    0x0011:
+        name: GPS_IMG_DIRECTION
+        short: GPSImgDirection
+        title: GPSImgDirection
+        components: 1
+        format: Rational
+    0x0012:
+        name: GPS_MAP_DATUM
+        short: GPSMapDatum
+        title: GPSMapDatum
+        components: Any
+        format: Ascii
+    0x0013:
+        name: GPS_DEST_LATITUDE_REF
+        short: GPSDestLatitudeRef
+        title: GPSDestLatitudeRef
+        components: 2
+        format: Ascii
+    0x0014:
+        name: GPS_DEST_LATITUDE
+        short: GPSDestLatitude
+        title: GPSDestLatitude
+        components: 3
+        format: Rational
+    0x0015:
+        name: GPS_DEST_LONGITUDE_REF
+        short: GPSDestLongitudeRef
+        title: GPSDestLongitudeRef
+        components: 2
+        format: Ascii
+    0x0016:
+        name: GPS_DEST_LONGITUDE
+        short: GPSDestLongitude
+        title: GPSDestLongitude
+        components: 3
+        format: Rational
+    0x0017:
+        name: GPS_DEST_BEARING_REF
+        short: GPSDestBearingRef
+        title: GPSDestBearingRef
+        components: 2
+        format: Ascii
+    0x0018:
+        name: GPS_DEST_BEARING
+        short: GPSDestBearing
+        title: GPSDestBearing
+        components: 1
+        format: Rational
+    0x0019:
+        name: GPS_DEST_DISTANCE_REF
+        short: GPSDestDistanceRef
+        title: GPSDestDistanceRef
+        components: 2
+        format: Ascii
+    0x001A:
+        name: GPS_DEST_DISTANCE
+        short: GPSDestDistance
+        title: GPSDestDistance
+        components: 1
+        format: Rational
+    0x001B:
+        name: GPS_PROCESSING_METHOD
+        short: GPSProcessingMethod
+        title: GPSProcessingMethod
+        components: Any
+        format: Undefined
+    0x001C:
+        name: GPS_AREA_INFORMATION
+        short: GPSAreaInformation
+        title: GPSAreaInformation
+        components: Any
+        format: Undefined
+    0x001D:
+        name: GPS_DATE_STAMP
+        short: GPSDateStamp
+        title: GPSDateStamp
+        components: 11
+        format: Ascii
+    0x001E:
+        name: GPS_DIFFERENTIAL
+        short: GPSDifferential
+        title: GPSDifferential
+        components: 1
+        format: Short

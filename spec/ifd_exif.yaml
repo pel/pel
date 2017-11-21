@@ -1,0 +1,364 @@
+id: 2
+alias:
+  - 'Exif'
+tags:
+    0xA302:
+        name: CFA_PATTERN
+        short: CFAPattern
+        title: 'CFA Pattern'
+        components: Any
+        format: Undefined
+    0x829A:
+        name: EXPOSURE_TIME
+        short: ExposureTime
+        title: 'Exposure Time'
+        components: 1
+        format: Rational
+    0x829D:
+        name: FNUMBER
+        short: FNumber
+        title: FNumber
+        components: 1
+        format: Rational
+    0x8822:
+        name: EXPOSURE_PROGRAM
+        short: ExposureProgram
+        title: 'Exposure Program'
+        components: 1
+        format: Short
+    0x8824:
+        name: SPECTRAL_SENSITIVITY
+        short: SpectralSensitivity
+        title: 'Spectral Sensitivity'
+        components: Any
+        format: Ascii
+    0x8827:
+        name: ISO_SPEED_RATINGS
+        short: ISOSpeedRatings
+        title: 'ISO Speed Ratings'
+        components: 2
+        format: Short
+    0x8828:
+        name: OECF
+        short: OECF
+        title: OECF
+        components: Any
+        format: Undefined
+    0x9000:
+        name: EXIF_VERSION
+        short: ExifVersion
+        title: 'Exif Version'
+        components: 4
+        format: Version
+    0x9003:
+        name: DATE_TIME_ORIGINAL
+        short: DateTimeOriginal
+        title: 'Date and Time (original)'
+        components: 20
+        format: Time
+    0x9004:
+        name: DATE_TIME_DIGITIZED
+        short: DateTimeDigitized
+        title: 'Date and Time (digitized)'
+        components: 20
+        format: Time
+    0x9010:
+        name: OFFSET_TIME
+        short: OffsetTime
+        title: Timezone
+        components: 7
+        format: Ascii
+    0x9011:
+        name: OFFSET_TIME_ORIGINAL
+        short: OffsetTimeOriginal
+        title: 'Timezone (original)'
+        components: 7
+        format: Ascii
+    0x9012:
+        name: OFFSET_TIME_DIGITIZED
+        short: OffsetTimeDigitized
+        title: 'Timezone (digitized)'
+        components: 7
+        format: Ascii
+    0x9101:
+        name: COMPONENTS_CONFIGURATION
+        short: ComponentsConfiguration
+        title: 'Components Configuration'
+        components: 4
+        format: Undefined
+    0x9102:
+        name: COMPRESSED_BITS_PER_PIXEL
+        short: CompressedBitsPerPixel
+        title: 'Compressed Bits per Pixel'
+        components: 1
+        format: Rational
+    0x9201:
+        name: SHUTTER_SPEED_VALUE
+        short: ShutterSpeedValue
+        title: 'Shutter speed'
+        components: 1
+        format: SRational
+    0x9202:
+        name: APERTURE_VALUE
+        short: ApertureValue
+        title: Aperture
+        components: 1
+        format: Rational
+    0x9203:
+        name: BRIGHTNESS_VALUE
+        short: BrightnessValue
+        title: Brightness
+        components: 1
+        format: SRational
+    0x9204:
+        name: EXPOSURE_BIAS_VALUE
+        short: ExposureBiasValue
+        title: 'Exposure Bias'
+        components: 1
+        format: SRational
+    0x9205:
+        name: MAX_APERTURE_VALUE
+        short: MaxApertureValue
+        title: 'Max Aperture Value'
+        components: 1
+        format: Rational
+    0x9206:
+        name: SUBJECT_DISTANCE
+        short: SubjectDistance
+        title: 'Subject Distance'
+        components: 1
+        format: SRational
+    0x9207:
+        name: METERING_MODE
+        short: MeteringMode
+        title: 'Metering Mode'
+        components: 1
+        format: Short
+    0x9208:
+        name: LIGHT_SOURCE
+        short: LightSource
+        title: 'Light Source'
+        components: 1
+        format: Short
+    0x9209:
+        name: FLASH
+        short: Flash
+        title: Flash
+        components: 1
+        format: Short
+    0x920A:
+        name: FOCAL_LENGTH
+        short: FocalLength
+        title: 'Focal Length'
+        components: 1
+        format: Rational
+    0x927C:
+        name: MAKER_NOTE
+        short: MakerNote
+        title: 'Maker Note'
+        components: Any
+        format: Ifd
+    0x9286:
+        name: USER_COMMENT
+        short: UserComment
+        title: 'User Comment'
+        components: Any
+        format: UserComment
+    0x9290:
+        name: SUB_SEC_TIME
+        short: SubSecTime
+        title: 'SubSec Time'
+        components: Any
+        format: Ascii
+    0x9291:
+        name: SUB_SEC_TIME_ORIGINAL
+        short: SubSecTimeOriginal
+        title: 'SubSec Time Original'
+        components: Any
+        format: Ascii
+    0x9292:
+        name: SUB_SEC_TIME_DIGITIZED
+        short: SubSecTimeDigitized
+        title: 'SubSec Time Digitized'
+        components: Any
+        format: Ascii
+    0xA000:
+        name: FLASH_PIX_VERSION
+        short: FlashPixVersion
+        title: 'FlashPix Version'
+        components: 4
+        format: Version
+    0xA001:
+        name: COLOR_SPACE
+        short: ColorSpace
+        title: 'Color Space'
+        components: 1
+        format: Short
+    0xA002:
+        name: PIXEL_X_DIMENSION
+        short: PixelXDimension
+        title: 'Pixel x-Dimension'
+        components: 1
+        format: [Short, Long]
+    0xA003:
+        name: PIXEL_Y_DIMENSION
+        short: PixelYDimension
+        title: 'Pixel y-Dimension'
+        components: 1
+        format: [Short, Long]
+    0xA004:
+        name: RELATED_SOUND_FILE
+        short: RelatedSoundFile
+        title: 'Related Sound File'
+        components: Any
+        format: Ascii
+    0xA005:
+        name: INTEROPERABILITY_IFD_POINTER
+        short: InteroperabilityIFDPointer
+        title: 'Interoperability IFD Pointer'
+        components: 1
+        format: Ifd
+    0xA20B:
+        name: FLASH_ENERGY
+        short: FlashEnergy
+        title: 'Flash Energy'
+        components: 1
+        format: Rational
+    0xA20C:
+        name: SPATIAL_FREQUENCY_RESPONSE
+        short: SpatialFrequencyResponse
+        title: 'Spatial Frequency Response'
+        components: Any
+        format: Undefined
+    0xA20E:
+        name: FOCAL_PLANE_X_RESOLUTION
+        short: FocalPlaneXResolution
+        title: 'Focal Plane x-Resolution'
+        components: 1
+        format: Rational
+    0xA20F:
+        name: FOCAL_PLANE_Y_RESOLUTION
+        short: FocalPlaneYResolution
+        title: 'Focal Plane y-Resolution'
+        components: 1
+        format: Rational
+    0xA210:
+        name: FOCAL_PLANE_RESOLUTION_UNIT
+        short: FocalPlaneResolutionUnit
+        title: 'Focal Plane Resolution Unit'
+        components: 1
+        format: Short
+    0xA214:
+        name: SUBJECT_LOCATION
+        short: SubjectLocation
+        title: 'Subject Location'
+        components: 1
+        format: Short
+    0xA215:
+        name: EXPOSURE_INDEX
+        short: ExposureIndex
+        title: 'Exposure index'
+        components: 1
+        format: Rational
+    0xA217:
+        name: SENSING_METHOD
+        short: SensingMethod
+        title: 'Sensing Method'
+        components: 1
+        format: Short
+    0xA300:
+        name: FILE_SOURCE
+        short: FileSource
+        title: 'File Source'
+        components: 1
+        format: Undefined
+    0xA301:
+        name: SCENE_TYPE
+        short: SceneType
+        title: 'Scene Type'
+        components: 1
+        format: Undefined
+    0xA401:
+        name: CUSTOM_RENDERED
+        short: CustomRendered
+        title: 'Custom Rendered'
+        components: 1
+        format: Short
+    0xA402:
+        name: EXPOSURE_MODE
+        short: ExposureMode
+        title: 'Exposure Mode'
+        components: 1
+        format: Short
+    0xA403:
+        name: WHITE_BALANCE
+        short: WhiteBalance
+        title: 'White Balance'
+        components: 1
+        format: Short
+    0xA404:
+        name: DIGITAL_ZOOM_RATIO
+        short: DigitalZoomRatio
+        title: 'Digital Zoom Ratio'
+        components: 1
+        format: Rational
+    0xA405:
+        name: FOCAL_LENGTH_IN_35MM_FILM
+        short: FocalLengthIn35mmFilm
+        title: 'Focal Length In 35mm Film'
+        components: 1
+        format: Rational
+    0xA406:
+        name: SCENE_CAPTURE_TYPE
+        short: SceneCaptureType
+        title: 'Scene Capture Type'
+        components: 1
+        format: Short
+    0xA407:
+        name: GAIN_CONTROL
+        short: GainControl
+        title: 'Gain Control'
+        components: 1
+        format: Short
+    0xA408:
+        name: CONTRAST
+        short: Contrast
+        title: Contrast
+        components: 1
+        format: Short
+    0xA409:
+        name: SATURATION
+        short: Saturation
+        title: Saturation
+        components: 1
+        format: Short
+    0xA40A:
+        name: SHARPNESS
+        short: Sharpness
+        title: Sharpness
+        components: 1
+        format: Short
+    0xA40B:
+        name: DEVICE_SETTING_DESCRIPTION
+        short: DeviceSettingDescription
+        title: 'Device Setting Description'
+        components: Unknown
+        format: Unknown
+    0xA40C:
+        name: SUBJECT_DISTANCE_RANGE
+        short: SubjectDistanceRange
+        title: 'Subject Distance Range'
+        components: 1
+        format: Short
+    0xA420:
+        name: IMAGE_UNIQUE_ID
+        short: ImageUniqueID
+        title: 'Image Unique ID'
+        components: 32
+        format: Ascii
+    0xA500:
+        name: GAMMA
+        short: Gamma
+        title: Gamma
+        components: 1
+        format: Rational

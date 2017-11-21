@@ -1,0 +1,252 @@
+id: 1
+alias:
+  - '1'
+  - 'IFD1'
+  - 'Thumbnail'
+tags:
+    0x0100:
+        name: IMAGE_WIDTH
+        short: ImageWidth
+        title: 'Image Width'
+        components: 1
+        format: [Short, Long]
+    0x0101:
+        name: IMAGE_LENGTH
+        short: ImageLength
+        title: 'Image Length'
+        components: 1
+        format: [Short, Long]
+    0x0102:
+        name: BITS_PER_SAMPLE
+        short: BitsPerSample
+        title: 'Bits per Sample'
+        components: 3
+        format: Short
+    0x0103:
+        name: COMPRESSION
+        short: Compression
+        title: Compression
+        components: 1
+        format: Short
+    0x0106:
+        name: PHOTOMETRIC_INTERPRETATION
+        short: PhotometricInterpretation
+        title: 'Photometric Interpretation'
+        components: 1
+        format: Short
+    0x010D:
+        name: DOCUMENT_NAME
+        short: DocumentName
+        title: 'Document Name'
+        components: Any
+        format: Ascii
+    0x010E:
+        name: IMAGE_DESCRIPTION
+        short: ImageDescription
+        title: 'Image Description'
+        components: Any
+        format: Ascii
+    0x010F:
+        name: MAKE
+        short: Make
+        title: Manufacturer
+        components: Any
+        format: Ascii
+    0x0110:
+        name: MODEL
+        short: Model
+        title: Model
+        components: Any
+        format: Ascii
+    0x0111:
+        name: STRIP_OFFSETS
+        short: StripOffsets
+        title: 'Strip Offsets'
+        components: Any
+        format: [Short, Long]
+    0x0112:
+        name: ORIENTATION
+        short: Orientation
+        title: Orientation
+        components: 1
+        format: Short
+    0x0115:
+        name: SAMPLES_PER_PIXEL
+        short: SamplesPerPixel
+        title: 'Samples per Pixel'
+        components: 1
+        format: Short
+    0x0116:
+        name: ROWS_PER_STRIP
+        short: RowsPerStrip
+        title: 'Rows per Strip'
+        components: 1
+        format: [Short, Long]
+    0x0117:
+        name: STRIP_BYTE_COUNTS
+        short: StripByteCounts
+        title: 'Strip Byte Count'
+        components: Any
+        format: [Short, Long]
+    0x011A:
+        name: X_RESOLUTION
+        short: XResolution
+        title: x-Resolution
+        components: 1
+        format: Rational
+    0x011B:
+        name: Y_RESOLUTION
+        short: YResolution
+        title: y-Resolution
+        components: 1
+        format: Rational
+    0x011C:
+        name: PLANAR_CONFIGURATION
+        short: PlanarConfiguration
+        title: 'Planar Configuration'
+        components: 1
+        format: Short
+    0x0128:
+        name: RESOLUTION_UNIT
+        short: ResolutionUnit
+        title: 'Resolution Unit'
+        components: 1
+        format: Short
+    0x012D:
+        name: TRANSFER_FUNCTION
+        short: TransferFunction
+        title: 'Transfer Function'
+        components: 3
+        format: Short
+    0x0131:
+        name: SOFTWARE
+        short: Software
+        title: Software
+        components: Any
+        format: Ascii
+    0x0132:
+        name: DATE_TIME
+        short: DateTime
+        title: 'Date and Time'
+        components: 20
+        format: Time
+    0x013B:
+        name: ARTIST
+        short: Artist
+        title: Artist
+        components: Any
+        format: Ascii
+    0x013E:
+        name: WHITE_POINT
+        short: WhitePoint
+        title: 'White Point'
+        components: 2
+        format: Rational
+    0x013F:
+        name: PRIMARY_CHROMATICITIES
+        short: PrimaryChromaticities
+        title: 'Primary Chromaticities'
+        components: 6
+        format: Rational
+    0x0201:
+        name: JPEG_INTERCHANGE_FORMAT
+        short: JPEGInterchangeFormat
+        title: 'JPEG Interchange Format'
+        components: 1
+        format: Long
+    0x0202:
+        name: JPEG_INTERCHANGE_FORMAT_LENGTH
+        short: JPEGInterchangeFormatLength
+        title: 'JPEG Interchange Format Length'
+        components: 1
+        format: Long
+    0x0211:
+        name: YCBCR_COEFFICIENTS
+        short: YCbCrCoefficients
+        title: 'YCbCr Coefficients'
+        components: 3
+        format: Rational
+    0x0212:
+        name: YCBCR_SUB_SAMPLING
+        short: YCbCrSubSampling
+        title: 'YCbCr Sub-Sampling'
+        components: 2
+        format: Short
+    0x0213:
+        name: YCBCR_POSITIONING
+        short: YCbCrPositioning
+        title: 'YCbCr Positioning'
+        components: 1
+        format: Short
+    0x0214:
+        name: REFERENCE_BLACK_WHITE
+        short: ReferenceBlackWhite
+        title: 'Reference Black/White'
+        components: 6
+        format: Rational
+    0x4746:
+        name: RATING
+        short: Rating
+        title: 'Star Rating'
+        components: 1
+        format: Short
+    0x4749:
+        name: RATING_PERCENT
+        short: RatingPercent
+        title: 'Percent Rating'
+        components: 1
+        format: Short
+    0x8298:
+        name: COPYRIGHT
+        short: Copyright
+        title: Copyright
+        components: Any
+        format: Copyright
+    0x8769:
+        name: EXIF_IFD_POINTER
+        short: ExifIFDPointer
+        title: 'Exif IFD Pointer'
+        components: 1
+        format: Ifd
+    0x8825:
+        name: GPS_INFO_IFD_POINTER
+        short: GPSInfoIFDPointer
+        title: 'GPS Info IFD Pointer'
+        components: 1
+        format: Ifd
+    0x9C9B:
+        name: WINDOWS_XP_TITLE
+        short: WindowsXPTitle
+        title: 'Windows XP Title'
+        components: Any
+        format: WindowsString
+    0x9C9C:
+        name: WINDOWS_XP_COMMENT
+        short: WindowsXPComment
+        title: 'Windows XP Comment'
+        components: Any
+        format: WindowsString
+    0x9C9D:
+        name: WINDOWS_XP_AUTHOR
+        short: WindowsXPAuthor
+        title: 'Windows XP Author'
+        components: Any
+        format: WindowsString
+    0x9C9E:
+        name: WINDOWS_XP_KEYWORDS
+        short: WindowsXPKeywords
+        title: 'Windows XP Keywords'
+        components: Any
+        format: WindowsString
+    0x9C9F:
+        name: WINDOWS_XP_SUBJECT
+        short: WindowsXPSubject
+        title: 'Windows XP Subject'
+        components: Any
+        format: WindowsString
+    0xC4A5:
+        name: PRINT_IM
+        short: PrintIM
+        title: 'Print IM'
+        components: Unknown
+        format: Undefined
