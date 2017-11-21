@@ -1,0 +1,13 @@
+id: 8
+type: MakerNotes
+alias:
+  - 'Canon Panorama Information'
+tags:
+    0x0002:
+        name: CANON_PA_PANORAMA_FRAME
+        short: PanoramaFrame
+        title: 'Panorama Frame'
+    0x0005:
+        name: CANON_PA_PANORAMA_DIRECTION
+        short: PanoramaDirection
+        title: 'Panorama Direction'

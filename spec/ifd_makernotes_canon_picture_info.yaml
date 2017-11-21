@@ -1,0 +1,29 @@
+id: 9
+type: MakerNotes
+alias:
+  - 'Canon Picture Information'
+tags:
+    0x0002:
+        name: CANON_PI_IMAGE_WIDTH
+        short: ImageWidth
+        title: 'Image Width'
+    0x0003:
+        name: CANON_PI_IMAGE_HEIGHT
+        short: ImageHeight
+        title: 'Image Height'
+    0x0004:
+        name: CANON_PI_IMAGE_WIDTH_AS_SHOT
+        short: ImageWidthAsShot
+        title: 'Image Width As Shot'
+    0x0005:
+        name: CANON_PI_IMAGE_HEIGHT_AS_SHOT
+        short: ImageHeightAsShot
+        title: 'Image Height As Shot'
+    0x0016:
+        name: CANON_PI_AF_POINTS_USED
+        short: AFPointsUsed
+        title: 'AF Points Used'
+    0x001A:
+        name: CANON_PI_AF_POINTS_USED_20D
+        short: AFPointsUsed(20D)
+        title: 'AF Points Used (20D)'

@@ -1,0 +1,155 @@
+id: 5
+type: MakerNotes
+alias:
+  - 'Canon Maker Notes'
+tags:
+    0x0001:
+        name: CANON_CAMERA_SETTINGS
+        short: CameraSettings
+        title: 'Camera Settings'
+        format: Ifd
+    0x0002:
+        name: CANON_FOCAL_LENGTH
+        short: FocalLength
+        title: 'Focal Length'
+        format: Short
+    0x0004:
+        name: CANON_SHOT_INFO
+        short: ShotInfo
+        title: 'Shot Info'
+        format: Ifd
+    0x0005:
+        name: CANON_PANORAMA
+        short: Panorama
+        title: Panorama
+        format: Ifd
+    0x0006:
+        name: CANON_IMAGE_TYPE
+        short: ImageType
+        title: 'Image Type'
+        format: Ascii
+    0x0007:
+        name: CANON_FIRMWARE_VERSION
+        short: FirmwareVersion
+        title: 'Firmware Version'
+        format: Ascii
+    0x0008:
+        name: CANON_FILE_NUMBER
+        short: FileNumber
+        title: 'File Number'
+        format: Long
+    0x0009:
+        name: CANON_OWNER_NAME
+        short: OwnerName
+        title: 'Owner Name'
+        format: Ascii
+    0x000C:
+        name: CANON_SERIAL_NUMBER
+        short: SerialNumber
+        title: 'Serial Number'
+        format: Long
+    0x000D:
+        name: CANON_CAMERA_INFO
+        short: CameraInfo
+        title: 'Camera Info'
+        format: Short
+    0x000F:
+        name: CANON_CUSTOM_FUNCTIONS
+        short: CustomFunctions
+        title: 'Custom Functions'
+        format: Ifd
+    0x0010:
+        name: CANON_MODEL_ID
+        short: ModelID
+        title: 'Model ID'
+        format: Long
+    0x0012:
+        name: CANON_PICTURE_INFO
+        short: PictureInfo
+        title: 'Picture Info'
+        format: Ifd
+    0x0013:
+        name: CANON_THUMBNAIL_IMAGE_VALID_AREA
+        short: ThumbnailImageValidArea
+        title: 'Thumbnail Image Valid Area'
+        format: SShort
+    0x0015:
+        name: CANON_SERIAL_NUMBER_FORMAT
+        short: 'Serial Number Format'
+        title: 'Serial number format'
+        format: Long
+    0x001A:
+        name: CANON_SUPER_MACRO
+        short: SuperMacro
+        title: 'Super macro'
+        format: SShort
+    0x001E:
+        name: CANON_FIRMWARE_REVISION
+        short: FirmwareRevision
+        title: 'Firmware Revision'
+        format: Long
+    0x0026:
+        name: CANON_AF_INFO
+        short: AFinfo
+        title: 'AF info'
+        format: Short
+    0x0083:
+        name: CANON_ORIGINAL_DECISION_DATA_OFFSET
+        short: 'OriginalDecision Data Offset'
+        title: 'Original decision data offset'
+        format: SLong
+    0x00A4:
+        name: CANON_WHITE_BALANCE_TABLE
+        short: WhiteBalanceTable
+        title: 'White balance table'
+        format: Short
+    0x0095:
+        name: CANON_LENS_MODEL
+        short: LensModel
+        title: 'Lens model'
+        format: Ascii
+    0x0096:
+        name: CANON_INTERNAL_SERIAL_NUMBER
+        short: InternalSerialNumber
+        title: 'Internal serial number'
+        format: Ascii
+    0x0097:
+        name: CANON_DUST_REMOVAL_DATA
+        short: DustRemovalData
+        title: 'Dust removal data'
+        format: Ascii
+    0x0099:
+        name: CANON_CUSTOM_FUNCTIONS_2
+        short: CustomFunctions
+        title: 'Custom functions'
+        format: Ifd
+    0x00A0:
+        name: CANON_PROCESSING_INFO
+        short: ProcessingInfo
+        title: 'Processing info'
+        format: Short
+    0x00AA:
+        name: CANON_MEASURED_COLOR
+        short: MeasuredColor
+        title: 'Measured color'
+        format: Short
+    0x00B4:
+        name: CANON_COLOR_SPACE
+        short: ColorSpace
+        title: 'Color Space'
+        format: SShort
+    0x00D0:
+        name: CANON_VRD_OFFSET
+        short: VRDOffset
+        title: 'VRD offset'
+        format: Long
+    0x00E0:
+        name: CANON_SENSOR_INFO
+        short: SensorInfo
+        title: 'Sensor info'
+        format: Short
+    0x4001:
+        name: CANON_COLOR_DATA
+        short: ColorData
+        title: 'Color data'
+        format: Short
