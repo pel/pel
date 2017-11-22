@@ -28,12 +28,20 @@ tags:
         title: Compression
         components: 1
         format: Short
+        text:
+            decode:
+                1: 'Uncompressed'
+                6: 'JPEG compression'
     0x0106:
         name: PHOTOMETRIC_INTERPRETATION
         short: PhotometricInterpretation
         title: 'Photometric Interpretation'
         components: 1
         format: Short
+        text:
+            decode:
+                2: 'RGB'
+                6: 'YCbCr'
     0x010D:
         name: DOCUMENT_NAME
         short: DocumentName
@@ -70,6 +78,16 @@ tags:
         title: Orientation
         components: 1
         format: Short
+        text:
+            decode:
+                1: 'top - left'
+                2: 'top - right'
+                3: 'bottom - right'
+                4: 'bottom - left'
+                5: 'left - top'
+                6: 'right - top'
+                7: 'right - bottom'
+                8: 'left - bottom'
     0x0115:
         name: SAMPLES_PER_PIXEL
         short: SamplesPerPixel
@@ -106,12 +124,20 @@ tags:
         title: 'Planar Configuration'
         components: 1
         format: Short
+        text:
+            decode:
+                1: 'chunky format'
+                2: 'planar format'
     0x0128:
         name: RESOLUTION_UNIT
         short: ResolutionUnit
         title: 'Resolution Unit'
         components: 1
         format: Short
+        text:
+            decode:
+                2: 'Inch'
+                3: 'Centimeter'
     0x012D:
         name: TRANSFER_FUNCTION
         short: TransferFunction
@@ -178,6 +204,10 @@ tags:
         title: 'YCbCr Positioning'
         components: 1
         format: Short
+        text:
+            decode:
+                1: 'centered'
+                2: 'co-sited'
     0x0214:
         name: REFERENCE_BLACK_WHITE
         short: ReferenceBlackWhite

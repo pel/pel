@@ -11,6 +11,7 @@ tags:
         name: CANON_PA_PANORAMA_DIRECTION
         short: PanoramaDirection
         title: 'Panorama Direction'
+        format: Short
         text:
             decode:
                 0: 'Left to Right'

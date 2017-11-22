@@ -23,6 +23,7 @@ tags:
         name: CANON_SI_WHITE_BALANCE
         short: WhiteBalanceSetting
         title: 'White Balance Setting'
+        format: Short
         text:
             decode:
                 0: 'Auto'
@@ -51,6 +52,7 @@ tags:
         name: CANON_SI_SLOW_SHUTTER
         short: SlowShutter
         title: 'Slow Shutter'
+        format: Short
         text:
             decode:
                 0: 'Off'
@@ -65,6 +67,7 @@ tags:
         name: CANON_SI_AF_POINT_USED
         short: AFPointUsed
         title: 'AF Point Used'
+        format: Short
         text:
             decode:
                 0x3000: 'None (MF)'
@@ -83,6 +86,7 @@ tags:
         name: CANON_SI_AUTO_EXPOSURE_BRACKETING
         short: AutoExposureBracketing
         title: 'Auto Exposure Bracketing'
+        format: Short
         text:
             decode:
                 -1: 'On'
@@ -110,6 +114,7 @@ tags:
         name: CANON_SI_CAMERA_TYPE
         short: CameraType
         title: 'Camera Type'
+        format: Short
         text:
             decode:
                 248: 'EOS High-end'
@@ -120,6 +125,7 @@ tags:
         name: CANON_SI_AUTO_ROTATE
         short: AutoRotate
         title: 'Auto Rotate'
+        format: Short
         text:
             decode:
                 0: 'None'
@@ -130,6 +136,7 @@ tags:
         name: CANON_SI_ND_FILTER
         short: NDFilter
         title: 'ND Filter'
+        format: Short
         text:
             decode:
                 0: 'Off'

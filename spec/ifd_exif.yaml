@@ -25,6 +25,17 @@ tags:
         title: 'Exposure Program'
         components: 1
         format: Short
+        text:
+            decode:
+                0: 'Not defined'
+                1: 'Manual'
+                2: 'Normal program'
+                3: 'Aperture priority'
+                4: 'Shutter priority'
+                5: 'Creative program (biased toward depth of field)'
+                6: 'Action program (biased toward fast shutter speed)'
+                7: 'Portrait mode (for closeup photos with the background out of focus'
+                8: 'Landscape mode (for landscape photos with the background in focus'
     0x8824:
         name: SPECTRAL_SENSITIVITY
         short: SpectralSensitivity
@@ -133,18 +144,75 @@ tags:
         title: 'Metering Mode'
         components: 1
         format: Short
+        text:
+            decode:
+                0: 'Unknown'
+                1: 'Average'
+                2: 'Center-Weighted Average'
+                3: 'Spot'
+                4: 'Multi Spot'
+                5: 'Pattern'
+                6: 'Partial'
+                255: 'Other'
     0x9208:
         name: LIGHT_SOURCE
         short: LightSource
         title: 'Light Source'
         components: 1
         format: Short
+        text:
+            decode:
+                0: 'Unknown'
+                1: 'Daylight'
+                2: 'Fluorescent'
+                3: 'Tungsten (incandescent light)'
+                4: 'Flash'
+                9: 'Fine weather'
+                10: 'Cloudy weather'
+                11: 'Shade'
+                12: 'Daylight fluorescent'
+                13: 'Day white fluorescent'
+                14: 'Cool white fluorescent'
+                15: 'White fluorescent'
+                17: 'Standard light A'
+                18: 'Standard light B'
+                19: 'Standard light C'
+                20: 'D55'
+                21: 'D65'
+                22: 'D75'
+                24: 'ISO studio tungsten'
+                255: 'Other'
     0x9209:
         name: FLASH
         short: Flash
         title: Flash
         components: 1
         format: Short
+        text:
+            decode:
+                0x0000: 'Flash did not fire.'
+                0x0001: 'Flash fired.'
+                0x0005: 'Strobe return light not detected.'
+                0x0007: 'Strobe return light detected.'
+                0x0009: 'Flash fired, compulsory flash mode.'
+                0x000d: 'Flash fired, compulsory flash mode, return light not detected.'
+                0x000f: 'Flash fired, compulsory flash mode, return light detected.'
+                0x0010: 'Flash did not fire, compulsory flash mode.'
+                0x0018: 'Flash did not fire, auto mode.'
+                0x0019: 'Flash fired, auto mode.'
+                0x001d: 'Flash fired, auto mode, return light not detected.'
+                0x001f: 'Flash fired, auto mode, return light detected.'
+                0x0020: 'No flash function.'
+                0x0041: 'Flash fired, red-eye reduction mode.'
+                0x0045: 'Flash fired, red-eye reduction mode, return light not detected.'
+                0x0047: 'Flash fired, red-eye reduction mode, return light detected.'
+                0x0049: 'Flash fired, compulsory flash mode, red-eye reduction mode.'
+                0x004d: 'Flash fired, compulsory flash mode, red-eye reduction mode, return light not detected.'
+                0x004f: 'Flash fired, compulsory flash mode, red-eye reduction mode, return light detected.'
+                0x0058: 'Flash did not fire, auto mode, red-eye reduction mode.'
+                0x0059: 'Flash fired, auto mode, red-eye reduction mode.'
+                0x005d: 'Flash fired, auto mode, return light not detected, red-eye reduction mode.'
+                0x005f: 'Flash fired, auto mode, return light detected, red-eye reduction mode.'
     0x920A:
         name: FOCAL_LENGTH
         short: FocalLength
@@ -193,6 +261,11 @@ tags:
         title: 'Color Space'
         components: 1
         format: Short
+        text:
+            decode:
+                1: 'sRGB'
+                2: 'Adobe RGB'
+                0xffff: 'Uncalibrated'
     0xA002:
         name: PIXEL_X_DIMENSION
         short: PixelXDimension
@@ -247,6 +320,10 @@ tags:
         title: 'Focal Plane Resolution Unit'
         components: 1
         format: Short
+        text:
+            decode:
+                2: 'Inch'
+                3: 'Centimeter'
     0xA214:
         name: SUBJECT_LOCATION
         short: SubjectLocation
@@ -265,6 +342,15 @@ tags:
         title: 'Sensing Method'
         components: 1
         format: Short
+        text:
+            decode:
+                1: 'Not defined'
+                2: 'One-chip color area sensor'
+                3: 'Two-chip color area sensor'
+                4: 'Three-chip color area sensor'
+                5: 'Color sequential area sensor'
+                7: 'Trilinear sensor'
+                8: 'Color sequential linear sensor'
     0xA300:
         name: FILE_SOURCE
         short: FileSource
@@ -283,18 +369,31 @@ tags:
         title: 'Custom Rendered'
         components: 1
         format: Short
+        text:
+            decode:
+                0: 'Normal process'
+                1: 'Custom process'
     0xA402:
         name: EXPOSURE_MODE
         short: ExposureMode
         title: 'Exposure Mode'
         components: 1
         format: Short
+        text:
+            decode:
+                0: 'Auto exposure'
+                1: 'Manual exposure'
+                2: 'Auto bracket'
     0xA403:
         name: WHITE_BALANCE
         short: WhiteBalance
         title: 'White Balance'
         components: 1
         format: Short
+        text:
+            decode:
+                0: 'Auto white balance'
+                1: 'Manual white balance'
     0xA404:
         name: DIGITAL_ZOOM_RATIO
         short: DigitalZoomRatio
@@ -313,30 +412,58 @@ tags:
         title: 'Scene Capture Type'
         components: 1
         format: Short
+        text:
+            decode:
+                0: 'Standard'
+                1: 'Landscape'
+                2: 'Portrait'
+                3: 'Night scene'
     0xA407:
         name: GAIN_CONTROL
         short: GainControl
         title: 'Gain Control'
         components: 1
         format: Short
+        text:
+            decode:
+                0: 'Normal'
+                1: 'Low gain up'
+                2: 'High gain up'
+                3: 'Low gain down'
+                4: 'High gain down'
     0xA408:
         name: CONTRAST
         short: Contrast
         title: Contrast
         components: 1
         format: Short
+        text:
+            decode:
+                0: 'Normal'
+                1: 'Soft'
+                2: 'Hard'
     0xA409:
         name: SATURATION
         short: Saturation
         title: Saturation
         components: 1
         format: Short
+        text:
+            decode:
+                0: 'Normal'
+                1: 'Low saturation'
+                2: 'High saturation'
     0xA40A:
         name: SHARPNESS
         short: Sharpness
         title: Sharpness
         components: 1
         format: Short
+        text:
+            decode:
+                0: 'Normal'
+                1: 'Soft'
+                2: 'Hard'
     0xA40B:
         name: DEVICE_SETTING_DESCRIPTION
         short: DeviceSettingDescription
@@ -349,6 +476,12 @@ tags:
         title: 'Subject Distance Range'
         components: 1
         format: Short
+        text:
+            decode:
+                0: 'Unknown'
+                1: 'Macro'
+                2: 'Close view'
+                3: 'Distant view'
     0xA420:
         name: IMAGE_UNIQUE_ID
         short: ImageUniqueID
