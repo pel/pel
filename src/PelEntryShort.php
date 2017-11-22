@@ -132,7 +132,7 @@ class PelEntryShort extends PelEntryNumber
      */
     public function getText($brief = false)
     {
-        $tags = getIfdTags($this->ifd_type);
+        $tags = PelSpec::getIfdTags($this->ifd_type);
 
         // If a list of descriptions per value is specified, take from there.
         if (isset($tags[$this->tag]['text']['decode'])) {
