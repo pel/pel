@@ -137,7 +137,7 @@ class PelEntryShort extends PelEntryNumber
         // If a list of descriptions per value is specified, take from there.
         if (isset($tags[$this->tag]['text']['decode'])) {
             $decode_values = $tags[$this->tag]['text']['decode'];
-            if (isset($decode_values[$this->value[0]]) {
+            if (isset($decode_values[$this->value[0]])) {
                 return Pel::tra($decode_values[$this->value[0]]);
             }
             return $this->value[0];
