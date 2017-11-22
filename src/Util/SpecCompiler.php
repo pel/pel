@@ -70,5 +70,4 @@ DATA;
         $data .= preg_replace('/\s+$/m', '', var_export($map, true)) . ';}';
         $this->fs->dumpFile(dirname(__FILE__) . '/../PelSpecCompiled.php', $data);
     }
-
 }
