@@ -24,8 +24,7 @@
  */
 namespace lsolesen\pel;
 
-use Symfony\Component\Finder\Finder;
-use Symfony\Component\Yaml\Yaml;
+use lsolesen\pel\Util\SpecCompiler;
 
 /**
  * Class to retrieve IFD and TAG information from YAML specs.
@@ -33,18 +32,13 @@ use Symfony\Component\Yaml\Yaml;
 class PelSpec
 {
     protected static $compiled = false;
-    protected static $ifds = [];
-    protected static $tags = [];
 
     protected static function compile()
     {
         if (!static::$compiled) {
-            $finder = new Finder();
-            $finder->files()->in(dirname(__FILE__) . '/../spec')->name('ifd*.yaml');
-            foreach ($finder as $file) {
-                $yaml = Yaml::parse($file->getContents());
-                static::$ifds[$yaml['id']] = $yaml['type'];
-                static::$tags[$yaml['id']] = $yaml['tags'];
+            if (!class_exists('PelSpecCompiled')) {
+                $compiler = new SpecCompiler();
+                $compiler->compile(dirname(__FILE__) . '/../spec');
             }
             static::$compiled = true;
         }
@@ -53,18 +47,18 @@ class PelSpec
     public static function getIfdTypes()
     {
         static::compile();
-        return static::$ifds;
+        return PelSpecCompiled::$map['ifds'];
     }
 
     public static function getIfdSupportedTagIds($ifd)
     {
         static::compile();
-        return array_keys(static::$tags[$ifd]);
+        return array_keys(PelSpecCompiled::$map['tags'][$ifd]);
     }
 
     public static function getIfdTags($ifd)
     {
         static::compile();
-        return isset(static::$tags[$ifd]) ? static::$tags[$ifd] : array();
+        return isset(PelSpecCompiled::$map['tags'][$ifd]) ? PelSpecCompiled::$map['tags'][$ifd] : array();
     }
 }
