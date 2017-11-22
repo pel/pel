@@ -1748,7 +1748,7 @@ class PelTag
      *
      * @return string short name or long name of the tag.
      *
-     * @deprecated @todo
+     * @deprecated Use getName instead.
      */
     public static function getValue($container, $tag)
     {
@@ -1762,30 +1762,20 @@ class PelTag
     /**
      * Reverse lookup of a tag id by its short name. Return false for the unknown tag name.
      *
-     * @deprecated Use getExifTagByName() and getGpsTagByName() to distinct the type of tag.
-     *
      * @param string $name
      *            tag short name.
      *
      * @return mixed (bool|int)
      *            the tag.
+     *
+     * @deprecated Use getTagByIfdAndName(PelIfd::XXXX, $name) instead, and specify the required IFD to search into.
      */
     public static function getTagByName($name)
     {
-        $k = static::getExifTagByName($name);
-        if ($k !== false) {
-            return $k;
-        }
-
-        $k = static::getGpsTagByName($name);
-        if ($k !== false) {
-            return $k;
-        }
-
-        $tags = PelSpec::getIfdTags(PelIfd::CANON_MAKER_NOTES);
-        foreach ($tags as $id => $tag) {
-            if ($tag['short'] === $name) {
-                return $id;
+        foreach ([PelIfd::IFD0, PelIfd::IFD1, PelIfd::EXIF, PelIfd::GPS, PelIfd::INTEROPERABILITY, PelIfd::CANON_MAKER_NOTES] as $ifd) {
+            $k = static::getTagByIfdAndName($ifd, $name);
+            if ($k !== false) {
+                return $k;
             }
         }
         return false;
@@ -1799,16 +1789,12 @@ class PelTag
      *
      * @return mixed (bool|int)
      *            the tag.
+     *
+     * @deprecated Use getTagByIfdAndName(PelIfd::EXIF, $name) instead.
      */
     public static function getExifTagByName($name)
     {
-        $tags = PelSpec::getIfdTags(PelIfd::EXIF);
-        foreach ($tags as $id => $tag) {
-            if ($tag['short'] === $name) {
-                return $id;
-            }
-        }
-        return false;
+        return static::getTagByIfdAndName(PelIfd::EXIF, $name);
     }
 
     /**
@@ -1819,10 +1805,30 @@ class PelTag
      *
      * @return mixed (bool|int)
      *            the tag.
+     *
+     * @deprecated Use getTagByIfdAndName(PelIfd::GPS, $name) instead.
      */
     public static function getGpsTagByName($name)
     {
-        $tags = PelSpec::getIfdTags(PelIfd::GPS);
+        return static::getTagByIfdAndName(PelIfd::GPS, $name);
+    }
+
+    /**
+     * Reverse lookup of a tag id by its short name.
+     *
+     * @param int $type
+     *            the IFD type of the tag, one of {@link PelIfd::IFD0},
+     *            {@link PelIfd::IFD1}, {@link PelIfd::EXIF}, {@link PelIfd::GPS},
+     *            or {@link PelIfd::INTEROPERABILITY}.
+     * @param string $name
+     *            tag short name.  Return false for the unknown tag name.
+     *
+     * @return mixed (bool|int)
+     *            the tag.
+     */
+    public static function getTagByIfdAndName($type, $name)
+    {
+        $tags = PelSpec::getIfdTags($type);
         foreach ($tags as $id => $tag) {
             if ($tag['short'] === $name) {
                 return $id;
@@ -1831,7 +1837,7 @@ class PelTag
         return false;
     }
 
-    /**
+     /**
      * Returns string defining unknown tag.
      *
      * @param int $tag
@@ -1864,11 +1870,7 @@ class PelTag
     public static function getName($type, $tag)
     {
         $tags = PelSpec::getIfdTags($type);
-        if (isset($tags[$tag])) {
-            return $tags[$tag]['short'];
-        } else {
-            return self::unknownTag($tag);
-        }
+        return isset($tags[$tag])? $tags[$tag]['short'] : self::unknownTag($tag);
     }
 
     /**
@@ -1890,10 +1892,6 @@ class PelTag
     public function getTitle($type, $tag)
     {
         $tags = PelSpec::getIfdTags($type);
-        if (isset($tags[$tag])) {
-            return Pel::tra($tags[$tag]['title']);
-        } else {
-            return self::unknownTag($tag);
-        }
+        return isset($tags[$tag])? Pel::tra($tags[$tag]['title']) : self::unknownTag($tag);
     }
 }
