@@ -11,3 +11,10 @@ tags:
         name: CANON_PA_PANORAMA_DIRECTION
         short: PanoramaDirection
         title: 'Panorama Direction'
+        text:
+            decode:
+                0: 'Left to Right'
+                1: 'Right to Left'
+                2: 'Bottom to Top'
+                3: 'Top to Bottom'
+                4: '2x2 Matrix (Clockwise)'
