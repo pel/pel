@@ -36,9 +36,9 @@ class AsciiTest extends TestCase
     {
         if (version_compare(PHP_VERSION, '7.1.0') >= 0) {
             $this->expectException(\ArgumentCountError::class);
-        } else {
+        }/* else {
             $this->expectException(static::ARGUMENT_COUNT_ERROR_EXCEPTION_CLASS);
-        }
+        }*/
         $entry = new PelEntryAscii();
     }
 
@@ -55,9 +55,9 @@ class AsciiTest extends TestCase
     {
         if (version_compare(PHP_VERSION, '7.1.0') >= 0) {
             $this->expectException(\ArgumentCountError::class);
-        } else {
+        }/* else {
             $this->expectException(static::ARGUMENT_COUNT_ERROR_EXCEPTION_CLASS);
-        }
+        }*/
         $entry = new PelEntryTime();
     }
 
@@ -65,9 +65,9 @@ class AsciiTest extends TestCase
     {
         if (version_compare(PHP_VERSION, '7.1.0') >= 0) {
             $this->expectException(\ArgumentCountError::class);
-        } else {
+        }/* else {
             $this->expectException(static::ARGUMENT_COUNT_ERROR_EXCEPTION_CLASS);
-        }
+        }*/
         $entry = new PelEntryTime(42);
     }
 
