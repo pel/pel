@@ -1,0 +1,153 @@
+id: 6
+type: MakerNotes
+alias:
+  - 'Canon Camera Settings'
+tags:
+    0x0001:
+        name: CANON_CS_MACRO
+        short: MacroMode
+        title: 'Macro Mode'
+    0x0002:
+        name: CANON_CS_SELF_TIMER
+        short: SelfTimer
+        title: 'Self Timer'
+    0x0003:
+        name: CANON_CS_QUALITY
+        short: Quality
+        title: Quality
+    0x0004:
+        name: CANON_CS_FLASH_MODE
+        short: FlashMode
+        title: 'Flash Mode'
+    0x0005:
+        name: CANON_CS_DRIVE_MODE
+        short: DriveMode
+        title: 'Drive Mode'
+    0x0007:
+        name: CANON_CS_FOCUS_MODE
+        short: FocusMode
+        title: 'Focus Mode'
+    0x0009:
+        name: CANON_CS_RECORD_MODE
+        short: RecordMode
+        title: 'Record Mode'
+    0x000A:
+        name: CANON_CS_IMAGE_SIZE
+        short: ImageSize
+        title: 'Image Size'
+    0x000B:
+        name: CANON_CS_EASY_MODE
+        short: EasyShootingMode
+        title: 'Easy Shooting Mode'
+    0x000C:
+        name: CANON_CS_DIGITAL_ZOOM
+        short: DigitalZoom
+        title: 'Digital Zoom'
+    0x000D:
+        name: CANON_CS_CONTRAST
+        short: Contrast
+        title: Contrast
+    0x000E:
+        name: CANON_CS_SATURATION
+        short: Saturation
+        title: Saturation
+    0x000F:
+        name: CANON_CS_SHARPNESS
+        short: Sharpness
+        title: Sharpness
+    0x0010:
+        name: CANON_CS_ISO_SPEED
+        short: ISOSpeed
+        title: 'ISO Speed'
+    0x0011:
+        name: CANON_CS_METERING_MODE
+        short: MeteringMode
+        title: 'Metering Mode'
+    0x0012:
+        name: CANON_CS_FOCUS_TYPE
+        short: FocusType
+        title: 'Focus Type'
+    0x0013:
+        name: CANON_CS_AF_POINT
+        short: AFPointSelected
+        title: 'AF Point Selected'
+    0x0014:
+        name: CANON_CS_EXPOSURE_PROGRAM
+        short: ExposureMode
+        title: 'Exposure Mode'
+    0x0016:
+        name: CANON_CS_LENS_TYPE
+        short: LensType
+        title: 'Lens Type'
+    0x0017:
+        name: CANON_CS_LENS
+        short: LongFocalLength
+        title: 'Long Focal Length'
+    0x0018:
+        name: CANON_CS_SHORT_FOCAL
+        short: ShortFocalLength
+        title: 'Short Focal Length'
+    0x0019:
+        name: CANON_CS_FOCAL_UNITS
+        short: FocalUnits
+        title: 'Focal Units'
+    0x001A:
+        name: CANON_CS_MAX_APERTURE
+        short: MaxAperture
+        title: 'Max Aperture'
+    0x001B:
+        name: CANON_CS_MIN_APERTURE
+        short: MinAperture
+        title: 'Min Aperture'
+    0x001C:
+        name: CANON_CS_FLASH_ACTIVITY
+        short: FlashActivity
+        title: 'Flash Activity'
+    0x001D:
+        name: CANON_CS_FLASH_DETAILS
+        short: FlashDetails
+        title: 'Flash Details'
+    0x0020:
+        name: CANON_CS_FOCUS_CONTINUOUS
+        short: FocusContinuous
+        title: 'Focus Continuous'
+    0x0021:
+        name: CANON_CS_AE_SETTING
+        short: AESetting
+        title: 'AE Setting'
+    0x0022:
+        name: CANON_CS_IMAGE_STABILIZATION
+        short: ImageStabilization
+        title: 'Image Stabilization'
+    0x0023:
+        name: CANON_CS_DISPLAY_APERTURE
+        short: DisplayAperture
+        title: 'Display Aperture'
+    0x0024:
+        name: CANON_CS_ZOOM_SOURCE_WIDTH
+        short: ZoomSourceWidth
+        title: 'Zoom Source Width'
+    0x0025:
+        name: CANON_CS_ZOOM_TARGET_WIDTH
+        short: ZoomTargetWidth
+        title: 'Zoom Target Width'
+    0x0027:
+        name: CANON_CS_SPOT_METERING_MODE
+        short: SpotMeteringMode
+        title: 'Spot Metering Mode'
+    0x0028:
+        name: CANON_CS_PHOTO_EFFECT
+        short: PhotoEffect
+        title: 'Photo Effect'
+    0x0029:
+        name: CANON_CS_MANUAL_FLASH_OUTPUT
+        short: ManualFlashOutput
+        title: 'Manual Flash Output'
+    0x002A:
+        name: CANON_CS_COLOR_TONE
+        short: ColorTone
+        title: 'Color Tone'
+    0x002E:
+        name: CANON_CS_SRAW_QUALITY
+        short: SRAWQuality
+        title: 'SRAW Quality'

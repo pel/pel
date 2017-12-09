@@ -1,0 +1,39 @@
+id: 4
+type: Interoperability
+alias:
+  - 'Interop'
+tags:
+    0x0001:
+        name: INTEROPERABILITY_INDEX
+        short: InteroperabilityIndex
+        title: 'Interoperability Index'
+        components: 4
+        format: Ascii
+    0x0002:
+        name: INTEROPERABILITY_VERSION
+        short: InteroperabilityVersion
+        title: 'Interoperability Version'
+        components: 4
+        format: Undefined
+    0x1000:
+        name: RELATED_IMAGE_FILE_FORMAT
+        short: RelatedImageFileFormat
+        title: 'Related Image File Format'
+        components: Unknown
+        format: Unknown
+    0x1001:
+        name: RELATED_IMAGE_WIDTH
+        short: RelatedImageWidth
+        title: 'Related Image Width'
+        # Probably 1
+        components: Unknown
+        # Probably Short
+        format: Unknown
+    0x1002:
+        name: RELATED_IMAGE_LENGTH
+        short: RelatedImageLength
+        title: 'Related Image Length'
+        # Probably 1
+        components: Unknown
+        # Probably Short
+        format: Unknown

@@ -1,0 +1,143 @@
+id: 7
+type: MakerNotes
+alias:
+  - 'Canon Shot Information'
+tags:
+    0x0002:
+        name: CANON_SI_ISO_SPEED
+        short: ISOSpeedUsed
+        title: 'ISO Speed Used'
+    0x0003:
+        name: CANON_SI_MEASURED_EV
+        short: MeasuredEV
+        title: 'Measured EV'
+    0x0004:
+        name: CANON_SI_TARGET_APERTURE
+        short: TargetAperture
+        title: 'Target Aperture'
+    0x0005:
+        name: CANON_SI_TARGET_SHUTTER_SPEED
+        short: TargetShutterSpeed
+        title: 'Target Shutter Speed'
+    0x0007:
+        name: CANON_SI_WHITE_BALANCE
+        short: WhiteBalanceSetting
+        title: 'White Balance Setting'
+        format: Short
+        text:
+            decode:
+                0: 'Auto'
+                1: 'Daylight'
+                2: 'Cloudy'
+                3: 'Tungsten'
+                4: 'Fluorescent'
+                5: 'Flash'
+                6: 'Custom'
+                7: 'Black & White'
+                8: 'Shade'
+                9: 'Manual Temperature (Kelvin)'
+                10: 'PC Set1'
+                11: 'PC Set2'
+                12: 'PC Set3'
+                14: 'Daylight Fluorescent'
+                15: 'Custom 1'
+                16: 'Custom 2'
+                17: 'Underwater'
+                18: 'Custom 3'
+                19: 'Custom 4'
+                20: 'PC Set4'
+                21: 'PC Set5'
+                23: 'Auto (ambience priority)'
+    0x0008:
+        name: CANON_SI_SLOW_SHUTTER
+        short: SlowShutter
+        title: 'Slow Shutter'
+        format: Short
+        text:
+            decode:
+                0: 'Off'
+                1: 'Night Scene'
+                2: 'On'
+                3: 'None'
+    0x0009:
+        name: CANON_SI_SEQUENCE
+        short: SequenceNumber
+        title: 'Sequence Number'
+    0x000E:
+        name: CANON_SI_AF_POINT_USED
+        short: AFPointUsed
+        title: 'AF Point Used'
+        format: Short
+        text:
+            decode:
+                0x3000: 'None (MF)'
+                0x3001: 'Right'
+                0x3002: 'Center'
+                0x3003: 'Center+Right'
+                0x3004: 'Left'
+                0x3005: 'Left+Right'
+                0x3006: 'Left+Center'
+                0x3007: 'All'
+    0x000F:
+        name: CANON_SI_FLASH_BIAS
+        short: FlashBias
+        title: 'Flash Bias'
+    0x0010:
+        name: CANON_SI_AUTO_EXPOSURE_BRACKETING
+        short: AutoExposureBracketing
+        title: 'Auto Exposure Bracketing'
+        format: Short
+        text:
+            decode:
+                -1: 'On'
+                0: 'Off'
+                1: 'On (shot 1)'
+                2: 'On (shot 2)'
+                3: 'On (shot 3)'
+    0x0013:
+        name: CANON_SI_SUBJECT_DISTANCE
+        short: SubjectDistance
+        title: 'Subject Distance'
+    0x0015:
+        name: CANON_SI_APERTURE_VALUE
+        short: Aperture
+        title: Aperture
+    0x0016:
+        name: CANON_SI_SHUTTER_SPEED_VALUE
+        short: ShutterSpeed
+        title: 'Shutter Speed'
+    0x0017:
+        name: CANON_SI_MEASURED_EV2
+        short: MeasuredEV2
+        title: 'Measured EV 2'
+    0x001A:
+        name: CANON_SI_CAMERA_TYPE
+        short: CameraType
+        title: 'Camera Type'
+        format: Short
+        text:
+            decode:
+                248: 'EOS High-end'
+                250: 'Compact'
+                252: 'EOS Mid-range'
+                255: 'DV Camera'
+    0x001B:
+        name: CANON_SI_AUTO_ROTATE
+        short: AutoRotate
+        title: 'Auto Rotate'
+        format: Short
+        text:
+            decode:
+                0: 'None'
+                1: 'Rotate 90 CW'
+                2: 'Rotate 180'
+                3: 'Rotate 270 CW'
+    0x001C:
+        name: CANON_SI_ND_FILTER
+        short: NDFilter
+        title: 'ND Filter'
+        format: Short
+        text:
+            decode:
+                0: 'Off'
+                1: 'On'
