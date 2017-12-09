@@ -41,6 +41,7 @@ class Bug3017880Test extends TestCase
             $success = 1; // return true by default, as this function may not resave the file, but it's still success
             $resave_file = 0;
             $jpeg = new PelJpeg($filename);
+            $this->assertInstanceOf(PelJpeg::class, $jpeg);
 
             // should all exif data on photo be cleared (gd and iu will always strip it anyway, so only
             // force strip if you know the image you're branding is an original)

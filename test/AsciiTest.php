@@ -26,18 +26,18 @@ use lsolesen\pel\PelEntryAscii;
 use lsolesen\pel\PelEntryCopyright;
 use lsolesen\pel\PelEntryTime;
 use lsolesen\pel\PelTag;
-use PHPUnit\Framework\Exception as PHPUnit_Framework_Exception;
 use PHPUnit\Framework\TestCase;
 
 class AsciiTest extends TestCase
 {
+    const ARGUMENT_COUNT_ERROR_EXCEPTION_CLASS = 'xxxxx';
 
     function testConstructorWithNoValues()
     {
         if (version_compare(PHP_VERSION, '7.1.0') >= 0) {
             $this->expectException(\ArgumentCountError::class);
         } else {
-            $this->expectException(PHPUnit_Framework_Exception::class);
+            $this->expectException(static::ARGUMENT_COUNT_ERROR_EXCEPTION_CLASS);
         }
         $entry = new PelEntryAscii();
     }
@@ -56,7 +56,7 @@ class AsciiTest extends TestCase
         if (version_compare(PHP_VERSION, '7.1.0') >= 0) {
             $this->expectException(\ArgumentCountError::class);
         } else {
-            $this->expectException(PHPUnit_Framework_Exception::class);
+            $this->expectException(static::ARGUMENT_COUNT_ERROR_EXCEPTION_CLASS);
         }
         $entry = new PelEntryTime();
     }
@@ -66,7 +66,7 @@ class AsciiTest extends TestCase
         if (version_compare(PHP_VERSION, '7.1.0') >= 0) {
             $this->expectException(\ArgumentCountError::class);
         } else {
-            $this->expectException(PHPUnit_Framework_Exception::class);
+            $this->expectException(static::ARGUMENT_COUNT_ERROR_EXCEPTION_CLASS);
         }
         $entry = new PelEntryTime(42);
     }
