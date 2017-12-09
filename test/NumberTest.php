@@ -33,8 +33,9 @@ use \lsolesen\pel\PelEntrySLong;
 use \lsolesen\pel\PelEntryRational;
 use \lsolesen\pel\PelEntrySRational;
 use \lsolesen\pel\PelOverflowException;
+use PHPUnit\Framework\TestCase;
 
-abstract class NumberTest extends \PHPUnit_Framework_TestCase
+abstract class NumberTest extends TestCase
 {
     private $min;
     private $max;
@@ -186,7 +187,7 @@ class SLongTestCase extends NumberTest
     }
 }
 
-class RationalTestCase extends \PHPUnit_Framework_TestCase
+class RationalTestCase extends TestCase
 {
     public function testOverflow()
     {
@@ -325,7 +326,7 @@ class RationalTestCase extends \PHPUnit_Framework_TestCase
     }
 }
 
-class SRationalTestCase extends \PHPUnit_Framework_TestCase
+class SRationalTestCase extends TestCase
 {
 
     public function __construct()

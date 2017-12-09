@@ -24,8 +24,9 @@
 
 use lsolesen\pel\Pel;
 use lsolesen\pel\PelJpeg;
+use PHPUnit\Framework\TestCase;
 
-class LeicaDLuxTest extends \PHPUnit_Framework_TestCase
+class LeicaDLuxTest extends TestCase
 {
     public function testRead()
     {

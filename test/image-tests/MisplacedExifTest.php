@@ -26,8 +26,9 @@ use lsolesen\pel\Pel;
 use lsolesen\pel\PelJpeg;
 use lsolesen\pel\PelExif;
 use lsolesen\pel\PelJpegMarker;
+use PHPUnit\Framework\TestCase;
 
-class MisplacedExifTest extends \PHPUnit_Framework_TestCase
+class MisplacedExifTest extends TestCase
 {
 	// NOTE: this test relies on the assumption that internal PelJpeg::sections order is kept between section
 	// manipulations. It may fail it this changes.

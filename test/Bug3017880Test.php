@@ -29,8 +29,9 @@ use lsolesen\pel\PelTiff;
 use lsolesen\pel\PelIfd;
 use lsolesen\pel\PelTag;
 use lsolesen\pel\PelEntryAscii;
+use PHPUnit\Framework\TestCase;
 
-class Bug3017880Test extends \PHPUnit_Framework_TestCase
+class Bug3017880Test extends TestCase
 {
     function testThisDoesNotWorkAsExpected()
     {

@@ -24,8 +24,9 @@
 
 use lsolesen\pel\Pel;
 use lsolesen\pel\PelJpeg;
+use PHPUnit\Framework\TestCase;
 
-class NikonE5000Test extends \PHPUnit_Framework_TestCase
+class NikonE5000Test extends TestCase
 {
     public function testRead()
     {
