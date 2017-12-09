@@ -26,7 +26,6 @@ use lsolesen\pel\PelEntryAscii;
 use lsolesen\pel\PelEntryCopyright;
 use lsolesen\pel\PelEntryTime;
 use lsolesen\pel\PelTag;
-use PHPUnit\Framework\Exception as PHPUnitFrameworkException;
 use PHPUnit\Framework\TestCase;
 
 class AsciiTest extends TestCase
