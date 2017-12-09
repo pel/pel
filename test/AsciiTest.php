@@ -30,15 +30,17 @@ use PHPUnit\Framework\TestCase;
 
 class AsciiTest extends TestCase
 {
-    const ARGUMENT_COUNT_ERROR_EXCEPTION_CLASS = 'xxxxx';
-
     function testConstructorWithNoValues()
     {
         if (version_compare(PHP_VERSION, '7.1.0') >= 0) {
             $this->expectException(\ArgumentCountError::class);
-        }/* else {
-            $this->expectException(static::ARGUMENT_COUNT_ERROR_EXCEPTION_CLASS);
-        }*/
+        } else {
+            if (class_exists('PHPUnit_Framework_Exception')) {
+                $this->expectException(PHPUnit_Framework_Exception::class);
+            } else if (class_exists('\PHPUnit\Framework\Exception')) {
+                $this->expectException(\PHPUnit\Framework\Exception::class);
+            }
+        }
         $entry = new PelEntryAscii();
     }
 
@@ -55,9 +57,13 @@ class AsciiTest extends TestCase
     {
         if (version_compare(PHP_VERSION, '7.1.0') >= 0) {
             $this->expectException(\ArgumentCountError::class);
-        }/* else {
-            $this->expectException(static::ARGUMENT_COUNT_ERROR_EXCEPTION_CLASS);
-        }*/
+        } else {
+            if (class_exists('PHPUnit_Framework_Exception')) {
+                $this->expectException(PHPUnit_Framework_Exception::class);
+            } else if (class_exists('\PHPUnit\Framework\Exception')) {
+                $this->expectException(\PHPUnit\Framework\Exception::class);
+            }
+        }
         $entry = new PelEntryTime();
     }
 
@@ -65,9 +71,13 @@ class AsciiTest extends TestCase
     {
         if (version_compare(PHP_VERSION, '7.1.0') >= 0) {
             $this->expectException(\ArgumentCountError::class);
-        }/* else {
-            $this->expectException(static::ARGUMENT_COUNT_ERROR_EXCEPTION_CLASS);
-        }*/
+        } else {
+            if (class_exists('PHPUnit_Framework_Exception')) {
+                $this->expectException(PHPUnit_Framework_Exception::class);
+            } else if (class_exists('\PHPUnit\Framework\Exception')) {
+                $this->expectException(\PHPUnit\Framework\Exception::class);
+            }
+        }
         $entry = new PelEntryTime(42);
     }
 
