@@ -204,7 +204,7 @@ class PelTiff
      * little-endian} or {@link PelConvert::BIG_ENDIAN big-endian} byte
      * order, and so this method takes an argument specifying that.
      *
-     * @param PelByteOrder $order
+     * @param boolean $order
      *            the desired byte order of the TIFF data.
      *            This should be one of {@link PelConvert::LITTLE_ENDIAN} or {@link
      *            PelConvert::BIG_ENDIAN}.

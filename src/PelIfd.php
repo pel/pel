@@ -246,7 +246,7 @@ class PelIfd implements \IteratorAggregate, \ArrayAccess
      * Stores Maker Notes data for an IFD (Probably PelIfd::EXIF only).
      *
      * @param PelIfd $parent
-                  the parent PelIfd of the current PelIfd
+     *            the parent PelIfd of the current PelIfd
      *
      * @param PelDataWindow $data
      *            the data window that will provide the data.
@@ -344,8 +344,13 @@ class PelIfd implements \IteratorAggregate, \ArrayAccess
                     }
 
                     if ($starting_offset != $o) {
-                        $this->sub[$type] = new PelIfd($type);
-                        $this->sub[$type]->load($d, $o);
+                        $ifd = new PelIfd($type);
+                        try {
+                            $ifd->load($d, $o);
+                            $this->sub[$type] = $ifd;
+                        } catch (PelDataWindowOffsetException $e) {
+                            Pel::maybeThrow(new PelIfdException($e->getMessage()));
+                        }
                     } else {
                         Pel::maybeThrow(new PelIfdException('Bogus offset to next IFD: %d, same as offset being loaded from.', $o));
                     }
@@ -760,7 +765,11 @@ class PelIfd implements \IteratorAggregate, \ArrayAccess
             }
 
             /* Now set the thumbnail normally. */
-            $this->setThumbnail($d->getClone($offset, $length));
+            try {
+                $this->setThumbnail($d->getClone($offset, $length));
+            } catch (PelDataWindowWindowException $e) {
+                Pel::maybeThrow(new PelIfdException($e->getMessage()));
+            }
         }
     }
 
@@ -1452,7 +1461,7 @@ class PelIfd implements \IteratorAggregate, \ArrayAccess
      * @param int $offset
      *            the offset of the first byte of this directory.
      *
-     * @param PelByteOrder $order
+     * @param boolean $order
      *            the byte order that should be used when
      *            turning integers into bytes. This should be one of {@link
      *            PelConvert::LITTLE_ENDIAN} and {@link PelConvert::BIG_ENDIAN}.

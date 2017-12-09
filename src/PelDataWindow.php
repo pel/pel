@@ -48,7 +48,7 @@ class PelDataWindow
      * example the {@link getShort} function. It must be one of {@link
      * PelConvert::LITTLE_ENDIAN} and {@link PelConvert::BIG_ENDIAN}.
      *
-     * @var PelByteOrder
+     * @var boolean
      * @see setByteOrder, getByteOrder
      */
     private $order;
@@ -130,7 +130,7 @@ class PelDataWindow
     /**
      * Change the byte order of the data.
      *
-     * @param integer $order
+     * @param boolean $order
      *            the new byte order. This must be either
      *            {@link PelConvert::LITTLE_ENDIAN} or {@link
      *            PelConvert::BIG_ENDIAN}.
@@ -143,7 +143,7 @@ class PelDataWindow
     /**
      * Get the currently used byte order.
      *
-     * @return integer this will be either {@link
+     * @return boolean this will be either {@link
      *         PelConvert::LITTLE_ENDIAN} or {@link PelConvert::BIG_ENDIAN}.
      */
     public function getByteOrder()

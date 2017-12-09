@@ -79,7 +79,7 @@ class PelConvert
      *            the unsigned short that will be converted. The lower
      *            two bytes will be extracted regardless of the actual size passed.
      *
-     * @param integer $endian
+     * @param boolean $endian
      *            one of {@link LITTLE_ENDIAN} and {@link
      *            BIG_ENDIAN}.
      *
@@ -101,7 +101,7 @@ class PelConvert
      *            the signed short that will be converted. The lower
      *            two bytes will be extracted regardless of the actual size passed.
      *
-     * @param integer $endian
+     * @param boolean $endian
      *            one of {@link LITTLE_ENDIAN} and {@link
      *            BIG_ENDIAN}.
      *
@@ -131,7 +131,7 @@ class PelConvert
      *            unsigned integer means that the absolute value will be used. Use
      *            {@link sLongToBytes} to convert signed integers.
      *
-     * @param integer $endian
+     * @param boolean $endian
      *            one of {@link LITTLE_ENDIAN} and {@link
      *            BIG_ENDIAN}.
      *
@@ -164,7 +164,7 @@ class PelConvert
      *            will be treated as a signed 32 bit integer, from which the lower
      *            four bytes will be extracted.
      *
-     * @param integer $endian
+     * @param boolean $endian
      *            one of {@link LITTLE_ENDIAN} and {@link
      *            BIG_ENDIAN}.
      *
@@ -238,7 +238,7 @@ class PelConvert
      *            the offset. The short found at the offset will be
      *            returned as an integer. There must be at least two bytes
      *            available beginning at the offset given.
-     * @param integer $endian
+     * @param boolean $endian
      *            one of {@link LITTLE_ENDIAN} and {@link
      *            BIG_ENDIAN}.
      * @return integer the unsigned short found at offset, e.g., an integer
@@ -263,7 +263,7 @@ class PelConvert
      *            The short found at offset will be returned
      *            as an integer. There must be at least two bytes available
      *            beginning at the offset given.
-     * @param integer $endian
+     * @param boolean $endian
      *            one of {@link LITTLE_ENDIAN} and {@link
      *            BIG_ENDIAN}.
      * @return integer the signed byte found at offset, e.g., an integer in
@@ -289,7 +289,7 @@ class PelConvert
      *            The long found at offset will be returned
      *            as an integer. There must be at least four bytes available
      *            beginning at the offset given.
-     * @param integer $endian
+     * @param boolean $endian
      *            one of {@link LITTLE_ENDIAN} and {@link
      *            BIG_ENDIAN}.
      * @return integer the unsigned long found at offset, e.g., an integer
@@ -316,7 +316,7 @@ class PelConvert
      *            The long found at offset will be returned
      *            as an integer. There must be at least four bytes available
      *            beginning at the offset given.
-     * @param integer $endian
+     * @param boolean $endian
      *            one of {@link LITTLE_ENDIAN} and {@link
      *            BIG_ENDIAN}. *
      * @return integer the signed long found at offset, e.g., an integer in
@@ -342,7 +342,7 @@ class PelConvert
      *            The rational found at offset will be
      *            returned as an array. There must be at least eight bytes
      *            available beginning at the offset given.
-     * @param integer $endian
+     * @param boolean $endian
      *            one of {@link LITTLE_ENDIAN} and {@link
      *            BIG_ENDIAN}. *
      * @return array the unsigned rational found at offset, e.g., an
@@ -366,7 +366,7 @@ class PelConvert
      *            The rational found at offset will be
      *            returned as an array. There must be at least eight bytes
      *            available beginning at the offset given.
-     * @param integer $endian
+     * @param boolean $endian
      *            one of {@link LITTLE_ENDIAN} and {@link
      *            BIG_ENDIAN}.
      * @return array the signed rational found at offset, e.g., an array
