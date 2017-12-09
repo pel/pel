@@ -26,20 +26,20 @@ use lsolesen\pel\PelEntryAscii;
 use lsolesen\pel\PelEntryCopyright;
 use lsolesen\pel\PelEntryTime;
 use lsolesen\pel\PelTag;
+use PHPUnit\Framework\Exception as PHPUnitFrameworkException;
 use PHPUnit\Framework\TestCase;
 
 class AsciiTest extends TestCase
 {
     function testConstructorWithNoValues()
     {
+        if (version_compare(PHP_VERSION, '5.6') < 0) {
+            $this->markTestSkipped('This test can not run on this PHP version.');
+        }
         if (version_compare(PHP_VERSION, '7.1.0') >= 0) {
             $this->expectException(\ArgumentCountError::class);
         } else {
-            if (class_exists('PHPUnit_Framework_Exception')) {
-                $this->expectException(PHPUnit_Framework_Exception::class);
-            } else if (class_exists('\PHPUnit\Framework\Exception')) {
-                $this->expectException(\PHPUnit\Framework\Exception::class);
-            }
+            $this->expectException(PHPUnitFrameworkException::class);
         }
         $entry = new PelEntryAscii();
     }
@@ -55,28 +55,26 @@ class AsciiTest extends TestCase
 
     function testTimeWithNoConstructorArgument()
     {
+        if (version_compare(PHP_VERSION, '5.6') < 0) {
+            $this->markTestSkipped('This test can not run on this PHP version.');
+        }
         if (version_compare(PHP_VERSION, '7.1.0') >= 0) {
             $this->expectException(\ArgumentCountError::class);
         } else {
-            if (class_exists('PHPUnit_Framework_Exception')) {
-                $this->expectException(PHPUnit_Framework_Exception::class);
-            } else if (class_exists('\PHPUnit\Framework\Exception')) {
-                $this->expectException(\PHPUnit\Framework\Exception::class);
-            }
+            $this->expectException(PHPUnitFrameworkException::class);
         }
         $entry = new PelEntryTime();
     }
 
     function testTimeWithOnlyOneConstructorArgument()
     {
+        if (version_compare(PHP_VERSION, '5.6') < 0) {
+            $this->markTestSkipped('This test can not run on this PHP version.');
+        }
         if (version_compare(PHP_VERSION, '7.1.0') >= 0) {
             $this->expectException(\ArgumentCountError::class);
         } else {
-            if (class_exists('PHPUnit_Framework_Exception')) {
-                $this->expectException(PHPUnit_Framework_Exception::class);
-            } else if (class_exists('\PHPUnit\Framework\Exception')) {
-                $this->expectException(\PHPUnit\Framework\Exception::class);
-            }
+            $this->expectException(PHPUnitFrameworkException::class);
         }
         $entry = new PelEntryTime(42);
     }
