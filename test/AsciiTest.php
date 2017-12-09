@@ -31,19 +31,6 @@ use PHPUnit\Framework\TestCase;
 
 class AsciiTest extends TestCase
 {
-    function testConstructorWithNoValues()
-    {
-        if (version_compare(PHP_VERSION, '5.6') < 0) {
-            $this->markTestSkipped('This test can not run on this PHP version.');
-        }
-        if (version_compare(PHP_VERSION, '7.1.0') >= 0) {
-            $this->expectException(\ArgumentCountError::class);
-        } else {
-            $this->expectException(PHPUnitFrameworkException::class);
-        }
-        $entry = new PelEntryAscii();
-    }
-
     function testReturnValues()
     {
         $entry = new PelEntryAscii(42);
@@ -51,32 +38,6 @@ class AsciiTest extends TestCase
         $entry = new PelEntryAscii(42, 'foo bar baz');
         $this->assertEquals($entry->getComponents(), 12);
         $this->assertEquals($entry->getValue(), 'foo bar baz');
-    }
-
-    function testTimeWithNoConstructorArgument()
-    {
-        if (version_compare(PHP_VERSION, '5.6') < 0) {
-            $this->markTestSkipped('This test can not run on this PHP version.');
-        }
-        if (version_compare(PHP_VERSION, '7.1.0') >= 0) {
-            $this->expectException(\ArgumentCountError::class);
-        } else {
-            $this->expectException(PHPUnitFrameworkException::class);
-        }
-        $entry = new PelEntryTime();
-    }
-
-    function testTimeWithOnlyOneConstructorArgument()
-    {
-        if (version_compare(PHP_VERSION, '5.6') < 0) {
-            $this->markTestSkipped('This test can not run on this PHP version.');
-        }
-        if (version_compare(PHP_VERSION, '7.1.0') >= 0) {
-            $this->expectException(\ArgumentCountError::class);
-        } else {
-            $this->expectException(PHPUnitFrameworkException::class);
-        }
-        $entry = new PelEntryTime(42);
     }
 
     function testTime()

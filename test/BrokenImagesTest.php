@@ -30,18 +30,18 @@ class BrokenImagesTest extends TestCase
     public function testWindowWindowExceptionIsCaught()
     {
         $jpeg = new PelJpeg(dirname(__FILE__) . '/broken_images/gh-10-a.jpg');
-        $this->assertInstanceOf(PelJpeg::class, $jpeg);
+        $this->assertInstanceOf('\lsolesen\pel\PelJpeg', $jpeg);
     }
 
     public function testWindowOffsetExceptionIsCaught()
     {
         $jpeg = new PelJpeg(dirname(__FILE__) . '/broken_images/gh-10-b.jpg');
-        $this->assertInstanceOf(PelJpeg::class, $jpeg);
+        $this->assertInstanceOf('\lsolesen\pel\PelJpeg', $jpeg);
     }
 
     public function testParsingNotFailingOnRecursingIfd()
     {
         $jpeg = new PelJpeg(dirname(__FILE__) . '/broken_images/gh-11.jpg');
-        $this->assertInstanceOf(PelJpeg::class, $jpeg);
+        $this->assertInstanceOf('\lsolesen\pel\PelJpeg', $jpeg);
     }
 }
