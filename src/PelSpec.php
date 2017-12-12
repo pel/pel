@@ -27,10 +27,10 @@ class PelSpec
      */
     private static function getMap()
     {
-        if (!isset(static::$map)) {
-            static::setMap(__DIR__ . '/../resources/spec.php');
+        if (!isset(self::$map)) {
+            self::setMap(__DIR__ . '/../resources/spec.php');
         }
-        return static::$map;
+        return self::$map;
     }
 
     /**
@@ -41,7 +41,7 @@ class PelSpec
      */
     public static function setMap($file)
     {
-        static::$map = include $file;
+        self::$map = include $file;
     }
 
     /**
@@ -53,7 +53,7 @@ class PelSpec
      */
     public static function getIfdTypes()
     {
-        return static::getMap()['ifds'];
+        return self::getMap()['ifds'];
     }
 
     /**
@@ -68,7 +68,7 @@ class PelSpec
      */
     public static function getIfdSupportedTagIds($ifd_id)
     {
-        return array_keys(static::getMap()['tags'][$ifd_id]);
+        return array_keys(self::getMap()['tags'][$ifd_id]);
     }
 
     /**
@@ -82,7 +82,7 @@ class PelSpec
      */
     public static function getIfdType($ifd_id)
     {
-        return isset(static::getMap()['ifds'][$ifd_id]) ? static::getMap()['ifds'][$ifd_id] : null;
+        return isset(self::getMap()['ifds'][$ifd_id]) ? self::getMap()['ifds'][$ifd_id] : null;
     }
 
     /**
@@ -96,7 +96,7 @@ class PelSpec
      */
     public static function getIfdIdByType($ifd_type)
     {
-        return isset(static::getMap()['ifdsByType'][$ifd_type]) ? static::getMap()['ifdsByType'][$ifd_type] : null;
+        return isset(self::getMap()['ifdsByType'][$ifd_type]) ? self::getMap()['ifdsByType'][$ifd_type] : null;
     }
 
     /**
@@ -112,7 +112,7 @@ class PelSpec
      */
     public static function getTagName($ifd_id, $tag_id)
     {
-        return isset(static::getMap()['tags'][$ifd_id][$tag_id]['name']) ? static::getMap()['tags'][$ifd_id][$tag_id]['name'] : null;
+        return isset(self::getMap()['tags'][$ifd_id][$tag_id]['name']) ? self::getMap()['tags'][$ifd_id][$tag_id]['name'] : null;
     }
 
     /**
@@ -128,6 +128,6 @@ class PelSpec
      */
     public static function getTagIdByName($ifd_id, $tag_name)
     {
-        return isset(static::getMap()['tagsByName'][$ifd_id][$tag_name]) ? static::getMap()['tagsByName'][$ifd_id][$tag_name] : null;
+        return isset(self::getMap()['tagsByName'][$ifd_id][$tag_name]) ? self::getMap()['tagsByName'][$ifd_id][$tag_name] : null;
     }
 }

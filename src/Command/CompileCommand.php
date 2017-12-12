@@ -24,8 +24,8 @@ class CompileCommand extends Command
      */
     public function __construct()
     {
-        $this->specDirectory = realpath(__DIR__ . '/../../spec');
-        $this->resourceDirectory = realpath(__DIR__ . '/../../resources');
+        $this->specDirectory = (string) realpath(__DIR__ . '/../../spec');
+        $this->resourceDirectory = (string) realpath(__DIR__ . '/../../resources');
         parent::__construct();
     }
 
