@@ -1,0 +1,71 @@
+const: 10
+type: 'Canon File Information'
+tags:
+    0x0001:
+        const: CANON_FI_FILE_NUMBER
+        name: FileNumber
+        title: 'File Number'
+    0x0003:
+        const: CANON_FI_BRACKET_MODE
+        name: BracketMode
+        title: 'Bracket Mode'
+    0x0004:
+        const: CANON_FI_BRACKET_VALUE
+        name: BracketValue
+        title: 'Bracket Value'
+    0x0005:
+        const: CANON_FI_BRACKET_SHOT_NUMBER
+        name: BracketShotNumber
+        title: 'Bracket Shot Number'
+    0x0006:
+        const: CANON_FI_RAW_JPG_QUALITY
+        name: RawJpgQuality
+        title: 'Raw Jpg Quality'
+    0x0007:
+        const: CANON_FI_RAW_JPG_SIZE
+        name: RawJpgSize
+        title: 'Raw Jpg Size'
+    0x0008:
+        const: CANON_FI_NOISE_REDUCTION
+        name: NoiseReduction
+        title: 'Noise Reduction'
+    0x0009:
+        const: CANON_FI_WB_BRACKET_MODE
+        name: WBBracketMode
+        title: 'WB Bracket Mode'
+    0x000C:
+        const: CANON_FI_WB_BRACKET_VALUE_AB
+        name: WBBracketValueAB
+        title: 'WB Bracket Value AB'
+    0x000D:
+        const: CANON_FI_WB_BRACKET_VALUE_GM
+        name: WBBracketValueGM
+        title: 'WB Bracket Value GM'
+    0x000E:
+        const: CANON_FI_FILTER_EFFECT
+        name: FilterEffect
+        title: 'Filter Effect'
+    0x000F:
+        const: CANON_FI_TONING_EFFECT
+        name: ToningEffect
+        title: 'Toning Effect'
+    0x0010:
+        const: CANON_FI_MACRO_MAGNIFICATION
+        name: MacroMagnification
+        title: 'Macro Magnification'
+    0x0013:
+        const: CANON_FI_LIVE_VIEW_SHOOTING
+        name: LiveViewShooting
+        title: 'Live View Shooting'
+    0x0014:
+        const: CANON_FI_FOCUS_DISTANCE_UPPER
+        name: FocusDistanceUpper
+        title: 'Focus Distance Upper'
+    0x0015:
+        const: CANON_FI_FOCUS_DISTANCE_LOWER
+        name: FocusDistanceLower
+        title: 'Focus Distance Lower'
+    0x0019:
+        const: CANON_FI_FLASH_EXPOSURE_LOCK
+        name: FlashExposureLock
+        title: 'Flash Exposure Lock'
