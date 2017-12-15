@@ -22,6 +22,8 @@
  * Boston, MA 02110-1301 USA
  */
 
+namespace Pel\Test\imagetests;
+
 use lsolesen\pel\Pel;
 use lsolesen\pel\PelJpeg;
 use lsolesen\pel\PelExif;
