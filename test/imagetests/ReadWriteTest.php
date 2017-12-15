@@ -90,7 +90,7 @@ abstract class WriteEntryTestCase extends TestCase
 
         foreach ($this->entries as $entry) {
             $ifdEntry = $ifd->getEntry($entry->getTag());
-            if($ifdEntry->getFormat()
+            if ($ifdEntry->getFormat()
                 == PelFormat::ASCII) {
                 $ifdValue = $ifd->getEntry($entry->getTag())
                 ->getValue();
@@ -100,7 +100,7 @@ abstract class WriteEntryTestCase extends TestCase
                 // it is already cut off
                 $canonicalEntry = strstr($entryValue, "\0", true);
                 // if no nul byte found, use original value
-                if($canonicalEntry === false) {
+                if ($canonicalEntry === false) {
                     $canonicalEntry = $entryValue;
                 }
                 $this->assertEquals($ifdValue, $canonicalEntry);

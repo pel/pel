@@ -7,7 +7,7 @@
     <arg name="colors" />
 
     <!-- Show progress of the run -->
-    <arg value="p"/>
+    <arg value="np"/>
     
     <file>src</file>
     <file>test</file>
