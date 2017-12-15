@@ -27,8 +27,9 @@ use lsolesen\pel\PelIfd;
 use lsolesen\pel\PelEntryAscii;
 use lsolesen\pel\PelTag;
 use lsolesen\pel\PelEntryTime;
+use PHPUnit\Framework\TestCase;
 
-class IfdTest extends \PHPUnit_Framework_TestCase
+class IfdTest extends TestCase
 {
     function testIteratorAggretate()
     {

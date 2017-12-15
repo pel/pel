@@ -24,8 +24,9 @@
 
 use lsolesen\pel\Pel;
 use lsolesen\pel\PelJpeg;
+use PHPUnit\Framework\TestCase;
 
-class OlympusC50zTest extends \PHPUnit_Framework_TestCase
+class OlympusC50zTest extends TestCase
 {
 
     public function testRead()
