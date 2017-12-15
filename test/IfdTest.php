@@ -25,7 +25,6 @@
 
 namespace Pel\Test;
 
-
 use lsolesen\pel\PelIfd;
 use lsolesen\pel\PelEntryAscii;
 use lsolesen\pel\PelTag;

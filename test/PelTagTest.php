@@ -45,10 +45,16 @@ class PelTagTest extends TestCase
     {
         $this->assertSame(false, PelTag::getExifTagByName(self::NONEXISTENT_TAG_NAME), 'Non-existent EXIF tag name');
         $this->assertSame(false, PelTag::getGpsTagByName(self::NONEXISTENT_TAG_NAME), 'Non-existent GPS tag name');
-        $this->assertStringStartsWith('Unknown: ', PelTag::getName(PelIfd::IFD0, self::NONEXISTENT_EXIF_TAG),
-            'Non-existent EXIF tag');
-        $this->assertStringStartsWith('Unknown: ', PelTag::getName(PelIfd::GPS, self::NONEXISTENT_GPS_TAG),
-            'Non-existent GPS tag');
+        $this->assertStringStartsWith(
+            'Unknown: ',
+            PelTag::getName(PelIfd::IFD0, self::NONEXISTENT_EXIF_TAG),
+            'Non-existent EXIF tag'
+        );
+        $this->assertStringStartsWith(
+            'Unknown: ',
+            PelTag::getName(PelIfd::GPS, self::NONEXISTENT_GPS_TAG),
+            'Non-existent GPS tag'
+        );
 
         $this->assertSame(static::EXIF_TAG, PelTag::getExifTagByName(self::EXIF_TAG_NAME), 'EXIF tag name');
         $this->assertSame(static::GPS_TAG, PelTag::getGpsTagByName(self::GPS_TAG_NAME), 'GPS tag name');

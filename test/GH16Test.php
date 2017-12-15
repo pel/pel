@@ -53,7 +53,6 @@ class GH16Test extends TestCase
         $data = new PelDataWindow(file_get_contents($this->file));
 
         if (PelJpeg::isValid($data)) {
-
             $jpeg = new PelJpeg();
             $jpeg->load($data);
             $exif = $jpeg->getExif();
