@@ -10,7 +10,7 @@
     <arg value="np"/>
 
     <file>src</file>
-    <file>tests</file>
+    <file>test</file>
 
     <rule ref="Generic.Arrays.DisallowLongArraySyntax.Found">
         <type>error</type>
