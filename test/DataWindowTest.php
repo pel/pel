@@ -26,8 +26,9 @@
 use lsolesen\pel\PelDataWindow;
 use lsolesen\pel\PelConvert;
 use lsolesen\pel\PelDataWindowOffsetException;
+use PHPUnit\Framework\TestCase;
 
-class DataWindowTest extends \PHPUnit_Framework_TestCase
+class DataWindowTest extends TestCase
 {
 
     function testReadBytes()

@@ -24,8 +24,9 @@
 
 use lsolesen\pel\Pel;
 use lsolesen\pel\PelJpeg;
+use PHPUnit\Framework\TestCase;
 
-class CanonPowershotS60Test extends \PHPUnit_Framework_TestCase
+class CanonPowershotS60Test extends TestCase
 {
     public function testRead()
     {

@@ -24,8 +24,9 @@
 
 use lsolesen\pel\Pel;
 use lsolesen\pel\PelJpeg;
+use PHPUnit\Framework\TestCase;
 
-class NoExifTest extends \PHPUnit_Framework_TestCase
+class NoExifTest extends TestCase
 {
     public function testRead()
     {

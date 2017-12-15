@@ -26,8 +26,9 @@ use lsolesen\pel\PelDataWindow;
 use lsolesen\pel\PelJpeg;
 use lsolesen\pel\PelEntryWindowsString;
 use lsolesen\pel\PelTag;
+use PHPUnit\Framework\TestCase;
 
-class GH16Test extends \PHPUnit_Framework_TestCase
+class GH16Test extends TestCase
 {
     protected $file;
 

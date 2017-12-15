@@ -24,8 +24,9 @@
 
 use lsolesen\pel\Pel;
 use lsolesen\pel\PelJpeg;
+use PHPUnit\Framework\TestCase;
 
-class Tags1Test extends \PHPUnit_Framework_TestCase
+class Tags1Test extends TestCase
 {
     public function testTags()
     {
