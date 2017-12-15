@@ -44,7 +44,7 @@ namespace lsolesen\pel;
  */
 class PelCanonMakerNotes extends PelMakerNotes
 {
-    private $undefinedMakerNotesTags = array(
+    private $undefinedMakerNotesTags = [
         0x0000,
         0x0003,
         0x000a,
@@ -85,9 +85,9 @@ class PelCanonMakerNotes extends PelMakerNotes
         0x4020,
         0x4025,
         0x4027
-    );
+    ];
 
-    private $undefinedCameraSettingsTags = array(
+    private $undefinedCameraSettingsTags = [
         0x0006,
         0x0008,
         0x0015,
@@ -100,9 +100,9 @@ class PelCanonMakerNotes extends PelMakerNotes
         0x002f,
         0x0030,
         0x0031
-    );
+    ];
 
-    private $undefinedShotInfoTags = array(
+    private $undefinedShotInfoTags = [
         0x0001,
         0x0006,
         0x000a,
@@ -120,15 +120,15 @@ class PelCanonMakerNotes extends PelMakerNotes
         0x0020,
         0x0021,
         0x0022
-    );
+    ];
 
-    private $undefinedPanoramaTags = array(
+    private $undefinedPanoramaTags = [
         0x0001,
         0x0003,
         0x0004
-    );
+    ];
 
-    private $undefinedPicInfoTags = array(
+    private $undefinedPicInfoTags = [
         0x0001,
         0x0006,
         0x0007,
@@ -151,9 +151,9 @@ class PelCanonMakerNotes extends PelMakerNotes
         0x0019,
         0x001b,
         0x001c
-    );
+    ];
 
-    private $undefinedFileInfoTags = array(
+    private $undefinedFileInfoTags = [
         0x0002,
         0x000a,
         0x000b,
@@ -169,7 +169,7 @@ class PelCanonMakerNotes extends PelMakerNotes
         0x001e,
         0x001f,
         0x0020
-    );
+    ];
 
     public function __construct($parent, $data, $size, $offset)
     {

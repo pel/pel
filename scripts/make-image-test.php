@@ -52,13 +52,13 @@ function println($args)
 
 function quote($str)
 {
-    return str_replace(array(
+    return str_replace([
         '\\',
         '\''
-    ), array(
+    ], [
         '\\\\',
         '\\\''
-    ), $str);
+    ], $str);
 }
 
 function entryToTest($name, PelEntry $entry)

@@ -74,20 +74,20 @@ function convertDecimalToDMS($degree)
     $seconds = round($seconds * 100, 0); // Round seconds with a 1/100th
                                          // second precision.
 
-    return array(
-        array(
+    return [
+        [
             $degrees,
             1
-        ),
-        array(
+        ],
+        [
             $minutes,
             1
-        ),
-        array(
+        ],
+        [
             $seconds,
             100
-        )
-    );
+        ]
+    ];
 }
 
 /**
@@ -199,10 +199,10 @@ function addGpsInfo($input, $output, $description, $comment, $model, $longitude,
      * Add the altitude. The absolute value is stored here, the sign is
      * stored in the GPS_ALTITUDE_REF tag below.
      */
-    $gps_ifd->addEntry(new PelEntryRational(PelTag::GPS_ALTITUDE, array(
+    $gps_ifd->addEntry(new PelEntryRational(PelTag::GPS_ALTITUDE, [
         abs($altitude),
         1
-    )));
+    ]));
     /*
      * The reference is set to 1 (true) if the altitude is below sea
      * level, or 0 (false) otherwise.

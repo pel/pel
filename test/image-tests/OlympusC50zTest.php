@@ -70,18 +70,18 @@ class OlympusC50zTest extends TestCase
 
         $entry = $ifd0->getEntry(282); // XResolution
         $this->assertInstanceOf('lsolesen\pel\PelEntryRational', $entry);
-        $this->assertEquals($entry->getValue(), array(
+        $this->assertEquals($entry->getValue(), [
             0 => 144,
             1 => 1
-        ));
+        ]);
         $this->assertEquals($entry->getText(), '144/1');
 
         $entry = $ifd0->getEntry(283); // YResolution
         $this->assertInstanceOf('lsolesen\pel\PelEntryRational', $entry);
-        $this->assertEquals($entry->getValue(), array(
+        $this->assertEquals($entry->getValue(), [
             0 => 144,
             1 => 1
-        ));
+        ]);
         $this->assertEquals($entry->getText(), '144/1');
 
         $entry = $ifd0->getEntry(296); // ResolutionUnit
@@ -120,18 +120,18 @@ class OlympusC50zTest extends TestCase
 
         $entry = $ifd0_0->getEntry(33434); // ExposureTime
         $this->assertInstanceOf('lsolesen\pel\PelEntryRational', $entry);
-        $this->assertEquals($entry->getValue(), array(
+        $this->assertEquals($entry->getValue(), [
             0 => 1,
             1 => 80
-        ));
+        ]);
         $this->assertEquals($entry->getText(), '1/80 sec.');
 
         $entry = $ifd0_0->getEntry(33437); // FNumber
         $this->assertInstanceOf('lsolesen\pel\PelEntryRational', $entry);
-        $this->assertEquals($entry->getValue(), array(
+        $this->assertEquals($entry->getValue(), [
             0 => 45,
             1 => 10
-        ));
+        ]);
         $this->assertEquals($entry->getText(), 'f/4.5');
 
         $entry = $ifd0_0->getEntry(34850); // ExposureProgram
@@ -166,18 +166,18 @@ class OlympusC50zTest extends TestCase
 
         $entry = $ifd0_0->getEntry(37380); // ExposureBiasValue
         $this->assertInstanceOf('lsolesen\pel\PelEntrySRational', $entry);
-        $this->assertEquals($entry->getValue(), array(
+        $this->assertEquals($entry->getValue(), [
             0 => 0,
             1 => 10
-        ));
+        ]);
         $this->assertEquals($entry->getText(), '0.0');
 
         $entry = $ifd0_0->getEntry(37381); // MaxApertureValue
         $this->assertInstanceOf('lsolesen\pel\PelEntryRational', $entry);
-        $this->assertEquals($entry->getValue(), array(
+        $this->assertEquals($entry->getValue(), [
             0 => 300,
             1 => 100
-        ));
+        ]);
         $this->assertEquals($entry->getText(), '300/100');
 
         $entry = $ifd0_0->getEntry(37383); // MeteringMode
@@ -197,10 +197,10 @@ class OlympusC50zTest extends TestCase
 
         $entry = $ifd0_0->getEntry(37386); // FocalLength
         $this->assertInstanceOf('lsolesen\pel\PelEntryRational', $entry);
-        $this->assertEquals($entry->getValue(), array(
+        $this->assertEquals($entry->getValue(), [
             0 => 1883,
             1 => 100
-        ));
+        ]);
         $this->assertEquals($entry->getText(), '18.8 mm');
 
         $entry = $ifd0_0->getEntry(37500); // MakerNote
@@ -256,10 +256,10 @@ class OlympusC50zTest extends TestCase
 
         $entry = $ifd0_0->getEntry(41988); // DigitalZoomRatio
         $this->assertInstanceOf('lsolesen\pel\PelEntryRational', $entry);
-        $this->assertEquals($entry->getValue(), array(
+        $this->assertEquals($entry->getValue(), [
             0 => 100,
             1 => 100
-        ));
+        ]);
         $this->assertEquals($entry->getText(), '100/100');
 
         $entry = $ifd0_0->getEntry(41990); // SceneCaptureType
@@ -339,18 +339,18 @@ class OlympusC50zTest extends TestCase
 
         $entry = $ifd1->getEntry(282); // XResolution
         $this->assertInstanceOf('lsolesen\pel\PelEntryRational', $entry);
-        $this->assertEquals($entry->getValue(), array(
+        $this->assertEquals($entry->getValue(), [
             0 => 72,
             1 => 1
-        ));
+        ]);
         $this->assertEquals($entry->getText(), '72/1');
 
         $entry = $ifd1->getEntry(283); // YResolution
         $this->assertInstanceOf('lsolesen\pel\PelEntryRational', $entry);
-        $this->assertEquals($entry->getValue(), array(
+        $this->assertEquals($entry->getValue(), [
             0 => 72,
             1 => 1
-        ));
+        ]);
         $this->assertEquals($entry->getText(), '72/1');
 
         $entry = $ifd1->getEntry(296); // ResolutionUnit
