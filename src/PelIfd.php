@@ -142,7 +142,7 @@ class PelIfd implements \IteratorAggregate, \ArrayAccess
      */
     const CANON_CUSTOM_FUNCTIONS = 11;
 
-    private $ifdTypes = array(
+    private $ifdTypes = [
         self::IFD0,
         self::IFD1,
         self::EXIF,
@@ -155,7 +155,7 @@ class PelIfd implements \IteratorAggregate, \ArrayAccess
         self::CANON_PICTURE_INFO,
         self::CANON_FILE_INFO,
         self::CANON_CUSTOM_FUNCTIONS
-    );
+    ];
 
     /**
      * The maker notes held by this directory.
@@ -165,7 +165,7 @@ class PelIfd implements \IteratorAggregate, \ArrayAccess
      *
      * @var array
      */
-    private $maker_notes = array();
+    private $maker_notes = [];
 
     /**
      * The entries held by this directory.
@@ -175,7 +175,7 @@ class PelIfd implements \IteratorAggregate, \ArrayAccess
      *
      * @var array
      */
-    private $entries = array();
+    private $entries = [];
 
     /**
      * The type of this directory.
@@ -205,7 +205,7 @@ class PelIfd implements \IteratorAggregate, \ArrayAccess
      *
      * @var array
      */
-    private $sub = array();
+    private $sub = [];
 
     /**
      * The thumbnail data.
@@ -260,12 +260,12 @@ class PelIfd implements \IteratorAggregate, \ArrayAccess
      */
     public function setMakerNotes($parent, $data, $components, $offset)
     {
-        $this->maker_notes = array(
+        $this->maker_notes = [
             'parent' => $parent,
             'data' => $data,
             'components' => $components,
             'offset' => $offset
-        );
+        ];
     }
 
     /**
@@ -846,7 +846,7 @@ class PelIfd implements \IteratorAggregate, \ArrayAccess
         switch ($this->type) {
             case PelIfd::IFD0:
             case PelIfd::IFD1:
-                return array(
+                return [
                     PelTag::IMAGE_WIDTH,
                     PelTag::IMAGE_LENGTH,
                     PelTag::BITS_PER_SAMPLE,
@@ -888,10 +888,10 @@ class PelIfd implements \IteratorAggregate, \ArrayAccess
                     PelTag::XP_SUBJECT,
                     PelTag::RATING,
                     PelTag::RATING_PERCENT
-                );
+                ];
 
             case PelIfd::EXIF:
-                return array(
+                return [
                     PelTag::EXPOSURE_TIME,
                     PelTag::FNUMBER,
                     PelTag::EXPOSURE_PROGRAM,
@@ -952,10 +952,10 @@ class PelIfd implements \IteratorAggregate, \ArrayAccess
                     PelTag::IMAGE_UNIQUE_ID,
                     PelTag::INTEROPERABILITY_IFD_POINTER,
                     PelTag::GAMMA
-                );
+                ];
 
             case PelIfd::GPS:
-                return array(
+                return [
                     PelTag::GPS_VERSION_ID,
                     PelTag::GPS_LATITUDE_REF,
                     PelTag::GPS_LATITUDE,
@@ -987,18 +987,18 @@ class PelIfd implements \IteratorAggregate, \ArrayAccess
                     PelTag::GPS_AREA_INFORMATION,
                     PelTag::GPS_DATE_STAMP,
                     PelTag::GPS_DIFFERENTIAL
-                );
+                ];
 
             case PelIfd::INTEROPERABILITY:
-                return array(
+                return [
                     PelTag::INTEROPERABILITY_INDEX,
                     PelTag::INTEROPERABILITY_VERSION,
                     PelTag::RELATED_IMAGE_FILE_FORMAT,
                     PelTag::RELATED_IMAGE_WIDTH,
                     PelTag::RELATED_IMAGE_LENGTH
-                );
+                ];
             case PelIfd::CANON_MAKER_NOTES:
-                return array(
+                return [
                     PelTag::CANON_CAMERA_SETTINGS,
                     PelTag::CANON_FOCAL_LENGTH,
                     PelTag::CANON_SHOT_INFO,
@@ -1029,9 +1029,9 @@ class PelIfd implements \IteratorAggregate, \ArrayAccess
                     PelTag::CANON_VRD_OFFSET,
                     PelTag::CANON_SENSOR_INFO,
                     PelTag::CANON_COLOR_DATA
-                );
+                ];
             case PelIfd::CANON_CAMERA_SETTINGS:
-                return array(
+                return [
                     PelTag::CANON_CS_MACRO,
                     PelTag::CANON_CS_SELF_TIMER,
                     PelTag::CANON_CS_QUALITY,
@@ -1069,9 +1069,9 @@ class PelIfd implements \IteratorAggregate, \ArrayAccess
                     PelTag::CANON_CS_MANUAL_FLASH_OUTPUT,
                     PelTag::CANON_CS_COLOR_TONE,
                     PelTag::CANON_CS_SRAW_QUALITY
-                );
+                ];
             case PelIfd::CANON_SHOT_INFO:
-                return array(
+                return [
                     PelTag::CANON_SI_ISO_SPEED,
                     PelTag::CANON_SI_MEASURED_EV,
                     PelTag::CANON_SI_TARGET_APERTURE,
@@ -1089,23 +1089,23 @@ class PelIfd implements \IteratorAggregate, \ArrayAccess
                     PelTag::CANON_SI_CAMERA_TYPE,
                     PelTag::CANON_SI_AUTO_ROTATE,
                     PelTag::CANON_SI_ND_FILTER
-                );
+                ];
             case PelIfd::CANON_PANORAMA:
-                return array(
+                return [
                     PelTag::CANON_PA_PANORAMA_FRAME,
                     PelTag::CANON_PA_PANORAMA_DIRECTION
-                );
+                ];
             case PelIfd::CANON_PICTURE_INFO:
-                return array(
+                return [
                     PelTag::CANON_PI_IMAGE_WIDTH,
                     PelTag::CANON_PI_IMAGE_HEIGHT,
                     PelTag::CANON_PI_IMAGE_WIDTH_AS_SHOT,
                     PelTag::CANON_PI_IMAGE_HEIGHT_AS_SHOT,
                     PelTag::CANON_PI_AF_POINTS_USED,
                     PelTag::CANON_PI_AF_POINTS_USED_20D
-                );
+                ];
             case PelIfd::CANON_FILE_INFO:
-                return array(
+                return [
                     PelTag::CANON_FI_FILE_NUMBER,
                     PelTag::CANON_FI_BRACKET_MODE,
                     PelTag::CANON_FI_BRACKET_VALUE,
@@ -1123,7 +1123,7 @@ class PelIfd implements \IteratorAggregate, \ArrayAccess
                     PelTag::CANON_FI_FOCUS_DISTANCE_UPPER,
                     PelTag::CANON_FI_FOCUS_DISTANCE_LOWER,
                     PelTag::CANON_FI_FLASH_EXPOSURE_LOCK
-                );
+                ];
 
             /*
              * TODO: Where do these tags belong?

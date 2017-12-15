@@ -477,10 +477,10 @@ class PelDataWindow
      */
     public function getRational($offset = 0)
     {
-        return array(
+        return [
             $this->getLong($offset),
             $this->getLong($offset + 4)
-        );
+        ];
     }
 
     /**
@@ -500,10 +500,10 @@ class PelDataWindow
      */
     public function getSRational($offset = 0)
     {
-        return array(
+        return [
             $this->getSLong($offset),
             $this->getSLong($offset + 4)
-        );
+        ];
     }
 
     /**

@@ -1740,7 +1740,7 @@ class PelTag
     /**
      * Values for tags short names.
      */
-    protected static $exifTagsShort= array(
+    protected static $exifTagsShort= [
         self::INTEROPERABILITY_INDEX         => 'InteroperabilityIndex',
         self::INTEROPERABILITY_VERSION       => 'InteroperabilityVersion',
         self::IMAGE_WIDTH                    => 'ImageWidth',
@@ -1855,12 +1855,12 @@ class PelTag
         self::IMAGE_UNIQUE_ID                => 'ImageUniqueID',
         self::GAMMA                          => 'Gamma',
         self::PRINT_IM                       => 'PrintIM',
-    );
+    ];
 
     /**
      * Values for tags titles.
      */
-    protected static $exifTagsTitle = array(
+    protected static $exifTagsTitle = [
         self::INTEROPERABILITY_INDEX         => 'Interoperability Index',
         self::INTEROPERABILITY_VERSION       => 'Interoperability Version',
         self::IMAGE_WIDTH                    => 'Image Width',
@@ -1975,12 +1975,12 @@ class PelTag
         self::IMAGE_UNIQUE_ID                => 'Image Unique ID',
         self::GAMMA                          => 'Gamma',
         self::PRINT_IM                       => 'Print IM',
-    );
+    ];
 
     /**
      * Values for gps tags short names.
      */
-    protected static $gpsTagsShort = array(
+    protected static $gpsTagsShort = [
         self::GPS_VERSION_ID         => 'GPSVersionID',
         self::GPS_LATITUDE_REF       => 'GPSLatitudeRef',
         self::GPS_LATITUDE           => 'GPSLatitude',
@@ -2012,12 +2012,12 @@ class PelTag
         self::GPS_AREA_INFORMATION   => 'GPSAreaInformation',
         self::GPS_DATE_STAMP         => 'GPSDateStamp',
         self::GPS_DIFFERENTIAL       => 'GPSDifferential',
-    );
+    ];
 
     /**
      * Values for canon maker notes tags titles
      */
-    protected static $canonTagsTitle = array(
+    protected static $canonTagsTitle = [
         self::CANON_CAMERA_SETTINGS               => 'Camera Settings',
         self::CANON_FOCAL_LENGTH                  => 'Focal Length',
         self::CANON_SHOT_INFO                     => 'Shot Info',
@@ -2048,12 +2048,12 @@ class PelTag
         self::CANON_VRD_OFFSET                    => 'VRD offset',
         self::CANON_SENSOR_INFO                   => 'Sensor info',
         self::CANON_COLOR_DATA                    => 'Color data'
-    );
+    ];
 
     /**
      * Values for canon maker notes tags short names
      */
-    protected static $canonTagsShort = array(
+    protected static $canonTagsShort = [
         self::CANON_CAMERA_SETTINGS               => 'CameraSettings',
         self::CANON_FOCAL_LENGTH                  => 'FocalLength',
         self::CANON_SHOT_INFO                     => 'ShotInfo',
@@ -2084,12 +2084,12 @@ class PelTag
         self::CANON_VRD_OFFSET                    => 'VRDOffset',
         self::CANON_SENSOR_INFO                   => 'SensorInfo',
         self::CANON_COLOR_DATA                    => 'ColorData'
-    );
+    ];
 
     /**
      * Values for canon camera settings tags titles
      */
-    protected static $canonCsTagsTitle = array(
+    protected static $canonCsTagsTitle = [
         self::CANON_CS_MACRO               => 'Macro Mode',
         self::CANON_CS_SELF_TIMER          => 'Self Timer',
         self::CANON_CS_QUALITY             => 'Quality',
@@ -2127,12 +2127,12 @@ class PelTag
         self::CANON_CS_MANUAL_FLASH_OUTPUT => 'Manual Flash Output',
         self::CANON_CS_COLOR_TONE          => 'Color Tone',
         self::CANON_CS_SRAW_QUALITY        => 'SRAW Quality'
-    );
+    ];
 
     /**
      * Values for canon camera settings tags short names
      */
-    protected static $canonCsTagsShort = array(
+    protected static $canonCsTagsShort = [
         self::CANON_CS_MACRO               => 'MacroMode',
         self::CANON_CS_SELF_TIMER          => 'SelfTimer',
         self::CANON_CS_QUALITY             => 'Quality',
@@ -2170,12 +2170,12 @@ class PelTag
         self::CANON_CS_MANUAL_FLASH_OUTPUT => 'ManualFlashOutput',
         self::CANON_CS_COLOR_TONE          => 'ColorTone',
         self::CANON_CS_SRAW_QUALITY        => 'SRAWQuality'
-    );
+    ];
 
     /**
      * Values for canon shot info tags titles
      */
-    protected static $canonSiTagsTitle = array(
+    protected static $canonSiTagsTitle = [
         self::CANON_SI_ISO_SPEED                => 'ISO Speed Used',
         self::CANON_SI_MEASURED_EV              => 'Measured EV',
         self::CANON_SI_TARGET_APERTURE          => 'Target Aperture',
@@ -2193,12 +2193,12 @@ class PelTag
         self::CANON_SI_CAMERA_TYPE              => 'Camera Type',
         self::CANON_SI_AUTO_ROTATE              => 'Auto Rotate',
         self::CANON_SI_ND_FILTER                => 'ND Filter'
-    );
+    ];
 
     /**
      * Values for canon shot info tags short names
      */
-    protected static $canonSiTagsShort = array(
+    protected static $canonSiTagsShort = [
         self::CANON_SI_ISO_SPEED                => 'ISOSpeedUsed',
         self::CANON_SI_MEASURED_EV              => 'MeasuredEV',
         self::CANON_SI_TARGET_APERTURE          => 'TargetAperture',
@@ -2216,52 +2216,52 @@ class PelTag
         self::CANON_SI_CAMERA_TYPE              => 'CameraType',
         self::CANON_SI_AUTO_ROTATE              => 'AutoRotate',
         self::CANON_SI_ND_FILTER                => 'NDFilter'
-    );
+    ];
 
     /**
      * Values for canon panorama tags titles
      */
-    protected static $canonPaTagsTitle = array(
+    protected static $canonPaTagsTitle = [
         self::CANON_PA_PANORAMA_FRAME     => 'Panorama Frame',
         self::CANON_PA_PANORAMA_DIRECTION => 'Panorama Direction'
-    );
+    ];
 
     /**
      * Values for canon panorama tags short names
      */
-    protected static $canonPaTagsShort = array(
+    protected static $canonPaTagsShort = [
         self::CANON_PA_PANORAMA_FRAME     => 'PanoramaFrame',
         self::CANON_PA_PANORAMA_DIRECTION => 'PanoramaDirection'
-    );
+    ];
 
     /**
      * Values for canon picture info tags titles
      */
-    protected static $canonPiTagsTitle = array(
+    protected static $canonPiTagsTitle = [
         self::CANON_PI_IMAGE_WIDTH          => 'Image Width',
         self::CANON_PI_IMAGE_HEIGHT         => 'Image Height',
         self::CANON_PI_IMAGE_WIDTH_AS_SHOT  => 'Image Width As Shot',
         self::CANON_PI_IMAGE_HEIGHT_AS_SHOT => 'Image Height As Shot',
         self::CANON_PI_AF_POINTS_USED       => 'AF Points Used',
         self::CANON_PI_AF_POINTS_USED_20D   => 'AF Points Used (20D)'
-    );
+    ];
 
     /**
      * Values for canon picture info tags short names
      */
-    protected static $canonPiTagsShort = array(
+    protected static $canonPiTagsShort = [
         self::CANON_PI_IMAGE_WIDTH          => 'ImageWidth',
         self::CANON_PI_IMAGE_HEIGHT         => 'ImageHeight',
         self::CANON_PI_IMAGE_WIDTH_AS_SHOT  => 'ImageWidthAsShot',
         self::CANON_PI_IMAGE_HEIGHT_AS_SHOT => 'ImageHeightAsShot',
         self::CANON_PI_AF_POINTS_USED       => 'AFPointsUsed',
         self::CANON_PI_AF_POINTS_USED_20D   => 'AFPointsUsed(20D)'
-    );
+    ];
 
     /**
      * Values for canon file info tags titles
      */
-    protected static $canonFiTagsTitle = array(
+    protected static $canonFiTagsTitle = [
         self::CANON_FI_FILE_NUMBER          => 'File Number',
         self::CANON_FI_BRACKET_MODE         => 'Bracket Mode',
         self::CANON_FI_BRACKET_VALUE        => 'Bracket Value',
@@ -2279,12 +2279,12 @@ class PelTag
         self::CANON_FI_FOCUS_DISTANCE_UPPER => 'Focus Distance Upper',
         self::CANON_FI_FOCUS_DISTANCE_LOWER => 'Focus Distance Lower',
         self::CANON_FI_FLASH_EXPOSURE_LOCK  => 'Flash Exposure Lock'
-    );
+    ];
 
     /**
      * Values for canon file info tags short names
      */
-    protected static $canonFiTagsShort = array(
+    protected static $canonFiTagsShort = [
         self::CANON_FI_FILE_NUMBER          => 'FileNumber',
         self::CANON_FI_BRACKET_MODE         => 'BracketMode',
         self::CANON_FI_BRACKET_VALUE        => 'BracketValue',
@@ -2302,7 +2302,7 @@ class PelTag
         self::CANON_FI_FOCUS_DISTANCE_UPPER => 'FocusDistanceUpper',
         self::CANON_FI_FOCUS_DISTANCE_LOWER => 'FocusDistanceLower',
         self::CANON_FI_FLASH_EXPOSURE_LOCK  => 'FlashExposureLock'
-    );
+    ];
 
     /**
      * Returns a string from container with key $tag and subcontainer index of $idx

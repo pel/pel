@@ -80,7 +80,7 @@ class Pel
      * When {@link Pel::$strict} is set to false exceptions will be
      * accumulated here instead of being thrown.
      */
-    private static $exceptions = array();
+    private static $exceptions = [];
 
     /**
      * Quality setting for encoding JPEG images.
@@ -163,7 +163,7 @@ class Pel
      */
     public static function clearExceptions()
     {
-        self::$exceptions = array();
+        self::$exceptions = [];
     }
 
     /**

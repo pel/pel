@@ -49,7 +49,7 @@ abstract class PelEntryNumber extends PelEntry
      *
      * @var array
      */
-    protected $value = array();
+    protected $value = [];
 
     /**
      * The minimum allowed value.

@@ -39,7 +39,7 @@ use PHPUnit\Framework\TestCase;
 
 abstract class WriteEntryTestCase extends TestCase
 {
-    protected $entries = array();
+    protected $entries = [];
 
     public function testWriteRead()
     {
