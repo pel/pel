@@ -69,18 +69,18 @@ class SonyDscV1Test extends TestCase
 
         $entry = $ifd0->getEntry(282); // XResolution
         $this->assertInstanceOf('lsolesen\pel\PelEntryRational', $entry);
-        $this->assertEquals($entry->getValue(), array(
+        $this->assertEquals($entry->getValue(), [
             0 => 72,
             1 => 1
-        ));
+        ]);
         $this->assertEquals($entry->getText(), '72/1');
 
         $entry = $ifd0->getEntry(283); // YResolution
         $this->assertInstanceOf('lsolesen\pel\PelEntryRational', $entry);
-        $this->assertEquals($entry->getValue(), array(
+        $this->assertEquals($entry->getValue(), [
             0 => 72,
             1 => 1
-        ));
+        ]);
         $this->assertEquals($entry->getText(), '72/1');
 
         $entry = $ifd0->getEntry(296); // ResolutionUnit
@@ -113,18 +113,18 @@ class SonyDscV1Test extends TestCase
 
         $entry = $ifd0_0->getEntry(33434); // ExposureTime
         $this->assertInstanceOf('lsolesen\pel\PelEntryRational', $entry);
-        $this->assertEquals($entry->getValue(), array(
+        $this->assertEquals($entry->getValue(), [
             0 => 10,
             1 => 600
-        ));
+        ]);
         $this->assertEquals($entry->getText(), '1/60 sec.');
 
         $entry = $ifd0_0->getEntry(33437); // FNumber
         $this->assertInstanceOf('lsolesen\pel\PelEntryRational', $entry);
-        $this->assertEquals($entry->getValue(), array(
+        $this->assertEquals($entry->getValue(), [
             0 => 32,
             1 => 10
-        ));
+        ]);
         $this->assertEquals($entry->getText(), 'f/3.2');
 
         $entry = $ifd0_0->getEntry(34850); // ExposureProgram
@@ -159,26 +159,26 @@ class SonyDscV1Test extends TestCase
 
         $entry = $ifd0_0->getEntry(37122); // CompressedBitsPerPixel
         $this->assertInstanceOf('lsolesen\pel\PelEntryRational', $entry);
-        $this->assertEquals($entry->getValue(), array(
+        $this->assertEquals($entry->getValue(), [
             0 => 2,
             1 => 1
-        ));
+        ]);
         $this->assertEquals($entry->getText(), '2/1');
 
         $entry = $ifd0_0->getEntry(37380); // ExposureBiasValue
         $this->assertInstanceOf('lsolesen\pel\PelEntrySRational', $entry);
-        $this->assertEquals($entry->getValue(), array(
+        $this->assertEquals($entry->getValue(), [
             0 => 7,
             1 => 10
-        ));
+        ]);
         $this->assertEquals($entry->getText(), '+0.7');
 
         $entry = $ifd0_0->getEntry(37381); // MaxApertureValue
         $this->assertInstanceOf('lsolesen\pel\PelEntryRational', $entry);
-        $this->assertEquals($entry->getValue(), array(
+        $this->assertEquals($entry->getValue(), [
             0 => 48,
             1 => 16
-        ));
+        ]);
         $this->assertEquals($entry->getText(), '48/16');
 
         $entry = $ifd0_0->getEntry(37383); // MeteringMode
@@ -198,10 +198,10 @@ class SonyDscV1Test extends TestCase
 
         $entry = $ifd0_0->getEntry(37386); // FocalLength
         $this->assertInstanceOf('lsolesen\pel\PelEntryRational', $entry);
-        $this->assertEquals($entry->getValue(), array(
+        $this->assertEquals($entry->getValue(), [
             0 => 139,
             1 => 10
-        ));
+        ]);
         $this->assertEquals($entry->getText(), '13.9 mm');
 
         $entry = $ifd0_0->getEntry(37500); // MakerNote
@@ -327,18 +327,18 @@ class SonyDscV1Test extends TestCase
 
         $entry = $ifd1->getEntry(282); // XResolution
         $this->assertInstanceOf('lsolesen\pel\PelEntryRational', $entry);
-        $this->assertEquals($entry->getValue(), array(
+        $this->assertEquals($entry->getValue(), [
             0 => 72,
             1 => 1
-        ));
+        ]);
         $this->assertEquals($entry->getText(), '72/1');
 
         $entry = $ifd1->getEntry(283); // YResolution
         $this->assertInstanceOf('lsolesen\pel\PelEntryRational', $entry);
-        $this->assertEquals($entry->getValue(), array(
+        $this->assertEquals($entry->getValue(), [
             0 => 72,
             1 => 1
-        ));
+        ]);
         $this->assertEquals($entry->getText(), '72/1');
 
         $entry = $ifd1->getEntry(296); // ResolutionUnit
