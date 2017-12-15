@@ -23,6 +23,9 @@
  * Boston, MA 02110-1301 USA
  */
 
+namespace Pel\Test;
+
+
 use lsolesen\pel\PelIfd;
 use lsolesen\pel\PelEntryAscii;
 use lsolesen\pel\PelTag;

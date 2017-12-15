@@ -761,8 +761,9 @@ class PelIfd implements \IteratorAggregate, \ArrayAccess
                     new PelIfdException(
                         'Thumbnail length %d bytes ' . 'adjusted to %d bytes.',
                         $length,
-                        $d->getSize() - $offset)
-                    );
+                        $d->getSize() - $offset
+                    )
+                );
                 $length = $d->getSize() - $offset;
             }
 
