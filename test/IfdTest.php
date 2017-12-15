@@ -34,7 +34,7 @@ use PHPUnit\Framework\TestCase;
 
 class IfdTest extends TestCase
 {
-    function testIteratorAggretate()
+    public function testIteratorAggretate()
     {
         $ifd = new PelIfd(PelIfd::IFD0);
 
@@ -57,7 +57,7 @@ class IfdTest extends TestCase
         $this->assertSame($entries[PelTag::DATE_TIME], $date);
     }
 
-    function testArrayAccess()
+    public function testArrayAccess()
     {
         $ifd = new PelIfd(PelIfd::IFD0);
 

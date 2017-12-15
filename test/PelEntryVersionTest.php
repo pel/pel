@@ -32,7 +32,7 @@ use PHPUnit\Framework\TestCase;
 
 class PelEntryVersionTest extends TestCase
 {
-    function testVersion()
+    public function testVersion()
     {
         $entry = new PelEntryVersion(42);
 

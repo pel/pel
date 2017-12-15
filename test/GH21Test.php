@@ -31,19 +31,19 @@ class GH21Test extends TestCase
 {
     protected $file;
 
-    function setUp()
+    public function setUp()
     {
         $this->file = dirname(__FILE__) . '/images/gh-21-tmp.jpg';
         $file = dirname(__FILE__) . '/images/gh-21.jpg';
         copy($file, $this->file);
     }
 
-    function tearDown()
+    public function tearDown()
     {
         unlink($this->file);
     }
 
-    function testThisDoesNotWorkAsExpected()
+    public function testThisDoesNotWorkAsExpected()
     {
         $scale = 0.75;
         $input_jpeg = new PelJpeg($this->file);

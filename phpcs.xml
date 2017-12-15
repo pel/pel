@@ -7,13 +7,17 @@
     <arg name="colors" />
 
     <!-- Show progress of the run -->
-    <arg value="np"/>
+    <arg value="p"/>
     
     <file>src</file>
     <file>test</file>
 
     <rule ref="PSR2"/>
 
+    <!-- Only warn if multiple classes are defined in a single file -->
+    <rule ref="PSR1.Classes.ClassDeclaration.MultipleClasses">
+        <type>warning</type>
+    </rule>
     <!-- Disallow short array syntax -->
     <rule ref="Generic.Arrays.DisallowLongArraySyntax.Found">
         <type>error</type>

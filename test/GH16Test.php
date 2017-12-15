@@ -34,19 +34,19 @@ class GH16Test extends TestCase
 {
     protected $file;
 
-    function setUp()
+    public function setUp()
     {
         $this->file = dirname(__FILE__) . '/images/gh-16-tmp.jpg';
         $file = dirname(__FILE__) . '/images/gh-16.jpg';
         copy($file, $this->file);
     }
 
-    function tearDown()
+    public function tearDown()
     {
         unlink($this->file);
     }
 
-    function testThisDoesNotWorkAsExpected()
+    public function testThisDoesNotWorkAsExpected()
     {
         $subject = "Превед, медвед!";
 

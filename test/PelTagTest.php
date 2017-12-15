@@ -41,7 +41,7 @@ class PelTagTest extends TestCase
     const EXIF_TAG = PelTag::IMAGE_DESCRIPTION;
     const GPS_TAG = PelTag::GPS_LONGITUDE;
 
-    function testReverseLookup()
+    public function testReverseLookup()
     {
         $this->assertSame(false, PelTag::getExifTagByName(self::NONEXISTENT_TAG_NAME), 'Non-existent EXIF tag name');
         $this->assertSame(false, PelTag::getGpsTagByName(self::NONEXISTENT_TAG_NAME), 'Non-existent GPS tag name');

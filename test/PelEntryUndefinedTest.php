@@ -35,7 +35,7 @@ use PHPUnit\Framework\TestCase;
 class PelEntryUndefinedTest extends TestCase
 {
 
-    function testReturnValues()
+    public function testReturnValues()
     {
         new PelEntryUndefined(42);
 
@@ -44,7 +44,7 @@ class PelEntryUndefinedTest extends TestCase
         $this->assertEquals($entry->getValue(), 'foo bar baz');
     }
 
-    function testUsercomment()
+    public function testUsercomment()
     {
         $entry = new PelEntryUserComment();
         $this->assertEquals($entry->getComponents(), 8);
@@ -57,7 +57,7 @@ class PelEntryUndefinedTest extends TestCase
         $this->assertEquals($entry->getEncoding(), 'ASCII');
     }
 
-    function testVersion()
+    public function testVersion()
     {
         $entry = new PelEntryVersion(42);
 

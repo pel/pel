@@ -32,7 +32,7 @@ use PHPUnit\Framework\TestCase;
 class PelEntryUserCommentTest extends TestCase
 {
 
-    function testUsercomment()
+    public function testUsercomment()
     {
         $entry = new PelEntryUserComment();
         $this->assertEquals($entry->getComponents(), 8);
