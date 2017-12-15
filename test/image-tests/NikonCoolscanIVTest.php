@@ -24,8 +24,9 @@
 
 use lsolesen\pel\Pel;
 use lsolesen\pel\PelJpeg;
+use PHPUnit\Framework\TestCase;
 
-class NikonCoolscanIVTest extends \PHPUnit_Framework_TestCase
+class NikonCoolscanIVTest extends TestCase
 {
     public function testRead()
     {

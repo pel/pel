@@ -23,8 +23,9 @@
  */
 
 use lsolesen\pel\PelJpeg;
+use PHPUnit\Framework\TestCase;
 
-class GH21Test extends \PHPUnit_Framework_TestCase
+class GH21Test extends TestCase
 {
     protected $file;
 

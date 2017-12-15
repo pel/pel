@@ -35,8 +35,9 @@ use lsolesen\pel\PelEntrySShort;
 use lsolesen\pel\PelEntryLong;
 use lsolesen\pel\PelEntrySLong;
 use lsolesen\pel\PelEntryAscii;
+use PHPUnit\Framework\TestCase;
 
-abstract class WriteEntryTestCase extends \PHPUnit_Framework_TestCase
+abstract class WriteEntryTestCase extends TestCase
 {
     protected $entries = array();
 

@@ -24,8 +24,9 @@
 
 use lsolesen\pel\Pel;
 use lsolesen\pel\PelJpeg;
+use PHPUnit\Framework\TestCase;
 
-class PentaxIstDSTest extends \PHPUnit_Framework_TestCase
+class PentaxIstDSTest extends TestCase
 {
     public function testRead()
     {
