@@ -6,15 +6,16 @@
     <arg name="cache" value=".phpcs-cache"/>
     <arg name="colors" />
 
-    <!-- Ignore warnings and show progress of the run -->
-    <arg value="np"/>
+    <!-- Show progress of the run -->
+    <arg value="p"/>
     
     <file>src</file>
     <file>test</file>
 
     <rule ref="PSR2"/>
 
-    <rule ref="Generic.Arrays.DisallowLongArraySyntax.Found">
+    <!-- Disallow short array syntax -->
+    <rule ref="Generic.Arrays.DisallowShortArraySyntax.Found">
         <type>error</type>
     </rule>
 </ruleset>
