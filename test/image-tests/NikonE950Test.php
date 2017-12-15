@@ -69,18 +69,18 @@ class NikonE950Test extends TestCase
 
         $entry = $ifd0->getEntry(282); // XResolution
         $this->assertInstanceOf('lsolesen\pel\PelEntryRational', $entry);
-        $this->assertEquals($entry->getValue(), array(
+        $this->assertEquals($entry->getValue(), [
             0 => 300,
             1 => 1
-        ));
+        ]);
         $this->assertEquals($entry->getText(), '300/1');
 
         $entry = $ifd0->getEntry(283); // YResolution
         $this->assertInstanceOf('lsolesen\pel\PelEntryRational', $entry);
-        $this->assertEquals($entry->getValue(), array(
+        $this->assertEquals($entry->getValue(), [
             0 => 300,
             1 => 1
-        ));
+        ]);
         $this->assertEquals($entry->getText(), '300/1');
 
         $entry = $ifd0->getEntry(296); // ResolutionUnit
@@ -113,18 +113,18 @@ class NikonE950Test extends TestCase
 
         $entry = $ifd0_0->getEntry(33434); // ExposureTime
         $this->assertInstanceOf('lsolesen\pel\PelEntryRational', $entry);
-        $this->assertEquals($entry->getValue(), array(
+        $this->assertEquals($entry->getValue(), [
             0 => 10,
             1 => 1120
-        ));
+        ]);
         $this->assertEquals($entry->getText(), '1/112 sec.');
 
         $entry = $ifd0_0->getEntry(33437); // FNumber
         $this->assertInstanceOf('lsolesen\pel\PelEntryRational', $entry);
-        $this->assertEquals($entry->getValue(), array(
+        $this->assertEquals($entry->getValue(), [
             0 => 60,
             1 => 10
-        ));
+        ]);
         $this->assertEquals($entry->getText(), 'f/6.0');
 
         $entry = $ifd0_0->getEntry(34850); // ExposureProgram
@@ -159,26 +159,26 @@ class NikonE950Test extends TestCase
 
         $entry = $ifd0_0->getEntry(37122); // CompressedBitsPerPixel
         $this->assertInstanceOf('lsolesen\pel\PelEntryRational', $entry);
-        $this->assertEquals($entry->getValue(), array(
+        $this->assertEquals($entry->getValue(), [
             0 => 4,
             1 => 1
-        ));
+        ]);
         $this->assertEquals($entry->getText(), '4/1');
 
         $entry = $ifd0_0->getEntry(37380); // ExposureBiasValue
         $this->assertInstanceOf('lsolesen\pel\PelEntrySRational', $entry);
-        $this->assertEquals($entry->getValue(), array(
+        $this->assertEquals($entry->getValue(), [
             0 => 0,
             1 => 10
-        ));
+        ]);
         $this->assertEquals($entry->getText(), '0.0');
 
         $entry = $ifd0_0->getEntry(37381); // MaxApertureValue
         $this->assertInstanceOf('lsolesen\pel\PelEntryRational', $entry);
-        $this->assertEquals($entry->getValue(), array(
+        $this->assertEquals($entry->getValue(), [
             0 => 26,
             1 => 10
-        ));
+        ]);
         $this->assertEquals($entry->getText(), '26/10');
 
         $entry = $ifd0_0->getEntry(37383); // MeteringMode
@@ -198,10 +198,10 @@ class NikonE950Test extends TestCase
 
         $entry = $ifd0_0->getEntry(37386); // FocalLength
         $this->assertInstanceOf('lsolesen\pel\PelEntryRational', $entry);
-        $this->assertEquals($entry->getValue(), array(
+        $this->assertEquals($entry->getValue(), [
             0 => 158,
             1 => 10
-        ));
+        ]);
         $this->assertEquals($entry->getText(), '15.8 mm');
 
         $entry = $ifd0_0->getEntry(37500); // MakerNote
@@ -297,18 +297,18 @@ class NikonE950Test extends TestCase
 
         $entry = $ifd1->getEntry(282); // XResolution
         $this->assertInstanceOf('lsolesen\pel\PelEntryRational', $entry);
-        $this->assertEquals($entry->getValue(), array(
+        $this->assertEquals($entry->getValue(), [
             0 => 300,
             1 => 1
-        ));
+        ]);
         $this->assertEquals($entry->getText(), '300/1');
 
         $entry = $ifd1->getEntry(283); // YResolution
         $this->assertInstanceOf('lsolesen\pel\PelEntryRational', $entry);
-        $this->assertEquals($entry->getValue(), array(
+        $this->assertEquals($entry->getValue(), [
             0 => 300,
             1 => 1
-        ));
+        ]);
         $this->assertEquals($entry->getText(), '300/1');
 
         $entry = $ifd1->getEntry(296); // ResolutionUnit

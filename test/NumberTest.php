@@ -103,11 +103,11 @@ abstract class NumberTest extends TestCase
     public function testReturnValues()
     {
         $this->num->setValue(1, 2, 3);
-        $this->assertEquals($this->num->getValue(), array(
+        $this->assertEquals($this->num->getValue(), [
             1,
             2,
             3
-        ));
+        ]);
         $this->assertEquals($this->num->getText(), '1, 2, 3');
 
         $this->num->setValue(1);
@@ -191,71 +191,71 @@ class RationalTestCase extends TestCase
 {
     public function testOverflow()
     {
-        $entry = new PelEntryRational(42, array(
+        $entry = new PelEntryRational(42, [
             1,
             2
-        ));
-        $this->assertEquals($entry->getValue(), array(
+        ]);
+        $this->assertEquals($entry->getValue(), [
             1,
             2
-        ));
+        ]);
 
         $caught = false;
         try {
-            $entry->setValue(array(
+            $entry->setValue([
                 3,
                 4
-            ), array(
+            ], [
                 - 1,
                 2
-            ), array(
+            ], [
                 7,
                 8
-            ));
+            ]);
         } catch (PelOverflowException $e) {
             $caught = true;
         }
         $this->assertTrue($caught);
-        $this->assertEquals($entry->getValue(), array(
+        $this->assertEquals($entry->getValue(), [
             1,
             2
-        ));
+        ]);
 
         $caught = false;
         try {
-            $entry->setValue(array(
+            $entry->setValue([
                 3,
                 4
-            ), array(
+            ], [
                 1,
                 4294967296
-            ));
+            ]);
         } catch (PelOverflowException $e) {
             $caught = true;
         }
         $this->assertTrue($caught);
-        $this->assertEquals($entry->getValue(), array(
+        $this->assertEquals($entry->getValue(), [
             1,
             2
-        ));
+        ]);
 
         $caught = false;
         try {
-            $entry->setValue(array(
+            $entry->setValue([
                 3,
                 4
-            ), array(
+            ], [
                 4294967296,
                 1
-            ));
+            ]);
         } catch (PelOverflowException $e) {
             $caught = true;
         }
         $this->assertTrue($caught);
-        $this->assertEquals($entry->getValue(), array(
+        $this->assertEquals($entry->getValue(), [
             1,
             2
-        ));
+        ]);
     }
 
     /**
@@ -271,57 +271,57 @@ class RationalTestCase extends TestCase
     public function testReturnValues()
     {
         $entry = new PelEntryRational(42);
-        $this->assertEquals($entry->getValue(), array());
+        $this->assertEquals($entry->getValue(), []);
         $this->assertEquals($entry->getText(), '');
 
-        $entry->setValue(array(
+        $entry->setValue([
             1,
             2
-        ), array(
+        ], [
             3,
             4
-        ), array(
+        ], [
             5,
             6
-        ));
-        $this->assertEquals($entry->getValue(), array(
-            array(
+        ]);
+        $this->assertEquals($entry->getValue(), [
+            [
                 1,
                 2
-            ),
-            array(
+            ],
+            [
                 3,
                 4
-            ),
-            array(
+            ],
+            [
                 5,
                 6
-            )
-        ));
+            ]
+        ]);
         $this->assertEquals($entry->getText(), '1/2, 3/4, 5/6');
 
-        $entry->setValue(array(
+        $entry->setValue([
             7,
             8
-        ));
-        $this->assertEquals($entry->getValue(), array(
+        ]);
+        $this->assertEquals($entry->getValue(), [
             7,
             8
-        ));
+        ]);
         $this->assertEquals($entry->getText(), '7/8');
 
         $pattern = new PatternExpectation('/Missing argument 1 for lsolesen.pel.PelEntryNumber::setValue()/');
         $this->expectError($pattern);
         $entry->setValue();
 
-        $entry->setValue(array(
+        $entry->setValue([
             0,
             4294967295
-        ));
-        $this->assertEquals($entry->getValue(), array(
+        ]);
+        $this->assertEquals($entry->getValue(), [
             0,
             4294967295
-        ));
+        ]);
         $this->assertEquals($entry->getText(), '0/4294967295');
     }
 }
@@ -337,68 +337,68 @@ class SRationalTestCase extends TestCase
 
     public function testOverflow()
     {
-        $entry = new PelEntrySRational(42, array(
+        $entry = new PelEntrySRational(42, [
             - 1,
             2
-        ));
-        $this->assertEquals($entry->getValue(), array(
+        ]);
+        $this->assertEquals($entry->getValue(), [
             - 1,
             2
-        ));
+        ]);
 
         $caught = false;
         try {
-            $entry->setValue(array(
+            $entry->setValue([
                 - 10,
                 - 20
-            ), array(
+            ], [
                 - 1,
                 - 2147483649
-            ));
+            ]);
         } catch (PelOverflowException $e) {
             $caught = true;
         }
         $this->assertTrue($caught);
-        $this->assertEquals($entry->getValue(), array(
+        $this->assertEquals($entry->getValue(), [
             - 1,
             2
-        ));
+        ]);
 
         $caught = false;
         try {
-            $entry->setValue(array(
+            $entry->setValue([
                 3,
                 4
-            ), array(
+            ], [
                 1,
                 2147483648
-            ));
+            ]);
         } catch (PelOverflowException $e) {
             $caught = true;
         }
         $this->assertTrue($caught);
-        $this->assertEquals($entry->getValue(), array(
+        $this->assertEquals($entry->getValue(), [
             - 1,
             2
-        ));
+        ]);
 
         $caught = false;
         try {
-            $entry->setValue(array(
+            $entry->setValue([
                 3,
                 4
-            ), array(
+            ], [
                 4294967296,
                 1
-            ));
+            ]);
         } catch (PelOverflowException $e) {
             $caught = true;
         }
         $this->assertTrue($caught);
-        $this->assertEquals($entry->getValue(), array(
+        $this->assertEquals($entry->getValue(), [
             - 1,
             2
-        ));
+        ]);
     }
 
     public function testReturnValues()
@@ -410,56 +410,56 @@ class SRationalTestCase extends TestCase
         $entry = new PelEntrySRational();
 
         $entry = new PelEntrySRational(42);
-        $this->assertEquals($entry->getValue(), array());
+        $this->assertEquals($entry->getValue(), []);
 
-        $entry->setValue(array(
+        $entry->setValue([
             - 1,
             2
-        ), array(
+        ], [
             3,
             4
-        ), array(
+        ], [
             5,
             - 6
-        ));
-        $this->assertEquals($entry->getValue(), array(
-            array(
+        ]);
+        $this->assertEquals($entry->getValue(), [
+            [
                 - 1,
                 2
-            ),
-            array(
+            ],
+            [
                 3,
                 4
-            ),
-            array(
+            ],
+            [
                 5,
                 - 6
-            )
-        ));
+            ]
+        ]);
         $this->assertEquals($entry->getText(), '-1/2, 3/4, -5/6');
 
-        $entry->setValue(array(
+        $entry->setValue([
             - 7,
             - 8
-        ));
-        $this->assertEquals($entry->getValue(), array(
+        ]);
+        $this->assertEquals($entry->getValue(), [
             - 7,
             - 8
-        ));
+        ]);
         $this->assertEquals($entry->getText(), '7/8');
 
         $pattern = new PatternExpectation('/Missing argument 1 for lsolesen.pel.PelEntryNumber::setValue()/');
         $this->expectError($pattern);
         $entry->setValue();
 
-        $entry->setValue(array(
+        $entry->setValue([
             0,
             2147483647
-        ));
-        $this->assertEquals($entry->getValue(), array(
+        ]);
+        $this->assertEquals($entry->getValue(), [
             0,
             2147483647
-        ));
+        ]);
         $this->assertEquals($entry->getText(), '0/2147483647');
     }
 }

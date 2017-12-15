@@ -351,10 +351,10 @@ class PelConvert
      */
     public static function bytesToRational($bytes, $offset, $endian)
     {
-        return array(
+        return [
             self::bytesToLong($bytes, $offset, $endian),
             self::bytesToLong($bytes, $offset + 4, $endian)
-        );
+        ];
     }
 
     /**
@@ -375,10 +375,10 @@ class PelConvert
      */
     public static function bytesToSRational($bytes, $offset, $endian)
     {
-        return array(
+        return [
             self::bytesToSLong($bytes, $offset, $endian),
             self::bytesToSLong($bytes, $offset + 4, $endian)
-        );
+        ];
     }
 
     /**
