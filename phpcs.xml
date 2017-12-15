@@ -15,7 +15,7 @@
     <rule ref="PSR2"/>
 
     <!-- Disallow short array syntax -->
-    <rule ref="Generic.Arrays.DisallowShortArraySyntax.Found">
+    <rule ref="Generic.Arrays.DisallowLongArraySyntax.Found">
         <type>error</type>
     </rule>
 </ruleset>
