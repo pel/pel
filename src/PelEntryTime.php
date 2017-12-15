@@ -294,11 +294,11 @@ class PelEntryTime extends PelEntryAscii
     {
         // Special case mapping 0 -> 0/0/0
         if ($jd == 0) {
-            return array(
+            return [
                 0,
                 0,
                 0
-            );
+            ];
         }
 
         $l = $jd + 68569;
@@ -311,11 +311,11 @@ class PelEntryTime extends PelEntryAscii
         $l = floor($j / 11);
         $m = $j + 2 - (12 * $l);
         $y = 100 * ($n - 49) + $i + $l;
-        return array(
+        return [
             $y,
             $m,
             $d
-        );
+        ];
     }
 
     /**

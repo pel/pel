@@ -143,10 +143,10 @@ class PelEntryCopyright extends PelEntryAscii
      */
     public function getValue()
     {
-        return array(
+        return [
             $this->photographer,
             $this->editor
-        );
+        ];
     }
 
     /**

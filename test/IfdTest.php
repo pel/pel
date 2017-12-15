@@ -45,7 +45,7 @@ class IfdTest extends TestCase
 
         $this->assertEquals(sizeof($ifd->getIterator()), 2);
 
-        $entries = array();
+        $entries = [];
         foreach ($ifd as $tag => $entry) {
             $entries[$tag] = $entry;
         }

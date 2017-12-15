@@ -48,7 +48,7 @@ namespace lsolesen\pel;
  *
  * <code>
  * $resolution = $ifd->getEntry(PelTag::X_RESOLUTION);
- * $resolution->setValue(array(1, 300));
+ * $resolution->setValue([1, 300]);
  * </code>
  *
  * Here the x-resolution is adjusted to 1/300, which will be 300 DPI,
