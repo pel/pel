@@ -32,5 +32,8 @@
     },
     "autoload": {
         "psr-4": {"lsolesen\\pel\\": "src/"}
+    },
+    "autoload-dev": {
+        "psr-4": { "pel\\test\\": "test/" }
     }
 }
