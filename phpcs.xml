@@ -8,9 +8,11 @@
 
     <!-- Ignore warnings and show progress of the run -->
     <arg value="np"/>
-
+    
     <file>src</file>
     <file>test</file>
+
+    <rule ref="PSR2"/>
 
     <rule ref="Generic.Arrays.DisallowLongArraySyntax.Found">
         <type>error</type>
