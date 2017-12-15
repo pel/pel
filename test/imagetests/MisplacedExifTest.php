@@ -48,11 +48,11 @@ class MisplacedExifTest extends TestCase
         $exifIdx = null;
         $idx = 0;
         foreach ($sections1 as $section) {
-          if(($section[0] == PelJpegMarker::APP1) && ($section[1] instanceof PelExif)) {
-              $exifIdx = $idx;
-              break;
-          }
-          ++$idx;
+            if (($section[0] == PelJpegMarker::APP1) && ($section[1] instanceof PelExif)) {
+                $exifIdx = $idx;
+                break;
+            }
+            ++$idx;
         }
         $this->assertNotNull($exifIdx);
         $newExif = new PelExif();
@@ -68,8 +68,8 @@ class MisplacedExifTest extends TestCase
         // Assert that only EXIF section is gone and all other shifted correctly.
         $sections3 = $jpeg->getSections();
         $numSections3 = count($sections3);
-        for($idx = 0; $idx < $numSections3; ++$idx) {
-            if($idx >= $exifIdx) {
+        for ($idx = 0; $idx < $numSections3; ++$idx) {
+            if ($idx >= $exifIdx) {
                 $s2idx = $idx + 1;
             } else {
                 $s2idx = $idx;

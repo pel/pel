@@ -30,7 +30,6 @@ use lsolesen\pel\PelIfd;
 use PHPUnit\Framework\TestCase;
 use lsolesen\pel\PelTag;
 
-
 class PelTagTest extends TestCase
 {
     const NONEXISTENT_TAG_NAME = 'nonexistent tag name';
