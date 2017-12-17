@@ -26,6 +26,7 @@
 namespace Pel\Test;
 
 use \lsolesen\pel\PelEntrySRational;
+use \lsolesen\pel\PelOverflowException;
 
 class NumberSRationalTest extends NumberTestCase
 {
