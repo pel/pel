@@ -94,15 +94,6 @@ abstract class NumberTestCase extends TestCase
         $this->assertEquals($this->num->getValue(), 0);
     }
 
-    /**
-     * @expectedException              PHPUnit_Framework_Error
-     * @expectedExceptionMessageRegExp /Missing argument 1 for lsolesen.pel.PelEntryNumber::setValue()/
-     */
-    public function testSetValueWithNoArgument()
-    {
-        $this->num->setValue();
-    }
-
     public function testReturnValues()
     {
         $this->num->setValue(1, 2, 3);
