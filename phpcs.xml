@@ -17,9 +17,9 @@
     <!-- Allow long lines -->
     <rule ref="Generic.Files.LineLength">
         <severity>0</severity>
-     </rule>
-     <!-- Disallow short array syntax -->
-     <rule ref="Generic.Arrays.DisallowLongArraySyntax.Found">
-         <type>error</type>
-     </rule>
+    </rule>
+    <!-- Disallow short array syntax -->
+    <rule ref="Generic.Arrays.DisallowLongArraySyntax.Found">
+        <type>error</type>
+    </rule>
 </ruleset>
