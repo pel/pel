@@ -47,7 +47,7 @@ abstract class NumberTestCase extends TestCase
     public function testOverflow()
     {
         $this->num->setValue(0);
-        $this->assertEquals($this->num->getValue(), 0);
+        $this->assertSame(0, $this->num->getValue());
 
         $caught = false;
         try {
@@ -56,7 +56,7 @@ abstract class NumberTestCase extends TestCase
             $caught = true;
         }
         $this->assertTrue($caught);
-        $this->assertEquals($this->num->getValue(), 0);
+        $this->assertSame(0, $this->num->getValue());
 
         $caught = false;
         try {
@@ -65,7 +65,7 @@ abstract class NumberTestCase extends TestCase
             $caught = true;
         }
         $this->assertTrue($caught);
-        $this->assertEquals($this->num->getValue(), 0);
+        $this->assertSame(0, $this->num->getValue());
 
         $caught = false;
         try {
@@ -74,7 +74,7 @@ abstract class NumberTestCase extends TestCase
             $caught = true;
         }
         $this->assertTrue($caught);
-        $this->assertEquals($this->num->getValue(), 0);
+        $this->assertSame(0, $this->num->getValue());
 
         $caught = false;
         try {
@@ -83,25 +83,25 @@ abstract class NumberTestCase extends TestCase
             $caught = true;
         }
         $this->assertTrue($caught);
-        $this->assertEquals($this->num->getValue(), 0);
+        $this->assertSame(0, $this->num->getValue());
     }
 
     public function testReturnValues()
     {
         $this->num->setValue(1, 2, 3);
-        $this->assertEquals($this->num->getValue(), [1, 2, 3]);
-        $this->assertEquals($this->num->getText(), '1, 2, 3');
+        $this->assertSame([1, 2, 3], $this->num->getValue());
+        $this->assertSame('1, 2, 3', $this->num->getText());
 
         $this->num->setValue(1);
-        $this->assertEquals($this->num->getValue(), 1);
-        $this->assertEquals($this->num->getText(), '1');
+        $this->assertSame(1, $this->num->getValue());
+        $this->assertSame('1', $this->num->getText());
 
         $this->num->setValue($this->max);
-        $this->assertEquals($this->num->getValue(), $this->max);
-        $this->assertEquals($this->num->getText(), $this->max);
+        $this->assertSame($this->max, $this->num->getValue());
+        $this->assertSame((string) $this->max, $this->num->getText());
 
         $this->num->setValue($this->min);
-        $this->assertEquals($this->num->getValue(), $this->min);
-        $this->assertEquals($this->num->getText(), $this->min);
+        $this->assertSame($this->min, $this->num->getValue());
+        $this->assertSame((string) $this->min, $this->num->getText());
     }
 }
