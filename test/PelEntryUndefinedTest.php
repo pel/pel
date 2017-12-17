@@ -23,6 +23,9 @@
  * Free Software Foundation, Inc., 51 Franklin St, Fifth Floor,
  * Boston, MA 02110-1301 USA
  */
+
+namespace Pel\Test;
+
 use lsolesen\pel\PelEntryUndefined;
 use lsolesen\pel\PelEntryUserComment;
 use lsolesen\pel\PelEntryVersion;
@@ -32,7 +35,7 @@ use PHPUnit\Framework\TestCase;
 class PelEntryUndefinedTest extends TestCase
 {
 
-    function testReturnValues()
+    public function testReturnValues()
     {
         new PelEntryUndefined(42);
 
@@ -41,7 +44,7 @@ class PelEntryUndefinedTest extends TestCase
         $this->assertEquals($entry->getValue(), 'foo bar baz');
     }
 
-    function testUsercomment()
+    public function testUsercomment()
     {
         $entry = new PelEntryUserComment();
         $this->assertEquals($entry->getComponents(), 8);
@@ -54,7 +57,7 @@ class PelEntryUndefinedTest extends TestCase
         $this->assertEquals($entry->getEncoding(), 'ASCII');
     }
 
-    function testVersion()
+    public function testVersion()
     {
         $entry = new PelEntryVersion(42);
 

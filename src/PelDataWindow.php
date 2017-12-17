@@ -166,7 +166,8 @@ class PelDataWindow
                 'Window [%d, %d] does ' . 'not fit in window [0, %d]',
                 $start,
                 $this->size,
-                $this->size);
+                $this->size
+            );
         }
         $this->start += $start;
         $this->size -= $start;
@@ -189,7 +190,8 @@ class PelDataWindow
             throw new PelDataWindowWindowException(
                 'Window [0, %d] ' . 'does not fit in window [0, %d]',
                 $size,
-                $this->size);
+                $this->size
+            );
         }
         $this->size = $size;
     }
@@ -562,6 +564,7 @@ class PelDataWindow
             $this->size,
             $this->start,
             $this->start + $this->size,
-            strlen($this->data));
+            strlen($this->data)
+        );
     }
 }

@@ -183,12 +183,12 @@ class PelEntryTime extends PelEntryAscii
                 return $this->day_count + $this->seconds / 86400;
             default:
                 throw new PelInvalidArgumentException(
-                    'Expected UNIX_TIMESTAMP (%d), ' . 'EXIF_STRING (%d), or ' . 'JULIAN_DAY_COUNT (%d) for $type, ' .
-                         'got %d.',
-                        self::UNIX_TIMESTAMP,
-                        self::EXIF_STRING,
-                        self::JULIAN_DAY_COUNT,
-                        $type);
+                    'Expected UNIX_TIMESTAMP (%d), ' . 'EXIF_STRING (%d), or ' . 'JULIAN_DAY_COUNT (%d) for $type, got %d.',
+                    self::UNIX_TIMESTAMP,
+                    self::EXIF_STRING,
+                    self::JULIAN_DAY_COUNT,
+                    $type
+                );
         }
     }
 
@@ -238,12 +238,12 @@ class PelEntryTime extends PelEntryAscii
 
             default:
                 throw new PelInvalidArgumentException(
-                    'Expected UNIX_TIMESTAMP (%d), ' . 'EXIF_STRING (%d), or ' . 'JULIAN_DAY_COUNT (%d) for $type, ' .
-                         'got %d.',
-                        self::UNIX_TIMESTAMP,
-                        self::EXIF_STRING,
-                        self::JULIAN_DAY_COUNT,
-                        $type);
+                    'Expected UNIX_TIMESTAMP (%d), ' . 'EXIF_STRING (%d), or ' . 'JULIAN_DAY_COUNT (%d) for $type, got %d.',
+                    self::UNIX_TIMESTAMP,
+                    self::EXIF_STRING,
+                    self::JULIAN_DAY_COUNT,
+                    $type
+                );
         }
 
         /*

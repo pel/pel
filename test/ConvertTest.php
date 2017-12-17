@@ -23,6 +23,8 @@
  * Boston, MA 02110-1301 USA
  */
 
+namespace Pel\Test;
+
 use lsolesen\pel\PelConvert;
 use PHPUnit\Framework\TestCase;
 
@@ -31,7 +33,7 @@ class ConvertTest extends TestCase
 
     private $bytes = "\x00\x00\x00\x00\x01\x23\x45\x67\x89\xAB\xCD\xEF\xFF\xFF\xFF\xFF";
 
-    function testLongLittle()
+    public function testLongLittle()
     {
         $o = PelConvert::LITTLE_ENDIAN;
 
@@ -50,7 +52,7 @@ class ConvertTest extends TestCase
         $this->assertEquals(PelConvert::bytesToLong($this->bytes, 12, $o), 0xFFFFFFFF);
     }
 
-    function testLongBig()
+    public function testLongBig()
     {
         $o = PelConvert::BIG_ENDIAN;
 
@@ -69,7 +71,7 @@ class ConvertTest extends TestCase
         $this->assertEquals(PelConvert::bytesToLong($this->bytes, 12, $o), 0xFFFFFFFF);
     }
 
-    function testSLongLittle()
+    public function testSLongLittle()
     {
         // TODO: Does not work on 64bit systems!
         $this->markTestIncomplete(
@@ -98,7 +100,7 @@ class ConvertTest extends TestCase
         $this->assertEquals(PelConvert::bytesToSLong($this->bytes, 12, $o), 0xFF << 24 | 0xFF << 16 | 0xFF << 8 | 0xFF);
     }
 
-    function testSLongBig()
+    public function testSLongBig()
     {
         // TODO: Does not work on 64bit systems
         $this->markTestIncomplete(
@@ -122,7 +124,7 @@ class ConvertTest extends TestCase
         $this->assertEquals(PelConvert::bytesToSLong($this->bytes, 12, $o), 0xFF << 24 | 0xFF << 16 | 0xFF << 8 | 0xFF);
     }
 
-    function testShortLittle()
+    public function testShortLittle()
     {
         $o = PelConvert::LITTLE_ENDIAN;
 
@@ -143,7 +145,7 @@ class ConvertTest extends TestCase
         $this->assertEquals(PelConvert::bytesToShort($this->bytes, 14, $o), 0xFFFF);
     }
 
-    function testShortBig()
+    public function testShortBig()
     {
         $o = PelConvert::BIG_ENDIAN;
 
@@ -164,7 +166,7 @@ class ConvertTest extends TestCase
         $this->assertEquals(PelConvert::bytesToShort($this->bytes, 14, $o), 0xFFFF);
     }
 
-    function testSShortLittle()
+    public function testSShortLittle()
     {
         $o = PelConvert::LITTLE_ENDIAN;
 
@@ -185,7 +187,7 @@ class ConvertTest extends TestCase
         $this->assertEquals(PelConvert::bytesToSShort($this->bytes, 14, $o), - 1);
     }
 
-    function testSShortBig()
+    public function testSShortBig()
     {
         $o = PelConvert::BIG_ENDIAN;
 
@@ -206,7 +208,7 @@ class ConvertTest extends TestCase
         $this->assertEquals(PelConvert::bytesToSShort($this->bytes, 14, $o), - 1);
     }
 
-    function testByte()
+    public function testByte()
     {
         $this->assertEquals(PelConvert::bytesToByte($this->bytes, 0), 0x00);
         $this->assertEquals(PelConvert::bytesToByte($this->bytes, 1), 0x00);
@@ -226,7 +228,7 @@ class ConvertTest extends TestCase
         $this->assertEquals(PelConvert::bytesToByte($this->bytes, 15), 0xFF);
     }
 
-    function testSByte()
+    public function testSByte()
     {
         $this->assertEquals(PelConvert::bytesToSByte($this->bytes, 0), 0);
         $this->assertEquals(PelConvert::bytesToSByte($this->bytes, 1), 0);
