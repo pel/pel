@@ -37,102 +37,7 @@ use \lsolesen\pel\PelEntrySRational;
 use \lsolesen\pel\PelOverflowException;
 use PHPUnit\Framework\TestCase;
 
-abstract class NumberTest extends TestCase
-{
-    private $min;
-    private $max;
-    protected $num;
-
-    public function __construct($min, $max)
-    {
-        Pel::setStrictParsing(true);
-        $this->min = $min;
-        $this->max = $max;
-        parent::__construct('PEL Exif Number Tests');
-    }
-
-    public function testOverflow()
-    {
-        $this->num->setValue(0);
-        $this->assertEquals($this->num->getValue(), 0);
-
-        $caught = false;
-        try {
-            $this->num->setValue($this->min - 1);
-        } catch (PelOverflowException $e) {
-            $caught = true;
-        }
-        $this->assertTrue($caught);
-        $this->assertEquals($this->num->getValue(), 0);
-
-        $caught = false;
-        try {
-            $this->num->setValue($this->max + 1);
-        } catch (PelOverflowException $e) {
-            $caught = true;
-        }
-        $this->assertTrue($caught);
-        $this->assertEquals($this->num->getValue(), 0);
-
-        $caught = false;
-        try {
-            $this->num->setValue(0, $this->max + 1);
-        } catch (PelOverflowException $e) {
-            $caught = true;
-        }
-        $this->assertTrue($caught);
-        $this->assertEquals($this->num->getValue(), 0);
-
-        $caught = false;
-        try {
-            $this->num->setValue(0, $this->min - 1);
-        } catch (PelOverflowException $e) {
-            $caught = true;
-        }
-        $this->assertTrue($caught);
-        $this->assertEquals($this->num->getValue(), 0);
-    }
-
-    /**
-     * @expectedException              PHPUnit_Framework_Error
-     * @expectedExceptionMessageRegExp /Missing argument 1 for lsolesen.pel.PelEntryNumber::setValue()/
-     */
-    public function testSetValueWithNoArgument()
-    {
-        $this->num->setValue();
-    }
-
-    public function testReturnValues()
-    {
-        $this->num->setValue(1, 2, 3);
-        $this->assertEquals($this->num->getValue(), [1, 2, 3]);
-        $this->assertEquals($this->num->getText(), '1, 2, 3');
-
-        $this->num->setValue(1);
-        $this->assertEquals($this->num->getValue(), 1);
-        $this->assertEquals($this->num->getText(), '1');
-
-        $this->num->setValue($this->max);
-        $this->assertEquals($this->num->getValue(), $this->max);
-        $this->assertEquals($this->num->getText(), $this->max);
-
-        $this->num->setValue($this->min);
-        $this->assertEquals($this->num->getValue(), $this->min);
-        $this->assertEquals($this->num->getText(), $this->min);
-    }
-}
-
-class ByteTestCase extends NumberTest
-{
-
-    public function __construct()
-    {
-        $this->num = new PelEntryByte(42);
-        parent::__construct(0, 255);
-    }
-}
-
-class SByteTestCase extends NumberTest
+class SByteTestCase extends NumberTestCase
 {
 
     public function __construct()
@@ -142,7 +47,7 @@ class SByteTestCase extends NumberTest
     }
 }
 
-class ShortTestCase extends NumberTest
+class ShortTestCase extends NumberTestCase
 {
 
     public function __construct()
@@ -152,7 +57,7 @@ class ShortTestCase extends NumberTest
     }
 }
 
-class SShortTestCase extends NumberTest
+class SShortTestCase extends NumberTestCase
 {
 
     public function __construct()
@@ -163,7 +68,7 @@ class SShortTestCase extends NumberTest
     }
 }
 
-class LongTestCase extends NumberTest
+class LongTestCase extends NumberTestCase
 {
 
     public function __construct()
@@ -174,7 +79,7 @@ class LongTestCase extends NumberTest
     }
 }
 
-class SLongTestCase extends NumberTest
+class SLongTestCase extends NumberTestCase
 {
 
     public function __construct()
