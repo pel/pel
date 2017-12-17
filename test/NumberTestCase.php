@@ -94,14 +94,14 @@ abstract class NumberTestCase extends TestCase
 
         $this->num->setValue(1);
         $this->assertSame(1, $this->num->getValue());
-        $this->assertSame('1', $this->num->getText());
+        $this->assertSame(1, $this->num->getText());
 
         $this->num->setValue($this->max);
         $this->assertSame($this->max, $this->num->getValue());
-        $this->assertSame((string) $this->max, $this->num->getText());
+        $this->assertSame($this->max, $this->num->getText());
 
         $this->num->setValue($this->min);
         $this->assertSame($this->min, $this->num->getValue());
-        $this->assertSame((string) $this->min, $this->num->getText());
+        $this->assertSame($this->min, $this->num->getText());
     }
 }
