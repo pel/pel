@@ -1,5 +1,7 @@
 <?php
 
+namespace Pel\Test;
+
 use lsolesen\pel\Util\SpecCompiler;
 use lsolesen\pel\PelSpec;
 use PHPUnit\Framework\TestCase;
@@ -19,7 +21,8 @@ class SpecCompilerTest extends TestCase
     /**
      * {@inheritdoc}
      */
-    public function setUp() {
+    public function setUp()
+    {
         parent::setUp();
         $this->testResourceDirectory = __DIR__ . '/../test_resources';
         $this->fs = new Filesystem();
@@ -29,7 +32,8 @@ class SpecCompilerTest extends TestCase
     /**
      * {@inheritdoc}
      */
-    public function tearDown() {
+    public function tearDown()
+    {
         $this->fs->remove($this->testResourceDirectory);
         parent::tearDown();
     }

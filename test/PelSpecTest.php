@@ -1,5 +1,7 @@
 <?php
 
+namespace Pel\Test;
+
 use lsolesen\pel\PelSpec;
 use PHPUnit\Framework\TestCase;
 
