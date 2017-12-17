@@ -65,12 +65,6 @@ class NumberSRationalTest extends NumberTestCase
 
     public function testReturnValues()
     {
-        $pattern = new PatternExpectation('/Missing argument 1 for lsolesen.pel.PelEntrySRational::__construct()/');
-        $this->expectError($pattern);
-        $pattern = new PatternExpectation('/Undefined variable: tag/');
-        $this->expectError($pattern);
-        $entry = new PelEntrySRational();
-
         $entry = new PelEntrySRational(42);
         $this->assertEquals($entry->getValue(), []);
 
@@ -81,10 +75,6 @@ class NumberSRationalTest extends NumberTestCase
         $entry->setValue([-7, -8]);
         $this->assertEquals($entry->getValue(), [-7, -8]);
         $this->assertEquals($entry->getText(), '7/8');
-
-        $pattern = new PatternExpectation('/Missing argument 1 for lsolesen.pel.PelEntryNumber::setValue()/');
-        $this->expectError($pattern);
-        $entry->setValue();
 
         $entry->setValue([0, 2147483647]);
         $this->assertEquals($entry->getValue(), [0, 2147483647]);

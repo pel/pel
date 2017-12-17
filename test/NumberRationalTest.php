@@ -77,10 +77,6 @@ class NumberRationalTest extends NumberTestCase
         $this->assertEquals($entry->getValue(), [7, 8]);
         $this->assertEquals($entry->getText(), '7/8');
 
-        $pattern = new PatternExpectation('/Missing argument 1 for lsolesen.pel.PelEntryNumber::setValue()/');
-        $this->expectError($pattern);
-        $entry->setValue();
-
         $entry->setValue([0, 4294967295]);
         $this->assertEquals($entry->getValue(), [0, 4294967295]);
         $this->assertEquals($entry->getText(), '0/4294967295');
