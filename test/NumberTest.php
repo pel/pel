@@ -38,25 +38,6 @@ use \lsolesen\pel\PelOverflowException;
 use PHPUnit\Framework\TestCase;
 
 /*
-class SByteTestCase extends NumberTestCase
-{
-
-    public function __construct()
-    {
-        $this->num = new PelEntrySByte(42);
-        parent::__construct(- 128, 127);
-    }
-}
-
-class ShortTestCase extends NumberTestCase
-{
-
-    public function __construct()
-    {
-        $this->num = new PelEntryShort(42);
-        parent::__construct(0, 65535);
-    }
-}
 
 class SShortTestCase extends NumberTestCase
 {

@@ -25,15 +25,7 @@
 
 namespace Pel\Test;
 
-use \lsolesen\pel\PelEntryByte;
 use \lsolesen\pel\Pel;
-use \lsolesen\pel\PelEntrySByte;
-use \lsolesen\pel\PelEntryShort;
-use \lsolesen\pel\PelEntrySShort;
-use \lsolesen\pel\PelEntryLong;
-use \lsolesen\pel\PelEntrySLong;
-use \lsolesen\pel\PelEntryRational;
-use \lsolesen\pel\PelEntrySRational;
 use \lsolesen\pel\PelOverflowException;
 use PHPUnit\Framework\TestCase;
 
