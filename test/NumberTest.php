@@ -36,6 +36,7 @@ use \lsolesen\pel\PelEntryRational;
 use \lsolesen\pel\PelEntrySRational;
 use \lsolesen\pel\PelOverflowException;
 use PHPUnit\Framework\TestCase;
+
 /*
 class SByteTestCase extends NumberTestCase
 {
@@ -216,5 +217,5 @@ class SRationalTestCase extends TestCase
         $this->assertEquals($entry->getValue(), [0, 2147483647]);
         $this->assertEquals($entry->getText(), '0/2147483647');
     }
-*/
 }
+*/
