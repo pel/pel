@@ -25,28 +25,10 @@
 
 namespace Pel\Test;
 
-use \lsolesen\pel\PelEntryByte;
-use \lsolesen\pel\Pel;
-use \lsolesen\pel\PelEntrySByte;
-use \lsolesen\pel\PelEntryShort;
-use \lsolesen\pel\PelEntrySShort;
-use \lsolesen\pel\PelEntryLong;
-use \lsolesen\pel\PelEntrySLong;
-use \lsolesen\pel\PelEntryRational;
 use \lsolesen\pel\PelEntrySRational;
-use \lsolesen\pel\PelOverflowException;
-use PHPUnit\Framework\TestCase;
 
-/*
-
-class SRationalTestCase extends TestCase
+class NumberSRationalTest extends NumberTestCase
 {
-
-    public function __construct()
-    {
-        parent::__construct('PEL Exif SRational Tests');
-    }
-
     public function testOverflow()
     {
         $entry = new PelEntrySRational(42, [-1, 2]);
@@ -108,4 +90,3 @@ class SRationalTestCase extends TestCase
         $this->assertEquals($entry->getText(), '0/2147483647');
     }
 }
-*/

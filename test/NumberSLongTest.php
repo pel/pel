@@ -27,7 +27,7 @@ namespace Pel\Test;
 
 use \lsolesen\pel\PelEntrySLong;
 
-class NumberLongTest extends NumberTestCase
+class NumberSLongTest extends NumberTestCase
 {
     /**
      * {@inheritdoc}
