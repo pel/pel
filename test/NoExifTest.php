@@ -22,7 +22,7 @@
  * Boston, MA 02110-1301 USA
  */
 
-namespace Pel\Test\imagetests;
+namespace Pel\Test;
 
 use lsolesen\pel\Pel;
 use lsolesen\pel\PelJpeg;
@@ -34,7 +34,7 @@ class NoExifTest extends TestCase
     {
         Pel::clearExceptions();
         Pel::setStrictParsing(false);
-        $jpeg = new PelJpeg(dirname(__FILE__) . '/no-exif.jpg');
+        $jpeg = new PelJpeg(dirname(__FILE__) . '/images/no-exif.jpg');
 
         $exif = $jpeg->getExif();
         $this->assertNull($exif);
