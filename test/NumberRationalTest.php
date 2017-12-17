@@ -25,50 +25,32 @@
 
 namespace Pel\Test;
 
-use \lsolesen\pel\PelEntryByte;
-use \lsolesen\pel\Pel;
-use \lsolesen\pel\PelEntrySByte;
-use \lsolesen\pel\PelEntryShort;
-use \lsolesen\pel\PelEntrySShort;
-use \lsolesen\pel\PelEntryLong;
-use \lsolesen\pel\PelEntrySLong;
 use \lsolesen\pel\PelEntryRational;
-use \lsolesen\pel\PelEntrySRational;
-use \lsolesen\pel\PelOverflowException;
-use PHPUnit\Framework\TestCase;
 
-/*
-
-class SRationalTestCase extends TestCase
+class NumberRationalTest extends NumberTestCase
 {
-
-    public function __construct()
-    {
-        parent::__construct('PEL Exif SRational Tests');
-    }
-
     public function testOverflow()
     {
-        $entry = new PelEntrySRational(42, [-1, 2]);
-        $this->assertEquals($entry->getValue(), [-1, 2]);
+        $entry = new PelEntryRational(42, [1, 2]);
+        $this->assertEquals($entry->getValue(), [1, 2]);
 
         $caught = false;
         try {
-            $entry->setValue([-10, -20], [-1, -2147483649]);
+            $entry->setValue([3, 4], [-1, 2], [7, 8]);
         } catch (PelOverflowException $e) {
             $caught = true;
         }
         $this->assertTrue($caught);
-        $this->assertEquals($entry->getValue(), [-1, 2]);
+        $this->assertEquals($entry->getValue(), [1, 2]);
 
         $caught = false;
         try {
-            $entry->setValue([3, 4], [1, 2147483648]);
+            $entry->setValue([3, 4], [1, 4294967296]);
         } catch (PelOverflowException $e) {
             $caught = true;
         }
         $this->assertTrue($caught);
-        $this->assertEquals($entry->getValue(), [-1, 2]);
+        $this->assertEquals($entry->getValue(), [1, 2]);
 
         $caught = false;
         try {
@@ -77,35 +59,29 @@ class SRationalTestCase extends TestCase
             $caught = true;
         }
         $this->assertTrue($caught);
-        $this->assertEquals($entry->getValue(), [-1, 2]);
+        $this->assertEquals($entry->getValue(), [1, 2]);
     }
 
     public function testReturnValues()
     {
-        $pattern = new PatternExpectation('/Missing argument 1 for lsolesen.pel.PelEntrySRational::__construct()/');
-        $this->expectError($pattern);
-        $pattern = new PatternExpectation('/Undefined variable: tag/');
-        $this->expectError($pattern);
-        $entry = new PelEntrySRational();
-
-        $entry = new PelEntrySRational(42);
+        $entry = new PelEntryRational(42);
         $this->assertEquals($entry->getValue(), []);
+        $this->assertEquals($entry->getText(), '');
 
-        $entry->setValue([-1, 2], [3, 4], [5, -6]);
-        $this->assertEquals($entry->getValue(), [[-1, 2], [3, 4], [5, -6]]);
-        $this->assertEquals($entry->getText(), '-1/2, 3/4, -5/6');
+        $entry->setValue([1, 2], [3, 4], [5, 6]);
+        $this->assertEquals($entry->getValue(), [[1, 2], [3, 4], [5, 6]]);
+        $this->assertEquals($entry->getText(), '1/2, 3/4, 5/6');
 
-        $entry->setValue([-7, -8]);
-        $this->assertEquals($entry->getValue(), [-7, -8]);
+        $entry->setValue([7, 8]);
+        $this->assertEquals($entry->getValue(), [7, 8]);
         $this->assertEquals($entry->getText(), '7/8');
 
         $pattern = new PatternExpectation('/Missing argument 1 for lsolesen.pel.PelEntryNumber::setValue()/');
         $this->expectError($pattern);
         $entry->setValue();
 
-        $entry->setValue([0, 2147483647]);
-        $this->assertEquals($entry->getValue(), [0, 2147483647]);
-        $this->assertEquals($entry->getText(), '0/2147483647');
+        $entry->setValue([0, 4294967295]);
+        $this->assertEquals($entry->getValue(), [0, 4294967295]);
+        $this->assertEquals($entry->getText(), '0/4294967295');
     }
 }
-*/
