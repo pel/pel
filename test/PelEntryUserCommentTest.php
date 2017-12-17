@@ -23,13 +23,16 @@
  * Free Software Foundation, Inc., 51 Franklin St, Fifth Floor,
  * Boston, MA 02110-1301 USA
  */
+
+namespace Pel\Test;
+
 use lsolesen\pel\PelEntryUserComment;
 use PHPUnit\Framework\TestCase;
 
 class PelEntryUserCommentTest extends TestCase
 {
 
-    function testUsercomment()
+    public function testUsercomment()
     {
         $entry = new PelEntryUserComment();
         $this->assertEquals($entry->getComponents(), 8);

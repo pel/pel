@@ -22,18 +22,19 @@
  * Boston, MA 02110-1301 USA
  */
 
+namespace Pel\Test\imagetests;
+
 use lsolesen\pel\Pel;
 use lsolesen\pel\PelJpeg;
 use PHPUnit\Framework\TestCase;
 
-class OlympusC50zTest extends TestCase
+class SonyDscV1Test extends TestCase
 {
-
     public function testRead()
     {
         Pel::clearExceptions();
         Pel::setStrictParsing(false);
-        $jpeg = new PelJpeg(dirname(__FILE__) . '/olympus-c50z.jpg');
+        $jpeg = new PelJpeg(dirname(__FILE__) . '/sony-dsc-v1.jpg');
 
         $exif = $jpeg->getExif();
         $this->assertInstanceOf('lsolesen\pel\PelExif', $exif);
@@ -46,58 +47,53 @@ class OlympusC50zTest extends TestCase
         $this->assertInstanceOf('lsolesen\pel\PelIfd', $ifd0);
 
         /* Start of IDF $ifd0. */
-        $this->assertEquals(count($ifd0->getEntries()), 11);
+        $this->assertEquals(count($ifd0->getEntries()), 10);
 
         $entry = $ifd0->getEntry(270); // ImageDescription
         $this->assertInstanceOf('lsolesen\pel\PelEntryAscii', $entry);
-        $this->assertEquals($entry->getValue(), 'OLYMPUS DIGITAL CAMERA         ');
-        $this->assertEquals($entry->getText(), 'OLYMPUS DIGITAL CAMERA         ');
+        $this->assertEquals($entry->getValue(), '                               ');
+        $this->assertEquals($entry->getText(), '                               ');
 
         $entry = $ifd0->getEntry(271); // Make
         $this->assertInstanceOf('lsolesen\pel\PelEntryAscii', $entry);
-        $this->assertEquals($entry->getValue(), 'OLYMPUS OPTICAL CO.,LTD');
-        $this->assertEquals($entry->getText(), 'OLYMPUS OPTICAL CO.,LTD');
+        $this->assertEquals($entry->getValue(), 'SONY');
+        $this->assertEquals($entry->getText(), 'SONY');
 
         $entry = $ifd0->getEntry(272); // Model
         $this->assertInstanceOf('lsolesen\pel\PelEntryAscii', $entry);
-        $this->assertEquals($entry->getValue(), 'X-2,C-50Z       ');
-        $this->assertEquals($entry->getText(), 'X-2,C-50Z       ');
+        $this->assertEquals($entry->getValue(), 'DSC-V1');
+        $this->assertEquals($entry->getText(), 'DSC-V1');
 
         $entry = $ifd0->getEntry(274); // Orientation
         $this->assertInstanceOf('lsolesen\pel\PelEntryShort', $entry);
-        $this->assertEquals($entry->getValue(), 1);
-        $this->assertEquals($entry->getText(), 'top - left');
+        $this->assertEquals($entry->getValue(), 6);
+        $this->assertEquals($entry->getText(), 'right - top');
 
         $entry = $ifd0->getEntry(282); // XResolution
         $this->assertInstanceOf('lsolesen\pel\PelEntryRational', $entry);
         $this->assertEquals($entry->getValue(), [
-            0 => 144,
+            0 => 72,
             1 => 1
         ]);
-        $this->assertEquals($entry->getText(), '144/1');
+        $this->assertEquals($entry->getText(), '72/1');
 
         $entry = $ifd0->getEntry(283); // YResolution
         $this->assertInstanceOf('lsolesen\pel\PelEntryRational', $entry);
         $this->assertEquals($entry->getValue(), [
-            0 => 144,
+            0 => 72,
             1 => 1
         ]);
-        $this->assertEquals($entry->getText(), '144/1');
+        $this->assertEquals($entry->getText(), '72/1');
 
         $entry = $ifd0->getEntry(296); // ResolutionUnit
         $this->assertInstanceOf('lsolesen\pel\PelEntryShort', $entry);
         $this->assertEquals($entry->getValue(), 2);
         $this->assertEquals($entry->getText(), 'Inch');
 
-        $entry = $ifd0->getEntry(305); // Software
-        $this->assertInstanceOf('lsolesen\pel\PelEntryAscii', $entry);
-        $this->assertEquals($entry->getValue(), '28-1012                        ');
-        $this->assertEquals($entry->getText(), '28-1012                        ');
-
         $entry = $ifd0->getEntry(306); // DateTime
         $this->assertInstanceOf('lsolesen\pel\PelEntryTime', $entry);
-        $this->assertEquals($entry->getValue(), false);
-        $this->assertEquals($entry->getText(), '0000:00:00 00:00:00');
+        $this->assertEquals($entry->getValue(), 1089482993);
+        $this->assertEquals($entry->getText(), '2004:07:10 18:09:53');
 
         $entry = $ifd0->getEntry(531); // YCbCrPositioning
         $this->assertInstanceOf('lsolesen\pel\PelEntryShort', $entry);
@@ -106,8 +102,7 @@ class OlympusC50zTest extends TestCase
 
         $entry = $ifd0->getEntry(50341); // PrintIM
         $this->assertInstanceOf('lsolesen\pel\PelEntryUndefined', $entry);
-        $expected = "\x50\x72\x69\x6e\x74\x49\x4d\0\x30\x32\x35\x30\0\0\x14\0\x01\0\x12\0\x12\0\x02\0\x01\0\0\0\x03\0\x88\0\0\0\x07\0\0\0\0\0\x08\0\0\0\0\0\x09\0\0\0\0\0\x0a\0\0\0\0\0\x0b\0\xd0\0\0\0\x0c\0\0\0\0\0\x0d\0\0\0\0\0\x0e\0\xe8\0\0\0\0\x01\x01\0\0\0\x01\x01\xff\0\0\0\x02\x01\x80\0\0\0\x03\x01\x80\0\0\0\x04\x01\x80\0\0\0\x05\x01\x80\0\0\0\x06\x01\x80\0\0\0\x07\x01\x80\x80\x80\0\x10\x01\x80\0\0\0\x09\x11\0\0\x10\x27\0\0\x0b\x0f\0\0\x10\x27\0\0\x97\x05\0\0\x10\x27\0\0\xb0\x08\0\0\x10\x27\0\0\x01\x1c\0\0\x10\x27\0\0\x5e\x02\0\0\x10\x27\0\0\x8b\0\0\0\x10\x27\0\0\xcb\x03\0\0\x10\x27\0\0\xe5\x1b\0\0\x10\x27\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0";
-        $this->assertEquals($entry->getValue(), $expected);
+        $this->assertEquals($entry->getValue(), "\x50\x72\x69\x6e\x74\x49\x4d\0\x30\x32\x35\x30\0\0\x02\0\x02\0\x01\0\0\0\x01\x01\0\0\0\0");
         $this->assertEquals($entry->getText(), '(undefined)');
 
         /* Sub IFDs of $ifd0. */
@@ -116,33 +111,33 @@ class OlympusC50zTest extends TestCase
         $this->assertInstanceOf('lsolesen\pel\PelIfd', $ifd0_0);
 
         /* Start of IDF $ifd0_0. */
-        $this->assertEquals(count($ifd0_0->getEntries()), 30);
+        $this->assertEquals(count($ifd0_0->getEntries()), 26);
 
         $entry = $ifd0_0->getEntry(33434); // ExposureTime
         $this->assertInstanceOf('lsolesen\pel\PelEntryRational', $entry);
         $this->assertEquals($entry->getValue(), [
-            0 => 1,
-            1 => 80
+            0 => 10,
+            1 => 600
         ]);
-        $this->assertEquals($entry->getText(), '1/80 sec.');
+        $this->assertEquals($entry->getText(), '1/60 sec.');
 
         $entry = $ifd0_0->getEntry(33437); // FNumber
         $this->assertInstanceOf('lsolesen\pel\PelEntryRational', $entry);
         $this->assertEquals($entry->getValue(), [
-            0 => 45,
+            0 => 32,
             1 => 10
         ]);
-        $this->assertEquals($entry->getText(), 'f/4.5');
+        $this->assertEquals($entry->getText(), 'f/3.2');
 
         $entry = $ifd0_0->getEntry(34850); // ExposureProgram
         $this->assertInstanceOf('lsolesen\pel\PelEntryShort', $entry);
-        $this->assertEquals($entry->getValue(), 5);
-        $this->assertEquals($entry->getText(), 'Creative program (biased toward depth of field)');
+        $this->assertEquals($entry->getValue(), 2);
+        $this->assertEquals($entry->getText(), 'Normal program');
 
         $entry = $ifd0_0->getEntry(34855); // ISOSpeedRatings
         $this->assertInstanceOf('lsolesen\pel\PelEntryShort', $entry);
-        $this->assertEquals($entry->getValue(), 80);
-        $this->assertEquals($entry->getText(), '80');
+        $this->assertEquals($entry->getValue(), 100);
+        $this->assertEquals($entry->getText(), '100');
 
         $entry = $ifd0_0->getEntry(36864); // ExifVersion
         $this->assertInstanceOf('lsolesen\pel\PelEntryVersion', $entry);
@@ -151,39 +146,47 @@ class OlympusC50zTest extends TestCase
 
         $entry = $ifd0_0->getEntry(36867); // DateTimeOriginal
         $this->assertInstanceOf('lsolesen\pel\PelEntryTime', $entry);
-        $this->assertEquals($entry->getValue(), false);
-        $this->assertEquals($entry->getText(), '0000:00:00 00:00:00');
+        $this->assertEquals($entry->getValue(), 1089482993);
+        $this->assertEquals($entry->getText(), '2004:07:10 18:09:53');
 
         $entry = $ifd0_0->getEntry(36868); // DateTimeDigitized
         $this->assertInstanceOf('lsolesen\pel\PelEntryTime', $entry);
-        $this->assertEquals($entry->getValue(), false);
-        $this->assertEquals($entry->getText(), '0000:00:00 00:00:00');
+        $this->assertEquals($entry->getValue(), 1089482993);
+        $this->assertEquals($entry->getText(), '2004:07:10 18:09:53');
 
         $entry = $ifd0_0->getEntry(37121); // ComponentsConfiguration
         $this->assertInstanceOf('lsolesen\pel\PelEntryUndefined', $entry);
         $this->assertEquals($entry->getValue(), "\x01\x02\x03\0");
         $this->assertEquals($entry->getText(), 'Y Cb Cr -');
 
+        $entry = $ifd0_0->getEntry(37122); // CompressedBitsPerPixel
+        $this->assertInstanceOf('lsolesen\pel\PelEntryRational', $entry);
+        $this->assertEquals($entry->getValue(), [
+            0 => 2,
+            1 => 1
+        ]);
+        $this->assertEquals($entry->getText(), '2/1');
+
         $entry = $ifd0_0->getEntry(37380); // ExposureBiasValue
         $this->assertInstanceOf('lsolesen\pel\PelEntrySRational', $entry);
         $this->assertEquals($entry->getValue(), [
-            0 => 0,
+            0 => 7,
             1 => 10
         ]);
-        $this->assertEquals($entry->getText(), '0.0');
+        $this->assertEquals($entry->getText(), '+0.7');
 
         $entry = $ifd0_0->getEntry(37381); // MaxApertureValue
         $this->assertInstanceOf('lsolesen\pel\PelEntryRational', $entry);
         $this->assertEquals($entry->getValue(), [
-            0 => 300,
-            1 => 100
+            0 => 48,
+            1 => 16
         ]);
-        $this->assertEquals($entry->getText(), '300/100');
+        $this->assertEquals($entry->getText(), '48/16');
 
         $entry = $ifd0_0->getEntry(37383); // MeteringMode
         $this->assertInstanceOf('lsolesen\pel\PelEntryShort', $entry);
-        $this->assertEquals($entry->getValue(), 5);
-        $this->assertEquals($entry->getText(), 'Pattern');
+        $this->assertEquals($entry->getValue(), 2);
+        $this->assertEquals($entry->getText(), 'Center-Weighted Average');
 
         $entry = $ifd0_0->getEntry(37384); // LightSource
         $this->assertInstanceOf('lsolesen\pel\PelEntryShort', $entry);
@@ -192,27 +195,22 @@ class OlympusC50zTest extends TestCase
 
         $entry = $ifd0_0->getEntry(37385); // Flash
         $this->assertInstanceOf('lsolesen\pel\PelEntryShort', $entry);
-        $this->assertEquals($entry->getValue(), 25);
-        $this->assertEquals($entry->getText(), 'Flash fired, auto mode.');
+        $this->assertEquals($entry->getValue(), 31);
+        $this->assertEquals($entry->getText(), 'Flash fired, auto mode, return light detected.');
 
         $entry = $ifd0_0->getEntry(37386); // FocalLength
         $this->assertInstanceOf('lsolesen\pel\PelEntryRational', $entry);
         $this->assertEquals($entry->getValue(), [
-            0 => 1883,
-            1 => 100
+            0 => 139,
+            1 => 10
         ]);
-        $this->assertEquals($entry->getText(), '18.8 mm');
+        $this->assertEquals($entry->getText(), '13.9 mm');
 
         $entry = $ifd0_0->getEntry(37500); // MakerNote
         $this->assertInstanceOf('lsolesen\pel\PelEntryUndefined', $entry);
-        $expected = "\x4f\x4c\x59\x4d\x50\0\x01\0\x3e\0\0\x02\x04\0\x03\0\0\0\x24\x0f\0\0\x01\x02\x03\0\x01\0\0\0\x02\0\0\0\x02\x02\x03\0\x01\0\0\0\0\0\0\0\x03\x02\x03\0\x01\0\0\0\0\0\0\0\x04\x02\x05\0\x01\0\0\0\x38\x0f\0\0\x05\x02\x05\0\x01\0\0\0\x40\x0f\0\0\x06\x02\x08\0\x06\0\0\0\x48\x0f\0\0\x07\x02\x02\0\x06\0\0\0\x54\x0f\0\0\x09\x02\x07\0\x20\0\0\0\x5a\x0f\0\0\0\x10\x0a\0\x01\0\0\0\x7c\x0f\0\0\x01\x10\x0a\0\x01\0\0\0\x84\x0f\0\0\x02\x10\x0a\0\x01\0\0\0\x8c\x0f\0\0\x03\x10\x0a\0\x01\0\0\0\x94\x0f\0\0\x04\x10\x03\0\x01\0\0\0\0\0\0\0\x05\x10\x03\0\x02\0\0\0\0\0\0\0\x06\x10\x0a\0\x01\0\0\0\xa4\x0f\0\0\x09\x10\x03\0\x01\0\0\0\x01\0\0\0\x0a\x10\x03\0\x01\0\0\0\0\0\0\0\x0b\x10\x03\0\x01\0\0\0\0\0\0\0\x0c\x10\x05\0\x01\0\0\0\xb8\x0f\0\0\x0d\x10\x03\0\x01\0\0\0\x1c\0\x51\x01\x0e\x10\x03\0\x01\0\0\0\x51\x01\x02\0\x0f\x10\x03\0\x01\0\0\0\x02\0\0\0\x10\x10\x03\0\x01\0\0\0\0\0\0\0\x11\x10\x03\0\x09\0\0\0\x36\x10\0\0\x12\x10\x03\0\x04\0\0\0\x48\x10\0\0\x13\x10\x03\0\x01\0\0\0\0\0\0\0\x14\x10\x03\0\x01\0\0\0\0\0\x01\0\x15\x10\x03\0\x02\0\0\0\x01\0\0\0\x16\x10\x03\0\x01\0\0\0\0\0\x70\x01\x17\x10\x03\0\x02\0\0\0\x70\x01\x40\0\x18\x10\x03\0\x02\0\0\0\x26\x01\x40\0\x1a\x10\x02\0\x20\0\0\0\xdc\x0f\0\0\x1b\x10\x04\0\x01\0\0\0\0\0\0\0\x1c\x10\x04\0\x01\0\0\0\0\0\0\0\x1d\x10\x04\0\x01\0\0\0\xe8\xb8\x03\0\x1e\x10\x04\0\x01\0\0\0\0\0\0\0\x1f\x10\x04\0\x01\0\0\0\0\0\0\0\x20\x10\x04\0\x01\0\0\0\0\0\0\0\x21\x10\x04\0\x01\0\0\0\xb0\x27\0\0\x22\x10\x04\0\x01\0\0\0\x20\x6e\x0f\x04\x23\x10\x0a\0\x01\0\0\0\x1c\x10\0\0\x24\x10\x03\0\x01\0\0\0\x36\0\0\0\x25\x10\x0a\0\x01\0\0\0\x28\x10\0\0\x26\x10\x03\0\x01\0\0\0\0\0\0\0\x27\x10\x03\0\x01\0\0\0\0\0\0\0\x28\x10\x03\0\x01\0\0\0\0\0\x64\x01\x29\x10\x03\0\x01\0\0\0\x02\0\0\x02\x2a\x10\x03\0\x01\0\0\0\0\x02\x18\0\x2b\x10\x03\0\x06\0\0\0\x54\x10\0\0\x2c\x10\x03\0\x02\0\0\0\x0a\0\0\0\x2d\x10\x03\0\x01\0\0\0\0\x08\0\0\x2e\x10\x04\0\x01\0\0\0\0\x0a\0\0\x2f\x10\x04\0\x01\0\0\0\x80\x07\0\0\x30\x10\x03\0\x01\0\0\0\x02\0\0\0\x31\x10\x04\0\x08\0\0\0\x74\x10\0\0\x33\x10\x04\0\xd0\x02\0\0\xa0\x10\0\0\x38\x10\x03\0\x01\0\0\0\0\0\0\0\x3b\x10\x03\0\x01\0\0\0\x21\x01\xbe\x01\x3c\x10\x03\0\x01\0\0\0\xbe\x01\0\0\x3d\x10\x0a\0\x01\0\0\0\xe4\x1b\0\0\x3e\x10\x0a\0\x01\0\0\0\xec\x1b\0\0\0\0\0\0";
+        $expected = "\x53\x4f\x4e\x59\x20\x44\x53\x43\x20\0\0\0\x0c\0\x01\x90\x07\0\x94\0\0\0\x40\x03\0\0\x02\x90\x07\0\xc8\0\0\0\xd4\x03\0\0\x03\x90\x07\0\xc8\0\0\0\x9c\x04\0\0\x04\x90\x07\0\x1a\0\0\0\x64\x05\0\0\x05\x90\x07\0\x78\0\0\0\x7e\x05\0\0\x06\x90\x07\0\xfc\0\0\0\xf6\x05\0\0\x07\x90\x07\0\xc8\0\0\0\xf2\x06\0\0\x08\x90\x07\0\xc8\0\0\0\xba\x07\0\0\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xdf\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\0\0\0\0\0\0\0\x0c\0\0\0\x05\0\x6e\x7e\xa0\0\xe4\x89\x2c\0\xe7\x8f\0\0\0\0\x0c\0\0\0\0\0\0\0\x0c\0\x01\xe7\x41\xff\0\0\0\0\0\x08\x07\x02\x09\xfe\0\x60\x1f\x08\xdf\x5e\xf0\xff\x4a\xfe\0\0\0\0\x4a\x30\0\x88\x1f\x05\x4a\x30\x4a\x88\0\x70\0\0\x70\0\0\x01\xb8\0\x5e\0\x81\0\0\x56\x0d\0\0\0\x63\0\0\xd8\xc4\0\0\xd2\x90\x88\x1f\xbe\0\x70\0\0\xc8\0\xbe\x5e\0\xd8\x6f\0\0\x40\x50\0\x01\0\0\0\0\0\0\0\0\0\0\0\0\0\x04\0\x1b\0\0\0\x07\0\0\x01\xb8\x08\0\x8a\xb7\0\x74\x91\xf0\0\x8c\x75\x3d\0\0\0\xd8\0\0\0\0\0\0\0\0\0\0\0\0\x05\xc4\0\0\xd3\0\xc3\x74\xd7\x93\xd8\x67\x05\xc4\xd7\x22\x30\x63\0\0\0\0\xd7\xa7\xbe\x21\0\0\0\0\0\0\0\0\0\0\x01\x14\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\x01\x14\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\x0e\x08\xe3\0\x7d\0\x28\x8a\x0e\0\x5e\0\0\xa8\0\xbe\xc0\xbe\xc0\xd7\x93\x40\0\0\0\xdc\xdc\x73\x46\0\x92\0\xb7\0\x23\0\x23\0\x47\0\x82\0\x06\0\x55\xef\x10\x24\x31\xef\xc3\x79\x73\xef\x10\x79\x8a\x79\x05\xc4\xef\x5b\xc5\x18\xc5\x18\x7d\xa5\x88\xb7\xcf\0\0\x01\x69\0\0\0\0\0\0\0\0\xff\0\0\xf1\0\x07\0\x47\xff\0\x01\x15\0\x6a\0\x20\x23\0\x5e\0\0\0\x56\0\x08\xdd\x01\xc5\x01\0\x01\0\x04\x80\x1b\xf2\x45\xdd\x38\x54\0\x69\x24\xdc\x0c\x63\xf0\xde\xec\x23\x28\x47\xf0\xa8\x92\x45\xef\x21\xc5\x49\x58\x2f\0\xc3\x46\xfe\x59\x5a\x9f\xfe\0\x07\xf3\x52\xa0\x6e\x51\xbd\xbd\xbd\xbd\xbd\xbd\xbd\xbd\xbd\xbd\xbd\xbd\xbd\xbd\xbd\xbd\xbd\xbd\xbd\xbd\xbd\xbd\xbd\xbd\xbd\xbd\xbd\xbd\xbd\xbd\xbd\xbd\xbd\xbd\xbd\xbd\xbd\xbd\xbd\xbd\xbd\xbd\xbd\xbd\xbd\xbd\xbd\xbd\xbd\xbd\xbd\xbd\xbd\xbd\xbd\x20\x08\x1b\0\x01\xdc\xdc\xbc\x5f\x10\0\0\x08\xec\x08\xe7\x08\x04\x08\x51\0\xdc\0\xe3\0\xe3\0\xc2\0\0\0\0\0\0\0\0\x01\x01\0\0\0\0\0\x7d\0\0\0\0\0\x7b\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\x01\0\x01\0\0\0\0\0\x01\0\x01\0\x08\0\x01\0\x01\xe5\x91\x51\x08\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\xff\xff\0\xff\0\0\0\0\0\0\0\0\xb3\xe5\0\0\xff\xff\0\0\xcd\x95\x51\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\x7d\0\x40\0\x1b\0\0\0\x01\xd8\x2b\xd8\x47\x5e\xa7\xbb\x9e\x0e\x8b\x20\x08\xa0\xfd\xd8\xf4\x5e\x2b\x56\x69\x88\xe8\xd8\xaa\xb6\x60\x6a\x98\x0e\x53\x56\x8e\x56\x8d\x05\xe1\xd8\x5d\x20\xcc\xd3\x58\x5e\xb6\x04\xb7\xe7\xe9\xcd\x57\x7d\x2c\xd7\x24\x5d\xbc\x5e\xd3\x04\xdc\xd8\x8f\xea\x4f\x7d\x6e\x30\x28\xd3\x4b\x7d\xf7\xe7\xf8\x7d\x09\x8a\x26\x7d\xc4\x88\x24\xa0\x9e\x40\x94\x7d\xf1\x7d\x95\x5e\x46\x40\xd3\x70\x44\xbe\xfb\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\x08\0\0\0\0\0\x1b\0\x1b\0\0\0\x7d\0\x5e\0\0\0\0\0\x08\0\x40\0\0\0\xd8\0\xe7\0\0\0\0\0\x08\0\x40\0\0\0\x0e\0\x0e\0\0\0\0\0\x08\0\x7d\0\0\0\xe7\0\x08\0\x7d\0\x1b\0\0\0\x01\0\0\0\xd8\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\x40\x43\xd8\xe0\x5e\xd1\x04\xf7\x8a\xde\x30\xf4\x20\x39\x05\x45\x05\xce\xb6\x31\x88\xbf\x30\x24\x30\x77\x30\xb7\x88\x65\0\xa3\x7d\xdd\xd8\xd6\x0e\x43\xea\x11\x69\x6c\x81\xb9\xec\x45\x28\x13\xb6\xe6\x20\xdc\xbe\x5b\x81\x3e\x0c\xc3\xec\x9e\x6c\x35\0\0\0\0\x08\x4a\x08\x22\x1b\xe2\x40\x9e\x5e\x4b\xb6\x8b\x05\xa0\xd8\x41\x5e\xa9\x56\xdd\x8a\x43\x69\x80\x69\x5b\x70\xe0\xea\x88\0\xa3\x08\x8d\x1b\xc4\x1b\xa8\x7d\x57\x56\xa7\x69\x8c\x88\xe6\x69\x94\x56\xa9\x8a\x08\xb6\xba\x69\x23\x69\xba\x88\x94\xbe\x81\0\0\0\0\x40\x43\x7d\x40\x7d\x54\xd8\x54\xe7\xea\x70\xc7\x05\x07\x5e\xe1\x0e\xa8\x56\xa4\x05\x80\x70\xc7\x70\xc7\x05\x80\x56\x0d\0\xa3\x30\x63\xbe\xd8\xbe\x5b\xbe\x9e\xbe\x21\xd7\x96\xd7\x86\xd7\x22\xbe\x21\xd7\xb6\xd7\xef\xd7\x74\xd7\xd4\xd7\xb3\xd7\xa7\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0";
         $this->assertEquals($entry->getValue(), $expected);
-        $this->assertEquals($entry->getText(), '758 bytes unknown MakerNote data');
-
-        $entry = $ifd0_0->getEntry(37510); // UserComment
-        $this->assertInstanceOf('lsolesen\pel\PelEntryUserComment', $entry);
-        $this->assertEquals($entry->getValue(), '                                                                                                                     ');
-        $this->assertEquals($entry->getText(), '                                                                                                                     ');
+        $this->assertEquals($entry->getText(), '1504 bytes unknown MakerNote data');
 
         $entry = $ifd0_0->getEntry(40960); // FlashPixVersion
         $this->assertInstanceOf('lsolesen\pel\PelEntryVersion', $entry);
@@ -225,19 +223,24 @@ class OlympusC50zTest extends TestCase
         $this->assertEquals($entry->getText(), 'sRGB');
 
         $entry = $ifd0_0->getEntry(40962); // PixelXDimension
-        $this->assertInstanceOf('lsolesen\pel\PelEntryShort', $entry);
-        $this->assertEquals($entry->getValue(), 2560);
-        $this->assertEquals($entry->getText(), '2560');
+        $this->assertInstanceOf('lsolesen\pel\PelEntryLong', $entry);
+        $this->assertEquals($entry->getValue(), 640);
+        $this->assertEquals($entry->getText(), '640');
 
         $entry = $ifd0_0->getEntry(40963); // PixelYDimension
-        $this->assertInstanceOf('lsolesen\pel\PelEntryShort', $entry);
-        $this->assertEquals($entry->getValue(), 1920);
-        $this->assertEquals($entry->getText(), '1920');
+        $this->assertInstanceOf('lsolesen\pel\PelEntryLong', $entry);
+        $this->assertEquals($entry->getValue(), 480);
+        $this->assertEquals($entry->getText(), '480');
 
         $entry = $ifd0_0->getEntry(41728); // FileSource
         $this->assertInstanceOf('lsolesen\pel\PelEntryUndefined', $entry);
         $this->assertEquals($entry->getValue(), "\x03");
         $this->assertEquals($entry->getText(), 'DSC');
+
+        $entry = $ifd0_0->getEntry(41729); // SceneType
+        $this->assertInstanceOf('lsolesen\pel\PelEntryUndefined', $entry);
+        $this->assertEquals($entry->getValue(), "\x01");
+        $this->assertEquals($entry->getText(), 'Directly photographed');
 
         $entry = $ifd0_0->getEntry(41985); // CustomRendered
         $this->assertInstanceOf('lsolesen\pel\PelEntryShort', $entry);
@@ -246,46 +249,18 @@ class OlympusC50zTest extends TestCase
 
         $entry = $ifd0_0->getEntry(41986); // ExposureMode
         $this->assertInstanceOf('lsolesen\pel\PelEntryShort', $entry);
-        $this->assertEquals($entry->getValue(), 0);
-        $this->assertEquals($entry->getText(), 'Auto exposure');
+        $this->assertEquals($entry->getValue(), 1);
+        $this->assertEquals($entry->getText(), 'Manual exposure');
 
         $entry = $ifd0_0->getEntry(41987); // WhiteBalance
         $this->assertInstanceOf('lsolesen\pel\PelEntryShort', $entry);
         $this->assertEquals($entry->getValue(), 0);
         $this->assertEquals($entry->getText(), 'Auto white balance');
 
-        $entry = $ifd0_0->getEntry(41988); // DigitalZoomRatio
-        $this->assertInstanceOf('lsolesen\pel\PelEntryRational', $entry);
-        $this->assertEquals($entry->getValue(), [
-            0 => 100,
-            1 => 100
-        ]);
-        $this->assertEquals($entry->getText(), '100/100');
-
         $entry = $ifd0_0->getEntry(41990); // SceneCaptureType
         $this->assertInstanceOf('lsolesen\pel\PelEntryShort', $entry);
-        $this->assertEquals($entry->getValue(), 2);
-        $this->assertEquals($entry->getText(), 'Portrait');
-
-        $entry = $ifd0_0->getEntry(41991); // GainControl
-        $this->assertInstanceOf('lsolesen\pel\PelEntryShort', $entry);
         $this->assertEquals($entry->getValue(), 0);
-        $this->assertEquals($entry->getText(), 'Normal');
-
-        $entry = $ifd0_0->getEntry(41992); // Contrast
-        $this->assertInstanceOf('lsolesen\pel\PelEntryShort', $entry);
-        $this->assertEquals($entry->getValue(), 0);
-        $this->assertEquals($entry->getText(), 'Normal');
-
-        $entry = $ifd0_0->getEntry(41993); // Saturation
-        $this->assertInstanceOf('lsolesen\pel\PelEntryShort', $entry);
-        $this->assertEquals($entry->getValue(), 0);
-        $this->assertEquals($entry->getText(), 'Normal');
-
-        $entry = $ifd0_0->getEntry(41994); // Sharpness
-        $this->assertInstanceOf('lsolesen\pel\PelEntryShort', $entry);
-        $this->assertEquals($entry->getValue(), 0);
-        $this->assertEquals($entry->getText(), 'Normal');
+        $this->assertEquals($entry->getText(), 'Standard');
 
         /* Sub IFDs of $ifd0_0. */
         $this->assertEquals(count($ifd0_0->getSubIfds()), 1);
@@ -330,12 +305,27 @@ class OlympusC50zTest extends TestCase
         /* End of IFD $ifd0. */
 
         /* Start of IDF $ifd1. */
-        $this->assertEquals(count($ifd1->getEntries()), 4);
+        $this->assertEquals(count($ifd1->getEntries()), 8);
 
         $entry = $ifd1->getEntry(259); // Compression
         $this->assertInstanceOf('lsolesen\pel\PelEntryShort', $entry);
         $this->assertEquals($entry->getValue(), 6);
         $this->assertEquals($entry->getText(), 'JPEG compression');
+
+        $entry = $ifd1->getEntry(271); // Make
+        $this->assertInstanceOf('lsolesen\pel\PelEntryAscii', $entry);
+        $this->assertEquals($entry->getValue(), 'SONY');
+        $this->assertEquals($entry->getText(), 'SONY');
+
+        $entry = $ifd1->getEntry(272); // Model
+        $this->assertInstanceOf('lsolesen\pel\PelEntryAscii', $entry);
+        $this->assertEquals($entry->getValue(), 'DSC-V1');
+        $this->assertEquals($entry->getText(), 'DSC-V1');
+
+        $entry = $ifd1->getEntry(274); // Orientation
+        $this->assertInstanceOf('lsolesen\pel\PelEntryShort', $entry);
+        $this->assertEquals($entry->getValue(), 6);
+        $this->assertEquals($entry->getText(), 'right - top');
 
         $entry = $ifd1->getEntry(282); // XResolution
         $this->assertInstanceOf('lsolesen\pel\PelEntryRational', $entry);
@@ -358,10 +348,15 @@ class OlympusC50zTest extends TestCase
         $this->assertEquals($entry->getValue(), 2);
         $this->assertEquals($entry->getText(), 'Inch');
 
+        $entry = $ifd1->getEntry(306); // DateTime
+        $this->assertInstanceOf('lsolesen\pel\PelEntryTime', $entry);
+        $this->assertEquals($entry->getValue(), 1089482993);
+        $this->assertEquals($entry->getText(), '2004:07:10 18:09:53');
+
         /* Sub IFDs of $ifd1. */
         $this->assertEquals(count($ifd1->getSubIfds()), 0);
 
-        $thumb_data = file_get_contents(dirname(__FILE__) . '/olympus-c50z-thumb.jpg');
+        $thumb_data = file_get_contents(dirname(__FILE__) . '/sony-dsc-v1-thumb.jpg');
         $this->assertEquals($ifd1->getThumbnailData(), $thumb_data);
 
         /* Next IFD. */
