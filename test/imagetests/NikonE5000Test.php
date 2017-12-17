@@ -22,6 +22,8 @@
  * Boston, MA 02110-1301 USA
  */
 
+namespace Pel\Test\imagetests;
+
 use lsolesen\pel\Pel;
 use lsolesen\pel\PelJpeg;
 use PHPUnit\Framework\TestCase;
@@ -64,18 +66,18 @@ class NikonE5000Test extends TestCase
 
         $entry = $ifd0->getEntry(282); // XResolution
         $this->assertInstanceOf('lsolesen\pel\PelEntryRational', $entry);
-        $this->assertEquals($entry->getValue(), array(
+        $this->assertEquals($entry->getValue(), [
             0 => 300,
             1 => 1
-        ));
+        ]);
         $this->assertEquals($entry->getText(), '300/1');
 
         $entry = $ifd0->getEntry(283); // YResolution
         $this->assertInstanceOf('lsolesen\pel\PelEntryRational', $entry);
-        $this->assertEquals($entry->getValue(), array(
+        $this->assertEquals($entry->getValue(), [
             0 => 300,
             1 => 1
-        ));
+        ]);
         $this->assertEquals($entry->getText(), '300/1');
 
         $entry = $ifd0->getEntry(296); // ResolutionUnit
@@ -108,18 +110,18 @@ class NikonE5000Test extends TestCase
 
         $entry = $ifd0_0->getEntry(33434); // ExposureTime
         $this->assertInstanceOf('lsolesen\pel\PelEntryRational', $entry);
-        $this->assertEquals($entry->getValue(), array(
+        $this->assertEquals($entry->getValue(), [
             0 => 1642036,
             1 => 100000000
-        ));
+        ]);
         $this->assertEquals($entry->getText(), '1/60 sec.');
 
         $entry = $ifd0_0->getEntry(33437); // FNumber
         $this->assertInstanceOf('lsolesen\pel\PelEntryRational', $entry);
-        $this->assertEquals($entry->getValue(), array(
+        $this->assertEquals($entry->getValue(), [
             0 => 28,
             1 => 10
-        ));
+        ]);
         $this->assertEquals($entry->getText(), 'f/2.8');
 
         $entry = $ifd0_0->getEntry(34850); // ExposureProgram
@@ -154,18 +156,18 @@ class NikonE5000Test extends TestCase
 
         $entry = $ifd0_0->getEntry(37380); // ExposureBiasValue
         $this->assertInstanceOf('lsolesen\pel\PelEntrySRational', $entry);
-        $this->assertEquals($entry->getValue(), array(
+        $this->assertEquals($entry->getValue(), [
             0 => 0,
             1 => 10
-        ));
+        ]);
         $this->assertEquals($entry->getText(), '0.0');
 
         $entry = $ifd0_0->getEntry(37381); // MaxApertureValue
         $this->assertInstanceOf('lsolesen\pel\PelEntryRational', $entry);
-        $this->assertEquals($entry->getValue(), array(
+        $this->assertEquals($entry->getValue(), [
             0 => 3,
             1 => 1
-        ));
+        ]);
         $this->assertEquals($entry->getText(), '3/1');
 
         $entry = $ifd0_0->getEntry(37383); // MeteringMode
@@ -185,10 +187,10 @@ class NikonE5000Test extends TestCase
 
         $entry = $ifd0_0->getEntry(37386); // FocalLength
         $this->assertInstanceOf('lsolesen\pel\PelEntryRational', $entry);
-        $this->assertEquals($entry->getValue(), array(
+        $this->assertEquals($entry->getValue(), [
             0 => 71,
             1 => 10
-        ));
+        ]);
         $this->assertEquals($entry->getText(), '7.1 mm');
 
         $entry = $ifd0_0->getEntry(37500); // MakerNote
@@ -274,18 +276,18 @@ class NikonE5000Test extends TestCase
 
         $entry = $ifd1->getEntry(282); // XResolution
         $this->assertInstanceOf('lsolesen\pel\PelEntryRational', $entry);
-        $this->assertEquals($entry->getValue(), array(
+        $this->assertEquals($entry->getValue(), [
             0 => 72,
             1 => 1
-        ));
+        ]);
         $this->assertEquals($entry->getText(), '72/1');
 
         $entry = $ifd1->getEntry(283); // YResolution
         $this->assertInstanceOf('lsolesen\pel\PelEntryRational', $entry);
-        $this->assertEquals($entry->getValue(), array(
+        $this->assertEquals($entry->getValue(), [
             0 => 72,
             1 => 1
-        ));
+        ]);
         $this->assertEquals($entry->getText(), '72/1');
 
         $entry = $ifd1->getEntry(296); // ResolutionUnit

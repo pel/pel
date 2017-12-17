@@ -22,6 +22,8 @@
  * Boston, MA 02110-1301 USA
  */
 
+namespace Pel\Test;
+
 use lsolesen\pel\PelDataWindow;
 use lsolesen\pel\PelJpeg;
 use lsolesen\pel\PelEntryWindowsString;
@@ -32,26 +34,25 @@ class GH16Test extends TestCase
 {
     protected $file;
 
-    function setUp()
+    public function setUp()
     {
         $this->file = dirname(__FILE__) . '/images/gh-16-tmp.jpg';
         $file = dirname(__FILE__) . '/images/gh-16.jpg';
         copy($file, $this->file);
     }
 
-    function tearDown()
+    public function tearDown()
     {
         unlink($this->file);
     }
 
-    function testThisDoesNotWorkAsExpected()
+    public function testThisDoesNotWorkAsExpected()
     {
         $subject = "Превед, медвед!";
 
         $data = new PelDataWindow(file_get_contents($this->file));
 
         if (PelJpeg::isValid($data)) {
-
             $jpeg = new PelJpeg();
             $jpeg->load($data);
             $exif = $jpeg->getExif();

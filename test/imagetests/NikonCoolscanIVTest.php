@@ -22,6 +22,8 @@
  * Boston, MA 02110-1301 USA
  */
 
+namespace Pel\Test\imagetests;
+
 use lsolesen\pel\Pel;
 use lsolesen\pel\PelJpeg;
 use PHPUnit\Framework\TestCase;
@@ -54,18 +56,18 @@ class NikonCoolscanIVTest extends TestCase
 
         $entry = $ifd0->getEntry(282); // XResolution
         $this->assertInstanceOf('lsolesen\pel\PelEntryRational', $entry);
-        $this->assertEquals($entry->getValue(), array(
+        $this->assertEquals($entry->getValue(), [
             0 => 2000,
             1 => 1
-        ));
+        ]);
         $this->assertEquals($entry->getText(), '2000/1');
 
         $entry = $ifd0->getEntry(283); // YResolution
         $this->assertInstanceOf('lsolesen\pel\PelEntryRational', $entry);
-        $this->assertEquals($entry->getValue(), array(
+        $this->assertEquals($entry->getValue(), [
             0 => 2000,
             1 => 1
-        ));
+        ]);
         $this->assertEquals($entry->getText(), '2000/1');
 
         $entry = $ifd0->getEntry(296); // ResolutionUnit

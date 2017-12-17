@@ -22,6 +22,8 @@
  * Boston, MA 02110-1301 USA
  */
 
+namespace Pel\Test\imagetests;
+
 use lsolesen\pel\Pel;
 use lsolesen\pel\PelJpeg;
 use PHPUnit\Framework\TestCase;
@@ -69,18 +71,18 @@ class OlympusC765uzTest extends TestCase
 
         $entry = $ifd0->getEntry(282); // XResolution
         $this->assertInstanceOf('lsolesen\pel\PelEntryRational', $entry);
-        $this->assertEquals($entry->getValue(), array(
+        $this->assertEquals($entry->getValue(), [
             0 => 72,
             1 => 1
-        ));
+        ]);
         $this->assertEquals($entry->getText(), '72/1');
 
         $entry = $ifd0->getEntry(283); // YResolution
         $this->assertInstanceOf('lsolesen\pel\PelEntryRational', $entry);
-        $this->assertEquals($entry->getValue(), array(
+        $this->assertEquals($entry->getValue(), [
             0 => 72,
             1 => 1
-        ));
+        ]);
         $this->assertEquals($entry->getText(), '72/1');
 
         $entry = $ifd0->getEntry(296); // ResolutionUnit
@@ -119,18 +121,18 @@ class OlympusC765uzTest extends TestCase
 
         $entry = $ifd0_0->getEntry(33434); // ExposureTime
         $this->assertInstanceOf('lsolesen\pel\PelEntryRational', $entry);
-        $this->assertEquals($entry->getValue(), array(
+        $this->assertEquals($entry->getValue(), [
             0 => 10,
             1 => 2000
-        ));
+        ]);
         $this->assertEquals($entry->getText(), '1/200 sec.');
 
         $entry = $ifd0_0->getEntry(33437); // FNumber
         $this->assertInstanceOf('lsolesen\pel\PelEntryRational', $entry);
-        $this->assertEquals($entry->getValue(), array(
+        $this->assertEquals($entry->getValue(), [
             0 => 32,
             1 => 10
-        ));
+        ]);
         $this->assertEquals($entry->getText(), 'f/3.2');
 
         $entry = $ifd0_0->getEntry(34850); // ExposureProgram
@@ -165,26 +167,26 @@ class OlympusC765uzTest extends TestCase
 
         $entry = $ifd0_0->getEntry(37122); // CompressedBitsPerPixel
         $this->assertInstanceOf('lsolesen\pel\PelEntryRational', $entry);
-        $this->assertEquals($entry->getValue(), array(
+        $this->assertEquals($entry->getValue(), [
             0 => 2,
             1 => 1
-        ));
+        ]);
         $this->assertEquals($entry->getText(), '2/1');
 
         $entry = $ifd0_0->getEntry(37380); // ExposureBiasValue
         $this->assertInstanceOf('lsolesen\pel\PelEntrySRational', $entry);
-        $this->assertEquals($entry->getValue(), array(
+        $this->assertEquals($entry->getValue(), [
             0 => 0,
             1 => 10
-        ));
+        ]);
         $this->assertEquals($entry->getText(), '0.0');
 
         $entry = $ifd0_0->getEntry(37381); // MaxApertureValue
         $this->assertInstanceOf('lsolesen\pel\PelEntryRational', $entry);
-        $this->assertEquals($entry->getValue(), array(
+        $this->assertEquals($entry->getValue(), [
             0 => 34,
             1 => 10
-        ));
+        ]);
         $this->assertEquals($entry->getText(), '34/10');
 
         $entry = $ifd0_0->getEntry(37383); // MeteringMode
@@ -204,10 +206,10 @@ class OlympusC765uzTest extends TestCase
 
         $entry = $ifd0_0->getEntry(37386); // FocalLength
         $this->assertInstanceOf('lsolesen\pel\PelEntryRational', $entry);
-        $this->assertEquals($entry->getValue(), array(
+        $this->assertEquals($entry->getValue(), [
             0 => 109,
             1 => 10
-        ));
+        ]);
         $this->assertEquals($entry->getText(), '10.9 mm');
 
         $entry = $ifd0_0->getEntry(37500); // MakerNote
@@ -268,10 +270,10 @@ class OlympusC765uzTest extends TestCase
 
         $entry = $ifd0_0->getEntry(41988); // DigitalZoomRatio
         $this->assertInstanceOf('lsolesen\pel\PelEntryRational', $entry);
-        $this->assertEquals($entry->getValue(), array(
+        $this->assertEquals($entry->getValue(), [
             0 => 0,
             1 => 100
-        ));
+        ]);
         $this->assertEquals($entry->getText(), '0/100');
 
         $entry = $ifd0_0->getEntry(41990); // SceneCaptureType
@@ -351,18 +353,18 @@ class OlympusC765uzTest extends TestCase
 
         $entry = $ifd1->getEntry(282); // XResolution
         $this->assertInstanceOf('lsolesen\pel\PelEntryRational', $entry);
-        $this->assertEquals($entry->getValue(), array(
+        $this->assertEquals($entry->getValue(), [
             0 => 72,
             1 => 1
-        ));
+        ]);
         $this->assertEquals($entry->getText(), '72/1');
 
         $entry = $ifd1->getEntry(283); // YResolution
         $this->assertInstanceOf('lsolesen\pel\PelEntryRational', $entry);
-        $this->assertEquals($entry->getValue(), array(
+        $this->assertEquals($entry->getValue(), [
             0 => 72,
             1 => 1
-        ));
+        ]);
         $this->assertEquals($entry->getText(), '72/1');
 
         $entry = $ifd1->getEntry(296); // ResolutionUnit
