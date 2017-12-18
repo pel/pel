@@ -280,7 +280,7 @@ class PelEntrySShort extends PelEntryNumber
                     return $this->value[0];
             }
         }
-        if ($this->ifd_type == PelIfd::CANON_SHOT_INFO) {
+        if ($this->ifd_type == PelIfd::CANON_CAMERA_SETTINGS) {
             switch ($this->tag) {
                 case PelTag::CANON_CS_MACRO:
                     // CC (e->components, 1, v);
