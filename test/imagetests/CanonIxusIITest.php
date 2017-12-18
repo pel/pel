@@ -22,17 +22,19 @@
  * Boston, MA 02110-1301 USA
  */
 
+namespace Pel\Test\imagetests;
+
 use \lsolesen\pel\Pel;
 use \lsolesen\pel\PelJpeg;
 use PHPUnit\Framework\TestCase;
 
-class CanonEos650dTest extends TestCase
+class CanonIxusIITest extends TestCase
 {
     public function testRead()
     {
         Pel::clearExceptions();
         Pel::setStrictParsing(false);
-        $jpeg = new PelJpeg(dirname(__FILE__) . '/canon-eos-650d.jpg');
+        $jpeg = new PelJpeg(dirname(__FILE__) . '/canon-ixus-ii.jpg');
 
         $exif = $jpeg->getExif();
         $this->assertInstanceOf('lsolesen\pel\PelExif', $exif);
@@ -45,7 +47,7 @@ class CanonEos650dTest extends TestCase
         $this->assertInstanceOf('lsolesen\pel\PelIfd', $ifd0);
 
         /* Start of IDF $ifd0. */
-        $this->assertEquals(count($ifd0->getEntries()), 9);
+        $this->assertEquals(count($ifd0->getEntries()), 8);
 
         $entry = $ifd0->getEntry(271); // Make
         $this->assertInstanceOf('lsolesen\pel\PelEntryAscii', $entry);
@@ -54,29 +56,29 @@ class CanonEos650dTest extends TestCase
 
         $entry = $ifd0->getEntry(272); // Model
         $this->assertInstanceOf('lsolesen\pel\PelEntryAscii', $entry);
-        $this->assertEquals($entry->getValue(), 'Canon EOS 650D');
-        $this->assertEquals($entry->getText(), 'Canon EOS 650D');
+        $this->assertEquals($entry->getValue(), 'Canon DIGITAL IXUS II');
+        $this->assertEquals($entry->getText(), 'Canon DIGITAL IXUS II');
 
         $entry = $ifd0->getEntry(274); // Orientation
         $this->assertInstanceOf('lsolesen\pel\PelEntryShort', $entry);
-        $this->assertEquals($entry->getValue(), 1);
-        $this->assertEquals($entry->getText(), 'top - left');
+        $this->assertEquals($entry->getValue(), 6);
+        $this->assertEquals($entry->getText(), 'right - top');
 
         $entry = $ifd0->getEntry(282); // XResolution
         $this->assertInstanceOf('lsolesen\pel\PelEntryRational', $entry);
         $this->assertEquals($entry->getValue(), [
-            0 => 72,
+            0 => 180,
             1 => 1
         ]);
-        $this->assertEquals($entry->getText(), '72/1');
+        $this->assertEquals($entry->getText(), '180/1');
 
         $entry = $ifd0->getEntry(283); // YResolution
         $this->assertInstanceOf('lsolesen\pel\PelEntryRational', $entry);
         $this->assertEquals($entry->getValue(), [
-            0 => 72,
+            0 => 180,
             1 => 1
         ]);
-        $this->assertEquals($entry->getText(), '72/1');
+        $this->assertEquals($entry->getText(), '180/1');
 
         $entry = $ifd0->getEntry(296); // ResolutionUnit
         $this->assertInstanceOf('lsolesen\pel\PelEntryShort', $entry);
@@ -85,11 +87,16 @@ class CanonEos650dTest extends TestCase
 
         $entry = $ifd0->getEntry(306); // DateTime
         $this->assertInstanceOf('lsolesen\pel\PelEntryTime', $entry);
-        $this->assertEquals($entry->getValue(), 1509974253);
-        $this->assertEquals($entry->getText(), '2017:11:06 13:17:33');
+        $this->assertEquals($entry->getValue(), 1089488628);
+        $this->assertEquals($entry->getText(), '2004:07:10 19:43:48');
+
+        $entry = $ifd0->getEntry(531); // YCbCrPositioning
+        $this->assertInstanceOf('lsolesen\pel\PelEntryShort', $entry);
+        $this->assertEquals($entry->getValue(), 1);
+        $this->assertEquals($entry->getText(), 'centered');
 
         /* Sub IFDs of $ifd0. */
-        $this->assertEquals(count($ifd0->getSubIfds()), 2);
+        $this->assertEquals(count($ifd0->getSubIfds()), 1);
         $ifd0_0 = $ifd0->getSubIfd(2); // IFD Exif
         $this->assertInstanceOf('lsolesen\pel\PelIfd', $ifd0_0);
 
@@ -100,53 +107,77 @@ class CanonEos650dTest extends TestCase
         $this->assertInstanceOf('lsolesen\pel\PelEntryRational', $entry);
         $this->assertEquals($entry->getValue(), [
             0 => 1,
-            1 => 800
+            1 => 30
         ]);
-        $this->assertEquals($entry->getText(), '1/800 sec.');
+        $this->assertEquals($entry->getText(), '1/30 sec.');
 
         $entry = $ifd0_0->getEntry(33437); // FNumber
         $this->assertInstanceOf('lsolesen\pel\PelEntryRational', $entry);
         $this->assertEquals($entry->getValue(), [
-            0 => 63,
+            0 => 32,
             1 => 10
         ]);
-        $this->assertEquals($entry->getText(), 'f/6.3');
+        $this->assertEquals($entry->getText(), 'f/3.2');
 
         $entry = $ifd0_0->getEntry(36864); // ExifVersion
         $this->assertInstanceOf('lsolesen\pel\PelEntryVersion', $entry);
-        $this->assertEquals($entry->getValue(), 2.3);
-        $this->assertEquals($entry->getText(), 'Exif Version 2.3');
+        $this->assertEquals($entry->getValue(), 2.2);
+        $this->assertEquals($entry->getText(), 'Exif Version 2.2');
 
         $entry = $ifd0_0->getEntry(36867); // DateTimeOriginal
         $this->assertInstanceOf('lsolesen\pel\PelEntryTime', $entry);
-        $this->assertEquals($entry->getValue(), 1497623444);
-        $this->assertEquals($entry->getText(), '2017:06:16 14:30:44');
+        $this->assertEquals($entry->getValue(), 1089488628);
+        $this->assertEquals($entry->getText(), '2004:07:10 19:43:48');
 
         $entry = $ifd0_0->getEntry(36868); // DateTimeDigitized
         $this->assertInstanceOf('lsolesen\pel\PelEntryTime', $entry);
-        $this->assertEquals($entry->getValue(), 1497623444);
-        $this->assertEquals($entry->getText(), '2017:06:16 14:30:44');
+        $this->assertEquals($entry->getValue(), 1089488628);
+        $this->assertEquals($entry->getText(), '2004:07:10 19:43:48');
 
         $entry = $ifd0_0->getEntry(37121); // ComponentsConfiguration
         $this->assertInstanceOf('lsolesen\pel\PelEntryUndefined', $entry);
         $this->assertEquals($entry->getValue(), "\x01\x02\x03\0");
         $this->assertEquals($entry->getText(), 'Y Cb Cr -');
 
+        $entry = $ifd0_0->getEntry(37122); // CompressedBitsPerPixel
+        $this->assertInstanceOf('lsolesen\pel\PelEntryRational', $entry);
+        $this->assertEquals($entry->getValue(), [
+            0 => 2,
+            1 => 1
+        ]);
+        $this->assertEquals($entry->getText(), '2/1');
+
+        $entry = $ifd0_0->getEntry(37377); // ShutterSpeedValue
+        $this->assertInstanceOf('lsolesen\pel\PelEntrySRational', $entry);
+        $this->assertEquals($entry->getValue(), [
+            0 => 157,
+            1 => 32
+        ]);
+        $this->assertEquals($entry->getText(), '157/32 sec. (APEX: 5)');
+
         $entry = $ifd0_0->getEntry(37378); // ApertureValue
         $this->assertInstanceOf('lsolesen\pel\PelEntryRational', $entry);
         $this->assertEquals($entry->getValue(), [
-            0 => 352256,
-            1 => 65536
+            0 => 107,
+            1 => 32
         ]);
-        $this->assertEquals($entry->getText(), 'f/6.4');
+        $this->assertEquals($entry->getText(), 'f/3.2');
 
         $entry = $ifd0_0->getEntry(37380); // ExposureBiasValue
         $this->assertInstanceOf('lsolesen\pel\PelEntrySRational', $entry);
         $this->assertEquals($entry->getValue(), [
-            0 => 0,
-            1 => 1
+            0 => - 1,
+            1 => 3
         ]);
-        $this->assertEquals($entry->getText(), '0.0');
+        $this->assertEquals($entry->getText(), '-0.3');
+
+        $entry = $ifd0_0->getEntry(37381); // MaxApertureValue
+        $this->assertInstanceOf('lsolesen\pel\PelEntryRational', $entry);
+        $this->assertEquals($entry->getValue(), [
+            0 => 107,
+            1 => 32
+        ]);
+        $this->assertEquals($entry->getText(), '107/32');
 
         $entry = $ifd0_0->getEntry(37383); // MeteringMode
         $this->assertInstanceOf('lsolesen\pel\PelEntryShort', $entry);
@@ -161,10 +192,10 @@ class CanonEos650dTest extends TestCase
         $entry = $ifd0_0->getEntry(37386); // FocalLength
         $this->assertInstanceOf('lsolesen\pel\PelEntryRational', $entry);
         $this->assertEquals($entry->getValue(), [
-            0 => 600,
-            1 => 1
+            0 => 215,
+            1 => 32
         ]);
-        $this->assertEquals($entry->getText(), '600.0 mm');
+        $this->assertEquals($entry->getText(), '6.7 mm');
 
         $entry = $ifd0_0->getEntry(37500); // MakerNote
         $this->assertNull($entry);
@@ -188,10 +219,46 @@ class CanonEos650dTest extends TestCase
         $this->assertEquals($entry->getValue(), 1);
         $this->assertEquals($entry->getText(), 'sRGB');
 
+        $entry = $ifd0_0->getEntry(40962); // PixelXDimension
+        $this->assertInstanceOf('lsolesen\pel\PelEntryShort', $entry);
+        $this->assertEquals($entry->getValue(), 640);
+        $this->assertEquals($entry->getText(), '640');
+
+        $entry = $ifd0_0->getEntry(40963); // PixelYDimension
+        $this->assertInstanceOf('lsolesen\pel\PelEntryShort', $entry);
+        $this->assertEquals($entry->getValue(), 480);
+        $this->assertEquals($entry->getText(), '480');
+
+        $entry = $ifd0_0->getEntry(41486); // FocalPlaneXResolution
+        $this->assertInstanceOf('lsolesen\pel\PelEntryRational', $entry);
+        $this->assertEquals($entry->getValue(), [
+            0 => 640000,
+            1 => 208
+        ]);
+        $this->assertEquals($entry->getText(), '640000/208');
+
+        $entry = $ifd0_0->getEntry(41487); // FocalPlaneYResolution
+        $this->assertInstanceOf('lsolesen\pel\PelEntryRational', $entry);
+        $this->assertEquals($entry->getValue(), [
+            0 => 480000,
+            1 => 156
+        ]);
+        $this->assertEquals($entry->getText(), '480000/156');
+
         $entry = $ifd0_0->getEntry(41488); // FocalPlaneResolutionUnit
         $this->assertInstanceOf('lsolesen\pel\PelEntryShort', $entry);
         $this->assertEquals($entry->getValue(), 2);
         $this->assertEquals($entry->getText(), 'Inch');
+
+        $entry = $ifd0_0->getEntry(41495); // SensingMethod
+        $this->assertInstanceOf('lsolesen\pel\PelEntryShort', $entry);
+        $this->assertEquals($entry->getValue(), 2);
+        $this->assertEquals($entry->getText(), 'One-chip color area sensor');
+
+        $entry = $ifd0_0->getEntry(41728); // FileSource
+        $this->assertInstanceOf('lsolesen\pel\PelEntryUndefined', $entry);
+        $this->assertEquals($entry->getValue(), "\x03");
+        $this->assertEquals($entry->getText(), 'DSC');
 
         $entry = $ifd0_0->getEntry(41985); // CustomRendered
         $this->assertInstanceOf('lsolesen\pel\PelEntryShort', $entry);
@@ -200,13 +267,21 @@ class CanonEos650dTest extends TestCase
 
         $entry = $ifd0_0->getEntry(41986); // ExposureMode
         $this->assertInstanceOf('lsolesen\pel\PelEntryShort', $entry);
-        $this->assertEquals($entry->getValue(), 0);
-        $this->assertEquals($entry->getText(), 'Auto exposure');
+        $this->assertEquals($entry->getValue(), 1);
+        $this->assertEquals($entry->getText(), 'Manual exposure');
 
         $entry = $ifd0_0->getEntry(41987); // WhiteBalance
         $this->assertInstanceOf('lsolesen\pel\PelEntryShort', $entry);
-        $this->assertEquals($entry->getValue(), 0);
-        $this->assertEquals($entry->getText(), 'Auto white balance');
+        $this->assertEquals($entry->getValue(), 1);
+        $this->assertEquals($entry->getText(), 'Manual white balance');
+
+        $entry = $ifd0_0->getEntry(41988); // DigitalZoomRatio
+        $this->assertInstanceOf('lsolesen\pel\PelEntryRational', $entry);
+        $this->assertEquals($entry->getValue(), [
+            0 => 2048,
+            1 => 2048
+        ]);
+        $this->assertEquals($entry->getText(), '2048/2048');
 
         $entry = $ifd0_0->getEntry(41990); // SceneCaptureType
         $this->assertInstanceOf('lsolesen\pel\PelEntryShort', $entry);
@@ -219,7 +294,7 @@ class CanonEos650dTest extends TestCase
         $this->assertInstanceOf('lsolesen\pel\PelIfd', $ifd0_0_0);
 
         /* Start of IDF $ifd0_0_0. */
-        $this->assertEquals(count($ifd0_0_0->getEntries()), 2);
+        $this->assertEquals(count($ifd0_0_0->getEntries()), 4);
 
         $entry = $ifd0_0_0->getEntry(1); // InteroperabilityIndex
         $this->assertInstanceOf('lsolesen\pel\PelEntryAscii', $entry);
@@ -230,6 +305,16 @@ class CanonEos650dTest extends TestCase
         $this->assertInstanceOf('lsolesen\pel\PelEntryVersion', $entry);
         $this->assertEquals($entry->getValue(), 1);
         $this->assertEquals($entry->getText(), 'Interoperability Version 1.0');
+
+        $entry = $ifd0_0_0->getEntry(4097); // RelatedImageWidth
+        $this->assertInstanceOf('lsolesen\pel\PelEntryShort', $entry);
+        $this->assertEquals($entry->getValue(), 640);
+        $this->assertEquals($entry->getText(), '640');
+
+        $entry = $ifd0_0_0->getEntry(4098); // RelatedImageLength
+        $this->assertInstanceOf('lsolesen\pel\PelEntryShort', $entry);
+        $this->assertEquals($entry->getValue(), 480);
+        $this->assertEquals($entry->getText(), '480');
 
         /* Sub IFDs of $ifd0_0_0. */
         $this->assertEquals(count($ifd0_0_0->getSubIfds()), 0);
@@ -260,24 +345,24 @@ class CanonEos650dTest extends TestCase
 
         $entry = $ifd1->getEntry(259); // Compression
         $this->assertInstanceOf('lsolesen\pel\PelEntryShort', $entry);
-        $this->assertEquals($entry->getValue(), 0);
-        $this->assertEquals($entry->getText(), '0');
+        $this->assertEquals($entry->getValue(), 6);
+        $this->assertEquals($entry->getText(), 'JPEG compression');
 
         $entry = $ifd1->getEntry(282); // XResolution
         $this->assertInstanceOf('lsolesen\pel\PelEntryRational', $entry);
         $this->assertEquals($entry->getValue(), [
-            0 => 72,
+            0 => 180,
             1 => 1
         ]);
-        $this->assertEquals($entry->getText(), '72/1');
+        $this->assertEquals($entry->getText(), '180/1');
 
         $entry = $ifd1->getEntry(283); // YResolution
         $this->assertInstanceOf('lsolesen\pel\PelEntryRational', $entry);
         $this->assertEquals($entry->getValue(), [
-            0 => 72,
+            0 => 180,
             1 => 1
         ]);
-        $this->assertEquals($entry->getText(), '72/1');
+        $this->assertEquals($entry->getText(), '180/1');
 
         $entry = $ifd1->getEntry(296); // ResolutionUnit
         $this->assertInstanceOf('lsolesen\pel\PelEntryShort', $entry);
@@ -287,7 +372,7 @@ class CanonEos650dTest extends TestCase
         /* Sub IFDs of $ifd1. */
         $this->assertEquals(count($ifd1->getSubIfds()), 0);
 
-        $thumb_data = file_get_contents(dirname(__FILE__) . '/canon-eos-650d-thumb.jpg');
+        $thumb_data = file_get_contents(dirname(__FILE__) . '/canon-ixus-ii-thumb.jpg');
         $this->assertEquals($ifd1->getThumbnailData(), $thumb_data);
 
         /* Next IFD. */
@@ -301,11 +386,15 @@ class CanonEos650dTest extends TestCase
 
         $entry = $ifd0_mn->getEntry(6); // ImageType
         $this->assertInstanceOf('lsolesen\pel\PelEntryAscii', $entry);
-        $this->assertEquals($entry->getValue(), 'Canon EOS 650D');
+        $this->assertEquals($entry->getValue(), 'IMG:DIGITAL IXUS II JPEG');
 
         $entry = $ifd0_mn->getEntry(7); // FirmwareVersion
         $this->assertInstanceOf('lsolesen\pel\PelEntryAscii', $entry);
-        $this->assertEquals($entry->getValue(), 'Firmware Version 1.0.4');
+        $this->assertEquals($entry->getValue(), 'Firmware Version 1.00');
+
+        $entry = $ifd0_mn->getEntry(8); // FileNumber
+        $this->assertInstanceOf('lsolesen\pel\PelEntryLong', $entry);
+        $this->assertEquals($entry->getValue(), '1202044');
 
         /* Start of IDF $ifd0_mn_cs. */
         $ifd0_mn_cs = $ifd0_mn->getSubIfd(6); // CameraSettings
@@ -319,14 +408,8 @@ class CanonEos650dTest extends TestCase
 
         $entry = $ifd0_mn_cs->getEntry(9); // RecordMode
         $this->assertInstanceOf('lsolesen\pel\PelEntrySShort', $entry);
-        $this->assertEquals($entry->getValue(), '6');
-        $this->assertEquals($entry->getText(), 'CR2');
-
-        $entry = $ifd0_mn_cs->getEntry(22); // LensModel
-        $this->assertInstanceOf('lsolesen\pel\PelEntrySShort', $entry);
-        $this->assertEquals($entry->getValue(), 747);
-        // Tamron 150-600mm G2
-        $this->assertEquals($entry->getText(), 'Canon EF 100-400mm f/4.5-5.6L IS II USM or Tamron Lens');
+        $this->assertEquals($entry->getValue(), '1');
+        $this->assertEquals($entry->getText(), 'JPEG');
 
         $this->assertTrue(count(Pel::getExceptions()) == 0);
     }

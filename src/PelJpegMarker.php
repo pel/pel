@@ -531,7 +531,8 @@ class PelJpegMarker
                     "/(\d+)/",
                     self::$jpegMarkerShort[$marker],
                     - 1,
-                    PREG_SPLIT_NO_EMPTY | PREG_SPLIT_DELIM_CAPTURE);
+                    PREG_SPLIT_NO_EMPTY | PREG_SPLIT_DELIM_CAPTURE
+                );
                 if ((count($splitted) == 2) && array_key_exists($splitted[0], self::$jpegMarkerDescriptions)) {
                     return Pel::fmt(self::$jpegMarkerDescriptions[$splitted[0]], $splitted[1]);
                 }

@@ -24,13 +24,15 @@
  * Boston, MA 02110-1301 USA
  */
 
+namespace Pel\Test;
+
 use lsolesen\pel\PelEntryVersion;
 use lsolesen\pel\PelConvert;
 use PHPUnit\Framework\TestCase;
 
 class PelEntryVersionTest extends TestCase
 {
-    function testVersion()
+    public function testVersion()
     {
         $entry = new PelEntryVersion(42);
 

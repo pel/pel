@@ -23,6 +23,8 @@
  * Boston, MA 02110-1301 USA
  */
 
+namespace Pel\Test;
+
 use \lsolesen\pel\PelEntryByte;
 use \lsolesen\pel\Pel;
 use \lsolesen\pel\PelEntrySByte;

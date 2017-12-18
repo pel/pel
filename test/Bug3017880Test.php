@@ -23,6 +23,8 @@
  * Boston, MA 02110-1301 USA
  */
 
+namespace Pel\Test;
+
 use lsolesen\pel\PelJpeg;
 use lsolesen\pel\PelExif;
 use lsolesen\pel\PelTiff;
@@ -33,7 +35,7 @@ use PHPUnit\Framework\TestCase;
 
 class Bug3017880Test extends TestCase
 {
-    function testThisDoesNotWorkAsExpected()
+    public function testThisDoesNotWorkAsExpected()
     {
         $filename = dirname(__FILE__) . '/images/bug3017880.jpg';
         try {
