@@ -166,7 +166,8 @@ class PelDataWindow
                 'Window [%d, %d] does ' . 'not fit in window [0, %d]',
                 $start,
                 $this->size,
-                $this->size);
+                $this->size
+            );
         }
         $this->start += $start;
         $this->size -= $start;
@@ -189,7 +190,8 @@ class PelDataWindow
             throw new PelDataWindowWindowException(
                 'Window [0, %d] ' . 'does not fit in window [0, %d]',
                 $size,
-                $this->size);
+                $this->size
+            );
         }
         $this->size = $size;
     }
@@ -477,10 +479,10 @@ class PelDataWindow
      */
     public function getRational($offset = 0)
     {
-        return array(
+        return [
             $this->getLong($offset),
             $this->getLong($offset + 4)
-        );
+        ];
     }
 
     /**
@@ -500,10 +502,10 @@ class PelDataWindow
      */
     public function getSRational($offset = 0)
     {
-        return array(
+        return [
             $this->getSLong($offset),
             $this->getSLong($offset + 4)
-        );
+        ];
     }
 
     /**
@@ -562,6 +564,7 @@ class PelDataWindow
             $this->size,
             $this->start,
             $this->start + $this->size,
-            strlen($this->data));
+            strlen($this->data)
+        );
     }
 }

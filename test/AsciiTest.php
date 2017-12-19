@@ -21,6 +21,9 @@
  * Free Software Foundation, Inc., 51 Franklin St, Fifth Floor,
  * Boston, MA 02110-1301 USA
  */
+
+namespace Pel\Test;
+
 use lsolesen\pel\PelConvert;
 use lsolesen\pel\PelEntryAscii;
 use lsolesen\pel\PelEntryCopyright;
@@ -30,18 +33,7 @@ use PHPUnit\Framework\TestCase;
 
 class AsciiTest extends TestCase
 {
-
-    function testConstructorWithNoValues()
-    {
-        if (version_compare(PHP_VERSION, '7.1.0') >= 0) {
-            $this->expectException(\ArgumentCountError::class);
-        } else {
-            $this->expectException(PHPUnit_Framework_Exception::class);
-        }
-        $entry = new PelEntryAscii();
-    }
-
-    function testReturnValues()
+    public function testReturnValues()
     {
         $entry = new PelEntryAscii(42);
 
@@ -50,27 +42,7 @@ class AsciiTest extends TestCase
         $this->assertEquals($entry->getValue(), 'foo bar baz');
     }
 
-    function testTimeWithNoConstructorArgument()
-    {
-        if (version_compare(PHP_VERSION, '7.1.0') >= 0) {
-            $this->expectException(\ArgumentCountError::class);
-        } else {
-            $this->expectException(PHPUnit_Framework_Exception::class);
-        }
-        $entry = new PelEntryTime();
-    }
-
-    function testTimeWithOnlyOneConstructorArgument()
-    {
-        if (version_compare(PHP_VERSION, '7.1.0') >= 0) {
-            $this->expectException(\ArgumentCountError::class);
-        } else {
-            $this->expectException(PHPUnit_Framework_Exception::class);
-        }
-        $entry = new PelEntryTime(42);
-    }
-
-    function testTime()
+    public function testTime()
     {
         $entry = new PelEntryTime(42, 10);
 
@@ -113,7 +85,7 @@ class AsciiTest extends TestCase
         $this->assertEquals($entry->getValue(PelEntryTime::EXIF_STRING), '2007:04:24 00:30:00');
     }
 
-    function testCopyright()
+    public function testCopyright()
     {
         $entry = new PelEntryCopyright();
         $this->assertEquals($entry->getTag(), PelTag::COPYRIGHT);

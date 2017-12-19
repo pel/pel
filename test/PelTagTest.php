@@ -23,10 +23,12 @@
  * Free Software Foundation, Inc., 51 Franklin St, Fifth Floor,
  * Boston, MA 02110-1301 USA
  */
+
+namespace Pel\Test;
+
 use lsolesen\pel\PelIfd;
 use PHPUnit\Framework\TestCase;
 use lsolesen\pel\PelTag;
-
 
 class PelTagTest extends TestCase
 {
@@ -38,14 +40,20 @@ class PelTagTest extends TestCase
     const EXIF_TAG = PelTag::IMAGE_DESCRIPTION;
     const GPS_TAG = PelTag::GPS_LONGITUDE;
 
-    function testReverseLookup()
+    public function testReverseLookup()
     {
         $this->assertSame(false, PelTag::getExifTagByName(self::NONEXISTENT_TAG_NAME), 'Non-existent EXIF tag name');
         $this->assertSame(false, PelTag::getGpsTagByName(self::NONEXISTENT_TAG_NAME), 'Non-existent GPS tag name');
-        $this->assertStringStartsWith('Unknown: ', PelTag::getName(PelIfd::IFD0, self::NONEXISTENT_EXIF_TAG),
-            'Non-existent EXIF tag');
-        $this->assertStringStartsWith('Unknown: ', PelTag::getName(PelIfd::GPS, self::NONEXISTENT_GPS_TAG),
-            'Non-existent GPS tag');
+        $this->assertStringStartsWith(
+            'Unknown: ',
+            PelTag::getName(PelIfd::IFD0, self::NONEXISTENT_EXIF_TAG),
+            'Non-existent EXIF tag'
+        );
+        $this->assertStringStartsWith(
+            'Unknown: ',
+            PelTag::getName(PelIfd::GPS, self::NONEXISTENT_GPS_TAG),
+            'Non-existent GPS tag'
+        );
 
         $this->assertSame(static::EXIF_TAG, PelTag::getExifTagByName(self::EXIF_TAG_NAME), 'EXIF tag name');
         $this->assertSame(static::GPS_TAG, PelTag::getGpsTagByName(self::GPS_TAG_NAME), 'GPS tag name');

@@ -5,8 +5,7 @@
  * A library with support for reading and
  * writing all Exif headers in JPEG and TIFF images using PHP.
  *
- * Copyright (C) 2004, 2006 Martin Geisler.
- * Copyright (C) 2017 Johannes Weberhofer
+ * Copyright (C) 2004, 2005, 2006 Martin Geisler.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -26,22 +25,18 @@
 
 namespace Pel\Test;
 
-use lsolesen\pel\PelEntryUserComment;
-use PHPUnit\Framework\TestCase;
+use \lsolesen\pel\PelEntrySShort;
 
-class PelEntryUserCommentTest extends TestCase
+class NumberSShortTest extends NumberTestCase
 {
-
-    public function testUsercomment()
+    /**
+     * {@inheritdoc}
+     */
+    public function setUp()
     {
-        $entry = new PelEntryUserComment();
-        $this->assertEquals($entry->getComponents(), 8);
-        $this->assertEquals($entry->getValue(), '');
-        $this->assertEquals($entry->getEncoding(), 'ASCII');
-
-        $entry->setValue('Hello!');
-        $this->assertEquals($entry->getComponents(), 14);
-        $this->assertEquals($entry->getValue(), 'Hello!');
-        $this->assertEquals($entry->getEncoding(), 'ASCII');
+        parent::setUp();
+        $this->num = new PelEntrySShort(42);
+        $this->min = -32768;
+        $this->max = 32767;
     }
 }

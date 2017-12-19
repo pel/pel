@@ -22,6 +22,8 @@
  * Boston, MA 02110-1301 USA
  */
 
+namespace Pel\Test;
+
 use lsolesen\pel\PelJpeg;
 use PHPUnit\Framework\TestCase;
 
@@ -29,16 +31,19 @@ class BrokenImagesTest extends TestCase
 {
     public function testWindowWindowExceptionIsCaught()
     {
-        new PelJpeg(dirname(__FILE__) . '/broken_images/gh-10-a.jpg');
+        $jpeg = new PelJpeg(dirname(__FILE__) . '/broken_images/gh-10-a.jpg');
+        $this->assertInstanceOf('\lsolesen\pel\PelJpeg', $jpeg);
     }
 
     public function testWindowOffsetExceptionIsCaught()
     {
-        new PelJpeg(dirname(__FILE__) . '/broken_images/gh-10-b.jpg');
+        $jpeg = new PelJpeg(dirname(__FILE__) . '/broken_images/gh-10-b.jpg');
+        $this->assertInstanceOf('\lsolesen\pel\PelJpeg', $jpeg);
     }
 
     public function testParsingNotFailingOnRecursingIfd()
     {
-        new PelJpeg(dirname(__FILE__) . '/broken_images/gh-11.jpg');
+        $jpeg = new PelJpeg(dirname(__FILE__) . '/broken_images/gh-11.jpg');
+        $this->assertInstanceOf('\lsolesen\pel\PelJpeg', $jpeg);
     }
 }

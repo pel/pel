@@ -78,7 +78,7 @@ class PelJpeg
      *
      * @var array
      */
-    protected $sections = array();
+    protected $sections = [];
 
     /**
      * The JPEG image data.
@@ -440,10 +440,10 @@ class PelJpeg
      */
     public function appendSection($marker, PelJpegContent $content)
     {
-        $this->sections[] = array(
+        $this->sections[] = [
             $marker,
             $content
-        );
+        ];
     }
 
     /**
@@ -466,12 +466,12 @@ class PelJpeg
      */
     public function insertSection($marker, PelJpegContent $content, $offset)
     {
-        array_splice($this->sections, $offset, 0, array(
-            array(
+        array_splice($this->sections, $offset, 0, [
+            [
                 $marker,
                 $content
-            )
-        ));
+            ]
+        ]);
     }
 
     /**

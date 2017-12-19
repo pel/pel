@@ -22,10 +22,13 @@
  * Boston, MA 02110-1301 USA
  */
 
+namespace Pel\Test\imagetests;
+
 use lsolesen\pel\Pel;
 use lsolesen\pel\PelJpeg;
+use PHPUnit\Framework\TestCase;
 
-class CanonPowershotS60Test extends \PHPUnit_Framework_TestCase
+class CanonPowershotS60Test extends TestCase
 {
     public function testRead()
     {
@@ -63,18 +66,18 @@ class CanonPowershotS60Test extends \PHPUnit_Framework_TestCase
 
         $entry = $ifd0->getEntry(282); // XResolution
         $this->assertInstanceOf('lsolesen\pel\PelEntryRational', $entry);
-        $this->assertEquals($entry->getValue(), array(
+        $this->assertEquals($entry->getValue(), [
             0 => 180,
             1 => 1
-        ));
+        ]);
         $this->assertEquals($entry->getText(), '180/1');
 
         $entry = $ifd0->getEntry(283); // YResolution
         $this->assertInstanceOf('lsolesen\pel\PelEntryRational', $entry);
-        $this->assertEquals($entry->getValue(), array(
+        $this->assertEquals($entry->getValue(), [
             0 => 180,
             1 => 1
-        ));
+        ]);
         $this->assertEquals($entry->getText(), '180/1');
 
         $entry = $ifd0->getEntry(296); // ResolutionUnit
@@ -102,18 +105,18 @@ class CanonPowershotS60Test extends \PHPUnit_Framework_TestCase
 
         $entry = $ifd0_0->getEntry(33434); // ExposureTime
         $this->assertInstanceOf('lsolesen\pel\PelEntryRational', $entry);
-        $this->assertEquals($entry->getValue(), array(
+        $this->assertEquals($entry->getValue(), [
             0 => 1,
             1 => 8
-        ));
+        ]);
         $this->assertEquals($entry->getText(), '1/8 sec.');
 
         $entry = $ifd0_0->getEntry(33437); // FNumber
         $this->assertInstanceOf('lsolesen\pel\PelEntryRational', $entry);
-        $this->assertEquals($entry->getValue(), array(
+        $this->assertEquals($entry->getValue(), [
             0 => 53,
             1 => 10
-        ));
+        ]);
         $this->assertEquals($entry->getText(), 'f/5.3');
 
         $entry = $ifd0_0->getEntry(36864); // ExifVersion
@@ -138,42 +141,42 @@ class CanonPowershotS60Test extends \PHPUnit_Framework_TestCase
 
         $entry = $ifd0_0->getEntry(37122); // CompressedBitsPerPixel
         $this->assertInstanceOf('lsolesen\pel\PelEntryRational', $entry);
-        $this->assertEquals($entry->getValue(), array(
+        $this->assertEquals($entry->getValue(), [
             0 => 2,
             1 => 1
-        ));
+        ]);
         $this->assertEquals($entry->getText(), '2/1');
 
         $entry = $ifd0_0->getEntry(37377); // ShutterSpeedValue
         $this->assertInstanceOf('lsolesen\pel\PelEntrySRational', $entry);
-        $this->assertEquals($entry->getValue(), array(
+        $this->assertEquals($entry->getValue(), [
             0 => 96,
             1 => 32
-        ));
+        ]);
         $this->assertEquals($entry->getText(), '96/32 sec. (APEX: 2)');
 
         $entry = $ifd0_0->getEntry(37378); // ApertureValue
         $this->assertInstanceOf('lsolesen\pel\PelEntryRational', $entry);
-        $this->assertEquals($entry->getValue(), array(
+        $this->assertEquals($entry->getValue(), [
             0 => 154,
             1 => 32
-        ));
+        ]);
         $this->assertEquals($entry->getText(), 'f/5.3');
 
         $entry = $ifd0_0->getEntry(37380); // ExposureBiasValue
         $this->assertInstanceOf('lsolesen\pel\PelEntrySRational', $entry);
-        $this->assertEquals($entry->getValue(), array(
+        $this->assertEquals($entry->getValue(), [
             0 => 0,
             1 => 3
-        ));
+        ]);
         $this->assertEquals($entry->getText(), '0.0');
 
         $entry = $ifd0_0->getEntry(37381); // MaxApertureValue
         $this->assertInstanceOf('lsolesen\pel\PelEntryRational', $entry);
-        $this->assertEquals($entry->getValue(), array(
+        $this->assertEquals($entry->getValue(), [
             0 => 154,
             1 => 32
-        ));
+        ]);
         $this->assertEquals($entry->getText(), '154/32');
 
         $entry = $ifd0_0->getEntry(37383); // MeteringMode
@@ -188,10 +191,10 @@ class CanonPowershotS60Test extends \PHPUnit_Framework_TestCase
 
         $entry = $ifd0_0->getEntry(37386); // FocalLength
         $this->assertInstanceOf('lsolesen\pel\PelEntryRational', $entry);
-        $this->assertEquals($entry->getValue(), array(
+        $this->assertEquals($entry->getValue(), [
             0 => 662,
             1 => 32
-        ));
+        ]);
         $this->assertEquals($entry->getText(), '20.7 mm');
 
         $entry = $ifd0_0->getEntry(37500); // MakerNote
@@ -226,18 +229,18 @@ class CanonPowershotS60Test extends \PHPUnit_Framework_TestCase
 
         $entry = $ifd0_0->getEntry(41486); // FocalPlaneXResolution
         $this->assertInstanceOf('lsolesen\pel\PelEntryRational', $entry);
-        $this->assertEquals($entry->getValue(), array(
+        $this->assertEquals($entry->getValue(), [
             0 => 640000,
             1 => 283
-        ));
+        ]);
         $this->assertEquals($entry->getText(), '640000/283');
 
         $entry = $ifd0_0->getEntry(41487); // FocalPlaneYResolution
         $this->assertInstanceOf('lsolesen\pel\PelEntryRational', $entry);
-        $this->assertEquals($entry->getValue(), array(
+        $this->assertEquals($entry->getValue(), [
             0 => 480000,
             1 => 212
-        ));
+        ]);
         $this->assertEquals($entry->getText(), '480000/212');
 
         $entry = $ifd0_0->getEntry(41488); // FocalPlaneResolutionUnit
@@ -272,10 +275,10 @@ class CanonPowershotS60Test extends \PHPUnit_Framework_TestCase
 
         $entry = $ifd0_0->getEntry(41988); // DigitalZoomRatio
         $this->assertInstanceOf('lsolesen\pel\PelEntryRational', $entry);
-        $this->assertEquals($entry->getValue(), array(
+        $this->assertEquals($entry->getValue(), [
             0 => 2592,
             1 => 2592
-        ));
+        ]);
         $this->assertEquals($entry->getText(), '2592/2592');
 
         $entry = $ifd0_0->getEntry(41990); // SceneCaptureType
@@ -345,18 +348,18 @@ class CanonPowershotS60Test extends \PHPUnit_Framework_TestCase
 
         $entry = $ifd1->getEntry(282); // XResolution
         $this->assertInstanceOf('lsolesen\pel\PelEntryRational', $entry);
-        $this->assertEquals($entry->getValue(), array(
+        $this->assertEquals($entry->getValue(), [
             0 => 180,
             1 => 1
-        ));
+        ]);
         $this->assertEquals($entry->getText(), '180/1');
 
         $entry = $ifd1->getEntry(283); // YResolution
         $this->assertInstanceOf('lsolesen\pel\PelEntryRational', $entry);
-        $this->assertEquals($entry->getValue(), array(
+        $this->assertEquals($entry->getValue(), [
             0 => 180,
             1 => 1
-        ));
+        ]);
         $this->assertEquals($entry->getText(), '180/1');
 
         $entry = $ifd1->getEntry(296); // ResolutionUnit

@@ -23,14 +23,17 @@
  * Boston, MA 02110-1301 USA
  */
 
+namespace Pel\Test;
+
 use lsolesen\pel\PelIfd;
 use lsolesen\pel\PelEntryAscii;
 use lsolesen\pel\PelTag;
 use lsolesen\pel\PelEntryTime;
+use PHPUnit\Framework\TestCase;
 
-class IfdTest extends \PHPUnit_Framework_TestCase
+class IfdTest extends TestCase
 {
-    function testIteratorAggretate()
+    public function testIteratorAggretate()
     {
         $ifd = new PelIfd(PelIfd::IFD0);
 
@@ -44,7 +47,7 @@ class IfdTest extends \PHPUnit_Framework_TestCase
 
         $this->assertEquals(sizeof($ifd->getIterator()), 2);
 
-        $entries = array();
+        $entries = [];
         foreach ($ifd as $tag => $entry) {
             $entries[$tag] = $entry;
         }
@@ -53,7 +56,7 @@ class IfdTest extends \PHPUnit_Framework_TestCase
         $this->assertSame($entries[PelTag::DATE_TIME], $date);
     }
 
-    function testArrayAccess()
+    public function testArrayAccess()
     {
         $ifd = new PelIfd(PelIfd::IFD0);
 
