@@ -105,7 +105,7 @@ class PelEntryWindowsString extends PelEntry
     {
         $this->tag = $tag;
         $this->format = PelFormat::BYTE;
-        $this->setValue( $str, $from_exif );
+        $this->setValue($str, $from_exif);
     }
 
     /**
@@ -129,7 +129,7 @@ class PelEntryWindowsString extends PelEntry
             }
             $str = mb_convert_encoding($str, 'UTF-8', 'UCS-2LE');
         } else {
-            $s = mb_convert_encoding( $str, 'UCS-2LE', 'auto' );
+            $s = mb_convert_encoding($str, 'UCS-2LE', 'auto');
         }
 
         if (substr($s, -$zlen, $zlen) != static::ZEROES) {

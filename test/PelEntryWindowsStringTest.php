@@ -24,6 +24,8 @@
  * Boston, MA 02110-1301 USA
  */
 
+namespace Pel\Test;
+
 use lsolesen\pel\PelConvert;
 use lsolesen\pel\PelEntryWindowsString;
 use lsolesen\pel\PelTag;
@@ -32,7 +34,7 @@ use PHPUnit\Framework\TestCase;
 class PelEntryWindowsStringTest extends TestCase
 {
 
-    function testWindowsString()
+    public function testWindowsString()
     {
         $test_str = 'Tést';
         $test_str_ucs2 = mb_convert_encoding($test_str, 'UCS-2LE', 'auto');
