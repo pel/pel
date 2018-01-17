@@ -162,7 +162,7 @@ class PelFormat
     /**
      * Values for format's short names
      */
-    protected static $formatName = array(
+    protected static $formatName = [
         self::ASCII => 'Ascii',
         self::BYTE => 'Byte',
         self::SHORT => 'Short',
@@ -175,9 +175,9 @@ class PelFormat
         self::FLOAT => 'Float',
         self::DOUBLE => 'Double',
         self::UNDEFINED => 'Undefined'
-    );
+    ];
 
-    protected static $formatLength = array(
+    protected static $formatLength = [
         self::ASCII => 1,
         self::BYTE => 1,
         self::SHORT => 2,
@@ -190,7 +190,7 @@ class PelFormat
         self::FLOAT => 4,
         self::DOUBLE => 8,
         self::UNDEFINED => 1
-    );
+    ];
 
     /**
      * Returns the name of a format like 'Ascii' for the {@link ASCII} format

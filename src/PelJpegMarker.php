@@ -365,7 +365,7 @@ class PelJpegMarker
     /**
      * Values for marker's short names
      */
-    protected static $jpegMarkerShort = array(
+    protected static $jpegMarkerShort = [
         self::SOF0 => 'SOF0',
         self::SOF1 => 'SOF1',
         self::SOF2 => 'SOF2',
@@ -430,12 +430,12 @@ class PelJpegMarker
         self::JPG12 => 'JPG12',
         self::JPG13 => 'JPG13',
         self::COM => 'COM'
-    );
+    ];
 
     /**
      * Values for marker's descriptions names.
      */
-    protected static $jpegMarkerDescriptions = array(
+    protected static $jpegMarkerDescriptions = [
         self::SOF0 => 'Encoding (baseline)',
         self::SOF1 => 'Encoding (extended sequential)',
         self::SOF2 => 'Encoding (progressive)',
@@ -465,7 +465,7 @@ class PelJpegMarker
         'APP' => 'Application segment %d',
         'JPG' => 'Extension %d',
         self::COM => 'Comment'
-    );
+    ];
 
     /**
      * Check if a byte is a valid JPEG marker.
@@ -531,7 +531,8 @@ class PelJpegMarker
                     "/(\d+)/",
                     self::$jpegMarkerShort[$marker],
                     - 1,
-                    PREG_SPLIT_NO_EMPTY | PREG_SPLIT_DELIM_CAPTURE);
+                    PREG_SPLIT_NO_EMPTY | PREG_SPLIT_DELIM_CAPTURE
+                );
                 if ((count($splitted) == 2) && array_key_exists($splitted[0], self::$jpegMarkerDescriptions)) {
                     return Pel::fmt(self::$jpegMarkerDescriptions[$splitted[0]], $splitted[1]);
                 }

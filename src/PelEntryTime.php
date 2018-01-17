@@ -183,12 +183,12 @@ class PelEntryTime extends PelEntryAscii
                 return $this->day_count + $this->seconds / 86400;
             default:
                 throw new PelInvalidArgumentException(
-                    'Expected UNIX_TIMESTAMP (%d), ' . 'EXIF_STRING (%d), or ' . 'JULIAN_DAY_COUNT (%d) for $type, ' .
-                         'got %d.',
-                        self::UNIX_TIMESTAMP,
-                        self::EXIF_STRING,
-                        self::JULIAN_DAY_COUNT,
-                        $type);
+                    'Expected UNIX_TIMESTAMP (%d), ' . 'EXIF_STRING (%d), or ' . 'JULIAN_DAY_COUNT (%d) for $type, got %d.',
+                    self::UNIX_TIMESTAMP,
+                    self::EXIF_STRING,
+                    self::JULIAN_DAY_COUNT,
+                    $type
+                );
         }
     }
 
@@ -238,12 +238,12 @@ class PelEntryTime extends PelEntryAscii
 
             default:
                 throw new PelInvalidArgumentException(
-                    'Expected UNIX_TIMESTAMP (%d), ' . 'EXIF_STRING (%d), or ' . 'JULIAN_DAY_COUNT (%d) for $type, ' .
-                         'got %d.',
-                        self::UNIX_TIMESTAMP,
-                        self::EXIF_STRING,
-                        self::JULIAN_DAY_COUNT,
-                        $type);
+                    'Expected UNIX_TIMESTAMP (%d), ' . 'EXIF_STRING (%d), or ' . 'JULIAN_DAY_COUNT (%d) for $type, got %d.',
+                    self::UNIX_TIMESTAMP,
+                    self::EXIF_STRING,
+                    self::JULIAN_DAY_COUNT,
+                    $type
+                );
         }
 
         /*
@@ -294,11 +294,11 @@ class PelEntryTime extends PelEntryAscii
     {
         // Special case mapping 0 -> 0/0/0
         if ($jd == 0) {
-            return array(
+            return [
                 0,
                 0,
                 0
-            );
+            ];
         }
 
         $l = $jd + 68569;
@@ -311,11 +311,11 @@ class PelEntryTime extends PelEntryAscii
         $l = floor($j / 11);
         $m = $j + 2 - (12 * $l);
         $y = 100 * ($n - 49) + $i + $l;
-        return array(
+        return [
             $y,
             $m,
             $d
-        );
+        ];
     }
 
     /**

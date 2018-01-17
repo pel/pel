@@ -23,6 +23,9 @@
  * Free Software Foundation, Inc., 51 Franklin St, Fifth Floor,
  * Boston, MA 02110-1301 USA
  */
+
+namespace Pel\Test;
+
 use PHPUnit\Framework\TestCase;
 use lsolesen\pel\Pel;
 use lsolesen\pel\PelFormat;
@@ -30,7 +33,7 @@ use lsolesen\pel\PelFormat;
 class PelFormatTest extends TestCase
 {
 
-    function testNames()
+    public function testNames()
     {
         $pelFormat = new PelFormat();
         $this->assertEquals($pelFormat::getName(PelFormat::ASCII), 'Ascii');
@@ -39,7 +42,7 @@ class PelFormatTest extends TestCase
         $this->assertEquals($pelFormat::getName(100), Pel::fmt('Unknown format: 0x%X', 100));
     }
 
-    function testDescriptions()
+    public function testDescriptions()
     {
         $pelFormat = new PelFormat();
         $this->assertEquals($pelFormat::getSize(PelFormat::ASCII), 1);
