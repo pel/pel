@@ -42,10 +42,10 @@ class PelSpec
     public static function setMap($file)
     {
         if ($file === null) {
-          unset(self::$map);
+            self::$map = null;
         }
         else {
-          self::$map = include $file;
+            self::$map = include $file;
         }
     }
 
