@@ -216,7 +216,7 @@ class PelIfd implements \IteratorAggregate, \ArrayAccess
      */
     public function __construct($type)
     {
-        if (!isset(PelSpec::getIfdTypes()[$type])) {
+        if (PelSpec::getIfdType($type) !== null) {
             throw new PelIfdException('Unknown IFD type: %d', $type);
         }
 
@@ -353,11 +353,11 @@ class PelIfd implements \IteratorAggregate, \ArrayAccess
             if ($o > $d->getSize() - 6) {
                 Pel::maybeThrow(new PelIfdException('Bogus offset to next IFD: ' . '%d > %d!', $o, $d->getSize() - 6));
             } else {
-                if ($this->type == PelIfd::IFD1) {
+                if (PelSpec::getIfdType(this->type) === '1') {
                     // IFD1 shouldn't link further...
                     Pel::maybeThrow(new PelIfdException('IFD1 links to another IFD!'));
                 }
-                $this->next = new PelIfd(PelIfd::IFD1);
+                $this->next = new PelIfd(PelSpec::getIfdIdByType('1'));
                 $this->next->load($d, $o);
             }
         } else {
@@ -842,8 +842,8 @@ class PelIfd implements \IteratorAggregate, \ArrayAccess
      */
     public static function getTypeName($type)
     {
-        if (PelSpec::getIfdTypes()[$type]) {
-            return PelSpec::getIfdTypes($type);
+        if (PelSpec::getIfdType($type) !== null) {
+            return PelSpec::getIfdType($type);
         }
         throw new PelIfdException('Unknown IFD type: %d', $type);
     }
