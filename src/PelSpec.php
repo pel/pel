@@ -100,6 +100,22 @@ class PelSpec
     }
 
     /**
+     * Determines if the TAG is an IFD pointer.
+     *
+     * @param int $ifd_id
+     *            the IFD id.
+     * @param int $tag_id
+     *            the TAG id.
+     *
+     * @return int
+     *            the IFD id, or FALSE.
+     */
+    public static function isTagAnIfdPointer($ifd_id, $tag_id)
+    {
+        return isset(self::getMap()['tags'][$ifd_id][$tag_id]['ifd']) ? self::getMap()['tags'][$ifd_id][$tag_id]['ifd'] : false;
+    }
+
+    /**
      * Returns the TAG name.
      *
      * @param int $ifd_id
