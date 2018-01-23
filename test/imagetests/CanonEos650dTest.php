@@ -169,7 +169,8 @@ class CanonEos650dTest extends TestCase
         $this->assertEquals($entry->getText(), '600.0 mm');
 
         $entry = $ifd0_0->getEntry(37500); // MakerNote
-        $this->assertNull($entry);
+        // @todo add some makernote tests.
+        $this->assertNotNull($entry);
 
         $entry = $ifd0_0->getEntry(37510); // UserComment
         $this->assertInstanceOf('lsolesen\pel\PelEntryUserComment', $entry);
