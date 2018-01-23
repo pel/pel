@@ -357,6 +357,7 @@ class PelIfd implements \IteratorAggregate, \ArrayAccess
                     // IFD1 shouldn't link further...
                     Pel::maybeThrow(new PelIfdException('IFD1 links to another IFD!'));
                 }
+throw new \Exception($this->type . '!' . PelSpec::getIfdType($this->type) . '!' . PelSpec::getIfdIdByType('1'));
                 $this->next = new PelIfd(PelSpec::getIfdIdByType('1'));
                 $this->next->load($d, $o);
             }
