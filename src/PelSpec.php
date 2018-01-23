@@ -43,8 +43,7 @@ class PelSpec
     {
         if ($file === null) {
             self::$map = null;
-        }
-        else {
+        } else {
             self::$map = include $file;
         }
     }

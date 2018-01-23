@@ -357,7 +357,6 @@ class PelIfd implements \IteratorAggregate, \ArrayAccess
                     // IFD1 shouldn't link further...
                     Pel::maybeThrow(new PelIfdException('IFD1 links to another IFD!'));
                 }
-throw new \Exception($this->type . '!' . PelSpec::getIfdType($this->type) . '!' . PelSpec::getIfdIdByType('1') . '!' . PelSpec::getIfdIdByType('IFD1'));
                 $this->next = new PelIfd(PelSpec::getIfdIdByType('1'));
                 $this->next->load($d, $o);
             }
@@ -1211,11 +1210,11 @@ throw new \Exception($this->type . '!' . PelSpec::getIfdType($this->type) . '!' 
         /* Find bytes from sub IFDs. */
         $sub_bytes = '';
         foreach ($this->sub as $type => $sub) {
-            if ($type == PelIfd::EXIF) {
+            if (PelSpec::getIfdType($type) === 'Exif') {
                 $tag = PelTag::EXIF_IFD_POINTER;
-            } elseif ($type == PelIfd::GPS) {
+            } elseif (PelSpec::getIfdType($type) === 'GPS') {
                 $tag = PelTag::GPS_INFO_IFD_POINTER;
-            } elseif ($type == PelIfd::INTEROPERABILITY) {
+            } elseif (PelSpec::getIfdType($type) === 'Interoperability') {
                 $tag = PelTag::INTEROPERABILITY_IFD_POINTER;
             } else {
                 // PelConvert::BIG_ENDIAN is the default used by PelConvert
