@@ -314,18 +314,17 @@ class PelIfd implements \IteratorAggregate, \ArrayAccess
                     $this->loadSingleValue($d, $offset, $i, $tag);
                 } else {
                     $type = PelSpec::isTagAnIfdPointer($this->type, $tag);
-                }
-
-                if ($starting_offset != $o) {
-                    $ifd = new PelIfd($type);
-                    try {
-                        $ifd->load($d, $o);
-                        $this->sub[$type] = $ifd;
-                    } catch (PelDataWindowOffsetException $e) {
-                        Pel::maybeThrow(new PelIfdException($e->getMessage()));
+                    if ($starting_offset != $o) {
+                        $ifd = new PelIfd($type);
+                        try {
+                            $ifd->load($d, $o);
+                            $this->sub[$type] = $ifd;
+                        } catch (PelDataWindowOffsetException $e) {
+                            Pel::maybeThrow(new PelIfdException($e->getMessage()));
+                        }
+                    } else {
+                        Pel::maybeThrow(new PelIfdException('Bogus offset to next IFD: %d, same as offset being loaded from.', $o));
                     }
-                } else {
-                    Pel::maybeThrow(new PelIfdException('Bogus offset to next IFD: %d, same as offset being loaded from.', $o));
                 }
             } else {
                 switch ($tag) {
