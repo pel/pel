@@ -96,7 +96,7 @@ class CanonEos650dTest extends TestCase
         $this->assertInstanceOf('lsolesen\pel\PelIfd', $ifd0_0);
 
         /* Start of IDF $ifd0_0. */
-        $this->assertEquals(count($ifd0_0->getEntries()), 29);
+        $this->assertEquals(count($ifd0_0->getEntries()), 30);
 
         $entry = $ifd0_0->getEntry(33434); // ExposureTime
         $this->assertInstanceOf('lsolesen\pel\PelEntryRational', $entry);
