@@ -23,10 +23,10 @@ return array (
   array (
     'Exif' => 2,
     'GPS' => 3,
-    0 => 0,
+    '0' => 0,
     'IFD0' => 0,
     'Main' => 0,
-    1 => 1,
+    '1' => 1,
     'IFD1' => 1,
     'Thumbnail' => 1,
     'Interoperability' => 4,
