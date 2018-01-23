@@ -301,31 +301,29 @@ class PelIfd implements \IteratorAggregate, \ArrayAccess
                 $n
             );
 
-            // If the tag is an IFD pointer, loads the IFD.
-            if (PelSpec::isTagAnIfdPointer($this->type, $tag)) {
+            if ($type = PelSpec::isTagAnIfdPointer($this->type, $tag)) {
+                // If the tag is an IFD pointer, loads the IFD.
                 $components = $d->getLong($offset + 12 * $i + 4);
                 $o = $d->getLong($offset + 12 * $i + 8);
                 Pel::debug('Found sub IFD at offset %d', $o);
 
-                if ($tag === PelTag::MAKER_NOTE) {
-                    // Store maker notes infos, because we need PelTag::MAKE of IFD0 for MakerNotes
-                    // Thus MakerNotes will be loaded at the end of loading IFD0.
-                    $this->setMakerNotes($this, $d, $components, $o);
-                    $this->loadSingleValue($d, $offset, $i, $tag);
-                } else {
-                    $type = PelSpec::isTagAnIfdPointer($this->type, $tag);
-                    if ($starting_offset != $o) {
-                        $ifd = new PelIfd($type);
-                        try {
-                            $ifd->load($d, $o);
-                            $this->sub[$type] = $ifd;
-                        } catch (PelDataWindowOffsetException $e) {
-                            Pel::maybeThrow(new PelIfdException($e->getMessage()));
-                        }
-                    } else {
-                        Pel::maybeThrow(new PelIfdException('Bogus offset to next IFD: %d, same as offset being loaded from.', $o));
+                if ($starting_offset != $o) {
+                    $ifd = new PelIfd($type);
+                    try {
+                        $ifd->load($d, $o);
+                        $this->sub[$type] = $ifd;
+                    } catch (PelDataWindowOffsetException $e) {
+                        Pel::maybeThrow(new PelIfdException($e->getMessage()));
                     }
+                } else {
+                    Pel::maybeThrow(new PelIfdException('Bogus offset to next IFD: %d, same as offset being loaded from.', $o));
                 }
+            } elseif (PelSpec::isTagAMakerNotesPointer($this->type, $tag)) {
+                // If the tag is a Maker Notes pointer, store maker notes
+                // infos, because we need PelTag::MAKE of IFD0 for MakerNotes.
+                // Thus MakerNotes will be loaded at the end of loading IFD0.
+                $this->setMakerNotes($this, $d, $components, $o);
+                $this->loadSingleValue($d, $offset, $i, $tag);
             } else {
                 switch ($tag) {
                     case PelTag::JPEG_INTERCHANGE_FORMAT:

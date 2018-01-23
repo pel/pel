@@ -96,7 +96,7 @@ class CanonEos650dTest extends TestCase
         $this->assertInstanceOf('lsolesen\pel\PelIfd', $ifd0_0);
 
         /* Start of IDF $ifd0_0. */
-        $this->assertEquals(count($ifd0_0->getEntries()), 30);
+        $this->assertEquals(count($ifd0_0->getEntries()), 29);
 
         $entry = $ifd0_0->getEntry(33434); // ExposureTime
         $this->assertInstanceOf('lsolesen\pel\PelEntryRational', $entry);
@@ -169,8 +169,7 @@ class CanonEos650dTest extends TestCase
         $this->assertEquals($entry->getText(), '600.0 mm');
 
         $entry = $ifd0_0->getEntry(37500); // MakerNote
-        // @todo add some makernote tests.
-        $this->assertNotNull($entry);
+        $this->assertNull($entry);
 
         $entry = $ifd0_0->getEntry(37510); // UserComment
         $this->assertInstanceOf('lsolesen\pel\PelEntryUserComment', $entry);
