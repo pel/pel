@@ -307,7 +307,7 @@ class PelIfd implements \IteratorAggregate, \ArrayAccess
                 $o = $d->getLong($offset + 12 * $i + 8);
                 Pel::debug('Found sub IFD at offset %d', $o);
 
-                if (PelSpec::getTagName($this->type, $tag) === 'MakerNote') {
+                if ($tag === MAKER_NOTE) {
                     // Store maker notes infos, because we need PelTag::MAKE of IFD0 for MakerNotes
                     // Thus MakerNotes will be loaded at the end of loading IFD0.
                     $this->setMakerNotes($this, $d, $components, $o);
