@@ -353,7 +353,7 @@ class PelIfd implements \IteratorAggregate, \ArrayAccess
             if ($o > $d->getSize() - 6) {
                 Pel::maybeThrow(new PelIfdException('Bogus offset to next IFD: ' . '%d > %d!', $o, $d->getSize() - 6));
             } else {
-                if (PelSpec::getIfdType(this->type) === '1') {
+                if (PelSpec::getIfdType($this->type) === '1') {
                     // IFD1 shouldn't link further...
                     Pel::maybeThrow(new PelIfdException('IFD1 links to another IFD!'));
                 }
