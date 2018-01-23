@@ -216,7 +216,7 @@ class PelIfd implements \IteratorAggregate, \ArrayAccess
      */
     public function __construct($type)
     {
-        if (PelSpec::getIfdType($type) !== null) {
+        if (PelSpec::getIfdType($type) === null) {
             throw new PelIfdException('Unknown IFD type: %d', $type);
         }
 
@@ -308,8 +308,8 @@ class PelIfd implements \IteratorAggregate, \ArrayAccess
                 Pel::debug('Found sub IFD at offset %d', $o);
 
                 if (PelSpec::getTagName($this->type, $tag) === 'MakerNote') {
-                    // Store maker notes infos, because we need PelTag::MAKE of PelIfd::IFD0 for MakerNotes
-                    // Thus MakerNotes will be loaded at the end of loading PelIfd::IFD0
+                    // Store maker notes infos, because we need PelTag::MAKE of IFD0 for MakerNotes
+                    // Thus MakerNotes will be loaded at the end of loading IFD0.
                     $this->setMakerNotes($this, $d, $components, $o);
                     $this->loadSingleValue($d, $offset, $i, $tag);
                 } else {
@@ -365,9 +365,9 @@ class PelIfd implements \IteratorAggregate, \ArrayAccess
         }
 
         // Check if we finished loading IFD0 and EXIF IFD is set (EXIF IFD holds the MakerNotes)
-        if ($this->type == PelIfd::IFD0 && isset($this->sub[PelIfd::EXIF])) {
+        if (PelSpec::getIfdType($this->type) === '0' && isset($this->sub[PelSpec::getIfdIdByType('Exif')])) {
             // Get MakerNotes from EXIF IFD and check if they are set
-            $mk = $this->sub[PelIfd::EXIF]->getMakerNotes();
+            $mk = $this->sub[PelSpec::getIfdIdByType('Exif')]->getMakerNotes();
             if (!empty($mk) && count($mk) > 0) {
                 // get Make tag and load maker notes if tag is valid
                 $manufacturer = $this->getEntry(PelTag::MAKE);
