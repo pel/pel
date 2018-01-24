@@ -184,7 +184,7 @@ class PelSpec
         if (empty($format)) {
             return null;
         }
-        if (is_array($format) {
+        if (is_array($format)) {
             return $format[0];
         }
         return $format;
