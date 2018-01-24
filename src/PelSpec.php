@@ -166,4 +166,27 @@ class PelSpec
     {
         return isset(self::getMap()['tagsByName'][$ifd_id][$tag_name]) ? self::getMap()['tagsByName'][$ifd_id][$tag_name] : null;
     }
+
+    /**
+     * Returns the TAG format.
+     *
+     * @param int $ifd_id
+     *            the IFD id.
+     * @param int $tag_id
+     *            the TAG id.
+     *
+     * @return string
+     *            the TAG format.
+     */
+    public static function getTagFormat($ifd_id, $tag_id)
+    {
+        $format = isset(self::getMap()['tags'][$ifd_id][$tag_id]['format']) ? self::getMap()['tags'][$ifd_id][$tag_id]['format'] : null;
+        if (empty($format)) {
+            return null;
+        }
+        if (is_array($format) {
+            return $format[0];
+        }
+        return $format;
+    }
 }

@@ -14,7 +14,7 @@ tags:
         name: InteroperabilityVersion
         title: 'Interoperability Version'
         components: 4
-        format: Undefined
+        format: Version
     0x1000:
         const: RELATED_IMAGE_FILE_FORMAT
         name: RelatedImageFileFormat

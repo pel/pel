@@ -320,27 +320,23 @@ class PelIfd implements \IteratorAggregate, \ArrayAccess
                 }
             } elseif (PelSpec::isTagAMakerNotesPointer($this->type, $tag)) {
                 // If the tag is a Maker Notes pointer, store maker notes
-                // infos, because we need PelTag::MAKE of IFD0 for MakerNotes.
+                // infos, because we need the 'Make' tag of IFD0 for MakerNotes.
                 // Thus MakerNotes will be loaded at the end of loading IFD0.
                 $components = $d->getLong($offset + 12 * $i + 4);
                 $o = $d->getLong($offset + 12 * $i + 8);
                 Pel::debug('Found maker notes IFD at offset %d', $o);
                 $this->setMakerNotes($this, $d, $components, $o);
                 $this->loadSingleValue($d, $offset, $i, $tag);
+            } elseif (PelSpec::getTagName($this->type, $tag) === 'JPEGInterchangeFormat') {
+                // Aka 'Thumbnail Offset'.
+                $thumb_offset = $d->getLong($offset + 12 * $i + 8);
+                $this->safeSetThumbnail($d, $thumb_offset, $thumb_length);
+            } elseif (PelSpec::getTagName($this->type, $tag) === 'JPEGInterchangeFormatLenght') {
+                // Aka 'Thumbnail Length'.
+                $thumb_length = $d->getLong($offset + 12 * $i + 8);
+                $this->safeSetThumbnail($d, $thumb_offset, $thumb_length);
             } else {
-                switch ($tag) {
-                    case PelTag::JPEG_INTERCHANGE_FORMAT:
-                        $thumb_offset = $d->getLong($offset + 12 * $i + 8);
-                        $this->safeSetThumbnail($d, $thumb_offset, $thumb_length);
-                        break;
-                    case PelTag::JPEG_INTERCHANGE_FORMAT_LENGTH:
-                        $thumb_length = $d->getLong($offset + 12 * $i + 8);
-                        $this->safeSetThumbnail($d, $thumb_offset, $thumb_length);
-                        break;
-                    default:
-                        $this->loadSingleValue($d, $offset, $i, $tag);
-                        break;
-                }
+                $this->loadSingleValue($d, $offset, $i, $tag);
             }
         }
 
@@ -370,13 +366,13 @@ class PelIfd implements \IteratorAggregate, \ArrayAccess
             $mk = $this->sub[PelSpec::getIfdIdByType('Exif')]->getMakerNotes();
             if (!empty($mk) && count($mk) > 0) {
                 // get Make tag and load maker notes if tag is valid
-                $manufacturer = $this->getEntry(PelTag::MAKE);
+                $manufacturer = $this->getEntry(PelSpec::getTagIdByName($this->type, 'Make'));
                 if ($manufacturer !== null) {
                     $manufacturer = $manufacturer->getValue();
                     $mkNotes = PelMakerNotes::createMakerNotesFromManufacturer($manufacturer, $mk['parent'], $mk['data'], $mk['components'], $mk['offset']);
                     if ($mkNotes !== null) {
                         // remove pre-loaded undefined MakerNotes
-                        $mk['parent']->offsetUnset(PelTag::MAKER_NOTE);
+                        $mk['parent']->offsetUnset(PelSpec::getTagIdByName($this->type, 'MakerNote'));
                         $mkNotes->load();
                     }
                 }
@@ -546,155 +542,138 @@ class PelIfd implements \IteratorAggregate, \ArrayAccess
          * First handle tags for which we have a specific PelEntryXXX
          * class.
          */
-        switch ($this->type) {
-            case self::IFD0:
-            case self::IFD1:
-            case self::EXIF:
-            case self::INTEROPERABILITY:
-                switch ($tag) {
-                    case PelTag::DATE_TIME:
-                    case PelTag::DATE_TIME_ORIGINAL:
-                    case PelTag::DATE_TIME_DIGITIZED:
-                        if ($format != PelFormat::ASCII) {
-                            throw new PelUnexpectedFormatException($this->type, $tag, $format, PelFormat::ASCII);
-                        }
-                        if ($components != 20) {
-                            throw new PelWrongComponentCountException($this->type, $tag, $components, 20);
-                        }
-                        // TODO: handle timezones.
-                        return new PelEntryTime($tag, $data->getBytes(0, - 1), PelEntryTime::EXIF_STRING);
-
-                    case PelTag::COPYRIGHT:
-                        if ($format != PelFormat::ASCII) {
-                            throw new PelUnexpectedFormatException($this->type, $tag, $format, PelFormat::ASCII);
-                        }
-                        $v = explode("\0", trim($data->getBytes(), ' '));
-                        if (! isset($v[1])) {
-                            Pel::maybeThrow(new PelException('Invalid copyright: %s', $data->getBytes()));
-                            // when not in strict mode, set empty copyright and continue
-                            $v[1] = '';
-                        }
-                        return new PelEntryCopyright($v[0], $v[1]);
-
-                    case PelTag::EXIF_VERSION:
-                    case PelTag::FLASH_PIX_VERSION:
-                    case PelTag::INTEROPERABILITY_VERSION:
-                        if ($format != PelFormat::UNDEFINED) {
-                            throw new PelUnexpectedFormatException($this->type, $tag, $format, PelFormat::UNDEFINED);
-                        }
-                        return new PelEntryVersion($tag, $data->getBytes() / 100);
-
-                    case PelTag::USER_COMMENT:
-                        if ($format != PelFormat::UNDEFINED) {
-                            throw new PelUnexpectedFormatException($this->type, $tag, $format, PelFormat::UNDEFINED);
-                        }
-                        if ($data->getSize() < 8) {
-                            return new PelEntryUserComment();
-                        } else {
-                            return new PelEntryUserComment($data->getBytes(8), rtrim($data->getBytes(0, 8)));
-                        }
-                    // this point can not be reached
-                    case PelTag::XP_TITLE:
-                    case PelTag::XP_COMMENT:
-                    case PelTag::XP_AUTHOR:
-                    case PelTag::XP_KEYWORDS:
-                    case PelTag::XP_SUBJECT:
-                        if ($format != PelFormat::BYTE) {
-                            throw new PelUnexpectedFormatException($this->type, $tag, $format, PelFormat::BYTE);
-                        }
-                        $v = '';
-                        for ($i = 0; $i < $components; $i ++) {
-                            $b = $data->getByte($i);
-                            /*
-                             * Convert the byte to a character if it is non-null ---
-                             * information about the character encoding of these entries
-                             * would be very nice to have! So far my tests have shown
-                             * that characters in the Latin-1 character set are stored in
-                             * a single byte followed by a NULL byte.
-                             */
-                            if ($b != 0) {
-                                $v .= chr($b);
-                            }
-                        }
-
-                        return new PelEntryWindowsString($tag, $v);
+        if (PelSpec::getTagFormat($this->type, $tag) === 'Time') {
+            // DATE_TIME / DATE_TIME_ORIGINAL / DATE_TIME_DIGITIZED
+            if ($format != PelFormat::ASCII) {
+                throw new PelUnexpectedFormatException($this->type, $tag, $format, PelFormat::ASCII);
+            }
+            if ($components != 20) {
+                throw new PelWrongComponentCountException($this->type, $tag, $components, 20);
+            }
+            // TODO: handle timezones.
+            return new PelEntryTime($tag, $data->getBytes(0, - 1), PelEntryTime::EXIF_STRING);
+        } elseif (PelSpec::getTagFormat($this->type, $tag) === 'Copyright') {
+            // COPYRIGHT
+            if ($format != PelFormat::ASCII) {
+                throw new PelUnexpectedFormatException($this->type, $tag, $format, PelFormat::ASCII);
+            }
+            $v = explode("\0", trim($data->getBytes(), ' '));
+            if (! isset($v[1])) {
+                Pel::maybeThrow(new PelException('Invalid copyright: %s', $data->getBytes()));
+                // when not in strict mode, set empty copyright and continue
+                $v[1] = '';
+            }
+            return new PelEntryCopyright($v[0], $v[1]);
+        } elseif (PelSpec::getTagFormat($this->type, $tag) === 'Version') {
+            // EXIF_VERSION / FLASH_PIX_VERSION / INTEROPERABILITY_VERSION
+            if ($format != PelFormat::UNDEFINED) {
+                throw new PelUnexpectedFormatException($this->type, $tag, $format, PelFormat::UNDEFINED);
+            }
+            return new PelEntryVersion($tag, $data->getBytes() / 100);
+        } elseif (PelSpec::getTagFormat($this->type, $tag) === 'UserComment') {
+            // USER_COMMENT
+            if ($format != PelFormat::UNDEFINED) {
+                throw new PelUnexpectedFormatException($this->type, $tag, $format, PelFormat::UNDEFINED);
+            }
+            if ($data->getSize() < 8) {
+                return new PelEntryUserComment();
+            } else {
+                return new PelEntryUserComment($data->getBytes(8), rtrim($data->getBytes(0, 8)));
+            }
+        } elseif (PelSpec::getTagFormat($this->type, $tag) === 'WindowsString') {
+            // XP_TITLE / XP_COMMENT / XP_AUTHOR / XP_KEYWORDS / XP_SUBJECT
+            if ($format != PelFormat::BYTE) {
+                throw new PelUnexpectedFormatException($this->type, $tag, $format, PelFormat::BYTE);
+            }
+            $v = '';
+            for ($i = 0; $i < $components; $i ++) {
+                $b = $data->getByte($i);
+                /*
+                 * Convert the byte to a character if it is non-null ---
+                 * information about the character encoding of these entries
+                 * would be very nice to have! So far my tests have shown
+                 * that characters in the Latin-1 character set are stored in
+                 * a single byte followed by a NULL byte.
+                 */
+                if ($b != 0) {
+                    $v .= chr($b);
                 }
-            // This point can be reached! Continue with default.
-            case self::GPS:
+            }
+            return new PelEntryWindowsString($tag, $v);
+        }
+
+        /* Then handle the basic formats. */
+        switch ($format) {
+            case PelFormat::BYTE:
+                $v = new PelEntryByte($tag);
+                for ($i = 0; $i < $components; $i ++) {
+                    $v->addNumber($data->getByte($i));
+                }
+                return $v;
+
+            case PelFormat::SBYTE:
+                $v = new PelEntrySByte($tag);
+                for ($i = 0; $i < $components; $i ++) {
+                    $v->addNumber($data->getSByte($i));
+                }
+                return $v;
+
+            case PelFormat::ASCII:
+                // cut off string after the first nul byte
+                $canonicalString = strstr($data->getBytes(0), "\0", true);
+                if ($canonicalString !== false) {
+                    return new PelEntryAscii($tag, $canonicalString);
+                }
+                // TODO throw exception if string isn't nul-terminated
+                return new PelEntryAscii($tag, $data->getBytes(0));
+
+            case PelFormat::SHORT:
+                $v = new PelEntryShort($tag);
+                for ($i = 0; $i < $components; $i ++) {
+                    $v->addNumber($data->getShort($i * 2));
+                }
+                return $v;
+
+            case PelFormat::SSHORT:
+                $v = new PelEntrySShort($tag);
+                for ($i = 0; $i < $components; $i ++) {
+                    $v->addNumber($data->getSShort($i * 2));
+                }
+                return $v;
+
+            case PelFormat::LONG:
+                $v = new PelEntryLong($tag);
+                for ($i = 0; $i < $components; $i ++) {
+                    $v->addNumber($data->getLong($i * 4));
+                }
+                return $v;
+
+            case PelFormat::SLONG:
+                $v = new PelEntrySLong($tag);
+                for ($i = 0; $i < $components; $i ++) {
+                    $v->addNumber($data->getSLong($i * 4));
+                }
+                return $v;
+
+            case PelFormat::RATIONAL:
+                $v = new PelEntryRational($tag);
+                for ($i = 0; $i < $components; $i ++) {
+                    $v->addNumber($data->getRational($i * 8));
+                }
+                return $v;
+
+            case PelFormat::SRATIONAL:
+                $v = new PelEntrySRational($tag);
+                for ($i = 0; $i < $components; $i ++) {
+                    $v->addNumber($data->getSRational($i * 8));
+                }
+                return $v;
+
+            case PelFormat::UNDEFINED:
+                return new PelEntryUndefined($tag, $data->getBytes());
+
             default:
-                /* Then handle the basic formats. */
-                switch ($format) {
-                    case PelFormat::BYTE:
-                        $v = new PelEntryByte($tag);
-                        for ($i = 0; $i < $components; $i ++) {
-                            $v->addNumber($data->getByte($i));
-                        }
-                        return $v;
-
-                    case PelFormat::SBYTE:
-                        $v = new PelEntrySByte($tag);
-                        for ($i = 0; $i < $components; $i ++) {
-                            $v->addNumber($data->getSByte($i));
-                        }
-                        return $v;
-
-                    case PelFormat::ASCII:
-                        // cut off string after the first nul byte
-                        $canonicalString = strstr($data->getBytes(0), "\0", true);
-                        if ($canonicalString !== false) {
-                            return new PelEntryAscii($tag, $canonicalString);
-                        }
-                        // TODO throw exception if string isn't nul-terminated
-                        return new PelEntryAscii($tag, $data->getBytes(0));
-
-                    case PelFormat::SHORT:
-                        $v = new PelEntryShort($tag);
-                        for ($i = 0; $i < $components; $i ++) {
-                            $v->addNumber($data->getShort($i * 2));
-                        }
-                        return $v;
-
-                    case PelFormat::SSHORT:
-                        $v = new PelEntrySShort($tag);
-                        for ($i = 0; $i < $components; $i ++) {
-                            $v->addNumber($data->getSShort($i * 2));
-                        }
-                        return $v;
-
-                    case PelFormat::LONG:
-                        $v = new PelEntryLong($tag);
-                        for ($i = 0; $i < $components; $i ++) {
-                            $v->addNumber($data->getLong($i * 4));
-                        }
-                        return $v;
-
-                    case PelFormat::SLONG:
-                        $v = new PelEntrySLong($tag);
-                        for ($i = 0; $i < $components; $i ++) {
-                            $v->addNumber($data->getSLong($i * 4));
-                        }
-                        return $v;
-
-                    case PelFormat::RATIONAL:
-                        $v = new PelEntryRational($tag);
-                        for ($i = 0; $i < $components; $i ++) {
-                            $v->addNumber($data->getRational($i * 8));
-                        }
-                        return $v;
-
-                    case PelFormat::SRATIONAL:
-                        $v = new PelEntrySRational($tag);
-                        for ($i = 0; $i < $components; $i ++) {
-                            $v->addNumber($data->getSRational($i * 8));
-                        }
-                        return $v;
-
-                    case PelFormat::UNDEFINED:
-                        return new PelEntryUndefined($tag, $data->getBytes());
-
-                    default:
-                        throw new PelException('Unsupported format: %s', PelFormat::getName($format));
-                }
+                throw new PelException('Unsupported format: %s', PelFormat::getName($format));
         }
     }
 

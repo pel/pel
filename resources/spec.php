@@ -1799,7 +1799,7 @@ return array (
         'name' => 'InteroperabilityVersion',
         'title' => 'Interoperability Version',
         'components' => 4,
-        'format' => 'Undefined',
+        'format' => 'Version',
       ),
       4096 =>
       array (
