@@ -320,7 +320,7 @@ class PelIfd implements \IteratorAggregate, \ArrayAccess
                 }
             } elseif (PelSpec::isTagAMakerNotesPointer($this->type, $tag)) {
                 // If the tag is a Maker Notes pointer, store maker notes
-                // infos, because we need the 'Make' tag of IFD0 for MakerNotes.
+                // info, because we need the 'Make' tag of IFD0 for MakerNotes.
                 // Thus MakerNotes will be loaded at the end of loading IFD0.
                 $components = $d->getLong($offset + 12 * $i + 4);
                 $o = $d->getLong($offset + 12 * $i + 8);
@@ -331,7 +331,7 @@ class PelIfd implements \IteratorAggregate, \ArrayAccess
                 // Aka 'Thumbnail Offset'.
                 $thumb_offset = $d->getLong($offset + 12 * $i + 8);
                 $this->safeSetThumbnail($d, $thumb_offset, $thumb_length);
-            } elseif (PelSpec::getTagName($this->type, $tag) === 'JPEGInterchangeFormatLenght') {
+            } elseif (PelSpec::getTagName($this->type, $tag) === 'JPEGInterchangeFormatLength') {
                 // Aka 'Thumbnail Length'.
                 $thumb_length = $d->getLong($offset + 12 * $i + 8);
                 $this->safeSetThumbnail($d, $thumb_offset, $thumb_length);
@@ -372,7 +372,7 @@ class PelIfd implements \IteratorAggregate, \ArrayAccess
                     $mkNotes = PelMakerNotes::createMakerNotesFromManufacturer($manufacturer, $mk['parent'], $mk['data'], $mk['components'], $mk['offset']);
                     if ($mkNotes !== null) {
                         // remove pre-loaded undefined MakerNotes
-                        $mk['parent']->offsetUnset(PelTag::MAKER_NOTE);
+                        $mk['parent']->offsetUnset(PelSpec::getTagIdByName($mk['parent']->getType(), 'MakerNote'));
                         $mkNotes->load();
                     }
                 }
