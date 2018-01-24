@@ -372,7 +372,7 @@ class PelIfd implements \IteratorAggregate, \ArrayAccess
                     $mkNotes = PelMakerNotes::createMakerNotesFromManufacturer($manufacturer, $mk['parent'], $mk['data'], $mk['components'], $mk['offset']);
                     if ($mkNotes !== null) {
                         // remove pre-loaded undefined MakerNotes
-                        $mk['parent']->offsetUnset(PelSpec::getTagIdByName($this->type, 'MakerNote'));
+                        $mk['parent']->offsetUnset(PelTag::MAKER_NOTE);
                         $mkNotes->load();
                     }
                 }
