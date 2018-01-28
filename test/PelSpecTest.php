@@ -36,5 +36,20 @@ class PelSpecTest extends TestCase
         $this->assertEquals(0x8769, PelSpec::getTagIdByName(0, 'ExifIFDPointer'));
         $this->assertEquals(0x829A, PelSpec::getTagIdByName(2, 'ExposureTime'));
         $this->assertEquals(0x0103, PelSpec::getTagIdByName(0, 'Compression'));
+
+        // Check methods identifying an IFD pointer TAG.
+        $this->assertTrue(PelSpec::isTagAnIfdPointer(0, 0x8769));
+        $this->assertEquals(2, PelSpec::getIfdIdFromTag(0, 0x8769));
+        $this->assertFalse(PelSpec::isTagAnIfdPointer(2, 0x829A));
+        $this->assertNull(PelSpec::getIfdIdFromTag(0, 0x829A));
+
+        // Check methods identifying a MakerNotes pointer TAG.
+        $this->assertTrue(PelSpec::isTagAnIfdPointer(2, 0x927C));
+        $this->assertFalse(PelSpec::isTagAnIfdPointer(0, 0x8769));
+
+        // Check getTagFormat.
+        $this->assertEquals('UserComment', PelSpec::getTagFormat(2, 0x9286));
+        $this->assertEquals('Short', PelSpec::getTagFormat(2, 0xA002));
+        $this->assertNull(PelSpec::getTagFormat(7, 0x0002));
     }
 }

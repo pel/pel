@@ -41,7 +41,11 @@ class PelSpec
      */
     public static function setMap($file)
     {
-        self::$map = include $file;
+        if ($file === null) {
+            self::$map = null;
+        } else {
+            self::$map = include $file;
+        }
     }
 
     /**
@@ -100,6 +104,54 @@ class PelSpec
     }
 
     /**
+     * Determines if the TAG is an IFD pointer.
+     *
+     * @param int $ifd_id
+     *            the IFD id.
+     * @param int $tag_id
+     *            the TAG id.
+     *
+     * @return bool
+     *            TRUE or FALSE.
+     */
+    public static function isTagAnIfdPointer($ifd_id, $tag_id)
+    {
+        return isset(self::getMap()['tags'][$ifd_id][$tag_id]['ifd']);
+    }
+
+    /**
+     * Returns the IFD id the TAG points to.
+     *
+     * @param int $ifd_id
+     *            the IFD id.
+     * @param int $tag_id
+     *            the TAG id.
+     *
+     * @return int|null
+     *            the IFD id, or null if the TAG is not an IFD pointer.
+     */
+    public static function getIfdIdFromTag($ifd_id, $tag_id)
+    {
+        return isset(self::getMap()['tags'][$ifd_id][$tag_id]['ifd']) ? self::getMap()['tags'][$ifd_id][$tag_id]['ifd'] : null;
+    }
+
+    /**
+     * Determines if the TAG is a Maker Notes pointer.
+     *
+     * @param int $ifd_id
+     *            the IFD id.
+     * @param int $tag_id
+     *            the TAG id.
+     *
+     * @return bool
+     *            TRUE or FALSE.
+     */
+    public static function isTagAMakerNotesPointer($ifd_id, $tag_id)
+    {
+        return self::getTagFormat($ifd_id, $tag_id) === 'MakerNotes';
+    }
+
+    /**
      * Returns the TAG name.
      *
      * @param int $ifd_id
@@ -129,5 +181,28 @@ class PelSpec
     public static function getTagIdByName($ifd_id, $tag_name)
     {
         return isset(self::getMap()['tagsByName'][$ifd_id][$tag_name]) ? self::getMap()['tagsByName'][$ifd_id][$tag_name] : null;
+    }
+
+    /**
+     * Returns the TAG format.
+     *
+     * @param int $ifd_id
+     *            the IFD id.
+     * @param int $tag_id
+     *            the TAG id.
+     *
+     * @return string
+     *            the TAG format.
+     */
+    public static function getTagFormat($ifd_id, $tag_id)
+    {
+        $format = isset(self::getMap()['tags'][$ifd_id][$tag_id]['format']) ? self::getMap()['tags'][$ifd_id][$tag_id]['format'] : null;
+        if (empty($format)) {
+            return null;
+        }
+        if (is_array($format)) {
+            return $format[0];
+        }
+        return $format;
     }
 }

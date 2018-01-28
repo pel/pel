@@ -35,6 +35,7 @@ class SpecCompilerTest extends TestCase
     public function tearDown()
     {
         $this->fs->remove($this->testResourceDirectory);
+        PelSpec::setMap(null);
         parent::tearDown();
     }
 
