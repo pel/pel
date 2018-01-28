@@ -111,12 +111,28 @@ class PelSpec
      * @param int $tag_id
      *            the TAG id.
      *
-     * @return int
-     *            the IFD id, or FALSE.
+     * @return bool
+     *            TRUE or FALSE.
      */
     public static function isTagAnIfdPointer($ifd_id, $tag_id)
     {
-        return isset(self::getMap()['tags'][$ifd_id][$tag_id]['ifd']) ? self::getMap()['tags'][$ifd_id][$tag_id]['ifd'] : false;
+        return isset(self::getMap()['tags'][$ifd_id][$tag_id]['ifd']);
+    }
+
+    /**
+     * Returns the IFD id the TAG points to.
+     *
+     * @param int $ifd_id
+     *            the IFD id.
+     * @param int $tag_id
+     *            the TAG id.
+     *
+     * @return int|null
+     *            the IFD id, or null if the TAG is not an IFD pointer.
+     */
+    public static function getIfdIdFromTag($ifd_id, $tag_id)
+    {
+        return isset(self::getMap()['tags'][$ifd_id][$tag_id]['ifd']) ? self::getMap()['tags'][$ifd_id][$tag_id]['ifd'] : null;
     }
 
     /**
@@ -132,7 +148,7 @@ class PelSpec
      */
     public static function isTagAMakerNotesPointer($ifd_id, $tag_id)
     {
-        return isset(self::getMap()['tags'][$ifd_id][$tag_id]['format']) ? (self::getMap()['tags'][$ifd_id][$tag_id]['format'] === 'MakerNotes' ? true : false) : false;
+        return self::getTagFormat($ifd_id, $tag_id) === 'MakerNotes';
     }
 
     /**
