@@ -44,8 +44,8 @@ class PelSpecTest extends TestCase
         $this->assertNull(PelSpec::getIfdIdFromTag(0, 0x829A));
 
         // Check methods identifying a MakerNotes pointer TAG.
-        $this->assertTrue(PelSpec::isTagAnIfdPointer(2, 0x927C));
-        $this->assertFalse(PelSpec::isTagAnIfdPointer(0, 0x8769));
+        $this->assertTrue(PelSpec::isTagAMakerNotesPointer(2, 0x927C));
+        $this->assertFalse(PelSpec::isTagAMakerNotesPointer(0, 0x8769));
 
         // Check getTagFormat.
         $this->assertEquals('UserComment', PelSpec::getTagFormat(2, 0x9286));
