@@ -302,9 +302,8 @@ class PelIfd implements \IteratorAggregate, \ArrayAccess
             );
 
             if (PelSpec::isTagAnIfdPointer($this->type, $tag)) {
-
                 // If the tag is an IFD pointer, loads the IFD.
-                $type = PelSpec::getIfdIdFromTag($this->type, $tag)
+                $type = PelSpec::getIfdIdFromTag($this->type, $tag);
                 $components = $d->getLong($offset + 12 * $i + 4);
                 $o = $d->getLong($offset + 12 * $i + 8);
                 Pel::debug('Found sub IFD at offset %d', $o);
@@ -320,9 +319,7 @@ class PelIfd implements \IteratorAggregate, \ArrayAccess
                 } else {
                     Pel::maybeThrow(new PelIfdException('Bogus offset to next IFD: %d, same as offset being loaded from.', $o));
                 }
-
             } elseif (PelSpec::isTagAMakerNotesPointer($this->type, $tag)) {
-
                 // If the tag is a Maker Notes pointer, store maker notes
                 // info, because we need the 'Make' tag of IFD0 for MakerNotes.
                 // Thus MakerNotes will be loaded at the end of loading IFD0.
@@ -331,23 +328,16 @@ class PelIfd implements \IteratorAggregate, \ArrayAccess
                 Pel::debug('Found maker notes IFD at offset %d', $o);
                 $this->setMakerNotes($this, $d, $components, $o);
                 $this->loadSingleValue($d, $offset, $i, $tag);
-
             } elseif (PelSpec::getTagName($this->type, $tag) === 'JPEGInterchangeFormat') {
-
                 // Aka 'Thumbnail Offset'.
                 $thumb_offset = $d->getLong($offset + 12 * $i + 8);
                 $this->safeSetThumbnail($d, $thumb_offset, $thumb_length);
-
             } elseif (PelSpec::getTagName($this->type, $tag) === 'JPEGInterchangeFormatLength') {
-
                 // Aka 'Thumbnail Length'.
                 $thumb_length = $d->getLong($offset + 12 * $i + 8);
                 $this->safeSetThumbnail($d, $thumb_offset, $thumb_length);
-
             } else {
-
                 $this->loadSingleValue($d, $offset, $i, $tag);
-
             }
         }
 
@@ -554,7 +544,6 @@ class PelIfd implements \IteratorAggregate, \ArrayAccess
          * class.
          */
         if (PelSpec::getTagFormat($this->type, $tag) === 'Time') {
-
             // DATE_TIME / DATE_TIME_ORIGINAL / DATE_TIME_DIGITIZED
             if ($format != PelFormat::ASCII) {
                 throw new PelUnexpectedFormatException($this->type, $tag, $format, PelFormat::ASCII);
@@ -564,9 +553,7 @@ class PelIfd implements \IteratorAggregate, \ArrayAccess
             }
             // TODO: handle timezones.
             return new PelEntryTime($tag, $data->getBytes(0, - 1), PelEntryTime::EXIF_STRING);
-
         } elseif (PelSpec::getTagFormat($this->type, $tag) === 'Copyright') {
-
             // COPYRIGHT
             if ($format != PelFormat::ASCII) {
                 throw new PelUnexpectedFormatException($this->type, $tag, $format, PelFormat::ASCII);
@@ -578,17 +565,13 @@ class PelIfd implements \IteratorAggregate, \ArrayAccess
                 $v[1] = '';
             }
             return new PelEntryCopyright($v[0], $v[1]);
-
         } elseif (PelSpec::getTagFormat($this->type, $tag) === 'Version') {
-
             // EXIF_VERSION / FLASH_PIX_VERSION / INTEROPERABILITY_VERSION
             if ($format != PelFormat::UNDEFINED) {
                 throw new PelUnexpectedFormatException($this->type, $tag, $format, PelFormat::UNDEFINED);
             }
             return new PelEntryVersion($tag, $data->getBytes() / 100);
-
         } elseif (PelSpec::getTagFormat($this->type, $tag) === 'UserComment') {
-
             // USER_COMMENT
             if ($format != PelFormat::UNDEFINED) {
                 throw new PelUnexpectedFormatException($this->type, $tag, $format, PelFormat::UNDEFINED);
@@ -598,9 +581,7 @@ class PelIfd implements \IteratorAggregate, \ArrayAccess
             } else {
                 return new PelEntryUserComment($data->getBytes(8), rtrim($data->getBytes(0, 8)));
             }
-
         } elseif (PelSpec::getTagFormat($this->type, $tag) === 'WindowsString') {
-
             // XP_TITLE / XP_COMMENT / XP_AUTHOR / XP_KEYWORDS / XP_SUBJECT
             if ($format != PelFormat::BYTE) {
                 throw new PelUnexpectedFormatException($this->type, $tag, $format, PelFormat::BYTE);
@@ -620,7 +601,6 @@ class PelIfd implements \IteratorAggregate, \ArrayAccess
                 }
             }
             return new PelEntryWindowsString($tag, $v);
-
         }
 
         /* Then handle the basic formats. */
