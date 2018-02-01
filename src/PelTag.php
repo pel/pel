@@ -1801,7 +1801,8 @@ class PelTag
      */
     public static function getExifTagByName($name)
     {
-        return PelSpec::getTagIdByName(PelSpec::getIfdIdByType('Exif'), $name);
+        $tag_id = PelSpec::getTagIdByName(PelSpec::getIfdIdByType('Exif'), $name);
+        return is_null($tag_id) ? false : $tag_id;
     }
 
     /**
@@ -1817,7 +1818,8 @@ class PelTag
      */
     public static function getGpsTagByName($name)
     {
-        return PelSpec::getTagIdByName(PelSpec::getIfdIdByType('GPS'), $name);
+        $tag_id = PelSpec::getTagIdByName(PelSpec::getIfdIdByType('GPS'), $name);
+        return is_null($tag_id) ? false : $tag_id;
     }
 
     /**
