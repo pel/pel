@@ -217,7 +217,7 @@ class PelSpec
      * @return string
      *            the TAG title.
      */
-    public static function getTagFormat($ifd_id, $tag_id)
+    public static function getTagTitle($ifd_id, $tag_id)
     {
         return isset(self::getMap()['tags'][$ifd_id][$tag_id]['title']) ? self::getMap()['tags'][$ifd_id][$tag_id]['title'] : null;
     }
