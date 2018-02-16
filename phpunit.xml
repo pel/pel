@@ -6,7 +6,7 @@
          convertNoticesToExceptions="true"
          convertWarningsToExceptions="true"
          stopOnFailure="false"
-         bootstrap="vendor/autoload.php"
+         bootstrap="autoload.php"
         >
     <testsuites>
         <testsuite name="Pel Testing Suite">
