@@ -1,0 +1,155 @@
+const: 5
+type: 'Canon Maker Notes'
+makerNotes:
+  - 'Canon'
+tags:
+    0x0001:
+        const: CANON_CAMERA_SETTINGS
+        name: CameraSettings
+        title: 'Camera Settings'
+        ifd: 'Canon Camera Settings'
+    0x0002:
+        const: CANON_FOCAL_LENGTH
+        name: FocalLength
+        title: 'Focal Length'
+        format: Short
+    0x0004:
+        const: CANON_SHOT_INFO
+        name: ShotInfo
+        title: 'Shot Info'
+        ifd: 'Canon Shot Information'
+    0x0005:
+        const: CANON_PANORAMA
+        name: Panorama
+        title: Panorama
+        ifd: 'Canon Panorama Information'
+    0x0006:
+        const: CANON_IMAGE_TYPE
+        name: ImageType
+        title: 'Image Type'
+        format: Ascii
+    0x0007:
+        const: CANON_FIRMWARE_VERSION
+        name: FirmwareVersion
+        title: 'Firmware Version'
+        format: Ascii
+    0x0008:
+        const: CANON_FILE_NUMBER
+        name: FileNumber
+        title: 'File Number'
+        format: Long
+    0x0009:
+        const: CANON_OWNER_NAME
+        name: OwnerName
+        title: 'Owner Name'
+        format: Ascii
+    0x000C:
+        const: CANON_SERIAL_NUMBER
+        name: SerialNumber
+        title: 'Serial Number'
+        format: Long
+    0x000D:
+        const: CANON_CAMERA_INFO
+        name: CameraInfo
+        title: 'Camera Info'
+        format: Short
+    0x000F:
+        const: CANON_CUSTOM_FUNCTIONS
+        name: CustomFunctions
+        title: 'Custom Functions'
+        format: Ifd
+    0x0010:
+        const: CANON_MODEL_ID
+        name: ModelID
+        title: 'Model ID'
+        format: Long
+    0x0012:
+        const: CANON_PICTURE_INFO
+        name: PictureInfo
+        title: 'Picture Info'
+        ifd: 'Canon Picture Information'
+    0x0013:
+        const: CANON_THUMBNAIL_IMAGE_VALID_AREA
+        name: ThumbnailImageValidArea
+        title: 'Thumbnail Image Valid Area'
+        format: SShort
+    0x0015:
+        const: CANON_SERIAL_NUMBER_FORMAT
+        name: 'Serial Number Format'
+        title: 'Serial number format'
+        format: Long
+    0x001A:
+        const: CANON_SUPER_MACRO
+        name: SuperMacro
+        title: 'Super macro'
+        format: SShort
+    0x001E:
+        const: CANON_FIRMWARE_REVISION
+        name: FirmwareRevision
+        title: 'Firmware Revision'
+        format: Long
+    0x0026:
+        const: CANON_AF_INFO
+        name: AFinfo
+        title: 'AF info'
+        format: Short
+    0x0083:
+        const: CANON_ORIGINAL_DECISION_DATA_OFFSET
+        name: 'OriginalDecision Data Offset'
+        title: 'Original decision data offset'
+        format: SLong
+    0x00A4:
+        const: CANON_WHITE_BALANCE_TABLE
+        name: WhiteBalanceTable
+        title: 'White balance table'
+        format: Short
+    0x0095:
+        const: CANON_LENS_MODEL
+        name: LensModel
+        title: 'Lens model'
+        format: Ascii
+    0x0096:
+        const: CANON_INTERNAL_SERIAL_NUMBER
+        name: InternalSerialNumber
+        title: 'Internal serial number'
+        format: Ascii
+    0x0097:
+        const: CANON_DUST_REMOVAL_DATA
+        name: DustRemovalData
+        title: 'Dust removal data'
+        format: Ascii
+    0x0099:
+        const: CANON_CUSTOM_FUNCTIONS_2
+        name: CustomFunctions
+        title: 'Custom functions'
+        format: Ifd
+    0x00A0:
+        const: CANON_PROCESSING_INFO
+        name: ProcessingInfo
+        title: 'Processing info'
+        format: Short
+    0x00AA:
+        const: CANON_MEASURED_COLOR
+        name: MeasuredColor
+        title: 'Measured color'
+        format: Short
+    0x00B4:
+        const: CANON_COLOR_SPACE
+        name: ColorSpace
+        title: 'Color Space'
+        format: SShort
+    0x00D0:
+        const: CANON_VRD_OFFSET
+        name: VRDOffset
+        title: 'VRD offset'
+        format: Long
+    0x00E0:
+        const: CANON_SENSOR_INFO
+        name: SensorInfo
+        title: 'Sensor info'
+        format: Short
+    0x4001:
+        const: CANON_COLOR_DATA
+        name: ColorData
+        title: 'Color data'
+        format: Short

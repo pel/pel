@@ -47,28 +47,3 @@ PEL Version 1.x
 * Deal with characters outside Latin-1 in PelEntryWindowsString.
    This needs testing from people running Windows XP set to a locale
    different from Latin-1.
-
-
-PEL Version 2.0
----------------
-
-* Restructure information about tags.
-   Currently information about the tags are stored in several places
-   around the code, making updates difficult.  All information about a
-   tag should be stored at one place, maybe by having a class per tag
-   (how well does PHP handle 142 small classes?).
-
-   The information in question is:
-
-   - hex code,
-   - title,
-   - name,
-   - description
-   - format,
-   - components,
-   - valid IFD types,
-   - how to load data,
-   - how to display (the getText() method)
-
-   This will most likely break API compatability and is delayed for
-   PEL 2.

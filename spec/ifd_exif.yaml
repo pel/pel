@@ -1,0 +1,494 @@
+const: 2
+type: Exif
+tags:
+    0xA302:
+        const: CFA_PATTERN
+        name: CFAPattern
+        title: 'CFA Pattern'
+        components: Any
+        format: Undefined
+    0x829A:
+        const: EXPOSURE_TIME
+        name: ExposureTime
+        title: 'Exposure Time'
+        components: 1
+        format: Rational
+    0x829D:
+        const: FNUMBER
+        name: FNumber
+        title: FNumber
+        components: 1
+        format: Rational
+    0x8822:
+        const: EXPOSURE_PROGRAM
+        name: ExposureProgram
+        title: 'Exposure Program'
+        components: 1
+        format: Short
+        text:
+            decode:
+                0: 'Not defined'
+                1: 'Manual'
+                2: 'Normal program'
+                3: 'Aperture priority'
+                4: 'Shutter priority'
+                5: 'Creative program (biased toward depth of field)'
+                6: 'Action program (biased toward fast shutter speed)'
+                7: 'Portrait mode (for closeup photos with the background out of focus'
+                8: 'Landscape mode (for landscape photos with the background in focus'
+    0x8824:
+        const: SPECTRAL_SENSITIVITY
+        name: SpectralSensitivity
+        title: 'Spectral Sensitivity'
+        components: Any
+        format: Ascii
+    0x8827:
+        const: ISO_SPEED_RATINGS
+        name: ISOSpeedRatings
+        title: 'ISO Speed Ratings'
+        components: 2
+        format: Short
+    0x8828:
+        const: OECF
+        name: OECF
+        title: OECF
+        components: Any
+        format: Undefined
+    0x9000:
+        const: EXIF_VERSION
+        name: ExifVersion
+        title: 'Exif Version'
+        components: 4
+        format: Version
+    0x9003:
+        const: DATE_TIME_ORIGINAL
+        name: DateTimeOriginal
+        title: 'Date and Time (original)'
+        components: 20
+        format: Time
+    0x9004:
+        const: DATE_TIME_DIGITIZED
+        name: DateTimeDigitized
+        title: 'Date and Time (digitized)'
+        components: 20
+        format: Time
+    0x9010:
+        const: OFFSET_TIME
+        name: OffsetTime
+        title: Timezone
+        components: 7
+        format: Ascii
+    0x9011:
+        const: OFFSET_TIME_ORIGINAL
+        name: OffsetTimeOriginal
+        title: 'Timezone (original)'
+        components: 7
+        format: Ascii
+    0x9012:
+        const: OFFSET_TIME_DIGITIZED
+        name: OffsetTimeDigitized
+        title: 'Timezone (digitized)'
+        components: 7
+        format: Ascii
+    0x9101:
+        const: COMPONENTS_CONFIGURATION
+        name: ComponentsConfiguration
+        title: 'Components Configuration'
+        components: 4
+        format: Undefined
+    0x9102:
+        const: COMPRESSED_BITS_PER_PIXEL
+        name: CompressedBitsPerPixel
+        title: 'Compressed Bits per Pixel'
+        components: 1
+        format: Rational
+    0x9201:
+        const: SHUTTER_SPEED_VALUE
+        name: ShutterSpeedValue
+        title: 'Shutter speed'
+        components: 1
+        format: SRational
+    0x9202:
+        const: APERTURE_VALUE
+        name: ApertureValue
+        title: Aperture
+        components: 1
+        format: Rational
+    0x9203:
+        const: BRIGHTNESS_VALUE
+        name: BrightnessValue
+        title: Brightness
+        components: 1
+        format: SRational
+    0x9204:
+        const: EXPOSURE_BIAS_VALUE
+        name: ExposureBiasValue
+        title: 'Exposure Bias'
+        components: 1
+        format: SRational
+    0x9205:
+        const: MAX_APERTURE_VALUE
+        name: MaxApertureValue
+        title: 'Max Aperture Value'
+        components: 1
+        format: Rational
+    0x9206:
+        const: SUBJECT_DISTANCE
+        name: SubjectDistance
+        title: 'Subject Distance'
+        components: 1
+        format: SRational
+    0x9207:
+        const: METERING_MODE
+        name: MeteringMode
+        title: 'Metering Mode'
+        components: 1
+        format: Short
+        text:
+            decode:
+                0: 'Unknown'
+                1: 'Average'
+                2: 'Center-Weighted Average'
+                3: 'Spot'
+                4: 'Multi Spot'
+                5: 'Pattern'
+                6: 'Partial'
+                255: 'Other'
+    0x9208:
+        const: LIGHT_SOURCE
+        name: LightSource
+        title: 'Light Source'
+        components: 1
+        format: Short
+        text:
+            decode:
+                0: 'Unknown'
+                1: 'Daylight'
+                2: 'Fluorescent'
+                3: 'Tungsten (incandescent light)'
+                4: 'Flash'
+                9: 'Fine weather'
+                10: 'Cloudy weather'
+                11: 'Shade'
+                12: 'Daylight fluorescent'
+                13: 'Day white fluorescent'
+                14: 'Cool white fluorescent'
+                15: 'White fluorescent'
+                17: 'Standard light A'
+                18: 'Standard light B'
+                19: 'Standard light C'
+                20: 'D55'
+                21: 'D65'
+                22: 'D75'
+                24: 'ISO studio tungsten'
+                255: 'Other'
+    0x9209:
+        const: FLASH
+        name: Flash
+        title: Flash
+        components: 1
+        format: Short
+        text:
+            decode:
+                0x0000: 'Flash did not fire.'
+                0x0001: 'Flash fired.'
+                0x0005: 'Strobe return light not detected.'
+                0x0007: 'Strobe return light detected.'
+                0x0009: 'Flash fired, compulsory flash mode.'
+                0x000d: 'Flash fired, compulsory flash mode, return light not detected.'
+                0x000f: 'Flash fired, compulsory flash mode, return light detected.'
+                0x0010: 'Flash did not fire, compulsory flash mode.'
+                0x0018: 'Flash did not fire, auto mode.'
+                0x0019: 'Flash fired, auto mode.'
+                0x001d: 'Flash fired, auto mode, return light not detected.'
+                0x001f: 'Flash fired, auto mode, return light detected.'
+                0x0020: 'No flash function.'
+                0x0041: 'Flash fired, red-eye reduction mode.'
+                0x0045: 'Flash fired, red-eye reduction mode, return light not detected.'
+                0x0047: 'Flash fired, red-eye reduction mode, return light detected.'
+                0x0049: 'Flash fired, compulsory flash mode, red-eye reduction mode.'
+                0x004d: 'Flash fired, compulsory flash mode, red-eye reduction mode, return light not detected.'
+                0x004f: 'Flash fired, compulsory flash mode, red-eye reduction mode, return light detected.'
+                0x0058: 'Flash did not fire, auto mode, red-eye reduction mode.'
+                0x0059: 'Flash fired, auto mode, red-eye reduction mode.'
+                0x005d: 'Flash fired, auto mode, return light not detected, red-eye reduction mode.'
+                0x005f: 'Flash fired, auto mode, return light detected, red-eye reduction mode.'
+    0x920A:
+        const: FOCAL_LENGTH
+        name: FocalLength
+        title: 'Focal Length'
+        components: 1
+        format: Rational
+    0x927C:
+        const: MAKER_NOTE
+        name: MakerNote
+        title: 'Maker Note'
+        format: MakerNotes
+    0x9286:
+        const: USER_COMMENT
+        name: UserComment
+        title: 'User Comment'
+        components: Any
+        format: UserComment
+    0x9290:
+        const: SUB_SEC_TIME
+        name: SubSecTime
+        title: 'SubSec Time'
+        components: Any
+        format: Ascii
+    0x9291:
+        const: SUB_SEC_TIME_ORIGINAL
+        name: SubSecTimeOriginal
+        title: 'SubSec Time Original'
+        components: Any
+        format: Ascii
+    0x9292:
+        const: SUB_SEC_TIME_DIGITIZED
+        name: SubSecTimeDigitized
+        title: 'SubSec Time Digitized'
+        components: Any
+        format: Ascii
+    0xA000:
+        const: FLASH_PIX_VERSION
+        name: FlashPixVersion
+        title: 'FlashPix Version'
+        components: 4
+        format: Version
+    0xA001:
+        const: COLOR_SPACE
+        name: ColorSpace
+        title: 'Color Space'
+        components: 1
+        format: Short
+        text:
+            decode:
+                1: 'sRGB'
+                2: 'Adobe RGB'
+                0xffff: 'Uncalibrated'
+    0xA002:
+        const: PIXEL_X_DIMENSION
+        name: PixelXDimension
+        title: 'Pixel x-Dimension'
+        components: 1
+        format: [Short, Long]
+    0xA003:
+        const: PIXEL_Y_DIMENSION
+        name: PixelYDimension
+        title: 'Pixel y-Dimension'
+        components: 1
+        format: [Short, Long]
+    0xA004:
+        const: RELATED_SOUND_FILE
+        name: RelatedSoundFile
+        title: 'Related Sound File'
+        components: Any
+        format: Ascii
+    0xA005:
+        const: INTEROPERABILITY_IFD_POINTER
+        name: InteroperabilityIFDPointer
+        title: 'Interoperability IFD Pointer'
+        ifd: Interoperability
+    0xA20B:
+        const: FLASH_ENERGY
+        name: FlashEnergy
+        title: 'Flash Energy'
+        components: 1
+        format: Rational
+    0xA20C:
+        const: SPATIAL_FREQUENCY_RESPONSE
+        name: SpatialFrequencyResponse
+        title: 'Spatial Frequency Response'
+        components: Any
+        format: Undefined
+    0xA20E:
+        const: FOCAL_PLANE_X_RESOLUTION
+        name: FocalPlaneXResolution
+        title: 'Focal Plane x-Resolution'
+        components: 1
+        format: Rational
+    0xA20F:
+        const: FOCAL_PLANE_Y_RESOLUTION
+        name: FocalPlaneYResolution
+        title: 'Focal Plane y-Resolution'
+        components: 1
+        format: Rational
+    0xA210:
+        const: FOCAL_PLANE_RESOLUTION_UNIT
+        name: FocalPlaneResolutionUnit
+        title: 'Focal Plane Resolution Unit'
+        components: 1
+        format: Short
+        text:
+            decode:
+                2: 'Inch'
+                3: 'Centimeter'
+    0xA214:
+        const: SUBJECT_LOCATION
+        name: SubjectLocation
+        title: 'Subject Location'
+        components: 1
+        format: Short
+    0xA215:
+        const: EXPOSURE_INDEX
+        name: ExposureIndex
+        title: 'Exposure index'
+        components: 1
+        format: Rational
+    0xA217:
+        const: SENSING_METHOD
+        name: SensingMethod
+        title: 'Sensing Method'
+        components: 1
+        format: Short
+        text:
+            decode:
+                1: 'Not defined'
+                2: 'One-chip color area sensor'
+                3: 'Two-chip color area sensor'
+                4: 'Three-chip color area sensor'
+                5: 'Color sequential area sensor'
+                7: 'Trilinear sensor'
+                8: 'Color sequential linear sensor'
+    0xA300:
+        const: FILE_SOURCE
+        name: FileSource
+        title: 'File Source'
+        components: 1
+        format: Undefined
+    0xA301:
+        const: SCENE_TYPE
+        name: SceneType
+        title: 'Scene Type'
+        components: 1
+        format: Undefined
+    0xA401:
+        const: CUSTOM_RENDERED
+        name: CustomRendered
+        title: 'Custom Rendered'
+        components: 1
+        format: Short
+        text:
+            decode:
+                0: 'Normal process'
+                1: 'Custom process'
+    0xA402:
+        const: EXPOSURE_MODE
+        name: ExposureMode
+        title: 'Exposure Mode'
+        components: 1
+        format: Short
+        text:
+            decode:
+                0: 'Auto exposure'
+                1: 'Manual exposure'
+                2: 'Auto bracket'
+    0xA403:
+        const: WHITE_BALANCE
+        name: WhiteBalance
+        title: 'White Balance'
+        components: 1
+        format: Short
+        text:
+            decode:
+                0: 'Auto white balance'
+                1: 'Manual white balance'
+    0xA404:
+        const: DIGITAL_ZOOM_RATIO
+        name: DigitalZoomRatio
+        title: 'Digital Zoom Ratio'
+        components: 1
+        format: Rational
+    0xA405:
+        const: FOCAL_LENGTH_IN_35MM_FILM
+        name: FocalLengthIn35mmFilm
+        title: 'Focal Length In 35mm Film'
+        components: 1
+        format: Rational
+    0xA406:
+        const: SCENE_CAPTURE_TYPE
+        name: SceneCaptureType
+        title: 'Scene Capture Type'
+        components: 1
+        format: Short
+        text:
+            decode:
+                0: 'Standard'
+                1: 'Landscape'
+                2: 'Portrait'
+                3: 'Night scene'
+    0xA407:
+        const: GAIN_CONTROL
+        name: GainControl
+        title: 'Gain Control'
+        components: 1
+        format: Short
+        text:
+            decode:
+                0: 'Normal'
+                1: 'Low gain up'
+                2: 'High gain up'
+                3: 'Low gain down'
+                4: 'High gain down'
+    0xA408:
+        const: CONTRAST
+        name: Contrast
+        title: Contrast
+        components: 1
+        format: Short
+        text:
+            decode:
+                0: 'Normal'
+                1: 'Soft'
+                2: 'Hard'
+    0xA409:
+        const: SATURATION
+        name: Saturation
+        title: Saturation
+        components: 1
+        format: Short
+        text:
+            decode:
+                0: 'Normal'
+                1: 'Low saturation'
+                2: 'High saturation'
+    0xA40A:
+        const: SHARPNESS
+        name: Sharpness
+        title: Sharpness
+        components: 1
+        format: Short
+        text:
+            decode:
+                0: 'Normal'
+                1: 'Soft'
+                2: 'Hard'
+    0xA40B:
+        const: DEVICE_SETTING_DESCRIPTION
+        name: DeviceSettingDescription
+        title: 'Device Setting Description'
+        components: Unknown
+        format: Unknown
+    0xA40C:
+        const: SUBJECT_DISTANCE_RANGE
+        name: SubjectDistanceRange
+        title: 'Subject Distance Range'
+        components: 1
+        format: Short
+        text:
+            decode:
+                0: 'Unknown'
+                1: 'Macro'
+                2: 'Close view'
+                3: 'Distant view'
+    0xA420:
+        const: IMAGE_UNIQUE_ID
+        name: ImageUniqueID
+        title: 'Image Unique ID'
+        components: 32
+        format: Ascii
+    0xA500:
+        const: GAMMA
+        name: Gamma
+        title: Gamma
+        components: 1
+        format: Rational
