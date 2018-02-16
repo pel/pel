@@ -51,5 +51,10 @@ class PelSpecTest extends TestCase
         $this->assertEquals('UserComment', PelSpec::getTagFormat(2, 0x9286));
         $this->assertEquals('Short', PelSpec::getTagFormat(2, 0xA002));
         $this->assertNull(PelSpec::getTagFormat(7, 0x0002));
+
+        // Check getTagTitle.
+        $this->assertEquals('Exif IFD Pointer', PelSpec::getTagTitle(0, 0x8769));
+        $this->assertEquals('Exposure Time', PelSpec::getTagTitle(2, 0x829A));
+        $this->assertEquals('Compression', PelSpec::getTagTitle(0, 0x0103));
     }
 }
