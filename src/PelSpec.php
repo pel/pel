@@ -205,4 +205,20 @@ class PelSpec
         }
         return $format;
     }
+
+    /**
+     * Returns the TAG title.
+     *
+     * @param int $ifd_id
+     *            the IFD id.
+     * @param int $tag_id
+     *            the TAG id.
+     *
+     * @return string
+     *            the TAG title.
+     */
+    public static function getTagTitle($ifd_id, $tag_id)
+    {
+        return isset(self::getMap()['tags'][$ifd_id][$tag_id]['title']) ? self::getMap()['tags'][$ifd_id][$tag_id]['title'] : null;
+    }
 }
