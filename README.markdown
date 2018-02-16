@@ -38,6 +38,9 @@ composer require lsolesen/pel
 * README.markdown: gives you a short introduction to PEL (this file).
 * INSTALL.md: explain how to install and get going with PEL.
 * CHANGELOG.md: contains important information about changes in PEL.
+* [SPECIFICATION.md](SPECIFICATION.md): specifications for the YAML files
+  describing the EXIF tags supported by the library. Must read for developers
+  willing to contribute additional EXIF support.
 * examples/: small self-contained examples of how to use PEL.
 * AUTHORS: list of people who have helped.
 * run run-phpdoc.sh to generate API-documention or see it online at http://pel.github.com/pel
