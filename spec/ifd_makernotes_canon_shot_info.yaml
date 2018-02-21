@@ -23,7 +23,7 @@ tags:
         title: 'White Balance Setting'
         format: Short
         text:
-            decode:
+            mapping:
                 0: 'Auto'
                 1: 'Daylight'
                 2: 'Cloudy'
@@ -52,7 +52,7 @@ tags:
         title: 'Slow Shutter'
         format: Short
         text:
-            decode:
+            mapping:
                 0: 'Off'
                 1: 'Night Scene'
                 2: 'On'
@@ -67,7 +67,7 @@ tags:
         title: 'AF Point Used'
         format: Short
         text:
-            decode:
+            mapping:
                 0x3000: 'None (MF)'
                 0x3001: 'Right'
                 0x3002: 'Center'
@@ -86,7 +86,7 @@ tags:
         title: 'Auto Exposure Bracketing'
         format: Short
         text:
-            decode:
+            mapping:
                 -1: 'On'
                 0: 'Off'
                 1: 'On (shot 1)'
@@ -114,7 +114,7 @@ tags:
         title: 'Camera Type'
         format: Short
         text:
-            decode:
+            mapping:
                 248: 'EOS High-end'
                 250: 'Compact'
                 252: 'EOS Mid-range'
@@ -125,7 +125,7 @@ tags:
         title: 'Auto Rotate'
         format: Short
         text:
-            decode:
+            mapping:
                 0: 'None'
                 1: 'Rotate 90 CW'
                 2: 'Rotate 180'
@@ -136,6 +136,6 @@ tags:
         title: 'ND Filter'
         format: Short
         text:
-            decode:
+            mapping:
                 0: 'Off'
                 1: 'On'

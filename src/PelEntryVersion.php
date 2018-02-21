@@ -76,6 +76,13 @@ class PelEntryVersion extends PelEntry
     private $version;
 
     /**
+     * The value held by this entry.
+     *
+     * @var array
+     */
+    protected $value = [];
+
+    /**
      * Make a new entry for holding a version.
      *
      * @param integer $tag
@@ -106,6 +113,7 @@ class PelEntryVersion extends PelEntry
     public function setValue($version = 0.0)
     {
         $this->version = $version;
+        $this->value[0] = $version;
         $major = floor($version);
         $minor = ($version - $major) * 100;
         $strValue = sprintf('%02.0f%02.0f', $major, $minor);
@@ -126,6 +134,89 @@ class PelEntryVersion extends PelEntry
     }
 
     /**
+     * Validates a version string.
+     *
+     * @param string $value
+     *            the string version.
+     *
+     * @return string
+     *            the validated string version.
+     */
+    private static function validateVersion($value)
+    {
+        return floor($value) == $value ? $value .= '.0' : $value;
+    }
+
+    /**
+     * Decode text for an Exif/ExifVersion tag.
+     *
+     * @param int $components
+     *            the number of components of the TAG.
+     * @param array $value
+     *            the TAG value.
+     * @param bool $brief
+     *            indicates to use brief output.
+     *
+     * @return string
+     *            the TAG text.
+     */
+    public static function decodeExifVersion($components, $value, $brief)
+    {
+        $version = static::validateVersion($value[0]);
+        if ($brief) {
+            return Pel::fmt('Exif %s', $version);
+        } else {
+            return Pel::fmt('Exif Version %s', $version);
+        }
+    }
+
+    /**
+     * Decode text for an Exif/FlashPixVersion tag.
+     *
+     * @param int $components
+     *            the number of components of the TAG.
+     * @param array $value
+     *            the TAG value.
+     * @param bool $brief
+     *            indicates to use brief output.
+     *
+     * @return string
+     *            the TAG text.
+     */
+    public static function decodeFlashPixVersion($components, $value, $brief)
+    {
+        $version = static::validateVersion($value[0]);
+        if ($brief) {
+            return Pel::fmt('FlashPix %s', $version);
+        } else {
+            return Pel::fmt('FlashPix Version %s', $version);
+        }
+    }
+
+    /**
+     * Decode text for an Interoperability/InteroperabilityVersion tag.
+     *
+     * @param int $components
+     *            the number of components of the TAG.
+     * @param array $value
+     *            the TAG value.
+     * @param bool $brief
+     *            indicates to use brief output.
+     *
+     * @return string
+     *            the TAG text.
+     */
+    public static function decodeInteroperabilityVersion($components, $value, $brief)
+    {
+        $version = static::validateVersion($value[0]);
+        if ($brief) {
+            return Pel::fmt('Interoperability %s', $version);
+        } else {
+            return Pel::fmt('Interoperability Version %s', $version);
+        }
+    }
+
+    /**
      * Return a text string with the version.
      *
      * @param boolean $brief
@@ -139,44 +230,16 @@ class PelEntryVersion extends PelEntry
      */
     public function getText($brief = false)
     {
-        $v = $this->version;
-
-        /*
-         * Versions numbers like 2.0 would be output as just 2 if we don't
-         * add the '.0' ourselves.
-         */
-        if (floor($this->version) == $this->version) {
-            $v .= '.0';
+        // If PelSpec can return the text, return it.
+        if (($tag_text = parent::getText($brief)) !== null) {
+            return $tag_text;
         }
 
-        switch ($this->tag) {
-            case PelTag::EXIF_VERSION:
-                if ($brief) {
-                    return Pel::fmt('Exif %s', $v);
-                } else {
-                    return Pel::fmt('Exif Version %s', $v);
-                }
-                break;
-            case PelTag::FLASH_PIX_VERSION:
-                if ($brief) {
-                    return Pel::fmt('FlashPix %s', $v);
-                } else {
-                    return Pel::fmt('FlashPix Version %s', $v);
-                }
-                break;
-            case PelTag::INTEROPERABILITY_VERSION:
-                if ($brief) {
-                    return Pel::fmt('Interoperability %s', $v);
-                } else {
-                    return Pel::fmt('Interoperability Version %s', $v);
-                }
-                break;
-        }
-
+        $version = static::validateVersion($this->value[0]);
         if ($brief) {
-            return $v;
+            return $version;
         } else {
-            return Pel::fmt('Version %s', $v);
+            return Pel::fmt('Version %s', $version);
         }
     }
 }

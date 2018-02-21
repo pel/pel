@@ -221,4 +221,48 @@ class PelSpec
     {
         return isset(self::getMap()['tags'][$ifd_id][$tag_id]['title']) ? self::getMap()['tags'][$ifd_id][$tag_id]['title'] : null;
     }
+
+    /**
+     * Returns the TAG text.
+     *
+     * @param int $ifd_id
+     *            the IFD id.
+     * @param int $tag_id
+     *            the TAG id.
+     * @param int $components
+     *            the number of components of the TAG.
+     * @param array $value
+     *            the TAG value.
+     * @param bool $brief
+     *            indicates to use brief output.
+     *
+     * @return string|null
+     *            the TAG text, or NULL if not applicable.
+     */
+    public static function getTagText($ifd_id, $tag_id, $components, array $value, $brief)
+    {
+        if (!isset(self::getMap()['tags'][$ifd_id][$tag_id]['text']) || empty($value)) {
+            return null;
+        }
+
+        // Return a text from a callback if defined.
+        if (isset(self::getMap()['tags'][$ifd_id][$tag_id]['text']['decode'])) {
+            $decode = self::getMap()['tags'][$ifd_id][$tag_id]['text']['decode'];
+            list($class, $method) = explode('::', $decode);
+            if (strpos('\\', $class) === false) {
+                $class = 'lsolesen\\pel\\' . $class;
+            }
+            return call_user_func($class . '::' . $method, $components, $value, $brief);
+        }
+
+        // Return a text from a mapping list if defined.
+        if (isset(self::getMap()['tags'][$ifd_id][$tag_id]['text']['mapping'])) {
+            $map = self::getMap()['tags'][$ifd_id][$tag_id]['text']['mapping'];
+            // If the code to be mapped is a non-int, change to string.
+            $id = is_int($value[0]) ? $value[0] : (string) $value[0];
+            return isset($map[$id]) ? Pel::tra($map[$id]) : null;
+        }
+
+        return null;
+    }
 }

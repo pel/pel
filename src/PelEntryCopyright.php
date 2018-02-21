@@ -98,7 +98,7 @@ class PelEntryCopyright extends PelEntryAscii
      */
     public function __construct($photographer = '', $editor = '')
     {
-        parent::__construct(PelTag::COPYRIGHT);
+        parent::__construct(PelSpec::getTagIdByName(PelSpec::getIfdIdByType('0'), 'Copyright'));
         $this->setValue($photographer, $editor);
     }
 

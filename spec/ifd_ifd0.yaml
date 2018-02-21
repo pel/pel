@@ -29,7 +29,7 @@ tags:
         components: 1
         format: Short
         text:
-            decode:
+            mapping:
                 1: 'Uncompressed'
                 6: 'JPEG compression'
     0x0106:
@@ -39,7 +39,7 @@ tags:
         components: 1
         format: Short
         text:
-            decode:
+            mapping:
                 2: 'RGB'
                 6: 'YCbCr'
     0x010D:
@@ -79,7 +79,7 @@ tags:
         components: 1
         format: Short
         text:
-            decode:
+            mapping:
                 1: 'top - left'
                 2: 'top - right'
                 3: 'bottom - right'
@@ -125,7 +125,7 @@ tags:
         components: 1
         format: Short
         text:
-            decode:
+            mapping:
                 1: 'chunky format'
                 2: 'planar format'
     0x0128:
@@ -135,7 +135,7 @@ tags:
         components: 1
         format: Short
         text:
-            decode:
+            mapping:
                 2: 'Inch'
                 3: 'Centimeter'
     0x012D:
@@ -198,6 +198,8 @@ tags:
         title: 'YCbCr Sub-Sampling'
         components: 2
         format: Short
+        text:
+            decode: PelEntryShort::decodeYCbCrSubSampling
     0x0213:
         const: YCBCR_POSITIONING
         name: YCbCrPositioning
@@ -205,7 +207,7 @@ tags:
         components: 1
         format: Short
         text:
-            decode:
+            mapping:
                 1: 'centered'
                 2: 'co-sited'
     0x0214:
