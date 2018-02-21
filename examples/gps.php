@@ -38,6 +38,7 @@ require_once '../autoload.php';
 
 use lsolesen\pel\PelJpeg;
 use lsolesen\pel\PelTiff;
+use lsolesen\pel\PelSpec;
 
 /**
  * Convert a decimal degree into degrees, minutes, and seconds.
@@ -149,32 +150,32 @@ function addGpsInfo($input, $output, $description, $comment, $model, $longitude,
      * Create first Image File Directory and associate it with the TIFF
      * data.
      */
-    $ifd0 = new PelIfd(PelIfd::IFD0);
+    $ifd0 = new PelIfd(PelSpec::getIfdIdByType('IFD0'));
     $tiff->setIfd($ifd0);
 
     /*
      * Create a sub-IFD for holding GPS information. GPS data must be
      * below the first IFD.
      */
-    $gps_ifd = new PelIfd(PelIfd::GPS);
+    $gps_ifd = new PelIfd(PelSpec::getIfdIdByType('GPS'));
     $ifd0->addSubIfd($gps_ifd);
 
     /*
      * The USER_COMMENT tag must be put in a Exif sub-IFD under the
      * first IFD.
      */
-    $exif_ifd = new PelIfd(PelIfd::EXIF);
+    $exif_ifd = new PelIfd(PelSpec::getIfdIdByType('Exif'));
     $exif_ifd->addEntry(new PelEntryUserComment($comment));
     $ifd0->addSubIfd($exif_ifd);
 
-    $inter_ifd = new PelIfd(PelIfd::INTEROPERABILITY);
+    $inter_ifd = new PelIfd(PelSpec::getIfdIdByType('Interoperability'));
     $ifd0->addSubIfd($inter_ifd);
 
-    $ifd0->addEntry(new PelEntryAscii(PelTag::MODEL, $model));
-    $ifd0->addEntry(new PelEntryAscii(PelTag::DATE_TIME, $date_time));
-    $ifd0->addEntry(new PelEntryAscii(PelTag::IMAGE_DESCRIPTION, $description));
+    $ifd0->addEntry(new PelEntryAscii(PelSpec::getTagIdByName($ifd0->getType(), 'Model'), $model));
+    $ifd0->addEntry(new PelEntryAscii(PelSpec::getTagIdByName($ifd0->getType(), 'DateTime'), $date_time));
+    $ifd0->addEntry(new PelEntryAscii(PelSpec::getTagIdByName($ifd0->getType(), 'ImageDescription'), $description));
 
-    $gps_ifd->addEntry(new PelEntryByte(PelTag::GPS_VERSION_ID, 2, 2, 0, 0));
+    $gps_ifd->addEntry(new PelEntryByte(PelSpec::getTagIdByName($gps_ifd->getType(), 'GPSVersionID'), 2, 2, 0, 0));
 
     /*
      * Use the convertDecimalToDMS function to convert the latitude from
@@ -185,29 +186,26 @@ function addGpsInfo($input, $output, $description, $comment, $model, $longitude,
     /* We interpret a negative latitude as being south. */
     $latitude_ref = ($latitude < 0) ? 'S' : 'N';
 
-    $gps_ifd->addEntry(new PelEntryAscii(PelTag::GPS_LATITUDE_REF, $latitude_ref));
-    $gps_ifd->addEntry(new PelEntryRational(PelTag::GPS_LATITUDE, $hours, $minutes, $seconds));
+    $gps_ifd->addEntry(new PelEntryAscii(PelSpec::getTagIdByName($gps_ifd->getType(), 'GPSLatitudeRef'), $latitude_ref));
+    $gps_ifd->addEntry(new PelEntryRational(PelSpec::getTagIdByName($gps_ifd->getType(), 'GPSLatitude'), $hours, $minutes, $seconds));
 
     /* The longitude works like the latitude. */
     list ($hours, $minutes, $seconds) = convertDecimalToDMS($longitude);
     $longitude_ref = ($longitude < 0) ? 'W' : 'E';
 
-    $gps_ifd->addEntry(new PelEntryAscii(PelTag::GPS_LONGITUDE_REF, $longitude_ref));
-    $gps_ifd->addEntry(new PelEntryRational(PelTag::GPS_LONGITUDE, $hours, $minutes, $seconds));
+    $gps_ifd->addEntry(new PelEntryAscii(PelSpec::getTagIdByName($gps_ifd->getType(), 'GPSLongitudeRef'), $longitude_ref));
+    $gps_ifd->addEntry(new PelEntryRational(PelSpec::getTagIdByName($gps_ifd->getType(), 'GPSLongitude'), $hours, $minutes, $seconds));
 
     /*
      * Add the altitude. The absolute value is stored here, the sign is
      * stored in the GPS_ALTITUDE_REF tag below.
      */
-    $gps_ifd->addEntry(new PelEntryRational(PelTag::GPS_ALTITUDE, [
-        abs($altitude),
-        1
-    ]));
+    $gps_ifd->addEntry(new PelEntryRational(PelSpec::getTagIdByName($gps_ifd->getType(), 'GPSAltitude'), [abs($altitude), 1]));
     /*
      * The reference is set to 1 (true) if the altitude is below sea
      * level, or 0 (false) otherwise.
      */
-    $gps_ifd->addEntry(new PelEntryByte(PelTag::GPS_ALTITUDE_REF, (int) ($altitude < 0)));
+    $gps_ifd->addEntry(new PelEntryByte(PelSpec::getTagIdByName($gps_ifd->getType(), 'GPSAltitudeRef'), (int) ($altitude < 0)));
 
     /* Finally we store the data in the output file. */
     file_put_contents($output, $jpeg->getBytes());

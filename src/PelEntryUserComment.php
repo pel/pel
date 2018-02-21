@@ -98,7 +98,7 @@ class PelEntryUserComment extends PelEntryUndefined
      */
     public function __construct($comment = '', $encoding = 'ASCII')
     {
-        parent::__construct(PelTag::USER_COMMENT);
+        parent::__construct(PelSpec::getTagIdByName(PelSpec::getIfdIdByType('Exif'), 'UserComment'));
         $this->setValue($comment, $encoding);
     }
 

@@ -270,6 +270,11 @@ abstract class PelEntryNumber extends PelEntry
      */
     public function getText($brief = false)
     {
+        // If PelSpec can return the text, return it.
+        if (($tag_text = parent::getText($brief)) !== null) {
+            return $tag_text;
+        }
+
         if ($this->components == 0) {
             return '';
         }

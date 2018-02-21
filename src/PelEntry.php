@@ -197,7 +197,12 @@ abstract class PelEntry
      *
      * @return string the value as text.
      */
-    abstract public function getText($brief = false);
+    public function getText($brief = false)
+    {
+        // If PelSpec can return the text, return it, otherwise implementations
+        // will override.
+        return PelSpec::getTagText($this->ifd_type, $this->tag, $this->components, $this->value, $brief);
+    }
 
     /**
      * Get the value of this entry.
@@ -244,7 +249,7 @@ abstract class PelEntry
         $str = Pel::fmt("  Tag: 0x%04X (%s)\n", $this->tag, PelTag::getName($this->ifd_type, $this->tag));
         $str .= Pel::fmt("    Format    : %d (%s)\n", $this->format, PelFormat::getName($this->format));
         $str .= Pel::fmt("    Components: %d\n", $this->components);
-        if ($this->getTag() != PelTag::MAKER_NOTE && $this->getTag() != PelTag::PRINT_IM) {
+        if ($this->getTag() != PelSpec::getTagIdByName(PelSpec::getIfdIdByType('Exif'), 'MakerNote') && $this->getTag() != PelSpec::getTagIdByName(PelSpec::getIfdIdByType('0'), 'PrintIM')) {
             $str .= Pel::fmt("    Value     : %s\n", print_r($this->getValue(), true));
         }
         $str .= Pel::fmt("    Text      : %s\n", $this->getText());

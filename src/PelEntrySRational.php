@@ -109,45 +109,59 @@ class PelEntrySRational extends PelEntrySLong
     }
 
     /**
-     * Get the value of an entry as text.
+     * Decode text for an Exif/ShutterSpeedValue tag.
      *
-     * The value will be returned in a format suitable for presentation,
-     * e.g., rationals will be returned as 'x/y', ASCII strings will be
-     * returned as themselves etc.
+     * @param int $components
+     *            the number of components of the TAG.
+     * @param array $value
+     *            the TAG value.
+     * @param bool $brief
+     *            indicates to use brief output.
      *
-     * @param
-     *            boolean some values can be returned in a long or more
-     *            brief form, and this parameter controls that.
-     *
-     * @return string the value as text.
+     * @return string
+     *            the TAG text.
      */
-    public function getText($brief = false)
+    public static function decodeShutterSpeedValue($components, $value, $brief)
     {
-        if (isset($this->value[0])) {
-            $v = $this->value[0];
-        }
+        return Pel::fmt('%.0f/%.0f sec. (APEX: %d)', $value[0][0], $value[0][1], pow(sqrt(2), $value[0][0] / $value[0][1]));
+    }
 
-        switch ($this->tag) {
-            case PelTag::SHUTTER_SPEED_VALUE:
-                // CC (e->components, 1, v);
-                // if (!v_srat.denominator) return (NULL);
-                return Pel::fmt('%.0f/%.0f sec. (APEX: %d)', $v[0], $v[1], pow(sqrt(2), $v[0] / $v[1]));
+    /**
+     * Decode text for an Exif/BrightnessValue tag.
+     *
+     * @param int $components
+     *            the number of components of the TAG.
+     * @param array $value
+     *            the TAG value.
+     * @param bool $brief
+     *            indicates to use brief output.
+     *
+     * @return string
+     *            the TAG text.
+     */
+    public static function decodeBrightnessValue($components, $value, $brief)
+    {
+        // TODO: figure out the APEX thing, or remove this so that it is
+        // handled by the default code.
+        return sprintf('%d/%d', $value[0][0], $value[0][1]);
+        // FIXME: How do I calculate the APEX value?
+    }
 
-            case PelTag::BRIGHTNESS_VALUE:
-                // CC (e->components, 1, v);
-                //
-                // TODO: figure out the APEX thing, or remove this so that it is
-                // handled by the default clause at the bottom.
-                return sprintf('%d/%d', $v[0], $v[1]);
-            // FIXME: How do I calculate the APEX value?
-
-            case PelTag::EXPOSURE_BIAS_VALUE:
-                // CC (e->components, 1, v);
-                // if (!v_srat.denominator) return (NULL);
-                return sprintf('%s%.01f', $v[0] * $v[1] > 0 ? '+' : '', $v[0] / $v[1]);
-
-            default:
-                return parent::getText($brief);
-        }
+    /**
+     * Decode text for an Exif/ExposureBiasValue tag.
+     *
+     * @param int $components
+     *            the number of components of the TAG.
+     * @param array $value
+     *            the TAG value.
+     * @param bool $brief
+     *            indicates to use brief output.
+     *
+     * @return string
+     *            the TAG text.
+     */
+    public static function decodeExposureBiasValue($components, $value, $brief)
+    {
+        return sprintf('%s%.01f', $value[0][0] * $value[0][1] > 0 ? '+' : '', $value[0][0] / $value[0][1]);
     }
 }

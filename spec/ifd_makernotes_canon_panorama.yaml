@@ -11,7 +11,7 @@ tags:
         title: 'Panorama Direction'
         format: Short
         text:
-            decode:
+            mapping:
                 0: 'Left to Right'
                 1: 'Right to Left'
                 2: 'Bottom to Top'

@@ -57,4 +57,136 @@ class PelSpecTest extends TestCase
         $this->assertEquals('Exposure Time', PelSpec::getTagTitle(2, 0x829A));
         $this->assertEquals('Compression', PelSpec::getTagTitle(0, 0x0103));
     }
+
+    /**
+     * Tests getting decoded TAG text from TAG values.
+     *
+     * @dataProvider getTagTextProvider
+     */
+    public function testGetTagText($expected, $ifd_type, $tag_name, $components, $value, $brief)
+    {
+        $ifd_id = PelSpec::getIfdIdByType($ifd_type);
+        $tag_id = PelSpec::getTagIdByName($ifd_id, $tag_name);
+        $this->assertEquals($expected, PelSpec::getTagText($ifd_id, $tag_id, $components, $value, $brief));
+    }
+
+    /**
+     * Data provider for testGetTagText.
+     */
+    public function getTagTextProvider()
+    {
+        return [
+          'IFD0/PlanarConfiguration - value 1' => [
+              'chunky format', 'IFD0', 'PlanarConfiguration', 1, [1], false,
+          ],
+          'IFD0/PlanarConfiguration - missing mapping' => [
+              null, 'IFD0', 'PlanarConfiguration', 1, [6.1], false,
+          ],
+          'Canon Panorama Information/PanoramaDirection - value 4' => [
+              '2x2 Matrix (Clockwise)', 'Canon Panorama Information', 'PanoramaDirection', 1, [4], false,
+          ],
+          'Canon Camera Settings/LensType - value 493' => [
+              'Canon EF 500mm f/4L IS II USM or EF 24-105mm f4L IS USM', 'Canon Camera Settings', 'LensType', 1, [493], false,
+          ],
+          'Canon Camera Settings/LensType - value 493.1' => [
+              'Canon EF 24-105mm f/4L IS USM', 'Canon Camera Settings', 'LensType', 1, [493.1], false,
+          ],
+          'IFD0/YCbCrSubSampling - value 2, 1' => [
+              'YCbCr4:2:2', 'IFD0', 'YCbCrSubSampling', 2, [2, 1], false,
+          ],
+          'IFD0/YCbCrSubSampling - value 2, 2' => [
+              'YCbCr4:2:0', 'IFD0', 'YCbCrSubSampling', 2, [2, 2], false,
+          ],
+          'IFD0/YCbCrSubSampling - value 6, 7' => [
+              '6, 7', 'IFD0', 'YCbCrSubSampling', 2, [6, 7], false,
+          ],
+          'Exif/SubjectArea - value 6, 7' => [
+              '(x,y) = (6,7)', 'Exif', 'SubjectArea', 2, [6, 7], false,
+          ],
+          'Exif/SubjectArea - value 5, 6, 7' => [
+              'Within distance 5 of (x,y) = (6,7)', 'Exif', 'SubjectArea', 3, [5, 6, 7], false,
+          ],
+          'Exif/SubjectArea - value 4, 5, 6, 7' => [
+              'Within rectangle (width 4, height 5) around (x,y) = (6,7)', 'Exif', 'SubjectArea', 4, [4, 5, 6, 7], false,
+          ],
+          'Exif/SubjectArea - wrong components' => [
+              'Unexpected number of components (1, expected 2, 3, or 4).', 'Exif', 'SubjectArea', 1, [6], false,
+          ],
+          'Exif/FNumber - value 60, 10' => [
+              'f/6.0', 'Exif', 'FNumber', 1, [[60, 10]], false,
+          ],
+          'Exif/FNumber - value 26, 10' => [
+              'f/2.6', 'Exif', 'FNumber', 1, [[26, 10]], false,
+          ],
+          'Exif/ApertureValue - value 60, 10' => [
+              'f/8.0', 'Exif', 'ApertureValue', 1, [[60, 10]], false,
+          ],
+          'Exif/ApertureValue - value 26, 10' => [
+              'f/2.5', 'Exif', 'ApertureValue', 1, [[26, 10]], false,
+          ],
+          'Exif/FocalLength - value 60, 10' => [
+              '6.0 mm', 'Exif', 'FocalLength', 1, [[60, 10]], false,
+          ],
+          'Exif/FocalLength - value 26, 10' => [
+              '2.6 mm', 'Exif', 'FocalLength', 1, [[26, 10]], false,
+          ],
+          'Exif/SubjectDistance - value 60, 10' => [
+              '6.0 m', 'Exif', 'SubjectDistance', 1, [[60, 10]], false,
+          ],
+          'Exif/SubjectDistance - value 26, 10' => [
+              '2.6 m', 'Exif', 'SubjectDistance', 1, [[26, 10]], false,
+          ],
+          'Exif/ExposureTime - value 60, 10' => [
+              '6 sec.', 'Exif', 'ExposureTime', 1, [[60, 10]], false,
+          ],
+          'Exif/ExposureTime - value 5, 10' => [
+              '1/2 sec.', 'Exif', 'ExposureTime', 1, [[5, 10]], false,
+          ],
+          'GPS/GPSLongitude' => [
+              '30° 45\' 28" (30.76°)', 'GPS', 'GPSLongitude', 3, [[30, 1], [45, 1], [28, 1]], false,
+          ],
+          'GPS/GPSLatitude' => [
+              '50° 33\' 12" (50.55°)', 'GPS', 'GPSLatitude', 3, [[50, 1], [33, 1], [12, 1]], false,
+          ],
+          'Exif/ShutterSpeedValue - value 5, 10' => [
+              '5/10 sec. (APEX: 1)', 'Exif', 'ShutterSpeedValue', 1, [[5, 10]], false,
+          ],
+          'Exif/BrightnessValue - value 5, 10' => [
+              '5/10', 'Exif', 'BrightnessValue', 1, [[5, 10]], false,
+          ],
+          'Exif/ExposureBiasValue - value 5, 10' => [
+              '+0.5', 'Exif', 'ExposureBiasValue', 1, [[5, 10]], false,
+          ],
+          'Exif/ExposureBiasValue - value -5, 10' => [
+              '-0.5', 'Exif', 'ExposureBiasValue', 1, [[-5, 10]], false,
+          ],
+          'Exif/ExifVersion - short' => [
+              'Exif 2.2', 'Exif', 'ExifVersion', 4, [2.2], true,
+          ],
+          'Exif/ExifVersion - long' => [
+              'Exif Version 2.2', 'Exif', 'ExifVersion', 4, [2.2], false,
+          ],
+          'Exif/FlashPixVersion - short' => [
+              'FlashPix 2.5', 'Exif', 'FlashPixVersion', 4, [2.5], true,
+          ],
+          'Exif/FlashPixVersion - long' => [
+              'FlashPix Version 2.5', 'Exif', 'FlashPixVersion', 4, [2.5], false,
+          ],
+          'Interoperability/InteroperabilityVersion - short' => [
+              'Interoperability 1.0', 'Interoperability', 'InteroperabilityVersion', 4, [1], true,
+          ],
+          'Interoperability/InteroperabilityVersion - long' => [
+              'Interoperability Version 1.0', 'Interoperability', 'InteroperabilityVersion', 4, [1], false,
+          ],
+          'Exif/ComponentsConfiguration' => [
+              'Y Cb Cr -', 'Exif', 'ComponentsConfiguration', 4, ["\x01\x02\x03\0"], false,
+          ],
+          'Exif/FileSource' => [
+              'DSC', 'Exif', 'FileSource', 1, ["\x03"], false,
+          ],
+          'Exif/SceneType' => [
+              'Directly photographed', 'Exif', 'SceneType', 1, ["\x01"], false,
+          ],
+        ];
+    }
 }
