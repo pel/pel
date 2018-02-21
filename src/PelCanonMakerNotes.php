@@ -174,7 +174,7 @@ class PelCanonMakerNotes extends PelMakerNotes
     public function __construct($parent, $data, $size, $offset)
     {
         parent::__construct($parent, $data, $size, $offset);
-        $this->type = PelIfd::CANON_MAKER_NOTES;
+        $this->type = PelSpec::getIfdIdByType('Canon Maker Notes');
     }
 
     public function load()
@@ -182,7 +182,7 @@ class PelCanonMakerNotes extends PelMakerNotes
         $this->components = $this->data->getShort($this->offset);
         $this->offset += 2;
         Pel::debug('Loading %d components in maker notes.', $this->components);
-        $mkNotesIfd = new PelIfd(PelIfd::CANON_MAKER_NOTES);
+        $mkNotesIfd = new PelIfd(PelSpec::getIfdIdByType('Canon Maker Notes'));
 
         for ($i = 0; $i < $this->components; $i++) {
             $tag = $this->data->getShort($this->offset + 12 * $i);
@@ -221,7 +221,7 @@ class PelCanonMakerNotes extends PelMakerNotes
 
     private function parseCameraSettings($parent, $data, $offset, $components)
     {
-        $type = PelIfd::CANON_CAMERA_SETTINGS;
+        $type = PelSpec::getIfdIdByType('Canon Camera Settings');
         Pel::debug('Found Canon Camera Settings sub IFD at offset %d', $offset);
         $size = $data->getShort($offset);
         $offset += 2;
@@ -243,7 +243,7 @@ class PelCanonMakerNotes extends PelMakerNotes
 
     private function parseShotInfo($parent, $data, $offset, $components)
     {
-        $type = PelIfd::CANON_SHOT_INFO;
+        $type = PelSpec::getIfdIdByType('Canon Shot Information');
         Pel::debug('Found Canon Shot Info sub IFD at offset %d', $offset);
         $size = $data->getShort($offset);
         $offset += 2;
@@ -265,7 +265,7 @@ class PelCanonMakerNotes extends PelMakerNotes
 
     private function parsePanorama($parent, $data, $offset, $components)
     {
-        $type = PelIfd::CANON_PANORAMA;
+        $type = PelSpec::getIfdIdByType('Canon Panorama Information');
         Pel::debug('Found Canon Panorama sub IFD at offset %d', $offset);
         $size = $data->getShort($offset);
         $offset += 2;
@@ -287,7 +287,7 @@ class PelCanonMakerNotes extends PelMakerNotes
 
     private function parsePictureInfo($parent, $data, $offset, $components)
     {
-        $type = PelIfd::CANON_PICTURE_INFO;
+        $type = PelSpec::getIfdIdByType('Canon Picture Information');
         Pel::debug('Found Canon Picture Info sub IFD at offset %d', $offset);
         $size = $data->getShort($offset);
         $offset += 2;
@@ -310,7 +310,7 @@ class PelCanonMakerNotes extends PelMakerNotes
 
     private function parseFileInfo($parent, $data, $offset, $components)
     {
-        $type = PelIfd::CANON_FILE_INFO;
+        $type = PelSpec::getIfdIdByType('Canon File Information');
         Pel::debug('Found Canon File Info sub IFD at offset %d', $offset);
         $size = $data->getShort($offset);
         $offset += 2;

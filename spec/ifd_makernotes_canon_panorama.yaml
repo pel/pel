@@ -1,0 +1,19 @@
+const: 8
+type: 'Canon Panorama Information'
+tags:
+    0x0002:
+        const: CANON_PA_PANORAMA_FRAME
+        name: PanoramaFrame
+        title: 'Panorama Frame'
+    0x0005:
+        const: CANON_PA_PANORAMA_DIRECTION
+        name: PanoramaDirection
+        title: 'Panorama Direction'
+        format: Short
+        text:
+            mapping:
+                0: 'Left to Right'
+                1: 'Right to Left'
+                2: 'Bottom to Top'
+                3: 'Top to Bottom'
+                4: '2x2 Matrix (Clockwise)'

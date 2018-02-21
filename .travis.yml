@@ -27,6 +27,9 @@ before_script:
   - mkdir -p build/logs
 
 script:
+  # Remove the comment to the line below during development, to let
+  # TravisCI re-compile the specification PHP file from the YAML files.
+  #- php bin/pel compile
   - ./vendor/bin/phpcs --runtime-set ignore_warnings_on_exit 1
   - ./vendor/bin/phpunit --coverage-clover build/logs/clover.xml ./test
 

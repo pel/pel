@@ -1,0 +1,139 @@
+const: 10
+type: 'Canon File Information'
+tags:
+    0x0001:
+        const: CANON_FI_FILE_NUMBER
+        name: FileNumber
+        title: 'File Number'
+    0x0003:
+        const: CANON_FI_BRACKET_MODE
+        name: BracketMode
+        title: 'Bracket Mode'
+        text:
+            mapping:
+                0: 'Off'
+                1: 'AEB'
+                2: 'FEB'
+                3: 'ISO'
+                4: 'WB'
+    0x0004:
+        const: CANON_FI_BRACKET_VALUE
+        name: BracketValue
+        title: 'Bracket Value'
+    0x0005:
+        const: CANON_FI_BRACKET_SHOT_NUMBER
+        name: BracketShotNumber
+        title: 'Bracket Shot Number'
+    0x0006:
+        const: CANON_FI_RAW_JPG_QUALITY
+        name: RawJpgQuality
+        title: 'Raw Jpg Quality'
+        text:
+            mapping:
+                1: 'Economy'
+                2: 'Normal'
+                3: 'Fine'
+                4: 'RAW'
+                5: 'Superfine'
+                130: 'Normal Movie'
+                131: 'Movie (2)'
+    0x0007:
+        const: CANON_FI_RAW_JPG_SIZE
+        name: RawJpgSize
+        title: 'Raw Jpg Size'
+        text:
+            mapping:
+                0: 'Large'
+                1: 'Medium'
+                2: 'Small'
+                5: 'Medium 1'
+                6: 'Medium 2'
+                7: 'Medium 3'
+                8: 'Postcard'
+                9: 'Widescreen'
+                10: 'Medium Widescreen'
+                14: 'Small 1'
+                15: 'Small 2'
+                16: 'Small 3'
+                128: '640x480 Movie'
+                129: 'Medium Movie'
+                130: 'Small Movie'
+                137: '1280x720 Movie'
+                142: '1920x1080 Movie'
+    0x0008:
+        const: CANON_FI_NOISE_REDUCTION
+        name: NoiseReduction
+        title: 'Noise Reduction'
+        text:
+            mapping:
+                0: 'Off'
+                1: 'On (1D)'
+                3: 'On'
+                4: 'Auto'
+    0x0009:
+        const: CANON_FI_WB_BRACKET_MODE
+        name: WBBracketMode
+        title: 'WB Bracket Mode'
+        text:
+            mapping:
+                0: 'Off'
+                1: 'On (shift AB)'
+                2: 'On (shift GM)'
+    0x000C:
+        const: CANON_FI_WB_BRACKET_VALUE_AB
+        name: WBBracketValueAB
+        title: 'WB Bracket Value AB'
+    0x000D:
+        const: CANON_FI_WB_BRACKET_VALUE_GM
+        name: WBBracketValueGM
+        title: 'WB Bracket Value GM'
+    0x000E:
+        const: CANON_FI_FILTER_EFFECT
+        name: FilterEffect
+        title: 'Filter Effect'
+        text:
+            mapping:
+                0: 'None'
+                1: 'Yellow'
+                2: 'Orange'
+                3: 'Red'
+                4: 'Green'
+    0x000F:
+        const: CANON_FI_TONING_EFFECT
+        name: ToningEffect
+        title: 'Toning Effect'
+        text:
+            mapping:
+                0: 'None'
+                1: 'Sepia'
+                2: 'Blue'
+                3: 'Purple'
+                4: 'Green'
+    0x0010:
+        const: CANON_FI_MACRO_MAGNIFICATION
+        name: MacroMagnification
+        title: 'Macro Magnification'
+    0x0013:
+        const: CANON_FI_LIVE_VIEW_SHOOTING
+        name: LiveViewShooting
+        title: 'Live View Shooting'
+        text:
+            mapping:
+                0: 'Off'
+                1: 'On'
+    0x0014:
+        const: CANON_FI_FOCUS_DISTANCE_UPPER
+        name: FocusDistanceUpper
+        title: 'Focus Distance Upper'
+    0x0015:
+        const: CANON_FI_FOCUS_DISTANCE_LOWER
+        name: FocusDistanceLower
+        title: 'Focus Distance Lower'
+    0x0019:
+        const: CANON_FI_FLASH_EXPOSURE_LOCK
+        name: FlashExposureLock
+        title: 'Flash Exposure Lock'
+        text:
+            mapping:
+                0: 'Off'
+                1: 'On'

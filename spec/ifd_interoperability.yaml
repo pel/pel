@@ -1,0 +1,41 @@
+const: 4
+type: Interoperability
+alias:
+  - 'Interop'
+tags:
+    0x0001:
+        const: INTEROPERABILITY_INDEX
+        name: InteroperabilityIndex
+        title: 'Interoperability Index'
+        components: 4
+        format: Ascii
+    0x0002:
+        const: INTEROPERABILITY_VERSION
+        name: InteroperabilityVersion
+        title: 'Interoperability Version'
+        components: 4
+        format: Version
+        text:
+            decode: PelEntryVersion::decodeInteroperabilityVersion
+    0x1000:
+        const: RELATED_IMAGE_FILE_FORMAT
+        name: RelatedImageFileFormat
+        title: 'Related Image File Format'
+        components: Unknown
+        format: Unknown
+    0x1001:
+        const: RELATED_IMAGE_WIDTH
+        name: RelatedImageWidth
+        title: 'Related Image Width'
+        # Probably 1
+        components: Unknown
+        # Probably Short
+        format: Unknown
+    0x1002:
+        const: RELATED_IMAGE_LENGTH
+        name: RelatedImageLength
+        title: 'Related Image Length'
+        # Probably 1
+        components: Unknown
+        # Probably Short
+        format: Unknown

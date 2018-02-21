@@ -1,0 +1,193 @@
+const: 3
+type: GPS
+tags:
+    0x0000:
+        const: GPS_VERSION_ID
+        name: GPSVersionID
+        title: GPSVersionID
+        components: 4
+        format: Byte
+    0x0001:
+        const: GPS_LATITUDE_REF
+        name: GPSLatitudeRef
+        title: GPSLatitudeRef
+        components: 2
+        format: Ascii
+    0x0002:
+        const: GPS_LATITUDE
+        name: GPSLatitude
+        title: GPSLatitude
+        components: 3
+        format: Rational
+        text:
+            decode: PelEntryRational::decodeGPSLatitude
+    0x0003:
+        const: GPS_LONGITUDE_REF
+        name: GPSLongitudeRef
+        title: GPSLongitudeRef
+        components: 2
+        format: Ascii
+    0x0004:
+        const: GPS_LONGITUDE
+        name: GPSLongitude
+        title: GPSLongitude
+        components: 3
+        format: Rational
+        text:
+            decode: PelEntryRational::decodeGPSLongitude
+    0x0005:
+        const: GPS_ALTITUDE_REF
+        name: GPSAltitudeRef
+        title: GPSAltitudeRef
+        components: 1
+        format: Byte
+    0x0006:
+        const: GPS_ALTITUDE
+        name: GPSAltitude
+        title: GPSAltitude
+        components: 1
+        format: Rational
+    0x0007:
+        const: GPS_TIME_STAMP
+        name: GPSTimeStamp
+        title: GPSTimeStamp
+        components: 3
+        format: Rational
+    0x0008:
+        const: GPS_SATELLITES
+        name: GPSSatellites
+        title: GPSSatellites
+        components: Any
+        format: Ascii
+    0x0009:
+        const: GPS_STATUS
+        name: GPSStatus
+        title: GPSStatus
+        components: 2
+        format: Ascii
+    0x000A:
+        const: GPS_MEASURE_MODE
+        name: GPSMeasureMode
+        title: GPSMeasureMode
+        components: 2
+        format: Ascii
+    0x000B:
+        const: GPS_DOP
+        name: GPSDOP
+        title: GPSDOP
+        components: 1
+        format: Rational
+    0x000C:
+        const: GPS_SPEED_REF
+        name: GPSSpeedRef
+        title: GPSSpeedRef
+        components: 2
+        format: Ascii
+    0x000D:
+        const: GPS_SPEED
+        name: GPSSpeed
+        title: GPSSpeed
+        components: 1
+        format: Rational
+    0x000E:
+        const: GPS_TRACK_REF
+        name: GPSTrackRef
+        title: GPSTrackRef
+        components: 2
+        format: Ascii
+    0x000F:
+        const: GPS_TRACK
+        name: GPSTrack
+        title: GPSTrack
+        components: 1
+        format: Rational
+    0x0010:
+        const: GPS_IMG_DIRECTION_REF
+        name: GPSImgDirectionRef
+        title: GPSImgDirectionRef
+        components: 2
+        format: Ascii
+    0x0011:
+        const: GPS_IMG_DIRECTION
+        name: GPSImgDirection
+        title: GPSImgDirection
+        components: 1
+        format: Rational
+    0x0012:
+        const: GPS_MAP_DATUM
+        name: GPSMapDatum
+        title: GPSMapDatum
+        components: Any
+        format: Ascii
+    0x0013:
+        const: GPS_DEST_LATITUDE_REF
+        name: GPSDestLatitudeRef
+        title: GPSDestLatitudeRef
+        components: 2
+        format: Ascii
+    0x0014:
+        const: GPS_DEST_LATITUDE
+        name: GPSDestLatitude
+        title: GPSDestLatitude
+        components: 3
+        format: Rational
+    0x0015:
+        const: GPS_DEST_LONGITUDE_REF
+        name: GPSDestLongitudeRef
+        title: GPSDestLongitudeRef
+        components: 2
+        format: Ascii
+    0x0016:
+        const: GPS_DEST_LONGITUDE
+        name: GPSDestLongitude
+        title: GPSDestLongitude
+        components: 3
+        format: Rational
+    0x0017:
+        const: GPS_DEST_BEARING_REF
+        name: GPSDestBearingRef
+        title: GPSDestBearingRef
+        components: 2
+        format: Ascii
+    0x0018:
+        const: GPS_DEST_BEARING
+        name: GPSDestBearing
+        title: GPSDestBearing
+        components: 1
+        format: Rational
+    0x0019:
+        const: GPS_DEST_DISTANCE_REF
+        name: GPSDestDistanceRef
+        title: GPSDestDistanceRef
+        components: 2
+        format: Ascii
+    0x001A:
+        const: GPS_DEST_DISTANCE
+        name: GPSDestDistance
+        title: GPSDestDistance
+        components: 1
+        format: Rational
+    0x001B:
+        const: GPS_PROCESSING_METHOD
+        name: GPSProcessingMethod
+        title: GPSProcessingMethod
+        components: Any
+        format: Undefined
+    0x001C:
+        const: GPS_AREA_INFORMATION
+        name: GPSAreaInformation
+        title: GPSAreaInformation
+        components: Any
+        format: Undefined
+    0x001D:
+        const: GPS_DATE_STAMP
+        name: GPSDateStamp
+        title: GPSDateStamp
+        components: 11
+        format: Ascii
+    0x001E:
+        const: GPS_DIFFERENTIAL
+        name: GPSDifferential
+        title: GPSDifferential
+        components: 1
+        format: Short
