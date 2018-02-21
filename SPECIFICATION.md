@@ -64,7 +64,7 @@ An TAG entry is an array describing a single EXIF tag. The structure of the arra
         components: 1
         format: Short
         text:
-            decode:
+            mapping:
                 2: 'RGB'
                 6: 'YCbCr'
 ```
@@ -79,7 +79,7 @@ The TAG entry is identified by the HEX value of the EXIF tag, like `0x0106` in t
 | components | (Optional) An integer describing the exepcted number of data components in the TAG. |
 | format     | (Optional) A string/array of strings identifying the expected data format of the tag. |
 | ifd        | (Optional) If specified, identifies the TAG as a pointer to a sub-IFD, as the string of the relative IFD type.  |
-| text       | (Optional) If specified, instructs PEL to decode the value of the TAG to a text string. The mapping bteween the value and the text is defined in the `decode:` array. |
+| text       | (Optional) If specified, instructs PEL to decode the value of the TAG to a text string. This can be done either as a mapping between the value and the text (defined by the `mapping:` array), or by calling a callback method (indicated by the `decode:` key). |
 
 ## `pel compile` command
 

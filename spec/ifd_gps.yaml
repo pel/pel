@@ -19,6 +19,8 @@ tags:
         title: GPSLatitude
         components: 3
         format: Rational
+        text:
+            decode: PelEntryRational::decodeGPSLatitude
     0x0003:
         const: GPS_LONGITUDE_REF
         name: GPSLongitudeRef
@@ -31,6 +33,8 @@ tags:
         title: GPSLongitude
         components: 3
         format: Rational
+        text:
+            decode: PelEntryRational::decodeGPSLongitude
     0x0005:
         const: GPS_ALTITUDE_REF
         name: GPSAltitudeRef

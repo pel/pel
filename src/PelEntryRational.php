@@ -113,63 +113,149 @@ class PelEntryRational extends PelEntryLong
     }
 
     /**
-     * Get the value of an entry as text.
+     * Decode text for an Exif/FNumber tag.
      *
-     * The value will be returned in a format suitable for presentation,
-     * e.g., rationals will be returned as 'x/y', ASCII strings will be
-     * returned as themselves etc.
+     * @param int $components
+     *            the number of components of the TAG.
+     * @param array $value
+     *            the TAG value.
+     * @param bool $brief
+     *            indicates to use brief output.
      *
-     * @param
-     *            boolean some values can be returned in a long or more
-     *            brief form, and this parameter controls that.
-     *
-     * @return string the value as text.
+     * @return string
+     *            the TAG text.
      */
-    public function getText($brief = false)
+    public static function decodeFNumber($components, $value, $brief)
     {
-        if (isset($this->value[0])) {
-            $v = $this->value[0];
+        return Pel::fmt('f/%.01f', $value[0][0] / $value[0][1]);
+    }
+
+    /**
+     * Decode text for an Exif/ApertureValue tag.
+     *
+     * @param int $components
+     *            the number of components of the TAG.
+     * @param array $value
+     *            the TAG value.
+     * @param bool $brief
+     *            indicates to use brief output.
+     *
+     * @return string
+     *            the TAG text.
+     */
+    public static function decodeApertureValue($components, $value, $brief)
+    {
+        return Pel::fmt('f/%.01f', pow(2, $value[0][0] / $value[0][1] / 2));
+    }
+
+    /**
+     * Decode text for an Exif/FocalLength tag.
+     *
+     * @param int $components
+     *            the number of components of the TAG.
+     * @param array $value
+     *            the TAG value.
+     * @param bool $brief
+     *            indicates to use brief output.
+     *
+     * @return string
+     *            the TAG text.
+     */
+    public static function decodeFocalLength($components, $value, $brief)
+    {
+        return Pel::fmt('%.1f mm', $value[0][0] / $value[0][1]);
+    }
+
+    /**
+     * Decode text for an Exif/SubjectDistance tag.
+     *
+     * @param int $components
+     *            the number of components of the TAG.
+     * @param array $value
+     *            the TAG value.
+     * @param bool $brief
+     *            indicates to use brief output.
+     *
+     * @return string
+     *            the TAG text.
+     */
+    public static function decodeSubjectDistance($components, $value, $brief)
+    {
+        return Pel::fmt('%.1f m', $value[0][0] / $value[0][1]);
+    }
+
+    /**
+     * Decode text for an Exif/ExposureTime tag.
+     *
+     * @param int $components
+     *            the number of components of the TAG.
+     * @param array $value
+     *            the TAG value.
+     * @param bool $brief
+     *            indicates to use brief output.
+     *
+     * @return string
+     *            the TAG text.
+     */
+    public static function decodeExposureTime($components, $value, $brief)
+    {
+        if ($value[0][0] / $value[0][1] < 1) {
+            return Pel::fmt('1/%d sec.', $value[0][1] / $value[0][0]);
+        } else {
+            return Pel::fmt('%d sec.', $value[0][0] / $value[0][1]);
         }
+    }
 
-        switch ($this->tag) {
-            case PelTag::FNUMBER:
-                // CC (e->components, 1, v);
-                return Pel::fmt('f/%.01f', $v[0] / $v[1]);
+    /**
+     * Return a string formatting LONG/LAT degrees.
+     *
+     * @param array $value
+     *            the value as array of int.
+     *
+     * @return string
+     *            the TAG text.
+     */
+    private static function formatDegrees($value)
+    {
+        $degrees = $value[0][0] / $value[0][1];
+        $minutes = $value[1][0] / $value[1][1];
+        $seconds = $value[2][0] / $value[2][1];
+        return sprintf('%s° %s\' %s" (%.2f°)', $degrees, $minutes, $seconds, $degrees + $minutes / 60 + $seconds / 3600);
+    }
 
-            case PelTag::APERTURE_VALUE:
-                // CC (e->components, 1, v);
-                // if (!v_rat.denominator) return (NULL);
-                return Pel::fmt('f/%.01f', pow(2, $v[0] / $v[1] / 2));
+    /**
+     * Decode text for a GPS/GPSLongitude tag.
+     *
+     * @param int $components
+     *            the number of components of the TAG.
+     * @param array $value
+     *            the TAG value.
+     * @param bool $brief
+     *            indicates to use brief output.
+     *
+     * @return string
+     *            the TAG text.
+     */
+    public static function decodeGPSLongitude($components, $value, $brief)
+    {
+        return static::formatDegrees($value);
+    }
 
-            case PelTag::FOCAL_LENGTH:
-                // CC (e->components, 1, v);
-                // if (!v_rat.denominator) return (NULL);
-                return Pel::fmt('%.1f mm', $v[0] / $v[1]);
-
-            case PelTag::SUBJECT_DISTANCE:
-                // CC (e->components, 1, v);
-                // if (!v_rat.denominator) return (NULL);
-                return Pel::fmt('%.1f m', $v[0] / $v[1]);
-
-            case PelTag::EXPOSURE_TIME:
-                // CC (e->components, 1, v);
-                // if (!v_rat.denominator) return (NULL);
-                if ($v[0] / $v[1] < 1) {
-                    return Pel::fmt('1/%d sec.', $v[1] / $v[0]);
-                } else {
-                    return Pel::fmt('%d sec.', $v[0] / $v[1]);
-                }
-                break;
-            case PelTag::GPS_LATITUDE:
-            case PelTag::GPS_LONGITUDE:
-                $degrees = $this->value[0][0] / $this->value[0][1];
-                $minutes = $this->value[1][0] / $this->value[1][1];
-                $seconds = $this->value[2][0] / $this->value[2][1];
-
-                return sprintf('%s° %s\' %s" (%.2f°)', $degrees, $minutes, $seconds, $degrees + $minutes / 60 + $seconds / 3600);
-
-            default:
-                return parent::getText($brief);
-        }
+    /**
+     * Decode text for a GPS/GPSLatitude tag.
+     *
+     * @param int $components
+     *            the number of components of the TAG.
+     * @param array $value
+     *            the TAG value.
+     * @param bool $brief
+     *            indicates to use brief output.
+     *
+     * @return string
+     *            the TAG text.
+     */
+    public static function decodeGPSLatitude($components, $value, $brief)
+    {
+        return static::formatDegrees($value);
     }
 }

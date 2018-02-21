@@ -49,6 +49,7 @@ require_once '../autoload.php';
 
 use lsolesen\pel\PelDataWindow;
 use lsolesen\pel\PelJpeg;
+use lsolesen\pel\PelSpec;
 use lsolesen\pel\PelTiff;
 
 $prog = array_shift($argv);
@@ -98,7 +99,7 @@ foreach ($argv as $file) {
     }
 
     $ifd0 = $tiff->getIfd();
-    $entry = $ifd0->getEntry(PelTag::DATE_TIME);
+    $entry = $ifd0->getEntry(PelSpec::getTagIdByName($ifd0->getType(), 'DateTime'));
 
     if ($entry == null) {
         println('Skipping %s because no DATE_TIME tag was found.', $file);

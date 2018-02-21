@@ -13,12 +13,16 @@ tags:
         title: 'Exposure Time'
         components: 1
         format: Rational
+        text:
+            decode: PelEntryRational::decodeExposureTime
     0x829D:
         const: FNUMBER
         name: FNumber
         title: FNumber
         components: 1
         format: Rational
+        text:
+            decode: PelEntryRational::decodeFNumber
     0x8822:
         const: EXPOSURE_PROGRAM
         name: ExposureProgram
@@ -26,7 +30,7 @@ tags:
         components: 1
         format: Short
         text:
-            decode:
+            mapping:
                 0: 'Not defined'
                 1: 'Manual'
                 2: 'Normal program'
@@ -60,6 +64,8 @@ tags:
         title: 'Exif Version'
         components: 4
         format: Version
+        text:
+            decode: PelEntryVersion::decodeExifVersion
     0x9003:
         const: DATE_TIME_ORIGINAL
         name: DateTimeOriginal
@@ -96,6 +102,8 @@ tags:
         title: 'Components Configuration'
         components: 4
         format: Undefined
+        text:
+            decode: PelEntryUndefined::decodeComponentsConfiguration
     0x9102:
         const: COMPRESSED_BITS_PER_PIXEL
         name: CompressedBitsPerPixel
@@ -108,24 +116,32 @@ tags:
         title: 'Shutter speed'
         components: 1
         format: SRational
+        text:
+            decode: PelEntrySRational::decodeShutterSpeedValue
     0x9202:
         const: APERTURE_VALUE
         name: ApertureValue
         title: Aperture
         components: 1
         format: Rational
+        text:
+            decode: PelEntryRational::decodeApertureValue
     0x9203:
         const: BRIGHTNESS_VALUE
         name: BrightnessValue
         title: Brightness
         components: 1
         format: SRational
+        text:
+            decode: PelEntrySRational::decodeBrightnessValue
     0x9204:
         const: EXPOSURE_BIAS_VALUE
         name: ExposureBiasValue
         title: 'Exposure Bias'
         components: 1
         format: SRational
+        text:
+            decode: PelEntrySRational::decodeExposureBiasValue
     0x9205:
         const: MAX_APERTURE_VALUE
         name: MaxApertureValue
@@ -138,6 +154,8 @@ tags:
         title: 'Subject Distance'
         components: 1
         format: SRational
+        text:
+            decode: PelEntryRational::decodeSubjectDistance
     0x9207:
         const: METERING_MODE
         name: MeteringMode
@@ -145,7 +163,7 @@ tags:
         components: 1
         format: Short
         text:
-            decode:
+            mapping:
                 0: 'Unknown'
                 1: 'Average'
                 2: 'Center-Weighted Average'
@@ -161,7 +179,7 @@ tags:
         components: 1
         format: Short
         text:
-            decode:
+            mapping:
                 0: 'Unknown'
                 1: 'Daylight'
                 2: 'Fluorescent'
@@ -189,7 +207,7 @@ tags:
         components: 1
         format: Short
         text:
-            decode:
+            mapping:
                 0x0000: 'Flash did not fire.'
                 0x0001: 'Flash fired.'
                 0x0005: 'Strobe return light not detected.'
@@ -219,6 +237,15 @@ tags:
         title: 'Focal Length'
         components: 1
         format: Rational
+        text:
+            decode: PelEntryRational::decodeFocalLength
+    0x9214:
+        const: SUBJECT_AREA
+        name: SubjectArea
+        title: 'Subject Area'
+        format: Short
+        text:
+            decode: PelEntryShort::decodeSubjectArea
     0x927C:
         const: MAKER_NOTE
         name: MakerNote
@@ -254,6 +281,8 @@ tags:
         title: 'FlashPix Version'
         components: 4
         format: Version
+        text:
+            decode: PelEntryVersion::decodeFlashPixVersion
     0xA001:
         const: COLOR_SPACE
         name: ColorSpace
@@ -261,7 +290,7 @@ tags:
         components: 1
         format: Short
         text:
-            decode:
+            mapping:
                 1: 'sRGB'
                 2: 'Adobe RGB'
                 0xffff: 'Uncalibrated'
@@ -319,7 +348,7 @@ tags:
         components: 1
         format: Short
         text:
-            decode:
+            mapping:
                 2: 'Inch'
                 3: 'Centimeter'
     0xA214:
@@ -341,7 +370,7 @@ tags:
         components: 1
         format: Short
         text:
-            decode:
+            mapping:
                 1: 'Not defined'
                 2: 'One-chip color area sensor'
                 3: 'Two-chip color area sensor'
@@ -355,12 +384,16 @@ tags:
         title: 'File Source'
         components: 1
         format: Undefined
+        text:
+            decode: PelEntryUndefined::decodeFileSource
     0xA301:
         const: SCENE_TYPE
         name: SceneType
         title: 'Scene Type'
         components: 1
         format: Undefined
+        text:
+            decode: PelEntryUndefined::decodeSceneType
     0xA401:
         const: CUSTOM_RENDERED
         name: CustomRendered
@@ -368,7 +401,7 @@ tags:
         components: 1
         format: Short
         text:
-            decode:
+            mapping:
                 0: 'Normal process'
                 1: 'Custom process'
     0xA402:
@@ -378,7 +411,7 @@ tags:
         components: 1
         format: Short
         text:
-            decode:
+            mapping:
                 0: 'Auto exposure'
                 1: 'Manual exposure'
                 2: 'Auto bracket'
@@ -389,7 +422,7 @@ tags:
         components: 1
         format: Short
         text:
-            decode:
+            mapping:
                 0: 'Auto white balance'
                 1: 'Manual white balance'
     0xA404:
@@ -411,7 +444,7 @@ tags:
         components: 1
         format: Short
         text:
-            decode:
+            mapping:
                 0: 'Standard'
                 1: 'Landscape'
                 2: 'Portrait'
@@ -423,7 +456,7 @@ tags:
         components: 1
         format: Short
         text:
-            decode:
+            mapping:
                 0: 'Normal'
                 1: 'Low gain up'
                 2: 'High gain up'
@@ -436,7 +469,7 @@ tags:
         components: 1
         format: Short
         text:
-            decode:
+            mapping:
                 0: 'Normal'
                 1: 'Soft'
                 2: 'Hard'
@@ -447,7 +480,7 @@ tags:
         components: 1
         format: Short
         text:
-            decode:
+            mapping:
                 0: 'Normal'
                 1: 'Low saturation'
                 2: 'High saturation'
@@ -458,7 +491,7 @@ tags:
         components: 1
         format: Short
         text:
-            decode:
+            mapping:
                 0: 'Normal'
                 1: 'Soft'
                 2: 'Hard'
@@ -475,7 +508,7 @@ tags:
         components: 1
         format: Short
         text:
-            decode:
+            mapping:
                 0: 'Unknown'
                 1: 'Macro'
                 2: 'Close view'
