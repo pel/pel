@@ -628,22 +628,7 @@ class PelIfd implements \IteratorAggregate, \ArrayAccess
                         if ($format != PelFormat::BYTE) {
                             throw new PelUnexpectedFormatException($this->type, $tag, $format, PelFormat::BYTE);
                         }
-                        $v = '';
-                        for ($i = 0; $i < $components; $i ++) {
-                            $b = $data->getByte($i);
-                            /*
-                             * Convert the byte to a character if it is non-null ---
-                             * information about the character encoding of these entries
-                             * would be very nice to have! So far my tests have shown
-                             * that characters in the Latin-1 character set are stored in
-                             * a single byte followed by a NULL byte.
-                             */
-                            if ($b != 0) {
-                                $v .= chr($b);
-                            }
-                        }
-
-                        return new PelEntryWindowsString($tag, $v);
+                        return new PelEntryWindowsString($tag, $data->getBytes(), true);
                 }
             // This point can be reached! Continue with default.
             case self::GPS:
@@ -1165,13 +1150,19 @@ class PelIfd implements \IteratorAggregate, \ArrayAccess
             case self::INTEROPERABILITY:
                 return 'Interoperability';
             case self::CANON_MAKER_NOTES:
+                return 'Canon Maker Notes';
             case self::CANON_CAMERA_SETTINGS:
+                return 'Canon Camera Settings';
             case self::CANON_SHOT_INFO:
+                return 'Canon Shot Information';
             case self::CANON_PANORAMA:
+                return 'Canon Panorama Information';
             case self::CANON_PICTURE_INFO:
+                return 'Canon Picture Information';
             case self::CANON_FILE_INFO:
+                return 'Canon File Information';
             case self::CANON_CUSTOM_FUNCTIONS:
-                return 'MakerNotes';
+                return 'Canon Custom Functions';
             default:
                 throw new PelIfdException('Unknown IFD type: %d', $type);
         }
