@@ -100,6 +100,32 @@ class PelEntryShort extends PelEntryNumber
     }
 
     /**
+     * Get arguments for the instance constructor from file data.
+     *
+     * @param int $ifd_id
+     *            the IFD id.
+     * @param int $tag_id
+     *            the TAG id.
+     * @param int $format
+     *            the format of the entry as defined in {@link PelFormat}.
+     * @param int $components
+     *            the components in the entry.
+     * @param PelDataWindow $data
+     *            the data which will be used to construct the entry.
+     *
+     * @return array a list or arguments to be passed to the PelEntry subclass
+     *            constructor.
+     */
+    public static function getInstanceArgumentsFromData($ifd_id, $tag_id, $format, $components, PelDataWindow $data)
+    {
+        $args = [];
+        for ($i = 0; $i < $components; $i ++) {
+            $args[] = $data->getShort($i * 2);
+        }
+        return $args;
+    }
+
+    /**
      * Convert a number into bytes.
      *
      * @param int $number
@@ -119,51 +145,47 @@ class PelEntryShort extends PelEntryNumber
     /**
      * Decode text for a IFD0/YCbCrSubSampling tag.
      *
-     * @param int $components
-     *            the number of components of the TAG.
-     * @param array $value
-     *            the TAG value.
+     * @param PelEntry $entry
+     *            the TAG PelEntry object.
      * @param bool $brief
-     *            indicates to use brief output.
+     *            (Optional) indicates to use brief output.
      *
      * @return string
      *            the TAG text.
      */
-    public static function decodeYCbCrSubSampling($components, $value, $brief)
+    public static function decodeYCbCrSubSampling(PelEntry $entry, $brief = false)
     {
-        if ($value[0] == 2 && $value[1] == 1) {
+        if ($entry->getValue()[0] == 2 && $entry->getValue()[1] == 1) {
             return 'YCbCr4:2:2';
         }
-        if ($value[0] == 2 && $value[1] == 2) {
+        if ($entry->getValue()[0] == 2 && $entry->getValue()[1] == 2) {
             return 'YCbCr4:2:0';
         }
-        return $value[0] . ', ' . $value[1];
+        return $entry->getValue()[0] . ', ' . $entry->getValue()[1];
     }
 
     /**
      * Decode text for an Exif/SubjectArea tag.
      *
-     * @param int $components
-     *            the number of components of the TAG.
-     * @param array $value
-     *            the TAG value.
+     * @param PelEntry $entry
+     *            the TAG PelEntry object.
      * @param bool $brief
-     *            indicates to use brief output.
+     *            (Optional) indicates to use brief output.
      *
      * @return string
      *            the TAG text.
      */
-    public static function decodeSubjectArea($components, $value, $brief)
+    public static function decodeSubjectArea(PelEntry $entry, $brief = false)
     {
-        switch ($components) {
+        switch ($entry->getComponents()) {
             case 2:
-                return Pel::fmt('(x,y) = (%d,%d)', $value[0], $value[1]);
+                return Pel::fmt('(x,y) = (%d,%d)', $entry->getValue()[0], $entry->getValue()[1]);
             case 3:
-                return Pel::fmt('Within distance %d of (x,y) = (%d,%d)', $value[0], $value[1], $value[2]);
+                return Pel::fmt('Within distance %d of (x,y) = (%d,%d)', $entry->getValue()[0], $entry->getValue()[1], $entry->getValue()[2]);
             case 4:
-                return Pel::fmt('Within rectangle (width %d, height %d) around (x,y) = (%d,%d)', $value[0], $value[1], $value[2], $value[3]);
+                return Pel::fmt('Within rectangle (width %d, height %d) around (x,y) = (%d,%d)', $entry->getValue()[0], $entry->getValue()[1], $entry->getValue()[2], $entry->getValue()[3]);
             default:
-                return Pel::fmt('Unexpected number of components (%d, expected 2, 3, or 4).', $components);
+                return Pel::fmt('Unexpected number of components (%d, expected 2, 3, or 4).', $entry->getComponents());
         }
     }
 }

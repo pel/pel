@@ -111,6 +111,93 @@ abstract class PelEntry
     protected $components;
 
     /**
+     * Creates a new PelEntry of the required subclass.
+     *
+     * @param int $ifd_id
+     *            the IFD id.
+     * @param int $tag_id
+     *            the TAG id.
+     * @param array $arguments
+     *            a list or arguments to be passed to the PelEntry subclass
+     *            constructor.
+     *
+     * @return PelEntry a newly created entry, holding the data given.
+     */
+    final public static function createNew($ifd_id, $tag_id, array $arguments)
+    {
+        $class = PelSpec::getTagClass($ifd_id, $tag_id);
+        return call_user_func($class . '::createInstance', $ifd_id, $tag_id, $arguments);
+    }
+
+    /**
+     * Creates a PelEntry of the required subclass from file data.
+     *
+     *
+     * @param int $ifd_id
+     *            the IFD id.
+     * @param int $tag_id
+     *            the TAG id.
+     * @param int $format
+     *            the format of the entry as defined in {@link PelFormat}.
+     * @param int $components
+     *            the components in the entry.
+     * @param PelDataWindow $data
+     *            the data which will be used to construct the entry.
+     *
+     * @return PelEntry a newly created entry, holding the data given.
+     */
+    final public static function createFromData($ifd_id, $tag_id, $format, $components, PelDataWindow $data)
+    {
+        $class = PelSpec::getTagClass($ifd_id, $tag_id, $format);
+        $arguments = call_user_func($class . '::getInstanceArgumentsFromData', $ifd_id, $tag_id, $format, $components, $data);
+        return call_user_func($class . '::createInstance', $ifd_id, $tag_id, $arguments);
+    }
+
+    /**
+     * Creates an instance of the entry.
+     *
+     * @param int $ifd_id
+     *            the IFD id.
+     * @param int $tag_id
+     *            the TAG id.
+     * @param array $arguments
+     *            a list or arguments to be passed to the PelEntry subclass
+     *            constructor.
+     *
+     * @return PelEntry a newly created entry, holding the data given.
+     */
+    public static function createInstance($ifd_id, $tag_id, $arguments)
+    {
+        $class = new \ReflectionClass(get_called_class());
+        array_unshift($arguments, $tag_id);
+        $instance = $class->newInstanceArgs($arguments);
+        $instance->setIfdType($ifd_id);
+        return $instance;
+    }
+
+    /**
+     * Get arguments for the instance constructor from file data.
+     *
+     * @param int $ifd_id
+     *            the IFD id.
+     * @param int $tag_id
+     *            the TAG id.
+     * @param int $format
+     *            the format of the entry as defined in {@link PelFormat}.
+     * @param int $components
+     *            the components in the entry.
+     * @param PelDataWindow $data
+     *            the data which will be used to construct the entry.
+     *
+     * @return array a list or arguments to be passed to the PelEntry subclass
+     *            constructor.
+     */
+    public static function getInstanceArgumentsFromData($ifd_id, $tag_id, $format, $components, PelDataWindow $data)
+    {
+        throw new PelException('getInstanceArgumentsFromData() must be implemented.');
+    }
+
+    /**
      * Return the tag of this entry.
      *
      * @return int the tag of this entry.
@@ -201,7 +288,7 @@ abstract class PelEntry
     {
         // If PelSpec can return the text, return it, otherwise implementations
         // will override.
-        return PelSpec::getTagText($this->ifd_type, $this->tag, $this->components, $this->value, $brief);
+        return PelSpec::getTagText($this, $brief);
     }
 
     /**

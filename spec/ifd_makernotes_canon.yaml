@@ -57,7 +57,7 @@ tags:
         const: CANON_CUSTOM_FUNCTIONS
         name: CustomFunctions
         title: 'Custom Functions'
-        format: Ifd
+        #ifd: ????
     0x0010:
         const: CANON_MODEL_ID
         name: ModelID
@@ -122,7 +122,7 @@ tags:
         const: CANON_CUSTOM_FUNCTIONS_2
         name: CustomFunctions
         title: 'Custom functions'
-        format: Ifd
+        #ifd: ????
     0x00A0:
         const: CANON_PROCESSING_INFO
         name: ProcessingInfo

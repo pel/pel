@@ -83,6 +83,32 @@ class PelEntrySRational extends PelEntrySLong
     }
 
     /**
+     * Get arguments for the instance constructor from file data.
+     *
+     * @param int $ifd_id
+     *            the IFD id.
+     * @param int $tag_id
+     *            the TAG id.
+     * @param int $format
+     *            the format of the entry as defined in {@link PelFormat}.
+     * @param int $components
+     *            the components in the entry.
+     * @param PelDataWindow $data
+     *            the data which will be used to construct the entry.
+     *
+     * @return array a list or arguments to be passed to the PelEntry subclass
+     *            constructor.
+     */
+    public static function getInstanceArgumentsFromData($ifd_id, $tag_id, $format, $components, PelDataWindow $data)
+    {
+        $args = [];
+        for ($i = 0; $i < $components; $i ++) {
+            $args[] = $data->getSRational($i * 8);
+        }
+        return $args;
+    }
+
+    /**
      * Format a rational number.
      *
      * The rational will be returned as a string with a slash '/'
@@ -111,57 +137,51 @@ class PelEntrySRational extends PelEntrySLong
     /**
      * Decode text for an Exif/ShutterSpeedValue tag.
      *
-     * @param int $components
-     *            the number of components of the TAG.
-     * @param array $value
-     *            the TAG value.
+     * @param PelEntry $entry
+     *            the TAG PelEntry object.
      * @param bool $brief
-     *            indicates to use brief output.
+     *            (Optional) indicates to use brief output.
      *
      * @return string
      *            the TAG text.
      */
-    public static function decodeShutterSpeedValue($components, $value, $brief)
+    public static function decodeShutterSpeedValue(PelEntry $entry, $brief = false)
     {
-        return Pel::fmt('%.0f/%.0f sec. (APEX: %d)', $value[0][0], $value[0][1], pow(sqrt(2), $value[0][0] / $value[0][1]));
+        return Pel::fmt('%.0f/%.0f sec. (APEX: %d)', $entry->getValue()[0], $entry->getValue()[1], pow(sqrt(2), $entry->getValue()[0] / $entry->getValue()[1]));
     }
 
     /**
      * Decode text for an Exif/BrightnessValue tag.
      *
-     * @param int $components
-     *            the number of components of the TAG.
-     * @param array $value
-     *            the TAG value.
+     * @param PelEntry $entry
+     *            the TAG PelEntry object.
      * @param bool $brief
-     *            indicates to use brief output.
+     *            (Optional) indicates to use brief output.
      *
      * @return string
      *            the TAG text.
      */
-    public static function decodeBrightnessValue($components, $value, $brief)
+    public static function decodeBrightnessValue(PelEntry $entry, $brief = false)
     {
         // TODO: figure out the APEX thing, or remove this so that it is
         // handled by the default code.
-        return sprintf('%d/%d', $value[0][0], $value[0][1]);
+        return sprintf('%d/%d', $entry->getValue()[0], $entry->getValue()[1]);
         // FIXME: How do I calculate the APEX value?
     }
 
     /**
      * Decode text for an Exif/ExposureBiasValue tag.
      *
-     * @param int $components
-     *            the number of components of the TAG.
-     * @param array $value
-     *            the TAG value.
+     * @param PelEntry $entry
+     *            the TAG PelEntry object.
      * @param bool $brief
-     *            indicates to use brief output.
+     *            (Optional) indicates to use brief output.
      *
      * @return string
      *            the TAG text.
      */
-    public static function decodeExposureBiasValue($components, $value, $brief)
+    public static function decodeExposureBiasValue(PelEntry $entry, $brief = false)
     {
-        return sprintf('%s%.01f', $value[0][0] * $value[0][1] > 0 ? '+' : '', $value[0][0] / $value[0][1]);
+        return sprintf('%s%.01f', $entry->getValue()[0] * $entry->getValue()[1] > 0 ? '+' : '', $entry->getValue()[0] / $entry->getValue()[1]);
     }
 }

@@ -103,6 +103,31 @@ class PelEntryVersion extends PelEntry
     }
 
     /**
+     * Get arguments for the instance constructor from file data.
+     *
+     * @param int $ifd_id
+     *            the IFD id.
+     * @param int $tag_id
+     *            the TAG id.
+     * @param int $format
+     *            the format of the entry as defined in {@link PelFormat}.
+     * @param int $components
+     *            the components in the entry.
+     * @param PelDataWindow $data
+     *            the data which will be used to construct the entry.
+     *
+     * @return array a list or arguments to be passed to the PelEntry subclass
+     *            constructor.
+     */
+    public static function getInstanceArgumentsFromData($ifd_id, $tag_id, $format, $components, PelDataWindow $data)
+    {
+        if ($format != PelFormat::UNDEFINED) {
+            throw new PelUnexpectedFormatException($ifd_id, $tag_id, $format, PelFormat::UNDEFINED);
+        }
+        return [$data->getBytes() / 100];
+    }
+
+    /**
      * Set the version held by this entry.
      *
      * @param float $version
@@ -150,19 +175,17 @@ class PelEntryVersion extends PelEntry
     /**
      * Decode text for an Exif/ExifVersion tag.
      *
-     * @param int $components
-     *            the number of components of the TAG.
-     * @param array $value
-     *            the TAG value.
+     * @param PelEntry $entry
+     *            the TAG PelEntry object.
      * @param bool $brief
-     *            indicates to use brief output.
+     *            (Optional) indicates to use brief output.
      *
      * @return string
      *            the TAG text.
      */
-    public static function decodeExifVersion($components, $value, $brief)
+    public static function decodeExifVersion(PelEntry $entry, $brief = false)
     {
-        $version = static::validateVersion($value[0]);
+        $version = static::validateVersion($entry->getValue());
         if ($brief) {
             return Pel::fmt('Exif %s', $version);
         } else {
@@ -173,19 +196,17 @@ class PelEntryVersion extends PelEntry
     /**
      * Decode text for an Exif/FlashPixVersion tag.
      *
-     * @param int $components
-     *            the number of components of the TAG.
-     * @param array $value
-     *            the TAG value.
+     * @param PelEntry $entry
+     *            the TAG PelEntry object.
      * @param bool $brief
-     *            indicates to use brief output.
+     *            (Optional) indicates to use brief output.
      *
      * @return string
      *            the TAG text.
      */
-    public static function decodeFlashPixVersion($components, $value, $brief)
+    public static function decodeFlashPixVersion(PelEntry $entry, $brief = false)
     {
-        $version = static::validateVersion($value[0]);
+        $version = static::validateVersion($entry->getValue());
         if ($brief) {
             return Pel::fmt('FlashPix %s', $version);
         } else {
@@ -196,19 +217,17 @@ class PelEntryVersion extends PelEntry
     /**
      * Decode text for an Interoperability/InteroperabilityVersion tag.
      *
-     * @param int $components
-     *            the number of components of the TAG.
-     * @param array $value
-     *            the TAG value.
+     * @param PelEntry $entry
+     *            the TAG PelEntry object.
      * @param bool $brief
-     *            indicates to use brief output.
+     *            (Optional) indicates to use brief output.
      *
      * @return string
      *            the TAG text.
      */
-    public static function decodeInteroperabilityVersion($components, $value, $brief)
+    public static function decodeInteroperabilityVersion(PelEntry $entry, $brief = false)
     {
-        $version = static::validateVersion($value[0]);
+        $version = static::validateVersion($entry->getValue());
         if ($brief) {
             return Pel::fmt('Interoperability %s', $version);
         } else {

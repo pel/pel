@@ -10,7 +10,8 @@ Furthermore, it is the basis for discussions on evolving the project.
 ## EXIF information structure
 
 This document assumes you are familiar with the inner structure of the files that support EXIF information. A valuable read is at
-the [EXIF](https://en.wikipedia.org/wiki/Exif) entry on Wikipedia.org.
+the [EXIF](https://en.wikipedia.org/wiki/Exif) entry on Wikipedia.org. The one-stop shop for detailed information about Exif tags data
+is at [ExifTool by Phil Harvey](http://owl.phy.queensu.ca/~phil/exiftool/TagNames/index.html).
 
 ## PEL specification
 
@@ -78,6 +79,7 @@ The TAG entry is identified by the HEX value of the EXIF tag, like `0x0106` in t
 | title      | A string with a description of the TAG. |
 | components | (Optional) An integer describing the exepcted number of data components in the TAG. |
 | format     | (Optional) A string/array of strings identifying the expected data format of the tag. |
+| class      | (Optional) A string identifying the TAG's PHP class. If not specified, the default class for the TAG format will be used. |
 | ifd        | (Optional) If specified, identifies the TAG as a pointer to a sub-IFD, as the string of the relative IFD type.  |
 | text       | (Optional) If specified, instructs PEL to decode the value of the TAG to a text string. This can be done either as a mapping between the value and the text (defined by the `mapping:` array), or by calling a callback method (indicated by the `decode:` key). |
 

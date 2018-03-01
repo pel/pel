@@ -2,8 +2,6 @@
 
 namespace lsolesen\pel;
 
-use lsolesen\pel\Util\SpecCompiler;
-
 /**
  * Class to retrieve IFD and TAG information from YAML specs.
  */
@@ -15,6 +13,24 @@ class PelSpec
      * @var array
      */
     private static $map;
+
+    /**
+     * The default tag classes.
+     *
+     * @var array
+     */
+    private static $defaultTagClasses = [
+        PelFormat::ASCII => 'lsolesen\\pel\\PelEntryAscii',
+        PelFormat::BYTE => 'lsolesen\\pel\\PelEntryByte',
+        PelFormat::SHORT => 'lsolesen\\pel\\PelEntryShort',
+        PelFormat::LONG => 'lsolesen\\pel\\PelEntryLong',
+        PelFormat::RATIONAL => 'lsolesen\\pel\\PelEntryRational',
+        PelFormat::SBYTE => 'lsolesen\\pel\\PelEntrySByte',
+        PelFormat::SSHORT => 'lsolesen\\pel\\PelEntrySShort',
+        PelFormat::SLONG => 'lsolesen\\pel\\PelEntrySLong',
+        PelFormat::SRATIONAL => 'lsolesen\\pel\\PelEntrySRational',
+        PelFormat::UNDEFINED => 'lsolesen\\pel\\PelEntryUndefined',
+    ];
 
     /**
      * Returns the compiled PEL specification map.
@@ -148,7 +164,7 @@ class PelSpec
      */
     public static function isTagAMakerNotesPointer($ifd_id, $tag_id)
     {
-        return self::getTagFormat($ifd_id, $tag_id) === 'MakerNotes';
+        return self::getTagName($ifd_id, $tag_id) === 'MakerNote';
     }
 
     /**
@@ -191,19 +207,46 @@ class PelSpec
      * @param int $tag_id
      *            the TAG id.
      *
-     * @return string
-     *            the TAG format.
+     * @return array
+     *            the array of formats supported by the TAG.
      */
     public static function getTagFormat($ifd_id, $tag_id)
     {
-        $format = isset(self::getMap()['tags'][$ifd_id][$tag_id]['format']) ? self::getMap()['tags'][$ifd_id][$tag_id]['format'] : null;
-        if (empty($format)) {
-            return null;
+        $format = isset(self::getMap()['tags'][$ifd_id][$tag_id]['format']) ? self::getMap()['tags'][$ifd_id][$tag_id]['format'] : [];
+        return empty($format) ? null : $format;
+    }
+
+    /**
+     * Returns the TAG class.
+     *
+     * @param int $ifd_id
+     *            the IFD id.
+     * @param int $tag_id
+     *            the TAG id.
+     *
+     * @return string
+     *            the TAG class.
+     */
+    public static function getTagClass($ifd_id, $tag_id, $format = null)
+    {
+        // Return the specific tag class, if defined.
+        if (isset(self::getMap()['tags'][$ifd_id][$tag_id]['class'])) {
+            return self::getMap()['tags'][$ifd_id][$tag_id]['class'];
         }
-        if (is_array($format)) {
-            return $format[0];
+
+        // If format is not passed in, try getting it from the spec.
+        if ($format === null) {
+            $formats = self::getTagFormat($ifd_id, $tag_id);
+            if (empty($formats)) {
+                throw new PelException('No format can be derived for tag: \'%s\' in ifd: \'%s\'', self::getTagName($ifd_id, $tag_id), self::getIfdType($ifd_id));
+            }
+            $format = $formats[0];
         }
-        return $format;
+
+        if (!isset(self::$defaultTagClasses[$format])) {
+            throw new PelException('Unsupported format: %s', PelFormat::getName($format));
+        }
+        return self::$defaultTagClasses[$format];
     }
 
     /**
@@ -225,41 +268,35 @@ class PelSpec
     /**
      * Returns the TAG text.
      *
-     * @param int $ifd_id
-     *            the IFD id.
-     * @param int $tag_id
-     *            the TAG id.
-     * @param int $components
-     *            the number of components of the TAG.
-     * @param array $value
-     *            the TAG value.
+     * @param PelEntry $entry
+     *            the TAG PelEntry object.
      * @param bool $brief
      *            indicates to use brief output.
      *
      * @return string|null
      *            the TAG text, or NULL if not applicable.
      */
-    public static function getTagText($ifd_id, $tag_id, $components, array $value, $brief)
+    public static function getTagText(PelEntry $entry, $brief)
     {
-        if (!isset(self::getMap()['tags'][$ifd_id][$tag_id]['text']) || empty($value)) {
+        $ifd_id = $entry->getIfdType();
+        $tag_id = $entry->getTag();
+        $value = $entry->getValue();
+
+        if (!isset(self::getMap()['tags'][$ifd_id][$tag_id]['text'])) {
             return null;
         }
 
         // Return a text from a callback if defined.
         if (isset(self::getMap()['tags'][$ifd_id][$tag_id]['text']['decode'])) {
             $decode = self::getMap()['tags'][$ifd_id][$tag_id]['text']['decode'];
-            list($class, $method) = explode('::', $decode);
-            if (strpos('\\', $class) === false) {
-                $class = 'lsolesen\\pel\\' . $class;
-            }
-            return call_user_func($class . '::' . $method, $components, $value, $brief);
+            return call_user_func($decode, $entry, $brief);
         }
 
         // Return a text from a mapping list if defined.
-        if (isset(self::getMap()['tags'][$ifd_id][$tag_id]['text']['mapping'])) {
+        if (isset(self::getMap()['tags'][$ifd_id][$tag_id]['text']['mapping']) && is_scalar($value)) {
             $map = self::getMap()['tags'][$ifd_id][$tag_id]['text']['mapping'];
             // If the code to be mapped is a non-int, change to string.
-            $id = is_int($value[0]) ? $value[0] : (string) $value[0];
+            $id = is_int($value) ? $value : (string) $value;
             return isset($map[$id]) ? Pel::tra($map[$id]) : null;
         }
 

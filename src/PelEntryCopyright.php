@@ -103,6 +103,57 @@ class PelEntryCopyright extends PelEntryAscii
     }
 
     /**
+     * Creates an instance of the entry.
+     *
+     * @param int $ifd_id
+     *            the IFD id.
+     * @param int $tag_id
+     *            the TAG id.
+     * @param array $arguments
+     *            a list or arguments to be passed to the PelEntry subclass
+     *            constructor.
+     *
+     * @return PelEntry a newly created entry, holding the data given.
+     */
+    public static function createInstance($ifd_id, $tag_id, $arguments)
+    {
+        $instance = new static($arguments[0], $arguments[1]);
+        $instance->setIfdType($ifd_id);
+        return $instance;
+    }
+
+    /**
+     * Get arguments for the instance constructor from file data.
+     *
+     * @param int $ifd_id
+     *            the IFD id.
+     * @param int $tag_id
+     *            the TAG id.
+     * @param int $format
+     *            the format of the entry as defined in {@link PelFormat}.
+     * @param int $components
+     *            the components in the entry.
+     * @param PelDataWindow $data
+     *            the data which will be used to construct the entry.
+     *
+     * @return array a list or arguments to be passed to the PelEntry subclass
+     *            constructor.
+     */
+    public static function getInstanceArgumentsFromData($ifd_id, $tag_id, $format, $components, PelDataWindow $data)
+    {
+        if ($format != PelFormat::ASCII) {
+            throw new PelUnexpectedFormatException($ifd_id, $tag_id, $format, PelFormat::ASCII);
+        }
+        $v = explode("\0", trim($data->getBytes(), ' '));
+        if (! isset($v[1])) {
+            Pel::maybeThrow(new PelException('Invalid copyright: %s', $data->getBytes()));
+            // when not in strict mode, set empty copyright and continue
+            $v[1] = '';
+        }
+        return [$v[0], $v[1]];
+    }
+
+    /**
      * Update the copyright information.
      *
      * @param

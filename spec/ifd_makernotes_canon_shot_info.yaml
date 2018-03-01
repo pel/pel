@@ -5,6 +5,7 @@ tags:
         const: CANON_SI_ISO_SPEED
         name: ISOSpeedUsed
         title: 'ISO Speed Used'
+        format: Short
     0x0003:
         const: CANON_SI_MEASURED_EV
         name: MeasuredEV
