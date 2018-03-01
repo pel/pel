@@ -280,6 +280,7 @@ tags:
         const: CANON_CS_LENS_TYPE
         name: LensType
         title: 'Lens Type'
+        format: Short
         text:
             mapping:
                 1: 'Canon EF 50mm f/1.8'

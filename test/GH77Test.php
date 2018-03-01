@@ -36,7 +36,7 @@ class GH77Test extends TestCase
 {
     public function testReturnModul()
     {
-        
+
         $file = dirname(__FILE__) . '/images/gh-77.jpg';
 
         $input_jpeg = new PelJpeg($file);
@@ -44,9 +44,14 @@ class GH77Test extends TestCase
 
         $tiff = $app1->getTiff();
         $ifd0 = $tiff->getIfd();
-        
+
         $model = $ifd0->getEntry(PelTag::MODEL);
-        
+
         $this->assertEquals($model->getValue(), "Canon EOS 5D Mark III");
+
+        $copyright = $ifd0->getEntry(PelTag::COPYRIGHT);
+        $this->assertInstanceOf('lsolesen\pel\PelEntryCopyright', $copyright);
+        $this->assertEquals(['Copyright 2016', ''], $copyright->getValue());
+        $this->assertEquals('Copyright 2016 (Photographer)', $copyright->getText());
     }
 }

@@ -427,8 +427,7 @@ class PelIfd implements \IteratorAggregate, \ArrayAccess
         }
 
         try {
-            $entry = $this->newEntryFromData($tag, $format, $components, $data);
-            $this->addEntry($entry);
+            $this->addEntry(PelEntry::createFromData($this->type, $tag, $format, $components, $data));
         } catch (PelException $e) {
             /*
              * Throw the exception when running in strict mode, store
@@ -484,8 +483,7 @@ class PelIfd implements \IteratorAggregate, \ArrayAccess
         }
 
         try {
-            $entry = $this->newEntryFromData($i + 1, $format, 1, $subdata);
-            $this->addEntry($entry);
+            $this->addEntry(PelEntry::createFromData($this->type, $i + 1, $format, 1, $subdata));
         } catch (PelException $e) {
             /*
             * Throw the exception when running in strict mode, store
@@ -535,133 +533,12 @@ class PelIfd implements \IteratorAggregate, \ArrayAccess
      *            entry.
      *
      * @return PelEntry a newly created entry, holding the data given.
+     *
+     * @deprecated Use PelEntry::createFromData instead.
      */
     public function newEntryFromData($tag, $format, $components, PelDataWindow $data)
     {
-
-        /*
-         * First handle tags for which we have a specific PelEntryXXX
-         * class.
-         */
-        if (PelSpec::getTagFormat($this->type, $tag) === 'Time') {
-            // DATE_TIME / DATE_TIME_ORIGINAL / DATE_TIME_DIGITIZED
-            if ($format != PelFormat::ASCII) {
-                throw new PelUnexpectedFormatException($this->type, $tag, $format, PelFormat::ASCII);
-            }
-            if ($components != 20) {
-                throw new PelWrongComponentCountException($this->type, $tag, $components, 20);
-            }
-            // TODO: handle timezones.
-            return new PelEntryTime($tag, $data->getBytes(0, - 1), PelEntryTime::EXIF_STRING);
-        } elseif (PelSpec::getTagFormat($this->type, $tag) === 'Copyright') {
-            // COPYRIGHT
-            if ($format != PelFormat::ASCII) {
-                throw new PelUnexpectedFormatException($this->type, $tag, $format, PelFormat::ASCII);
-            }
-            $v = explode("\0", trim($data->getBytes(), ' '));
-            if (! isset($v[1])) {
-                Pel::maybeThrow(new PelException('Invalid copyright: %s', $data->getBytes()));
-                // when not in strict mode, set empty copyright and continue
-                $v[1] = '';
-            }
-            return new PelEntryCopyright($v[0], $v[1]);
-        } elseif (PelSpec::getTagFormat($this->type, $tag) === 'Version') {
-            // EXIF_VERSION / FLASH_PIX_VERSION / INTEROPERABILITY_VERSION
-            if ($format != PelFormat::UNDEFINED) {
-                throw new PelUnexpectedFormatException($this->type, $tag, $format, PelFormat::UNDEFINED);
-            }
-            return new PelEntryVersion($tag, $data->getBytes() / 100);
-        } elseif (PelSpec::getTagFormat($this->type, $tag) === 'UserComment') {
-            // USER_COMMENT
-            if ($format != PelFormat::UNDEFINED) {
-                throw new PelUnexpectedFormatException($this->type, $tag, $format, PelFormat::UNDEFINED);
-            }
-            if ($data->getSize() < 8) {
-                return new PelEntryUserComment();
-            } else {
-                return new PelEntryUserComment($data->getBytes(8), rtrim($data->getBytes(0, 8)));
-            }
-        } elseif (PelSpec::getTagFormat($this->type, $tag) === 'WindowsString') {
-            // XP_TITLE / XP_COMMENT / XP_AUTHOR / XP_KEYWORDS / XP_SUBJECT
-            if ($format != PelFormat::BYTE) {
-                throw new PelUnexpectedFormatException($this->type, $tag, $format, PelFormat::BYTE);
-            }
-            return new PelEntryWindowsString($tag, $data->getBytes(), true);
-        }
-
-        /* Then handle the basic formats. */
-        switch ($format) {
-            case PelFormat::BYTE:
-                $v = new PelEntryByte($tag);
-                for ($i = 0; $i < $components; $i ++) {
-                    $v->addNumber($data->getByte($i));
-                }
-                return $v;
-
-            case PelFormat::SBYTE:
-                $v = new PelEntrySByte($tag);
-                for ($i = 0; $i < $components; $i ++) {
-                    $v->addNumber($data->getSByte($i));
-                }
-                return $v;
-
-            case PelFormat::ASCII:
-                // cut off string after the first nul byte
-                $canonicalString = strstr($data->getBytes(0), "\0", true);
-                if ($canonicalString !== false) {
-                    return new PelEntryAscii($tag, $canonicalString);
-                }
-                // TODO throw exception if string isn't nul-terminated
-                return new PelEntryAscii($tag, $data->getBytes(0));
-
-            case PelFormat::SHORT:
-                $v = new PelEntryShort($tag);
-                for ($i = 0; $i < $components; $i ++) {
-                    $v->addNumber($data->getShort($i * 2));
-                }
-                return $v;
-
-            case PelFormat::SSHORT:
-                $v = new PelEntrySShort($tag);
-                for ($i = 0; $i < $components; $i ++) {
-                    $v->addNumber($data->getSShort($i * 2));
-                }
-                return $v;
-
-            case PelFormat::LONG:
-                $v = new PelEntryLong($tag);
-                for ($i = 0; $i < $components; $i ++) {
-                    $v->addNumber($data->getLong($i * 4));
-                }
-                return $v;
-
-            case PelFormat::SLONG:
-                $v = new PelEntrySLong($tag);
-                for ($i = 0; $i < $components; $i ++) {
-                    $v->addNumber($data->getSLong($i * 4));
-                }
-                return $v;
-
-            case PelFormat::RATIONAL:
-                $v = new PelEntryRational($tag);
-                for ($i = 0; $i < $components; $i ++) {
-                    $v->addNumber($data->getRational($i * 8));
-                }
-                return $v;
-
-            case PelFormat::SRATIONAL:
-                $v = new PelEntrySRational($tag);
-                for ($i = 0; $i < $components; $i ++) {
-                    $v->addNumber($data->getSRational($i * 8));
-                }
-                return $v;
-
-            case PelFormat::UNDEFINED:
-                return new PelEntryUndefined($tag, $data->getBytes());
-
-            default:
-                throw new PelException('Unsupported format: %s', PelFormat::getName($format));
-        }
+        return PelEntry::createFromData($this->type, $tag, $format, $components, $data);
     }
 
     /**

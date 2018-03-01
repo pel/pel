@@ -2,6 +2,7 @@
 
 namespace lsolesen\pel\Util;
 
+use lsolesen\pel\PelFormat;
 use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Component\Finder\Finder;
 use Symfony\Component\Finder\SplFileInfo;
@@ -20,7 +21,15 @@ class SpecCompiler
     /**
      * Map of expected TAG level array keys.
      */
-    private $tagKeys = ['const', 'name', 'title', 'components', 'format', 'ifd', 'text'];
+    private $tagKeys = ['const', 'name', 'title', 'components', 'format', 'class', 'ifd', 'text'];
+
+    /**
+     * Map of expected TAG/text level array keys.
+     */
+    private $tagTextKeys = ['mapping', 'decode'];
+
+    /** @var string */
+    private $defaultNamespace;
 
     /** @var Filesystem */
     private $fs;
@@ -38,11 +47,14 @@ class SpecCompiler
     /**
      * Constructs a SpecCompiler object.
      *
+     * @param string $defaultNamespace
+     *            the default PHP namespace of Pel classes.
      * @param Finder $finder
      * @param Filesystem $fs
      */
-    public function __construct(Finder $finder = null, Filesystem $fs = null)
+    public function __construct($defaultNamespace, Finder $finder = null, Filesystem $fs = null)
     {
+        $this->defaultNamespace = $defaultNamespace;
         $this->finder = $finder ? $finder : new Finder();
         $this->fs = $fs ? $fs : new Filesystem();
     }
@@ -115,7 +127,6 @@ DATA;
 
         // Add some defaults.
         $ifd = array_merge([
-            'const' => null,
             'type' => null,
             'tags' => [],
         ], $ifd);
@@ -160,7 +171,6 @@ DATA;
     {
         // Add some defaults.
         $tag = array_merge([
-            'const' => null,
             'name' => $tag_id,
         ], $tag);
 
@@ -169,6 +179,50 @@ DATA;
         if (!empty($diff)) {
             throw new SpecCompilerException($file->getFileName() . ": invalid key(s) found for TAG '" . $tag['name'] . "' - " . implode(", ", $diff));
         }
+
+        // Convert format string to its ID.
+        if (isset($tag['format'])) {
+            $temp = [];
+            if (is_scalar($tag['format'])) {
+                $temp[] = $tag['format'];
+            } else {
+                $temp = $tag['format'];
+            }
+            $formats = [];
+            foreach ($temp as $name) {
+                if (($formats[] = PelFormat::getIdFromName($name)) === null) {
+                    throw new SpecCompilerException($file->getFileName() . ": invalid '" . $name . "' format found for TAG '" . $tag['name'] . "'");
+                }
+            }
+            $tag['format'] = $formats;
+        }
+
+        // Fully qualifies the class name.
+        if (isset($tag['class'])) {
+            if (strpos('\\', $tag['class']) === false) {
+                $tag['class'] = $this->defaultNamespace . $tag['class'];
+            }
+        }
+
+        // Check validity of TAG/text keys.
+        if (isset($tag['text'])) {
+            $diff = array_diff(array_keys($tag['text']), $this->tagTextKeys);
+            if (!empty($diff)) {
+                throw new SpecCompilerException($file->getFileName() . ": invalid key(s) found for TAG '" . $tag['name'] . ".text' - " . implode(", ", $diff));
+            }
+
+            // Fully qualifies the decode method.
+            if (isset($tag['text']['decode'])) {
+                list($class, $method) = explode('::', $tag['text']['decode']);
+                if (strpos('\\', $class) === false) {
+                    $class = $this->defaultNamespace . $class;
+                }
+                $tag['text']['decode'] = $class . '::' . $method;
+            }
+        }
+
+        // Remove the 'const' key.
+        unset($tag['const']);
 
         // 'tags' entry.
         $this->map['tags'][$ifd_id][$tag_id] = $tag;

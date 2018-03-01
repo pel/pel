@@ -109,6 +109,31 @@ class PelEntryWindowsString extends PelEntry
     }
 
     /**
+     * Get arguments for the instance constructor from file data.
+     *
+     * @param int $ifd_id
+     *            the IFD id.
+     * @param int $tag_id
+     *            the TAG id.
+     * @param int $format
+     *            the format of the entry as defined in {@link PelFormat}.
+     * @param int $components
+     *            the components in the entry.
+     * @param PelDataWindow $data
+     *            the data which will be used to construct the entry.
+     *
+     * @return array a list or arguments to be passed to the PelEntry subclass
+     *            constructor.
+     */
+    public static function getInstanceArgumentsFromData($ifd_id, $tag_id, $format, $components, PelDataWindow $data)
+    {
+        if ($format != PelFormat::BYTE) {
+            throw new PelUnexpectedFormatException($ifd_id, $tag_id, $format, PelFormat::BYTE);
+        }
+        return [$data->getBytes(), true];
+    }
+
+    /**
      * Give the entry a new value.
      *
      * This will overwrite the previous value. The value can be
