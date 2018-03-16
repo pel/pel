@@ -1,0 +1,292 @@
+const: 0
+type: '0'
+class: PelIfd
+alias:
+  - 'IFD0'
+  - 'Main'
+postLoad:
+  - PelEntryMakerNote::tagToIfd
+tags:
+    0x0100:
+        const: IMAGE_WIDTH
+        name: ImageWidth
+        title: 'Image Width'
+        components: 1
+        format: [Short, Long]
+    0x0101:
+        const: IMAGE_LENGTH
+        name: ImageLength
+        title: 'Image Length'
+        components: 1
+        format: [Short, Long]
+    0x0102:
+        const: BITS_PER_SAMPLE
+        name: BitsPerSample
+        title: 'Bits per Sample'
+        components: 3
+        format: Short
+    0x0103:
+        const: COMPRESSION
+        name: Compression
+        title: Compression
+        components: 1
+        format: Short
+        text:
+            mapping:
+                1: 'Uncompressed'
+                6: 'JPEG compression'
+    0x0106:
+        const: PHOTOMETRIC_INTERPRETATION
+        name: PhotometricInterpretation
+        title: 'Photometric Interpretation'
+        components: 1
+        format: Short
+        text:
+            mapping:
+                2: 'RGB'
+                6: 'YCbCr'
+    0x010D:
+        const: DOCUMENT_NAME
+        name: DocumentName
+        title: 'Document Name'
+        components: Any
+        format: Ascii
+    0x010E:
+        const: IMAGE_DESCRIPTION
+        name: ImageDescription
+        title: 'Image Description'
+        components: Any
+        format: Ascii
+    0x010F:
+        const: MAKE
+        name: Make
+        title: Manufacturer
+        components: Any
+        format: Ascii
+    0x0110:
+        const: MODEL
+        name: Model
+        title: Model
+        components: Any
+        format: Ascii
+    0x0111:
+        const: STRIP_OFFSETS
+        name: StripOffsets
+        title: 'Strip Offsets'
+        components: Any
+        format: [Short, Long]
+    0x0112:
+        const: ORIENTATION
+        name: Orientation
+        title: Orientation
+        components: 1
+        format: Short
+        text:
+            mapping:
+                1: 'top - left'
+                2: 'top - right'
+                3: 'bottom - right'
+                4: 'bottom - left'
+                5: 'left - top'
+                6: 'right - top'
+                7: 'right - bottom'
+                8: 'left - bottom'
+    0x0115:
+        const: SAMPLES_PER_PIXEL
+        name: SamplesPerPixel
+        title: 'Samples per Pixel'
+        components: 1
+        format: Short
+    0x0116:
+        const: ROWS_PER_STRIP
+        name: RowsPerStrip
+        title: 'Rows per Strip'
+        components: 1
+        format: [Short, Long]
+    0x0117:
+        const: STRIP_BYTE_COUNTS
+        name: StripByteCounts
+        title: 'Strip Byte Count'
+        components: Any
+        format: [Short, Long]
+    0x011A:
+        const: X_RESOLUTION
+        name: XResolution
+        title: x-Resolution
+        components: 1
+        format: Rational
+    0x011B:
+        const: Y_RESOLUTION
+        name: YResolution
+        title: y-Resolution
+        components: 1
+        format: Rational
+    0x011C:
+        const: PLANAR_CONFIGURATION
+        name: PlanarConfiguration
+        title: 'Planar Configuration'
+        components: 1
+        format: Short
+        text:
+            mapping:
+                1: 'chunky format'
+                2: 'planar format'
+    0x0128:
+        const: RESOLUTION_UNIT
+        name: ResolutionUnit
+        title: 'Resolution Unit'
+        components: 1
+        format: Short
+        text:
+            mapping:
+                2: 'Inch'
+                3: 'Centimeter'
+    0x012D:
+        const: TRANSFER_FUNCTION
+        name: TransferFunction
+        title: 'Transfer Function'
+        components: 3
+        format: Short
+    0x0131:
+        const: SOFTWARE
+        name: Software
+        title: Software
+        components: Any
+        format: Ascii
+    0x0132:
+        const: DATE_TIME
+        name: DateTime
+        title: 'Date and Time'
+        components: 20
+        format: Ascii
+        class: PelEntryTime
+    0x013B:
+        const: ARTIST
+        name: Artist
+        title: Artist
+        components: Any
+        format: Ascii
+    0x013E:
+        const: WHITE_POINT
+        name: WhitePoint
+        title: 'White Point'
+        components: 2
+        format: Rational
+    0x013F:
+        const: PRIMARY_CHROMATICITIES
+        name: PrimaryChromaticities
+        title: 'Primary Chromaticities'
+        components: 6
+        format: Rational
+    0x0201:
+        const: JPEG_INTERCHANGE_FORMAT
+        name: JPEGInterchangeFormat
+        title: 'JPEG Interchange Format'
+        components: 1
+        format: Long
+    0x0202:
+        const: JPEG_INTERCHANGE_FORMAT_LENGTH
+        name: JPEGInterchangeFormatLength
+        title: 'JPEG Interchange Format Length'
+        components: 1
+        format: Long
+    0x0211:
+        const: YCBCR_COEFFICIENTS
+        name: YCbCrCoefficients
+        title: 'YCbCr Coefficients'
+        components: 3
+        format: Rational
+    0x0212:
+        const: YCBCR_SUB_SAMPLING
+        name: YCbCrSubSampling
+        title: 'YCbCr Sub-Sampling'
+        components: 2
+        format: Short
+        text:
+            decode: PelEntryShort::decodeYCbCrSubSampling
+    0x0213:
+        const: YCBCR_POSITIONING
+        name: YCbCrPositioning
+        title: 'YCbCr Positioning'
+        components: 1
+        format: Short
+        text:
+            mapping:
+                1: 'centered'
+                2: 'co-sited'
+    0x0214:
+        const: REFERENCE_BLACK_WHITE
+        name: ReferenceBlackWhite
+        title: 'Reference Black/White'
+        components: 6
+        format: Rational
+    0x4746:
+        const: RATING
+        name: Rating
+        title: 'Star Rating'
+        components: 1
+        format: Short
+    0x4749:
+        const: RATING_PERCENT
+        name: RatingPercent
+        title: 'Percent Rating'
+        components: 1
+        format: Short
+    0x8298:
+        const: COPYRIGHT
+        name: Copyright
+        title: Copyright
+        components: Any
+        format: Ascii
+        class: PelEntryCopyright
+    0x8769:
+        const: EXIF_IFD_POINTER
+        name: ExifIFDPointer
+        title: 'Exif IFD Pointer'
+        ifd: Exif
+    0x8825:
+        const: GPS_INFO_IFD_POINTER
+        name: GPSInfoIFDPointer
+        title: 'GPS Info IFD Pointer'
+        ifd: GPS
+    0x9C9B:
+        const: WINDOWS_XP_TITLE
+        name: WindowsXPTitle
+        title: 'Windows XP Title'
+        components: Any
+        format: Byte
+        class: PelEntryWindowsString
+    0x9C9C:
+        const: WINDOWS_XP_COMMENT
+        name: WindowsXPComment
+        title: 'Windows XP Comment'
+        components: Any
+        format: Byte
+        class: PelEntryWindowsString
+    0x9C9D:
+        const: WINDOWS_XP_AUTHOR
+        name: WindowsXPAuthor
+        title: 'Windows XP Author'
+        components: Any
+        format: Byte
+        class: PelEntryWindowsString
+    0x9C9E:
+        const: WINDOWS_XP_KEYWORDS
+        name: WindowsXPKeywords
+        title: 'Windows XP Keywords'
+        components: Any
+        format: Byte
+        class: PelEntryWindowsString
+    0x9C9F:
+        const: WINDOWS_XP_SUBJECT
+        name: WindowsXPSubject
+        title: 'Windows XP Subject'
+        components: Any
+        format: Byte
+        class: PelEntryWindowsString
+    0xC4A5:
+        const: PRINT_IM
+        name: PrintIM
+        title: 'Print IM'
+        components: Unknown
+        format: Undefined

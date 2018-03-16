@@ -155,7 +155,7 @@ class PelTiff
              * Parse the first IFD, this will automatically parse the
              * following IFDs and any sub IFDs.
              */
-            $this->ifd = new PelIfd(PelIfd::IFD0);
+            $this->ifd = new PelIfd(PelSpec::getIfdIdByType('IFD0'));
             $this->ifd->load($d, $offset);
         }
     }
@@ -180,8 +180,8 @@ class PelTiff
      */
     public function setIfd(PelIfd $ifd)
     {
-        if ($ifd->getType() != PelIfd::IFD0) {
-            throw new PelInvalidDataException('Invalid type of IFD: %d, expected %d.', $ifd->getType(), PelIfd::IFD0);
+        if ($ifd->getType() != PelSpec::getIfdIdByType('IFD0')) {
+            throw new PelInvalidDataException('Invalid type of IFD: %d, expected %d.', $ifd->getType(), PelSpec::getIfdIdByType('IFD0'));
         }
         $this->ifd = $ifd;
     }

@@ -49,6 +49,12 @@ namespace lsolesen\pel;
  */
 class PelEntryUndefined extends PelEntry
 {
+    /**
+     * The value held by this entry.
+     *
+     * @var array
+     */
+    protected $value = [];
 
     /**
      * Make a new PelEntry that can hold undefined data.
@@ -72,6 +78,30 @@ class PelEntryUndefined extends PelEntry
     }
 
     /**
+     * Get arguments for the instance constructor from file data.
+     *
+     * @param int $ifd_id
+     *            the IFD id.
+     * @param int $tag_id
+     *            the TAG id.
+     * @param int $format
+     *            the format of the entry as defined in {@link PelFormat}.
+     * @param int $components
+     *            the components in the entry.
+     * @param PelDataWindow $data
+     *            the data which will be used to construct the entry.
+     * @param int $data_offset
+     *            the offset of the main DataWindow where data is stored.
+     *
+     * @return array a list or arguments to be passed to the PelEntry subclass
+     *            constructor.
+     */
+    public static function getInstanceArgumentsFromData($ifd_id, $tag_id, $format, $components, PelDataWindow $data, $data_offset)
+    {
+        return [$data->getBytes()];
+    }
+
+    /**
      * Set the data of this undefined entry.
      *
      * @param string $data
@@ -80,6 +110,7 @@ class PelEntryUndefined extends PelEntry
      */
     public function setValue($data)
     {
+        $this->value[0] = $data;
         $this->components = strlen($data);
         $this->bytes = $data;
     }
@@ -95,6 +126,99 @@ class PelEntryUndefined extends PelEntry
     }
 
     /**
+     * Decode text for an Exif/FileSource tag.
+     *
+     * @param PelEntry $entry
+     *            the TAG PelEntry object.
+     * @param bool $brief
+     *            (Optional) indicates to use brief output.
+     *
+     * @return string
+     *            the TAG text.
+     */
+    public static function decodeFileSource(PelEntry $entry, $brief = false)
+    {
+        $value = $entry->getValue();
+        switch (ord($value{0})) {
+            case 0x03:
+                return 'DSC';
+            default:
+                return sprintf('0x%02X', ord($value{0}));
+        }
+    }
+
+    /**
+     * Decode text for an Exif/SceneType tag.
+     *
+     * @param PelEntry $entry
+     *            the TAG PelEntry object.
+     * @param bool $brief
+     *            (Optional) indicates to use brief output.
+     *
+     * @return string
+     *            the TAG text.
+     */
+    public static function decodeSceneType(PelEntry $entry, $brief = false)
+    {
+        $value = $entry->getValue();
+        switch (ord($value{0})) {
+            case 0x01:
+                return 'Directly photographed';
+            default:
+                return sprintf('0x%02X', ord($value{0}));
+        }
+    }
+
+    /**
+     * Decode text for an Exif/ComponentsConfiguration tag.
+     *
+     * @param PelEntry $entry
+     *            the TAG PelEntry object.
+     * @param bool $brief
+     *            (Optional) indicates to use brief output.
+     *
+     * @return string
+     *            the TAG text.
+     */
+    public static function decodeComponentsConfiguration(PelEntry $entry, $brief = false)
+    {
+        $value = $entry->getValue();
+        $v = '';
+        for ($i = 0; $i < 4; $i ++) {
+            switch (ord($value{$i})) {
+                case 0:
+                    $v .= '-';
+                    break;
+                case 1:
+                    $v .= 'Y';
+                    break;
+                case 2:
+                    $v .= 'Cb';
+                    break;
+                case 3:
+                    $v .= 'Cr';
+                    break;
+                case 4:
+                    $v .= 'R';
+                    break;
+                case 5:
+                    $v .= 'G';
+                    break;
+                case 6:
+                    $v .= 'B';
+                    break;
+                default:
+                    $v .= 'reserved';
+                    break;
+            }
+            if ($i < 3) {
+                $v .= ' ';
+            }
+        }
+        return $v;
+    }
+
+    /**
      * Get the value of this entry as text.
      *
      * The value will be returned in a format suitable for presentation.
@@ -107,67 +231,11 @@ class PelEntryUndefined extends PelEntry
      */
     public function getText($brief = false)
     {
-        switch ($this->tag) {
-            case PelTag::FILE_SOURCE:
-                // CC (e->components, 1, v);
-                switch (ord($this->bytes{0})) {
-                    case 0x03:
-                        return 'DSC';
-                    default:
-                        return sprintf('0x%02X', ord($this->bytes{0}));
-                }
-                break;
-            case PelTag::SCENE_TYPE:
-                // CC (e->components, 1, v);
-                switch (ord($this->bytes{0})) {
-                    case 0x01:
-                        return 'Directly photographed';
-                    default:
-                        return sprintf('0x%02X', ord($this->bytes{0}));
-                }
-                break;
-            case PelTag::COMPONENTS_CONFIGURATION:
-                // CC (e->components, 4, v);
-                $v = '';
-                for ($i = 0; $i < 4; $i ++) {
-                    switch (ord($this->bytes{$i})) {
-                        case 0:
-                            $v .= '-';
-                            break;
-                        case 1:
-                            $v .= 'Y';
-                            break;
-                        case 2:
-                            $v .= 'Cb';
-                            break;
-                        case 3:
-                            $v .= 'Cr';
-                            break;
-                        case 4:
-                            $v .= 'R';
-                            break;
-                        case 5:
-                            $v .= 'G';
-                            break;
-                        case 6:
-                            $v .= 'B';
-                            break;
-                        default:
-                            $v .= 'reserved';
-                            break;
-                    }
-                    if ($i < 3) {
-                        $v .= ' ';
-                    }
-                }
-                return $v;
-                break;
-            case PelTag::MAKER_NOTE:
-                // TODO: handle maker notes.
-                return $this->components . ' bytes unknown MakerNote data';
-                break;
-            default:
-                return '(undefined)';
+        // If PelSpec can return the text, return it.
+        if (($tag_text = parent::getText($brief)) !== null) {
+            return $tag_text;
         }
+
+        return '(undefined)';
     }
 }

@@ -76,6 +76,13 @@ class PelEntryVersion extends PelEntry
     private $version;
 
     /**
+     * The value held by this entry.
+     *
+     * @var array
+     */
+    protected $value = [];
+
+    /**
      * Make a new entry for holding a version.
      *
      * @param integer $tag
@@ -96,6 +103,33 @@ class PelEntryVersion extends PelEntry
     }
 
     /**
+     * Get arguments for the instance constructor from file data.
+     *
+     * @param int $ifd_id
+     *            the IFD id.
+     * @param int $tag_id
+     *            the TAG id.
+     * @param int $format
+     *            the format of the entry as defined in {@link PelFormat}.
+     * @param int $components
+     *            the components in the entry.
+     * @param PelDataWindow $data
+     *            the data which will be used to construct the entry.
+     * @param int $data_offset
+     *            the offset of the main DataWindow where data is stored.
+     *
+     * @return array a list or arguments to be passed to the PelEntry subclass
+     *            constructor.
+     */
+    public static function getInstanceArgumentsFromData($ifd_id, $tag_id, $format, $components, PelDataWindow $data, $data_offset)
+    {
+        if ($format != PelFormat::UNDEFINED) {
+            throw new PelUnexpectedFormatException($ifd_id, $tag_id, $format, PelFormat::UNDEFINED);
+        }
+        return [$data->getBytes() / 100];
+    }
+
+    /**
      * Set the version held by this entry.
      *
      * @param float $version
@@ -106,6 +140,7 @@ class PelEntryVersion extends PelEntry
     public function setValue($version = 0.0)
     {
         $this->version = $version;
+        $this->value[0] = $version;
         $major = floor($version);
         $minor = ($version - $major) * 100;
         $strValue = sprintf('%02.0f%02.0f', $major, $minor);
@@ -126,6 +161,83 @@ class PelEntryVersion extends PelEntry
     }
 
     /**
+     * Validates a version string.
+     *
+     * @param string $value
+     *            the string version.
+     *
+     * @return string
+     *            the validated string version.
+     */
+    private static function validateVersion($value)
+    {
+        return floor($value) == $value ? $value .= '.0' : $value;
+    }
+
+    /**
+     * Decode text for an Exif/ExifVersion tag.
+     *
+     * @param PelEntry $entry
+     *            the TAG PelEntry object.
+     * @param bool $brief
+     *            (Optional) indicates to use brief output.
+     *
+     * @return string
+     *            the TAG text.
+     */
+    public static function decodeExifVersion(PelEntry $entry, $brief = false)
+    {
+        $version = static::validateVersion($entry->getValue());
+        if ($brief) {
+            return Pel::fmt('Exif %s', $version);
+        } else {
+            return Pel::fmt('Exif Version %s', $version);
+        }
+    }
+
+    /**
+     * Decode text for an Exif/FlashPixVersion tag.
+     *
+     * @param PelEntry $entry
+     *            the TAG PelEntry object.
+     * @param bool $brief
+     *            (Optional) indicates to use brief output.
+     *
+     * @return string
+     *            the TAG text.
+     */
+    public static function decodeFlashPixVersion(PelEntry $entry, $brief = false)
+    {
+        $version = static::validateVersion($entry->getValue());
+        if ($brief) {
+            return Pel::fmt('FlashPix %s', $version);
+        } else {
+            return Pel::fmt('FlashPix Version %s', $version);
+        }
+    }
+
+    /**
+     * Decode text for an Interoperability/InteroperabilityVersion tag.
+     *
+     * @param PelEntry $entry
+     *            the TAG PelEntry object.
+     * @param bool $brief
+     *            (Optional) indicates to use brief output.
+     *
+     * @return string
+     *            the TAG text.
+     */
+    public static function decodeInteroperabilityVersion(PelEntry $entry, $brief = false)
+    {
+        $version = static::validateVersion($entry->getValue());
+        if ($brief) {
+            return Pel::fmt('Interoperability %s', $version);
+        } else {
+            return Pel::fmt('Interoperability Version %s', $version);
+        }
+    }
+
+    /**
      * Return a text string with the version.
      *
      * @param boolean $brief
@@ -139,44 +251,16 @@ class PelEntryVersion extends PelEntry
      */
     public function getText($brief = false)
     {
-        $v = $this->version;
-
-        /*
-         * Versions numbers like 2.0 would be output as just 2 if we don't
-         * add the '.0' ourselves.
-         */
-        if (floor($this->version) == $this->version) {
-            $v .= '.0';
+        // If PelSpec can return the text, return it.
+        if (($tag_text = parent::getText($brief)) !== null) {
+            return $tag_text;
         }
 
-        switch ($this->tag) {
-            case PelTag::EXIF_VERSION:
-                if ($brief) {
-                    return Pel::fmt('Exif %s', $v);
-                } else {
-                    return Pel::fmt('Exif Version %s', $v);
-                }
-                break;
-            case PelTag::FLASH_PIX_VERSION:
-                if ($brief) {
-                    return Pel::fmt('FlashPix %s', $v);
-                } else {
-                    return Pel::fmt('FlashPix Version %s', $v);
-                }
-                break;
-            case PelTag::INTEROPERABILITY_VERSION:
-                if ($brief) {
-                    return Pel::fmt('Interoperability %s', $v);
-                } else {
-                    return Pel::fmt('Interoperability Version %s', $v);
-                }
-                break;
-        }
-
+        $version = static::validateVersion($this->value[0]);
         if ($brief) {
-            return $v;
+            return $version;
         } else {
-            return Pel::fmt('Version %s', $v);
+            return Pel::fmt('Version %s', $version);
         }
     }
 }

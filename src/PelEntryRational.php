@@ -93,6 +93,34 @@ class PelEntryRational extends PelEntryLong
     }
 
     /**
+     * Get arguments for the instance constructor from file data.
+     *
+     * @param int $ifd_id
+     *            the IFD id.
+     * @param int $tag_id
+     *            the TAG id.
+     * @param int $format
+     *            the format of the entry as defined in {@link PelFormat}.
+     * @param int $components
+     *            the components in the entry.
+     * @param PelDataWindow $data
+     *            the data which will be used to construct the entry.
+     * @param int $data_offset
+     *            the offset of the main DataWindow where data is stored.
+     *
+     * @return array a list or arguments to be passed to the PelEntry subclass
+     *            constructor.
+     */
+    public static function getInstanceArgumentsFromData($ifd_id, $tag_id, $format, $components, PelDataWindow $data, $data_offset)
+    {
+        $args = [];
+        for ($i = 0; $i < $components; $i ++) {
+            $args[] = $data->getRational($i * 8);
+        }
+        return $args;
+    }
+
+    /**
      * Format a rational number.
      *
      * The rational will be returned as a string with a slash '/'
@@ -113,63 +141,135 @@ class PelEntryRational extends PelEntryLong
     }
 
     /**
-     * Get the value of an entry as text.
+     * Decode text for an Exif/FNumber tag.
      *
-     * The value will be returned in a format suitable for presentation,
-     * e.g., rationals will be returned as 'x/y', ASCII strings will be
-     * returned as themselves etc.
+     * @param PelEntry $entry
+     *            the TAG PelEntry object.
+     * @param bool $brief
+     *            (Optional) indicates to use brief output.
      *
-     * @param
-     *            boolean some values can be returned in a long or more
-     *            brief form, and this parameter controls that.
-     *
-     * @return string the value as text.
+     * @return string
+     *            the TAG text.
      */
-    public function getText($brief = false)
+    public static function decodeFNumber(PelEntry $entry, $brief = false)
     {
-        if (isset($this->value[0])) {
-            $v = $this->value[0];
+        return Pel::fmt('f/%.01f', $entry->getValue()[0] / $entry->getValue()[1]);
+    }
+
+    /**
+     * Decode text for an Exif/ApertureValue tag.
+     *
+     * @param PelEntry $entry
+     *            the TAG PelEntry object.
+     * @param bool $brief
+     *            (Optional) indicates to use brief output.
+     *
+     * @return string
+     *            the TAG text.
+     */
+    public static function decodeApertureValue(PelEntry $entry, $brief = false)
+    {
+        return Pel::fmt('f/%.01f', pow(2, $entry->getValue()[0] / $entry->getValue()[1] / 2));
+    }
+
+    /**
+     * Decode text for an Exif/FocalLength tag.
+     *
+     * @param PelEntry $entry
+     *            the TAG PelEntry object.
+     * @param bool $brief
+     *            (Optional) indicates to use brief output.
+     *
+     * @return string
+     *            the TAG text.
+     */
+    public static function decodeFocalLength(PelEntry $entry, $brief = false)
+    {
+        return Pel::fmt('%.1f mm', $entry->getValue()[0] / $entry->getValue()[1]);
+    }
+
+    /**
+     * Decode text for an Exif/SubjectDistance tag.
+     *
+     * @param PelEntry $entry
+     *            the TAG PelEntry object.
+     * @param bool $brief
+     *            (Optional) indicates to use brief output.
+     *
+     * @return string
+     *            the TAG text.
+     */
+    public static function decodeSubjectDistance(PelEntry $entry, $brief = false)
+    {
+        return Pel::fmt('%.1f m', $entry->getValue()[0] / $entry->getValue()[1]);
+    }
+
+    /**
+     * Decode text for an Exif/ExposureTime tag.
+     *
+     * @param PelEntry $entry
+     *            the TAG PelEntry object.
+     * @param bool $brief
+     *            (Optional) indicates to use brief output.
+     *
+     * @return string
+     *            the TAG text.
+     */
+    public static function decodeExposureTime(PelEntry $entry, $brief = false)
+    {
+        if ($entry->getValue()[0] / $entry->getValue()[1] < 1) {
+            return Pel::fmt('1/%d sec.', $entry->getValue()[1] / $entry->getValue()[0]);
+        } else {
+            return Pel::fmt('%d sec.', $entry->getValue()[0] / $entry->getValue()[1]);
         }
+    }
 
-        switch ($this->tag) {
-            case PelTag::FNUMBER:
-                // CC (e->components, 1, v);
-                return Pel::fmt('f/%.01f', $v[0] / $v[1]);
+    /**
+     * Return a string formatting LONG/LAT degrees.
+     *
+     * @param array $value
+     *            the value as array of int.
+     *
+     * @return string
+     *            the TAG text.
+     */
+    private static function formatDegrees($value)
+    {
+        $degrees = $value[0][0] / $value[0][1];
+        $minutes = $value[1][0] / $value[1][1];
+        $seconds = $value[2][0] / $value[2][1];
+        return sprintf('%s° %s\' %s" (%.2f°)', $degrees, $minutes, $seconds, $degrees + $minutes / 60 + $seconds / 3600);
+    }
 
-            case PelTag::APERTURE_VALUE:
-                // CC (e->components, 1, v);
-                // if (!v_rat.denominator) return (NULL);
-                return Pel::fmt('f/%.01f', pow(2, $v[0] / $v[1] / 2));
+    /**
+     * Decode text for a GPS/GPSLongitude tag.
+     *
+     * @param PelEntry $entry
+     *            the TAG PelEntry object.
+     * @param bool $brief
+     *            (Optional) indicates to use brief output.
+     *
+     * @return string
+     *            the TAG text.
+     */
+    public static function decodeGPSLongitude(PelEntry $entry, $brief = false)
+    {
+        return static::formatDegrees($entry->getValue());
+    }
 
-            case PelTag::FOCAL_LENGTH:
-                // CC (e->components, 1, v);
-                // if (!v_rat.denominator) return (NULL);
-                return Pel::fmt('%.1f mm', $v[0] / $v[1]);
-
-            case PelTag::SUBJECT_DISTANCE:
-                // CC (e->components, 1, v);
-                // if (!v_rat.denominator) return (NULL);
-                return Pel::fmt('%.1f m', $v[0] / $v[1]);
-
-            case PelTag::EXPOSURE_TIME:
-                // CC (e->components, 1, v);
-                // if (!v_rat.denominator) return (NULL);
-                if ($v[0] / $v[1] < 1) {
-                    return Pel::fmt('1/%d sec.', $v[1] / $v[0]);
-                } else {
-                    return Pel::fmt('%d sec.', $v[0] / $v[1]);
-                }
-                break;
-            case PelTag::GPS_LATITUDE:
-            case PelTag::GPS_LONGITUDE:
-                $degrees = $this->value[0][0] / $this->value[0][1];
-                $minutes = $this->value[1][0] / $this->value[1][1];
-                $seconds = $this->value[2][0] / $this->value[2][1];
-
-                return sprintf('%s° %s\' %s" (%.2f°)', $degrees, $minutes, $seconds, $degrees + $minutes / 60 + $seconds / 3600);
-
-            default:
-                return parent::getText($brief);
-        }
+    /**
+     * Decode text for a GPS/GPSLatitude tag.
+     *
+     * @param PelEntry $entry
+     *            the TAG PelEntry object.
+     * @param bool $brief
+     *            (Optional) indicates to use brief output.
+     *
+     * @return string
+     *            the TAG text.
+     */
+    public static function decodeGPSLatitude(PelEntry $entry, $brief = false)
+    {
+        return static::formatDegrees($entry->getValue());
     }
 }

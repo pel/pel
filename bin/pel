@@ -1,0 +1,20 @@
+#!/usr/bin/env php
+<?php
+/**
+ * A Symfony CLI utility application for PEL.
+ */
+
+use lsolesen\pel\Command\CompileCommand;
+use Symfony\Component\Console\Application;
+
+$packageAutoloader = __DIR__ . '/../vendor/autoload.php';
+$standaloneAutoloader = __DIR__ . '/../../../autoload.php';
+if (file_exists($packageAutoloader)) {
+    require_once $packageAutoloader;
+} else {
+    require_once $standaloneAutoloader;
+}
+
+$application = new Application('pel');
+$application->add(new CompileCommand());
+$application->run();

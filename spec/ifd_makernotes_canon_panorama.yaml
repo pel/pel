@@ -1,0 +1,18 @@
+type: 'Canon Panorama Information'
+class: PelIfdIndexShort
+tags:
+    0x0002:
+        name: PanoramaFrame
+        title: 'Panorama Frame'
+        format: SShort
+    0x0005:
+        name: PanoramaDirection
+        title: 'Panorama Direction'
+        format: SShort
+        text:
+            mapping:
+                0: 'Left to Right'
+                1: 'Right to Left'
+                2: 'Bottom to Top'
+                3: 'Top to Bottom'
+                4: '2x2 Matrix (Clockwise)'

@@ -1,0 +1,14 @@
+const: 0
+type: '0'
+class: PelIfd
+alias:
+  - 'IFD0'
+  - 'Main'
+tags:
+    0x0100:
+        const: IMAGE_WIDTH
+        name: ImageWidth
+        title: 'Image Width'
+        bork: '*** EXPECTED FAILURE ***'
+        components: 1
+        format: [Short, Long]

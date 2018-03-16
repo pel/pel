@@ -111,6 +111,119 @@ abstract class PelEntry
     protected $components;
 
     /**
+     * Creates a new PelEntry of the required subclass.
+     *
+     * @param int $ifd_id
+     *            the IFD id.
+     * @param int $tag_id
+     *            the TAG id.
+     * @param array $arguments
+     *            a list or arguments to be passed to the PelEntry subclass
+     *            constructor.
+     *
+     * @return PelEntry a newly created entry, holding the data given.
+     */
+    final public static function createNew($ifd_id, $tag_id, array $arguments)
+    {
+        $class = PelSpec::getTagClass($ifd_id, $tag_id);
+        return call_user_func($class . '::createInstance', $ifd_id, $tag_id, $arguments);
+    }
+
+    /**
+     * Creates a PelEntry of the required subclass from file data.
+     *
+     * @param int $ifd_id
+     *            the IFD id.
+     * @param int $tag_id
+     *            the TAG id.
+     * @param PelDataWindow $data
+     *            the data window that will provide the data.
+     * @param integer $ifd_offset
+     *            the offset within the window where the directory will
+     *            be found.
+     * @param int $seq
+     *            the element's position in the {@link PelDataWindow} $data.
+     *
+     * @return PelEntry a newly created entry, holding the data given.
+     */
+    final public static function createFromData($ifd_id, $tag_id, PelDataWindow $data, $ifd_offset, $seq)
+    {
+        $format = $data->getShort($ifd_offset + 12 * $seq + 2);
+        $components = $data->getLong($ifd_offset + 12 * $seq + 4);
+
+        // The data size. If bigger than 4 bytes, the actual data is
+        // not in the entry but somewhere else, with the offset stored
+        // in the entry.
+        $size = PelFormat::getSize($format) * $components;
+        if ($size > 0) {
+            $data_offset = $ifd_offset + 12 * $seq + 8;
+            if ($size > 4) {
+                $data_offset = $data->getLong($data_offset);
+            }
+            $sub_data = $data->getClone($data_offset, $size);
+        } else {
+            $data_offset = 0;
+            $sub_data = new PelDataWindow();
+        }
+
+        try {
+            $class = PelSpec::getTagClass($ifd_id, $tag_id, $format);
+            $arguments = call_user_func($class . '::getInstanceArgumentsFromData', $ifd_id, $tag_id, $format, $components, $sub_data, $data_offset);
+            return  call_user_func($class . '::createInstance', $ifd_id, $tag_id, $arguments);
+        } catch (PelException $e) {
+            // Throw the exception when running in strict mode, store
+            // otherwise.
+            Pel::maybeThrow($e);
+        }
+    }
+
+    /**
+     * Creates an instance of the entry.
+     *
+     * @param int $ifd_id
+     *            the IFD id.
+     * @param int $tag_id
+     *            the TAG id.
+     * @param array $arguments
+     *            a list or arguments to be passed to the PelEntry subclass
+     *            constructor.
+     *
+     * @return PelEntry a newly created entry, holding the data given.
+     */
+    public static function createInstance($ifd_id, $tag_id, $arguments)
+    {
+        $class = new \ReflectionClass(get_called_class());
+        array_unshift($arguments, $tag_id);
+        $instance = $class->newInstanceArgs($arguments);
+        $instance->setIfdType($ifd_id);
+        return $instance;
+    }
+
+    /**
+     * Get arguments for the instance constructor from file data.
+     *
+     * @param int $ifd_id
+     *            the IFD id.
+     * @param int $tag_id
+     *            the TAG id.
+     * @param int $format
+     *            the format of the entry as defined in {@link PelFormat}.
+     * @param int $components
+     *            the components in the entry.
+     * @param PelDataWindow $data
+     *            the data which will be used to construct the entry.
+     * @param int $data_offset
+     *            the offset of the main DataWindow where data is stored.
+     *
+     * @return array a list or arguments to be passed to the PelEntry subclass
+     *            constructor.
+     */
+    public static function getInstanceArgumentsFromData($ifd_id, $tag_id, $format, $components, PelDataWindow $data, $data_offset)
+    {
+        throw new PelException('getInstanceArgumentsFromData() must be implemented.');
+    }
+
+    /**
      * Return the tag of this entry.
      *
      * @return int the tag of this entry.
@@ -197,7 +310,12 @@ abstract class PelEntry
      *
      * @return string the value as text.
      */
-    abstract public function getText($brief = false);
+    public function getText($brief = false)
+    {
+        // If PelSpec can return the text, return it, otherwise implementations
+        // will override.
+        return PelSpec::getTagText($this, $brief);
+    }
 
     /**
      * Get the value of this entry.
@@ -244,7 +362,7 @@ abstract class PelEntry
         $str = Pel::fmt("  Tag: 0x%04X (%s)\n", $this->tag, PelTag::getName($this->ifd_type, $this->tag));
         $str .= Pel::fmt("    Format    : %d (%s)\n", $this->format, PelFormat::getName($this->format));
         $str .= Pel::fmt("    Components: %d\n", $this->components);
-        if ($this->getTag() != PelTag::MAKER_NOTE && $this->getTag() != PelTag::PRINT_IM) {
+        if ($this->getTag() != PelSpec::getTagIdByName(PelSpec::getIfdIdByType('Exif'), 'MakerNote') && $this->getTag() != PelSpec::getTagIdByName(PelSpec::getIfdIdByType('0'), 'PrintIM')) {
             $str .= Pel::fmt("    Value     : %s\n", print_r($this->getValue(), true));
         }
         $str .= Pel::fmt("    Text      : %s\n", $this->getText());

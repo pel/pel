@@ -1,0 +1,21 @@
+type: 'Canon Picture Information'
+class: ???
+tags:
+    0x0002:
+        name: ImageWidth
+        title: 'Image Width'
+    0x0003:
+        name: ImageHeight
+        title: 'Image Height'
+    0x0004:
+        name: ImageWidthAsShot
+        title: 'Image Width As Shot'
+    0x0005:
+        name: ImageHeightAsShot
+        title: 'Image Height As Shot'
+    0x0016:
+        name: AFPointsUsed
+        title: 'AF Points Used'
+    0x001A:
+        name: AFPointsUsed(20D)
+        title: 'AF Points Used (20D)'

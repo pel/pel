@@ -1,0 +1,134 @@
+type: 'Canon Maker Notes'
+class: PelIfd
+makerNotes:
+  - 'Canon'
+tags:
+    0x0001:
+        name: CameraSettings
+        title: 'Camera Settings'
+        ifd: 'Canon Camera Settings'
+    0x0002:
+        name: FocalLength
+        title: 'Focal Length'
+        format: Short
+    0x0004:
+        name: ShotInfo
+        title: 'Shot Info'
+        ifd: 'Canon Shot Information'
+    0x0005:
+        name: Panorama
+        title: Panorama
+        ifd: 'Canon Panorama Information'
+    0x0006:
+        name: ImageType
+        title: 'Image Type'
+        format: Ascii
+    0x0007:
+        name: FirmwareVersion
+        title: 'Firmware Version'
+        format: Ascii
+    0x0008:
+        name: FileNumber
+        title: 'File Number'
+        format: Long
+    0x0009:
+        name: OwnerName
+        title: 'Owner Name'
+        format: Ascii
+    0x000C:
+        name: SerialNumber
+        title: 'Serial Number'
+        format: Long
+    0x000D:
+        name: CameraInfo
+        title: 'Camera Info'
+        format: Short
+    0x000F:
+        name: CustomFunctions
+        title: 'Custom Functions'
+        #ifd: ????
+    0x0010:
+        name: ModelID
+        title: 'Model ID'
+        format: Long
+    0x0012:
+        name: PictureInfo
+        title: 'Picture Info'
+        #ifd: 'Canon Picture Information'
+        format: Undefined
+    0x0013:
+        name: ThumbnailImageValidArea
+        title: 'Thumbnail Image Valid Area'
+        format: SShort
+    0x0015:
+        name: 'Serial Number Format'
+        title: 'Serial number format'
+        format: Long
+    0x001A:
+        name: SuperMacro
+        title: 'Super macro'
+        format: SShort
+    0x001E:
+        name: FirmwareRevision
+        title: 'Firmware Revision'
+        format: Long
+    0x0026:
+        name: AFinfo
+        title: 'AF info'
+        format: Short
+    0x0083:
+        name: 'OriginalDecision Data Offset'
+        title: 'Original decision data offset'
+        format: SLong
+    0x0093:
+        name: FileInfo
+        title: 'File Info'
+        ifd: 'Canon File Information'
+    0x0095:
+        name: LensModel
+        title: 'Lens model'
+        format: Ascii
+    0x0096:
+        name: InternalSerialNumber
+        title: 'Internal serial number'
+        format: Ascii
+    0x0097:
+        name: DustRemovalData
+        title: 'Dust removal data'
+        format: Ascii
+    0x0099:
+        name: CustomFunctions
+        title: 'Custom functions'
+        #ifd: ????
+    0x00A0:
+        name: ProcessingInfo
+        title: 'Processing info'
+        format: Short
+    0x00A4:
+        name: WhiteBalanceTable
+        title: 'White balance table'
+        format: Short
+    0x00AA:
+        name: MeasuredColor
+        title: 'Measured color'
+        format: Short
+    0x00B4:
+        name: ColorSpace
+        title: 'Color Space'
+        format: SShort
+        text:
+            mapping:
+                1: 'sRGB'
+                2: 'Adobe RGB'
+    0x00D0:
+        name: VRDOffset
+        title: 'VRD offset'
+        format: Long
+    0x00E0:
+        name: SensorInfo
+        title: 'Sensor info'
+        format: Short
+    0x4001:
+        name: ColorData
+        title: 'Color data'
+        format: Short

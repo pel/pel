@@ -1,0 +1,134 @@
+type: 'Canon Shot Information'
+class: PelIfdIndexShort
+tags:
+    0x0002:
+        name: ISOSpeedUsed
+        title: 'ISO Speed Used'
+        format: SShort
+    0x0003:
+        name: MeasuredEV
+        title: 'Measured EV'
+        format: SShort
+    0x0004:
+        name: TargetAperture
+        title: 'Target Aperture'
+        format: SShort
+    0x0005:
+        name: TargetShutterSpeed
+        title: 'Target Shutter Speed'
+        format: SShort
+    0x0007:
+        name: WhiteBalanceSetting
+        title: 'White Balance Setting'
+        format: SShort
+        text:
+            mapping:
+                0: 'Auto'
+                1: 'Daylight'
+                2: 'Cloudy'
+                3: 'Tungsten'
+                4: 'Fluorescent'
+                5: 'Flash'
+                6: 'Custom'
+                7: 'Black & White'
+                8: 'Shade'
+                9: 'Manual Temperature (Kelvin)'
+                10: 'PC Set1'
+                11: 'PC Set2'
+                12: 'PC Set3'
+                14: 'Daylight Fluorescent'
+                15: 'Custom 1'
+                16: 'Custom 2'
+                17: 'Underwater'
+                18: 'Custom 3'
+                19: 'Custom 4'
+                20: 'PC Set4'
+                21: 'PC Set5'
+                23: 'Auto (ambience priority)'
+    0x0008:
+        name: SlowShutter
+        title: 'Slow Shutter'
+        format: SShort
+        text:
+            mapping:
+                0: 'Off'
+                1: 'Night Scene'
+                2: 'On'
+                3: 'None'
+    0x0009:
+        name: SequenceNumber
+        title: 'Sequence Number'
+        format: SShort
+    0x000E:
+        name: AFPointUsed
+        title: 'AF Point Used'
+        format: SShort
+        text:
+            mapping:
+                0x3000: 'None (MF)'
+                0x3001: 'Right'
+                0x3002: 'Center'
+                0x3003: 'Center+Right'
+                0x3004: 'Left'
+                0x3005: 'Left+Right'
+                0x3006: 'Left+Center'
+                0x3007: 'All'
+    0x000F:
+        name: FlashBias
+        title: 'Flash Bias'
+        format: SShort
+    0x0010:
+        name: AutoExposureBracketing
+        title: 'Auto Exposure Bracketing'
+        format: SShort
+        text:
+            mapping:
+                -1: 'On'
+                0: 'Off'
+                1: 'On (shot 1)'
+                2: 'On (shot 2)'
+                3: 'On (shot 3)'
+    0x0013:
+        name: SubjectDistance
+        title: 'Subject Distance'
+        format: Short
+    0x0015:
+        name: Aperture
+        title: Aperture
+        format: SShort
+    0x0016:
+        name: ShutterSpeed
+        title: 'Shutter Speed'
+        format: SShort
+    0x0017:
+        name: MeasuredEV2
+        title: 'Measured EV 2'
+        format: SShort
+    0x001A:
+        name: CameraType
+        title: 'Camera Type'
+        format: SShort
+        text:
+            mapping:
+                248: 'EOS High-end'
+                250: 'Compact'
+                252: 'EOS Mid-range'
+                255: 'DV Camera'
+    0x001B:
+        name: AutoRotate
+        title: 'Auto Rotate'
+        format: SShort
+        text:
+            mapping:
+                0: 'None'
+                1: 'Rotate 90 CW'
+                2: 'Rotate 180'
+                3: 'Rotate 270 CW'
+    0x001C:
+        name: NDFilter
+        title: 'ND Filter'
+        format: SShort
+        text:
+            mapping:
+                0: 'Off'
+                1: 'On'

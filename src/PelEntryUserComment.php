@@ -98,8 +98,63 @@ class PelEntryUserComment extends PelEntryUndefined
      */
     public function __construct($comment = '', $encoding = 'ASCII')
     {
-        parent::__construct(PelTag::USER_COMMENT);
+        parent::__construct(PelSpec::getTagIdByName(PelSpec::getIfdIdByType('Exif'), 'UserComment'));
         $this->setValue($comment, $encoding);
+    }
+
+    /**
+     * Creates an instance of the entry.
+     *
+     * @param int $ifd_id
+     *            the IFD id.
+     * @param int $tag_id
+     *            the TAG id.
+     * @param array $arguments
+     *            a list or arguments to be passed to the PelEntry subclass
+     *            constructor.
+     *
+     * @return PelEntry a newly created entry, holding the data given.
+     */
+    public static function createInstance($ifd_id, $tag_id, $arguments)
+    {
+        if (empty($arguments)) {
+            $instance = new static();
+        } else {
+            $instance = new static($arguments[0], $arguments[1]);
+        }
+        $instance->setIfdType($ifd_id);
+        return $instance;
+    }
+
+    /**
+     * Get arguments for the instance constructor from file data.
+     *
+     * @param int $ifd_id
+     *            the IFD id.
+     * @param int $tag_id
+     *            the TAG id.
+     * @param int $format
+     *            the format of the entry as defined in {@link PelFormat}.
+     * @param int $components
+     *            the components in the entry.
+     * @param PelDataWindow $data
+     *            the data which will be used to construct the entry.
+     * @param int $data_offset
+     *            the offset of the main DataWindow where data is stored.
+     *
+     * @return array a list or arguments to be passed to the PelEntry subclass
+     *            constructor.
+     */
+    public static function getInstanceArgumentsFromData($ifd_id, $tag_id, $format, $components, PelDataWindow $data, $data_offset)
+    {
+        if ($format != PelFormat::UNDEFINED) {
+            throw new PelUnexpectedFormatException($ifd_id, $tag_id, $format, PelFormat::UNDEFINED);
+        }
+        if ($data->getSize() < 8) {
+            return [];
+        } else {
+            return [$data->getBytes(8), rtrim($data->getBytes(0, 8))];
+        }
     }
 
     /**

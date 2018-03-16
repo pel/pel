@@ -83,6 +83,34 @@ class PelEntrySRational extends PelEntrySLong
     }
 
     /**
+     * Get arguments for the instance constructor from file data.
+     *
+     * @param int $ifd_id
+     *            the IFD id.
+     * @param int $tag_id
+     *            the TAG id.
+     * @param int $format
+     *            the format of the entry as defined in {@link PelFormat}.
+     * @param int $components
+     *            the components in the entry.
+     * @param PelDataWindow $data
+     *            the data which will be used to construct the entry.
+     * @param int $data_offset
+     *            the offset of the main DataWindow where data is stored.
+     *
+     * @return array a list or arguments to be passed to the PelEntry subclass
+     *            constructor.
+     */
+    public static function getInstanceArgumentsFromData($ifd_id, $tag_id, $format, $components, PelDataWindow $data, $data_offset)
+    {
+        $args = [];
+        for ($i = 0; $i < $components; $i ++) {
+            $args[] = $data->getSRational($i * 8);
+        }
+        return $args;
+    }
+
+    /**
      * Format a rational number.
      *
      * The rational will be returned as a string with a slash '/'
@@ -109,45 +137,53 @@ class PelEntrySRational extends PelEntrySLong
     }
 
     /**
-     * Get the value of an entry as text.
+     * Decode text for an Exif/ShutterSpeedValue tag.
      *
-     * The value will be returned in a format suitable for presentation,
-     * e.g., rationals will be returned as 'x/y', ASCII strings will be
-     * returned as themselves etc.
+     * @param PelEntry $entry
+     *            the TAG PelEntry object.
+     * @param bool $brief
+     *            (Optional) indicates to use brief output.
      *
-     * @param
-     *            boolean some values can be returned in a long or more
-     *            brief form, and this parameter controls that.
-     *
-     * @return string the value as text.
+     * @return string
+     *            the TAG text.
      */
-    public function getText($brief = false)
+    public static function decodeShutterSpeedValue(PelEntry $entry, $brief = false)
     {
-        if (isset($this->value[0])) {
-            $v = $this->value[0];
-        }
+        return Pel::fmt('%.0f/%.0f sec. (APEX: %d)', $entry->getValue()[0], $entry->getValue()[1], pow(sqrt(2), $entry->getValue()[0] / $entry->getValue()[1]));
+    }
 
-        switch ($this->tag) {
-            case PelTag::SHUTTER_SPEED_VALUE:
-                // CC (e->components, 1, v);
-                // if (!v_srat.denominator) return (NULL);
-                return Pel::fmt('%.0f/%.0f sec. (APEX: %d)', $v[0], $v[1], pow(sqrt(2), $v[0] / $v[1]));
+    /**
+     * Decode text for an Exif/BrightnessValue tag.
+     *
+     * @param PelEntry $entry
+     *            the TAG PelEntry object.
+     * @param bool $brief
+     *            (Optional) indicates to use brief output.
+     *
+     * @return string
+     *            the TAG text.
+     */
+    public static function decodeBrightnessValue(PelEntry $entry, $brief = false)
+    {
+        // TODO: figure out the APEX thing, or remove this so that it is
+        // handled by the default code.
+        return sprintf('%d/%d', $entry->getValue()[0], $entry->getValue()[1]);
+        // FIXME: How do I calculate the APEX value?
+    }
 
-            case PelTag::BRIGHTNESS_VALUE:
-                // CC (e->components, 1, v);
-                //
-                // TODO: figure out the APEX thing, or remove this so that it is
-                // handled by the default clause at the bottom.
-                return sprintf('%d/%d', $v[0], $v[1]);
-            // FIXME: How do I calculate the APEX value?
-
-            case PelTag::EXPOSURE_BIAS_VALUE:
-                // CC (e->components, 1, v);
-                // if (!v_srat.denominator) return (NULL);
-                return sprintf('%s%.01f', $v[0] * $v[1] > 0 ? '+' : '', $v[0] / $v[1]);
-
-            default:
-                return parent::getText($brief);
-        }
+    /**
+     * Decode text for an Exif/ExposureBiasValue tag.
+     *
+     * @param PelEntry $entry
+     *            the TAG PelEntry object.
+     * @param bool $brief
+     *            (Optional) indicates to use brief output.
+     *
+     * @return string
+     *            the TAG text.
+     */
+    public static function decodeExposureBiasValue(PelEntry $entry, $brief = false)
+    {
+        return sprintf('%s%.01f', $entry->getValue()[0] * $entry->getValue()[1] > 0 ? '+' : '', $entry->getValue()[0] / $entry->getValue()[1]);
     }
 }

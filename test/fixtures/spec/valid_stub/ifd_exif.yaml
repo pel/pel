@@ -1,0 +1,16 @@
+const: 2
+type: Exif
+class: PelIfd
+tags:
+    0x829A:
+        const: EXPOSURE_TIME
+        name: ExposureTime
+        title: 'Exposure Time'
+        components: 1
+        format: Rational
+    0x829D:
+        const: FNUMBER
+        name: FNumber
+        title: FNumber
+        components: 1
+        format: Rational

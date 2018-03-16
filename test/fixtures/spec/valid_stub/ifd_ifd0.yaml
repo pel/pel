@@ -1,0 +1,24 @@
+const: 0
+type: '0'
+class: PelIfd
+alias:
+  - 'IFD0'
+  - 'Main'
+tags:
+    0x0100:
+        const: IMAGE_WIDTH
+        name: ImageWidth
+        title: 'Image Width'
+        components: 1
+        format: [Short, Long]
+    0x0101:
+        const: IMAGE_LENGTH
+        name: ImageLength
+        title: 'Image Length'
+        components: 1
+        format: [Short, Long]
+    0x8769:
+        const: EXIF_IFD_POINTER
+        name: ExifIFDPointer
+        title: 'Exif IFD Pointer'
+        ifd: Exif

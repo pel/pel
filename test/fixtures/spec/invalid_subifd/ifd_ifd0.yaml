@@ -1,0 +1,16 @@
+const: 0
+type: '0'
+class: PelIfd
+alias:
+  - 'IFD0'
+  - 'Main'
+tags:
+    0x0100:
+        name: ImageWidth
+        title: 'Image Width'
+        components: 1
+        format: [Short, Long]
+    0x8769:
+        name: ExifIFDPointer
+        title: 'Exif IFD Pointer'
+        ifd: '*** EXPECTED FAILURE ***'
