@@ -10,7 +10,8 @@ Furthermore, it is the basis for discussions on evolving the project.
 ## EXIF information structure
 
 This document assumes you are familiar with the inner structure of the files that support EXIF information. A valuable read is at
-the [EXIF](https://en.wikipedia.org/wiki/Exif) entry on Wikipedia.org.
+the [EXIF](https://en.wikipedia.org/wiki/Exif) entry on Wikipedia.org. The one-stop shop for detailed information about Exif tags data
+is at [ExifTool by Phil Harvey](http://owl.phy.queensu.ca/~phil/exiftool/TagNames/index.html).
 
 ## PEL specification
 
@@ -29,6 +30,7 @@ An IFD is fully described by a single YAML file. The file name should convention
 ```
 const: 0
 type: '0'
+class: PelIfd
 alias:
   - 'IFD0'
   - 'Main'
@@ -48,6 +50,8 @@ found in that IFD.
 | ---------- | ----------------------------------------------------------------------------------------------------- |
 | const      | (Legacy) An integer identifying the IFD, corresponding to the constant values found in the `PelIfd` class, like `const IFD0 = 0;`. This will be dropped in a future version of PEL. |
 | type       | A string identifying the IFD type. |
+| class      | A string identifying the IFD's PHP class to be used to process the IFD information. |
+| postLoad   | (Optional) An array of callbacks to be fired at the end of the IFD loading process. |
 | alias      | (Optional) An array of strings alternatively identifying the IFD type. |
 | tags       | An array of TAGs (see below). |
 | makerNotes | (Optional) If the IFD is relative to custom manufacturer notes, this array of string specifies the values of the EXIF/MakerNote TAG that will match this type of maker notes. |
@@ -78,6 +82,7 @@ The TAG entry is identified by the HEX value of the EXIF tag, like `0x0106` in t
 | title      | A string with a description of the TAG. |
 | components | (Optional) An integer describing the exepcted number of data components in the TAG. |
 | format     | (Optional) A string/array of strings identifying the expected data format of the tag. |
+| class      | (Optional) A string identifying the TAG's PHP class. If not specified, the default class for the TAG format will be used. |
 | ifd        | (Optional) If specified, identifies the TAG as a pointer to a sub-IFD, as the string of the relative IFD type.  |
 | text       | (Optional) If specified, instructs PEL to decode the value of the TAG to a text string. This can be done either as a mapping between the value and the text (defined by the `mapping:` array), or by calling a callback method (indicated by the `decode:` key). |
 

@@ -1,5 +1,6 @@
 const: 3
 type: GPS
+class: PelIfd
 tags:
     0x0000:
         const: GPS_VERSION_ID

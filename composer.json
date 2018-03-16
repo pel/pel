@@ -32,6 +32,7 @@
         "symfony/console": "*",
         "symfony/finder": "*",
         "symfony/filesystem": "*",
+        "symfony/var-dumper": "*",
         "symfony/yaml": "*"
     },
     "autoload": {

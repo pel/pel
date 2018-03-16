@@ -20,8 +20,7 @@ matrix:
     - php: nightly
 
 install:
-  - travis_retry composer self-update
-  - travis_retry composer install --no-interaction --no-progress --no-suggest
+  - composer install --no-interaction --no-progress --no-suggest
 
 before_script:
   - mkdir -p build/logs

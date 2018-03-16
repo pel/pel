@@ -1,5 +1,6 @@
 const: 4
 type: Interoperability
+class: PelIfd
 alias:
   - 'Interop'
 tags:
@@ -14,7 +15,8 @@ tags:
         name: InteroperabilityVersion
         title: 'Interoperability Version'
         components: 4
-        format: Version
+        format: Undefined
+        class: PelEntryVersion
         text:
             decode: PelEntryVersion::decodeInteroperabilityVersion
     0x1000:
@@ -22,20 +24,18 @@ tags:
         name: RelatedImageFileFormat
         title: 'Related Image File Format'
         components: Unknown
-        format: Unknown
+        format: Ascii
     0x1001:
         const: RELATED_IMAGE_WIDTH
         name: RelatedImageWidth
         title: 'Related Image Width'
         # Probably 1
         components: Unknown
-        # Probably Short
-        format: Unknown
+        format: Short
     0x1002:
         const: RELATED_IMAGE_LENGTH
         name: RelatedImageLength
         title: 'Related Image Length'
         # Probably 1
         components: Unknown
-        # Probably Short
-        format: Unknown
+        format: Short

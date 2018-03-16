@@ -209,6 +209,25 @@ class PelFormat
     }
 
     /**
+     * Returns the id of a format from its name.
+     *
+     * @param string $name
+     *            as defined in {@link PelFormat}
+     *
+     * @return integer|null
+     */
+    public static function getIdFromName($name)
+    {
+        static $map;
+
+        if (!isset($map)) {
+            $map = array_flip(static::$formatName);
+        }
+
+        return isset($map[$name]) ? $map[$name] : null;
+    }
+
+    /**
      * Return the size of components in a given format in bytes needed to store one component with the
      * given format.
      *

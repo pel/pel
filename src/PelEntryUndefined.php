@@ -78,6 +78,30 @@ class PelEntryUndefined extends PelEntry
     }
 
     /**
+     * Get arguments for the instance constructor from file data.
+     *
+     * @param int $ifd_id
+     *            the IFD id.
+     * @param int $tag_id
+     *            the TAG id.
+     * @param int $format
+     *            the format of the entry as defined in {@link PelFormat}.
+     * @param int $components
+     *            the components in the entry.
+     * @param PelDataWindow $data
+     *            the data which will be used to construct the entry.
+     * @param int $data_offset
+     *            the offset of the main DataWindow where data is stored.
+     *
+     * @return array a list or arguments to be passed to the PelEntry subclass
+     *            constructor.
+     */
+    public static function getInstanceArgumentsFromData($ifd_id, $tag_id, $format, $components, PelDataWindow $data, $data_offset)
+    {
+        return [$data->getBytes()];
+    }
+
+    /**
      * Set the data of this undefined entry.
      *
      * @param string $data
@@ -104,67 +128,64 @@ class PelEntryUndefined extends PelEntry
     /**
      * Decode text for an Exif/FileSource tag.
      *
-     * @param int $components
-     *            the number of components of the TAG.
-     * @param array $value
-     *            the TAG value.
+     * @param PelEntry $entry
+     *            the TAG PelEntry object.
      * @param bool $brief
-     *            indicates to use brief output.
+     *            (Optional) indicates to use brief output.
      *
      * @return string
      *            the TAG text.
      */
-    public static function decodeFileSource($components, $value, $brief)
+    public static function decodeFileSource(PelEntry $entry, $brief = false)
     {
-        switch (ord($value[0]{0})) {
+        $value = $entry->getValue();
+        switch (ord($value{0})) {
             case 0x03:
                 return 'DSC';
             default:
-                return sprintf('0x%02X', ord($value[0]{0}));
+                return sprintf('0x%02X', ord($value{0}));
         }
     }
 
     /**
      * Decode text for an Exif/SceneType tag.
      *
-     * @param int $components
-     *            the number of components of the TAG.
-     * @param array $value
-     *            the TAG value.
+     * @param PelEntry $entry
+     *            the TAG PelEntry object.
      * @param bool $brief
-     *            indicates to use brief output.
+     *            (Optional) indicates to use brief output.
      *
      * @return string
      *            the TAG text.
      */
-    public static function decodeSceneType($components, $value, $brief)
+    public static function decodeSceneType(PelEntry $entry, $brief = false)
     {
-        switch (ord($value[0]{0})) {
+        $value = $entry->getValue();
+        switch (ord($value{0})) {
             case 0x01:
                 return 'Directly photographed';
             default:
-                return sprintf('0x%02X', ord($value[0]{0}));
+                return sprintf('0x%02X', ord($value{0}));
         }
     }
 
     /**
      * Decode text for an Exif/ComponentsConfiguration tag.
      *
-     * @param int $components
-     *            the number of components of the TAG.
-     * @param array $value
-     *            the TAG value.
+     * @param PelEntry $entry
+     *            the TAG PelEntry object.
      * @param bool $brief
-     *            indicates to use brief output.
+     *            (Optional) indicates to use brief output.
      *
      * @return string
      *            the TAG text.
      */
-    public static function decodeComponentsConfiguration($components, $value, $brief)
+    public static function decodeComponentsConfiguration(PelEntry $entry, $brief = false)
     {
+        $value = $entry->getValue();
         $v = '';
         for ($i = 0; $i < 4; $i ++) {
-            switch (ord($value[0]{$i})) {
+            switch (ord($value{$i})) {
                 case 0:
                     $v .= '-';
                     break;
@@ -213,11 +234,6 @@ class PelEntryUndefined extends PelEntry
         // If PelSpec can return the text, return it.
         if (($tag_text = parent::getText($brief)) !== null) {
             return $tag_text;
-        }
-
-        // MakerNote tag is a special case.
-        if ($this->tag == PelSpec::getTagIdByName(PelSpec::getIfdIdByType('Exif'), 'MakerNote')) {
-            return $this->components . ' bytes unknown MakerNote data';
         }
 
         return '(undefined)';

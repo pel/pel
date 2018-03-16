@@ -92,6 +92,37 @@ class PelEntryAscii extends PelEntry
     }
 
     /**
+     * Get arguments for the instance constructor from file data.
+     *
+     * @param int $ifd_id
+     *            the IFD id.
+     * @param int $tag_id
+     *            the TAG id.
+     * @param int $format
+     *            the format of the entry as defined in {@link PelFormat}.
+     * @param int $components
+     *            the components in the entry.
+     * @param PelDataWindow $data
+     *            the data which will be used to construct the entry.
+     * @param int $data_offset
+     *            the offset of the main DataWindow where data is stored.
+     *
+     * @return array a list or arguments to be passed to the PelEntry subclass
+     *            constructor.
+     */
+    public static function getInstanceArgumentsFromData($ifd_id, $tag_id, $format, $components, PelDataWindow $data, $data_offset)
+    {
+        // cut off string after the first nul byte
+        $canonicalString = strstr($data->getBytes(0), "\0", true);
+        if ($canonicalString !== false) {
+            return [$canonicalString];
+        } else {
+            // TODO throw exception if string isn't nul-terminated
+            return [$data->getBytes(0)];
+        }
+    }
+
+    /**
      * Give the entry a new ASCII value.
      *
      * This will overwrite the previous value. The value can be

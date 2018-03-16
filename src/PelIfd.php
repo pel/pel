@@ -45,7 +45,6 @@ namespace lsolesen\pel;
  */
 class PelIfd implements \IteratorAggregate, \ArrayAccess
 {
-
     /**
      * Main image IFD.
      *
@@ -87,72 +86,6 @@ class PelIfd implements \IteratorAggregate, \ArrayAccess
     const INTEROPERABILITY = 4;
 
     /**
-     * Canon Maker Notes IFD.
-     *
-     * Pass this to the constructor when creating an IFD which will be
-     * the canon maker notes sub-IFD.
-     */
-    const CANON_MAKER_NOTES = 5;
-
-    /**
-     * Canon Camera Settings IFD.
-     *
-     * Pass this to the constructor when creating an IFD which will be
-     * the canon maker notes sub-IFD.
-     */
-    const CANON_CAMERA_SETTINGS = 6;
-
-    /**
-     * Canon Shot Info IFD.
-     *
-     * Pass this to the constructor when creating an IFD which will be
-     * the canon maker notes sub-IFD.
-     */
-    const CANON_SHOT_INFO = 7;
-
-    /**
-     * Canon Shot Info IFD.
-     *
-     * Pass this to the constructor when creating an IFD which will be
-     * the canon maker notes sub-IFD.
-     */
-    const CANON_PANORAMA = 8;
-
-    /**
-     * Canon Shot Info IFD.
-     *
-     * Pass this to the constructor when creating an IFD which will be
-     * the canon maker notes sub-IFD.
-     */
-    const CANON_PICTURE_INFO = 9;
-
-    /**
-     * Canon Shot Info IFD.
-     *
-     * Pass this to the constructor when creating an IFD which will be
-     * the canon maker notes sub-IFD.
-     */
-    const CANON_FILE_INFO = 10;
-
-    /**
-     * Canon Shot Info IFD.
-     *
-     * Pass this to the constructor when creating an IFD which will be
-     * the canon maker notes sub-IFD.
-     */
-    const CANON_CUSTOM_FUNCTIONS = 11;
-
-    /**
-     * The maker notes held by this directory.
-     *
-     * Stores information of the MakerNotes IFD.
-     * Available and required keys are: parent, data, components and offset
-     *
-     * @var array
-     */
-    private $maker_notes = [];
-
-    /**
      * The entries held by this directory.
      *
      * Each tag in the directory is represented by a {@link PelEntry}
@@ -160,7 +93,7 @@ class PelIfd implements \IteratorAggregate, \ArrayAccess
      *
      * @var array
      */
-    private $entries = [];
+    protected $entries = [];
 
     /**
      * The type of this directory.
@@ -169,7 +102,7 @@ class PelIfd implements \IteratorAggregate, \ArrayAccess
      *
      * @var int
      */
-    private $type;
+    protected $type;
 
     /**
      * The next directory.
@@ -179,7 +112,7 @@ class PelIfd implements \IteratorAggregate, \ArrayAccess
      *
      * @var PelIfd
      */
-    private $next = null;
+    protected $next = null;
 
     /**
      * Sub-directories pointed to by this directory.
@@ -188,7 +121,7 @@ class PelIfd implements \IteratorAggregate, \ArrayAccess
      *
      * @var array
      */
-    private $sub = [];
+    protected $sub = [];
 
     /**
      * The thumbnail data.
@@ -198,7 +131,7 @@ class PelIfd implements \IteratorAggregate, \ArrayAccess
      *
      * @var PelDataWindow
      */
-    private $thumb_data = null;
+    protected $thumb_data = null;
     // TODO: use this format to choose between the
     // JPEG_INTERCHANGE_FORMAT and STRIP_OFFSETS tags.
     // private $thumb_format;
@@ -224,63 +157,35 @@ class PelIfd implements \IteratorAggregate, \ArrayAccess
     }
 
     /**
-     * Stores Maker Notes data for an IFD.
-     *
-     * @param PelIfd $parent
-     *            the parent PelIfd of the current PelIfd
-     *
-     * @param PelDataWindow $data
-     *            the data window that will provide the data.
-     *
-     * @param PelIfd $parent
-     *            the components in the entry.
-     *
-     * @param int $offset
-     *            the offset within the window where the directory will
-     *            be found.
-     */
-    public function setMakerNotes($parent, $data, $components, $offset)
-    {
-        $this->maker_notes = [
-            'parent' => $parent,
-            'data' => $data,
-            'components' => $components,
-            'offset' => $offset
-        ];
-    }
-
-    /**
-     * Returns the Maker Notes data for an IFD.
-     *
-     * @return array The maker_notes of IDF
-     */
-    public function getMakerNotes()
-    {
-        return $this->maker_notes;
-    }
-
-    /**
      * Load data into a Image File Directory (IFD).
      *
      * @param PelDataWindow $d
      *            the data window that will provide the data.
-     *
      * @param int $offset
      *            the offset within the window where the directory will
      *            be found.
+     * @param int $components
+     *            (Optional) the number of components held by this IFD.
+     * @param int $nesting_level
+     *            (Optional) the level of nesting of this IFD in the overall
+     *            structure.
      */
-    public function load(PelDataWindow $d, $offset)
+    public function load(PelDataWindow $d, $offset, $components = 1, $nesting_level = 0)
     {
         $starting_offset = $offset;
 
         $thumb_offset = 0;
         $thumb_length = 0;
 
-        Pel::debug('Constructing IFD at offset %d from %d bytes...', $offset, $d->getSize());
-
         /* Read the number of entries */
         $n = $d->getShort($offset);
-        Pel::debug('Loading %d entries...', $n);
+        Pel::debug(
+            str_repeat("  ", $nesting_level) . "** Constructing IFD '%s' with %d entries at offset %d from %d bytes...",
+            $this->getName(),
+            $n,
+            $offset,
+            $d->getSize()
+        );
 
         $offset += 2;
 
@@ -290,28 +195,47 @@ class PelIfd implements \IteratorAggregate, \ArrayAccess
             Pel::maybeThrow(new PelIfdException('Adjusted to: %d.', $n));
         }
 
-        for ($i = 0; $i < $n; $i ++) {
+        for ($i = 0; $i < $n; $i++) {
             // TODO: increment window start instead of using offsets.
             $tag = $d->getShort($offset + 12 * $i);
+            $tag_format = $d->getShort($offset + 12 * $i + 2);
+            $tag_components = $d->getLong($offset + 12 * $i + 4);
+
+            // Check if PEL can support this TAG.
+            if (!$this->isValidTag($tag)) {
+                Pel::maybeThrow(
+                    new PelIfdException(
+                        str_repeat("  ", $nesting_level) . "No specification available for TAG 0x%04X in IFD '%s', skipping (%d of %d)...",
+                        $tag,
+                        $this->getName(),
+                        $i + 1,
+                        $n
+                    )
+                );
+                continue;
+            }
+
             Pel::debug(
-                'Loading entry with tag 0x%04X: %s (%d of %d)...',
+                str_repeat("  ", $nesting_level) . 'Tag 0x%04X: (%s) Fmt: %d (%s) Components: %d (%d of %d)...',
                 $tag,
                 PelSpec::getTagName($this->type, $tag),
+                $tag_format,
+                PelFormat::getName($tag_format),
+                $tag_components,
                 $i + 1,
                 $n
             );
 
+            // Load a subIfd.
             if (PelSpec::isTagAnIfdPointer($this->type, $tag)) {
                 // If the tag is an IFD pointer, loads the IFD.
                 $type = PelSpec::getIfdIdFromTag($this->type, $tag);
-                $components = $d->getLong($offset + 12 * $i + 4);
                 $o = $d->getLong($offset + 12 * $i + 8);
-                Pel::debug('Found sub IFD at offset %d', $o);
-
                 if ($starting_offset != $o) {
-                    $ifd = new PelIfd($type);
+                    $ifd_class = PelSpec::getIfdClass($type);
+                    $ifd = new $ifd_class($type);
                     try {
-                        $ifd->load($d, $o);
+                        $ifd->load($d, $o, $tag_components, $nesting_level + 1);
                         $this->sub[$type] = $ifd;
                     } catch (PelDataWindowOffsetException $e) {
                         Pel::maybeThrow(new PelIfdException($e->getMessage()));
@@ -319,31 +243,32 @@ class PelIfd implements \IteratorAggregate, \ArrayAccess
                 } else {
                     Pel::maybeThrow(new PelIfdException('Bogus offset to next IFD: %d, same as offset being loaded from.', $o));
                 }
-            } elseif (PelSpec::isTagAMakerNotesPointer($this->type, $tag)) {
-                // If the tag is a Maker Notes pointer, store maker notes
-                // info, because we need the 'Make' tag of IFD0 for MakerNotes.
-                // Thus MakerNotes will be loaded at the end of loading IFD0.
-                $components = $d->getLong($offset + 12 * $i + 4);
-                $o = $d->getLong($offset + 12 * $i + 8);
-                Pel::debug('Found maker notes IFD at offset %d', $o);
-                $this->setMakerNotes($this, $d, $components, $o);
-                $this->loadSingleValue($d, $offset, $i, $tag);
-            } elseif (PelSpec::getTagName($this->type, $tag) === 'JPEGInterchangeFormat') {
+                continue;
+            }
+
+            // Manage Thumbnail data.
+            if (PelSpec::getTagName($this->type, $tag) === 'JPEGInterchangeFormat') {
                 // Aka 'Thumbnail Offset'.
                 $thumb_offset = $d->getLong($offset + 12 * $i + 8);
                 $this->safeSetThumbnail($d, $thumb_offset, $thumb_length);
-            } elseif (PelSpec::getTagName($this->type, $tag) === 'JPEGInterchangeFormatLength') {
+                continue;
+            }
+            if (PelSpec::getTagName($this->type, $tag) === 'JPEGInterchangeFormatLength') {
                 // Aka 'Thumbnail Length'.
                 $thumb_length = $d->getLong($offset + 12 * $i + 8);
                 $this->safeSetThumbnail($d, $thumb_offset, $thumb_length);
-            } else {
-                $this->loadSingleValue($d, $offset, $i, $tag);
+                continue;
+            }
+
+            // Load a TAG entry.
+            if ($entry = PelEntry::createFromData($this->type, $tag, $d, $offset, $i)) {
+                $this->addEntry($entry);
             }
         }
 
         /* Offset to next IFD */
         $o = $d->getLong($offset + 12 * $n);
-        Pel::debug('Current offset is %d, link at %d points to %d.', $offset, $offset + 12 * $n, $o);
+        Pel::debug(str_repeat("  ", $nesting_level) . 'Current offset is %d, link at %d points to %d.', $offset, $offset + 12 * $n, $o);
 
         if ($o > 0) {
             /* Sanity check: we need 6 bytes */
@@ -357,27 +282,13 @@ class PelIfd implements \IteratorAggregate, \ArrayAccess
                 $this->next = new PelIfd(PelSpec::getIfdIdByType('1'));
                 $this->next->load($d, $o);
             }
-        } else {
-            Pel::debug('Last IFD.');
         }
 
-        // Check if we finished loading IFD0 and EXIF IFD is set (EXIF IFD holds the MakerNotes)
-        if (PelSpec::getIfdType($this->type) === '0' && isset($this->sub[PelSpec::getIfdIdByType('Exif')])) {
-            // Get MakerNotes from EXIF IFD and check if they are set
-            $mk = $this->sub[PelSpec::getIfdIdByType('Exif')]->getMakerNotes();
-            if (!empty($mk) && count($mk) > 0) {
-                // get Make tag and load maker notes if tag is valid
-                $manufacturer = $this->getEntry(PelSpec::getTagIdByName($this->type, 'Make'));
-                if ($manufacturer !== null) {
-                    $manufacturer = $manufacturer->getValue();
-                    $mkNotes = PelMakerNotes::createMakerNotesFromManufacturer($manufacturer, $mk['parent'], $mk['data'], $mk['components'], $mk['offset']);
-                    if ($mkNotes !== null) {
-                        // remove pre-loaded undefined MakerNotes
-                        $mk['parent']->offsetUnset(PelSpec::getTagIdByName($mk['parent']->getType(), 'MakerNote'));
-                        $mkNotes->load();
-                    }
-                }
-            }
+        Pel::debug(str_repeat("  ", $nesting_level) . "** End of loading IFD '%s'.", $this->getName());
+
+        // Invoke post-load callbacks.
+        foreach (PelSpec::getIfdPostLoadCallbacks($this->type) as $callback) {
+            call_user_func($callback, $d, $this);
         }
     }
 
@@ -404,101 +315,12 @@ class PelIfd implements \IteratorAggregate, \ArrayAccess
      *
      * @param int $tag
      *            the tag of the entry as defined in {@link PelSpec}.
+     *
+     * @deprecated Use PelEntry::createFromData instead.
      */
     public function loadSingleValue($d, $offset, $i, $tag)
     {
-        $format = $d->getShort($offset + 12 * $i + 2);
-        $components = $d->getLong($offset + 12 * $i + 4);
-
-        /*
-         * The data size. If bigger than 4 bytes, the actual data is
-         * not in the entry but somewhere else, with the offset stored
-         * in the entry.
-         */
-        $s = PelFormat::getSize($format) * $components;
-        if ($s > 0) {
-            $doff = $offset + 12 * $i + 8;
-            if ($s > 4) {
-                $doff = $d->getLong($doff);
-            }
-            $data = $d->getClone($doff, $s);
-        } else {
-            $data = new PelDataWindow();
-        }
-
-        try {
-            $entry = $this->newEntryFromData($tag, $format, $components, $data);
-            $this->addEntry($entry);
-        } catch (PelException $e) {
-            /*
-             * Throw the exception when running in strict mode, store
-             * otherwise.
-             */
-            Pel::maybeThrow($e);
-        }
-
-        /* The format of the thumbnail is stored in this tag. */
-        // TODO: handle TIFF thumbnail.
-        // if ($tag == PelTag::COMPRESSION) {
-        // $this->thumb_format = $data->getShort();
-        // }
-    }
-
-    /**
-     * Load a single value which didn't match any special {@link PelTag}.
-     *
-     * This method will add a single value given by the {@link PelDataWindow} and it's offset ($offset) and element counter ($i).
-     *
-     * Please note that the data you pass to this method should come
-     * from an image, that is, it should be raw bytes. If instead you
-     * want to create an entry for holding, say, an short integer, then
-     * create a {@link PelEntryShort} object directly and load the data
-     * into it.
-     *
-     * @param int $type
-     *            the type of the ifd
-     *
-     * @param PelDataWindow $data
-     *            the data window that will provide the data.
-     *
-     * @param integer $offset
-     *            the offset within the window where the directory will
-     *            be found.
-     *
-     * @param int $size
-     *            the size in bytes of the maker notes section
-     *
-     * @param int $i
-     *            the element's position in the {@link PelDataWindow} $data.
-     *
-     * @param int $format
-     *            the format {@link PelFormat} of the entry.
-     */
-    public function loadSingleMakerNotesValue($type, $data, $offset, $size, $i, $format)
-    {
-        $elemSize = PelFormat::getSize($format);
-        if ($size > 0) {
-            $subdata = $data->getClone($offset + $i * $elemSize, $elemSize);
-        } else {
-            $subdata = new PelDataWindow();
-        }
-
-        try {
-            $entry = $this->newEntryFromData($i + 1, $format, 1, $subdata);
-            $this->addEntry($entry);
-        } catch (PelException $e) {
-            /*
-            * Throw the exception when running in strict mode, store
-            * otherwise.
-            */
-            Pel::maybeThrow($e);
-        }
-
-        /* The format of the thumbnail is stored in this tag. */
-        // TODO: handle TIFF thumbnail.
-        // if ($tag == PelTag::COMPRESSION) {
-        // $this->thumb_format = $data->getShort();
-        // }
+        $this->addEntry(PelEntry::createFromData($this->type, $tag, $d, $offset, $i));
     }
 
     /**
@@ -535,133 +357,14 @@ class PelIfd implements \IteratorAggregate, \ArrayAccess
      *            entry.
      *
      * @return PelEntry a newly created entry, holding the data given.
+     *
+     * @deprecated Use PelEntry::createFromData instead.
      */
     public function newEntryFromData($tag, $format, $components, PelDataWindow $data)
     {
-
-        /*
-         * First handle tags for which we have a specific PelEntryXXX
-         * class.
-         */
-        if (PelSpec::getTagFormat($this->type, $tag) === 'Time') {
-            // DATE_TIME / DATE_TIME_ORIGINAL / DATE_TIME_DIGITIZED
-            if ($format != PelFormat::ASCII) {
-                throw new PelUnexpectedFormatException($this->type, $tag, $format, PelFormat::ASCII);
-            }
-            if ($components != 20) {
-                throw new PelWrongComponentCountException($this->type, $tag, $components, 20);
-            }
-            // TODO: handle timezones.
-            return new PelEntryTime($tag, $data->getBytes(0, - 1), PelEntryTime::EXIF_STRING);
-        } elseif (PelSpec::getTagFormat($this->type, $tag) === 'Copyright') {
-            // COPYRIGHT
-            if ($format != PelFormat::ASCII) {
-                throw new PelUnexpectedFormatException($this->type, $tag, $format, PelFormat::ASCII);
-            }
-            $v = explode("\0", trim($data->getBytes(), ' '));
-            if (! isset($v[1])) {
-                Pel::maybeThrow(new PelException('Invalid copyright: %s', $data->getBytes()));
-                // when not in strict mode, set empty copyright and continue
-                $v[1] = '';
-            }
-            return new PelEntryCopyright($v[0], $v[1]);
-        } elseif (PelSpec::getTagFormat($this->type, $tag) === 'Version') {
-            // EXIF_VERSION / FLASH_PIX_VERSION / INTEROPERABILITY_VERSION
-            if ($format != PelFormat::UNDEFINED) {
-                throw new PelUnexpectedFormatException($this->type, $tag, $format, PelFormat::UNDEFINED);
-            }
-            return new PelEntryVersion($tag, $data->getBytes() / 100);
-        } elseif (PelSpec::getTagFormat($this->type, $tag) === 'UserComment') {
-            // USER_COMMENT
-            if ($format != PelFormat::UNDEFINED) {
-                throw new PelUnexpectedFormatException($this->type, $tag, $format, PelFormat::UNDEFINED);
-            }
-            if ($data->getSize() < 8) {
-                return new PelEntryUserComment();
-            } else {
-                return new PelEntryUserComment($data->getBytes(8), rtrim($data->getBytes(0, 8)));
-            }
-        } elseif (PelSpec::getTagFormat($this->type, $tag) === 'WindowsString') {
-            // XP_TITLE / XP_COMMENT / XP_AUTHOR / XP_KEYWORDS / XP_SUBJECT
-            if ($format != PelFormat::BYTE) {
-                throw new PelUnexpectedFormatException($this->type, $tag, $format, PelFormat::BYTE);
-            }
-            return new PelEntryWindowsString($tag, $data->getBytes(), true);
-        }
-
-        /* Then handle the basic formats. */
-        switch ($format) {
-            case PelFormat::BYTE:
-                $v = new PelEntryByte($tag);
-                for ($i = 0; $i < $components; $i ++) {
-                    $v->addNumber($data->getByte($i));
-                }
-                return $v;
-
-            case PelFormat::SBYTE:
-                $v = new PelEntrySByte($tag);
-                for ($i = 0; $i < $components; $i ++) {
-                    $v->addNumber($data->getSByte($i));
-                }
-                return $v;
-
-            case PelFormat::ASCII:
-                // cut off string after the first nul byte
-                $canonicalString = strstr($data->getBytes(0), "\0", true);
-                if ($canonicalString !== false) {
-                    return new PelEntryAscii($tag, $canonicalString);
-                }
-                // TODO throw exception if string isn't nul-terminated
-                return new PelEntryAscii($tag, $data->getBytes(0));
-
-            case PelFormat::SHORT:
-                $v = new PelEntryShort($tag);
-                for ($i = 0; $i < $components; $i ++) {
-                    $v->addNumber($data->getShort($i * 2));
-                }
-                return $v;
-
-            case PelFormat::SSHORT:
-                $v = new PelEntrySShort($tag);
-                for ($i = 0; $i < $components; $i ++) {
-                    $v->addNumber($data->getSShort($i * 2));
-                }
-                return $v;
-
-            case PelFormat::LONG:
-                $v = new PelEntryLong($tag);
-                for ($i = 0; $i < $components; $i ++) {
-                    $v->addNumber($data->getLong($i * 4));
-                }
-                return $v;
-
-            case PelFormat::SLONG:
-                $v = new PelEntrySLong($tag);
-                for ($i = 0; $i < $components; $i ++) {
-                    $v->addNumber($data->getSLong($i * 4));
-                }
-                return $v;
-
-            case PelFormat::RATIONAL:
-                $v = new PelEntryRational($tag);
-                for ($i = 0; $i < $components; $i ++) {
-                    $v->addNumber($data->getRational($i * 8));
-                }
-                return $v;
-
-            case PelFormat::SRATIONAL:
-                $v = new PelEntrySRational($tag);
-                for ($i = 0; $i < $components; $i ++) {
-                    $v->addNumber($data->getSRational($i * 8));
-                }
-                return $v;
-
-            case PelFormat::UNDEFINED:
-                return new PelEntryUndefined($tag, $data->getBytes());
-
-            default:
-                throw new PelException('Unsupported format: %s', PelFormat::getName($format));
-        }
+        $class = PelSpec::getTagClass($this->type, $tag, $format);
+        $arguments = call_user_func($class . '::getInstanceArgumentsFromData', $this->type, $tag, $format, $components, $data, null);
+        return call_user_func($class . '::createInstance', $this->type, $tag, $arguments);
     }
 
     /**
@@ -685,7 +388,7 @@ class PelIfd implements \IteratorAggregate, \ArrayAccess
      * @param int $length
      *            the length of the thumbnail.
      */
-    private function safeSetThumbnail(PelDataWindow $d, $offset, $length)
+    protected function safeSetThumbnail(PelDataWindow $d, $offset, $length)
     {
         /*
          * Load the thumbnail if both the offset and the length is
