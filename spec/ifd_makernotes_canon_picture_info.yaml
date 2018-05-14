@@ -1,27 +1,21 @@
-const: 9
 type: 'Canon Picture Information'
+class: ???
 tags:
     0x0002:
-        const: CANON_PI_IMAGE_WIDTH
         name: ImageWidth
         title: 'Image Width'
     0x0003:
-        const: CANON_PI_IMAGE_HEIGHT
         name: ImageHeight
         title: 'Image Height'
     0x0004:
-        const: CANON_PI_IMAGE_WIDTH_AS_SHOT
         name: ImageWidthAsShot
         title: 'Image Width As Shot'
     0x0005:
-        const: CANON_PI_IMAGE_HEIGHT_AS_SHOT
         name: ImageHeightAsShot
         title: 'Image Height As Shot'
     0x0016:
-        const: CANON_PI_AF_POINTS_USED
         name: AFPointsUsed
         title: 'AF Points Used'
     0x001A:
-        const: CANON_PI_AF_POINTS_USED_20D
         name: AFPointsUsed(20D)
         title: 'AF Points Used (20D)'

@@ -1,5 +1,6 @@
 const: 0
 type: '0'
+class: PelIfd
 alias:
   - 'IFD0'
   - 'Main'

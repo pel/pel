@@ -1,22 +1,22 @@
-const: 6
 type: 'Canon Camera Settings'
+class: PelIfdIndexShort
 tags:
     0x0001:
-        const: CANON_CS_MACRO
         name: MacroMode
         title: 'Macro Mode'
+        format: SShort
         text:
             mapping:
                 1: 'Macro'
                 2: 'Normal'
     0x0002:
-        const: CANON_CS_SELF_TIMER
         name: SelfTimer
         title: 'Self Timer'
+        format: SShort
     0x0003:
-        const: CANON_CS_QUALITY
         name: Quality
         title: Quality
+        format: SShort
         text:
             mapping:
                 1: 'Economy'
@@ -27,9 +27,9 @@ tags:
                 130: 'Normal Movie'
                 131: 'Movie (2)'
     0x0004:
-        const: CANON_CS_FLASH_MODE
         name: FlashMode
         title: 'Flash Mode'
+        format: SShort
         text:
             mapping:
                 0: 'Off'
@@ -41,9 +41,9 @@ tags:
                 6: 'Red-eye reduction (On)'
                 16: 'External flash'
     0x0005:
-        const: CANON_CS_DRIVE_MODE
         name: DriveMode
         title: 'Drive Mode'
+        format: SShort
         text:
             mapping:
                 0: 'Single'
@@ -56,9 +56,9 @@ tags:
                 9: 'Single, Silent'
                 10: 'Continuous, Silent'
     0x0007:
-        const: CANON_CS_FOCUS_MODE
         name: FocusMode
         title: 'Focus Mode'
+        format: SShort
         text:
             mapping:
                 0: 'One-shot AF'
@@ -73,9 +73,9 @@ tags:
                 512: 'Movie Snap Focus'
                 519: 'Movie Servo AF'
     0x0009:
-        const: CANON_CS_RECORD_MODE
         name: RecordMode
         title: 'Record Mode'
+        format: SShort
         text:
             mapping:
                 1: 'JPEG'
@@ -88,9 +88,9 @@ tags:
                 9: 'MOV'
                 10: 'MP4'
     0x000A:
-        const: CANON_CS_IMAGE_SIZE
         name: ImageSize
         title: 'Image Size'
+        format: SShort
         text:
             mapping:
                 0: 'Large'
@@ -111,9 +111,9 @@ tags:
                 137: '1280x720 Movie'
                 142: '1920x1080 Movie'
     0x000B:
-        const: CANON_CS_EASY_MODE
         name: EasyShootingMode
         title: 'Easy Shooting Mode'
+        format: SShort
         text:
             mapping:
                 0: 'Full auto'
@@ -188,9 +188,9 @@ tags:
                 264: 'Surface'
                 265: 'Low Light 2'
     0x000C:
-        const: CANON_CS_DIGITAL_ZOOM
         name: DigitalZoom
         title: 'Digital Zoom'
+        format: SShort
         text:
             mapping:
                 0: 'None'
@@ -198,31 +198,31 @@ tags:
                 2: '4x'
                 3: 'Other'
     0x000D:
-        const: CANON_CS_CONTRAST
         name: Contrast
         title: Contrast
+        format: SShort
         text:
             mapping:
                 0: 'Normal'
     0x000E:
-        const: CANON_CS_SATURATION
         name: Saturation
         title: Saturation
+        format: SShort
         text:
             mapping:
                 0: 'Normal'
     0x000F:
-        const: CANON_CS_SHARPNESS
         name: Sharpness
         title: Sharpness
+        format: SShort
     0x0010:
-        const: CANON_CS_ISO_SPEED
         name: ISOSpeed
         title: 'ISO Speed'
+        format: SShort
     0x0011:
-        const: CANON_CS_METERING_MODE
         name: MeteringMode
         title: 'Metering Mode'
+        format: SShort
         text:
             mapping:
                 0: 'Default'
@@ -232,9 +232,9 @@ tags:
                 4: 'Partial'
                 5: 'Center-weighted average'
     0x0012:
-        const: CANON_CS_FOCUS_TYPE
         name: FocusType
         title: 'Focus Type'
+        format: SShort
         text:
             mapping:
                 0: 'Manual'
@@ -249,9 +249,9 @@ tags:
                 9: 'Super Macro'
                 10: 'Infinity'
     0x0013:
-        const: CANON_CS_AF_POINT
         name: AFPointSelected
         title: 'AF Point Selected'
+        format: SShort
         text:
             mapping:
                 0x2005: 'Manual AF point selection'
@@ -263,9 +263,9 @@ tags:
                 0x4001: 'Auto AF point selection'
                 0x4006: 'Face Detect'
     0x0014:
-        const: CANON_CS_EXPOSURE_PROGRAM
         name: ExposureMode
         title: 'Exposure Mode'
+        format: SShort
         text:
             mapping:
                 0: 'Easy'
@@ -277,9 +277,9 @@ tags:
                 6: 'M-Dep'
                 7: 'Bulb'
     0x0016:
-        const: CANON_CS_LENS_TYPE
         name: LensType
         title: 'Lens Type'
+        format: Short
         text:
             mapping:
                 1: 'Canon EF 50mm f/1.8'
@@ -633,41 +633,41 @@ tags:
                 36912: 'Canon EF-S 18-135mm f/3.5-5.6 IS USM'
                 61494: 'Canon CN-E 85mm T1.3 L F'
     0x0017:
-        const: CANON_CS_LENS
         name: LongFocalLength
         title: 'Long Focal Length'
+        format: Short
     0x0018:
-        const: CANON_CS_SHORT_FOCAL
         name: ShortFocalLength
         title: 'Short Focal Length'
+        format: Short
     0x0019:
-        const: CANON_CS_FOCAL_UNITS
         name: FocalUnits
         title: 'Focal Units'
+        format: SShort
     0x001A:
-        const: CANON_CS_MAX_APERTURE
         name: MaxAperture
         title: 'Max Aperture'
+        format: SShort
     0x001B:
-        const: CANON_CS_MIN_APERTURE
         name: MinAperture
         title: 'Min Aperture'
+        format: SShort
     0x001C:
-        const: CANON_CS_FLASH_ACTIVITY
         name: FlashActivity
         title: 'Flash Activity'
+        format: SShort
     0x001D:
-        const: CANON_CS_FLASH_DETAILS
         name: FlashDetails
         title: 'Flash Details'
+        format: SShort
     0x0020:
-        const: CANON_CS_FOCUS_CONTINUOUS
         name: FocusContinuous
         title: 'Focus Continuous'
+        format: SShort
     0x0021:
-        const: CANON_CS_AE_SETTING
         name: AESetting
         title: 'AE Setting'
+        format: SShort
         text:
             mapping:
                 0: 'Normal AE'
@@ -676,9 +676,9 @@ tags:
                 3: 'AE Lock + Exposure Comp.'
                 4: 'No AE'
     0x0022:
-        const: CANON_CS_IMAGE_STABILIZATION
         name: ImageStabilization
         title: 'Image Stabilization'
+        format: SShort
         text:
             mapping:
                 0: 'Off'
@@ -692,27 +692,27 @@ tags:
                 259: 'Panning (2)'
                 260: 'Dynamic (2)'
     0x0023:
-        const: CANON_CS_DISPLAY_APERTURE
         name: DisplayAperture
         title: 'Display Aperture'
+        format: SShort
     0x0024:
-        const: CANON_CS_ZOOM_SOURCE_WIDTH
         name: ZoomSourceWidth
         title: 'Zoom Source Width'
+        format: SShort
     0x0025:
-        const: CANON_CS_ZOOM_TARGET_WIDTH
         name: ZoomTargetWidth
         title: 'Zoom Target Width'
+        format: SShort
     0x0027:
-        const: CANON_CS_SPOT_METERING_MODE
         name: SpotMeteringMode
+        format: SShort
         text:
             mapping:
                 0: 'Center'
                 1: 'AF Point'
     0x0028:
-        const: CANON_CS_PHOTO_EFFECT
         name: PhotoEffect
+        format: SShort
         text:
             mapping:
                 0: 'Off'
@@ -724,25 +724,25 @@ tags:
                 6: 'Custom'
                 100: 'My Color Data'
     0x0029:
-        const: CANON_CS_MANUAL_FLASH_OUTPUT
         name: ManualFlashOutput
         title: 'Manual Flash Output'
+        format: SShort
         text:
             mapping:
                 0x500: 'Full'
                 0x502: 'Medium'
                 0x504: 'Low'
     0x002A:
-        const: CANON_CS_COLOR_TONE
         name: ColorTone
         title: 'Color Tone'
+        format: SShort
         text:
             mapping:
                 0: 'Normal'
     0x002E:
-        const: CANON_CS_SRAW_QUALITY
         name: SRAWQuality
         title: 'SRAW Quality'
+        format: SShort
         text:
             mapping:
                 1: 'sRAW1 (mRAW)'

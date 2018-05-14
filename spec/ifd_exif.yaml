@@ -1,5 +1,6 @@
 const: 2
 type: Exif
+class: PelIfd
 tags:
     0xA302:
         const: CFA_PATTERN
@@ -63,7 +64,8 @@ tags:
         name: ExifVersion
         title: 'Exif Version'
         components: 4
-        format: Version
+        format: Undefined
+        class: PelEntryVersion
         text:
             decode: PelEntryVersion::decodeExifVersion
     0x9003:
@@ -71,13 +73,15 @@ tags:
         name: DateTimeOriginal
         title: 'Date and Time (original)'
         components: 20
-        format: Time
+        format: Ascii
+        class: PelEntryTime
     0x9004:
         const: DATE_TIME_DIGITIZED
         name: DateTimeDigitized
         title: 'Date and Time (digitized)'
         components: 20
-        format: Time
+        format: Ascii
+        class: PelEntryTime
     0x9010:
         const: OFFSET_TIME
         name: OffsetTime
@@ -250,13 +254,15 @@ tags:
         const: MAKER_NOTE
         name: MakerNote
         title: 'Maker Note'
-        format: MakerNotes
+        format: Undefined
+        class: PelEntryMakerNote
     0x9286:
         const: USER_COMMENT
         name: UserComment
         title: 'User Comment'
         components: Any
-        format: UserComment
+        format: Undefined
+        class: PelEntryUserComment
     0x9290:
         const: SUB_SEC_TIME
         name: SubSecTime
@@ -280,7 +286,8 @@ tags:
         name: FlashPixVersion
         title: 'FlashPix Version'
         components: 4
-        format: Version
+        format: Undefined
+        class: PelEntryVersion
         text:
             decode: PelEntryVersion::decodeFlashPixVersion
     0xA001:
@@ -500,7 +507,6 @@ tags:
         name: DeviceSettingDescription
         title: 'Device Setting Description'
         components: Unknown
-        format: Unknown
     0xA40C:
         const: SUBJECT_DISTANCE_RANGE
         name: SubjectDistanceRange

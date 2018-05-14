@@ -1,15 +1,14 @@
-const: 8
 type: 'Canon Panorama Information'
+class: PelIfdIndexShort
 tags:
     0x0002:
-        const: CANON_PA_PANORAMA_FRAME
         name: PanoramaFrame
         title: 'Panorama Frame'
+        format: SShort
     0x0005:
-        const: CANON_PA_PANORAMA_DIRECTION
         name: PanoramaDirection
         title: 'Panorama Direction'
-        format: Short
+        format: SShort
         text:
             mapping:
                 0: 'Left to Right'

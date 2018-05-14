@@ -1,5 +1,6 @@
 const: 2
 type: Exif
+class: PelIfd
 tags:
     0x829A:
         const: EXPOSURE_TIME

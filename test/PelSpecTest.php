@@ -2,6 +2,8 @@
 
 namespace Pel\Test;
 
+use lsolesen\pel\PelEntry;
+use lsolesen\pel\PelFormat;
 use lsolesen\pel\PelSpec;
 use PHPUnit\Framework\TestCase;
 
@@ -18,14 +20,26 @@ class PelSpecTest extends TestCase
         // Test retrieving IFD type.
         $this->assertEquals('0', PelSpec::getIfdType(0));
         $this->assertEquals('Exif', PelSpec::getIfdType(2));
-        $this->assertEquals('Canon Maker Notes', PelSpec::getIfdType(5));
+        $this->assertNotNull(PelSpec::getIfdType(5));
 
         // Test retrieving IFD id by type.
         $this->assertEquals(0, PelSpec::getIfdIdByType('0'));
         $this->assertEquals(0, PelSpec::getIfdIdByType('IFD0'));
         $this->assertEquals(0, PelSpec::getIfdIdByType('Main'));
         $this->assertEquals(2, PelSpec::getIfdIdByType('Exif'));
-        $this->assertEquals(5, PelSpec::getIfdIdByType('Canon Maker Notes'));
+        $this->assertNotNull(PelSpec::getIfdIdByType('Canon Maker Notes'));
+
+        // Test retrieving IFD class.
+        $this->assertEquals('lsolesen\pel\PelIfd', PelSpec::getIfdClass(PelSpec::getIfdIdByType('0')));
+        $this->assertEquals('lsolesen\pel\PelIfdIndexShort', PelSpec::getIfdClass(PelSpec::getIfdIdByType('Canon Camera Settings')));
+
+        // Test retrieving IFD post-load callbacks.
+        $this->assertEquals(['lsolesen\pel\PelEntryMakerNote::tagToIfd'], PelSpec::getIfdPostLoadCallbacks(PelSpec::getIfdIdByType('0')));
+        $this->assertEquals([], PelSpec::getIfdPostLoadCallbacks(PelSpec::getIfdIdByType('Canon Camera Settings')));
+
+        // Test retrieving maker note IFD.
+        $this->assertEquals(PelSpec::getIfdIdByType('Canon Maker Notes'), PelSpec::getMakerNoteIfd('Canon', 'any'));
+        $this->assertNull(PelSpec::getMakerNoteIfd('Minolta', 'any'));
 
         // Test retrieving TAG name.
         $this->assertEquals('ExifIFDPointer', PelSpec::getTagName(0, 0x8769));
@@ -43,14 +57,9 @@ class PelSpecTest extends TestCase
         $this->assertFalse(PelSpec::isTagAnIfdPointer(2, 0x829A));
         $this->assertNull(PelSpec::getIfdIdFromTag(0, 0x829A));
 
-        // Check methods identifying a MakerNotes pointer TAG.
-        $this->assertTrue(PelSpec::isTagAMakerNotesPointer(2, 0x927C));
-        $this->assertFalse(PelSpec::isTagAMakerNotesPointer(0, 0x8769));
-
         // Check getTagFormat.
-        $this->assertEquals('UserComment', PelSpec::getTagFormat(2, 0x9286));
-        $this->assertEquals('Short', PelSpec::getTagFormat(2, 0xA002));
-        $this->assertNull(PelSpec::getTagFormat(7, 0x0002));
+        $this->assertEquals([PelFormat::UNDEFINED], PelSpec::getTagFormat(2, 0x9286));
+        $this->assertEquals([PelFormat::SHORT, PelFormat::LONG], PelSpec::getTagFormat(2, 0xA002));
 
         // Check getTagTitle.
         $this->assertEquals('Exif IFD Pointer', PelSpec::getTagTitle(0, 0x8769));
@@ -59,15 +68,35 @@ class PelSpecTest extends TestCase
     }
 
     /**
+     * Tests the PelSpec::getTagClass method.
+     */
+    public function testGetTagClass()
+    {
+        $this->assertEquals('lsolesen\pel\PelEntryUserComment', PelSpec::getTagClass(2, 0x9286));
+        $this->assertEquals('lsolesen\pel\PelEntryTime', PelSpec::getTagClass(2, 0x9003));
+        //@todo drop the else part once PHP < 5.6 (hence PHPUnit 4.8.36) support is removed.
+        //@todo change below to PelException::class once PHP 5.4 support is removed.
+        if (method_exists($this, 'expectException')) {
+            $this->expectException('lsolesen\pel\PelException');
+            $this->expectExceptionMessage("No format can be derived for tag: 'ImageHeight' in ifd: 'Canon Picture Information'");
+        } else {
+            $this->setExpectedException('lsolesen\pel\PelException', "No format can be derived for tag: 'ImageHeight' in ifd: 'Canon Picture Information'");
+        }
+        $this->assertNull(PelSpec::getTagClass(PelSpec::getIfdIdByType('Canon Picture Information'), 0x0003));
+    }
+
+    /**
      * Tests getting decoded TAG text from TAG values.
      *
      * @dataProvider getTagTextProvider
      */
-    public function testGetTagText($expected, $ifd_type, $tag_name, $components, $value, $brief)
+    public function testGetTagText($expected_text, $expected_class, $ifd, $tag, array $args, $brief = false)
     {
-        $ifd_id = PelSpec::getIfdIdByType($ifd_type);
-        $tag_id = PelSpec::getTagIdByName($ifd_id, $tag_name);
-        $this->assertEquals($expected, PelSpec::getTagText($ifd_id, $tag_id, $components, $value, $brief));
+        $ifd_id = PelSpec::getIfdIdByType($ifd);
+        $tag_id = PelSpec::getTagIdByName($ifd_id, $tag);
+        $entry = PelEntry::createNew($ifd_id, $tag_id, $args);
+        $this->assertInstanceOf($expected_class, $entry);
+        $this->assertEquals($expected_text, PelSpec::getTagText($entry, $brief));
     }
 
     /**
@@ -77,115 +106,115 @@ class PelSpecTest extends TestCase
     {
         return [
           'IFD0/PlanarConfiguration - value 1' => [
-              'chunky format', 'IFD0', 'PlanarConfiguration', 1, [1], false,
+              'chunky format', 'lsolesen\pel\PelEntryShort', 'IFD0', 'PlanarConfiguration', [1],
           ],
           'IFD0/PlanarConfiguration - missing mapping' => [
-              null, 'IFD0', 'PlanarConfiguration', 1, [6.1], false,
+              null, 'lsolesen\pel\PelEntryShort', 'IFD0', 'PlanarConfiguration', [6.1],
           ],
           'Canon Panorama Information/PanoramaDirection - value 4' => [
-              '2x2 Matrix (Clockwise)', 'Canon Panorama Information', 'PanoramaDirection', 1, [4], false,
+              '2x2 Matrix (Clockwise)', 'lsolesen\pel\PelEntrySShort', 'Canon Panorama Information', 'PanoramaDirection', [4],
           ],
           'Canon Camera Settings/LensType - value 493' => [
-              'Canon EF 500mm f/4L IS II USM or EF 24-105mm f4L IS USM', 'Canon Camera Settings', 'LensType', 1, [493], false,
+              'Canon EF 500mm f/4L IS II USM or EF 24-105mm f4L IS USM', 'lsolesen\pel\PelEntryShort', 'Canon Camera Settings', 'LensType', [493],
           ],
           'Canon Camera Settings/LensType - value 493.1' => [
-              'Canon EF 24-105mm f/4L IS USM', 'Canon Camera Settings', 'LensType', 1, [493.1], false,
+              'Canon EF 24-105mm f/4L IS USM', 'lsolesen\pel\PelEntryShort', 'Canon Camera Settings', 'LensType', [493.1],
           ],
           'IFD0/YCbCrSubSampling - value 2, 1' => [
-              'YCbCr4:2:2', 'IFD0', 'YCbCrSubSampling', 2, [2, 1], false,
+              'YCbCr4:2:2', 'lsolesen\pel\PelEntryShort', 'IFD0', 'YCbCrSubSampling', [2, 1],
           ],
           'IFD0/YCbCrSubSampling - value 2, 2' => [
-              'YCbCr4:2:0', 'IFD0', 'YCbCrSubSampling', 2, [2, 2], false,
+              'YCbCr4:2:0', 'lsolesen\pel\PelEntryShort', 'IFD0', 'YCbCrSubSampling', [2, 2],
           ],
           'IFD0/YCbCrSubSampling - value 6, 7' => [
-              '6, 7', 'IFD0', 'YCbCrSubSampling', 2, [6, 7], false,
+              '6, 7', 'lsolesen\pel\PelEntryShort', 'IFD0', 'YCbCrSubSampling', [6, 7],
           ],
           'Exif/SubjectArea - value 6, 7' => [
-              '(x,y) = (6,7)', 'Exif', 'SubjectArea', 2, [6, 7], false,
+              '(x,y) = (6,7)', 'lsolesen\pel\PelEntryShort', 'Exif', 'SubjectArea', [6, 7],
           ],
           'Exif/SubjectArea - value 5, 6, 7' => [
-              'Within distance 5 of (x,y) = (6,7)', 'Exif', 'SubjectArea', 3, [5, 6, 7], false,
+              'Within distance 5 of (x,y) = (6,7)', 'lsolesen\pel\PelEntryShort', 'Exif', 'SubjectArea', [5, 6, 7],
           ],
           'Exif/SubjectArea - value 4, 5, 6, 7' => [
-              'Within rectangle (width 4, height 5) around (x,y) = (6,7)', 'Exif', 'SubjectArea', 4, [4, 5, 6, 7], false,
+              'Within rectangle (width 4, height 5) around (x,y) = (6,7)', 'lsolesen\pel\PelEntryShort', 'Exif', 'SubjectArea', [4, 5, 6, 7],
           ],
           'Exif/SubjectArea - wrong components' => [
-              'Unexpected number of components (1, expected 2, 3, or 4).', 'Exif', 'SubjectArea', 1, [6], false,
+              'Unexpected number of components (1, expected 2, 3, or 4).', 'lsolesen\pel\PelEntryShort', 'Exif', 'SubjectArea', [6],
           ],
           'Exif/FNumber - value 60, 10' => [
-              'f/6.0', 'Exif', 'FNumber', 1, [[60, 10]], false,
+              'f/6.0', 'lsolesen\pel\PelEntryRational', 'Exif', 'FNumber', [[60, 10]],
           ],
           'Exif/FNumber - value 26, 10' => [
-              'f/2.6', 'Exif', 'FNumber', 1, [[26, 10]], false,
+              'f/2.6', 'lsolesen\pel\PelEntryRational', 'Exif', 'FNumber', [[26, 10]],
           ],
           'Exif/ApertureValue - value 60, 10' => [
-              'f/8.0', 'Exif', 'ApertureValue', 1, [[60, 10]], false,
+              'f/8.0', 'lsolesen\pel\PelEntryRational', 'Exif', 'ApertureValue', [[60, 10]],
           ],
           'Exif/ApertureValue - value 26, 10' => [
-              'f/2.5', 'Exif', 'ApertureValue', 1, [[26, 10]], false,
+              'f/2.5', 'lsolesen\pel\PelEntryRational', 'Exif', 'ApertureValue', [[26, 10]],
           ],
           'Exif/FocalLength - value 60, 10' => [
-              '6.0 mm', 'Exif', 'FocalLength', 1, [[60, 10]], false,
+              '6.0 mm', 'lsolesen\pel\PelEntryRational', 'Exif', 'FocalLength', [[60, 10]],
           ],
           'Exif/FocalLength - value 26, 10' => [
-              '2.6 mm', 'Exif', 'FocalLength', 1, [[26, 10]], false,
+              '2.6 mm', 'lsolesen\pel\PelEntryRational', 'Exif', 'FocalLength', [[26, 10]],
           ],
           'Exif/SubjectDistance - value 60, 10' => [
-              '6.0 m', 'Exif', 'SubjectDistance', 1, [[60, 10]], false,
+              '6.0 m', 'lsolesen\pel\PelEntrySRational', 'Exif', 'SubjectDistance', [[60, 10]],
           ],
           'Exif/SubjectDistance - value 26, 10' => [
-              '2.6 m', 'Exif', 'SubjectDistance', 1, [[26, 10]], false,
+              '2.6 m', 'lsolesen\pel\PelEntrySRational', 'Exif', 'SubjectDistance', [[26, 10]],
           ],
           'Exif/ExposureTime - value 60, 10' => [
-              '6 sec.', 'Exif', 'ExposureTime', 1, [[60, 10]], false,
+              '6 sec.', 'lsolesen\pel\PelEntryRational', 'Exif', 'ExposureTime', [[60, 10]],
           ],
           'Exif/ExposureTime - value 5, 10' => [
-              '1/2 sec.', 'Exif', 'ExposureTime', 1, [[5, 10]], false,
+              '1/2 sec.', 'lsolesen\pel\PelEntryRational', 'Exif', 'ExposureTime', [[5, 10]],
           ],
           'GPS/GPSLongitude' => [
-              '30° 45\' 28" (30.76°)', 'GPS', 'GPSLongitude', 3, [[30, 1], [45, 1], [28, 1]], false,
+              '30° 45\' 28" (30.76°)', 'lsolesen\pel\PelEntryRational', 'GPS', 'GPSLongitude', [[30, 1], [45, 1], [28, 1]],
           ],
           'GPS/GPSLatitude' => [
-              '50° 33\' 12" (50.55°)', 'GPS', 'GPSLatitude', 3, [[50, 1], [33, 1], [12, 1]], false,
+              '50° 33\' 12" (50.55°)', 'lsolesen\pel\PelEntryRational', 'GPS', 'GPSLatitude', [[50, 1], [33, 1], [12, 1]],
           ],
           'Exif/ShutterSpeedValue - value 5, 10' => [
-              '5/10 sec. (APEX: 1)', 'Exif', 'ShutterSpeedValue', 1, [[5, 10]], false,
+              '5/10 sec. (APEX: 1)', 'lsolesen\pel\PelEntrySRational', 'Exif', 'ShutterSpeedValue', [[5, 10]],
           ],
           'Exif/BrightnessValue - value 5, 10' => [
-              '5/10', 'Exif', 'BrightnessValue', 1, [[5, 10]], false,
+              '5/10', 'lsolesen\pel\PelEntrySRational', 'Exif', 'BrightnessValue', [[5, 10]],
           ],
           'Exif/ExposureBiasValue - value 5, 10' => [
-              '+0.5', 'Exif', 'ExposureBiasValue', 1, [[5, 10]], false,
+              '+0.5', 'lsolesen\pel\PelEntrySRational', 'Exif', 'ExposureBiasValue', [[5, 10]],
           ],
           'Exif/ExposureBiasValue - value -5, 10' => [
-              '-0.5', 'Exif', 'ExposureBiasValue', 1, [[-5, 10]], false,
+              '-0.5', 'lsolesen\pel\PelEntrySRational', 'Exif', 'ExposureBiasValue', [[-5, 10]],
           ],
           'Exif/ExifVersion - short' => [
-              'Exif 2.2', 'Exif', 'ExifVersion', 4, [2.2], true,
+              'Exif 2.2', 'lsolesen\pel\PelEntryVersion', 'Exif', 'ExifVersion', [2.2], true,
           ],
           'Exif/ExifVersion - long' => [
-              'Exif Version 2.2', 'Exif', 'ExifVersion', 4, [2.2], false,
+              'Exif Version 2.2', 'lsolesen\pel\PelEntryVersion', 'Exif', 'ExifVersion', [2.2],
           ],
           'Exif/FlashPixVersion - short' => [
-              'FlashPix 2.5', 'Exif', 'FlashPixVersion', 4, [2.5], true,
+              'FlashPix 2.5', 'lsolesen\pel\PelEntryVersion', 'Exif', 'FlashPixVersion', [2.5], true,
           ],
           'Exif/FlashPixVersion - long' => [
-              'FlashPix Version 2.5', 'Exif', 'FlashPixVersion', 4, [2.5], false,
+              'FlashPix Version 2.5', 'lsolesen\pel\PelEntryVersion', 'Exif', 'FlashPixVersion', [2.5],
           ],
           'Interoperability/InteroperabilityVersion - short' => [
-              'Interoperability 1.0', 'Interoperability', 'InteroperabilityVersion', 4, [1], true,
+              'Interoperability 1.0', 'lsolesen\pel\PelEntryVersion', 'Interoperability', 'InteroperabilityVersion', [1], true,
           ],
           'Interoperability/InteroperabilityVersion - long' => [
-              'Interoperability Version 1.0', 'Interoperability', 'InteroperabilityVersion', 4, [1], false,
+              'Interoperability Version 1.0', 'lsolesen\pel\PelEntryVersion', 'Interoperability', 'InteroperabilityVersion', [1],
           ],
           'Exif/ComponentsConfiguration' => [
-              'Y Cb Cr -', 'Exif', 'ComponentsConfiguration', 4, ["\x01\x02\x03\0"], false,
+              'Y Cb Cr -', 'lsolesen\pel\PelEntryUndefined', 'Exif', 'ComponentsConfiguration', ["\x01\x02\x03\0"],
           ],
           'Exif/FileSource' => [
-              'DSC', 'Exif', 'FileSource', 1, ["\x03"], false,
+              'DSC', 'lsolesen\pel\PelEntryUndefined', 'Exif', 'FileSource', ["\x03"],
           ],
           'Exif/SceneType' => [
-              'Directly photographed', 'Exif', 'SceneType', 1, ["\x01"], false,
+              'Directly photographed', 'lsolesen\pel\PelEntryUndefined', 'Exif', 'SceneType', ["\x01"],
           ],
         ];
     }

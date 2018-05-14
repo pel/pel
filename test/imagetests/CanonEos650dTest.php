@@ -298,7 +298,7 @@ class CanonEos650dTest extends TestCase
         /* End of IFD $ifd1. */
 
         /* Start of IDF $ifd0_mn  */
-        $ifd0_mn = $ifd0_0->getSubIfd(5); // IFD MakerNotes
+        $ifd0_mn = $ifd0_0->getSubIfd(6); // IFD MakerNotes
         $this->assertInstanceOf('lsolesen\pel\PelIfd', $ifd0_mn);
 
         $entry = $ifd0_mn->getEntry(6); // ImageType
@@ -310,7 +310,7 @@ class CanonEos650dTest extends TestCase
         $this->assertEquals($entry->getValue(), 'Firmware Version 1.0.4');
 
         /* Start of IDF $ifd0_mn_cs. */
-        $ifd0_mn_cs = $ifd0_mn->getSubIfd(6); // CameraSettings
+        $ifd0_mn_cs = $ifd0_mn->getSubIfd(7); // CameraSettings
         $this->assertInstanceOf('lsolesen\pel\PelIfd', $ifd0_mn_cs);
         $this->assertEquals(count($ifd0_mn_cs->getEntries()), 37);
 
@@ -325,11 +325,11 @@ class CanonEos650dTest extends TestCase
         $this->assertEquals($entry->getText(), 'CR2');
 
         $entry = $ifd0_mn_cs->getEntry(22); // LensModel
-        $this->assertInstanceOf('lsolesen\pel\PelEntrySShort', $entry);
+        $this->assertInstanceOf('lsolesen\pel\PelEntryShort', $entry);
         $this->assertEquals($entry->getValue(), 747);
         // Tamron 150-600mm G2
         $this->assertEquals($entry->getText(), 'Canon EF 100-400mm f/4.5-5.6L IS II USM or Tamron Lens');
 
-        $this->assertTrue(count(Pel::getExceptions()) == 0);
+        $this->assertCount(18, Pel::getExceptions());
     }
 }

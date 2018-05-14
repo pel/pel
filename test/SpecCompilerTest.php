@@ -12,6 +12,8 @@ use Symfony\Component\Filesystem\Filesystem;
  */
 class SpecCompilerTest extends TestCase
 {
+    const DEFAULT_NAMESPACE = 'lsolesen\\pel\\';
+
     /** @var Filesystem */
     private $fs;
 
@@ -51,7 +53,7 @@ class SpecCompilerTest extends TestCase
         } else {
             $this->setExpectedException('Symfony\Component\Yaml\Exception\ParseException');
         }
-        $compiler = new SpecCompiler();
+        $compiler = new SpecCompiler(self::DEFAULT_NAMESPACE);
         $compiler->compile(__DIR__ . '/fixtures/spec/invalid_yaml', $this->testResourceDirectory);
     }
 
@@ -68,7 +70,7 @@ class SpecCompilerTest extends TestCase
         } else {
             $this->setExpectedException('lsolesen\pel\Util\SpecCompilerException', 'ifd_ifd0.yaml: invalid IFD key(s) found - bork');
         }
-        $compiler = new SpecCompiler();
+        $compiler = new SpecCompiler(self::DEFAULT_NAMESPACE);
         $compiler->compile(__DIR__ . '/fixtures/spec/invalid_ifd_keys', $this->testResourceDirectory);
     }
 
@@ -85,7 +87,7 @@ class SpecCompilerTest extends TestCase
         } else {
             $this->setExpectedException('lsolesen\pel\Util\SpecCompilerException', "ifd_ifd0.yaml: invalid key(s) found for TAG 'ImageWidth' - bork");
         }
-        $compiler = new SpecCompiler();
+        $compiler = new SpecCompiler(self::DEFAULT_NAMESPACE);
         $compiler->compile(__DIR__ . '/fixtures/spec/invalid_tag_keys', $this->testResourceDirectory);
     }
 
@@ -102,7 +104,7 @@ class SpecCompilerTest extends TestCase
         } else {
             $this->setExpectedException('lsolesen\pel\Util\SpecCompilerException', "Invalid sub IFD(s) found for TAG 'ExifIFDPointer': *** EXPECTED FAILURE ***");
         }
-        $compiler = new SpecCompiler();
+        $compiler = new SpecCompiler(self::DEFAULT_NAMESPACE);
         $compiler->compile(__DIR__ . '/fixtures/spec/invalid_subifd', $this->testResourceDirectory);
     }
 
@@ -111,7 +113,7 @@ class SpecCompilerTest extends TestCase
      */
     public function testValidStubSpec()
     {
-        $compiler = new SpecCompiler();
+        $compiler = new SpecCompiler(self::DEFAULT_NAMESPACE);
         $compiler->compile(__DIR__ . '/fixtures/spec/valid_stub', $this->testResourceDirectory);
         PelSpec::setMap($this->testResourceDirectory . '/spec.php');
         $this->assertEquals([2 => 'Exif', 0 => '0'], PelSpec::getIfdTypes());
