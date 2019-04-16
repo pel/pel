@@ -40,7 +40,7 @@ composer require lsolesen/pel
 * CHANGELOG.md: contains important information about changes in PEL.
 * examples/: small self-contained examples of how to use PEL.
 * AUTHORS: list of people who have helped.
-* run run-phpdoc.sh to generate API-documention or see it online at http://pel.github.com/pel
+* run run-phpdoc.sh to generate API-documention or see it online at https://pel.github.io/pel/doc/
 
 
 ## Features of PEL
