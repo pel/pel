@@ -42,7 +42,6 @@ composer require lsolesen/pel
 * AUTHORS: list of people who have helped.
 * run run-phpdoc.sh to generate API-documention or see it online at https://pel.github.io/pel/doc/
 
-
 ## Features of PEL
 
 * Reads and writes Exif metadata from both JPEG and TIFF images.
