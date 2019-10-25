@@ -541,7 +541,7 @@ class PelDataWindow
 
         /* Check each character, return as soon as the answer is known. */
         for ($i = 0; $i < $s; $i ++) {
-            if ($this->data{$offset + $i} != $str{$i}) {
+            if ($this->data[$offset + $i] != $str[$i]) {
                 return false;
             }
         }

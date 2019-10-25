@@ -110,27 +110,27 @@ class PelEntryUndefined extends PelEntry
         switch ($this->tag) {
             case PelTag::FILE_SOURCE:
                 // CC (e->components, 1, v);
-                switch (ord($this->bytes{0})) {
+                switch (ord($this->bytes[0])) {
                     case 0x03:
                         return 'DSC';
                     default:
-                        return sprintf('0x%02X', ord($this->bytes{0}));
+                        return sprintf('0x%02X', ord($this->bytes[0]));
                 }
                 break;
             case PelTag::SCENE_TYPE:
                 // CC (e->components, 1, v);
-                switch (ord($this->bytes{0})) {
+                switch (ord($this->bytes[0])) {
                     case 0x01:
                         return 'Directly photographed';
                     default:
-                        return sprintf('0x%02X', ord($this->bytes{0}));
+                        return sprintf('0x%02X', ord($this->bytes[0]));
                 }
                 break;
             case PelTag::COMPONENTS_CONFIGURATION:
                 // CC (e->components, 4, v);
                 $v = '';
                 for ($i = 0; $i < 4; $i ++) {
-                    switch (ord($this->bytes{$i})) {
+                    switch (ord($this->bytes[$i])) {
                         case 0:
                             $v .= '-';
                             break;
