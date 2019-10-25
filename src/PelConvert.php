@@ -148,11 +148,11 @@ class PelConvert
          */
         $hex = str_pad(base_convert($value, 10, 16), 8, '0', STR_PAD_LEFT);
         if ($endian == self::LITTLE_ENDIAN) {
-            return (chr(hexdec($hex{6} . $hex{7})) . chr(hexdec($hex{4} . $hex{5})) . chr(hexdec($hex{2} . $hex{3})) .
-                 chr(hexdec($hex{0} . $hex{1})));
+            return (chr(hexdec($hex[6] . $hex[7])) . chr(hexdec($hex[4] . $hex[5])) . chr(hexdec($hex[2] . $hex[3])) .
+                 chr(hexdec($hex[0] . $hex[1])));
         } else {
-            return (chr(hexdec($hex{0} . $hex{1})) . chr(hexdec($hex{2} . $hex{3})) . chr(hexdec($hex{4} . $hex{5})) .
-                 chr(hexdec($hex{6} . $hex{7})));
+            return (chr(hexdec($hex[0] . $hex[1])) . chr(hexdec($hex[2] . $hex[3])) . chr(hexdec($hex[4] . $hex[5])) .
+                 chr(hexdec($hex[6] . $hex[7])));
         }
     }
 
@@ -201,7 +201,7 @@ class PelConvert
      */
     public static function bytesToByte($bytes, $offset)
     {
-        return ord($bytes{$offset});
+        return ord($bytes[$offset]);
     }
 
     /**
@@ -248,9 +248,9 @@ class PelConvert
     public static function bytesToShort($bytes, $offset, $endian)
     {
         if ($endian == self::LITTLE_ENDIAN) {
-            return (ord($bytes{$offset + 1}) * 256 + ord($bytes{$offset}));
+            return (ord($bytes[$offset + 1]) * 256 + ord($bytes[$offset]));
         } else {
-            return (ord($bytes{$offset}) * 256 + ord($bytes{$offset + 1}));
+            return (ord($bytes[$offset]) * 256 + ord($bytes[$offset + 1]));
         }
     }
 
@@ -299,11 +299,11 @@ class PelConvert
     public static function bytesToLong($bytes, $offset, $endian)
     {
         if ($endian == self::LITTLE_ENDIAN) {
-            return (ord($bytes{$offset + 3}) * 16777216 + ord($bytes{$offset + 2}) * 65536 +
-                 ord($bytes{$offset + 1}) * 256 + ord($bytes{$offset}));
+            return (ord($bytes[$offset + 3]) * 16777216 + ord($bytes[$offset + 2]) * 65536 +
+                 ord($bytes[$offset + 1]) * 256 + ord($bytes[$offset]));
         } else {
-            return (ord($bytes{$offset}) * 16777216 + ord($bytes{$offset + 1}) * 65536 + ord($bytes{$offset + 2}) * 256 +
-                 ord($bytes{$offset + 3}));
+            return (ord($bytes[$offset]) * 16777216 + ord($bytes[$offset + 1]) * 65536 + ord($bytes[$offset + 2]) * 256 +
+                 ord($bytes[$offset + 3]));
         }
     }
 
@@ -407,7 +407,7 @@ class PelConvert
         $line = 24;
 
         for ($i = 0; $i < $s; $i ++) {
-            printf('%02X ', ord($bytes{$i}));
+            printf('%02X ', ord($bytes[$i]));
 
             if (($i + 1) % $line == 0) {
                 print("\n");
