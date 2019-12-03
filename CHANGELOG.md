@@ -1,4 +1,47 @@
-## CHANGELOG
+# CHANGELOG
+
+## 0.9.7 - 2019-12-03
+
+Fixes some errors, refactor code and make compatible to PHP 7.4.
+
+* Simplify phpunit dependency (#143)
+* Updates in the README (#139, #137, #108)
+* TravisCI tests up to PHP 7.4 and fix PHP 7.4 syntax (#142)
+* XP tags fixed (#115)
+* Improve IFD type names for Canon Maker Notes (#124)
+* Move non-camera specific tests from /test/imagetests to /test (#123)
+* Refactor ReadWriteTest and fix NumberTest (#122)
+* Clean up the code and all the tests to match coding standards (#121)
+* Convert to new array syntax (PHP 5.4) (#120)
+* Update tests to run under PHPUnit 6+ and backwards to PHP 5.5 and 5.4 (#118)
+* Catch DataWindow exceptions in PelIfd (#114)
+* Fix several types (#113)
+* Fix static makerNotes in PelIfd (#112)
+* Fixes for [pel-Bugs-2979466 ] endless loop in PelIfd->load (#110)
+* Fix build status badge (#111)
+* Fix skipped tests for PHP 7.1+ (#109)
+* Parsing canon maker notes (#99)
+* Exif section corrections (#101)
+* Enabled code rating (#106)
+* Changed access of the $sections property to allow section manipulations in subclasses. (#104)
+* Now available from PEL organization (#97)
+* Enable PHP 7.2 build on TravisCI (#102)
+* Rating percent tag (#100)
+* Add composer installation instructions (#96)
+* HHVM needs to run on Trusty (#95)
+* Added reverse lookup methods, fixed PHPDOC for PelTag enumerations (#93)
+
+## 0.9.6 - 2017-02-03
+
+* Trim null characters from the end of ascii fields only when available. Fixes #77 
+
+## 0.9.5 - 2017-01-31
+
+This release improves the code quality and the test coverage.
+New features:
+
+* new method PelTiff::saveFile()
+* PHP 7.1 compatibility
 
 ## 0.9.4 - 2016-03-21
 
