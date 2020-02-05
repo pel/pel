@@ -860,6 +860,7 @@ class PelIfd implements \IteratorAggregate, \ArrayAccess
                     PelTag::PREDICTOR,
                     PelTag::WHITE_POINT,
                     PelTag::PRIMARY_CHROMATICITIES,
+                    PelTag::EXTRA_SAMPLES,
                     PelTag::JPEG_INTERCHANGE_FORMAT,
                     PelTag::JPEG_INTERCHANGE_FORMAT_LENGTH,
                     PelTag::YCBCR_COEFFICIENTS,

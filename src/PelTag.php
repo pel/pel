@@ -311,6 +311,15 @@ class PelTag
     const PRIMARY_CHROMATICITIES = 0x013F;
 
     /**
+     * Extra Samples.
+     *
+     * Format: {@link PelFormat::SHORT}.
+     *
+     * Components: 1.
+     */
+    const EXTRA_SAMPLES = 0x0152;
+
+    /**
      * Transfer Range
      *
      * Format: Unknown.
