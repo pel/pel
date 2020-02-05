@@ -1891,6 +1891,10 @@ class PelTag
         self::IMAGE_UNIQUE_ID                => 'ImageUniqueID',
         self::GAMMA                          => 'Gamma',
         self::PRINT_IM                       => 'PrintIM',
+        self::PREDICTOR                      => 'Predictor',
+        self::EXTRA_SAMPLES                  => 'ExtraSamples',
+        self::SAMPLE_FORMAT                  => 'SampleFormat',
+        self::APPLICATION_NOTES              => 'ApplicationNotes',
     ];
 
     /**
@@ -2011,6 +2015,10 @@ class PelTag
         self::IMAGE_UNIQUE_ID                => 'Image Unique ID',
         self::GAMMA                          => 'Gamma',
         self::PRINT_IM                       => 'Print IM',
+        self::PREDICTOR                      => 'Predictor',
+        self::EXTRA_SAMPLES                  => 'Extra Samples',
+        self::SAMPLE_FORMAT                  => 'Sample Format',
+        self::APPLICATION_NOTES              => 'Application Notes',
     ];
 
     /**
