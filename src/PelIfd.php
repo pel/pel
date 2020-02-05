@@ -878,7 +878,8 @@ class PelIfd implements \IteratorAggregate, \ArrayAccess
                     PelTag::XP_KEYWORDS,
                     PelTag::XP_SUBJECT,
                     PelTag::RATING,
-                    PelTag::RATING_PERCENT
+                    PelTag::RATING_PERCENT,
+                    PelTag::APPLICATION_NOTES
                 ];
 
             case PelIfd::EXIF:

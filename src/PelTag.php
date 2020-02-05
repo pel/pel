@@ -401,6 +401,15 @@ class PelTag
     const REFERENCE_BLACK_WHITE = 0x0214;
 
     /**
+     * Application Notes.
+     *
+     * Format: {@link PelFormat::BYTE}.
+     *
+     * Components: Unknown.
+     */
+    const APPLICATION_NOTES = 0x02bc;
+
+    /**
      * Related Image File Format
      *
      * Format: Unknown.
