@@ -232,6 +232,7 @@ class WriteEntryTest extends TestCase
         $photometric_interpretation->setValue(4);
 
         $out_uri = dirname(__FILE__) . '/images/output.sample-1.tiff';
+        $tiff->saveFile($out_uri);
 
         $data = @exif_read_data($out_uri);
         $this->assertEquals(1, $data['Orientation']);
