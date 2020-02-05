@@ -284,6 +284,15 @@ class PelTag
     const ARTIST = 0x013B;
 
     /**
+     * Predictor.
+     *
+     * Format: {@link PelFormat::SHORT}.
+     *
+     * Components: 1.
+     */
+    const PREDICTOR = 0x013D;
+
+    /**
      * White point chromaticity.
      *
      * Format: {@link PelFormat::RATIONAL}.
@@ -300,6 +309,24 @@ class PelTag
      * Components: 6.
      */
     const PRIMARY_CHROMATICITIES = 0x013F;
+
+    /**
+     * Extra Samples.
+     *
+     * Format: {@link PelFormat::SHORT}.
+     *
+     * Components: 1.
+     */
+    const EXTRA_SAMPLES = 0x0152;
+
+    /**
+     * Sample Format.
+     *
+     * Format: {@link PelFormat::SHORT}.
+     *
+     * Components: 4.
+     */
+    const SAMPLE_FORMAT = 0x0153;
 
     /**
      * Transfer Range
@@ -372,6 +399,15 @@ class PelTag
      * Components: 6.
      */
     const REFERENCE_BLACK_WHITE = 0x0214;
+
+    /**
+     * Application Notes.
+     *
+     * Format: {@link PelFormat::BYTE}.
+     *
+     * Components: Unknown.
+     */
+    const APPLICATION_NOTES = 0x02bc;
 
     /**
      * Related Image File Format
@@ -1855,6 +1891,10 @@ class PelTag
         self::IMAGE_UNIQUE_ID                => 'ImageUniqueID',
         self::GAMMA                          => 'Gamma',
         self::PRINT_IM                       => 'PrintIM',
+        self::PREDICTOR                      => 'Predictor',
+        self::EXTRA_SAMPLES                  => 'ExtraSamples',
+        self::SAMPLE_FORMAT                  => 'SampleFormat',
+        self::APPLICATION_NOTES              => 'ApplicationNotes',
     ];
 
     /**
@@ -1975,6 +2015,10 @@ class PelTag
         self::IMAGE_UNIQUE_ID                => 'Image Unique ID',
         self::GAMMA                          => 'Gamma',
         self::PRINT_IM                       => 'Print IM',
+        self::PREDICTOR                      => 'Predictor',
+        self::EXTRA_SAMPLES                  => 'Extra Samples',
+        self::SAMPLE_FORMAT                  => 'Sample Format',
+        self::APPLICATION_NOTES              => 'Application Notes',
     ];
 
     /**
