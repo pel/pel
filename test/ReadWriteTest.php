@@ -207,4 +207,14 @@ class WriteEntryTest extends TestCase
             ],
         ];
     }
+
+    /**
+     * Tests loading a rewriting a TIFF file.
+     */
+    public function testTiffLoadSave()
+    {
+        $tiff = new PelTiff(dirname(__FILE__) . '/images/sample-1.tiff');
+        $ifd = $tiff->getIfd();
+        $this->assertInstanceOf('lsolesen\pel\PelIfd', $ifd);
+    }
 }
