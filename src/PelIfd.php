@@ -857,8 +857,11 @@ class PelIfd implements \IteratorAggregate, \ArrayAccess
                     PelTag::SOFTWARE,
                     PelTag::DATE_TIME,
                     PelTag::ARTIST,
+                    PelTag::PREDICTOR,
                     PelTag::WHITE_POINT,
                     PelTag::PRIMARY_CHROMATICITIES,
+                    PelTag::EXTRA_SAMPLES,
+                    PelTag::SAMPLE_FORMAT,
                     PelTag::JPEG_INTERCHANGE_FORMAT,
                     PelTag::JPEG_INTERCHANGE_FORMAT_LENGTH,
                     PelTag::YCBCR_COEFFICIENTS,
@@ -875,7 +878,8 @@ class PelIfd implements \IteratorAggregate, \ArrayAccess
                     PelTag::XP_KEYWORDS,
                     PelTag::XP_SUBJECT,
                     PelTag::RATING,
-                    PelTag::RATING_PERCENT
+                    PelTag::RATING_PERCENT,
+                    PelTag::APPLICATION_NOTES
                 ];
 
             case PelIfd::EXIF:
