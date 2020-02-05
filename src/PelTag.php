@@ -320,6 +320,15 @@ class PelTag
     const EXTRA_SAMPLES = 0x0152;
 
     /**
+     * Sample Format.
+     *
+     * Format: {@link PelFormat::SHORT}.
+     *
+     * Components: 4.
+     */
+    const SAMPLE_FORMAT = 0x0153;
+
+    /**
      * Transfer Range
      *
      * Format: Unknown.
