@@ -235,8 +235,8 @@ class WriteEntryTest extends TestCase
         $tiff->saveFile($out_uri);
 
         $data = @exif_read_data($out_uri);
-        $this->assertEquals(1, $data['Orientation']);
-        $this->assertEquals(2, $data['PhotometricInterpretation']);
+        $this->assertEquals(4, $data['Orientation']);
+        $this->assertEquals(4, $data['PhotometricInterpretation']);
         unlink($out_uri);
     }
 }
