@@ -857,6 +857,7 @@ class PelIfd implements \IteratorAggregate, \ArrayAccess
                     PelTag::SOFTWARE,
                     PelTag::DATE_TIME,
                     PelTag::ARTIST,
+                    PelTag::PREDICTOR,
                     PelTag::WHITE_POINT,
                     PelTag::PRIMARY_CHROMATICITIES,
                     PelTag::JPEG_INTERCHANGE_FORMAT,

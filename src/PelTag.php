@@ -284,6 +284,15 @@ class PelTag
     const ARTIST = 0x013B;
 
     /**
+     * Predictor.
+     *
+     * Format: {@link PelFormat::SHORT}.
+     *
+     * Components: 1.
+     */
+    const PREDICTOR = 0x013D;
+
+    /**
      * White point chromaticity.
      *
      * Format: {@link PelFormat::RATIONAL}.

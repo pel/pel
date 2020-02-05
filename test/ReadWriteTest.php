@@ -214,9 +214,9 @@ class WriteEntryTest extends TestCase
     public function testTiffLoadSave()
     {
         $file_uri = dirname(__FILE__) . '/images/sample-1.tiff';
-//        $tiff = new PelTiff(dirname(__FILE__) . '/images/sample-1.tiff');
-//        $ifd = $tiff->getIfd();
-//        $this->assertInstanceOf('lsolesen\pel\PelIfd', $ifd);
+        $tiff = new PelTiff($file_uri);
+        $ifd = $tiff->getIfd();
+        $this->assertInstanceOf('lsolesen\pel\PelIfd', $ifd);
         $data = @exif_read_data($file_uri);
         $this->assertEquals(1, $data['Orientation']);
         $this->assertEquals(2, $data['PhotometricInterpretation']);
