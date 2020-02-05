@@ -27,6 +27,7 @@ namespace Pel\Test;
 use lsolesen\pel\Pel;
 use lsolesen\pel\PelEntryByte;
 use lsolesen\pel\PelIfd;
+use lsolesen\pel\PelTag;
 use lsolesen\pel\PelTiff;
 use lsolesen\pel\PelExif;
 use lsolesen\pel\PelJpeg;
@@ -229,5 +230,12 @@ class WriteEntryTest extends TestCase
 
         $orientation->setValue(4);
         $photometric_interpretation->setValue(4);
+
+        $out_uri = dirname(__FILE__) . '/images/output.sample-1.tiff';
+
+        $data = @exif_read_data($out_uri);
+        $this->assertEquals(1, $data['Orientation']);
+        $this->assertEquals(2, $data['PhotometricInterpretation']);
+        unlink($out_uri);
     }
 }
