@@ -113,7 +113,6 @@ class PelEntryShort extends PelEntryNumber
      */
     public function numberToBytes($number, $order)
     {
- if (!is_int($number)) throw new \Exception('fail');
         return PelConvert::shortToBytes($number, $order);
     }
 
