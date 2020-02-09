@@ -228,7 +228,6 @@ class WriteEntryTest extends TestCase
         $photometric_interpretation = $ifd->getEntry(PelTag::PHOTOMETRIC_INTERPRETATION);
         $this->assertEquals(2, $photometric_interpretation->getValue());
         $bits_per_sample = $ifd->getEntry(PelTag::BITS_PER_SAMPLE);
-        $this->assertEquals(2, $photometric_interpretation->getValue());
         $this->assertEquals([8, 8, 8, 8], $bits_per_sample->getValue());
 
         $orientation->setValue(4);
