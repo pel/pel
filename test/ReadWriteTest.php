@@ -233,7 +233,7 @@ class WriteEntryTest extends TestCase
 
         $orientation->setValue(4);
         $photometric_interpretation->setValue(4);
-        $photometric_interpretation->setArrayValue([7, 6, 5, 4]);
+        $photometric_interpretation->setValueArray([7, 6, 5, 4]);
 
         $out_uri = dirname(__FILE__) . '/images/output.sample-1.tiff';
         $tiff->saveFile($out_uri);
