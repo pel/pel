@@ -1,6 +1,6 @@
 # CHANGELOG
 
-## 0.9.8 - 2020-01-11
+## 0.9.8 - 2020-02-11
 
 * Improved PHP 7.4 compatibility
 * Improved TIFF handling
