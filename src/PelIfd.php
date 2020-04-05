@@ -444,8 +444,9 @@ class PelIfd implements \IteratorAggregate, \ArrayAccess
          * not in the entry but somewhere else, with the offset stored
          * in the entry.
          */
-        $s = PelFormat::getSize($format) * $components;
-        if ($s > 0) {
+        $elemSize = PelFormat::getSize($format);
+        if (is_numeric($elemSize) && $elemSize > 0) {
+            $s = $elemSize * $components;
             $doff = $offset + 12 * $i + 8;
             if ($s > 4) {
                 $doff = $d->getLong($doff);
