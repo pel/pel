@@ -445,7 +445,7 @@ class PelIfd implements \IteratorAggregate, \ArrayAccess
          * in the entry.
          */
         $elemSize = PelFormat::getSize($format);
-        if ($s > 0) {	        if (is_numeric($elemSize) && $elemSize > 0) {
+        if (is_numeric($elemSize) && $elemSize > 0) {
             $s = $elemSize * $components;
             $doff = $offset + 12 * $i + 8;
             if ($s > 4) {
