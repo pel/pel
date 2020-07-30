@@ -444,7 +444,7 @@ class PelIfd implements \IteratorAggregate, \ArrayAccess
          * not in the entry but somewhere else, with the offset stored
          * in the entry.
          */
-        $s = PelFormat::getSize($format) * $components;
+        $s = (int) PelFormat::getSize($format) * $components;
         if ($s > 0) {
             $doff = $offset + 12 * $i + 8;
             if ($s > 4) {
@@ -505,7 +505,7 @@ class PelIfd implements \IteratorAggregate, \ArrayAccess
      */
     public function loadSingleMakerNotesValue($type, $data, $offset, $size, $i, $format)
     {
-        $elemSize = PelFormat::getSize($format);
+        $elemSize = (int) PelFormat::getSize($format);
         if ($size > 0) {
             $subdata = $data->getClone($offset + $i * $elemSize, $elemSize);
         } else {
