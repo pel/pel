@@ -609,7 +609,7 @@ class PelIfd implements \IteratorAggregate, \ArrayAccess
                         if ($format != PelFormat::UNDEFINED) {
                             throw new PelUnexpectedFormatException($this->type, $tag, $format, PelFormat::UNDEFINED);
                         }
-                        return new PelEntryVersion($tag, $data->getBytes() / 100);
+                        return new PelEntryVersion($tag, (float) $data->getBytes() / 100);
 
                     case PelTag::USER_COMMENT:
                         if ($format != PelFormat::UNDEFINED) {
