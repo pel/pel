@@ -25,6 +25,9 @@
 /**
  * Register autoloader for pel
  */
+require_once __DIR__.'/../vendor/autoload.php';
+
+/*
 spl_autoload_register(function ($class) {
     if (substr_compare($class, 'lsolesen\\pel\\', 0, 13) === 0) {
         $classname = str_replace('lsolesen\\pel\\', '', $class);
@@ -34,3 +37,4 @@ spl_autoload_register(function ($class) {
         }
     }
 });
+*/
