@@ -30,9 +30,9 @@
         "symfony/phpunit-bridge": "*"
     },
     "autoload": {
-        "psr-4": {"lsolesen\\pel\\": "src/"}
-    },
-    "autoload-dev": {
-        "psr-4": { "Pel\\Test\\": "test/" }
+        "psr-4": {
+            "lsolesen\\pel\\": "src/",
+            "Pel\\Test\\": "test/"
+        }
     }
 }
