@@ -27,7 +27,7 @@
     "require-dev" : {
         "ext-gd": "*",
         "squizlabs/php_codesniffer": "^3.0.0",
-        "symfony/phpunit-bridge": "^5"
+        "symfony/phpunit-bridge": "*"
     },
     "autoload": {
         "psr-4": {"lsolesen\\pel\\": "src/"}
