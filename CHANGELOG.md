@@ -1,5 +1,10 @@
 # CHANGELOG
 
+## 0.9.8 - 2020-02-11
+
+* Improved PHP 7.4 compatibility
+* Improved TIFF handling
+
 ## 0.9.7 - 2019-12-03
 
 Fixes some errors, refactor code and make compatible to PHP 7.4.

@@ -227,16 +227,20 @@ class WriteEntryTest extends TestCase
         $this->assertEquals(1, $orientation->getValue());
         $photometric_interpretation = $ifd->getEntry(PelTag::PHOTOMETRIC_INTERPRETATION);
         $this->assertEquals(2, $photometric_interpretation->getValue());
+        $bits_per_sample = $ifd->getEntry(PelTag::BITS_PER_SAMPLE);
+        $this->assertEquals([8, 8, 8, 8], $bits_per_sample->getValue());
 
         $orientation->setValue(4);
         $photometric_interpretation->setValue(4);
+        $bits_per_sample->setValueArray([7, 6, 5, 4]);
 
         $out_uri = dirname(__FILE__) . '/images/output.sample-1.tiff';
         $tiff->saveFile($out_uri);
 
-        $data = @exif_read_data($out_uri);
-        $this->assertEquals(4, $data['Orientation']);
-        $this->assertEquals(4, $data['PhotometricInterpretation']);
+        $data_reload = @exif_read_data($out_uri);
+        $this->assertEquals(4, $data_reload['Orientation']);
+        $this->assertEquals(4, $data_reload['PhotometricInterpretation']);
+        $this->assertEquals([7, 6, 5, 4], $data_reload['BitsPerSample']);
         unlink($out_uri);
     }
 }
