@@ -28,8 +28,7 @@ before_script:
 
 script:
   - ./vendor/bin/phpcs --runtime-set ignore_warnings_on_exit 1
-  #- ./vendor/bin/phpunit --coverage-clover build/logs/clover.xml ./test
-  - ./vendor/bin/simple-phpunit --coverage-clover build/logs/clover.xml ./test
+  - SYMFONY_PHPUNIT_REMOVE_RETURN_TYPEHINT=1 ./vendor/bin/simple-phpunit --coverage-clover build/logs/clover.xml ./test
 
 after_script:
   - travis_retry php vendor/bin/coveralls -v

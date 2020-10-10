@@ -26,6 +26,7 @@
     },
     "require-dev" : {
         "ext-gd": "*",
+        "squizlabs/php_codesniffer": "^3.0.0",
         "symfony/phpunit-bridge": "*"
     },
     "autoload": {
