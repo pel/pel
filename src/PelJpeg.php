@@ -127,6 +127,9 @@ class PelJpeg
         } elseif (is_resource($data) && get_resource_type($data) == 'gd') {
             Pel::debug('Initializing PelJpeg object from image resource.');
             $this->load(new PelDataWindow($data));
+        } elseif (PHP_VERSION_ID >= 80000 && is_object($data) && $data instanceof \GDImage) {
+            Pel::debug('Initializing PelJpeg object from image resource.');
+            $this->load(new PelDataWindow($data));
         } else {
             throw new PelInvalidArgumentException('Bad type for $data: %s', gettype($data));
         }

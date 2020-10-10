@@ -106,6 +106,15 @@ class PelDataWindow
             ob_start();
             ImageJpeg($data, null, Pel::getJPEGQuality());
             $this->data = ob_get_clean();
+        } elseif (PHP_VERSION_ID >= 80000 && is_object($data) && $data instanceof \GDImage) {
+            /*
+             * The ImageJpeg() function insists on printing the bytes
+             * instead of returning them in a more civil way as a string, so
+             * we have to buffer the output...
+             */
+            ob_start();
+            ImageJpeg($data, null, Pel::getJPEGQuality());
+            $this->data = ob_get_clean();
         } else {
             throw new PelInvalidArgumentException('Bad type for $data: %s', gettype($data));
         }
