@@ -59,6 +59,9 @@ class PelJpegMarkerTest extends TestCase
      */
     public function testInvalidMarkerException()
     {
+        if (PHP_VERSION_ID < 50500) {
+            $this->markTestSkipped('This test can only run on PHP 5.5+');
+        }
         $this->expectException('lsolesen\pel\PelJpegInvalidMarkerException');
         throw new PelJpegInvalidMarkerException(1, 2);
     }
