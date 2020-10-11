@@ -27,12 +27,12 @@
     "require-dev" : {
         "ext-gd": "*",
         "squizlabs/php_codesniffer": "^3.0.0",
-        "symfony/phpunit-bridge": "*"
+        "symfony/phpunit-bridge": "^4 || ^5"
     },
     "autoload": {
-        "psr-4": {"lsolesen\\pel\\": "src/"}
+        "psr-4": { "lsolesen\\pel\\": "src/" }
     },
     "autoload-dev": {
-        "psr-4": {"Pel\\Test\\": "test/"}
+        "psr-4": { "Pel\\Test\\": "test/" }
     }
 }
