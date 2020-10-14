@@ -438,13 +438,18 @@ class PelIfd implements \IteratorAggregate, \ArrayAccess
     {
         $format = $d->getShort($offset + 12 * $i + 2);
         $components = $d->getLong($offset + 12 * $i + 4);
+        $size = PelFormat::getSize($format);
+        if (is_string($size)) {
+          Pel::maybeThrow(new PelException('Invalid format %s', $format));
+          return;
+        }
 
         /*
          * The data size. If bigger than 4 bytes, the actual data is
          * not in the entry but somewhere else, with the offset stored
          * in the entry.
          */
-        $s = PelFormat::getSize($format) * $components;
+        $s = $size * $components;
         if ($s > 0) {
             $doff = $offset + 12 * $i + 8;
             if ($s > 4) {
