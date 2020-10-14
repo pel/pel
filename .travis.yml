@@ -1,20 +1,20 @@
 language: php
 
 php:
-  - 5.6
-  - 7.0
-  - 7.1
-  - 7.2
-  - 7.3
+#  - 5.6
+#  - 7.0
+#  - 7.1
+#  - 7.2
+#  - 7.3
   - 7.4
-  - nightly
+#  - nightly
 
 jobs:
-  include:
-    - php: 5.4
-      dist: trusty
-    - php: 5.5
-      dist: trusty
+#  include:
+#    - php: 5.4
+#      dist: trusty
+#    - php: 5.5
+#      dist: trusty
   fast_finish: true
   allow_failures:
     - php: hhvm

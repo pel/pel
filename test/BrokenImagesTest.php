@@ -46,4 +46,10 @@ class BrokenImagesTest extends TestCase
         $jpeg = new PelJpeg(dirname(__FILE__) . '/broken_images/gh-11.jpg');
         $this->assertInstanceOf('\lsolesen\pel\PelJpeg', $jpeg);
     }
+
+    public function testXxx()
+    {
+        $jpeg = new PelJpeg(dirname(__FILE__) . '/broken_images/gh-156.jpg');
+        $this->assertInstanceOf('\lsolesen\pel\PelJpeg', $jpeg);
+    }
 }
