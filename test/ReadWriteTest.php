@@ -40,7 +40,7 @@ use lsolesen\pel\PelEntrySLong;
 use lsolesen\pel\PelEntryAscii;
 use PHPUnit\Framework\TestCase;
 
-class WriteEntryTest extends TestCase
+class ReadWriteTest extends TestCase
 {
     /**
      * {@inheritdoc}
