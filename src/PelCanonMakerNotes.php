@@ -226,7 +226,7 @@ class PelCanonMakerNotes extends PelMakerNotes
         $size = $data->getShort($offset);
         $offset += 2;
         $elemSize = PelFormat::getSize(PelFormat::SSHORT);
-        if ($size / $components !== $elemSize) {
+        if ((!$components) || ($size / $components !== $elemSize)) {
             throw new PelMakerNotesMalformedException('Size of Canon Camera Settings does not match the number of entries.');
         }
         $camIfd = new PelIfd($type);

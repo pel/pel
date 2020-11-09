@@ -438,24 +438,29 @@ class PelIfd implements \IteratorAggregate, \ArrayAccess
     {
         $format = $d->getShort($offset + 12 * $i + 2);
         $components = $d->getLong($offset + 12 * $i + 4);
-
-        /*
-         * The data size. If bigger than 4 bytes, the actual data is
-         * not in the entry but somewhere else, with the offset stored
-         * in the entry.
-         */
-        $s = PelFormat::getSize($format) * $components;
-        if ($s > 0) {
-            $doff = $offset + 12 * $i + 8;
-            if ($s > 4) {
-                $doff = $d->getLong($doff);
-            }
-            $data = $d->getClone($doff, $s);
-        } else {
-            $data = new PelDataWindow();
+        $size = PelFormat::getSize($format);
+        if (is_string($size)) {
+            Pel::maybeThrow(new PelException('Invalid format %s', $format));
+            return;
         }
 
         try {
+            /*
+             * The data size. If bigger than 4 bytes, the actual data is
+             * not in the entry but somewhere else, with the offset stored
+             * in the entry.
+             */
+            $s = $size * $components;
+            if ($s > 0) {
+                $doff = $offset + 12 * $i + 8;
+                if ($s > 4) {
+                    $doff = $d->getLong($doff);
+                }
+                $data = $d->getClone($doff, $s);
+            } else {
+                $data = new PelDataWindow();
+            }
+
             $entry = $this->newEntryFromData($tag, $format, $components, $data);
             $this->addEntry($entry);
         } catch (PelException $e) {

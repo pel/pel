@@ -70,9 +70,9 @@ To work with the translations, you need the gettext package installed.
 ## Getting Support
 
 The first place you should consult for support is the documentation
-supplied with PEL, found in the doc/ directory.  There you will find a
-complete API documentation with descriptions of all classes and files
-in PEL.
+supplied with PEL, found at https://pel.github.io/pel/doc/.
+There you will find a complete API documentation with descriptions of 
+all classes and files in PEL.
 
 The scripts found in the examples/ directory are also a good source of
 information, especially the edit-description.php file which has tons
