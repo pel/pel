@@ -36,7 +36,7 @@
 	},
 	"autoload-dev" : {
 		"psr-4" : {
-			"Pel\\Test\\" : "test/Pel/Test"
+			"Pel\\Test\\" : "test/"
 		}
 	}
 }

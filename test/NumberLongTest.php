@@ -22,13 +22,16 @@
  * Free Software Foundation, Inc., 51 Franklin St, Fifth Floor,
  * Boston, MA 02110-1301 USA
  */
+namespace Pel\Test;
 
-use Pel\Test\NumberTestCase;
+use Pel\Test\TestBase\NumberTestCase;
 use lsolesen\pel\PelEntryLong;
 
 class NumberLongTest extends NumberTestCase
 {
+
     /**
+     *
      * {@inheritdoc}
      */
     public function setUp(): void

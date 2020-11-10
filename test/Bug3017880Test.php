@@ -22,6 +22,7 @@
  * Free Software Foundation, Inc., 51 Franklin St, Fifth Floor,
  * Boston, MA 02110-1301 USA
  */
+namespace Pel\Test;
 
 use lsolesen\pel\PelJpeg;
 use lsolesen\pel\PelExif;
@@ -33,6 +34,7 @@ use PHPUnit\Framework\TestCase;
 
 class Bug3017880Test extends TestCase
 {
+
     public function testThisDoesNotWorkAsExpected()
     {
         $filename = dirname(__FILE__) . '/images/bug3017880.jpg';

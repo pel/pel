@@ -22,7 +22,9 @@
  * Free Software Foundation, Inc., 51 Franklin St, Fifth Floor,
  * Boston, MA 02110-1301 USA
  */
-use Pel\Test\NumberTestCase;
+namespace Pel\Test;
+
+use Pel\Test\TestBase\NumberTestCase;
 use lsolesen\pel\PelEntryShort;
 
 class NumberShortTest extends NumberTestCase
