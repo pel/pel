@@ -55,8 +55,8 @@ class GH21Test extends TestCase
         $original_w = ImagesX($original);
         $original_h = ImagesY($original);
 
-        $scaled_w = (int) $original_w * $scale;
-        $scaled_h = (int) $original_h * $scale;
+        $scaled_w = (int) ($original_w * $scale);
+        $scaled_h = (int) ($original_h * $scale);
 
         $scaled = ImageCreateTrueColor($scaled_w, $scaled_h);
         $this->assertNotFalse($scaled, 'Resized image must not be false');
