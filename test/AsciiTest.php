@@ -22,7 +22,7 @@
  * Boston, MA 02110-1301 USA
  */
 
-namespace Pel\Test;
+
 
 use lsolesen\pel\PelConvert;
 use lsolesen\pel\PelEntryAscii;

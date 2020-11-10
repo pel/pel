@@ -22,11 +22,10 @@
  * Boston, MA 02110-1301 USA
  */
 
-namespace Pel\Test\imagetests;
 
+use PHPUnit\Framework\TestCase;
 use lsolesen\pel\Pel;
 use lsolesen\pel\PelJpeg;
-use PHPUnit\Framework\TestCase;
 
 class Tags1Test extends TestCase
 {

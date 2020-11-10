@@ -49,7 +49,7 @@ class PelDataWindow
      * PelConvert::LITTLE_ENDIAN} and {@link PelConvert::BIG_ENDIAN}.
      *
      * @var boolean
-     * @see setByteOrder, getByteOrder
+     * @see PelDataWindow::setByteOrder, getByteOrder
      */
     private $order;
 
@@ -61,7 +61,7 @@ class PelDataWindow
      * byte.
      *
      * @var int
-     * @see setWindowStart
+     * @see PelDataWindow::setWindowStart
      */
     private $start = 0;
 
@@ -73,7 +73,7 @@ class PelDataWindow
      * variable.
      *
      * @var int
-     * @see setWindowSize
+     * @see PelDataWindow::setWindowSize
      */
     private $size = 0;
 
@@ -257,7 +257,7 @@ class PelDataWindow
      *            window. Invalid offsets will result in a {@link
      *            PelDataWindowOffsetException} being thrown.
      *
-     * @param integer|NUL $size
+     * @param integer|null $size
      *            the size of the sub-window. If a negative number is
      *            given, then that many bytes will be omitted from the result.
      *

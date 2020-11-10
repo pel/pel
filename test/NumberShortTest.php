@@ -22,17 +22,17 @@
  * Free Software Foundation, Inc., 51 Franklin St, Fifth Floor,
  * Boston, MA 02110-1301 USA
  */
-
-namespace Pel\Test;
-
-use \lsolesen\pel\PelEntryShort;
+use Pel\Test\NumberTestCase;
+use lsolesen\pel\PelEntryShort;
 
 class NumberShortTest extends NumberTestCase
 {
+
     /**
+     *
      * {@inheritdoc}
      */
-    public function setUp()
+    public function setUp(): void
     {
         parent::setUp();
         $this->num = new PelEntryShort(42);

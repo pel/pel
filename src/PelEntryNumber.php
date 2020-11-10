@@ -99,7 +99,7 @@ abstract class PelEntryNumber extends PelEntry
      *            be checked to ensure that the numbers are within the valid range.
      *            If not, then a {@link PelOverflowException} will be thrown.
      *
-     * @see getValue
+     * @see PelEntryNumber::getValue
      */
     public function setValue($value)
     {
@@ -119,7 +119,7 @@ abstract class PelEntryNumber extends PelEntry
      *            array the new values. The array must contain the new
      *            numbers.
      *
-     * @see getValue
+     * @see PelEntryNumber::getValue
      */
     public function setValueArray($value)
     {

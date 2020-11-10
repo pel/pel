@@ -24,10 +24,8 @@
  * Boston, MA 02110-1301 USA
  */
 
-namespace Pel\Test;
-
-use lsolesen\pel\PelEntryUserComment;
 use PHPUnit\Framework\TestCase;
+use lsolesen\pel\PelEntryUserComment;
 
 class PelEntryUserCommentTest extends TestCase
 {

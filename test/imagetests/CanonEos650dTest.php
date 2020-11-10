@@ -24,9 +24,9 @@
 
 namespace Pel\Test\imagetests;
 
-use \lsolesen\pel\Pel;
-use \lsolesen\pel\PelJpeg;
 use PHPUnit\Framework\TestCase;
+use lsolesen\pel\Pel;
+use lsolesen\pel\PelJpeg;
 
 class CanonEos650dTest extends TestCase
 {

@@ -22,9 +22,6 @@
  * Free Software Foundation, Inc., 51 Franklin St, Fifth Floor,
  * Boston, MA 02110-1301 USA
  */
-
-namespace Pel\Test;
-
 use lsolesen\pel\PelConvert;
 use PHPUnit\Framework\TestCase;
 
@@ -74,9 +71,7 @@ class ConvertTest extends TestCase
     public function testSLongLittle()
     {
         // TODO: Does not work on 64bit systems!
-        $this->markTestIncomplete(
-            'Does not work on 64bit systems!'
-        );
+        $this->markTestIncomplete('Does not work on 64bit systems!');
         $o = PelConvert::LITTLE_ENDIAN;
 
         /*
@@ -103,9 +98,7 @@ class ConvertTest extends TestCase
     public function testSLongBig()
     {
         // TODO: Does not work on 64bit systems
-        $this->markTestIncomplete(
-            'Does not work on 64bit systems!'
-        );
+        $this->markTestIncomplete('Does not work on 64bit systems!');
 
         $o = PelConvert::BIG_ENDIAN;
 

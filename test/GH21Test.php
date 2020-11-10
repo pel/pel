@@ -21,24 +21,22 @@
  * Free Software Foundation, Inc., 51 Franklin St, Fifth Floor,
  * Boston, MA 02110-1301 USA
  */
-
-namespace Pel\Test;
-
 use lsolesen\pel\PelJpeg;
 use PHPUnit\Framework\TestCase;
 
 class GH21Test extends TestCase
 {
+
     protected $file;
 
-    public function setUp()
+    public function setUp(): void
     {
         $this->file = dirname(__FILE__) . '/images/gh-21-tmp.jpg';
         $file = dirname(__FILE__) . '/images/gh-21.jpg';
         copy($file, $this->file);
     }
 
-    public function tearDown()
+    public function tearDown(): void
     {
         unlink($this->file);
     }
@@ -56,18 +54,9 @@ class GH21Test extends TestCase
         $scaled_h = $original_h * $scale;
 
         $scaled = ImageCreateTrueColor($scaled_w, $scaled_h);
-        ImageCopyResampled(
-            $scaled,
-            $original,
-            0,
-            0, /* dst (x,y) */
-            0,
-            0, /* src (x,y) */
-            $scaled_w,
-            $scaled_h,
-            $original_w,
-            $original_h
-        );
+        ImageCopyResampled($scaled, $original, 0, 0, /* dst (x,y) */
+            0, 0, /* src (x,y) */
+            $scaled_w, $scaled_h, $original_w, $original_h);
 
         $output_jpeg = new PelJpeg($scaled);
 

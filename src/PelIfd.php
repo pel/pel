@@ -1328,8 +1328,8 @@ class PelIfd implements \IteratorAggregate, \ArrayAccess
      *         descendant classes. The array has {@link PelTag}s as keys
      *         and the entries as values.
      *
-     * @see getEntry
-     * @see getIterator
+     * @see PelIfd::getEntry
+     * @see PelIfd::getIterator
      */
     public function getEntries()
     {
@@ -1347,7 +1347,7 @@ class PelIfd implements \IteratorAggregate, \ArrayAccess
      * }
      * </code>
      *
-     * @return Iterator an iterator using the {@link PelTag tags} as
+     * @return \ArrayIterator an iterator using the {@link PelTag tags} as
      *         keys and the entries as values.
      */
     public function getIterator()
