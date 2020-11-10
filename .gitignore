@@ -10,3 +10,4 @@ build-base*
 /composer.lock
 /.phpunit.result.cache
 /.settings/
+/.phpcs-cache
