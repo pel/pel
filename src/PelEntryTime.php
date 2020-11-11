@@ -289,11 +289,11 @@ class PelEntryTime extends PelEntryAscii
      *
      * @param integer $timestamp
      *            the timestamp.
-     * @return integer the Julian Day count.
+     * @return float the Julian Day count.
      */
     public function convertUnixToJd($timestamp)
     {
-        return (int) (floor($timestamp / 86400) + 2440588);
+        return floor($timestamp / 86400) + 2440588;
     }
 
     /**
