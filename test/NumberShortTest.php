@@ -24,7 +24,6 @@
  */
 namespace Pel\Test;
 
-use Pel\Test\TestBase\NumberTestCase;
 use lsolesen\pel\PelEntryShort;
 
 class NumberShortTest extends NumberTestCase

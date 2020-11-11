@@ -88,7 +88,7 @@ class PelEntryAscii extends PelEntry
     {
         $this->tag = $tag;
         $this->format = PelFormat::ASCII;
-        self::setValue($str);
+        $this->setValue($str);
     }
 
     /**

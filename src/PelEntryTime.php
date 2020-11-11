@@ -129,7 +129,7 @@ class PelEntryTime extends PelEntryAscii
      *            the type of the timestamp. This must be one of
      *            {@link UNIX_TIMESTAMP}, {@link EXIF_STRING}, or
      *            {@link JULIAN_DAY_COUNT}.
-     * @return integer the timestamp held by this entry in the correct form
+     * @return integer|string|false the timestamp held by this entry in the correct form
      *         as indicated by the type argument. For {@link UNIX_TIMESTAMP}
      *         this is an integer counting the number of seconds since January
      *         1st 1970, for {@link EXIF_STRING} this is a string of the form

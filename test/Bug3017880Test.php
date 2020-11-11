@@ -78,7 +78,7 @@ class Bug3017880Test extends TestCase
             if ($resave_file == 1 && ! file_put_contents($filename, $jpeg->getBytes())) {
                 // if it was okay to resave the file, but it did not save correctly
             }
-        } catch (Exception $e) {
+        } catch (\Exception $e) {
             $this->fail('Test should not throw an exception');
         }
     }

@@ -174,7 +174,7 @@ abstract class PelEntry
     /**
      * Turn this entry into bytes.
      *
-     * @param string $o
+     * @param boolean $o
      *            the desired byte order, which must be either
      *            {@link Convert::LITTLE_ENDIAN} or {@link Convert::BIG_ENDIAN}.
      * @return string bytes representing this entry.
