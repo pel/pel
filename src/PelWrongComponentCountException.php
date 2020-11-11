@@ -22,23 +22,6 @@
  * Free Software Foundation, Inc., 51 Franklin St, Fifth Floor,
  * Boston, MA 02110-1301 USA
  */
-namespace lsolesen\pel;
-
-/**
- * Classes for dealing with Exif entries.
- *
- * This file defines two exception classes and the abstract class
- * {@link PelEntry} which provides the basic methods that all Exif
- * entries will have. All Exif entries will be represented by
- * descendants of the {@link PelEntry} class --- the class itself is
- * abstract and so it cannot be instantiated.
- *
- * @author Martin Geisler <mgeisler@users.sourceforge.net>
- * @license http://www.gnu.org/licenses/gpl.html GNU General Public
- *          License (GPL)
- * @package PEL
- */
-use lsolesen\pel\PelTag;
 
 /**
  * Exception indicating that an unexpected number of components was
@@ -53,6 +36,10 @@ use lsolesen\pel\PelTag;
  * @package PEL
  * @subpackage Exception
  */
+namespace lsolesen\pel;
+
+use lsolesen\pel\PelTag;
+
 class PelWrongComponentCountException extends \lsolesen\pel\PelEntryException
 {
 
@@ -62,13 +49,10 @@ class PelWrongComponentCountException extends \lsolesen\pel\PelEntryException
      *
      * @param int $type
      *            the type of IFD.
-     *
      * @param int $tag
      *            the tag for which the violation was found.
-     *
      * @param int $found
      *            the number of components found.
-     *
      * @param int $expected
      *            the expected number of components.
      */

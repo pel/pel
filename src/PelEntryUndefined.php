@@ -22,7 +22,6 @@
  * Free Software Foundation, Inc., 51 Franklin St, Fifth Floor,
  * Boston, MA 02110-1301 USA
  */
-namespace lsolesen\pel;
 
 /**
  * Classes used to hold data for Exif tags of format undefined.
@@ -47,6 +46,8 @@ namespace lsolesen\pel;
  * @author Martin Geisler <mgeisler@users.sourceforge.net>
  * @package PEL
  */
+namespace lsolesen\pel;
+
 class PelEntryUndefined extends PelEntry
 {
 
@@ -59,7 +60,6 @@ class PelEntryUndefined extends PelEntry
      *            e.g., {@link PelTag::SCENE_TYPE}, {@link
      *            PelTag::MAKER_NOTE} or any other tag with format {@link
      *            PelFormat::UNDEFINED}.
-     *
      * @param string $data
      *            the data that this entry will be holding. Since
      *            the format is undefined, no checking will be done on the data. If no data are given, a empty string will be stored
@@ -99,10 +99,9 @@ class PelEntryUndefined extends PelEntry
      *
      * The value will be returned in a format suitable for presentation.
      *
-     * @param
-     *            boolean some values can be returned in a long or more
+     * @param boolean $brief
+     *            some values can be returned in a long or more
      *            brief form, and this parameter controls that.
-     *
      * @return string the value as text.
      */
     public function getText($brief = false)

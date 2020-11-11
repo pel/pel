@@ -316,6 +316,7 @@ class PelIfd implements \IteratorAggregate, \ArrayAccess
                 case PelTag::GPS_INFO_IFD_POINTER:
                 case PelTag::INTEROPERABILITY_IFD_POINTER:
                 case PelTag::MAKER_NOTE:
+                    $type = null;
                     $components = $d->getLong($offset + 12 * $i + 4);
                     $o = $d->getLong($offset + 12 * $i + 8);
                     Pel::debug('Found sub IFD at offset %d', $o);
@@ -335,7 +336,11 @@ class PelIfd implements \IteratorAggregate, \ArrayAccess
                         break;
                     }
 
-                    if ($starting_offset != $o) {
+                    if ($type === null) {
+                        Pel::maybeThrow(new PelIfdException('Type not detected for Tag: %d.', $tag));
+                    } elseif ($starting_offset == $o) {
+                        Pel::maybeThrow(new PelIfdException('Bogus offset to next IFD: %d, same as offset being loaded from.', $o));
+                    } else {
                         $ifd = new PelIfd($type);
                         try {
                             $ifd->load($d, $o);
@@ -343,8 +348,6 @@ class PelIfd implements \IteratorAggregate, \ArrayAccess
                         } catch (PelDataWindowOffsetException $e) {
                             Pel::maybeThrow(new PelIfdException($e->getMessage()));
                         }
-                    } else {
-                        Pel::maybeThrow(new PelIfdException('Bogus offset to next IFD: %d, same as offset being loaded from.', $o));
                     }
                     break;
                 case PelTag::JPEG_INTERCHANGE_FORMAT:
@@ -362,7 +365,7 @@ class PelIfd implements \IteratorAggregate, \ArrayAccess
         }
 
         /* Offset to next IFD */
-        $o = $d->getLong($offset + 12 * $n);
+        $o = $d->getLong((int) ($offset + 12 * $n));
         Pel::debug('Current offset is %d, link at %d points to %d.', $offset, $offset + 12 * $n, $o);
 
         if ($o > 0) {

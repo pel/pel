@@ -22,7 +22,6 @@
  * Free Software Foundation, Inc., 51 Franklin St, Fifth Floor,
  * Boston, MA 02110-1301 USA
  */
-namespace lsolesen\pel;
 
 /**
  * Classes used to manipulate rational numbers.
@@ -48,19 +47,20 @@ namespace lsolesen\pel;
  * @author Martin Geisler <mgeisler@users.sourceforge.net>
  * @package PEL
  */
+namespace lsolesen\pel;
+
 class PelEntrySRational extends PelEntrySLong
 {
 
     /**
      * Make a new entry that can hold a signed rational.
      *
-     * @param
-     *            int the tag which this entry represents. This should
+     * @param int $tag
+     *            the tag which this entry represents. This should
      *            be one of the constants defined in {@link PelTag}, e.g., {@link
      *            PelTag::SHUTTER_SPEED_VALUE}, or any other tag which can have
      *            format {@link PelFormat::SRATIONAL}.
-     *
-     * @param array $value...
+     * @param array $value
      *            the rational(s) that this entry will
      *            represent. The arguments passed must obey the same rules as the
      *            argument to {@link setValue}, namely that each argument should be
@@ -89,12 +89,10 @@ class PelEntrySRational extends PelEntrySLong
      * between the numerator and denominator. Care is taken to display
      * '-1/2' instead of the ugly but mathematically equivalent '1/-2'.
      *
-     * @param
-     *            array the rational which will be formatted.
-     *
-     * @param
-     *            boolean not used.
-     *
+     * @param array $number
+     *            the rational which will be formatted.
+     * @param boolean $brief
+     *            not used.
      * @return string the rational formatted as a string suitable for
      *         display.
      */
@@ -115,10 +113,9 @@ class PelEntrySRational extends PelEntrySLong
      * e.g., rationals will be returned as 'x/y', ASCII strings will be
      * returned as themselves etc.
      *
-     * @param
-     *            boolean some values can be returned in a long or more
+     * @param boolean $brief
+     *            some values can be returned in a long or more
      *            brief form, and this parameter controls that.
-     *
      * @return string the value as text.
      */
     public function getText($brief = false)

@@ -22,25 +22,6 @@
  * Free Software Foundation, Inc., 51 Franklin St, Fifth Floor,
  * Boston, MA 02110-1301 USA
  */
-namespace lsolesen\pel;
-
-/**
- * Classes used to hold ASCII strings.
- *
- * The classes defined here are to be used for Exif entries holding
- * ASCII strings, such as {@link PelTag::MAKE}, {@link
- * PelTag::SOFTWARE}, and {@link PelTag::DATE_TIME}. For
- * entries holding normal textual ASCII strings the class {@link
- * PelEntryAscii} should be used, but for entries holding
- * timestamps the class {@link PelEntryTime} would be more
- * convenient instead. Copyright information is handled by the {@link
- * PelEntryCopyright} class.
- *
- * @author Martin Geisler <mgeisler@users.sourceforge.net>
- * @license http://www.gnu.org/licenses/gpl.html GNU General Public
- *          License (GPL)
- * @package PEL
- */
 
 /**
  * Class for holding copyright information.
@@ -68,6 +49,8 @@ namespace lsolesen\pel;
  * @author Martin Geisler <mgeisler@users.sourceforge.net>
  * @package PEL
  */
+namespace lsolesen\pel;
+
 class PelEntryCopyright extends PelEntryAscii
 {
 
@@ -88,12 +71,11 @@ class PelEntryCopyright extends PelEntryAscii
     /**
      * Make a new entry for holding copyright information.
      *
-     * @param
-     *            string the photographer copyright. Use the empty string
+     * @param string $photographer
+     *            the photographer copyright. Use the empty string
      *            if there is no photographer copyright.
-     *
-     * @param
-     *            string the editor copyright. Use the empty string if
+     * @param string $editor
+     *            the editor copyright. Use the empty string if
      *            there is no editor copyright.
      */
     public function __construct($photographer = '', $editor = '')
@@ -108,7 +90,6 @@ class PelEntryCopyright extends PelEntryAscii
      * @param
      *            string the photographer copyright. Use the empty string
      *            if there is no photographer copyright.
-     *
      * @param
      *            string the editor copyright. Use the empty string if
      *            there is no editor copyright.
@@ -156,12 +137,11 @@ class PelEntryCopyright extends PelEntryAscii
      * with a '-' in between if both copyright fields are present,
      * otherwise only one of them will be returned.
      *
-     * @param
-     *            boolean if false, then the strings '(Photographer)' and
+     * @param boolean $brief
+     *            if false, then the strings '(Photographer)' and
      *            '(Editor)' will be appended to the photographer and editor
      *            copyright fields (if present), otherwise the fields will be
      *            returned as is.
-     *
      * @return string the copyright information in a string.
      */
     public function getText($brief = false)

@@ -22,7 +22,6 @@
  * Free Software Foundation, Inc., 51 Franklin St, Fifth Floor,
  * Boston, MA 02110-1301 USA
  */
-namespace lsolesen\pel;
 
 /**
  * Namespace for functions operating on Exif formats.
@@ -42,8 +41,11 @@ namespace lsolesen\pel;
  * @package
  *
  */
+namespace lsolesen\pel;
+
 class PelCanonMakerNotes extends PelMakerNotes
 {
+
     private $undefinedMakerNotesTags = [
         0x0000,
         0x0003,
@@ -184,9 +186,8 @@ class PelCanonMakerNotes extends PelMakerNotes
         Pel::debug('Loading %d components in maker notes.', $this->components);
         $mkNotesIfd = new PelIfd(PelIfd::CANON_MAKER_NOTES);
 
-        for ($i = 0; $i < $this->components; $i++) {
+        for ($i = 0; $i < $this->components; $i ++) {
             $tag = $this->data->getShort($this->offset + 12 * $i);
-            $type = $this->data->getShort($this->offset + 12 * $i + 2);
             $components = $this->data->getLong($this->offset + 12 * $i + 4);
             $data = $this->data->getLong($this->offset + 12 * $i + 8);
             // check if tag is defined
@@ -204,13 +205,14 @@ class PelCanonMakerNotes extends PelMakerNotes
                     $this->parsePanorama($mkNotesIfd, $this->data, $data, $components);
                     break;
                 case PelTag::CANON_PICTURE_INFO:
+                    // TODO: Does not work at the moment
                     // $this->parsePictureInfo($mkNotesIfd, $this->data, $data, $components);
                     break;
                 case PelTag::CANON_FILE_INFO:
                     $this->parseFileInfo($mkNotesIfd, $this->data, $data, $components);
                     break;
                 case PelTag::CANON_CUSTOM_FUNCTIONS:
-                    //TODO
+                // TODO
                 default:
                     $mkNotesIfd->loadSingleValue($this->data, $this->offset, $i, $tag);
                     break;
@@ -226,14 +228,14 @@ class PelCanonMakerNotes extends PelMakerNotes
         $size = $data->getShort($offset);
         $offset += 2;
         $elemSize = PelFormat::getSize(PelFormat::SSHORT);
-        if ((!$components) || ($size / $components !== $elemSize)) {
+        if ((! $components) || ($size / $components !== $elemSize)) {
             throw new PelMakerNotesMalformedException('Size of Canon Camera Settings does not match the number of entries.');
         }
         $camIfd = new PelIfd($type);
 
-        for ($i=0; $i<$components; $i++) {
+        for ($i = 0; $i < $components; $i ++) {
             // check if tag is defined
-            if (in_array($i+1, $this->undefinedCameraSettingsTags)) {
+            if (in_array($i + 1, $this->undefinedCameraSettingsTags)) {
                 continue;
             }
             $camIfd->loadSingleMakerNotesValue($type, $data, $offset, $size, $i, PelFormat::SSHORT);
@@ -253,9 +255,9 @@ class PelCanonMakerNotes extends PelMakerNotes
         }
         $shotIfd = new PelIfd($type);
 
-        for ($i=0; $i<$components; $i++) {
+        for ($i = 0; $i < $components; $i ++) {
             // check if tag is defined
-            if (in_array($i+1, $this->undefinedShotInfoTags)) {
+            if (in_array($i + 1, $this->undefinedShotInfoTags)) {
                 continue;
             }
             $shotIfd->loadSingleMakerNotesValue($type, $data, $offset, $size, $i, PelFormat::SHORT);
@@ -275,9 +277,9 @@ class PelCanonMakerNotes extends PelMakerNotes
         }
         $panoramaIfd = new PelIfd($type);
 
-        for ($i=0; $i<$components; $i++) {
+        for ($i = 0; $i < $components; $i ++) {
             // check if tag is defined
-            if (in_array($i+1, $this->undefinedPanoramaTags)) {
+            if (in_array($i + 1, $this->undefinedPanoramaTags)) {
                 continue;
             }
             $panoramaIfd->loadSingleMakerNotesValue($type, $data, $offset, $size, $i, PelFormat::SHORT);
@@ -285,6 +287,9 @@ class PelCanonMakerNotes extends PelMakerNotes
         $parent->addSubIfd($panoramaIfd);
     }
 
+    /**
+     * This method does not work properly
+     */
     private function parsePictureInfo($parent, $data, $offset, $components)
     {
         $type = PelIfd::CANON_PICTURE_INFO;
@@ -297,10 +302,10 @@ class PelCanonMakerNotes extends PelMakerNotes
         }
         $picIfd = new PelIfd($type);
 
-        for ($i=0; $i<$components; $i++) {
+        for ($i = 0; $i < $components; $i ++) {
             // check if tag is defined
-            printf("Current Tag: %d\n", ($i+1));
-            if (in_array($i+1, $this->undefinedPicInfoTags)) {
+            printf("Current Tag: %d\n", ($i + 1));
+            if (in_array($i + 1, $this->undefinedPicInfoTags)) {
                 continue;
             }
             $picIfd->loadSingleMakerNotesValue($type, $data, $offset, $size, $i, PelFormat::SHORT);
@@ -315,14 +320,14 @@ class PelCanonMakerNotes extends PelMakerNotes
         $size = $data->getShort($offset);
         $offset += 2;
         $elemSize = PelFormat::getSize(PelFormat::SSHORT);
-        if ($size === $elemSize*($components-1) + PelFormat::getSize(PelFormat::LONG)) {
+        if ($size === $elemSize * ($components - 1) + PelFormat::getSize(PelFormat::LONG)) {
             throw new PelMakerNotesMalformedException('Size of Canon File Info does not match the number of entries.');
         }
         $fileIfd = new PelIfd($type);
 
-        for ($i=0; $i<$components; $i++) {
+        for ($i = 0; $i < $components; $i ++) {
             // check if tag is defined
-            if (in_array($i+1, $this->undefinedFileInfoTags)) {
+            if (in_array($i + 1, $this->undefinedFileInfoTags)) {
                 continue;
             }
             $format = PelFormat::SSHORT;

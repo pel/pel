@@ -24,21 +24,6 @@
  */
 
 /**
- * Classes for dealing with Exif entries.
- *
- * This file defines two exception classes and the abstract class
- * {@link PelEntry} which provides the basic methods that all Exif
- * entries will have. All Exif entries will be represented by
- * descendants of the {@link PelEntry} class --- the class itself is
- * abstract and so it cannot be instantiated.
- *
- * @author Martin Geisler <mgeisler@users.sourceforge.net>
- * @license http://www.gnu.org/licenses/gpl.html GNU General Public
- *          License (GPL)
- * @package PEL
- */
-
-/**
  * Exception indicating that an unexpected format was found.
  *
  * The documentation for each tag in {@link PelTag} will detail any
