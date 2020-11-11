@@ -58,7 +58,6 @@ class PelIllegalFormatException extends PelException
      *
      * @param int $type
      *            the type of IFD.
-     *            
      */
     public function __construct($type)
     {
