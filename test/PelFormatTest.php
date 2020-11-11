@@ -50,6 +50,5 @@ class PelFormatTest extends TestCase
         $this->assertEquals($pelFormat::getSize(PelFormat::UNDEFINED), 1);
         $this->expectException(PelIllegalFormatException::class);
         $pelFormat::getSize(100);
-        
     }
 }
