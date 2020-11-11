@@ -162,7 +162,7 @@ abstract class PelEntryNumber extends PelEntry
     {
         if ($this->dimension == 1 || is_scalar($n)) {
             if ($n < $this->min || $n > $this->max) {
-                Pel::maybeThrow(new PelOverflowException($n, $this->min, $this->max));
+                Pel::maybeThrow(new PelOverflowException((int) $n, $this->min, $this->max));
             }
         } else {
             for ($i = 0; $i < $this->dimension; $i ++) {
@@ -200,9 +200,9 @@ abstract class PelEntryNumber extends PelEntry
      *
      * The method will be called once for each number held by the entry.
      *
-     * @param int $order
+     * @param int $number
      *            the number that should be converted.
-     * @param boolean $number
+     * @param boolean $order
      *            one of {@link PelConvert::LITTLE_ENDIAN} and
      *            {@link PelConvert::BIG_ENDIAN}, specifying the target byte order.
      * @return string bytes representing the number given.
