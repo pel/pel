@@ -34,9 +34,14 @@
  * used in Exif data.
  * - addGpsInfo() adds several Exif tags to your JPEG file.
  */
-require_once '../autoload.php';
-
+use lsolesen\pel\PelEntryAscii;
+use lsolesen\pel\PelEntryByte;
+use lsolesen\pel\PelEntryRational;
+use lsolesen\pel\PelEntryUserComment;
+use lsolesen\pel\PelExif;
+use lsolesen\pel\PelIfd;
 use lsolesen\pel\PelJpeg;
+use lsolesen\pel\PelTag;
 use lsolesen\pel\PelTiff;
 
 /**
@@ -45,7 +50,6 @@ use lsolesen\pel\PelTiff;
  * @param
  *            int the degree in the form 123.456. Must be in the interval
  *            [-180, 180].
- *
  * @return array a triple with the degrees, minutes, and seconds. Each
  *         value is an array itself, suitable for passing to a
  *         PelEntryRational. If the degree is outside the allowed interval,
@@ -95,34 +99,26 @@ function convertDecimalToDMS($degree)
  * Any old Exif data
  * is discarded.
  *
- * @param
- *            string the input filename.
- *
- * @param
- *            string the output filename. An updated copy of the input
+ * @param string $input
+ *            the input filename.
+ * @param string $output
+ *            the output filename. An updated copy of the input
  *            image is saved here.
- *
- * @param
- *            string image description.
- *
- * @param
- *            string user comment.
- *
- * @param
- *            string camera model.
- *
- * @param
- *            float longitude expressed as a fractional number of degrees,
+ * @param string $description
+ *            image description.
+ * @param string $comment
+ *            user comment.
+ * @param string $model
+ *            camera model.
+ * @param float $longitude
+ *            expressed as a fractional number of degrees,
  *            e.g. 12.345�. Negative values denotes degrees west of Greenwich.
- *
- * @param
- *            float latitude expressed as for longitude. Negative values
+ * @param float $latitude
+ *            expressed as for longitude. Negative values
  *            denote degrees south of equator.
- *
- * @param
- *            float the altitude, negative values express an altitude
+ * @param float $date_time
+ *            the altitude, negative values express an altitude
  *            below sea level.
- *
  * @param
  *            string the date and time.
  */
