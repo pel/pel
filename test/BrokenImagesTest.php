@@ -23,8 +23,9 @@
  */
 namespace Pel\Test;
 
-use lsolesen\pel\PelJpeg;
 use PHPUnit\Framework\TestCase;
+use lsolesen\pel\PelIllegalFormatException;
+use lsolesen\pel\PelJpeg;
 
 class BrokenImagesTest extends TestCase
 {
@@ -49,6 +50,7 @@ class BrokenImagesTest extends TestCase
 
     public function testInvalidIfd()
     {
+        $this->expectException(PelIllegalFormatException::class) ;
         $jpeg = new PelJpeg(dirname(__FILE__) . '/broken_images/gh-156.jpg');
         $this->assertInstanceOf('\lsolesen\pel\PelJpeg', $jpeg);
     }

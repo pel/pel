@@ -47,8 +47,6 @@
  */
 namespace lsolesen\pel;
 
-use lsolesen\pel\PelDataWindow;
-
 class PelJpegContent
 {
 

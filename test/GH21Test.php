@@ -49,13 +49,18 @@ class GH21Test extends TestCase
         $input_jpeg = new PelJpeg($this->file);
 
         $original = ImageCreateFromString($input_jpeg->getBytes());
+
+        $this->assertNotFalse($original, 'New image must not be false');
+
         $original_w = ImagesX($original);
         $original_h = ImagesY($original);
 
-        $scaled_w = $original_w * $scale;
-        $scaled_h = $original_h * $scale;
+        $scaled_w = (int) ($original_w * $scale);
+        $scaled_h = (int) ($original_h * $scale);
 
         $scaled = ImageCreateTrueColor($scaled_w, $scaled_h);
+        $this->assertNotFalse($scaled, 'Resized image must not be false');
+
         ImageCopyResampled($scaled, $original, 0, 0, 0, 0, $scaled_w, $scaled_h, $original_w, $original_h);
 
         $output_jpeg = new PelJpeg($scaled);

@@ -204,9 +204,8 @@ class PelFormat
     {
         if (array_key_exists($type, self::$formatName)) {
             return self::$formatName[$type];
-        } else {
-            return Pel::fmt('Unknown format: 0x%X', $type);
         }
+        throw new PelIllegalFormatException($type);
     }
 
     /**
@@ -221,8 +220,7 @@ class PelFormat
     {
         if (array_key_exists($type, self::$formatLength)) {
             return self::$formatLength[$type];
-        } else {
-            return Pel::fmt('Unknown format: 0x%X', $type);
         }
+        throw new PelIllegalFormatException($type);
     }
 }

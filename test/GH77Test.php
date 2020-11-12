@@ -24,12 +24,9 @@
  */
 namespace Pel\Test;
 
-use lsolesen\pel\PelDataWindow;
-use lsolesen\pel\PelJpeg;
-use lsolesen\pel\PelTiff;
-use lsolesen\pel\Pel;
-use lsolesen\pel\PelTag;
 use PHPUnit\Framework\TestCase;
+use lsolesen\pel\PelJpeg;
+use lsolesen\pel\PelTag;
 
 class GH77Test extends TestCase
 {

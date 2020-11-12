@@ -26,9 +26,9 @@
 namespace Pel\Test;
 
 use PHPUnit\Framework\TestCase;
-use lsolesen\pel\PelJpegMarker;
 use lsolesen\pel\Pel;
 use lsolesen\pel\PelJpegInvalidMarkerException;
+use lsolesen\pel\PelJpegMarker;
 
 class PelJpegMarkerTest extends TestCase
 {

@@ -24,6 +24,7 @@
  */
 namespace Pel\Test;
 
+use Exception;
 use lsolesen\pel\PelJpeg;
 use lsolesen\pel\PelExif;
 use lsolesen\pel\PelTiff;
@@ -40,7 +41,6 @@ class Bug3017880Test extends TestCase
         $filename = dirname(__FILE__) . '/images/bug3017880.jpg';
         try {
             $exif = null;
-            $success = 1; // return true by default, as this function may not resave the file, but it's still success
             $resave_file = 0;
             $jpeg = new PelJpeg($filename);
             $this->assertInstanceOf('\lsolesen\pel\PelJpeg', $jpeg);

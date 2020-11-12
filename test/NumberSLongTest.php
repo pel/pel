@@ -29,10 +29,6 @@ use lsolesen\pel\PelEntrySLong;
 class NumberSLongTest extends NumberTestCase
 {
 
-    /**
-     *
-     * {@inheritdoc}
-     */
     public function setUp(): void
     {
         parent::setUp();

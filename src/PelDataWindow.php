@@ -49,7 +49,7 @@ class PelDataWindow
      * PelConvert::LITTLE_ENDIAN} and {@link PelConvert::BIG_ENDIAN}.
      *
      * @var boolean
-     * @see PelDataWindow::setByteOrder, PelDataWindow::getByteOrder
+     * @see PelDataWindow::setByteOrder, getByteOrder
      */
     private $order;
 

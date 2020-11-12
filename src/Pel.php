@@ -33,7 +33,6 @@
  * true or false to {@link Pel::$debug}.
  *
  * @author Martin Geisler <mgeisler@users.sourceforge.net>
- * @package PEL
  */
 namespace lsolesen\pel;
 

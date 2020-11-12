@@ -24,9 +24,9 @@
  */
 namespace Pel\Test;
 
+use PHPUnit\Framework\TestCase;
 use lsolesen\pel\Pel;
 use lsolesen\pel\PelOverflowException;
-use PHPUnit\Framework\TestCase;
 
 abstract class NumberTestCase extends TestCase
 {

@@ -25,8 +25,8 @@
  */
 namespace Pel\Test;
 
-use lsolesen\pel\PelIfd;
 use PHPUnit\Framework\TestCase;
+use lsolesen\pel\PelIfd;
 use lsolesen\pel\PelTag;
 
 class PelTagTest extends TestCase

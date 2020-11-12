@@ -138,8 +138,8 @@ abstract class PelEntry
     /**
      * Update the IFD type.
      *
-     * @param
-     *            int must be one of the constants defined in {@link
+     * @param int $type
+     *            must be one of the constants defined in {@link
      *            PelIfd}: {@link PelIfd::IFD0} for the main image IFD, {@link
      *            PelIfd::IFD1} for the thumbnail image IFD, {@link PelIfd::EXIF}
      *            for the Exif sub-IFD, {@link PelIfd::GPS} for the GPS sub-IFD, or
@@ -174,8 +174,8 @@ abstract class PelEntry
     /**
      * Turn this entry into bytes.
      *
-     * @param
-     *            PelByteOrder the desired byte order, which must be either
+     * @param boolean $o
+     *            the desired byte order, which must be either
      *            {@link Convert::LITTLE_ENDIAN} or {@link Convert::BIG_ENDIAN}.
      * @return string bytes representing this entry.
      */
@@ -191,8 +191,8 @@ abstract class PelEntry
      * e.g., rationals will be returned as 'x/y', ASCII strings will be
      * returned as themselves etc.
      *
-     * @param
-     *            boolean some values can be returned in a long or more
+     * @param boolean $brief
+     *            some values can be returned in a long or more
      *            brief form, and this parameter controls that.
      * @return string the value as text.
      */
@@ -214,8 +214,8 @@ abstract class PelEntry
      *
      * The value should be in the same format as for the constructor.
      *
-     * @param
-     *            mixed the new value.
+     * @param mixed $value
+     *            the new value.
      * @abstract
      *
      */

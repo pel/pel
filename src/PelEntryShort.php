@@ -122,8 +122,8 @@ class PelEntryShort extends PelEntryNumber
      * PelTag::METERING_MODE} tag, 'Center-Weighted Average' is
      * returned.
      *
-     * @param
-     *            boolean some values can be returned in a long or more
+     * @param boolean $brief
+     *            some values can be returned in a long or more
      *            brief form, and this parameter controls that.
      * @return string the value as text.
      */
@@ -495,9 +495,7 @@ class PelEntryShort extends PelEntryNumber
                 if ($this->value[0] == 2 && $this->value[1] == 2) {
                     return 'YCbCr4:2:0';
                 }
-
                 return $this->value[0] . ', ' . $this->value[1];
-                break;
             case PelTag::PHOTOMETRIC_INTERPRETATION:
                 // CC (e->components, 1, v);
                 switch ($this->value[0]) {

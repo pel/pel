@@ -22,6 +22,7 @@
  * Free Software Foundation, Inc., 51 Franklin St, Fifth Floor,
  * Boston, MA 02110-1301 USA
  */
+namespace lsolesen\pel;
 
 /**
  * Routines for converting back and forth between bytes and integers.
@@ -50,8 +51,6 @@
  * @author Martin Geisler <mgeisler@users.sourceforge.net>
  * @package PEL
  */
-namespace lsolesen\pel;
-
 class PelConvert
 {
 
@@ -143,9 +142,9 @@ class PelConvert
          */
         $hex = str_pad(base_convert($value, 10, 16), 8, '0', STR_PAD_LEFT);
         if ($endian == self::LITTLE_ENDIAN) {
-            return (chr(hexdec($hex[6] . $hex[7])) . chr(hexdec($hex[4] . $hex[5])) . chr(hexdec($hex[2] . $hex[3])) . chr(hexdec($hex[0] . $hex[1])));
+            return chr((int) hexdec($hex[6] . $hex[7])) . chr((int) hexdec($hex[4] . $hex[5])) . chr((int) hexdec($hex[2] . $hex[3])) . chr((int) hexdec($hex[0] . $hex[1]));
         } else {
-            return (chr(hexdec($hex[0] . $hex[1])) . chr(hexdec($hex[2] . $hex[3])) . chr(hexdec($hex[4] . $hex[5])) . chr(hexdec($hex[6] . $hex[7])));
+            return chr((int) hexdec($hex[0] . $hex[1])) . chr((int) hexdec($hex[2] . $hex[3])) . chr((int) hexdec($hex[4] . $hex[5])) . chr((int) hexdec($hex[6] . $hex[7]));
         }
     }
 

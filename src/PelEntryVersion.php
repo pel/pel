@@ -24,21 +24,6 @@
  */
 
 /**
- * Classes used to hold data for Exif tags of format undefined.
- *
- * This file contains the base class {@link PelEntryUndefined} and
- * the subclasses {@link PelEntryUserComment} which should be used
- * to manage the {@link PelTag::USER_COMMENT} tag, and {@link
- * PelEntryVersion} which is used to manage entries with version
- * information.
- *
- * @author Martin Geisler <mgeisler@users.sourceforge.net>
- * @license http://www.gnu.org/licenses/gpl.html GNU General Public
- *          License (GPL)
- * @package PEL
- */
-
-/**
  * Class to hold version information.
  *
  * There are three Exif entries that hold version information: the

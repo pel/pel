@@ -37,11 +37,9 @@ phpunit
 
 ## Failing Tests
 
-Should one or more of the tests fail, then first ensure that
-SimpleTest is placed correctly so that run-tests.php can find it. If
-everything seems correct, then please report the error to the PEL
-developers:
+Should one or more of the tests fail, please report the error to 
+the PEL developers:
 
-  https://github.com/lsolesen/pel/issues
+  https://github.com/pel/pel/issues
 
 Remember to include all the output in your bug report.

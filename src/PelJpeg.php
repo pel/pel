@@ -397,10 +397,7 @@ class PelJpeg
     public function getICC()
     {
         $icc = $this->getSection(PelJpegMarker::APP2);
-        if ($icc instanceof PelJpegContent) {
-            return $icc;
-        }
-        return null;
+        return $icc;
     }
 
     /**

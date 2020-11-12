@@ -41,8 +41,6 @@
  */
 namespace lsolesen\pel;
 
-use lsolesen\pel\PelException;
-
 class PelInvalidDataException extends PelException
 {
 }

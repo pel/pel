@@ -65,8 +65,8 @@ class PelEntryRational extends PelEntryLong
     /**
      * Make a new entry that can hold an unsigned rational.
      *
-     * @param
-     *            int the tag which this entry represents. This should
+     * @param int $tag
+     *            the tag which this entry represents. This should
      *            be one of the constants defined in {@link PelTag}, e.g., {@link
      *            PelTag::X_RESOLUTION}, or any other tag which can have format
      *            {@link PelFormat::RATIONAL}.
@@ -98,10 +98,10 @@ class PelEntryRational extends PelEntryLong
      * The rational will be returned as a string with a slash '/'
      * between the numerator and denominator.
      *
-     * @param
-     *            array the rational which will be formatted.
-     * @param
-     *            boolean not used.
+     * @param array $number
+     *            the rational which will be formatted.
+     * @param boolean $brief
+     *            not used.
      * @return string the rational formatted as a string suitable for
      *         display.
      */
@@ -117,8 +117,8 @@ class PelEntryRational extends PelEntryLong
      * e.g., rationals will be returned as 'x/y', ASCII strings will be
      * returned as themselves etc.
      *
-     * @param
-     *            boolean some values can be returned in a long or more
+     * @param boolean $brief
+     *            some values can be returned in a long or more
      *            brief form, and this parameter controls that.
      * @return string the value as text.
      */
