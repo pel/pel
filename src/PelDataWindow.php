@@ -49,7 +49,7 @@ class PelDataWindow
      * PelConvert::LITTLE_ENDIAN} and {@link PelConvert::BIG_ENDIAN}.
      *
      * @var boolean
-     * @see setByteOrder, getByteOrder
+     * @see PelDataWindow::setByteOrder, PelDataWindow::getByteOrder
      */
     private $order;
 
@@ -61,7 +61,7 @@ class PelDataWindow
      * byte.
      *
      * @var int
-     * @see setWindowStart
+     * @see PelDataWindow::setWindowStart
      */
     private $start = 0;
 
@@ -73,7 +73,7 @@ class PelDataWindow
      * variable.
      *
      * @var int
-     * @see setWindowSize
+     * @see PelDataWindow::setWindowSize
      */
     private $size = 0;
 
@@ -237,12 +237,12 @@ class PelDataWindow
      * function in PHP with the exception that it works within the
      * window of accessible bytes and does strict range checking.
      *
-     * @param integer|NULL $start
+     * @param integer|null $start
      *            the offset to the first byte returned. If a negative
      *            number is given, then the counting will be from the end of the
      *            window. Invalid offsets will result in a {@link
      *            PelDataWindowOffsetException} being thrown.
-     * @param integer|NUL $size
+     * @param integer|null $size
      *            the size of the sub-window. If a negative number is
      *            given, then that many bytes will be omitted from the result.
      * @return string a subset of the bytes in the window. This will
