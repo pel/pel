@@ -22,7 +22,6 @@
  * Free Software Foundation, Inc., 51 Franklin St, Fifth Floor,
  * Boston, MA 02110-1301 USA
  */
-namespace lsolesen\pel;
 
 /**
  * Classes for dealing with Exif entries.
@@ -49,6 +48,8 @@ namespace lsolesen\pel;
  * @package PEL
  * @subpackage Exception
  */
+namespace lsolesen\pel;
+
 class PelUnexpectedFormatException extends PelEntryException
 {
 
@@ -57,24 +58,16 @@ class PelUnexpectedFormatException extends PelEntryException
      *
      * @param int $type
      *            the type of IFD.
-     *
      * @param int $tag
      *            the tag for which the violation was found as defined in {@link PelTag}
-     *
      * @param int $found
      *            the format found as defined in {@link PelFormat}
-     *
      * @param int $expected
      *            the expected as defined in {@link PelFormat}
      */
     public function __construct($type, $tag, $found, $expected)
     {
-        parent::__construct(
-            'Unexpected format found for %s tag: PelFormat::%s. Expected PelFormat::%s instead.',
-            PelTag::getName($type, $tag),
-            strtoupper(PelFormat::getName($found)),
-            strtoupper(PelFormat::getName($expected))
-        );
+        parent::__construct('Unexpected format found for %s tag: PelFormat::%s. Expected PelFormat::%s instead.', PelTag::getName($type, $tag), strtoupper(PelFormat::getName($found)), strtoupper(PelFormat::getName($expected)));
         $this->tag = $tag;
         $this->type = $type;
     }

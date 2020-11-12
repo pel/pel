@@ -22,7 +22,6 @@
  * Free Software Foundation, Inc., 51 Franklin St, Fifth Floor,
  * Boston, MA 02110-1301 USA
  */
-namespace lsolesen\pel;
 
 /**
  * Standard PEL printf() capable exception.
@@ -34,9 +33,10 @@ namespace lsolesen\pel;
  * @license http://www.gnu.org/licenses/gpl.html GNU General Public
  *          License (GPL)
  * @package PEL
- *
  * @subpackage PelException
  */
+namespace lsolesen\pel;
+
 class PelException extends \Exception
 {
 
@@ -48,7 +48,6 @@ class PelException extends \Exception
      *            will be used as a format string for vprintf(). The remaining
      *            arguments will be available for the format string as usual with
      *            vprintf().
-     *
      * @param mixed ...$args
      *            any number of arguments to be used with
      *            the format string.

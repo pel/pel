@@ -22,7 +22,6 @@
  * Free Software Foundation, Inc., 51 Franklin St, Fifth Floor,
  * Boston, MA 02110-1301 USA
  */
-namespace lsolesen\pel;
 
 /**
  * Classes for dealing with Exif entries.
@@ -46,6 +45,8 @@ namespace lsolesen\pel;
  * @package PEL
  * @subpackage Exception
  */
+namespace lsolesen\pel;
+
 class PelEntryException extends PelException
 {
 

@@ -22,7 +22,6 @@
  * Free Software Foundation, Inc., 51 Franklin St, Fifth Floor,
  * Boston, MA 02110-1301 USA
  */
-namespace lsolesen\pel;
 
 /**
  * Classes used to hold data for Exif tags of format undefined.
@@ -65,6 +64,8 @@ namespace lsolesen\pel;
  * @author Martin Geisler <mgeisler@users.sourceforge.net>
  * @package PEL
  */
+namespace lsolesen\pel;
+
 class PelEntryVersion extends PelEntry
 {
 
@@ -82,7 +83,6 @@ class PelEntryVersion extends PelEntry
      *            This should be one of {@link
      *            PelTag::EXIF_VERSION}, {@link PelTag::FLASH_PIX_VERSION},
      *            or {@link PelTag::INTEROPERABILITY_VERSION}.
-     *
      * @param float $version
      *            The size of the entries leave room for
      *            exactly four digits: two digits on either side of the decimal
@@ -133,7 +133,6 @@ class PelEntryVersion extends PelEntry
      *            output omits the word 'Version' so the result is just 'Exif x.y'
      *            instead of 'Exif Version x.y' if the entry holds information
      *            about the Exif version --- the output for FlashPix is similar.
-     *
      * @return string the version number with the type of the tag,
      *         either 'Exif' or 'FlashPix'.
      */

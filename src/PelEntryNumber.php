@@ -22,7 +22,6 @@
  * Free Software Foundation, Inc., 51 Franklin St, Fifth Floor,
  * Boston, MA 02110-1301 USA
  */
-namespace lsolesen\pel;
 
 /**
  * Abstract class for numbers.
@@ -41,6 +40,8 @@ namespace lsolesen\pel;
  * @author Martin Geisler <mgeisler@users.sourceforge.net>
  * @package PEL
  */
+namespace lsolesen\pel;
+
 abstract class PelEntryNumber extends PelEntry
 {
 
@@ -98,7 +99,6 @@ abstract class PelEntryNumber extends PelEntry
      *            more numbers, that is, either integers or arrays. The input will
      *            be checked to ensure that the numbers are within the valid range.
      *            If not, then a {@link PelOverflowException} will be thrown.
-     *
      * @see getValue
      */
     public function setValue($value)
@@ -118,7 +118,6 @@ abstract class PelEntryNumber extends PelEntry
      * @param
      *            array the new values. The array must contain the new
      *            numbers.
-     *
      * @see getValue
      */
     public function setValueArray($value)
@@ -155,7 +154,6 @@ abstract class PelEntryNumber extends PelEntry
      *
      * @param
      *            int|array the number in question.
-     *
      * @return void nothing, but will throw a {@link
      *         PelOverflowException} if the number is found to be outside the
      *         legal range and {@link Pel::$strict} is true.
@@ -168,7 +166,7 @@ abstract class PelEntryNumber extends PelEntry
             }
         } else {
             for ($i = 0; $i < $this->dimension; $i ++) {
-                if (!isset($n[$i])) {
+                if (! isset($n[$i])) {
                     continue;
                 }
                 if ($n[$i] < $this->min || $n[$i] > $this->max) {
@@ -204,11 +202,9 @@ abstract class PelEntryNumber extends PelEntry
      *
      * @param
      *            int the number that should be converted.
-     *
      * @param
      *            PelByteOrder one of {@link PelConvert::LITTLE_ENDIAN} and
      *            {@link PelConvert::BIG_ENDIAN}, specifying the target byte order.
-     *
      * @return string bytes representing the number given.
      */
     abstract public function numberToBytes($number, $order);
@@ -220,7 +216,6 @@ abstract class PelEntryNumber extends PelEntry
      *            PelByteOrder the desired byte order, which must be either
      *            {@link PelConvert::LITTLE_ENDIAN} or {@link
      *            PelConvert::BIG_ENDIAN}.
-     *
      * @return string bytes representing this entry.
      */
     public function getBytes($o)
@@ -248,11 +243,9 @@ abstract class PelEntryNumber extends PelEntry
      *
      * @param
      *            int the number which will be formatted.
-     *
      * @param
      *            boolean it could be that there is both a verbose and a
      *            brief formatting available, and this argument controls that.
-     *
      * @return string the number formatted as a string suitable for
      *         display.
      */
@@ -268,7 +261,6 @@ abstract class PelEntryNumber extends PelEntry
      *            boolean use brief output? The numbers will be separated
      *            by a single space if brief output is requested, otherwise a space
      *            and a comma will be used.
-     *
      * @return string the numbers(s) held by this entry.
      */
     public function getText($brief = false)

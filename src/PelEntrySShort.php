@@ -22,7 +22,6 @@
  * Free Software Foundation, Inc., 51 Franklin St, Fifth Floor,
  * Boston, MA 02110-1301 USA
  */
-namespace lsolesen\pel;
 
 /**
  * Classes used to hold shorts, both signed and unsigned.
@@ -43,6 +42,8 @@ namespace lsolesen\pel;
  * @author Martin Geisler <mgeisler@users.sourceforge.net>
  * @package PEL
  */
+namespace lsolesen\pel;
+
 class PelEntrySShort extends PelEntryNumber
 {
 
@@ -57,7 +58,6 @@ class PelEntrySShort extends PelEntryNumber
      *            the tag which this entry represents. This
      *            should be one of the constants defined in {@link PelTag}
      *            which has format {@link PelFormat::SSHORT}.
-     *
      * @param int $value...
      *            the signed short(s) that this entry will
      *            represent. The argument passed must obey the same rules as the
@@ -83,11 +83,9 @@ class PelEntrySShort extends PelEntryNumber
      *
      * @param int $number
      *            the number that should be converted.
-     *
      * @param boolean $order
      *            one of {@link PelConvert::LITTLE_ENDIAN} and
      *            {@link PelConvert::BIG_ENDIAN}, specifying the target byte order.
-     *
      * @return string bytes representing the number given.
      */
     public function numberToBytes($number, $order)
@@ -106,7 +104,6 @@ class PelEntrySShort extends PelEntryNumber
      * @param
      *            boolean some values can be returned in a long or more
      *            brief form, and this parameter controls that.
-     *
      * @return string the value as text.
      */
     public function getText($brief = false)

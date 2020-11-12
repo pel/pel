@@ -22,17 +22,18 @@
  * Free Software Foundation, Inc., 51 Franklin St, Fifth Floor,
  * Boston, MA 02110-1301 USA
  */
-
 namespace Pel\Test;
 
-use \lsolesen\pel\PelEntryByte;
+use lsolesen\pel\PelEntryByte;
 
 class NumberByteTest extends NumberTestCase
 {
+
     /**
+     *
      * {@inheritdoc}
      */
-    public function setUp()
+    public function setUp(): void
     {
         parent::setUp();
         $this->num = new PelEntryByte(42);

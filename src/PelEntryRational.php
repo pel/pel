@@ -22,7 +22,6 @@
  * Free Software Foundation, Inc., 51 Franklin St, Fifth Floor,
  * Boston, MA 02110-1301 USA
  */
-namespace lsolesen\pel;
 
 /**
  * Classes used to manipulate rational numbers.
@@ -58,6 +57,8 @@ namespace lsolesen\pel;
  * @author Martin Geisler <mgeisler@users.sourceforge.net>
  * @package PEL
  */
+namespace lsolesen\pel;
+
 class PelEntryRational extends PelEntryLong
 {
 
@@ -69,7 +70,6 @@ class PelEntryRational extends PelEntryLong
      *            be one of the constants defined in {@link PelTag}, e.g., {@link
      *            PelTag::X_RESOLUTION}, or any other tag which can have format
      *            {@link PelFormat::RATIONAL}.
-     *
      * @param array $value...
      *            the rational(s) that this entry will
      *            represent. The arguments passed must obey the same rules as the
@@ -100,10 +100,8 @@ class PelEntryRational extends PelEntryLong
      *
      * @param
      *            array the rational which will be formatted.
-     *
      * @param
      *            boolean not used.
-     *
      * @return string the rational formatted as a string suitable for
      *         display.
      */
@@ -122,7 +120,6 @@ class PelEntryRational extends PelEntryLong
      * @param
      *            boolean some values can be returned in a long or more
      *            brief form, and this parameter controls that.
-     *
      * @return string the value as text.
      */
     public function getText($brief = false)
