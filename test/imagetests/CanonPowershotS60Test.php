@@ -21,7 +21,6 @@
  * Free Software Foundation, Inc., 51 Franklin St, Fifth Floor,
  * Boston, MA 02110-1301 USA
  */
-
 namespace Pel\Test\imagetests;
 
 use lsolesen\pel\Pel;
@@ -30,6 +29,7 @@ use PHPUnit\Framework\TestCase;
 
 class CanonPowershotS60Test extends TestCase
 {
+
     public function testRead()
     {
         Pel::clearExceptions();
@@ -378,7 +378,7 @@ class CanonPowershotS60Test extends TestCase
         $this->assertNull($ifd2);
         /* End of IFD $ifd1. */
 
-        /* Start of IDF $ifd0_mn  */
+        /* Start of IDF $ifd0_mn */
         $ifd0_mn = $ifd0_0->getSubIfd(5); // IFD MakerNotes
         $this->assertInstanceOf('lsolesen\pel\PelIfd', $ifd0_mn);
 

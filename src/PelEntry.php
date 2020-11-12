@@ -22,7 +22,6 @@
  * Free Software Foundation, Inc., 51 Franklin St, Fifth Floor,
  * Boston, MA 02110-1301 USA
  */
-namespace lsolesen\pel;
 
 /**
  * Classes for dealing with Exif entries.
@@ -62,6 +61,8 @@ namespace lsolesen\pel;
  * @author Martin Geisler <mgeisler@users.sourceforge.net>
  * @package PEL
  */
+namespace lsolesen\pel;
+
 abstract class PelEntry
 {
 
@@ -176,7 +177,6 @@ abstract class PelEntry
      * @param
      *            PelByteOrder the desired byte order, which must be either
      *            {@link Convert::LITTLE_ENDIAN} or {@link Convert::BIG_ENDIAN}.
-     *
      * @return string bytes representing this entry.
      */
     public function getBytes($o)
@@ -194,7 +194,6 @@ abstract class PelEntry
      * @param
      *            boolean some values can be returned in a long or more
      *            brief form, and this parameter controls that.
-     *
      * @return string the value as text.
      */
     abstract public function getText($brief = false);
@@ -217,7 +216,6 @@ abstract class PelEntry
      *
      * @param
      *            mixed the new value.
-     *
      * @abstract
      *
      */

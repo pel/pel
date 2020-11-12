@@ -45,7 +45,6 @@ use lsolesen\pel\PelTiff;
  * @param
  *            int the degree in the form 123.456. Must be in the interval
  *            [-180, 180].
- *
  * @return array a triple with the degrees, minutes, and seconds. Each
  *         value is an array itself, suitable for passing to a
  *         PelEntryRational. If the degree is outside the allowed interval,
@@ -97,32 +96,24 @@ function convertDecimalToDMS($degree)
  *
  * @param
  *            string the input filename.
- *
  * @param
  *            string the output filename. An updated copy of the input
  *            image is saved here.
- *
  * @param
  *            string image description.
- *
  * @param
  *            string user comment.
- *
  * @param
  *            string camera model.
- *
  * @param
  *            float longitude expressed as a fractional number of degrees,
  *            e.g. 12.345�. Negative values denotes degrees west of Greenwich.
- *
  * @param
  *            float latitude expressed as for longitude. Negative values
  *            denote degrees south of equator.
- *
  * @param
  *            float the altitude, negative values express an altitude
  *            below sea level.
- *
  * @param
  *            string the date and time.
  */

@@ -22,7 +22,6 @@
  * Free Software Foundation, Inc., 51 Franklin St, Fifth Floor,
  * Boston, MA 02110-1301 USA
  */
-namespace lsolesen\pel;
 
 /**
  * Classes used to hold shorts, both signed and unsigned.
@@ -54,6 +53,8 @@ namespace lsolesen\pel;
  * @author Martin Geisler <mgeisler@users.sourceforge.net>
  * @package PEL
  */
+namespace lsolesen\pel;
+
 class PelEntryShort extends PelEntryNumber
 {
 
@@ -78,7 +79,6 @@ class PelEntryShort extends PelEntryNumber
      *            one of the constants defined in {@link PelTag}, e.g., {@link
      *            PelTag::IMAGE_WIDTH}, {@link PelTag::ISO_SPEED_RATINGS},
      *            or any other tag with format {@link PelFormat::SHORT}.
-     *
      * @param int $value...
      *            the short(s) that this entry will
      *            represent. The argument passed must obey the same rules as the
@@ -104,11 +104,9 @@ class PelEntryShort extends PelEntryNumber
      *
      * @param int $number
      *            the number that should be converted.
-     *
      * @param boolean $order
      *            one of {@link PelConvert::LITTLE_ENDIAN} and
      *            {@link PelConvert::BIG_ENDIAN}, specifying the target byte order.
-     *
      * @return string bytes representing the number given.
      */
     public function numberToBytes($number, $order)
@@ -127,7 +125,6 @@ class PelEntryShort extends PelEntryNumber
      * @param
      *            boolean some values can be returned in a long or more
      *            brief form, and this parameter controls that.
-     *
      * @return string the value as text.
      */
     public function getText($brief = false)
@@ -226,7 +223,7 @@ class PelEntryShort extends PelEntryNumber
                 case PelTag::CANON_SI_AUTO_EXPOSURE_BRACKETING:
                     // CC (e->components, 1, v);
                     switch ($this->value[0]) {
-                        case -1:
+                        case - 1:
                             return Pel::tra('On');
                         case 0:
                             return Pel::tra('Off');

@@ -21,7 +21,6 @@
  * Free Software Foundation, Inc., 51 Franklin St, Fifth Floor,
  * Boston, MA 02110-1301 USA
  */
-
 namespace Pel\Test;
 
 use lsolesen\pel\PelDataWindow;
@@ -32,16 +31,17 @@ use PHPUnit\Framework\TestCase;
 
 class GH16Test extends TestCase
 {
+
     protected $file;
 
-    public function setUp()
+    public function setUp(): void
     {
         $this->file = dirname(__FILE__) . '/images/gh-16-tmp.jpg';
         $file = dirname(__FILE__) . '/images/gh-16.jpg';
         copy($file, $this->file);
     }
 
-    public function tearDown()
+    public function tearDown(): void
     {
         unlink($this->file);
     }

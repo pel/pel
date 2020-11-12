@@ -22,7 +22,6 @@
  * Free Software Foundation, Inc., 51 Franklin St, Fifth Floor,
  * Boston, MA 02110-1301 USA
  */
-namespace lsolesen\pel;
 
 /**
  * Classes for dealing with Exif entries.
@@ -38,7 +37,7 @@ namespace lsolesen\pel;
  *          License (GPL)
  * @package PEL
  */
-use lsolesen\pel\PelTag;
+namespace lsolesen\pel;
 
 /**
  * Exception indicating that an unexpected number of components was
@@ -62,13 +61,10 @@ class PelWrongComponentCountException extends \lsolesen\pel\PelEntryException
      *
      * @param int $type
      *            the type of IFD.
-     *
      * @param int $tag
      *            the tag for which the violation was found.
-     *
      * @param int $found
      *            the number of components found.
-     *
      * @param int $expected
      *            the expected number of components.
      */

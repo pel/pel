@@ -22,7 +22,6 @@
  * Free Software Foundation, Inc., 51 Franklin St, Fifth Floor,
  * Boston, MA 02110-1301 USA
  */
-namespace lsolesen\pel;
 
 /**
  * Classes used to hold ASCII strings.
@@ -55,6 +54,8 @@ namespace lsolesen\pel;
  * @author Martin Geisler <mgeisler@users.sourceforge.net>
  * @package PEL
  */
+namespace lsolesen\pel;
+
 class PelEntryAscii extends PelEntry
 {
 
@@ -77,7 +78,6 @@ class PelEntryAscii extends PelEntry
      *            one of the constants defined in {@link PelTag}, e.g., {@link
      *            PelTag::IMAGE_DESCRIPTION}, {@link PelTag::MODEL}, or any other
      *            tag with format {@link PelFormat::ASCII}.
-     *
      * @param string $str
      *            the string that this entry will represent. The
      *            string must obey the same rules as the string argument to {@link
@@ -101,7 +101,6 @@ class PelEntryAscii extends PelEntry
      *            string the new value of the entry. This should be given
      *            without any trailing NULL character. The string must be plain
      *            7-bit ASCII, the string should contain no high bytes.
-     *
      * @todo Implement check for high bytes?
      */
     public function setValue($str)
@@ -130,7 +129,6 @@ class PelEntryAscii extends PelEntry
      *
      * @param
      *            boolean not used with ASCII entries.
-     *
      * @return string the string held, without any final NULL character.
      *         The string will be the same as the one given to {@link setValue}
      *         or to the {@link __construct constructor}.

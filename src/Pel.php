@@ -22,7 +22,6 @@
  * Free Software Foundation, Inc., 51 Franklin St, Fifth Floor,
  * Boston, MA 02110-1301 USA
  */
-namespace lsolesen\pel;
 
 /**
  * Class with miscellaneous static methods.
@@ -36,6 +35,8 @@ namespace lsolesen\pel;
  * @author Martin Geisler <mgeisler@users.sourceforge.net>
  * @package PEL
  */
+namespace lsolesen\pel;
+
 class Pel
 {
 
@@ -252,7 +253,6 @@ class Pel
      *
      * @param string $format
      *            the format string.
-     *
      * @param mixed ...$args
      *            any number of arguments can be given. The
      *            arguments will be available for the format string as usual with
@@ -277,7 +277,6 @@ class Pel
      *
      * @param string $format
      *            the format string.
-     *
      * @param mixed ...$args
      *            any number of arguments can be given. The
      *            arguments will be available for the format string as usual with
@@ -302,7 +301,6 @@ class Pel
      *
      * @param string $str
      *            the string that should be translated.
-     *
      * @return string the translated string, or the original string if
      *         no translation could be found.
      */
@@ -324,12 +322,10 @@ class Pel
      * @param string $format
      *            the format string. This will be translated
      *            before being used as a format string.
-     *
      * @param mixed ...$args
      *            any number of arguments can be given. The
      *            arguments will be available for the format string as usual with
      *            sprintf().
-     *
      * @return string the translated string, or the original string if
      *         no translation could be found.
      */

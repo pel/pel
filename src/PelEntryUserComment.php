@@ -22,7 +22,6 @@
  * Free Software Foundation, Inc., 51 Franklin St, Fifth Floor,
  * Boston, MA 02110-1301 USA
  */
-namespace lsolesen\pel;
 
 /**
  * Classes used to hold data for Exif tags of format undefined.
@@ -66,6 +65,8 @@ namespace lsolesen\pel;
  * @author Martin Geisler <mgeisler@users.sourceforge.net>
  * @package PEL
  */
+namespace lsolesen\pel;
+
 class PelEntryUserComment extends PelEntryUndefined
 {
 
@@ -90,7 +91,6 @@ class PelEntryUserComment extends PelEntryUndefined
      *
      * @param
      *            string the new user comment.
-     *
      * @param
      *            string the encoding of the comment. This should be either
      *            'ASCII', 'JIS', 'Unicode', or the empty string specifying an
@@ -107,7 +107,6 @@ class PelEntryUserComment extends PelEntryUndefined
      *
      * @param
      *            string the new user comment.
-     *
      * @param
      *            string the encoding of the comment. This should be either
      *            'ASCII', 'JIS', 'Unicode', or the empty string specifying an

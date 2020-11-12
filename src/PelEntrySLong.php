@@ -22,7 +22,6 @@
  * Free Software Foundation, Inc., 51 Franklin St, Fifth Floor,
  * Boston, MA 02110-1301 USA
  */
-namespace lsolesen\pel;
 
 /**
  * Classes used to hold longs, both signed and unsigned.
@@ -43,6 +42,8 @@ namespace lsolesen\pel;
  * @author Martin Geisler <mgeisler@users.sourceforge.net>
  * @package PEL
  */
+namespace lsolesen\pel;
+
 class PelEntrySLong extends PelEntryNumber
 {
 
@@ -59,7 +60,6 @@ class PelEntrySLong extends PelEntryNumber
      *            int the tag which this entry represents. This
      *            should be one of the constants defined in {@link PelTag}
      *            which have format {@link PelFormat::SLONG}.
-     *
      * @param int $value...
      *            the long(s) that this entry will represent
      *            or an array of longs. The argument passed must obey the same
@@ -85,11 +85,9 @@ class PelEntrySLong extends PelEntryNumber
      *
      * @param
      *            int the number that should be converted.
-     *
      * @param
      *            PelByteOrder one of {@link PelConvert::LITTLE_ENDIAN} and
      *            {@link PelConvert::BIG_ENDIAN}, specifying the target byte order.
-     *
      * @return string bytes representing the number given.
      */
     public function numberToBytes($number, $order)

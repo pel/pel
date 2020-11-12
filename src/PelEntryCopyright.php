@@ -22,7 +22,6 @@
  * Free Software Foundation, Inc., 51 Franklin St, Fifth Floor,
  * Boston, MA 02110-1301 USA
  */
-namespace lsolesen\pel;
 
 /**
  * Classes used to hold ASCII strings.
@@ -68,6 +67,8 @@ namespace lsolesen\pel;
  * @author Martin Geisler <mgeisler@users.sourceforge.net>
  * @package PEL
  */
+namespace lsolesen\pel;
+
 class PelEntryCopyright extends PelEntryAscii
 {
 
@@ -91,7 +92,6 @@ class PelEntryCopyright extends PelEntryAscii
      * @param
      *            string the photographer copyright. Use the empty string
      *            if there is no photographer copyright.
-     *
      * @param
      *            string the editor copyright. Use the empty string if
      *            there is no editor copyright.
@@ -108,7 +108,6 @@ class PelEntryCopyright extends PelEntryAscii
      * @param
      *            string the photographer copyright. Use the empty string
      *            if there is no photographer copyright.
-     *
      * @param
      *            string the editor copyright. Use the empty string if
      *            there is no editor copyright.
@@ -161,7 +160,6 @@ class PelEntryCopyright extends PelEntryAscii
      *            '(Editor)' will be appended to the photographer and editor
      *            copyright fields (if present), otherwise the fields will be
      *            returned as is.
-     *
      * @return string the copyright information in a string.
      */
     public function getText($brief = false)
