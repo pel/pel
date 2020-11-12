@@ -25,6 +25,9 @@
  */
 
 /* a printf() variant that appends a newline to the output. */
+use lsolesen\pel\Pel;
+use lsolesen\pel\PelJpeg;
+
 function println($args)
 {
     $args = func_get_args();
@@ -34,11 +37,6 @@ function println($args)
 
 /* Make PEL speak the users language, if it is available. */
 setlocale(LC_ALL, '');
-
-/* Load the required PEL files for handling JPEG images. */
-require_once '../autoload.php';
-
-use lsolesen\pel\PelJpeg;
 
 /*
  * Store the name of the script in $prog and remove this first part of

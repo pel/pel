@@ -188,7 +188,6 @@ class PelCanonMakerNotes extends PelMakerNotes
 
         for ($i = 0; $i < $this->components; $i ++) {
             $tag = $this->data->getShort($this->offset + 12 * $i);
-            $type = $this->data->getShort($this->offset + 12 * $i + 2);
             $components = $this->data->getLong($this->offset + 12 * $i + 4);
             $data = $this->data->getLong($this->offset + 12 * $i + 8);
             // check if tag is defined
@@ -206,6 +205,7 @@ class PelCanonMakerNotes extends PelMakerNotes
                     $this->parsePanorama($mkNotesIfd, $this->data, $data, $components);
                     break;
                 case PelTag::CANON_PICTURE_INFO:
+                    // TODO: Does not work at the moment
                     // $this->parsePictureInfo($mkNotesIfd, $this->data, $data, $components);
                     break;
                 case PelTag::CANON_FILE_INFO:
@@ -287,6 +287,9 @@ class PelCanonMakerNotes extends PelMakerNotes
         $parent->addSubIfd($panoramaIfd);
     }
 
+    /**
+     * This method does not work properly
+     */
     private function parsePictureInfo($parent, $data, $offset, $components)
     {
         $type = PelIfd::CANON_PICTURE_INFO;

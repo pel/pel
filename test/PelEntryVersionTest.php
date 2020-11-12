@@ -25,9 +25,9 @@
  */
 namespace Pel\Test;
 
-use lsolesen\pel\PelEntryVersion;
-use lsolesen\pel\PelConvert;
 use PHPUnit\Framework\TestCase;
+use lsolesen\pel\PelConvert;
+use lsolesen\pel\PelEntryVersion;
 
 class PelEntryVersionTest extends TestCase
 {

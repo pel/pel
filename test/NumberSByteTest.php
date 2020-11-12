@@ -29,10 +29,6 @@ use lsolesen\pel\PelEntrySByte;
 class NumberSByteTest extends NumberTestCase
 {
 
-    /**
-     *
-     * {@inheritdoc}
-     */
     public function setUp(): void
     {
         parent::setUp();

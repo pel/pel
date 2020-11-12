@@ -24,18 +24,6 @@
  */
 
 /**
- * Classes used to hold bytes, both signed and unsigned.
- * The {@link
- * PelEntryWindowsString} class is used to manipulate strings in the
- * format Windows XP needs.
- *
- * @author Martin Geisler <mgeisler@users.sourceforge.net>
- * @license http://www.gnu.org/licenses/gpl.html GNU General Public
- *          License (GPL)
- * @package PEL
- */
-
-/**
  * Class used to manipulate strings in the format Windows XP uses.
  *
  * When examining the file properties of an image in Windows XP one

@@ -23,11 +23,11 @@
  */
 namespace Pel\Test;
 
-use lsolesen\pel\Pel;
-use lsolesen\pel\PelJpeg;
-use lsolesen\pel\PelExif;
-use lsolesen\pel\PelJpegMarker;
 use PHPUnit\Framework\TestCase;
+use lsolesen\pel\Pel;
+use lsolesen\pel\PelExif;
+use lsolesen\pel\PelJpeg;
+use lsolesen\pel\PelJpegMarker;
 
 class MisplacedExifTest extends TestCase
 {

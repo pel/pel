@@ -22,6 +22,7 @@
  * Free Software Foundation, Inc., 51 Franklin St, Fifth Floor,
  * Boston, MA 02110-1301 USA
  */
+namespace lsolesen\pel;
 
 /**
  * A container for bytes with a limited window of accessible bytes.
@@ -37,8 +38,6 @@
  * @package PEL
  * @subpackage Exception
  */
-namespace lsolesen\pel;
-
 class PelDataWindowWindowException extends PelException
 {
 }

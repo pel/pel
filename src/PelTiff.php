@@ -114,9 +114,8 @@ class PelTiff
      * will be built. If the data cannot be parsed correctly, a {@link
      * PelInvalidDataException} is thrown, explaining the problem.
      *
-     * @param
-     *            d
-     *            PelDataWindow the data from which the object will be
+     * @param PelDataWindow $d
+     *            the data from which the object will be
      *            constructed. This should be valid TIFF data, coming either
      *            directly from a TIFF image or from the Exif data in a JPEG image.
      */
@@ -248,8 +247,8 @@ class PelTiff
     /**
      * Save the TIFF object as a TIFF image in a file.
      *
-     * @param
-     *            string the filename to save in. An existing file with the
+     * @param string $filename
+     *            the filename to save in. An existing file with the
      *            same name will be overwritten!
      * @return integer|FALSE The number of bytes that were written to the
      *         file, or FALSE on failure.

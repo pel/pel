@@ -29,10 +29,6 @@ use lsolesen\pel\PelEntrySShort;
 class NumberSShortTest extends NumberTestCase
 {
 
-    /**
-     *
-     * {@inheritdoc}
-     */
     public function setUp(): void
     {
         parent::setUp();

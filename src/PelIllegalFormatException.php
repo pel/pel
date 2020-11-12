@@ -5,8 +5,7 @@
  * A library with support for reading and
  * writing all Exif headers in JPEG and TIFF images using PHP.
  *
- * Copyright (C) 2004, 2006 Martin Geisler.
- * Copyright (C) 2017 Johannes Weberhofer
+ * Copyright (C) 2004, 2005, 2006 Martin Geisler.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -23,24 +22,30 @@
  * Free Software Foundation, Inc., 51 Franklin St, Fifth Floor,
  * Boston, MA 02110-1301 USA
  */
-namespace Pel\Test;
 
-use PHPUnit\Framework\TestCase;
-use lsolesen\pel\PelEntryUserComment;
+/**
+ * Exception indicating that an unexpected format was found.
+ *
+ * The documentation for each tag in {@link PelTag} will detail any
+ * constrains.
+ *
+ * @author Martin Geisler <mgeisler@users.sourceforge.net>
+ * @package PEL
+ * @subpackage Exception
+ */
+namespace lsolesen\pel;
 
-class PelEntryUserCommentTest extends TestCase
+class PelIllegalFormatException extends PelException
 {
 
-    public function testUsercomment()
+    /**
+     * Construct a new exception indicating an illegal format.
+     *
+     * @param int $type
+     *            the type of IFD.
+     */
+    public function __construct($type)
     {
-        $entry = new PelEntryUserComment();
-        $this->assertEquals($entry->getComponents(), 8);
-        $this->assertEquals($entry->getValue(), '');
-        $this->assertEquals($entry->getEncoding(), 'ASCII');
-
-        $entry->setValue('Hello!');
-        $this->assertEquals($entry->getComponents(), 14);
-        $this->assertEquals($entry->getValue(), 'Hello!');
-        $this->assertEquals($entry->getEncoding(), 'ASCII');
+        parent::__construct('Unknown format: 0x%X', $type);
     }
 }

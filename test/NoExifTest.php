@@ -23,9 +23,9 @@
  */
 namespace Pel\Test;
 
+use PHPUnit\Framework\TestCase;
 use lsolesen\pel\Pel;
 use lsolesen\pel\PelJpeg;
-use PHPUnit\Framework\TestCase;
 
 class NoExifTest extends TestCase
 {

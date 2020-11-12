@@ -24,11 +24,11 @@
  */
 namespace Pel\Test;
 
-use lsolesen\pel\PelIfd;
-use lsolesen\pel\PelEntryAscii;
-use lsolesen\pel\PelTag;
-use lsolesen\pel\PelEntryTime;
 use PHPUnit\Framework\TestCase;
+use lsolesen\pel\PelEntryAscii;
+use lsolesen\pel\PelEntryTime;
+use lsolesen\pel\PelIfd;
+use lsolesen\pel\PelTag;
 
 class IfdTest extends TestCase
 {

@@ -34,6 +34,12 @@
  */
 
 /* a printf() variant that appends a newline to the output. */
+use lsolesen\pel\Pel;
+use lsolesen\pel\PelDataWindow;
+use lsolesen\pel\PelJpeg;
+use lsolesen\pel\PelTag;
+use lsolesen\pel\PelTiff;
+
 function println($args)
 {
     $args = func_get_args();
@@ -44,12 +50,6 @@ function println($args)
 /* Make PEL speak the users language, if it is available. */
 setlocale(LC_ALL, '');
 
-/* Load the required class definitions. */
-require_once '../autoload.php';
-
-use lsolesen\pel\PelDataWindow;
-use lsolesen\pel\PelJpeg;
-use lsolesen\pel\PelTiff;
 
 $prog = array_shift($argv);
 $error = false;

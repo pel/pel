@@ -24,24 +24,6 @@
  */
 
 /**
- * Classes used to hold ASCII strings.
- *
- * The classes defined here are to be used for Exif entries holding
- * ASCII strings, such as {@link PelTag::MAKE}, {@link
- * PelTag::SOFTWARE}, and {@link PelTag::DATE_TIME}. For
- * entries holding normal textual ASCII strings the class {@link
- * PelEntryAscii} should be used, but for entries holding
- * timestamps the class {@link PelEntryTime} would be more
- * convenient instead. Copyright information is handled by the {@link
- * PelEntryCopyright} class.
- *
- * @author Martin Geisler <mgeisler@users.sourceforge.net>
- * @license http://www.gnu.org/licenses/gpl.html GNU General Public
- *          License (GPL)
- * @package PEL
- */
-
-/**
  * Class for holding a date and time.
  *
  * This class can hold a timestamp, and it will be used as
@@ -132,7 +114,7 @@ class PelEntryTime extends PelEntryAscii
      */
     public function __construct($tag, $timestamp, $type = self::UNIX_TIMESTAMP)
     {
-        parent::__construct($tag);
+        $this->tag = $tag;
         $this->setValue($timestamp, $type);
     }
 
@@ -147,7 +129,7 @@ class PelEntryTime extends PelEntryAscii
      *            the type of the timestamp. This must be one of
      *            {@link UNIX_TIMESTAMP}, {@link EXIF_STRING}, or
      *            {@link JULIAN_DAY_COUNT}.
-     * @return integer the timestamp held by this entry in the correct form
+     * @return integer|string|false the timestamp held by this entry in the correct form
      *         as indicated by the type argument. For {@link UNIX_TIMESTAMP}
      *         this is an integer counting the number of seconds since January
      *         1st 1970, for {@link EXIF_STRING} this is a string of the form
@@ -270,8 +252,8 @@ class PelEntryTime extends PelEntryAscii
     /**
      * Converts a Julian Day count to a year/month/day triple.
      *
-     * @param
-     *            int the Julian Day count.
+     * @param int $jd
+     *            the Julian Day count.
      * @return array an array with three entries: year, month, day.
      */
     public function convertJdToGregorian($jd)
@@ -307,11 +289,11 @@ class PelEntryTime extends PelEntryAscii
      *
      * @param integer $timestamp
      *            the timestamp.
-     * @return integer the Julian Day count.
+     * @return float the Julian Day count.
      */
     public function convertUnixToJd($timestamp)
     {
-        return (int) (floor($timestamp / 86400) + 2440588);
+        return floor($timestamp / 86400) + 2440588;
     }
 
     /**

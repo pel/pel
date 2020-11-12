@@ -99,8 +99,8 @@ class PelEntryUndefined extends PelEntry
      *
      * The value will be returned in a format suitable for presentation.
      *
-     * @param
-     *            boolean some values can be returned in a long or more
+     * @param boolean $brief
+     *            some values can be returned in a long or more
      *            brief form, and this parameter controls that.
      * @return string the value as text.
      */

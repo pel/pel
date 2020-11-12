@@ -25,11 +25,11 @@
  */
 namespace Pel\Test;
 
+use PHPUnit\Framework\TestCase;
+use lsolesen\pel\PelConvert;
 use lsolesen\pel\PelEntryUndefined;
 use lsolesen\pel\PelEntryUserComment;
 use lsolesen\pel\PelEntryVersion;
-use lsolesen\pel\PelConvert;
-use PHPUnit\Framework\TestCase;
 
 class PelEntryUndefinedTest extends TestCase
 {
