@@ -1096,7 +1096,7 @@ class PelIfd implements \IteratorAggregate, \ArrayAccess
             $tp = self::IFD0;
         }
         if (array_key_exists($tp, self::VALID_TAGS)) {
-            return self::VALID_TAGS;
+            return self::VALID_TAGS[$tp];
         }
     }
 
