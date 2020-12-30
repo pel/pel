@@ -1091,7 +1091,7 @@ class PelIfd implements \IteratorAggregate, \ArrayAccess
     public function getValidTags()
     {
         $tp = $this->type;
-        if ($tp = self::IFD1) {
+        if ($tp === self::IFD1) {
             // return the same for IFD0 and IFD1
             $tp = self::IFD0;
         }
