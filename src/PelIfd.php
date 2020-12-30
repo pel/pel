@@ -142,20 +142,303 @@ class PelIfd implements \IteratorAggregate, \ArrayAccess
      */
     const CANON_CUSTOM_FUNCTIONS = 11;
 
-    private $ifdTypes = [
-        self::IFD0,
-        self::IFD1,
-        self::EXIF,
-        self::GPS,
-        self::INTEROPERABILITY,
-        self::CANON_MAKER_NOTES,
-        self::CANON_CAMERA_SETTINGS,
-        self::CANON_SHOT_INFO,
-        self::CANON_PANORAMA,
-        self::CANON_PICTURE_INFO,
-        self::CANON_FILE_INFO,
-        self::CANON_CUSTOM_FUNCTIONS
+    private const TYPE_NAMES = [
+        self::IFD0 => '0',
+        self::IFD1 => '1',
+        self::EXIF => 'Exif',
+        self::GPS => 'GPS',
+        self::INTEROPERABILITY => 'Interoperability',
+        self::CANON_MAKER_NOTES => 'Canon Maker Notes',
+        self::CANON_CAMERA_SETTINGS => 'Canon Camera Settings',
+        self::CANON_SHOT_INFO => 'Canon Shot Information',
+        self::CANON_PANORAMA => 'Canon Panorama Information',
+        self::CANON_PICTURE_INFO => 'Canon Picture Information',
+        self::CANON_FILE_INFO => 'Canon File Information',
+        self::CANON_CUSTOM_FUNCTIONS => 'Canon Custom Functions'
     ];
+
+    private const VALID_TAGS = [
+        self::IFD0 => [
+            PelTag::IMAGE_WIDTH,
+            PelTag::IMAGE_LENGTH,
+            PelTag::BITS_PER_SAMPLE,
+            PelTag::COMPRESSION,
+            PelTag::PHOTOMETRIC_INTERPRETATION,
+            PelTag::DOCUMENT_NAME,
+            PelTag::IMAGE_DESCRIPTION,
+            PelTag::MAKE,
+            PelTag::MODEL,
+            PelTag::STRIP_OFFSETS,
+            PelTag::ORIENTATION,
+            PelTag::SAMPLES_PER_PIXEL,
+            PelTag::ROWS_PER_STRIP,
+            PelTag::STRIP_BYTE_COUNTS,
+            PelTag::X_RESOLUTION,
+            PelTag::Y_RESOLUTION,
+            PelTag::PLANAR_CONFIGURATION,
+            PelTag::RESOLUTION_UNIT,
+            PelTag::TRANSFER_FUNCTION,
+            PelTag::SOFTWARE,
+            PelTag::DATE_TIME,
+            PelTag::ARTIST,
+            PelTag::PREDICTOR,
+            PelTag::WHITE_POINT,
+            PelTag::PRIMARY_CHROMATICITIES,
+            PelTag::EXTRA_SAMPLES,
+            PelTag::SAMPLE_FORMAT,
+            PelTag::JPEG_INTERCHANGE_FORMAT,
+            PelTag::JPEG_INTERCHANGE_FORMAT_LENGTH,
+            PelTag::YCBCR_COEFFICIENTS,
+            PelTag::YCBCR_SUB_SAMPLING,
+            PelTag::YCBCR_POSITIONING,
+            PelTag::REFERENCE_BLACK_WHITE,
+            PelTag::COPYRIGHT,
+            PelTag::EXIF_IFD_POINTER,
+            PelTag::GPS_INFO_IFD_POINTER,
+            PelTag::PRINT_IM,
+            PelTag::XP_TITLE,
+            PelTag::XP_COMMENT,
+            PelTag::XP_AUTHOR,
+            PelTag::XP_KEYWORDS,
+            PelTag::XP_SUBJECT,
+            PelTag::RATING,
+            PelTag::RATING_PERCENT,
+            PelTag::APPLICATION_NOTES
+        ],
+        self::EXIF => [
+            PelTag::EXPOSURE_TIME,
+            PelTag::FNUMBER,
+            PelTag::EXPOSURE_PROGRAM,
+            PelTag::SPECTRAL_SENSITIVITY,
+            PelTag::ISO_SPEED_RATINGS,
+            PelTag::OECF,
+            PelTag::EXIF_VERSION,
+            PelTag::DATE_TIME_ORIGINAL,
+            PelTag::DATE_TIME_DIGITIZED,
+            PelTag::OFFSET_TIME,
+            PelTag::OFFSET_TIME_ORIGINAL,
+            PelTag::OFFSET_TIME_DIGITIZED,
+            PelTag::COMPONENTS_CONFIGURATION,
+            PelTag::COMPRESSED_BITS_PER_PIXEL,
+            PelTag::SHUTTER_SPEED_VALUE,
+            PelTag::APERTURE_VALUE,
+            PelTag::BRIGHTNESS_VALUE,
+            PelTag::EXPOSURE_BIAS_VALUE,
+            PelTag::MAX_APERTURE_VALUE,
+            PelTag::SUBJECT_DISTANCE,
+            PelTag::METERING_MODE,
+            PelTag::LIGHT_SOURCE,
+            PelTag::FLASH,
+            PelTag::FOCAL_LENGTH,
+            PelTag::MAKER_NOTE,
+            PelTag::USER_COMMENT,
+            PelTag::SUB_SEC_TIME,
+            PelTag::SUB_SEC_TIME_ORIGINAL,
+            PelTag::SUB_SEC_TIME_DIGITIZED,
+            PelTag::FLASH_PIX_VERSION,
+            PelTag::COLOR_SPACE,
+            PelTag::PIXEL_X_DIMENSION,
+            PelTag::PIXEL_Y_DIMENSION,
+            PelTag::RELATED_SOUND_FILE,
+            PelTag::FLASH_ENERGY,
+            PelTag::SPATIAL_FREQUENCY_RESPONSE,
+            PelTag::FOCAL_PLANE_X_RESOLUTION,
+            PelTag::FOCAL_PLANE_Y_RESOLUTION,
+            PelTag::FOCAL_PLANE_RESOLUTION_UNIT,
+            PelTag::SUBJECT_LOCATION,
+            PelTag::EXPOSURE_INDEX,
+            PelTag::SENSING_METHOD,
+            PelTag::FILE_SOURCE,
+            PelTag::SCENE_TYPE,
+            PelTag::CFA_PATTERN,
+            PelTag::CUSTOM_RENDERED,
+            PelTag::EXPOSURE_MODE,
+            PelTag::WHITE_BALANCE,
+            PelTag::DIGITAL_ZOOM_RATIO,
+            PelTag::FOCAL_LENGTH_IN_35MM_FILM,
+            PelTag::SCENE_CAPTURE_TYPE,
+            PelTag::GAIN_CONTROL,
+            PelTag::CONTRAST,
+            PelTag::SATURATION,
+            PelTag::SHARPNESS,
+            PelTag::DEVICE_SETTING_DESCRIPTION,
+            PelTag::SUBJECT_DISTANCE_RANGE,
+            PelTag::IMAGE_UNIQUE_ID,
+            PelTag::INTEROPERABILITY_IFD_POINTER,
+            PelTag::GAMMA
+        ],
+        self::GPS => [
+            PelTag::GPS_VERSION_ID,
+            PelTag::GPS_LATITUDE_REF,
+            PelTag::GPS_LATITUDE,
+            PelTag::GPS_LONGITUDE_REF,
+            PelTag::GPS_LONGITUDE,
+            PelTag::GPS_ALTITUDE_REF,
+            PelTag::GPS_ALTITUDE,
+            PelTag::GPS_TIME_STAMP,
+            PelTag::GPS_SATELLITES,
+            PelTag::GPS_STATUS,
+            PelTag::GPS_MEASURE_MODE,
+            PelTag::GPS_DOP,
+            PelTag::GPS_SPEED_REF,
+            PelTag::GPS_SPEED,
+            PelTag::GPS_TRACK_REF,
+            PelTag::GPS_TRACK,
+            PelTag::GPS_IMG_DIRECTION_REF,
+            PelTag::GPS_IMG_DIRECTION,
+            PelTag::GPS_MAP_DATUM,
+            PelTag::GPS_DEST_LATITUDE_REF,
+            PelTag::GPS_DEST_LATITUDE,
+            PelTag::GPS_DEST_LONGITUDE_REF,
+            PelTag::GPS_DEST_LONGITUDE,
+            PelTag::GPS_DEST_BEARING_REF,
+            PelTag::GPS_DEST_BEARING,
+            PelTag::GPS_DEST_DISTANCE_REF,
+            PelTag::GPS_DEST_DISTANCE,
+            PelTag::GPS_PROCESSING_METHOD,
+            PelTag::GPS_AREA_INFORMATION,
+            PelTag::GPS_DATE_STAMP,
+            PelTag::GPS_DIFFERENTIAL
+        ],
+        self::INTEROPERABILITY => [
+            PelTag::INTEROPERABILITY_INDEX,
+            PelTag::INTEROPERABILITY_VERSION,
+            PelTag::RELATED_IMAGE_FILE_FORMAT,
+            PelTag::RELATED_IMAGE_WIDTH,
+            PelTag::RELATED_IMAGE_LENGTH
+        ],
+        self::CANON_MAKER_NOTES => [
+            PelTag::CANON_CAMERA_SETTINGS,
+            PelTag::CANON_FOCAL_LENGTH,
+            PelTag::CANON_SHOT_INFO,
+            PelTag::CANON_PANORAMA,
+            PelTag::CANON_IMAGE_TYPE,
+            PelTag::CANON_FIRMWARE_VERSION,
+            PelTag::CANON_FILE_NUMBER,
+            PelTag::CANON_OWNER_NAME,
+            PelTag::CANON_SERIAL_NUMBER,
+            PelTag::CANON_CAMERA_INFO,
+            PelTag::CANON_CUSTOM_FUNCTIONS,
+            PelTag::CANON_MODEL_ID,
+            PelTag::CANON_PICTURE_INFO,
+            PelTag::CANON_THUMBNAIL_IMAGE_VALID_AREA,
+            PelTag::CANON_SERIAL_NUMBER_FORMAT,
+            PelTag::CANON_SUPER_MACRO,
+            PelTag::CANON_FIRMWARE_REVISION,
+            PelTag::CANON_AF_INFO,
+            PelTag::CANON_ORIGINAL_DECISION_DATA_OFFSET,
+            PelTag::CANON_WHITE_BALANCE_TABLE,
+            PelTag::CANON_LENS_MODEL,
+            PelTag::CANON_INTERNAL_SERIAL_NUMBER,
+            PelTag::CANON_DUST_REMOVAL_DATA,
+            PelTag::CANON_CUSTOM_FUNCTIONS_2,
+            PelTag::CANON_PROCESSING_INFO,
+            PelTag::CANON_MEASURED_COLOR,
+            PelTag::CANON_COLOR_SPACE,
+            PelTag::CANON_VRD_OFFSET,
+            PelTag::CANON_SENSOR_INFO,
+            PelTag::CANON_COLOR_DATA
+        ],
+        self::CANON_CAMERA_SETTINGS => [
+            PelTag::CANON_CS_MACRO,
+            PelTag::CANON_CS_SELF_TIMER,
+            PelTag::CANON_CS_QUALITY,
+            PelTag::CANON_CS_FLASH_MODE,
+            PelTag::CANON_CS_DRIVE_MODE,
+            PelTag::CANON_CS_FOCUS_MODE,
+            PelTag::CANON_CS_RECORD_MODE,
+            PelTag::CANON_CS_IMAGE_SIZE,
+            PelTag::CANON_CS_EASY_MODE,
+            PelTag::CANON_CS_DIGITAL_ZOOM,
+            PelTag::CANON_CS_CONTRAST,
+            PelTag::CANON_CS_SATURATION,
+            PelTag::CANON_CS_SHARPNESS,
+            PelTag::CANON_CS_ISO_SPEED,
+            PelTag::CANON_CS_METERING_MODE,
+            PelTag::CANON_CS_FOCUS_TYPE,
+            PelTag::CANON_CS_AF_POINT,
+            PelTag::CANON_CS_EXPOSURE_PROGRAM,
+            PelTag::CANON_CS_LENS_TYPE,
+            PelTag::CANON_CS_LENS,
+            PelTag::CANON_CS_SHORT_FOCAL,
+            PelTag::CANON_CS_FOCAL_UNITS,
+            PelTag::CANON_CS_MAX_APERTURE,
+            PelTag::CANON_CS_MIN_APERTURE,
+            PelTag::CANON_CS_FLASH_ACTIVITY,
+            PelTag::CANON_CS_FLASH_DETAILS,
+            PelTag::CANON_CS_FOCUS_CONTINUOUS,
+            PelTag::CANON_CS_AE_SETTING,
+            PelTag::CANON_CS_IMAGE_STABILIZATION,
+            PelTag::CANON_CS_DISPLAY_APERTURE,
+            PelTag::CANON_CS_ZOOM_SOURCE_WIDTH,
+            PelTag::CANON_CS_ZOOM_TARGET_WIDTH,
+            PelTag::CANON_CS_SPOT_METERING_MODE,
+            PelTag::CANON_CS_PHOTO_EFFECT,
+            PelTag::CANON_CS_MANUAL_FLASH_OUTPUT,
+            PelTag::CANON_CS_COLOR_TONE,
+            PelTag::CANON_CS_SRAW_QUALITY
+        ],
+        self::CANON_SHOT_INFO => [
+            PelTag::CANON_SI_ISO_SPEED,
+            PelTag::CANON_SI_MEASURED_EV,
+            PelTag::CANON_SI_TARGET_APERTURE,
+            PelTag::CANON_SI_TARGET_SHUTTER_SPEED,
+            PelTag::CANON_SI_WHITE_BALANCE,
+            PelTag::CANON_SI_SLOW_SHUTTER,
+            PelTag::CANON_SI_SEQUENCE,
+            PelTag::CANON_SI_AF_POINT_USED,
+            PelTag::CANON_SI_FLASH_BIAS,
+            PelTag::CANON_SI_AUTO_EXPOSURE_BRACKETING,
+            PelTag::CANON_SI_SUBJECT_DISTANCE,
+            PelTag::CANON_SI_APERTURE_VALUE,
+            PelTag::CANON_SI_SHUTTER_SPEED_VALUE,
+            PelTag::CANON_SI_MEASURED_EV2,
+            PelTag::CANON_SI_CAMERA_TYPE,
+            PelTag::CANON_SI_AUTO_ROTATE,
+            PelTag::CANON_SI_ND_FILTER
+        ],
+        self::CANON_PANORAMA => [
+            PelTag::CANON_PA_PANORAMA_FRAME,
+            PelTag::CANON_PA_PANORAMA_DIRECTION
+        ],
+        self::CANON_PICTURE_INFO => [
+            PelTag::CANON_PI_IMAGE_WIDTH,
+            PelTag::CANON_PI_IMAGE_HEIGHT,
+            PelTag::CANON_PI_IMAGE_WIDTH_AS_SHOT,
+            PelTag::CANON_PI_IMAGE_HEIGHT_AS_SHOT,
+            PelTag::CANON_PI_AF_POINTS_USED,
+            PelTag::CANON_PI_AF_POINTS_USED_20D
+        ],
+        self::CANON_FILE_INFO => [
+            PelTag::CANON_FI_FILE_NUMBER,
+            PelTag::CANON_FI_BRACKET_MODE,
+            PelTag::CANON_FI_BRACKET_VALUE,
+            PelTag::CANON_FI_BRACKET_SHOT_NUMBER,
+            PelTag::CANON_FI_RAW_JPG_QUALITY,
+            PelTag::CANON_FI_RAW_JPG_SIZE,
+            PelTag::CANON_FI_NOISE_REDUCTION,
+            PelTag::CANON_FI_WB_BRACKET_MODE,
+            PelTag::CANON_FI_WB_BRACKET_VALUE_AB,
+            PelTag::CANON_FI_WB_BRACKET_VALUE_GM,
+            PelTag::CANON_FI_FILTER_EFFECT,
+            PelTag::CANON_FI_TONING_EFFECT,
+            PelTag::CANON_FI_MACRO_MAGNIFICATION,
+            PelTag::CANON_FI_LIVE_VIEW_SHOOTING,
+            PelTag::CANON_FI_FOCUS_DISTANCE_UPPER,
+            PelTag::CANON_FI_FOCUS_DISTANCE_LOWER,
+            PelTag::CANON_FI_FLASH_EXPOSURE_LOCK
+        ]
+        /*
+     * TODO: Where do these tags belong?
+     * PelTag::FILL_ORDER,
+     * PelTag::TRANSFER_RANGE,
+     * PelTag::JPEG_PROC,
+     * PelTag::BATTERY_LEVEL,
+     * PelTag::IPTC_NAA,
+     * PelTag::INTER_COLOR_PROFILE,
+     * PelTag::CFA_REPEAT_PATTERN_DIM,
+     */
+    ];s
 
     /**
      * The maker notes held by this directory.
@@ -228,18 +511,17 @@ class PelIfd implements \IteratorAggregate, \ArrayAccess
      * an {@link PelEntry}. Use the {@link setNext()} method to link
      * this IFD to another.
      *
-     * @param
-     *            int type the type of this IFD. Must be one of {@link
+     * @param integer $type
+     *            the type of this IFD. Must be one of {@link
      *            IFD0}, {@link IFD1}, {@link EXIF}, {@link GPS}, or {@link
      *            INTEROPERABILITY}. An {@link PelIfdException} will be thrown
      *            otherwise.
      */
     public function __construct($type)
     {
-        if (! in_array($type, $this->ifdTypes)) {
+        if (! array_key_exists($type, self::TYPE_NAMES)) {
             throw new PelIfdException('Unknown IFD type: %d', $type);
         }
-
         $this->type = $type;
     }
 
@@ -252,7 +534,7 @@ class PelIfd implements \IteratorAggregate, \ArrayAccess
      *            the data window that will provide the data.
      * @param PelIfd $parent
      *            the components in the entry.
-     * @param int $offset
+     * @param integer $offset
      *            the offset within the window where the directory will
      *            be found.
      */
@@ -281,7 +563,7 @@ class PelIfd implements \IteratorAggregate, \ArrayAccess
      *
      * @param PelDataWindow $d
      *            the data window that will provide the data.
-     * @param int $offset
+     * @param integer $offset
      *            the offset within the window where the directory will
      *            be found.
      */
@@ -420,9 +702,9 @@ class PelIfd implements \IteratorAggregate, \ArrayAccess
      * @param integer $offset
      *            the offset within the window where the directory will
      *            be found.
-     * @param int $i
+     * @param integer $i
      *            the element's position in the {@link PelDataWindow} $d.
-     * @param int $tag
+     * @param integer $tag
      *            the tag of the entry as defined in {@link PelTag}.
      */
     public function loadSingleValue($d, $offset, $i, $tag)
@@ -480,18 +762,18 @@ class PelIfd implements \IteratorAggregate, \ArrayAccess
      * create a {@link PelEntryShort} object directly and load the data
      * into it.
      *
-     * @param int $type
+     * @param integer $type
      *            the type of the ifd
      * @param PelDataWindow $data
      *            the data window that will provide the data.
      * @param integer $offset
      *            the offset within the window where the directory will
      *            be found.
-     * @param int $size
+     * @param integer $size
      *            the size in bytes of the maker notes section
-     * @param int $i
+     * @param integer $i
      *            the element's position in the {@link PelDataWindow} $data.
-     * @param int $format
+     * @param integer $format
      *            the format {@link PelFormat} of the entry.
      */
     public function loadSingleMakerNotesValue($type, $data, $offset, $size, $i, $format)
@@ -545,7 +827,7 @@ class PelIfd implements \IteratorAggregate, \ArrayAccess
      *            the tag of the entry as defined in {@link PelTag}.
      * @param integer $format
      *            the format of the entry as defined in {@link PelFormat}.
-     * @param int $components
+     * @param integer $components
      *            the components in the entry.
      * @param PelDataWindow $data
      *            the data which will be used to construct the
@@ -710,9 +992,9 @@ class PelIfd implements \IteratorAggregate, \ArrayAccess
      * @param PelDataWindow $d
      *            the data from which the thumbnail will be
      *            extracted.
-     * @param int $offset
+     * @param integer $offset
      *            the offset into the data.
-     * @param int $length
+     * @param integer $length
      *            the length of the thumbnail.
      */
     private function safeSetThumbnail(PelDataWindow $d, $offset, $length)
@@ -789,7 +1071,7 @@ class PelIfd implements \IteratorAggregate, \ArrayAccess
      * treated as private tags and will be allowed everywhere (use this
      * for testing or for implementing your own types of tags).
      *
-     * @param int $tag
+     * @param integer $tag
      *            the tag.
      * @return boolean true if the tag is considered valid in this IFD,
      *         false otherwise.
@@ -808,309 +1090,20 @@ class PelIfd implements \IteratorAggregate, \ArrayAccess
      */
     public function getValidTags()
     {
-        switch ($this->type) {
-            case PelIfd::IFD0:
-            case PelIfd::IFD1:
-                return [
-                    PelTag::IMAGE_WIDTH,
-                    PelTag::IMAGE_LENGTH,
-                    PelTag::BITS_PER_SAMPLE,
-                    PelTag::COMPRESSION,
-                    PelTag::PHOTOMETRIC_INTERPRETATION,
-                    PelTag::DOCUMENT_NAME,
-                    PelTag::IMAGE_DESCRIPTION,
-                    PelTag::MAKE,
-                    PelTag::MODEL,
-                    PelTag::STRIP_OFFSETS,
-                    PelTag::ORIENTATION,
-                    PelTag::SAMPLES_PER_PIXEL,
-                    PelTag::ROWS_PER_STRIP,
-                    PelTag::STRIP_BYTE_COUNTS,
-                    PelTag::X_RESOLUTION,
-                    PelTag::Y_RESOLUTION,
-                    PelTag::PLANAR_CONFIGURATION,
-                    PelTag::RESOLUTION_UNIT,
-                    PelTag::TRANSFER_FUNCTION,
-                    PelTag::SOFTWARE,
-                    PelTag::DATE_TIME,
-                    PelTag::ARTIST,
-                    PelTag::PREDICTOR,
-                    PelTag::WHITE_POINT,
-                    PelTag::PRIMARY_CHROMATICITIES,
-                    PelTag::EXTRA_SAMPLES,
-                    PelTag::SAMPLE_FORMAT,
-                    PelTag::JPEG_INTERCHANGE_FORMAT,
-                    PelTag::JPEG_INTERCHANGE_FORMAT_LENGTH,
-                    PelTag::YCBCR_COEFFICIENTS,
-                    PelTag::YCBCR_SUB_SAMPLING,
-                    PelTag::YCBCR_POSITIONING,
-                    PelTag::REFERENCE_BLACK_WHITE,
-                    PelTag::COPYRIGHT,
-                    PelTag::EXIF_IFD_POINTER,
-                    PelTag::GPS_INFO_IFD_POINTER,
-                    PelTag::PRINT_IM,
-                    PelTag::XP_TITLE,
-                    PelTag::XP_COMMENT,
-                    PelTag::XP_AUTHOR,
-                    PelTag::XP_KEYWORDS,
-                    PelTag::XP_SUBJECT,
-                    PelTag::RATING,
-                    PelTag::RATING_PERCENT,
-                    PelTag::APPLICATION_NOTES
-                ];
-
-            case PelIfd::EXIF:
-                return [
-                    PelTag::EXPOSURE_TIME,
-                    PelTag::FNUMBER,
-                    PelTag::EXPOSURE_PROGRAM,
-                    PelTag::SPECTRAL_SENSITIVITY,
-                    PelTag::ISO_SPEED_RATINGS,
-                    PelTag::OECF,
-                    PelTag::EXIF_VERSION,
-                    PelTag::DATE_TIME_ORIGINAL,
-                    PelTag::DATE_TIME_DIGITIZED,
-                    PelTag::OFFSET_TIME,
-                    PelTag::OFFSET_TIME_ORIGINAL,
-                    PelTag::OFFSET_TIME_DIGITIZED,
-                    PelTag::COMPONENTS_CONFIGURATION,
-                    PelTag::COMPRESSED_BITS_PER_PIXEL,
-                    PelTag::SHUTTER_SPEED_VALUE,
-                    PelTag::APERTURE_VALUE,
-                    PelTag::BRIGHTNESS_VALUE,
-                    PelTag::EXPOSURE_BIAS_VALUE,
-                    PelTag::MAX_APERTURE_VALUE,
-                    PelTag::SUBJECT_DISTANCE,
-                    PelTag::METERING_MODE,
-                    PelTag::LIGHT_SOURCE,
-                    PelTag::FLASH,
-                    PelTag::FOCAL_LENGTH,
-                    PelTag::MAKER_NOTE,
-                    PelTag::USER_COMMENT,
-                    PelTag::SUB_SEC_TIME,
-                    PelTag::SUB_SEC_TIME_ORIGINAL,
-                    PelTag::SUB_SEC_TIME_DIGITIZED,
-                    PelTag::FLASH_PIX_VERSION,
-                    PelTag::COLOR_SPACE,
-                    PelTag::PIXEL_X_DIMENSION,
-                    PelTag::PIXEL_Y_DIMENSION,
-                    PelTag::RELATED_SOUND_FILE,
-                    PelTag::FLASH_ENERGY,
-                    PelTag::SPATIAL_FREQUENCY_RESPONSE,
-                    PelTag::FOCAL_PLANE_X_RESOLUTION,
-                    PelTag::FOCAL_PLANE_Y_RESOLUTION,
-                    PelTag::FOCAL_PLANE_RESOLUTION_UNIT,
-                    PelTag::SUBJECT_LOCATION,
-                    PelTag::EXPOSURE_INDEX,
-                    PelTag::SENSING_METHOD,
-                    PelTag::FILE_SOURCE,
-                    PelTag::SCENE_TYPE,
-                    PelTag::CFA_PATTERN,
-                    PelTag::CUSTOM_RENDERED,
-                    PelTag::EXPOSURE_MODE,
-                    PelTag::WHITE_BALANCE,
-                    PelTag::DIGITAL_ZOOM_RATIO,
-                    PelTag::FOCAL_LENGTH_IN_35MM_FILM,
-                    PelTag::SCENE_CAPTURE_TYPE,
-                    PelTag::GAIN_CONTROL,
-                    PelTag::CONTRAST,
-                    PelTag::SATURATION,
-                    PelTag::SHARPNESS,
-                    PelTag::DEVICE_SETTING_DESCRIPTION,
-                    PelTag::SUBJECT_DISTANCE_RANGE,
-                    PelTag::IMAGE_UNIQUE_ID,
-                    PelTag::INTEROPERABILITY_IFD_POINTER,
-                    PelTag::GAMMA
-                ];
-
-            case PelIfd::GPS:
-                return [
-                    PelTag::GPS_VERSION_ID,
-                    PelTag::GPS_LATITUDE_REF,
-                    PelTag::GPS_LATITUDE,
-                    PelTag::GPS_LONGITUDE_REF,
-                    PelTag::GPS_LONGITUDE,
-                    PelTag::GPS_ALTITUDE_REF,
-                    PelTag::GPS_ALTITUDE,
-                    PelTag::GPS_TIME_STAMP,
-                    PelTag::GPS_SATELLITES,
-                    PelTag::GPS_STATUS,
-                    PelTag::GPS_MEASURE_MODE,
-                    PelTag::GPS_DOP,
-                    PelTag::GPS_SPEED_REF,
-                    PelTag::GPS_SPEED,
-                    PelTag::GPS_TRACK_REF,
-                    PelTag::GPS_TRACK,
-                    PelTag::GPS_IMG_DIRECTION_REF,
-                    PelTag::GPS_IMG_DIRECTION,
-                    PelTag::GPS_MAP_DATUM,
-                    PelTag::GPS_DEST_LATITUDE_REF,
-                    PelTag::GPS_DEST_LATITUDE,
-                    PelTag::GPS_DEST_LONGITUDE_REF,
-                    PelTag::GPS_DEST_LONGITUDE,
-                    PelTag::GPS_DEST_BEARING_REF,
-                    PelTag::GPS_DEST_BEARING,
-                    PelTag::GPS_DEST_DISTANCE_REF,
-                    PelTag::GPS_DEST_DISTANCE,
-                    PelTag::GPS_PROCESSING_METHOD,
-                    PelTag::GPS_AREA_INFORMATION,
-                    PelTag::GPS_DATE_STAMP,
-                    PelTag::GPS_DIFFERENTIAL
-                ];
-
-            case PelIfd::INTEROPERABILITY:
-                return [
-                    PelTag::INTEROPERABILITY_INDEX,
-                    PelTag::INTEROPERABILITY_VERSION,
-                    PelTag::RELATED_IMAGE_FILE_FORMAT,
-                    PelTag::RELATED_IMAGE_WIDTH,
-                    PelTag::RELATED_IMAGE_LENGTH
-                ];
-            case PelIfd::CANON_MAKER_NOTES:
-                return [
-                    PelTag::CANON_CAMERA_SETTINGS,
-                    PelTag::CANON_FOCAL_LENGTH,
-                    PelTag::CANON_SHOT_INFO,
-                    PelTag::CANON_PANORAMA,
-                    PelTag::CANON_IMAGE_TYPE,
-                    PelTag::CANON_FIRMWARE_VERSION,
-                    PelTag::CANON_FILE_NUMBER,
-                    PelTag::CANON_OWNER_NAME,
-                    PelTag::CANON_SERIAL_NUMBER,
-                    PelTag::CANON_CAMERA_INFO,
-                    PelTag::CANON_CUSTOM_FUNCTIONS,
-                    PelTag::CANON_MODEL_ID,
-                    PelTag::CANON_PICTURE_INFO,
-                    PelTag::CANON_THUMBNAIL_IMAGE_VALID_AREA,
-                    PelTag::CANON_SERIAL_NUMBER_FORMAT,
-                    PelTag::CANON_SUPER_MACRO,
-                    PelTag::CANON_FIRMWARE_REVISION,
-                    PelTag::CANON_AF_INFO,
-                    PelTag::CANON_ORIGINAL_DECISION_DATA_OFFSET,
-                    PelTag::CANON_WHITE_BALANCE_TABLE,
-                    PelTag::CANON_LENS_MODEL,
-                    PelTag::CANON_INTERNAL_SERIAL_NUMBER,
-                    PelTag::CANON_DUST_REMOVAL_DATA,
-                    PelTag::CANON_CUSTOM_FUNCTIONS_2,
-                    PelTag::CANON_PROCESSING_INFO,
-                    PelTag::CANON_MEASURED_COLOR,
-                    PelTag::CANON_COLOR_SPACE,
-                    PelTag::CANON_VRD_OFFSET,
-                    PelTag::CANON_SENSOR_INFO,
-                    PelTag::CANON_COLOR_DATA
-                ];
-            case PelIfd::CANON_CAMERA_SETTINGS:
-                return [
-                    PelTag::CANON_CS_MACRO,
-                    PelTag::CANON_CS_SELF_TIMER,
-                    PelTag::CANON_CS_QUALITY,
-                    PelTag::CANON_CS_FLASH_MODE,
-                    PelTag::CANON_CS_DRIVE_MODE,
-                    PelTag::CANON_CS_FOCUS_MODE,
-                    PelTag::CANON_CS_RECORD_MODE,
-                    PelTag::CANON_CS_IMAGE_SIZE,
-                    PelTag::CANON_CS_EASY_MODE,
-                    PelTag::CANON_CS_DIGITAL_ZOOM,
-                    PelTag::CANON_CS_CONTRAST,
-                    PelTag::CANON_CS_SATURATION,
-                    PelTag::CANON_CS_SHARPNESS,
-                    PelTag::CANON_CS_ISO_SPEED,
-                    PelTag::CANON_CS_METERING_MODE,
-                    PelTag::CANON_CS_FOCUS_TYPE,
-                    PelTag::CANON_CS_AF_POINT,
-                    PelTag::CANON_CS_EXPOSURE_PROGRAM,
-                    PelTag::CANON_CS_LENS_TYPE,
-                    PelTag::CANON_CS_LENS,
-                    PelTag::CANON_CS_SHORT_FOCAL,
-                    PelTag::CANON_CS_FOCAL_UNITS,
-                    PelTag::CANON_CS_MAX_APERTURE,
-                    PelTag::CANON_CS_MIN_APERTURE,
-                    PelTag::CANON_CS_FLASH_ACTIVITY,
-                    PelTag::CANON_CS_FLASH_DETAILS,
-                    PelTag::CANON_CS_FOCUS_CONTINUOUS,
-                    PelTag::CANON_CS_AE_SETTING,
-                    PelTag::CANON_CS_IMAGE_STABILIZATION,
-                    PelTag::CANON_CS_DISPLAY_APERTURE,
-                    PelTag::CANON_CS_ZOOM_SOURCE_WIDTH,
-                    PelTag::CANON_CS_ZOOM_TARGET_WIDTH,
-                    PelTag::CANON_CS_SPOT_METERING_MODE,
-                    PelTag::CANON_CS_PHOTO_EFFECT,
-                    PelTag::CANON_CS_MANUAL_FLASH_OUTPUT,
-                    PelTag::CANON_CS_COLOR_TONE,
-                    PelTag::CANON_CS_SRAW_QUALITY
-                ];
-            case PelIfd::CANON_SHOT_INFO:
-                return [
-                    PelTag::CANON_SI_ISO_SPEED,
-                    PelTag::CANON_SI_MEASURED_EV,
-                    PelTag::CANON_SI_TARGET_APERTURE,
-                    PelTag::CANON_SI_TARGET_SHUTTER_SPEED,
-                    PelTag::CANON_SI_WHITE_BALANCE,
-                    PelTag::CANON_SI_SLOW_SHUTTER,
-                    PelTag::CANON_SI_SEQUENCE,
-                    PelTag::CANON_SI_AF_POINT_USED,
-                    PelTag::CANON_SI_FLASH_BIAS,
-                    PelTag::CANON_SI_AUTO_EXPOSURE_BRACKETING,
-                    PelTag::CANON_SI_SUBJECT_DISTANCE,
-                    PelTag::CANON_SI_APERTURE_VALUE,
-                    PelTag::CANON_SI_SHUTTER_SPEED_VALUE,
-                    PelTag::CANON_SI_MEASURED_EV2,
-                    PelTag::CANON_SI_CAMERA_TYPE,
-                    PelTag::CANON_SI_AUTO_ROTATE,
-                    PelTag::CANON_SI_ND_FILTER
-                ];
-            case PelIfd::CANON_PANORAMA:
-                return [
-                    PelTag::CANON_PA_PANORAMA_FRAME,
-                    PelTag::CANON_PA_PANORAMA_DIRECTION
-                ];
-            case PelIfd::CANON_PICTURE_INFO:
-                return [
-                    PelTag::CANON_PI_IMAGE_WIDTH,
-                    PelTag::CANON_PI_IMAGE_HEIGHT,
-                    PelTag::CANON_PI_IMAGE_WIDTH_AS_SHOT,
-                    PelTag::CANON_PI_IMAGE_HEIGHT_AS_SHOT,
-                    PelTag::CANON_PI_AF_POINTS_USED,
-                    PelTag::CANON_PI_AF_POINTS_USED_20D
-                ];
-            case PelIfd::CANON_FILE_INFO:
-                return [
-                    PelTag::CANON_FI_FILE_NUMBER,
-                    PelTag::CANON_FI_BRACKET_MODE,
-                    PelTag::CANON_FI_BRACKET_VALUE,
-                    PelTag::CANON_FI_BRACKET_SHOT_NUMBER,
-                    PelTag::CANON_FI_RAW_JPG_QUALITY,
-                    PelTag::CANON_FI_RAW_JPG_SIZE,
-                    PelTag::CANON_FI_NOISE_REDUCTION,
-                    PelTag::CANON_FI_WB_BRACKET_MODE,
-                    PelTag::CANON_FI_WB_BRACKET_VALUE_AB,
-                    PelTag::CANON_FI_WB_BRACKET_VALUE_GM,
-                    PelTag::CANON_FI_FILTER_EFFECT,
-                    PelTag::CANON_FI_TONING_EFFECT,
-                    PelTag::CANON_FI_MACRO_MAGNIFICATION,
-                    PelTag::CANON_FI_LIVE_VIEW_SHOOTING,
-                    PelTag::CANON_FI_FOCUS_DISTANCE_UPPER,
-                    PelTag::CANON_FI_FOCUS_DISTANCE_LOWER,
-                    PelTag::CANON_FI_FLASH_EXPOSURE_LOCK
-                ];
-
-            /*
-             * TODO: Where do these tags belong?
-             * PelTag::FILL_ORDER,
-             * PelTag::TRANSFER_RANGE,
-             * PelTag::JPEG_PROC,
-             * PelTag::BATTERY_LEVEL,
-             * PelTag::IPTC_NAA,
-             * PelTag::INTER_COLOR_PROFILE,
-             * PelTag::CFA_REPEAT_PATTERN_DIM,
-             */
+        $tp = $this->type;
+        if ($tp = self::IFD1) {
+            // return the same for IFD0 and IFD1
+            $tp = self::IFD0;
+        }
+        if (array_key_exists($tp, self::VALID_TAGS)) {
+            return self::VALID_TAGS;
         }
     }
 
     /**
      * Get the name of an IFD type.
      *
-     * @param int $type
+     * @param integer $type
      *            one of {@link PelIfd::IFD0}, {@link PelIfd::IFD1},
      *            {@link PelIfd::EXIF}, {@link PelIfd::GPS}, or {@link
      *            PelIfd::INTEROPERABILITY}.
@@ -1118,34 +1111,10 @@ class PelIfd implements \IteratorAggregate, \ArrayAccess
      */
     public static function getTypeName($type)
     {
-        switch ($type) {
-            case self::IFD0:
-                return '0';
-            case self::IFD1:
-                return '1';
-            case self::EXIF:
-                return 'Exif';
-            case self::GPS:
-                return 'GPS';
-            case self::INTEROPERABILITY:
-                return 'Interoperability';
-            case self::CANON_MAKER_NOTES:
-                return 'Canon Maker Notes';
-            case self::CANON_CAMERA_SETTINGS:
-                return 'Canon Camera Settings';
-            case self::CANON_SHOT_INFO:
-                return 'Canon Shot Information';
-            case self::CANON_PANORAMA:
-                return 'Canon Panorama Information';
-            case self::CANON_PICTURE_INFO:
-                return 'Canon Picture Information';
-            case self::CANON_FILE_INFO:
-                return 'Canon File Information';
-            case self::CANON_CUSTOM_FUNCTIONS:
-                return 'Canon Custom Functions';
-            default:
-                throw new PelIfdException('Unknown IFD type: %d', $type);
+        if (array_key_exists($type, self::TYPE_NAMES)) {
+            return self::TYPE_NAMES[$type];
         }
+        throw new PelIfdException('Unknown IFD type: %d', $type);
     }
 
     /**
@@ -1191,7 +1160,7 @@ class PelIfd implements \IteratorAggregate, \ArrayAccess
      * // ... do something with the F-number.
      * </code>
      *
-     * @param int $tag
+     * @param integer $tag
      *            the offset to check.
      * @return boolean whether the tag exists.
      */
@@ -1211,7 +1180,7 @@ class PelIfd implements \IteratorAggregate, \ArrayAccess
      * $entry = $ifd[PelTag::FNUMBER];
      * </code>
      *
-     * @param int $tag
+     * @param integer $tag
      *            the tag to return. It is an error to ask for a tag
      *            which is not in the IFD, just like asking for a non-existant
      *            array entry.
@@ -1236,7 +1205,7 @@ class PelIfd implements \IteratorAggregate, \ArrayAccess
      * Note that the actual array index passed is ignored! Instead the
      * {@link PelTag} from the entry is used.
      *
-     * @param int $tag
+     * @param integer $tag
      *            unused.
      * @param PelEntry $e
      *            the new value.
@@ -1262,7 +1231,7 @@ class PelIfd implements \IteratorAggregate, \ArrayAccess
      * unset($ifd[PelTag::EXPOSURE_BIAS_VALUE])
      * </code>
      *
-     * @param int $tag
+     * @param integer $tag
      *            the offset to delete.
      */
     public function offsetUnset($tag)
@@ -1273,7 +1242,7 @@ class PelIfd implements \IteratorAggregate, \ArrayAccess
     /**
      * Retrieve an entry.
      *
-     * @param int $tag
+     * @param integer $tag
      *            the tag identifying the entry.
      * @return PelEntry the entry associated with the tag, or null if no
      *         such entry exists.
@@ -1389,7 +1358,7 @@ class PelIfd implements \IteratorAggregate, \ArrayAccess
     /**
      * Return a sub IFD.
      *
-     * @param int $type
+     * @param integer $type
      *            the type of the sub IFD. This must be one of {@link
      *            PelIfd::EXIF}, {@link PelIfd::GPS}, or {@link
      *            PelIfd::INTEROPERABILITY}.
@@ -1423,7 +1392,7 @@ class PelIfd implements \IteratorAggregate, \ArrayAccess
      * specified byte order. The offsets will be calculated from the
      * offset given.
      *
-     * @param int $offset
+     * @param integer $offset
      *            the offset of the first byte of this directory.
      * @param boolean $order
      *            the byte order that should be used when
@@ -1563,7 +1532,7 @@ class PelIfd implements \IteratorAggregate, \ArrayAccess
         }
         $str .= Pel::fmt("Dumping %d sub IFDs...\n", count($this->sub));
 
-        foreach ($this->sub as $type => $ifd) {
+        foreach ($this->sub as $ifd) {
             $str .= $ifd->__toString();
         }
         if ($this->next !== null) {
