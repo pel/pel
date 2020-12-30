@@ -98,7 +98,7 @@ class PelEntryTime extends PelEntryAscii
      *            one of the constants {@link PelTag::DATE_TIME}, {@link
      *            PelTag::DATE_TIME_ORIGINAL}, or {@link
      *            PelTag::DATE_TIME_DIGITIZED}.
-     * @param integer $timestamp
+     * @param integer|string|double $timestamp
      *            the timestamp held by this entry in the correct form
      *            as indicated by the third argument. For {@link UNIX_TIMESTAMP}
      *            this is an integer counting the number of seconds since January
