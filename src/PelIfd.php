@@ -438,7 +438,7 @@ class PelIfd implements \IteratorAggregate, \ArrayAccess
      * PelTag::INTER_COLOR_PROFILE,
      * PelTag::CFA_REPEAT_PATTERN_DIM,
      */
-    ];s
+    ];
 
     /**
      * The maker notes held by this directory.
