@@ -488,12 +488,12 @@ class PelJpeg
      * $dht3 = $jpeg->getSection(PelJpegMarker::DHT, 2);
      * </code>
      *
-     * @param PelJpegMarker $marker
+     * @param integer $marker
      *            the marker identifying the section.
      * @param integer $skip
      *            the number of sections to be skipped. This must be a
      *            non-negative integer.
-     * @return PelJpegContent|PelExif. the content found, or null if there is no
+     * @return PelJpegContent|lsolesen\pel\PelExif the content found, or null if there is no
      *         content available.
      */
     public function getSection($marker, $skip = 0)
