@@ -374,7 +374,7 @@ class PelJpeg
      *
      * Use this to get the @{link PelExif Exif data} stored.
      *
-     * @return PelExif the Exif data found or null if the image has no
+     * @return PelExif|null the Exif data found or null if the image has no
      *         Exif data.
      */
     public function getExif()
@@ -394,7 +394,7 @@ class PelJpeg
      *
      * Use this to get the @{link PelJpegContent ICC data} stored.
      *
-     * @return integer the ICC data found or null if the image has no
+     * @return PelJpegContent|null the ICC data found or null if the image has no
      *         ICC data.
      */
     public function getICC()
@@ -493,7 +493,7 @@ class PelJpeg
      * @param integer $skip
      *            the number of sections to be skipped. This must be a
      *            non-negative integer.
-     * @return integer the content found, or null if there is no
+     * @return PelJpegContent|PelExif. the content found, or null if there is no
      *         content available.
      */
     public function getSection($marker, $skip = 0)
