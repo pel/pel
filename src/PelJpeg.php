@@ -107,12 +107,10 @@ class PelJpeg
      * $jpeg->setExif($exif);
      * </code>
      *
-     * @param
-     *            mixed the data that this JPEG. This can either be a
+     * @param boolean|string|PelDataWindow|resource|\GDImage $data
+     *            the data that this JPEG. This can either be a
      *            filename, a {@link PelDataWindow} object, or a PHP image resource
      *            handle.
-     *            
-     * @param boolean|string|PelDataWindow|resource|\GDImage $data
      * @throws PelInvalidArgumentException
      */
     public function __construct($data = false)
