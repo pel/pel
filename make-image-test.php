@@ -126,14 +126,14 @@ function ifdToTest($name, $number, PelIfd $ifd)
     $next = $ifd->getNextIfd();
     println('%s%d = %s%d->getNextIfd();', $name, $number + 1, $name, $number);
 
-    if ($next instanceof PelIfd) {
+    if ($next === null) {
+        println('$this->assertNull(%s%d);', $name, $number + 1);
+        println('/* End of IFD %s%d. */', $name, $number);
+    } else {
         println('$this->assertInstanceOf(\'\lsolesen\pel\PelIfd\', %s%d);', $name, $number + 1);
         println('/* End of IFD %s%d. */', $name, $number);
 
         ifdToTest($name, $number + 1, $next);
-    } else {
-        println('$this->assertNull(%s%d);', $name, $number + 1);
-        println('/* End of IFD %s%d. */', $name, $number);
     }
 }
 
@@ -143,11 +143,11 @@ function tiffToTest($name, PelTiff $tiff)
     println('/* The first IFD. */');
     println('$ifd0 = %s->getIfd();', $name);
     $ifd = $tiff->getIfd();
-    if ($ifd instanceof PelIfd) {
+    if ($ifd === null) {
+        println('$this->assertNull($ifd0);');
+    } else {
         println('$this->assertInstanceOf(\'\lsolesen\pel\PelIfd\', $ifd0);');
         ifdToTest('$ifd', 0, $ifd);
-    } else {
-        println('$this->assertNull($ifd0);');
     }
 }
 
@@ -158,7 +158,9 @@ function jpegContentToTest($name, PelJpegContent $content)
         $tiff = $content->getTiff();
         println();
         println('$tiff = %s->getTiff();', $name);
-        if ($tiff instanceof PelTiff) {
+        if ($tiff === null) {
+            println('$this->assertNull($tiff);');
+        } else {
             println('$this->assertInstanceOf(\'\lsolesen\pel\PelTiff\', $tiff);');
             tiffToTest('$tiff', $tiff);
         }
