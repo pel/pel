@@ -394,7 +394,7 @@ class PelJpeg
      *
      * Use this to get the @{link PelJpegContent ICC data} stored.
      *
-     * @return PelJpegContent the ICC data found or null if the image has no
+     * @return integer the ICC data found or null if the image has no
      *         ICC data.
      */
     public function getICC()
@@ -433,7 +433,7 @@ class PelJpeg
      * information to an image as that function will know the right
      * place to insert the data.
      *
-     * @param PelJpegMarker $marker
+     * @param integer $marker
      *            the marker identifying the new section.
      * @param PelJpegContent $content
      *            the content of the new section.
@@ -453,7 +453,7 @@ class PelJpeg
      * information to an image as that function will know the right
      * place to insert the data.
      *
-     * @param PelJpegMarker $marker
+     * @param integer $marker
      *            the marker for the new section.
      * @param PelJpegContent $content
      *            the content of the new section.
@@ -493,7 +493,7 @@ class PelJpeg
      * @param integer $skip
      *            the number of sections to be skipped. This must be a
      *            non-negative integer.
-     * @return PelJpegContent the content found, or null if there is no
+     * @return integer the content found, or null if there is no
      *         content available.
      */
     public function getSection($marker, $skip = 0)
