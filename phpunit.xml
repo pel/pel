@@ -1,13 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<phpunit xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" backupGlobals="false" backupStaticAttributes="false" colors="true" convertErrorsToExceptions="true" convertNoticesToExceptions="true" convertWarningsToExceptions="true" stopOnFailure="false" bootstrap="vendor/autoload.php" xsi:noNamespaceSchemaLocation="https://schema.phpunit.de/9.3/phpunit.xsd">
-  <coverage>
-    <include>
-      <directory suffix=".php">./src/</directory>
-    </include>
-  </coverage>
-  <testsuites>
-    <testsuite name="Pel Testing Suite">
-      <directory suffix=".php">./test/</directory>
-    </testsuite>
-  </testsuites>
+<phpunit xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	backupGlobals="false" backupStaticAttributes="false" colors="true"
+	convertErrorsToExceptions="true" convertNoticesToExceptions="true"
+	convertWarningsToExceptions="true" stopOnFailure="false"
+	bootstrap="vendor/autoload.php"
+	xsi:noNamespaceSchemaLocation="https://schema.phpunit.de/8.3/phpunit.xsd">
+	<filter>
+		<whitelist>
+			<directory suffix=".php">./src/</directory>
+		</whitelist>
+	</filter>
+	<testsuites>
+		<testsuite name="Pel Testing Suite">
+			<directory suffix=".php">./test/</directory>
+		</testsuite>
+	</testsuites>
 </phpunit>
