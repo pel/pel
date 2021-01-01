@@ -710,7 +710,7 @@ class PelIfd implements \IteratorAggregate, \ArrayAccess
      * @param integer $i
      *            the element's position in the {@link PelDataWindow} $d.
      * @param integer $tag
-     *            the tag of the entry as defined in {@link PelTag}.     
+     *            the tag of the entry as defined in {@link PelTag}.
      * @throws PelException
      * @throws PelEntryUndefined
      * @throws PelUnexpectedFormatException
