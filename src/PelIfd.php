@@ -516,7 +516,6 @@ class PelIfd implements \IteratorAggregate, \ArrayAccess
      *            IFD0}, {@link IFD1}, {@link EXIF}, {@link GPS}, or {@link
      *            INTEROPERABILITY}. An {@link PelIfdException} will be thrown
      *            otherwise.
-     *            
      * @throws PelIfdException
      */
     public function __construct($type)
@@ -568,7 +567,6 @@ class PelIfd implements \IteratorAggregate, \ArrayAccess
      * @param integer $offset
      *            the offset within the window where the directory will
      *            be found.
-     *            
      * @throws PelException
      * @throws PelEntryUndefined
      * @throws PelUnexpectedFormatException
@@ -712,8 +710,7 @@ class PelIfd implements \IteratorAggregate, \ArrayAccess
      * @param integer $i
      *            the element's position in the {@link PelDataWindow} $d.
      * @param integer $tag
-     *            the tag of the entry as defined in {@link PelTag}.
-     *            
+     *            the tag of the entry as defined in {@link PelTag}.     
      * @throws PelException
      * @throws PelEntryUndefined
      * @throws PelUnexpectedFormatException
