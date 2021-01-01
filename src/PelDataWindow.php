@@ -80,7 +80,7 @@ class PelDataWindow
     /**
      * Construct a new data window with the data supplied.
      *
-     * @param mixed $data
+     * @param string|resource|\GDImage $data
      *            the data that this window will contain. This can
      *            either be given as a string (interpreted litteraly as a sequence
      *            of bytes) or a PHP image resource handle. The data will be copied
@@ -91,6 +91,7 @@ class PelDataWindow
      *            PelConvert::BIG_ENDIAN}. This will be used when integers are
      *            read from the data, and it can be changed later with {@link
      *            setByteOrder()}.
+     * @throws PelInvalidArgumentException if $data was of invalid type
      */
     public function __construct($data = '', $endianess = PelConvert::LITTLE_ENDIAN)
     {
