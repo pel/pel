@@ -33,6 +33,6 @@ class LoadNonExistingJpegTest extends TestCase
     public function testWindowWindowExceptionIsCaught()
     {
         $this->expectException(PelException::class);
-        $jpeg = new PelJpeg('non-existing-file');
+        new PelJpeg('non-existing-file');
     }
 }
