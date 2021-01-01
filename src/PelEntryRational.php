@@ -70,7 +70,7 @@ class PelEntryRational extends PelEntryLong
      *            be one of the constants defined in {@link PelTag}, e.g., {@link
      *            PelTag::X_RESOLUTION}, or any other tag which can have format
      *            {@link PelFormat::RATIONAL}.
-     * @param array $value...
+     * @param array ...$value
      *            the rational(s) that this entry will
      *            represent. The arguments passed must obey the same rules as the
      *            argument to {@link setValue}, namely that each argument should be
@@ -78,8 +78,9 @@ class PelEntryRational extends PelEntryLong
      *            an unsigned long (32 bit), that is between 0 and 4294967295
      *            (inclusive). If not, then a {@link PelOverflowException} will be
      *            thrown.
+     * @throws PelOverflowException
      */
-    public function __construct($tag, $value = null)
+    public function __construct($tag, ...$value)
     {
         $this->tag = $tag;
         $this->format = PelFormat::RATIONAL;
@@ -87,8 +88,6 @@ class PelEntryRational extends PelEntryLong
         $this->min = 0;
         $this->max = 4294967295;
 
-        $value = func_get_args();
-        array_shift($value);
         $this->setValueArray($value);
     }
 
@@ -120,12 +119,15 @@ class PelEntryRational extends PelEntryLong
      * @param boolean $brief
      *            some values can be returned in a long or more
      *            brief form, and this parameter controls that.
-     * @return string the value as text.
+     * @return boolean|string the value as text.
      */
     public function getText($brief = false)
     {
         if (isset($this->value[0])) {
             $v = $this->value[0];
+        } else {
+            // TODO: Not sure, if this is the correct path; maybe throw an exception?
+            return '';
         }
 
         switch ($this->tag) {
@@ -159,7 +161,7 @@ class PelEntryRational extends PelEntryLong
                 break;
             case PelTag::GPS_LATITUDE:
             case PelTag::GPS_LONGITUDE:
-                $degrees = $this->value[0][0] / $this->value[0][1];
+                $degrees = $v[0] / $v[1];
                 $minutes = $this->value[1][0] / $this->value[1][1];
                 $seconds = $this->value[2][0] / $this->value[2][1];
 

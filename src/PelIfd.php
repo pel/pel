@@ -516,6 +516,7 @@ class PelIfd implements \IteratorAggregate, \ArrayAccess
      *            IFD0}, {@link IFD1}, {@link EXIF}, {@link GPS}, or {@link
      *            INTEROPERABILITY}. An {@link PelIfdException} will be thrown
      *            otherwise.
+     * @throws PelIfdException
      */
     public function __construct($type)
     {
@@ -566,6 +567,10 @@ class PelIfd implements \IteratorAggregate, \ArrayAccess
      * @param integer $offset
      *            the offset within the window where the directory will
      *            be found.
+     * @throws PelException
+     * @throws PelEntryUndefined
+     * @throws PelUnexpectedFormatException
+     * @throws PelWrongComponentCountException
      */
     public function load(PelDataWindow $d, $offset)
     {
@@ -706,6 +711,10 @@ class PelIfd implements \IteratorAggregate, \ArrayAccess
      *            the element's position in the {@link PelDataWindow} $d.
      * @param integer $tag
      *            the tag of the entry as defined in {@link PelTag}.
+     * @throws PelException
+     * @throws PelEntryUndefined
+     * @throws PelUnexpectedFormatException
+     * @throws PelWrongComponentCountException
      */
     public function loadSingleValue($d, $offset, $i, $tag)
     {
@@ -775,8 +784,11 @@ class PelIfd implements \IteratorAggregate, \ArrayAccess
      *            the element's position in the {@link PelDataWindow} $data.
      * @param integer $format
      *            the format {@link PelFormat} of the entry.
+     * @throws PelException
+     * @throws PelDataWindowWindowException
+     * @throws PelInvalidArgumentException
      */
-    public function loadSingleMakerNotesValue($type, $data, $offset, $size, $i, $format)
+    public function loadSingleMakerNotesValue($type, PelDataWindow $data, $offset, $size, $i, $format)
     {
         $elemSize = PelFormat::getSize($format);
         if ($size > 0) {
@@ -789,10 +801,7 @@ class PelIfd implements \IteratorAggregate, \ArrayAccess
             $entry = $this->newEntryFromData($i + 1, $format, 1, $subdata);
             $this->addEntry($entry);
         } catch (PelException $e) {
-            /*
-             * Throw the exception when running in strict mode, store
-             * otherwise.
-             */
+            // Throw the exception when running in strict mode, store otherwise.
             Pel::maybeThrow($e);
         }
 
@@ -833,6 +842,10 @@ class PelIfd implements \IteratorAggregate, \ArrayAccess
      *            the data which will be used to construct the
      *            entry.
      * @return PelEntry a newly created entry, holding the data given.
+     * @throws PelException
+     * @throws PelEntryUndefined
+     * @throws PelUnexpectedFormatException
+     * @throws PelWrongComponentCountException
      */
     public function newEntryFromData($tag, $format, $components, PelDataWindow $data)
     {
@@ -996,6 +1009,8 @@ class PelIfd implements \IteratorAggregate, \ArrayAccess
      *            the offset into the data.
      * @param integer $length
      *            the length of the thumbnail.
+     * @throws PelIfdException
+     * @throws PelDataWindowWindowException
      */
     private function safeSetThumbnail(PelDataWindow $d, $offset, $length)
     {
@@ -1033,6 +1048,7 @@ class PelIfd implements \IteratorAggregate, \ArrayAccess
      *
      * @param PelDataWindow $d
      *            the thumbnail data.
+     * @throws PelIfdException
      */
     public function setThumbnail(PelDataWindow $d)
     {
@@ -1209,6 +1225,7 @@ class PelIfd implements \IteratorAggregate, \ArrayAccess
      *            unused.
      * @param PelEntry $e
      *            the new value.
+     * @throws PelInvalidArgumentException
      */
     public function offsetSet($tag, $e)
     {
@@ -1295,6 +1312,7 @@ class PelIfd implements \IteratorAggregate, \ArrayAccess
      * @return string the bytes in the thumbnail, if any. If the IFD
      *         does not contain any thumbnail data, the empty string is
      *         returned.
+     * @throws PelDataWindowOffsetException
      * @todo Throw an exception instead when no data is available?
      * @todo Return the $this->thumb_data object instead of the bytes?
      */

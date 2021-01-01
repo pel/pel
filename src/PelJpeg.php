@@ -117,9 +117,7 @@ class PelJpeg
     {
         if ($data === false) {
             return;
-        }
-
-        if (is_string($data)) {
+        } elseif (is_string($data)) {
             Pel::debug('Initializing PelJpeg object from %s', $data);
             $this->loadFile($data);
         } elseif ($data instanceof PelDataWindow) {
@@ -282,10 +280,17 @@ class PelJpeg
      *
      * @param string $filename.
      *            This must be a readable file.
+     * @return void
+     * @throws PelException if file could not be loaded
      */
     public function loadFile($filename)
     {
-        $this->load(new PelDataWindow(file_get_contents($filename)));
+        $content = @file_get_contents($filename);
+        if ($content === false) {
+            throw new PelException('Can not open file "%s"', $filename);
+        } else {
+            $this->load(new PelDataWindow($content));
+        }
     }
 
     /**

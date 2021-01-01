@@ -80,7 +80,7 @@ class PelDataWindow
     /**
      * Construct a new data window with the data supplied.
      *
-     * @param mixed $data
+     * @param string|resource|\GDImage $data
      *            the data that this window will contain. This can
      *            either be given as a string (interpreted litteraly as a sequence
      *            of bytes) or a PHP image resource handle. The data will be copied
@@ -91,12 +91,13 @@ class PelDataWindow
      *            PelConvert::BIG_ENDIAN}. This will be used when integers are
      *            read from the data, and it can be changed later with {@link
      *            setByteOrder()}.
+     * @throws PelInvalidArgumentException if $data was of invalid type
      */
     public function __construct($data = '', $endianess = PelConvert::LITTLE_ENDIAN)
     {
         if (is_string($data)) {
             $this->data = $data;
-        } elseif ((is_resource($data) && get_resource_type($data) == 'gd') || (PHP_VERSION_ID >= 80000 && is_object($data) && $data instanceof \GDImage)) {
+        } elseif ((is_resource($data) && get_resource_type($data) === 'gd') || (PHP_VERSION_ID >= 80000 && is_object($data) && $data instanceof \GDImage)) {
             /*
              * The ImageJpeg() function insists on printing the bytes
              * instead of returning them in a more civil way as a string, so
@@ -156,6 +157,7 @@ class PelDataWindow
      *            the new start of the window. All new offsets will be
      *            calculated from this new start offset, and the size of the window
      *            will shrink to keep the end of the window in place.
+     * @throws PelDataWindowWindowException
      */
     public function setWindowStart($start)
     {
@@ -173,6 +175,7 @@ class PelDataWindow
      * @param integer $size
      *            the desired size of the window. If the argument is
      *            negative, the window will be shrunk by the argument.
+     * @throws PelDataWindowWindowException
      */
     public function setWindowSize($size)
     {
@@ -188,16 +191,17 @@ class PelDataWindow
     /**
      * Make a new data window with the same data as the this window.
      *
-     * @param integer|NULL $start
+     * @param integer|null $start
      *            if an integer is supplied, then it will be the start
      *            of the window in the clone. If left unspecified, then the clone
      *            will inherit the start from this object.
-     * @param integer|NULL $size
+     * @param integer|null $size
      *            if an integer is supplied, then it will be the size
      *            of the window in the clone. If left unspecified, then the clone
      *            will inherit the size from this object.
      * @return PelDataWindow a new window that operates on the same data
      *         as this window, but (optionally) with a smaller window size.
+     * @throws PelDataWindowWindowException
      */
     public function getClone($start = null, $size = null)
     {

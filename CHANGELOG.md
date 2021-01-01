@@ -1,5 +1,16 @@
 # CHANGELOG
 
+## 0.9.10 - 2021-01-01
+
+* Breaking changes:
+  - The constructor of PelJpeg(filename) and PelJpeg::loadFile() 
+    now throws a PelException if file can not be read.
+
+* Get make-image-test.php working again
+* Major refactorings and simplifications of code
+* Fix of several issues detected by scrutinizer
+
+
 ## 0.9.9 - 2020-11-07
 
 * Cast output from getBytes() to float (#155)

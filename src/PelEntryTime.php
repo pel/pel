@@ -169,7 +169,7 @@ class PelEntryTime extends PelEntryAscii
     /**
      * Update the timestamp held by this entry.
      *
-     * @param integer $timestamp
+     * @param integer|float|string $timestamp
      *            the timestamp held by this entry in the correct form
      *            as indicated by the third argument. For {@link UNIX_TIMESTAMP}
      *            this is an integer counting the number of seconds since January
@@ -182,41 +182,42 @@ class PelEntryTime extends PelEntryAscii
      *            the type of the timestamp. This must be one of
      *            {@link UNIX_TIMESTAMP}, {@link EXIF_STRING}, or
      *            {@link JULIAN_DAY_COUNT}.
+     * @throws PelInvalidArgumentException
      */
     public function setValue($timestamp, $type = self::UNIX_TIMESTAMP)
     {
-        switch ($type) {
-            case self::UNIX_TIMESTAMP:
+        if ($type === self::UNIX_TIMESTAMP) {
+            if (is_int($timestamp) || is_float($timestamp)) {
                 $this->day_count = $this->convertUnixToJd($timestamp);
                 $this->seconds = $timestamp % 86400;
-                break;
-
-            case self::EXIF_STRING:
-                /* Clean the timestamp: some timestamps are broken other
-                 * separators than ':' and ' '. */
-                $d = preg_split('/[^0-9]+/', $timestamp);
-                for ($i = 0; $i < 6; $i ++) {
-                    if (empty($d[$i])) {
-                        $d[$i] = 0;
-                    }
+            } else {
+                throw new PelInvalidArgumentException('Expected integer value for $type, got %s', gettype($timestamp));
+            }
+        } elseif ($type === self::EXIF_STRING) {
+            /*
+             * Clean the timestamp: some timestamps are broken other
+             * separators than ':' and ' '.
+             */
+            $d = preg_split('/[^0-9]+/', $timestamp);
+            for ($i = 0; $i < 6; $i ++) {
+                if (empty($d[$i])) {
+                    $d[$i] = 0;
                 }
-                $this->day_count = $this->convertGregorianToJd($d[0], $d[1], $d[2]);
-                $this->seconds = $d[3] * 3600 + $d[4] * 60 + $d[5];
-                break;
-
-            case self::JULIAN_DAY_COUNT:
+            }
+            $this->day_count = $this->convertGregorianToJd($d[0], $d[1], $d[2]);
+            $this->seconds = $d[3] * 3600 + $d[4] * 60 + $d[5];
+        } elseif ($type === self::JULIAN_DAY_COUNT) {
+            if (is_int($timestamp) || is_float($timestamp)) {
                 $this->day_count = (int) floor($timestamp);
                 $this->seconds = (int) (86400 * ($timestamp - floor($timestamp)));
-                break;
-
-            default:
-                throw new PelInvalidArgumentException('Expected UNIX_TIMESTAMP (%d), ' . 'EXIF_STRING (%d), or ' . 'JULIAN_DAY_COUNT (%d) for $type, got %d.', self::UNIX_TIMESTAMP, self::EXIF_STRING, self::JULIAN_DAY_COUNT, $type);
+            } else {
+                throw new PelInvalidArgumentException('Expected integer value for $type, got %s', gettype($timestamp));
+            }
+        } else {
+            throw new PelInvalidArgumentException('Expected UNIX_TIMESTAMP (%d), ' . 'EXIF_STRING (%d), or ' . 'JULIAN_DAY_COUNT (%d) for $type, got %d.', self::UNIX_TIMESTAMP, self::EXIF_STRING, self::JULIAN_DAY_COUNT, $type);
         }
 
-        /*
-         * Now finally update the string which will be used when this is
-         * turned into bytes.
-         */
+        // finally update the string which will be used when this is turned into bytes.
         parent::setValue($this->getValue(self::EXIF_STRING));
     }
 
@@ -287,7 +288,7 @@ class PelEntryTime extends PelEntryAscii
     /**
      * Converts a UNIX timestamp to a Julian Day count.
      *
-     * @param integer $timestamp
+     * @param integer|float $timestamp
      *            the timestamp.
      * @return float the Julian Day count.
      */
@@ -299,7 +300,7 @@ class PelEntryTime extends PelEntryAscii
     /**
      * Converts a Julian Day count to a UNIX timestamp.
      *
-     * @param integer $jd
+     * @param integer|float $jd
      *            the Julian Day count.
      * @return mixed $timestamp the integer timestamp or false if the
      *         day count cannot be represented as a UNIX timestamp.
