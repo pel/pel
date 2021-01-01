@@ -157,6 +157,7 @@ class PelDataWindow
      *            the new start of the window. All new offsets will be
      *            calculated from this new start offset, and the size of the window
      *            will shrink to keep the end of the window in place.
+     * @throws PelDataWindowWindowException
      */
     public function setWindowStart($start)
     {
@@ -174,6 +175,7 @@ class PelDataWindow
      * @param integer $size
      *            the desired size of the window. If the argument is
      *            negative, the window will be shrunk by the argument.
+     * @throws PelDataWindowWindowException
      */
     public function setWindowSize($size)
     {
@@ -189,16 +191,17 @@ class PelDataWindow
     /**
      * Make a new data window with the same data as the this window.
      *
-     * @param integer|NULL $start
+     * @param integer|null $start
      *            if an integer is supplied, then it will be the start
      *            of the window in the clone. If left unspecified, then the clone
      *            will inherit the start from this object.
-     * @param integer|NULL $size
+     * @param integer|null $size
      *            if an integer is supplied, then it will be the size
      *            of the window in the clone. If left unspecified, then the clone
      *            will inherit the size from this object.
      * @return PelDataWindow a new window that operates on the same data
      *         as this window, but (optionally) with a smaller window size.
+     * @throws PelDataWindowWindowException
      */
     public function getClone($start = null, $size = null)
     {
