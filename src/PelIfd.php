@@ -458,7 +458,7 @@ class PelIfd implements \IteratorAggregate, \ArrayAccess
      *
      * @var array
      */
-    private array $entries = [];
+    private $entries = [];
 
     /**
      * The type of this directory.
