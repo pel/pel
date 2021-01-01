@@ -169,7 +169,7 @@ class PelEntryTime extends PelEntryAscii
     /**
      * Update the timestamp held by this entry.
      *
-     * @param integer $timestamp
+     * @param integer|string $timestamp
      *            the timestamp held by this entry in the correct form
      *            as indicated by the third argument. For {@link UNIX_TIMESTAMP}
      *            this is an integer counting the number of seconds since January
@@ -182,6 +182,7 @@ class PelEntryTime extends PelEntryAscii
      *            the type of the timestamp. This must be one of
      *            {@link UNIX_TIMESTAMP}, {@link EXIF_STRING}, or
      *            {@link JULIAN_DAY_COUNT}.
+     * @throws PelInvalidArgumentException
      */
     public function setValue($timestamp, $type = self::UNIX_TIMESTAMP)
     {
