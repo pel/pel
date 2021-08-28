@@ -49,7 +49,7 @@ class PelDataWindow
      * PelConvert::LITTLE_ENDIAN} and {@link PelConvert::BIG_ENDIAN}.
      *
      * @var boolean
-     * @see setByteOrder, getByteOrder
+     * @see PelDataWindow::setByteOrder, getByteOrder
      */
     private $order;
 
@@ -61,7 +61,7 @@ class PelDataWindow
      * byte.
      *
      * @var int
-     * @see setWindowStart
+     * @see PelDataWindow::setWindowStart
      */
     private $start = 0;
 
@@ -73,31 +73,31 @@ class PelDataWindow
      * variable.
      *
      * @var int
-     * @see setWindowSize
+     * @see PelDataWindow::setWindowSize
      */
     private $size = 0;
 
     /**
      * Construct a new data window with the data supplied.
      *
-     * @param mixed $data
+     * @param string|resource|\GDImage $data
      *            the data that this window will contain. This can
      *            either be given as a string (interpreted litteraly as a sequence
      *            of bytes) or a PHP image resource handle. The data will be copied
      *            into the new data window.
-     *
      * @param boolean $endianess
      *            the initial byte order of the window. This must
      *            be either {@link PelConvert::LITTLE_ENDIAN} or {@link
      *            PelConvert::BIG_ENDIAN}. This will be used when integers are
      *            read from the data, and it can be changed later with {@link
      *            setByteOrder()}.
+     * @throws PelInvalidArgumentException if $data was of invalid type
      */
     public function __construct($data = '', $endianess = PelConvert::LITTLE_ENDIAN)
     {
         if (is_string($data)) {
             $this->data = $data;
-        } elseif (is_resource($data) && get_resource_type($data) == 'gd') {
+        } elseif ((is_resource($data) && get_resource_type($data) === 'gd') || (PHP_VERSION_ID >= 80000 && is_object($data) && $data instanceof \GDImage)) {
             /*
              * The ImageJpeg() function insists on printing the bytes
              * instead of returning them in a more civil way as a string, so
@@ -119,7 +119,6 @@ class PelDataWindow
      *
      * @return integer the number of bytes covered by the window. The
      *         allowed offsets go from 0 up to this number minus one.
-     *
      * @see getBytes()
      */
     public function getSize()
@@ -158,16 +157,12 @@ class PelDataWindow
      *            the new start of the window. All new offsets will be
      *            calculated from this new start offset, and the size of the window
      *            will shrink to keep the end of the window in place.
+     * @throws PelDataWindowWindowException
      */
     public function setWindowStart($start)
     {
         if ($start < 0 || $start > $this->size) {
-            throw new PelDataWindowWindowException(
-                'Window [%d, %d] does ' . 'not fit in window [0, %d]',
-                $start,
-                $this->size,
-                $this->size
-            );
+            throw new PelDataWindowWindowException('Window [%d, %d] does ' . 'not fit in window [0, %d]', $start, $this->size, $this->size);
         }
         $this->start += $start;
         $this->size -= $start;
@@ -180,6 +175,7 @@ class PelDataWindow
      * @param integer $size
      *            the desired size of the window. If the argument is
      *            negative, the window will be shrunk by the argument.
+     * @throws PelDataWindowWindowException
      */
     public function setWindowSize($size)
     {
@@ -187,11 +183,7 @@ class PelDataWindow
             $size += $this->size;
         }
         if ($size < 0 || $size > $this->size) {
-            throw new PelDataWindowWindowException(
-                'Window [0, %d] ' . 'does not fit in window [0, %d]',
-                $size,
-                $this->size
-            );
+            throw new PelDataWindowWindowException('Window [0, %d] ' . 'does not fit in window [0, %d]', $size, $this->size);
         }
         $this->size = $size;
     }
@@ -199,18 +191,17 @@ class PelDataWindow
     /**
      * Make a new data window with the same data as the this window.
      *
-     * @param integer|NULL $start
+     * @param integer|null $start
      *            if an integer is supplied, then it will be the start
      *            of the window in the clone. If left unspecified, then the clone
      *            will inherit the start from this object.
-     *
-     * @param integer|NULL $size
+     * @param integer|null $size
      *            if an integer is supplied, then it will be the size
      *            of the window in the clone. If left unspecified, then the clone
      *            will inherit the size from this object.
-     *
      * @return PelDataWindow a new window that operates on the same data
      *         as this window, but (optionally) with a smaller window size.
+     * @throws PelDataWindowWindowException
      */
     public function getClone($start = null, $size = null)
     {
@@ -232,7 +223,6 @@ class PelDataWindow
      *            the offset to be validated. If the offset is negative
      *            or if it is greater than or equal to the current window size,
      *            then a {@link PelDataWindowOffsetException} is thrown.
-     *
      * @return void if the offset is valid nothing is returned, if it is
      *         invalid a new {@link PelDataWindowOffsetException} is thrown.
      * @throws PelDataWindowOffsetException
@@ -251,16 +241,14 @@ class PelDataWindow
      * function in PHP with the exception that it works within the
      * window of accessible bytes and does strict range checking.
      *
-     * @param integer|NULL $start
+     * @param integer|null $start
      *            the offset to the first byte returned. If a negative
      *            number is given, then the counting will be from the end of the
      *            window. Invalid offsets will result in a {@link
      *            PelDataWindowOffsetException} being thrown.
-     *
-     * @param integer|NUL $size
+     * @param integer|null $size
      *            the size of the sub-window. If a negative number is
      *            given, then that many bytes will be omitted from the result.
-     *
      * @return string a subset of the bytes in the window. This will
      *         always return no more than {@link getSize()} bytes.
      * @throws PelDataWindowOffsetException
@@ -299,7 +287,6 @@ class PelDataWindow
      *            valid offset is equal to {@link getSize()}-1. Invalid offsets
      *            will result in a {@link PelDataWindowOffsetException} being
      *            thrown.
-     *
      * @return integer the unsigned byte found at offset.
      * @throws PelDataWindowOffsetException
      */
@@ -327,7 +314,6 @@ class PelDataWindow
      *            valid offset is equal to {@link getSize()}-1. Invalid offsets
      *            will result in a {@link PelDataWindowOffsetException} being
      *            thrown.
-     *
      * @return integer the signed byte found at offset.
      * @throws PelDataWindowOffsetException
      */
@@ -355,7 +341,6 @@ class PelDataWindow
      *            The last valid offset is equal to {@link getSize()}-2. Invalid
      *            offsets will result in a {@link PelDataWindowOffsetException}
      *            being thrown.
-     *
      * @return integer the unsigned short found at offset.
      * @throws PelDataWindowOffsetException
      */
@@ -384,7 +369,6 @@ class PelDataWindow
      *            The last valid offset is equal to {@link getSize()}-2. Invalid
      *            offsets will result in a {@link PelDataWindowOffsetException}
      *            being thrown.
-     *
      * @return integer the signed short found at offset.
      * @throws PelDataWindowOffsetException
      */
@@ -413,7 +397,6 @@ class PelDataWindow
      *            The last valid offset is equal to {@link getSize()}-4. Invalid
      *            offsets will result in a {@link PelDataWindowOffsetException}
      *            being thrown.
-     *
      * @return integer the unsigned long found at offset.
      * @throws PelDataWindowOffsetException
      */
@@ -442,7 +425,6 @@ class PelDataWindow
      *            The last valid offset is equal to {@link getSize()}-4. Invalid
      *            offsets will result in a {@link PelDataWindowOffsetException}
      *            being thrown.
-     *
      * @return integer the signed long found at offset.
      * @throws PelDataWindowOffsetException
      */
@@ -471,7 +453,6 @@ class PelDataWindow
      *            window. The last valid offset is equal to {@link getSize()}-8.
      *            Invalid offsets will result in a {@link
      *            PelDataWindowOffsetException} being thrown.
-     *
      * @return array the unsigned rational found at offset. A rational
      *         number is represented as an array of two numbers: the enumerator
      *         and denominator. Both of these numbers will be unsigned longs.
@@ -494,7 +475,6 @@ class PelDataWindow
      *            window. The last valid offset is equal to {@link getSize()}-8.
      *            Invalid offsets will result in a {@link
      *            PelDataWindowOffsetException} being thrown.
-     *
      * @return array the signed rational found at offset. A rational
      *         number is represented as an array of two numbers: the enumerator
      *         and denominator. Both of these numbers will be signed longs.
@@ -517,10 +497,8 @@ class PelDataWindow
      *            window. The last valid offset is equal to {@link getSize()}
      *            minus the length of the string. If the string is too long, then
      *            a {@link PelDataWindowOffsetException} will be thrown.
-     *
      * @param string $str
      *            the string to compare with.
-     *
      * @return boolean true if the string given matches the data in the
      *         window, at the specified offset, false otherwise. The comparison
      *         will stop as soon as a mismatch if found.
@@ -559,12 +537,6 @@ class PelDataWindow
      */
     public function __toString()
     {
-        return Pel::fmt(
-            'DataWindow: %d bytes in [%d, %d] of %d bytes',
-            $this->size,
-            $this->start,
-            $this->start + $this->size,
-            strlen($this->data)
-        );
+        return Pel::fmt('DataWindow: %d bytes in [%d, %d] of %d bytes', $this->size, $this->start, $this->start + $this->size, strlen($this->data));
     }
 }

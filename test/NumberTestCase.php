@@ -22,23 +22,26 @@
  * Free Software Foundation, Inc., 51 Franklin St, Fifth Floor,
  * Boston, MA 02110-1301 USA
  */
-
 namespace Pel\Test;
 
-use \lsolesen\pel\Pel;
-use \lsolesen\pel\PelOverflowException;
 use PHPUnit\Framework\TestCase;
+use lsolesen\pel\Pel;
+use lsolesen\pel\PelOverflowException;
 
 abstract class NumberTestCase extends TestCase
 {
+
     protected $min;
+
     protected $max;
+
     protected $num;
 
     /**
+     *
      * {@inheritdoc}
      */
-    public function setUp()
+    public function setUp(): void
     {
         parent::setUp();
         Pel::setStrictParsing(true);
@@ -89,7 +92,11 @@ abstract class NumberTestCase extends TestCase
     public function testReturnValues()
     {
         $this->num->setValue(1, 2, 3);
-        $this->assertSame([1, 2, 3], $this->num->getValue());
+        $this->assertSame([
+            1,
+            2,
+            3
+        ], $this->num->getValue());
         $this->assertSame('1, 2, 3', $this->num->getText());
 
         $this->num->setValue(1);

@@ -1,11 +1,11 @@
 build:
   environment:
-    php: '7.1'
-    
+    php: '7.2'
+
   tests:
     override:
       -
-        command: ./vendor/bin/phpunit --coverage-clover build/logs/clover.xml ./test
+        command: SYMFONY_PHPUNIT_REMOVE_RETURN_TYPEHINT=1 ./vendor/bin/simple-phpunit --coverage-clover build/logs/clover.xml ./test
         coverage:
           file: build/logs/clover.xml
           format: clover

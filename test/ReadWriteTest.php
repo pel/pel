@@ -21,7 +21,6 @@
  * Free Software Foundation, Inc., 51 Franklin St, Fifth Floor,
  * Boston, MA 02110-1301 USA
  */
-
 namespace Pel\Test;
 
 use lsolesen\pel\Pel;
@@ -40,18 +39,21 @@ use lsolesen\pel\PelEntrySLong;
 use lsolesen\pel\PelEntryAscii;
 use PHPUnit\Framework\TestCase;
 
-class WriteEntryTest extends TestCase
+class ReadWriteTest extends TestCase
 {
+
     /**
+     *
      * {@inheritdoc}
      */
-    public function setUp()
+    public function setUp(): void
     {
         parent::setUp();
         Pel::setStrictParsing(true);
     }
 
     /**
+     *
      * @dataProvider writeEntryProvider
      */
     public function testWriteRead(array $entries)
@@ -100,7 +102,8 @@ class WriteEntryTest extends TestCase
         foreach ($entries as $entry) {
             $ifdEntry = $ifd->getEntry($entry->getTag());
             if ($ifdEntry->getFormat() == PelFormat::ASCII) {
-                $ifdValue = $ifd->getEntry($entry->getTag())->getValue();
+                $ifdValue = $ifd->getEntry($entry->getTag())
+                    ->getValue();
                 $entryValue = $entry->getValue();
                 // cut off after the first nul byte
                 // since $ifdValue comes from parsed ifd,
@@ -112,8 +115,7 @@ class WriteEntryTest extends TestCase
                 }
                 $this->assertEquals($ifdValue, $canonicalEntry);
             } else {
-                $this->assertEquals($ifdEntry
-                ->getValue(), $entry->getValue());
+                $this->assertEquals($ifdEntry->getValue(), $entry->getValue());
             }
         }
 
@@ -132,8 +134,8 @@ class WriteEntryTest extends TestCase
                     new PelEntryByte(0xF005, 254),
                     new PelEntryByte(0xF006, 255),
                     new PelEntryByte(0xF007, 0, 1, 2, 253, 254, 255),
-                    new PelEntryByte(0xF008),
-                ],
+                    new PelEntryByte(0xF008)
+                ]
             ],
             'PEL SByte Read/Write Tests' => [
                 [
@@ -145,8 +147,8 @@ class WriteEntryTest extends TestCase
                     new PelEntrySByte(0xF106, 126),
                     new PelEntrySByte(0xF107, 127),
                     new PelEntrySByte(0xF108, - 128, - 1, 0, 1, 127),
-                    new PelEntrySByte(0xF109),
-                ],
+                    new PelEntrySByte(0xF109)
+                ]
             ],
             'PEL Short Read/Write Tests' => [
                 [
@@ -157,8 +159,8 @@ class WriteEntryTest extends TestCase
                     new PelEntryShort(0xF205, 65534),
                     new PelEntryShort(0xF206, 65535),
                     new PelEntryShort(0xF208, 0, 1, 65534, 65535),
-                    new PelEntryShort(0xF209),
-                ],
+                    new PelEntryShort(0xF209)
+                ]
             ],
             'PEL SShort Read/Write Tests' => [
                 [
@@ -170,8 +172,8 @@ class WriteEntryTest extends TestCase
                     new PelEntrySShort(0xF306, 32766),
                     new PelEntrySShort(0xF307, 32767),
                     new PelEntrySShort(0xF308, - 32768, - 1, 0, 1, 32767),
-                    new PelEntrySShort(0xF309),
-                ],
+                    new PelEntrySShort(0xF309)
+                ]
             ],
             'PEL Long Read/Write Tests' => [
                 [
@@ -182,8 +184,8 @@ class WriteEntryTest extends TestCase
                     new PelEntryLong(0xF405, 4294967294),
                     new PelEntryLong(0xF406, 4294967295),
                     new PelEntryLong(0xF408, 0, 1, 4294967295),
-                    new PelEntryLong(0xF409),
-                ],
+                    new PelEntryLong(0xF409)
+                ]
             ],
             'PEL SLong Read/Write Tests' => [
                 [
@@ -195,17 +197,17 @@ class WriteEntryTest extends TestCase
                     new PelEntrySLong(0xF506, 2147483646),
                     new PelEntrySLong(0xF507, 2147483647),
                     new PelEntrySLong(0xF508, - 2147483648, 0, 2147483647),
-                    new PelEntrySLong(0xF509),
-                ],
+                    new PelEntrySLong(0xF509)
+                ]
             ],
             'PEL Ascii Read/Write Tests' => [
                 [
                     new PelEntryAscii(0xF601),
                     new PelEntryAscii(0xF602, ''),
                     new PelEntryAscii(0xF603, 'Hello World!'),
-                    new PelEntryAscii(0xF604, "\x00\x01\x02...\xFD\xFE\xFF"),
-                ],
-            ],
+                    new PelEntryAscii(0xF604, "\x00\x01\x02...\xFD\xFE\xFF")
+                ]
+            ]
         ];
     }
 
@@ -228,11 +230,21 @@ class WriteEntryTest extends TestCase
         $photometric_interpretation = $ifd->getEntry(PelTag::PHOTOMETRIC_INTERPRETATION);
         $this->assertEquals(2, $photometric_interpretation->getValue());
         $bits_per_sample = $ifd->getEntry(PelTag::BITS_PER_SAMPLE);
-        $this->assertEquals([8, 8, 8, 8], $bits_per_sample->getValue());
+        $this->assertEquals([
+            8,
+            8,
+            8,
+            8
+        ], $bits_per_sample->getValue());
 
         $orientation->setValue(4);
         $photometric_interpretation->setValue(4);
-        $bits_per_sample->setValueArray([7, 6, 5, 4]);
+        $bits_per_sample->setValueArray([
+            7,
+            6,
+            5,
+            4
+        ]);
 
         $out_uri = dirname(__FILE__) . '/images/output.sample-1.tiff';
         $tiff->saveFile($out_uri);
@@ -240,7 +252,12 @@ class WriteEntryTest extends TestCase
         $data_reload = @exif_read_data($out_uri);
         $this->assertEquals(4, $data_reload['Orientation']);
         $this->assertEquals(4, $data_reload['PhotometricInterpretation']);
-        $this->assertEquals([7, 6, 5, 4], $data_reload['BitsPerSample']);
+        $this->assertEquals([
+            7,
+            6,
+            5,
+            4
+        ], $data_reload['BitsPerSample']);
         unlink($out_uri);
     }
 }

@@ -22,21 +22,18 @@
  * Free Software Foundation, Inc., 51 Franklin St, Fifth Floor,
  * Boston, MA 02110-1301 USA
  */
-
 namespace Pel\Test;
 
-use \lsolesen\pel\PelEntrySByte;
+use lsolesen\pel\PelEntrySByte;
 
 class NumberSByteTest extends NumberTestCase
 {
-    /**
-     * {@inheritdoc}
-     */
-    public function setUp()
+
+    public function setUp(): void
     {
         parent::setUp();
         $this->num = new PelEntrySByte(42);
-        $this->min = -128;
+        $this->min = - 128;
         $this->max = 127;
     }
 }

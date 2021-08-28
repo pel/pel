@@ -25,6 +25,16 @@
  */
 
 /* a printf() variant that appends a newline to the output. */
+use lsolesen\pel\Pel;
+use lsolesen\pel\PelConvert;
+use lsolesen\pel\PelDataWindow;
+use lsolesen\pel\PelEntryAscii;
+use lsolesen\pel\PelExif;
+use lsolesen\pel\PelIfd;
+use lsolesen\pel\PelJpeg;
+use lsolesen\pel\PelTag;
+use lsolesen\pel\PelTiff;
+
 function println($args)
 {
     $args = func_get_args();
@@ -34,18 +44,6 @@ function println($args)
 
 /* Make PEL speak the users language, if it is available. */
 setlocale(LC_ALL, '');
-
-/*
- * Load the required files. One would normally just require the
- * PelJpeg.php file for dealing with JPEG images, but because this
- * example can handle both JPEG and TIFF it loads the PelDataWindow
- * class too.
- */
-require_once '../autoload.php';
-
-use lsolesen\pel\PelDataWindow;
-use lsolesen\pel\PelJpeg;
-use lsolesen\pel\PelTiff;
 
 /*
  * Store the name of the script in $prog and remove this first part of

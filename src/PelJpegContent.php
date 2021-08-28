@@ -22,9 +22,6 @@
  * Free Software Foundation, Inc., 51 Franklin St, Fifth Floor,
  * Boston, MA 02110-1301 USA
  */
-namespace lsolesen\pel;
-
-use \lsolesen\pel\PelDataWindow;
 
 /**
  * Class representing content in a JPEG file.
@@ -48,6 +45,8 @@ use \lsolesen\pel\PelDataWindow;
  * @author Martin Geisler <mgeisler@users.sourceforge.net>
  * @package PEL
  */
+namespace lsolesen\pel;
+
 class PelJpegContent
 {
 

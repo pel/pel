@@ -23,13 +23,12 @@
  * Free Software Foundation, Inc., 51 Franklin St, Fifth Floor,
  * Boston, MA 02110-1301 USA
  */
-
 namespace Pel\Test;
 
+use PHPUnit\Framework\TestCase;
 use lsolesen\pel\PelConvert;
 use lsolesen\pel\PelEntryWindowsString;
 use lsolesen\pel\PelTag;
-use PHPUnit\Framework\TestCase;
 
 class PelEntryWindowsStringTest extends TestCase
 {

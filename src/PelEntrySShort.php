@@ -22,7 +22,6 @@
  * Free Software Foundation, Inc., 51 Franklin St, Fifth Floor,
  * Boston, MA 02110-1301 USA
  */
-namespace lsolesen\pel;
 
 /**
  * Classes used to hold shorts, both signed and unsigned.
@@ -43,8 +42,691 @@ namespace lsolesen\pel;
  * @author Martin Geisler <mgeisler@users.sourceforge.net>
  * @package PEL
  */
+namespace lsolesen\pel;
+
 class PelEntrySShort extends PelEntryNumber
 {
+
+    private const TRANSLATIONS = [
+        PelIfd::CANON_FILE_INFO => [
+            PelTag::CANON_FI_BRACKET_MODE => [
+                0 => 'Off',
+                1 => 'AEB',
+                2 => 'FEB',
+                3 => 'ISO',
+                4 => 'WB'
+            ],
+            PelTag::CANON_FI_RAW_JPG_QUALITY => [
+                1 => 'Economy',
+                2 => 'Normal',
+                3 => 'Fine',
+                4 => 'RAW',
+                5 => 'Superfine',
+                130 => 'Normal Movie',
+                131 => 'Movie (2)'
+            ],
+            PelTag::CANON_FI_RAW_JPG_SIZE => [
+                0 => 'Large',
+                1 => 'Medium',
+                2 => 'Small',
+                5 => 'Medium 1',
+                6 => 'Medium 2',
+                7 => 'Medium 3',
+                8 => 'Postcard',
+                9 => 'Widescreen',
+                10 => 'Medium Widescreen',
+                14 => 'Small 1',
+                15 => 'Small 2',
+                16 => 'Small 3',
+                128 => '640x480 Movie',
+                129 => 'Medium Movie',
+                130 => 'Small Movie',
+                137 => '1280x720 Movie',
+                142 => '1920x1080 Movie'
+            ],
+            PelTag::CANON_FI_NOISE_REDUCTION => [
+                0 => 'Off',
+                1 => 'On (1D)',
+                3 => 'On',
+                4 => 'Auto'
+            ],
+            PelTag::CANON_FI_WB_BRACKET_MODE => [
+                0 => 'Off',
+                1 => 'On (shift AB)',
+                2 => 'On (shift GM)'
+            ],
+            PelTag::CANON_FI_FILTER_EFFECT => [
+                0 => 'None',
+                1 => 'Yellow',
+                2 => 'Orange',
+                3 => 'Red',
+                4 => 'Green'
+            ],
+            PelTag::CANON_FI_TONING_EFFECT => [
+                0 => 'None',
+                1 => 'Sepia',
+                2 => 'Blue',
+                3 => 'Purple',
+                4 => 'Green'
+            ],
+            PelTag::CANON_FI_LIVE_VIEW_SHOOTING => [
+                0 => 'Off',
+                1 => 'On'
+            ],
+            PelTag::CANON_FI_FLASH_EXPOSURE_LOCK => [
+                0 => 'Off',
+                1 => 'On'
+            ]
+        ],
+        PelIfd::CANON_CAMERA_SETTINGS => [
+            PelTag::CANON_CS_MACRO => [
+                1 => 'Macro',
+                2 => 'Normal'
+            ],
+            PelTag::CANON_CS_QUALITY => [
+                1 => 'Economy',
+                2 => 'Normal',
+                3 => 'Fine',
+                4 => 'RAW',
+                5 => 'Superfine',
+                130 => 'Normal Movie',
+                131 => 'Movie (2)'
+            ],
+            PelTag::CANON_CS_FLASH_MODE => [
+                0 => 'Off',
+                1 => 'Auto',
+                2 => 'On',
+                3 => 'Red-eye reduction',
+                4 => 'Slow-sync',
+                5 => 'Red-eye reduction (Auto)',
+                6 => 'Red-eye reduction (On)',
+                16 => 'External flash'
+            ],
+            PelTag::CANON_CS_DRIVE_MODE => [
+                0 => 'Single',
+                1 => 'Continuous',
+                2 => 'Movie',
+                3 => 'Continuous, Speed Priority',
+                4 => 'Continuous, Low',
+                5 => 'Continuous, High',
+                6 => 'Silent Single',
+                9 => 'Single, Silent',
+                10 => 'Continuous, Silent'
+            ],
+            PelTag::CANON_CS_FOCUS_MODE => [
+                0 => 'One-shot AF',
+                1 => 'AI Servo AF',
+                2 => 'AI Focus AF',
+                3 => 'Manual Focus (3)',
+                4 => 'Single',
+                5 => 'Continuous',
+                6 => 'Manual Focus (6)',
+                16 => 'Pan Focus',
+                256 => 'AF + MF',
+                512 => 'Movie Snap Focus',
+                519 => 'Movie Servo AF'
+            ],
+            PelTag::CANON_CS_RECORD_MODE => [
+                1 => 'JPEG',
+                2 => 'CRW+THM',
+                3 => 'AVI+THM',
+                4 => 'TIF',
+                5 => 'TIF+JPEG',
+                6 => 'CR2',
+                7 => 'CR2+JPEG',
+                9 => 'MOV',
+                10 => 'MP4'
+            ],
+            PelTag::CANON_CS_IMAGE_SIZE => [
+                0 => 'Large',
+                1 => 'Medium',
+                2 => 'Small',
+                5 => 'Medium 1',
+                6 => 'Medium 2',
+                7 => 'Medium 3',
+                8 => 'Postcard',
+                9 => 'Widescreen',
+                10 => 'Medium Widescreen',
+                14 => 'Small 1',
+                15 => 'Small 2',
+                16 => 'Small 3',
+                128 => '640x480 Movie',
+                129 => 'Medium Movie',
+                130 => 'Small Movie',
+                137 => '1280x720 Movie',
+                142 => '1920x1080 Movie'
+            ],
+            PelTag::CANON_CS_EASY_MODE => [
+                0 => 'Full auto',
+                1 => 'Manual',
+                2 => 'Landscape',
+                3 => 'Fast shutter',
+                4 => 'Slow shutter',
+                5 => 'Night',
+                6 => 'Gray Scale',
+                7 => 'Sepia',
+                8 => 'Portrait',
+                9 => 'Sports',
+                10 => 'Macro',
+                11 => 'Black & White',
+                12 => 'Pan focus',
+                13 => 'Vivid',
+                14 => 'Neutral',
+                15 => 'Flash Off',
+                16 => 'Long Shutter',
+                17 => 'Super Macro',
+                18 => 'Foliage',
+                19 => 'Indoor',
+                20 => 'Fireworks',
+                21 => 'Beach',
+                22 => 'Underwater',
+                23 => 'Snow',
+                24 => 'Kids & Pets',
+                25 => 'Night Snapshot',
+                26 => 'Digital Macro',
+                27 => 'My Colors',
+                28 => 'Movie Snap',
+                29 => 'Super Macro 2',
+                30 => 'Color Accent',
+                31 => 'Color Swap',
+                32 => 'Aquarium',
+                33 => 'ISO 3200',
+                34 => 'ISO 6400',
+                35 => 'Creative Light Effect',
+                36 => 'Easy',
+                37 => 'Quick Shot',
+                38 => 'Creative Auto',
+                39 => 'Zoom Blur',
+                40 => 'Low Light',
+                41 => 'Nostalgic',
+                42 => 'Super Vivid',
+                43 => 'Poster Effect',
+                44 => 'Face Self-timer',
+                45 => 'Smile',
+                46 => 'Wink Self-timer',
+                47 => 'Fisheye Effect',
+                48 => 'Miniature Effect',
+                49 => 'High-speed Burst',
+                50 => 'Best Image Selection',
+                51 => 'High Dynamic Range',
+                52 => 'Handheld Night Scene',
+                53 => 'Movie Digest',
+                54 => 'Live View Control',
+                55 => 'Discreet',
+                56 => 'Blur Reduction',
+                57 => 'Monochrome',
+                58 => 'Toy Camera Effect',
+                59 => 'Scene Intelligent Auto',
+                60 => 'High-speed Burst HQ',
+                61 => 'Smooth Skin',
+                62 => 'Soft Focus',
+                257 => 'Spotlight',
+                258 => 'Night 2',
+                259 => 'Night+',
+                260 => 'Super Night',
+                261 => 'Sunset',
+                263 => 'Night Scene',
+                264 => 'Surface',
+                265 => 'Low Light 2'
+            ],
+            PelTag::CANON_CS_DIGITAL_ZOOM => [
+                0 => 'None',
+                1 => '2x',
+                2 => '4x',
+                3 => 'Other'
+            ],
+            PelTag::CANON_CS_CONTRAST => [
+                0 => 'Normal'
+            ],
+            PelTag::CANON_CS_SATURATION => [
+                0 => 'Normal'
+            ],
+            PelTag::CANON_CS_METERING_MODE => [
+                0 => 'Default',
+                1 => 'Spot',
+                2 => 'Average',
+                3 => 'Evaluative',
+                4 => 'Partial',
+                5 => 'Center-weighted average'
+            ],
+            PelTag::CANON_CS_FOCUS_TYPE => [
+                0 => 'Manual',
+                1 => 'Auto',
+                2 => 'Not Known',
+                3 => 'Macro',
+                4 => 'Very Close',
+                5 => 'Close',
+                6 => 'Middle Range',
+                7 => 'Far Range',
+                8 => 'Pan Focus',
+                9 => 'Super Macro',
+                10 => 'Infinity'
+            ],
+            PelTag::CANON_CS_AF_POINT => [
+                0x2005 => 'Manual AF point selection',
+                0x3000 => 'None (MF)',
+                0x3001 => 'Auto AF point selection',
+                0x3002 => 'Right',
+                0x3003 => 'Center',
+                0x3004 => 'Left',
+                0x4001 => 'Auto AF point selection',
+                0x4006 => 'Face Detect'
+            ],
+            PelTag::CANON_CS_EXPOSURE_PROGRAM => [
+                0 => 'Easy',
+                1 => 'Program AE',
+                2 => 'Shutter speed priority AE',
+                3 => 'Aperture-priority AE',
+                4 => 'Manual',
+                5 => 'Depth-of-field AE',
+                6 => 'M-Dep',
+                7 => 'Bulb'
+            ],
+            PelTag::CANON_CS_LENS_TYPE => [
+                // ATTENTION: Every index is multiplied by 100
+                1000 => 'Canon EF 50mm f/1.8',
+                2000 => 'Canon EF 28mm f/2.8',
+                3000 => 'Canon EF 135mm f/2.8 Soft',
+                4000 => 'Canon EF 35-105mm f/3.5-4.5 or Sigma Lens',
+                4100 => 'Sigma UC Zoom 35-135mm f/4-5.6',
+                5000 => 'Canon EF 35-70mm f/3.5-4.5',
+                6000 => 'Canon EF 28-70mm f/3.5-4.5 or Sigma or Tokina Lens',
+                6100 => 'Sigma 18-50mm f/3.5-5.6 DC',
+                6200 => 'Sigma 18-125mm f/3.5-5.6 DC IF ASP',
+                6300 => 'Tokina AF 193-2 19-35mm f/3.5-4.5',
+                6400 => 'Sigma 28-80mm f/3.5-5.6 II Macro',
+                7000 => 'Canon EF 100-300mm f/5.6L',
+                8000 => 'Canon EF 100-300mm f/5.6 or Sigma or Tokina Lens',
+                8100 => 'Sigma 70-300mm f/4-5.6 [APO] DG Macro',
+                8200 => 'Tokina AT-X 242 AF 24-200mm f/3.5-5.6',
+                9000 => 'Canon EF 70-210mm f/4',
+                9100 => 'Sigma 55-200mm f/4-5.6 DC',
+                1000 => 'Canon EF 50mm f/2.5 Macro or Sigma Lens',
+                1010 => 'Sigma 50mm f/2.8 EX',
+                1020 => 'Sigma 28mm f/1.8',
+                1030 => 'Sigma 105mm f/2.8 Macro EX',
+                1040 => 'Sigma 70mm f/2.8 EX DG Macro EF',
+                1100 => 'Canon EF 35mm f/2',
+                1300 => 'Canon EF 15mm f/2.8 Fisheye',
+                1400 => 'Canon EF 50-200mm f/3.5-4.5L',
+                1500 => 'Canon EF 50-200mm f/3.5-4.5',
+                1600 => 'Canon EF 35-135mm f/3.5-4.5',
+                1700 => 'Canon EF 35-70mm f/3.5-4.5A',
+                1800 => 'Canon EF 28-70mm f/3.5-4.5',
+                2000 => 'Canon EF 100-200mm f/4.5A',
+                2100 => 'Canon EF 80-200mm f/2.8L',
+                2200 => 'Canon EF 20-35mm f/2.8L or Tokina Lens',
+                2210 => 'Tokina AT-X 280 AF Pro 28-80mm f/2.8 Aspherical',
+                2300 => 'Canon EF 35-105mm f/3.5-4.5',
+                2400 => 'Canon EF 35-80mm f/4-5.6 Power Zoom',
+                2500 => 'Canon EF 35-80mm f/4-5.6 Power Zoom',
+                2600 => 'Canon EF 100mm f/2.8 Macro or Other Lens',
+                2610 => 'Cosina 100mm f/3.5 Macro AF',
+                2620 => 'Tamron SP AF 90mm f/2.8 Di Macro',
+                2630 => 'Tamron SP AF 180mm f/3.5 Di Macro',
+                2640 => 'Carl Zeiss Planar T* 50mm f/1.4',
+                2700 => 'Canon EF 35-80mm f/4-5.6',
+                2800 => 'Canon EF 80-200mm f/4.5-5.6 or Tamron Lens',
+                2810 => 'Tamron SP AF 28-105mm f/2.8 LD Aspherical IF',
+                2820 => 'Tamron SP AF 28-75mm f/2.8 XR Di LD Aspherical [IF] Macro',
+                2830 => 'Tamron AF 70-300mm f/4-5.6 Di LD 1:2 Macro',
+                2840 => 'Tamron AF Aspherical 28-200mm f/3.8-5.6',
+                2900 => 'Canon EF 50mm f/1.8 II',
+                3000 => 'Canon EF 35-105mm f/4.5-5.6',
+                3100 => 'Canon EF 75-300mm f/4-5.6 or Tamron Lens',
+                3110 => 'Tamron SP AF 300mm f/2.8 LD IF',
+                3200 => 'Canon EF 24mm f/2.8 or Sigma Lens',
+                3210 => 'Sigma 15mm f/2.8 EX Fisheye',
+                3300 => 'Voigtlander or Carl Zeiss Lens',
+                3310 => 'Voigtlander Ultron 40mm f/2 SLII Aspherical',
+                3320 => 'Voigtlander Color Skopar 20mm f/3.5 SLII Aspherical',
+                3330 => 'Voigtlander APO-Lanthar 90mm f/3.5 SLII Close Focus',
+                3340 => 'Carl Zeiss Distagon T* 15mm f/2.8 ZE',
+                3350 => 'Carl Zeiss Distagon T* 18mm f/3.5 ZE',
+                3360 => 'Carl Zeiss Distagon T* 21mm f/2.8 ZE',
+                3370 => 'Carl Zeiss Distagon T* 25mm f/2 ZE',
+                3380 => 'Carl Zeiss Distagon T* 28mm f/2 ZE',
+                3390 => 'Carl Zeiss Distagon T* 35mm f/2 ZE',
+                3310 => 'Carl Zeiss Distagon T* 35mm f/1.4 ZE',
+                3311 => 'Carl Zeiss Planar T* 50mm f/1.4 ZE',
+                3312 => 'Carl Zeiss Makro-Planar T* 50mm f/2 ZE',
+                3313 => 'Carl Zeiss Makro-Planar T* 100mm f/2 ZE',
+                3314 => 'Carl Zeiss Apo-Sonnar T* 135mm f/2 ZE',
+                3500 => 'Canon EF 35-80mm f/4-5.6',
+                3600 => 'Canon EF 38-76mm f/4.5-5.6',
+                3700 => 'Canon EF 35-80mm f/4-5.6 or Tamron Lens',
+                3710 => 'Tamron 70-200mm f/2.8 Di LD IF Macro',
+                3720 => 'Tamron AF 28-300mm f/3.5-6.3 XR Di VC LD Aspherical [IF] Macro Model A20',
+                3730 => 'Tamron SP AF 17-50mm f/2.8 XR Di II VC LD Aspherical [IF]',
+                3740 => 'Tamron AF 18-270mm f/3.5-6.3 Di II VC LD Aspherical [IF] Macro',
+                3800 => 'Canon EF 80-200mm f/4.5-5.6',
+                3900 => 'Canon EF 75-300mm f/4-5.6',
+                4000 => 'Canon EF 28-80mm f/3.5-5.6',
+                4100 => 'Canon EF 28-90mm f/4-5.6',
+                4200 => 'Canon EF 28-200mm f/3.5-5.6 or Tamron Lens',
+                4210 => 'Tamron AF 28-300mm f/3.5-6.3 XR Di VC LD Aspherical [IF] Macro Model A20',
+                4300 => 'Canon EF 28-105mm f/4-5.6',
+                4400 => 'Canon EF 90-300mm f/4.5-5.6',
+                4500 => 'Canon EF-S 18-55mm f/3.5-5.6 [II]',
+                4600 => 'Canon EF 28-90mm f/4-5.6',
+                4700 => 'Zeiss Milvus 35mm f/2 or 50mm f/2',
+                4710 => 'Zeiss Milvus 50mm f/2 Makro',
+                4800 => 'Canon EF-S 18-55mm f/3.5-5.6 IS',
+                4900 => 'Canon EF-S 55-250mm f/4-5.6 IS',
+                5000 => 'Canon EF-S 18-200mm f/3.5-5.6 IS',
+                5100 => 'Canon EF-S 18-135mm f/3.5-5.6 IS',
+                5200 => 'Canon EF-S 18-55mm f/3.5-5.6 IS II',
+                5300 => 'Canon EF-S 18-55mm f/3.5-5.6 III',
+                5400 => 'Canon EF-S 55-250mm f/4-5.6 IS II',
+                6000 => 'Irix 11mm f/4',
+                9400 => 'Canon TS-E 17mm f/4L',
+                9500 => 'Canon TS-E 24.0mm f/3.5 L II',
+                12400 => 'Canon MP-E 65mm f/2.8 1-5x Macro Photo',
+                12500 => 'Canon TS-E 24mm f/3.5L',
+                12600 => 'Canon TS-E 45mm f/2.8',
+                12700 => 'Canon TS-E 90mm f/2.8',
+                12900 => 'Canon EF 300mm f/2.8L',
+                13000 => 'Canon EF 50mm f/1.0L',
+                13100 => 'Canon EF 28-80mm f/2.8-4L or Sigma Lens',
+                13110 => 'Sigma 8mm f/3.5 EX DG Circular Fisheye',
+                13120 => 'Sigma 17-35mm f/2.8-4 EX DG Aspherical HSM',
+                13130 => 'Sigma 17-70mm f/2.8-4.5 DC Macro',
+                13140 => 'Sigma APO 50-150mm f/2.8 [II] EX DC HSM',
+                13150 => 'Sigma APO 120-300mm f/2.8 EX DG HSM',
+                13160 => 'Sigma 4.5mm f/2.8 EX DC HSM Circular Fisheye',
+                13170 => 'Sigma 70-200mm f/2.8 APO EX HSM',
+                13200 => 'Canon EF 1200mm f/5.6L',
+                13400 => 'Canon EF 600mm f/4L IS',
+                13500 => 'Canon EF 200mm f/1.8L',
+                13600 => 'Canon EF 300mm f/2.8L',
+                13700 => 'Canon EF 85mm f/1.2L or Sigma or Tamron Lens',
+                13710 => 'Sigma 18-50mm f/2.8-4.5 DC OS HSM',
+                13720 => 'Sigma 50-200mm f/4-5.6 DC OS HSM',
+                13730 => 'Sigma 18-250mm f/3.5-6.3 DC OS HSM',
+                13740 => 'Sigma 24-70mm f/2.8 IF EX DG HSM',
+                13750 => 'Sigma 18-125mm f/3.8-5.6 DC OS HSM',
+                13760 => 'Sigma 17-70mm f/2.8-4 DC Macro OS HSM | C',
+                13770 => 'Sigma 17-50mm f/2.8 OS HSM',
+                13780 => 'Sigma 18-200mm f/3.5-6.3 DC OS HSM [II]',
+                13790 => 'Tamron AF 18-270mm f/3.5-6.3 Di II VC PZD',
+                13710 => 'Sigma 8-16mm f/4.5-5.6 DC HSM',
+                13711 => 'Tamron SP 17-50mm f/2.8 XR Di II VC',
+                13712 => 'Tamron SP 60mm f/2 Macro Di II',
+                13713 => 'Sigma 10-20mm f/3.5 EX DC HSM',
+                13714 => 'Tamron SP 24-70mm f/2.8 Di VC USD',
+                13715 => 'Sigma 18-35mm f/1.8 DC HSM',
+                13716 => 'Sigma 12-24mm f/4.5-5.6 DG HSM II',
+                13800 => 'Canon EF 28-80mm f/2.8-4L',
+                13900 => 'Canon EF 400mm f/2.8L',
+                14000 => 'Canon EF 500mm f/4.5L',
+                14100 => 'Canon EF 500mm f/4.5L',
+                14200 => 'Canon EF 300mm f/2.8L IS',
+                14300 => 'Canon EF 500mm f/4L IS or Sigma Lens',
+                14310 => 'Sigma 17-70mm f/2.8-4 DC Macro OS HSM',
+                14400 => 'Canon EF 35-135mm f/4-5.6 USM',
+                14500 => 'Canon EF 100-300mm f/4.5-5.6 USM',
+                14600 => 'Canon EF 70-210mm f/3.5-4.5 USM',
+                14700 => 'Canon EF 35-135mm f/4-5.6 USM',
+                14800 => 'Canon EF 28-80mm f/3.5-5.6 USM',
+                14900 => 'Canon EF 100mm f/2 USM',
+                15000 => 'Canon EF 14mm f/2.8L or Sigma Lens',
+                15010 => 'Sigma 20mm EX f/1.8',
+                15020 => 'Sigma 30mm f/1.4 DC HSM',
+                15030 => 'Sigma 24mm f/1.8 DG Macro EX',
+                15040 => 'Sigma 28mm f/1.8 DG Macro EX',
+                15100 => 'Canon EF 200mm f/2.8L',
+                15200 => 'Canon EF 300mm f/4L IS or Sigma Lens',
+                15210 => 'Sigma 12-24mm f/4.5-5.6 EX DG ASPHERICAL HSM',
+                15220 => 'Sigma 14mm f/2.8 EX Aspherical HSM',
+                15230 => 'Sigma 10-20mm f/4-5.6',
+                15240 => 'Sigma 100-300mm f/4',
+                15300 => 'Canon EF 35-350mm f/3.5-5.6L or Sigma or Tamron Lens',
+                15310 => 'Sigma 50-500mm f/4-6.3 APO HSM EX',
+                15320 => 'Tamron AF 28-300mm f/3.5-6.3 XR LD Aspherical [IF] Macro',
+                15330 => 'Tamron AF 18-200mm f/3.5-6.3 XR Di II LD Aspherical [IF] Macro Model A14',
+                15340 => 'Tamron 18-250mm f/3.5-6.3 Di II LD Aspherical [IF] Macro',
+                15400 => 'Canon EF 20mm f/2.8 USM or Zeiss Lens',
+                15410 => 'Zeiss Milvus 21mm f/2.8',
+                15500 => 'Canon EF 85mm f/1.8 USM',
+                15600 => 'Canon EF 28-105mm f/3.5-4.5 USM or Tamron Lens',
+                15610 => 'Tamron SP 70-300mm f/4.0-5.6 Di VC USD',
+                15620 => 'Tamron SP AF 28-105mm f/2.8 LD Aspherical IF',
+                16000 => 'Canon EF 20-35mm f/3.5-4.5 USM or Tamron or Tokina Lens',
+                16010 => 'Tamron AF 19-35mm f/3.5-4.5',
+                16020 => 'Tokina AT-X 124 AF Pro DX 12-24mm f/4',
+                16030 => 'Tokina AT-X 107 AF DX 10-17mm f/3.5-4.5 Fisheye',
+                16040 => 'Tokina AT-X 116 AF Pro DX 11-16mm f/2.8',
+                16050 => 'Tokina AT-X 11-20 F2.8 PRO DX Aspherical 11-20mm f/2.8',
+                16100 => 'Canon EF 28-70mm f/2.8L or Sigma or Tamron Lens',
+                16110 => 'Sigma 24-70mm f/2.8 EX',
+                16120 => 'Sigma 28-70mm f/2.8 EX',
+                16130 => 'Sigma 24-60mm f/2.8 EX DG',
+                16140 => 'Tamron AF 17-50mm f/2.8 Di-II LD Aspherical',
+                16150 => 'Tamron 90mm f/2.8',
+                16160 => 'Tamron SP AF 17-35mm f/2.8-4 Di LD Aspherical IF',
+                16170 => 'Tamron SP AF 28-75mm f/2.8 XR Di LD Aspherical [IF] Macro',
+                16200 => 'Canon EF 200mm f/2.8L',
+                16300 => 'Canon EF 300mm f/4L',
+                16400 => 'Canon EF 400mm f/5.6L',
+                16500 => 'Canon EF 70-200mm f/2.8 L',
+                16600 => 'Canon EF 70-200mm f/2.8 L + 1.4x',
+                16700 => 'Canon EF 70-200mm f/2.8 L + 2x',
+                16800 => 'Canon EF 28mm f/1.8 USM or Sigma Lens',
+                16810 => 'Sigma 50-100mm f/1.8 DC HSM | A',
+                16900 => 'Canon EF 17-35mm f/2.8L or Sigma Lens',
+                16910 => 'Sigma 18-200mm f/3.5-6.3 DC OS',
+                16920 => 'Sigma 15-30mm f/3.5-4.5 EX DG Aspherical',
+                16930 => 'Sigma 18-50mm f/2.8 Macro',
+                16940 => 'Sigma 50mm f/1.4 EX DG HSM',
+                16950 => 'Sigma 85mm f/1.4 EX DG HSM',
+                16960 => 'Sigma 30mm f/1.4 EX DC HSM',
+                16970 => 'Sigma 35mm f/1.4 DG HSM',
+                17000 => 'Canon EF 200mm f/2.8L II',
+                17100 => 'Canon EF 300mm f/4L',
+                17200 => 'Canon EF 400mm f/5.6L or Sigma Lens',
+                17210 => 'Sigma 150-600mm f/5-6.3 DG OS HSM | S',
+                17300 => 'Canon EF 180mm Macro f/3.5L or Sigma Lens',
+                17310 => 'Sigma 180mm EX HSM Macro f/3.5',
+                17320 => 'Sigma APO Macro 150mm f/2.8 EX DG HSM',
+                17400 => 'Canon EF 135mm f/2L or Other Lens',
+                17410 => 'Sigma 70-200mm f/2.8 EX DG APO OS HSM',
+                17420 => 'Sigma 50-500mm f/4.5-6.3 APO DG OS HSM',
+                17430 => 'Sigma 150-500mm f/5-6.3 APO DG OS HSM',
+                17440 => 'Zeiss Milvus 100mm f/2 Makro',
+                17500 => 'Canon EF 400mm f/2.8L',
+                17600 => 'Canon EF 24-85mm f/3.5-4.5 USM',
+                17700 => 'Canon EF 300mm f/4L IS',
+                17800 => 'Canon EF 28-135mm f/3.5-5.6 IS',
+                17900 => 'Canon EF 24mm f/1.4L',
+                18000 => 'Canon EF 35mm f/1.4L or Other Lens',
+                18010 => 'Sigma 50mm f/1.4 DG HSM | A',
+                18020 => 'Sigma 24mm f/1.4 DG HSM | A',
+                18030 => 'Zeiss Milvus 50mm f/1.4',
+                18040 => 'Zeiss Milvus 85mm f/1.4',
+                18050 => 'Zeiss Otus 28mm f/1.4 ZE',
+                18100 => 'Canon EF 100-400mm f/4.5-5.6L IS + 1.4x or Sigma Lens',
+                18110 => 'Sigma 150-600mm f/5-6.3 DG OS HSM | S + 1.4x',
+                18200 => 'Canon EF 100-400mm f/4.5-5.6L IS + 2x or Sigma Lens',
+                18210 => 'Sigma 150-600mm f/5-6.3 DG OS HSM | S + 2x',
+                18300 => 'Canon EF 100-400mm f/4.5-5.6L IS or Sigma Lens',
+                18310 => 'Sigma 150mm f/2.8 EX DG OS HSM APO Macro',
+                18320 => 'Sigma 105mm f/2.8 EX DG OS HSM Macro',
+                18330 => 'Sigma 180mm f/2.8 EX DG OS HSM APO Macro',
+                18340 => 'Sigma 150-600mm f/5-6.3 DG OS HSM | C',
+                18350 => 'Sigma 150-600mm f/5-6.3 DG OS HSM | S',
+                18360 => 'Sigma 100-400mm f/5-6.3 DG OS HSM',
+                18400 => 'Canon EF 400mm f/2.8L + 2x',
+                18500 => 'Canon EF 600mm f/4L IS',
+                18600 => 'Canon EF 70-200mm f/4L',
+                18700 => 'Canon EF 70-200mm f/4L + 1.4x',
+                18800 => 'Canon EF 70-200mm f/4L + 2x',
+                18900 => 'Canon EF 70-200mm f/4L + 2.8x',
+                19000 => 'Canon EF 100mm f/2.8 Macro USM',
+                19100 => 'Canon EF 400mm f/4 DO IS',
+                19300 => 'Canon EF 35-80mm f/4-5.6 USM',
+                19400 => 'Canon EF 80-200mm f/4.5-5.6 USM',
+                19500 => 'Canon EF 35-105mm f/4.5-5.6 USM',
+                19600 => 'Canon EF 75-300mm f/4-5.6 USM',
+                19700 => 'Canon EF 75-300mm f/4-5.6 IS USM or Sigma Lens',
+                19710 => 'Sigma 18-300mm f/3.5-6.3 DC Macro OS HS',
+                19800 => 'Canon EF 50mm f/1.4 USM or Zeiss Lens',
+                19810 => 'Zeiss Otus 55mm f/1.4 ZE',
+                19820 => 'Zeiss Otus 85mm f/1.4 ZE',
+                19900 => 'Canon EF 28-80mm f/3.5-5.6 USM',
+                20000 => 'Canon EF 75-300mm f/4-5.6 USM',
+                20100 => 'Canon EF 28-80mm f/3.5-5.6 USM',
+                20200 => 'Canon EF 28-80mm f/3.5-5.6 USM IV',
+                20800 => 'Canon EF 22-55mm f/4-5.6 USM',
+                20900 => 'Canon EF 55-200mm f/4.5-5.6',
+                21000 => 'Canon EF 28-90mm f/4-5.6 USM',
+                21100 => 'Canon EF 28-200mm f/3.5-5.6 USM',
+                21200 => 'Canon EF 28-105mm f/4-5.6 USM',
+                21300 => 'Canon EF 90-300mm f/4.5-5.6 USM or Tamron Lens',
+                21310 => 'Tamron SP 150-600mm f/5-6.3 Di VC USD',
+                21320 => 'Tamron 16-300mm f/3.5-6.3 Di II VC PZD Macro',
+                21330 => 'Tamron SP 35mm f/1.8 Di VC USD',
+                21340 => 'Tamron SP 45mm f/1.8 Di VC USD',
+                21400 => 'Canon EF-S 18-55mm f/3.5-5.6 USM',
+                21500 => 'Canon EF 55-200mm f/4.5-5.6 II USM',
+                21700 => 'Tamron AF 18-270mm f/3.5-6.3 Di II VC PZD',
+                22400 => 'Canon EF 70-200mm f/2.8L IS',
+                22500 => 'Canon EF 70-200mm f/2.8L IS + 1.4x',
+                22600 => 'Canon EF 70-200mm f/2.8L IS + 2x',
+                22700 => 'Canon EF 70-200mm f/2.8L IS + 2.8x',
+                22800 => 'Canon EF 28-105mm f/3.5-4.5 USM',
+                22900 => 'Canon EF 16-35mm f/2.8L',
+                23000 => 'Canon EF 24-70mm f/2.8L',
+                23100 => 'Canon EF 17-40mm f/4L',
+                23200 => 'Canon EF 70-300mm f/4.5-5.6 DO IS USM',
+                23300 => 'Canon EF 28-300mm f/3.5-5.6L IS',
+                23400 => 'Canon EF-S 17-85mm f/4-5.6 IS USM or Tokina Lens',
+                23410 => 'Tokina AT-X 12-28 PRO DX 12-28mm f/4',
+                23500 => 'Canon EF-S 10-22mm f/3.5-4.5 USM',
+                23600 => 'Canon EF-S 60mm f/2.8 Macro USM',
+                23700 => 'Canon EF 24-105mm f/4L IS',
+                23800 => 'Canon EF 70-300mm f/4-5.6 IS USM',
+                23900 => 'Canon EF 85mm f/1.2L II',
+                24000 => 'Canon EF-S 17-55mm f/2.8 IS USM',
+                24100 => 'Canon EF 50mm f/1.2L',
+                24200 => 'Canon EF 70-200mm f/4L IS',
+                24300 => 'Canon EF 70-200mm f/4L IS + 1.4x',
+                24400 => 'Canon EF 70-200mm f/4L IS + 2x',
+                24500 => 'Canon EF 70-200mm f/4L IS + 2.8x',
+                24600 => 'Canon EF 16-35mm f/2.8L II',
+                24700 => 'Canon EF 14mm f/2.8L II USM',
+                24800 => 'Canon EF 200mm f/2L IS or Sigma Lens',
+                24810 => 'Sigma 24-35mm f/2 DG HSM | A',
+                24900 => 'Canon EF 800mm f/5.6L IS',
+                25000 => 'Canon EF 24mm f/1.4L II or Sigma Lens',
+                25010 => 'Sigma 20mm f/1.4 DG HSM | A',
+                25100 => 'Canon EF 70-200mm f/2.8L IS II USM',
+                25200 => 'Canon EF 70-200mm f/2.8L IS II USM + 1.4x',
+                25300 => 'Canon EF 70-200mm f/2.8L IS II USM + 2x',
+                25400 => 'Canon EF 100mm f/2.8L Macro IS USM',
+                25500 => 'Sigma 24-105mm f/4 DG OS HSM | A or Other Sigma Lens',
+                25510 => 'Sigma 180mm f/2.8 EX DG OS HSM APO Macro',
+                48800 => 'Canon EF-S 15-85mm f/3.5-5.6 IS USM',
+                48900 => 'Canon EF 70-300mm f/4-5.6L IS USM',
+                49000 => 'Canon EF 8-15mm f/4L Fisheye USM',
+                49100 => 'Canon EF 300mm f/2.8L IS II USM or Tamron Lens',
+                49110 => 'Tamron SP 70-200mm F/2.8 Di VC USD G2 (A025)',
+                49120 => 'Tamron 18-400mm F/3.5-6.3 Di II VC HLD (B028)',
+                49200 => 'Canon EF 400mm f/2.8L IS II USM',
+                49300 => 'Canon EF 500mm f/4L IS II USM or EF 24-105mm f4L IS USM',
+                49310 => 'Canon EF 24-105mm f/4L IS USM',
+                49400 => 'Canon EF 600mm f/4.0L IS II USM',
+                49500 => 'Canon EF 24-70mm f/2.8L II USM or Sigma Lens',
+                49510 => 'Sigma 24-70mm F2.8 DG OS HSM | A',
+                49600 => 'Canon EF 200-400mm f/4L IS USM',
+                49900 => 'Canon EF 200-400mm f/4L IS USM + 1.4x',
+                50200 => 'Canon EF 28mm f/2.8 IS USM',
+                50300 => 'Canon EF 24mm f/2.8 IS USM',
+                50400 => 'Canon EF 24-70mm f/4L IS USM',
+                50500 => 'Canon EF 35mm f/2 IS USM',
+                50600 => 'Canon EF 400mm f/4 DO IS II USM',
+                50700 => 'Canon EF 16-35mm f/4L IS USM',
+                50800 => 'Canon EF 11-24mm f/4L USM or Tamron Lens',
+                50810 => 'Tamron 10-24mm f/3.5-4.5 Di II VC HLD',
+                74700 => 'Canon EF 100-400mm f/4.5-5.6L IS II USM or Tamron Lens',
+                74710 => 'Tamron SP 150-600mm F5-6.3 Di VC USD G2',
+                74800 => 'Canon EF 100-400mm f/4.5-5.6L IS II USM + 1.4x',
+                75000 => 'Canon EF 35mm f/1.4L II USM',
+                75100 => 'Canon EF 16-35mm f/2.8L III USM',
+                75200 => 'Canon EF 24-105mm f/4L IS II USM',
+                414200 => 'Canon EF-S 18-135mm f/3.5-5.6 IS STM',
+                414300 => 'Canon EF-M 18-55mm f/3.5-5.6 IS STM or Tamron Lens',
+                414310 => 'Tamron 18-200mm F/3.5-6.3 Di III VC',
+                414400 => 'Canon EF 40mm f/2.8 STM',
+                414500 => 'Canon EF-M 22mm f/2 STM',
+                414600 => 'Canon EF-S 18-55mm f/3.5-5.6 IS STM',
+                414700 => 'Canon EF-M 11-22mm f/4-5.6 IS STM',
+                414800 => 'Canon EF-S 55-250mm f/4-5.6 IS STM',
+                414900 => 'Canon EF-M 55-200mm f/4.5-6.3 IS STM',
+                415000 => 'Canon EF-S 10-18mm f/4.5-5.6 IS STM',
+                415200 => 'Canon EF 24-105mm f/3.5-5.6 IS STM',
+                415300 => 'Canon EF-M 15-45mm f/3.5-6.3 IS STM',
+                415400 => 'Canon EF-S 24mm f/2.8 STM',
+                415500 => 'Canon EF-M 28mm f/3.5 Macro IS STM',
+                415600 => 'Canon EF 50mm f/1.8 STM',
+                415700 => 'Canon EF-M 18-150mm 1:3.5-6.3 IS STM',
+                415800 => 'Canon EF-S 18-55mm f/4-5.6 IS STM',
+                416000 => 'Canon EF-S 35mm f/2.8 Macro IS STM',
+                3691000 => 'Canon EF 70-300mm f/4-5.6 IS II USM',
+                3691200 => 'Canon EF-S 18-135mm f/3.5-5.6 IS USM',
+                6149400 => 'Canon CN-E 85mm T1.3 L F'
+            ],
+            PelTag::CANON_CS_FOCUS_CONTINUOUS => [
+                0 => 'Single',
+                1 => 'Continuous',
+                8 => 'Manual'
+            ],
+            PelTag::CANON_CS_AE_SETTING => [
+                0 => 'Normal AE',
+                1 => 'Exposure Compensation',
+                2 => 'AE Lock',
+                3 => 'AE Lock + Exposure Comp.',
+                4 => 'No AE'
+            ],
+            PelTag::CANON_CS_IMAGE_STABILIZATION => [
+                0 => 'Off',
+                1 => 'On',
+                2 => 'Shoot Only',
+                3 => 'Panning',
+                4 => 'Dynamic',
+                256 => 'Off (2)',
+                257 => 'On (2)',
+                258 => 'Shoot Only (2)',
+                259 => 'Panning (2)',
+                260 => 'Dynamic (2)'
+            ],
+            PelTag::CANON_CS_SPOT_METERING_MODE => [
+                0 => 'Center',
+                1 => 'AF Point'
+            ],
+            PelTag::CANON_CS_PHOTO_EFFECT => [
+                0 => 'Off',
+                1 => 'Vivid',
+                2 => 'Neutral',
+                3 => 'Smooth',
+                4 => 'Sepia',
+                5 => 'B&W',
+                6 => 'Custom',
+                100 => 'My Color Data'
+            ],
+            PelTag::CANON_CS_MANUAL_FLASH_OUTPUT => [
+                0x500 => 'Full',
+                0x502 => 'Medium',
+                0x504 => 'Low'
+            ],
+            PelTag::CANON_CS_COLOR_TONE => [
+                0 => 'Normal'
+            ],
+            PelTag::CANON_CS_SRAW_QUALITY => [
+                1 => 'sRAW1 (mRAW)',
+                2 => 'sRAW2 (sRAW)'
+            ]
+        ]
+    ];
 
     /**
      * Make a new entry that can hold a signed short.
@@ -57,7 +739,6 @@ class PelEntrySShort extends PelEntryNumber
      *            the tag which this entry represents. This
      *            should be one of the constants defined in {@link PelTag}
      *            which has format {@link PelFormat::SSHORT}.
-     *
      * @param int $value...
      *            the signed short(s) that this entry will
      *            represent. The argument passed must obey the same rules as the
@@ -83,11 +764,9 @@ class PelEntrySShort extends PelEntryNumber
      *
      * @param int $number
      *            the number that should be converted.
-     *
      * @param boolean $order
      *            one of {@link PelConvert::LITTLE_ENDIAN} and
      *            {@link PelConvert::BIG_ENDIAN}, specifying the target byte order.
-     *
      * @return string bytes representing the number given.
      */
     public function numberToBytes($number, $order)
@@ -103,1469 +782,23 @@ class PelEntrySShort extends PelEntryNumber
      * PelTag::METERING_MODE} tag, 'Center-Weighted Average' is
      * returned.
      *
-     * @param
-     *            boolean some values can be returned in a long or more
+     * @param boolean $brief
+     *            some values can be returned in a long or more
      *            brief form, and this parameter controls that.
-     *
      * @return string the value as text.
      */
     public function getText($brief = false)
     {
-        if ($this->ifd_type == PelIfd::CANON_FILE_INFO) {
-            switch ($this->tag) {
-                case PelTag::CANON_FI_BRACKET_MODE:
-                    // CC (e->components, 1, v);
-                    switch ($this->value[0]) {
-                        case 0:
-                            return Pel::tra('Off');
-                        case 1:
-                            return Pel::tra('AEB');
-                        case 2:
-                            return Pel::tra('FEB');
-                        case 3:
-                            return Pel::tra('ISO');
-                        case 4:
-                            return Pel::tra('WB');
-                        default:
-                            return $this->value[0];
-                    }
-                    break;
-                case PelTag::CANON_FI_RAW_JPG_QUALITY:
-                    // CC (e->components, 1, v);
-                    switch ($this->value[0]) {
-                        case 1:
-                            return Pel::tra('Economy');
-                        case 2:
-                            return Pel::tra('Normal');
-                        case 3:
-                            return Pel::tra('Fine');
-                        case 4:
-                            return Pel::tra('RAW');
-                        case 5:
-                            return Pel::tra('Superfine');
-                        case 130:
-                            return Pel::tra('Normal Movie');
-                        case 131:
-                            return Pel::tra('Movie (2)');
-                        default:
-                            return $this->value[0];
-                    }
-                    break;
-                case PelTag::CANON_FI_RAW_JPG_SIZE:
-                    // CC (e->components, 1, v);
-                    switch ($this->value[0]) {
-                        case 0:
-                            return Pel::tra('Large');
-                        case 1:
-                            return Pel::tra('Medium');
-                        case 2:
-                            return Pel::tra('Small');
-                        case 5:
-                            return Pel::tra('Medium 1');
-                        case 6:
-                            return Pel::tra('Medium 2');
-                        case 7:
-                            return Pel::tra('Medium 3');
-                        case 8:
-                            return Pel::tra('Postcard');
-                        case 9:
-                            return Pel::tra('Widescreen');
-                        case 10:
-                            return Pel::tra('Medium Widescreen');
-                        case 14:
-                            return Pel::tra('Small 1');
-                        case 15:
-                            return Pel::tra('Small 2');
-                        case 16:
-                            return Pel::tra('Small 3');
-                        case 128:
-                            return Pel::tra('640x480 Movie');
-                        case 129:
-                            return Pel::tra('Medium Movie');
-                        case 130:
-                            return Pel::tra('Small Movie');
-                        case 137:
-                            return Pel::tra('1280x720 Movie');
-                        case 142:
-                            return Pel::tra('1920x1080 Movie');
-                        default:
-                            return $this->value[0];
-                    }
-                    break;
-                case PelTag::CANON_FI_NOISE_REDUCTION:
-                    // CC (e->components, 1, v);
-                    switch ($this->value[0]) {
-                        case 0:
-                            return Pel::tra('Off');
-                        case 1:
-                            return Pel::tra('On (1D)');
-                        case 3:
-                            return Pel::tra('On');
-                        case 4:
-                            return Pel::tra('Auto');
-                        default:
-                            return $this->value[0];
-                    }
-                    break;
-                case PelTag::CANON_FI_WB_BRACKET_MODE:
-                    // CC (e->components, 1, v);
-                    switch ($this->value[0]) {
-                        case 0:
-                            return Pel::tra('Off');
-                        case 1:
-                            return Pel::tra('On (shift AB)');
-                        case 2:
-                            return Pel::tra('On (shift GM)');
-                        default:
-                            return $this->value[0];
-                    }
-                    break;
-                case PelTag::CANON_FI_FILTER_EFFECT:
-                    // CC (e->components, 1, v);
-                    switch ($this->value[0]) {
-                        case 0:
-                            return Pel::tra('None');
-                        case 1:
-                            return Pel::tra('Yellow');
-                        case 2:
-                            return Pel::tra('Orange');
-                        case 3:
-                            return Pel::tra('Red');
-                        case 4:
-                            return Pel::tra('Green');
-                        default:
-                            return $this->value[0];
-                    }
-                    break;
-                case PelTag::CANON_FI_TONING_EFFECT:
-                    // CC (e->components, 1, v);
-                    switch ($this->value[0]) {
-                        case 0:
-                            return Pel::tra('None');
-                        case 1:
-                            return Pel::tra('Sepia');
-                        case 2:
-                            return Pel::tra('Blue');
-                        case 3:
-                            return Pel::tra('Purple');
-                        case 4:
-                            return Pel::tra('Green');
-                        default:
-                            return $this->value[0];
-                    }
-                    break;
-                case PelTag::CANON_FI_LIVE_VIEW_SHOOTING:
-                    // CC (e->components, 1, v);
-                    switch ($this->value[0]) {
-                        case 0:
-                            return Pel::tra('Off');
-                        case 1:
-                            return Pel::tra('On');
-                        default:
-                            return $this->value[0];
-                    }
-                    break;
-                case PelTag::CANON_FI_FLASH_EXPOSURE_LOCK:
-                    // CC (e->components, 1, v);
-                    switch ($this->value[0]) {
-                        case 0:
-                            return Pel::tra('Off');
-                        case 1:
-                            return Pel::tra('On');
-                        default:
-                            return $this->value[0];
-                    }
-                    break;
-                default:
-                    return $this->value[0];
+        if (array_key_exists($this->ifd_type, self::TRANSLATIONS) && array_key_exists($this->tag, self::TRANSLATIONS[$this->ifd_type])) {
+            $val = $this->value[0];
+            if ($this->ifd_type === PelIfd::CANON_CAMERA_SETTINGS && $this->tag === PelTag::CANON_CS_LENS_TYPE) {
+                // special handling: lens types must be multtiplied by 100 because digits canÄt be used in arrays
+                $val = $val * 100;
             }
-        }
-        if ($this->ifd_type == PelIfd::CANON_CAMERA_SETTINGS) {
-            switch ($this->tag) {
-                case PelTag::CANON_CS_MACRO:
-                    // CC (e->components, 1, v);
-                    switch ($this->value[0]) {
-                        case 1:
-                            return Pel::tra('Macro');
-                        case 2:
-                            return Pel::tra('Normal');
-                        default:
-                            return $this->value[0];
-                    }
-                    break;
-                case PelTag::CANON_CS_QUALITY:
-                    // CC (e->components, 1, v);
-                    switch ($this->value[0]) {
-                        case 1:
-                            return Pel::tra('Economy');
-                        case 2:
-                            return Pel::tra('Normal');
-                        case 3:
-                            return Pel::tra('Fine');
-                        case 4:
-                            return Pel::tra('RAW');
-                        case 5:
-                            return Pel::tra('Superfine');
-                        case 130:
-                            return Pel::tra('Normal Movie');
-                        case 131:
-                            return Pel::tra('Movie (2)');
-                        default:
-                            return $this->value[0];
-                    }
-                    break;
-                case PelTag::CANON_CS_FLASH_MODE:
-                    // CC (e->components, 1, v);
-                    switch ($this->value[0]) {
-                        case 0:
-                            return Pel::tra('Off');
-                        case 1:
-                            return Pel::tra('Auto');
-                        case 2:
-                            return Pel::tra('On');
-                        case 3:
-                            return Pel::tra('Red-eye reduction');
-                        case 4:
-                            return Pel::tra('Slow-sync');
-                        case 5:
-                            return Pel::tra('Red-eye reduction (Auto)');
-                        case 6:
-                            return Pel::tra('Red-eye reduction (On)');
-                        case 16:
-                            return Pel::tra('External flash');
-                        default:
-                            return $this->value[0];
-                    }
-                    break;
-                case PelTag::CANON_CS_DRIVE_MODE:
-                    // CC (e->components, 1, v);
-                    switch ($this->value[0]) {
-                        case 0:
-                            return Pel::tra('Single');
-                        case 1:
-                            return Pel::tra('Continuous');
-                        case 2:
-                            return Pel::tra('Movie');
-                        case 3:
-                            return Pel::tra('Continuous, Speed Priority');
-                        case 4:
-                            return Pel::tra('Continuous, Low');
-                        case 5:
-                            return Pel::tra('Continuous, High');
-                        case 6:
-                            return Pel::tra('Silent Single');
-                        case 9:
-                            return Pel::tra('Single, Silent');
-                        case 10:
-                            return Pel::tra('Continuous, Silent');
-                        default:
-                            return $this->value[0];
-                    }
-                    break;
-                case PelTag::CANON_CS_FOCUS_MODE:
-                    // CC (e->components, 1, v);
-                    switch ($this->value[0]) {
-                        case 0:
-                            return Pel::tra('One-shot AF');
-                        case 1:
-                            return Pel::tra('AI Servo AF');
-                        case 2:
-                            return Pel::tra('AI Focus AF');
-                        case 3:
-                            return Pel::tra('Manual Focus (3)');
-                        case 4:
-                            return Pel::tra('Single');
-                        case 5:
-                            return Pel::tra('Continuous');
-                        case 6:
-                            return Pel::tra('Manual Focus (6)');
-                        case 16:
-                            return Pel::tra('Pan Focus');
-                        case 256:
-                            return Pel::tra('AF + MF');
-                        case 512:
-                            return Pel::tra('Movie Snap Focus');
-                        case 519:
-                            return Pel::tra('Movie Servo AF');
-                        default:
-                            return $this->value[0];
-                    }
-                    break;
-                case PelTag::CANON_CS_RECORD_MODE:
-                    // CC (e->components, 1, v);
-                    switch ($this->value[0]) {
-                        case 1:
-                            return Pel::tra('JPEG');
-                        case 2:
-                            return Pel::tra('CRW+THM');
-                        case 3:
-                            return Pel::tra('AVI+THM');
-                        case 4:
-                            return Pel::tra('TIF');
-                        case 5:
-                            return Pel::tra('TIF+JPEG');
-                        case 6:
-                            return Pel::tra('CR2');
-                        case 7:
-                            return Pel::tra('CR2+JPEG');
-                        case 9:
-                            return Pel::tra('MOV');
-                        case 10:
-                            return Pel::tra('MP4');
-                        default:
-                            return $this->value[0];
-                    }
-                    break;
-                case PelTag::CANON_CS_IMAGE_SIZE:
-                    // CC (e->components, 1, v);
-                    switch ($this->value[0]) {
-                        case 0:
-                            return Pel::tra('Large');
-                        case 1:
-                            return Pel::tra('Medium');
-                        case 2:
-                            return Pel::tra('Small');
-                        case 5:
-                            return Pel::tra('Medium 1');
-                        case 6:
-                            return Pel::tra('Medium 2');
-                        case 7:
-                            return Pel::tra('Medium 3');
-                        case 8:
-                            return Pel::tra('Postcard');
-                        case 9:
-                            return Pel::tra('Widescreen');
-                        case 10:
-                            return Pel::tra('Medium Widescreen');
-                        case 14:
-                            return Pel::tra('Small 1');
-                        case 15:
-                            return Pel::tra('Small 2');
-                        case 16:
-                            return Pel::tra('Small 3');
-                        case 128:
-                            return Pel::tra('640x480 Movie');
-                        case 129:
-                            return Pel::tra('Medium Movie');
-                        case 130:
-                            return Pel::tra('Small Movie');
-                        case 137:
-                            return Pel::tra('1280x720 Movie');
-                        case 142:
-                            return Pel::tra('1920x1080 Movie');
-                        default:
-                            return $this->value[0];
-                    }
-                    break;
-                case PelTag::CANON_CS_EASY_MODE:
-                    // CC (e->components, 1, v);
-                    switch ($this->value[0]) {
-                        case 0:
-                            return Pel::tra('Full auto');
-                        case 1:
-                            return Pel::tra('Manual');
-                        case 2:
-                            return Pel::tra('Landscape');
-                        case 3:
-                            return Pel::tra('Fast shutter');
-                        case 4:
-                            return Pel::tra('Slow shutter');
-                        case 5:
-                            return Pel::tra('Night');
-                        case 6:
-                            return Pel::tra('Gray Scale');
-                        case 7:
-                            return Pel::tra('Sepia');
-                        case 8:
-                            return Pel::tra('Portrait');
-                        case 9:
-                            return Pel::tra('Sports');
-                        case 10:
-                            return Pel::tra('Macro');
-                        case 11:
-                            return Pel::tra('Black & White');
-                        case 12:
-                            return Pel::tra('Pan focus');
-                        case 13:
-                            return Pel::tra('Vivid');
-                        case 14:
-                            return Pel::tra('Neutral');
-                        case 15:
-                            return Pel::tra('Flash Off');
-                        case 16:
-                            return Pel::tra('Long Shutter');
-                        case 17:
-                            return Pel::tra('Super Macro');
-                        case 18:
-                            return Pel::tra('Foliage');
-                        case 19:
-                            return Pel::tra('Indoor');
-                        case 20:
-                            return Pel::tra('Fireworks');
-                        case 21:
-                            return Pel::tra('Beach');
-                        case 22:
-                            return Pel::tra('Underwater');
-                        case 23:
-                            return Pel::tra('Snow');
-                        case 24:
-                            return Pel::tra('Kids & Pets');
-                        case 25:
-                            return Pel::tra('Night Snapshot');
-                        case 26:
-                            return Pel::tra('Digital Macro');
-                        case 27:
-                            return Pel::tra('My Colors');
-                        case 28:
-                            return Pel::tra('Movie Snap');
-                        case 29:
-                            return Pel::tra('Super Macro 2');
-                        case 30:
-                            return Pel::tra('Color Accent');
-                        case 31:
-                            return Pel::tra('Color Swap');
-                        case 32:
-                            return Pel::tra('Aquarium');
-                        case 33:
-                            return Pel::tra('ISO 3200');
-                        case 34:
-                            return Pel::tra('ISO 6400');
-                        case 35:
-                            return Pel::tra('Creative Light Effect');
-                        case 36:
-                            return Pel::tra('Easy');
-                        case 37:
-                            return Pel::tra('Quick Shot');
-                        case 38:
-                            return Pel::tra('Creative Auto');
-                        case 39:
-                            return Pel::tra('Zoom Blur');
-                        case 40:
-                            return Pel::tra('Low Light');
-                        case 41:
-                            return Pel::tra('Nostalgic');
-                        case 42:
-                            return Pel::tra('Super Vivid');
-                        case 43:
-                            return Pel::tra('Poster Effect');
-                        case 44:
-                            return Pel::tra('Face Self-timer');
-                        case 45:
-                            return Pel::tra('Smile');
-                        case 46:
-                            return Pel::tra('Wink Self-timer');
-                        case 47:
-                            return Pel::tra('Fisheye Effect');
-                        case 48:
-                            return Pel::tra('Miniature Effect');
-                        case 49:
-                            return Pel::tra('High-speed Burst');
-                        case 50:
-                            return Pel::tra('Best Image Selection');
-                        case 51:
-                            return Pel::tra('High Dynamic Range');
-                        case 52:
-                            return Pel::tra('Handheld Night Scene');
-                        case 53:
-                            return Pel::tra('Movie Digest');
-                        case 54:
-                            return Pel::tra('Live View Control');
-                        case 55:
-                            return Pel::tra('Discreet');
-                        case 56:
-                            return Pel::tra('Blur Reduction');
-                        case 57:
-                            return Pel::tra('Monochrome');
-                        case 58:
-                            return Pel::tra('Toy Camera Effect');
-                        case 59:
-                            return Pel::tra('Scene Intelligent Auto');
-                        case 60:
-                            return Pel::tra('High-speed Burst HQ');
-                        case 61:
-                            return Pel::tra('Smooth Skin');
-                        case 62:
-                            return Pel::tra('Soft Focus');
-                        case 257:
-                            return Pel::tra('Spotlight');
-                        case 258:
-                            return Pel::tra('Night 2');
-                        case 259:
-                            return Pel::tra('Night+');
-                        case 260:
-                            return Pel::tra('Super Night');
-                        case 261:
-                            return Pel::tra('Sunset');
-                        case 263:
-                            return Pel::tra('Night Scene');
-                        case 264:
-                            return Pel::tra('Surface');
-                        case 265:
-                            return Pel::tra('Low Light 2');
-                        default:
-                            return $this->value[0];
-                    }
-                    break;
-                case PelTag::CANON_CS_DIGITAL_ZOOM:
-                    // CC (e->components, 1, v);
-                    switch ($this->value[0]) {
-                        case 0:
-                            return Pel::tra('None');
-                        case 1:
-                            return Pel::tra('2x');
-                        case 2:
-                            return Pel::tra('4x');
-                        case 3:
-                            return Pel::tra('Other');
-                        default:
-                            return $this->value[0];
-                    }
-                    break;
-                case PelTag::CANON_CS_CONTRAST:
-                    // CC (e->components, 1, v);
-                    switch ($this->value[0]) {
-                        case 0:
-                            return Pel::tra('Normal');
-                        default:
-                            return $this->value[0];
-                    }
-                    break;
-                case PelTag::CANON_CS_SATURATION:
-                    // CC (e->components, 1, v);
-                    switch ($this->value[0]) {
-                        case 0:
-                            return Pel::tra('Normal');
-                        default:
-                            return $this->value[0];
-                    }
-                    break;
-                case PelTag::CANON_CS_METERING_MODE:
-                    // CC (e->components, 1, v);
-                    switch ($this->value[0]) {
-                        case 0:
-                            return Pel::tra('Default');
-                        case 1:
-                            return Pel::tra('Spot');
-                        case 2:
-                            return Pel::tra('Average');
-                        case 3:
-                            return Pel::tra('Evaluative');
-                        case 4:
-                            return Pel::tra('Partial');
-                        case 5:
-                            return Pel::tra('Center-weighted average');
-                        default:
-                            return $this->value[0];
-                    }
-                    break;
-                case PelTag::CANON_CS_FOCUS_TYPE:
-                    // CC (e->components, 1, v);
-                    switch ($this->value[0]) {
-                        case 0:
-                            return Pel::tra('Manual');
-                        case 1:
-                            return Pel::tra('Auto');
-                        case 2:
-                            return Pel::tra('Not Known');
-                        case 3:
-                            return Pel::tra('Macro');
-                        case 4:
-                            return Pel::tra('Very Close');
-                        case 5:
-                            return Pel::tra('Close');
-                        case 6:
-                            return Pel::tra('Middle Range');
-                        case 7:
-                            return Pel::tra('Far Range');
-                        case 8:
-                            return Pel::tra('Pan Focus');
-                        case 9:
-                            return Pel::tra('Super Macro');
-                        case 10:
-                            return Pel::tra('Infinity');
-                        default:
-                            return $this->value[0];
-                    }
-                    break;
-                case PelTag::CANON_CS_AF_POINT:
-                    // CC (e->components, 1, v);
-                    switch ($this->value[0]) {
-                        case 0x2005:
-                            return Pel::tra('Manual AF point selection');
-                        case 0x3000:
-                            return Pel::tra('None (MF)');
-                        case 0x3001:
-                            return Pel::tra('Auto AF point selection');
-                        case 0x3002:
-                            return Pel::tra('Right');
-                        case 0x3003:
-                            return Pel::tra('Center');
-                        case 0x3004:
-                            return Pel::tra('Left');
-                        case 0x4001:
-                            return Pel::tra('Auto AF point selection');
-                        case 0x4006:
-                            return Pel::tra('Face Detect');
-                        default:
-                            return $this->value[0];
-                    }
-                    break;
-                case PelTag::CANON_CS_EXPOSURE_PROGRAM:
-                    // CC (e->components, 1, v);
-                    switch ($this->value[0]) {
-                        case 0:
-                            return Pel::tra('Easy');
-                        case 1:
-                            return Pel::tra('Program AE');
-                        case 2:
-                            return Pel::tra('Shutter speed priority AE');
-                        case 3:
-                            return Pel::tra('Aperture-priority AE');
-                        case 4:
-                            return Pel::tra('Manual');
-                        case 5:
-                            return Pel::tra('Depth-of-field AE');
-                        case 6:
-                            return Pel::tra('M-Dep');
-                        case 7:
-                            return Pel::tra('Bulb');
-                        default:
-                            return $this->value[0];
-                    }
-                    break;
-                case PelTag::CANON_CS_LENS_TYPE:
-                    // CC (e->components, 1, v);
-                    switch ($this->value[0]) {
-                        case 1:
-                            return Pel::tra('Canon EF 50mm f/1.8');
-                        case 2:
-                            return Pel::tra('Canon EF 28mm f/2.8');
-                        case 3:
-                            return Pel::tra('Canon EF 135mm f/2.8 Soft');
-                        case 4:
-                            return Pel::tra('Canon EF 35-105mm f/3.5-4.5 or Sigma Lens');
-                        case 4.1:
-                            return Pel::tra('Sigma UC Zoom 35-135mm f/4-5.6');
-                        case 5:
-                            return Pel::tra('Canon EF 35-70mm f/3.5-4.5');
-                        case 6:
-                            return Pel::tra('Canon EF 28-70mm f/3.5-4.5 or Sigma or Tokina Lens');
-                        case 6.1:
-                            return Pel::tra('Sigma 18-50mm f/3.5-5.6 DC');
-                        case 6.2:
-                            return Pel::tra('Sigma 18-125mm f/3.5-5.6 DC IF ASP');
-                        case 6.3:
-                            return Pel::tra('Tokina AF 193-2 19-35mm f/3.5-4.5');
-                        case 6.4:
-                            return Pel::tra('Sigma 28-80mm f/3.5-5.6 II Macro');
-                        case 7:
-                            return Pel::tra('Canon EF 100-300mm f/5.6L');
-                        case 8:
-                            return Pel::tra('Canon EF 100-300mm f/5.6 or Sigma or Tokina Lens');
-                        case 8.1:
-                            return Pel::tra('Sigma 70-300mm f/4-5.6 [APO] DG Macro');
-                        case 8.2:
-                            return Pel::tra('Tokina AT-X 242 AF 24-200mm f/3.5-5.6');
-                        case 9:
-                            return Pel::tra('Canon EF 70-210mm f/4');
-                        case 9.1:
-                            return Pel::tra('Sigma 55-200mm f/4-5.6 DC');
-                        case 10:
-                            return Pel::tra('Canon EF 50mm f/2.5 Macro or Sigma Lens');
-                        case 10.1:
-                            return Pel::tra('Sigma 50mm f/2.8 EX');
-                        case 10.2:
-                            return Pel::tra('Sigma 28mm f/1.8');
-                        case 10.3:
-                            return Pel::tra('Sigma 105mm f/2.8 Macro EX');
-                        case 10.4:
-                            return Pel::tra('Sigma 70mm f/2.8 EX DG Macro EF');
-                        case 11:
-                            return Pel::tra('Canon EF 35mm f/2');
-                        case 13:
-                            return Pel::tra('Canon EF 15mm f/2.8 Fisheye');
-                        case 14:
-                            return Pel::tra('Canon EF 50-200mm f/3.5-4.5L');
-                        case 15:
-                            return Pel::tra('Canon EF 50-200mm f/3.5-4.5');
-                        case 16:
-                            return Pel::tra('Canon EF 35-135mm f/3.5-4.5');
-                        case 17:
-                            return Pel::tra('Canon EF 35-70mm f/3.5-4.5A');
-                        case 18:
-                            return Pel::tra('Canon EF 28-70mm f/3.5-4.5');
-                        case 20:
-                            return Pel::tra('Canon EF 100-200mm f/4.5A');
-                        case 21:
-                            return Pel::tra('Canon EF 80-200mm f/2.8L');
-                        case 22:
-                            return Pel::tra('Canon EF 20-35mm f/2.8L or Tokina Lens');
-                        case 22.1:
-                            return Pel::tra('Tokina AT-X 280 AF Pro 28-80mm f/2.8 Aspherical');
-                        case 23:
-                            return Pel::tra('Canon EF 35-105mm f/3.5-4.5');
-                        case 24:
-                            return Pel::tra('Canon EF 35-80mm f/4-5.6 Power Zoom');
-                        case 25:
-                            return Pel::tra('Canon EF 35-80mm f/4-5.6 Power Zoom');
-                        case 26:
-                            return Pel::tra('Canon EF 100mm f/2.8 Macro or Other Lens');
-                        case 26.1:
-                            return Pel::tra('Cosina 100mm f/3.5 Macro AF');
-                        case 26.2:
-                            return Pel::tra('Tamron SP AF 90mm f/2.8 Di Macro');
-                        case 26.3:
-                            return Pel::tra('Tamron SP AF 180mm f/3.5 Di Macro');
-                        case 26.4:
-                            return Pel::tra('Carl Zeiss Planar T* 50mm f/1.4');
-                        case 27:
-                            return Pel::tra('Canon EF 35-80mm f/4-5.6');
-                        case 28:
-                            return Pel::tra('Canon EF 80-200mm f/4.5-5.6 or Tamron Lens');
-                        case 28.1:
-                            return Pel::tra('Tamron SP AF 28-105mm f/2.8 LD Aspherical IF');
-                        case 28.2:
-                            return Pel::tra('Tamron SP AF 28-75mm f/2.8 XR Di LD Aspherical [IF] Macro');
-                        case 28.3:
-                            return Pel::tra('Tamron AF 70-300mm f/4-5.6 Di LD 1:2 Macro');
-                        case 28.4:
-                            return Pel::tra('Tamron AF Aspherical 28-200mm f/3.8-5.6');
-                        case 29:
-                            return Pel::tra('Canon EF 50mm f/1.8 II');
-                        case 30:
-                            return Pel::tra('Canon EF 35-105mm f/4.5-5.6');
-                        case 31:
-                            return Pel::tra('Canon EF 75-300mm f/4-5.6 or Tamron Lens');
-                        case 31.1:
-                            return Pel::tra('Tamron SP AF 300mm f/2.8 LD IF');
-                        case 32:
-                            return Pel::tra('Canon EF 24mm f/2.8 or Sigma Lens');
-                        case 32.1:
-                            return Pel::tra('Sigma 15mm f/2.8 EX Fisheye');
-                        case 33:
-                            return Pel::tra('Voigtlander or Carl Zeiss Lens');
-                        case 33.1:
-                            return Pel::tra('Voigtlander Ultron 40mm f/2 SLII Aspherical');
-                        case 33.2:
-                            return Pel::tra('Voigtlander Color Skopar 20mm f/3.5 SLII Aspherical');
-                        case 33.3:
-                            return Pel::tra('Voigtlander APO-Lanthar 90mm f/3.5 SLII Close Focus');
-                        case 33.4:
-                            return Pel::tra('Carl Zeiss Distagon T* 15mm f/2.8 ZE');
-                        case 33.5:
-                            return Pel::tra('Carl Zeiss Distagon T* 18mm f/3.5 ZE');
-                        case 33.6:
-                            return Pel::tra('Carl Zeiss Distagon T* 21mm f/2.8 ZE');
-                        case 33.7:
-                            return Pel::tra('Carl Zeiss Distagon T* 25mm f/2 ZE');
-                        case 33.8:
-                            return Pel::tra('Carl Zeiss Distagon T* 28mm f/2 ZE');
-                        case 33.9:
-                            return Pel::tra('Carl Zeiss Distagon T* 35mm f/2 ZE');
-                        case 33.10:
-                            return Pel::tra('Carl Zeiss Distagon T* 35mm f/1.4 ZE');
-                        case 33.11:
-                            return Pel::tra('Carl Zeiss Planar T* 50mm f/1.4 ZE');
-                        case 33.12:
-                            return Pel::tra('Carl Zeiss Makro-Planar T* 50mm f/2 ZE');
-                        case 33.13:
-                            return Pel::tra('Carl Zeiss Makro-Planar T* 100mm f/2 ZE');
-                        case 33.14:
-                            return Pel::tra('Carl Zeiss Apo-Sonnar T* 135mm f/2 ZE');
-                        case 35:
-                            return Pel::tra('Canon EF 35-80mm f/4-5.6');
-                        case 36:
-                            return Pel::tra('Canon EF 38-76mm f/4.5-5.6');
-                        case 37:
-                            return Pel::tra('Canon EF 35-80mm f/4-5.6 or Tamron Lens');
-                        case 37.1:
-                            return Pel::tra('Tamron 70-200mm f/2.8 Di LD IF Macro');
-                        case 37.2:
-                            return Pel::tra('Tamron AF 28-300mm f/3.5-6.3 XR Di VC LD Aspherical [IF] Macro Model A20');
-                        case 37.3:
-                            return Pel::tra('Tamron SP AF 17-50mm f/2.8 XR Di II VC LD Aspherical [IF]');
-                        case 37.4:
-                            return Pel::tra('Tamron AF 18-270mm f/3.5-6.3 Di II VC LD Aspherical [IF] Macro');
-                        case 38:
-                            return Pel::tra('Canon EF 80-200mm f/4.5-5.6');
-                        case 39:
-                            return Pel::tra('Canon EF 75-300mm f/4-5.6');
-                        case 40:
-                            return Pel::tra('Canon EF 28-80mm f/3.5-5.6');
-                        case 41:
-                            return Pel::tra('Canon EF 28-90mm f/4-5.6');
-                        case 42:
-                            return Pel::tra('Canon EF 28-200mm f/3.5-5.6 or Tamron Lens');
-                        case 42.1:
-                            return Pel::tra('Tamron AF 28-300mm f/3.5-6.3 XR Di VC LD Aspherical [IF] Macro Model A20');
-                        case 43:
-                            return Pel::tra('Canon EF 28-105mm f/4-5.6');
-                        case 44:
-                            return Pel::tra('Canon EF 90-300mm f/4.5-5.6');
-                        case 45:
-                            return Pel::tra('Canon EF-S 18-55mm f/3.5-5.6 [II]');
-                        case 46:
-                            return Pel::tra('Canon EF 28-90mm f/4-5.6');
-                        case 47:
-                            return Pel::tra('Zeiss Milvus 35mm f/2 or 50mm f/2');
-                        case 47.1:
-                            return Pel::tra('Zeiss Milvus 50mm f/2 Makro');
-                        case 48:
-                            return Pel::tra('Canon EF-S 18-55mm f/3.5-5.6 IS');
-                        case 49:
-                            return Pel::tra('Canon EF-S 55-250mm f/4-5.6 IS');
-                        case 50:
-                            return Pel::tra('Canon EF-S 18-200mm f/3.5-5.6 IS');
-                        case 51:
-                            return Pel::tra('Canon EF-S 18-135mm f/3.5-5.6 IS');
-                        case 52:
-                            return Pel::tra('Canon EF-S 18-55mm f/3.5-5.6 IS II');
-                        case 53:
-                            return Pel::tra('Canon EF-S 18-55mm f/3.5-5.6 III');
-                        case 54:
-                            return Pel::tra('Canon EF-S 55-250mm f/4-5.6 IS II');
-                        case 60:
-                            return Pel::tra('Irix 11mm f/4');
-                        case 94:
-                            return Pel::tra('Canon TS-E 17mm f/4L');
-                        case 95:
-                            return Pel::tra('Canon TS-E 24.0mm f/3.5 L II');
-                        case 124:
-                            return Pel::tra('Canon MP-E 65mm f/2.8 1-5x Macro Photo');
-                        case 125:
-                            return Pel::tra('Canon TS-E 24mm f/3.5L');
-                        case 126:
-                            return Pel::tra('Canon TS-E 45mm f/2.8');
-                        case 127:
-                            return Pel::tra('Canon TS-E 90mm f/2.8');
-                        case 129:
-                            return Pel::tra('Canon EF 300mm f/2.8L');
-                        case 130:
-                            return Pel::tra('Canon EF 50mm f/1.0L');
-                        case 131:
-                            return Pel::tra('Canon EF 28-80mm f/2.8-4L or Sigma Lens');
-                        case 131.1:
-                            return Pel::tra('Sigma 8mm f/3.5 EX DG Circular Fisheye');
-                        case 131.2:
-                            return Pel::tra('Sigma 17-35mm f/2.8-4 EX DG Aspherical HSM');
-                        case 131.3:
-                            return Pel::tra('Sigma 17-70mm f/2.8-4.5 DC Macro');
-                        case 131.4:
-                            return Pel::tra('Sigma APO 50-150mm f/2.8 [II] EX DC HSM');
-                        case 131.5:
-                            return Pel::tra('Sigma APO 120-300mm f/2.8 EX DG HSM');
-                        case 131.6:
-                            return Pel::tra('Sigma 4.5mm f/2.8 EX DC HSM Circular Fisheye');
-                        case 131.7:
-                            return Pel::tra('Sigma 70-200mm f/2.8 APO EX HSM');
-                        case 132:
-                            return Pel::tra('Canon EF 1200mm f/5.6L');
-                        case 134:
-                            return Pel::tra('Canon EF 600mm f/4L IS');
-                        case 135:
-                            return Pel::tra('Canon EF 200mm f/1.8L');
-                        case 136:
-                            return Pel::tra('Canon EF 300mm f/2.8L');
-                        case 137:
-                            return Pel::tra('Canon EF 85mm f/1.2L or Sigma or Tamron Lens');
-                        case 137.1:
-                            return Pel::tra('Sigma 18-50mm f/2.8-4.5 DC OS HSM');
-                        case 137.2:
-                            return Pel::tra('Sigma 50-200mm f/4-5.6 DC OS HSM');
-                        case 137.3:
-                            return Pel::tra('Sigma 18-250mm f/3.5-6.3 DC OS HSM');
-                        case 137.4:
-                            return Pel::tra('Sigma 24-70mm f/2.8 IF EX DG HSM');
-                        case 137.5:
-                            return Pel::tra('Sigma 18-125mm f/3.8-5.6 DC OS HSM');
-                        case 137.6:
-                            return Pel::tra('Sigma 17-70mm f/2.8-4 DC Macro OS HSM | C');
-                        case 137.7:
-                            return Pel::tra('Sigma 17-50mm f/2.8 OS HSM');
-                        case 137.8:
-                            return Pel::tra('Sigma 18-200mm f/3.5-6.3 DC OS HSM [II]');
-                        case 137.9:
-                            return Pel::tra('Tamron AF 18-270mm f/3.5-6.3 Di II VC PZD');
-                        case 137.10:
-                            return Pel::tra('Sigma 8-16mm f/4.5-5.6 DC HSM');
-                        case 137.11:
-                            return Pel::tra('Tamron SP 17-50mm f/2.8 XR Di II VC');
-                        case 137.12:
-                            return Pel::tra('Tamron SP 60mm f/2 Macro Di II');
-                        case 137.13:
-                            return Pel::tra('Sigma 10-20mm f/3.5 EX DC HSM');
-                        case 137.14:
-                            return Pel::tra('Tamron SP 24-70mm f/2.8 Di VC USD');
-                        case 137.15:
-                            return Pel::tra('Sigma 18-35mm f/1.8 DC HSM');
-                        case 137.16:
-                            return Pel::tra('Sigma 12-24mm f/4.5-5.6 DG HSM II');
-                        case 138:
-                            return Pel::tra('Canon EF 28-80mm f/2.8-4L');
-                        case 139:
-                            return Pel::tra('Canon EF 400mm f/2.8L');
-                        case 140:
-                            return Pel::tra('Canon EF 500mm f/4.5L');
-                        case 141:
-                            return Pel::tra('Canon EF 500mm f/4.5L');
-                        case 142:
-                            return Pel::tra('Canon EF 300mm f/2.8L IS');
-                        case 143:
-                            return Pel::tra('Canon EF 500mm f/4L IS or Sigma Lens');
-                        case 143.1:
-                            return Pel::tra('Sigma 17-70mm f/2.8-4 DC Macro OS HSM');
-                        case 144:
-                            return Pel::tra('Canon EF 35-135mm f/4-5.6 USM');
-                        case 145:
-                            return Pel::tra('Canon EF 100-300mm f/4.5-5.6 USM');
-                        case 146:
-                            return Pel::tra('Canon EF 70-210mm f/3.5-4.5 USM');
-                        case 147:
-                            return Pel::tra('Canon EF 35-135mm f/4-5.6 USM');
-                        case 148:
-                            return Pel::tra('Canon EF 28-80mm f/3.5-5.6 USM');
-                        case 149:
-                            return Pel::tra('Canon EF 100mm f/2 USM');
-                        case 150:
-                            return Pel::tra('Canon EF 14mm f/2.8L or Sigma Lens');
-                        case 150.1:
-                            return Pel::tra('Sigma 20mm EX f/1.8');
-                        case 150.2:
-                            return Pel::tra('Sigma 30mm f/1.4 DC HSM');
-                        case 150.3:
-                            return Pel::tra('Sigma 24mm f/1.8 DG Macro EX');
-                        case 150.4:
-                            return Pel::tra('Sigma 28mm f/1.8 DG Macro EX');
-                        case 151:
-                            return Pel::tra('Canon EF 200mm f/2.8L');
-                        case 152:
-                            return Pel::tra('Canon EF 300mm f/4L IS or Sigma Lens');
-                        case 152.1:
-                            return Pel::tra('Sigma 12-24mm f/4.5-5.6 EX DG ASPHERICAL HSM');
-                        case 152.2:
-                            return Pel::tra('Sigma 14mm f/2.8 EX Aspherical HSM');
-                        case 152.3:
-                            return Pel::tra('Sigma 10-20mm f/4-5.6');
-                        case 152.4:
-                            return Pel::tra('Sigma 100-300mm f/4');
-                        case 153:
-                            return Pel::tra('Canon EF 35-350mm f/3.5-5.6L or Sigma or Tamron Lens');
-                        case 153.1:
-                            return Pel::tra('Sigma 50-500mm f/4-6.3 APO HSM EX');
-                        case 153.2:
-                            return Pel::tra('Tamron AF 28-300mm f/3.5-6.3 XR LD Aspherical [IF] Macro');
-                        case 153.3:
-                            return Pel::tra('Tamron AF 18-200mm f/3.5-6.3 XR Di II LD Aspherical [IF] Macro Model A14');
-                        case 153.4:
-                            return Pel::tra('Tamron 18-250mm f/3.5-6.3 Di II LD Aspherical [IF] Macro');
-                        case 154:
-                            return Pel::tra('Canon EF 20mm f/2.8 USM or Zeiss Lens');
-                        case 154.1:
-                            return Pel::tra('Zeiss Milvus 21mm f/2.8');
-                        case 155:
-                            return Pel::tra('Canon EF 85mm f/1.8 USM');
-                        case 156:
-                            return Pel::tra('Canon EF 28-105mm f/3.5-4.5 USM or Tamron Lens');
-                        case 156.1:
-                            return Pel::tra('Tamron SP 70-300mm f/4.0-5.6 Di VC USD');
-                        case 156.2:
-                            return Pel::tra('Tamron SP AF 28-105mm f/2.8 LD Aspherical IF');
-                        case 160:
-                            return Pel::tra('Canon EF 20-35mm f/3.5-4.5 USM or Tamron or Tokina Lens');
-                        case 160.1:
-                            return Pel::tra('Tamron AF 19-35mm f/3.5-4.5');
-                        case 160.2:
-                            return Pel::tra('Tokina AT-X 124 AF Pro DX 12-24mm f/4');
-                        case 160.3:
-                            return Pel::tra('Tokina AT-X 107 AF DX 10-17mm f/3.5-4.5 Fisheye');
-                        case 160.4:
-                            return Pel::tra('Tokina AT-X 116 AF Pro DX 11-16mm f/2.8');
-                        case 160.5:
-                            return Pel::tra('Tokina AT-X 11-20 F2.8 PRO DX Aspherical 11-20mm f/2.8');
-                        case 161:
-                            return Pel::tra('Canon EF 28-70mm f/2.8L or Sigma or Tamron Lens');
-                        case 161.1:
-                            return Pel::tra('Sigma 24-70mm f/2.8 EX');
-                        case 161.2:
-                            return Pel::tra('Sigma 28-70mm f/2.8 EX');
-                        case 161.3:
-                            return Pel::tra('Sigma 24-60mm f/2.8 EX DG');
-                        case 161.4:
-                            return Pel::tra('Tamron AF 17-50mm f/2.8 Di-II LD Aspherical');
-                        case 161.5:
-                            return Pel::tra('Tamron 90mm f/2.8');
-                        case 161.6:
-                            return Pel::tra('Tamron SP AF 17-35mm f/2.8-4 Di LD Aspherical IF');
-                        case 161.7:
-                            return Pel::tra('Tamron SP AF 28-75mm f/2.8 XR Di LD Aspherical [IF] Macro');
-                        case 162:
-                            return Pel::tra('Canon EF 200mm f/2.8L');
-                        case 163:
-                            return Pel::tra('Canon EF 300mm f/4L');
-                        case 164:
-                            return Pel::tra('Canon EF 400mm f/5.6L');
-                        case 165:
-                            return Pel::tra('Canon EF 70-200mm f/2.8 L');
-                        case 166:
-                            return Pel::tra('Canon EF 70-200mm f/2.8 L + 1.4x');
-                        case 167:
-                            return Pel::tra('Canon EF 70-200mm f/2.8 L + 2x');
-                        case 168:
-                            return Pel::tra('Canon EF 28mm f/1.8 USM or Sigma Lens');
-                        case 168.1:
-                            return Pel::tra('Sigma 50-100mm f/1.8 DC HSM | A');
-                        case 169:
-                            return Pel::tra('Canon EF 17-35mm f/2.8L or Sigma Lens');
-                        case 169.1:
-                            return Pel::tra('Sigma 18-200mm f/3.5-6.3 DC OS');
-                        case 169.2:
-                            return Pel::tra('Sigma 15-30mm f/3.5-4.5 EX DG Aspherical');
-                        case 169.3:
-                            return Pel::tra('Sigma 18-50mm f/2.8 Macro');
-                        case 169.4:
-                            return Pel::tra('Sigma 50mm f/1.4 EX DG HSM');
-                        case 169.5:
-                            return Pel::tra('Sigma 85mm f/1.4 EX DG HSM');
-                        case 169.6:
-                            return Pel::tra('Sigma 30mm f/1.4 EX DC HSM');
-                        case 169.7:
-                            return Pel::tra('Sigma 35mm f/1.4 DG HSM');
-                        case 170:
-                            return Pel::tra('Canon EF 200mm f/2.8L II');
-                        case 171:
-                            return Pel::tra('Canon EF 300mm f/4L');
-                        case 172:
-                            return Pel::tra('Canon EF 400mm f/5.6L or Sigma Lens');
-                        case 172.1:
-                            return Pel::tra('Sigma 150-600mm f/5-6.3 DG OS HSM | S');
-                        case 173:
-                            return Pel::tra('Canon EF 180mm Macro f/3.5L or Sigma Lens');
-                        case 173.1:
-                            return Pel::tra('Sigma 180mm EX HSM Macro f/3.5');
-                        case 173.2:
-                            return Pel::tra('Sigma APO Macro 150mm f/2.8 EX DG HSM');
-                        case 174:
-                            return Pel::tra('Canon EF 135mm f/2L or Other Lens');
-                        case 174.1:
-                            return Pel::tra('Sigma 70-200mm f/2.8 EX DG APO OS HSM');
-                        case 174.2:
-                            return Pel::tra('Sigma 50-500mm f/4.5-6.3 APO DG OS HSM');
-                        case 174.3:
-                            return Pel::tra('Sigma 150-500mm f/5-6.3 APO DG OS HSM');
-                        case 174.4:
-                            return Pel::tra('Zeiss Milvus 100mm f/2 Makro');
-                        case 175:
-                            return Pel::tra('Canon EF 400mm f/2.8L');
-                        case 176:
-                            return Pel::tra('Canon EF 24-85mm f/3.5-4.5 USM');
-                        case 177:
-                            return Pel::tra('Canon EF 300mm f/4L IS');
-                        case 178:
-                            return Pel::tra('Canon EF 28-135mm f/3.5-5.6 IS');
-                        case 179:
-                            return Pel::tra('Canon EF 24mm f/1.4L');
-                        case 180:
-                            return Pel::tra('Canon EF 35mm f/1.4L or Other Lens');
-                        case 180.1:
-                            return Pel::tra('Sigma 50mm f/1.4 DG HSM | A');
-                        case 180.2:
-                            return Pel::tra('Sigma 24mm f/1.4 DG HSM | A');
-                        case 180.3:
-                            return Pel::tra('Zeiss Milvus 50mm f/1.4');
-                        case 180.4:
-                            return Pel::tra('Zeiss Milvus 85mm f/1.4');
-                        case 180.5:
-                            return Pel::tra('Zeiss Otus 28mm f/1.4 ZE');
-                        case 181:
-                            return Pel::tra('Canon EF 100-400mm f/4.5-5.6L IS + 1.4x or Sigma Lens');
-                        case 181.1:
-                            return Pel::tra('Sigma 150-600mm f/5-6.3 DG OS HSM | S + 1.4x');
-                        case 182:
-                            return Pel::tra('Canon EF 100-400mm f/4.5-5.6L IS + 2x or Sigma Lens');
-                        case 182.1:
-                            return Pel::tra('Sigma 150-600mm f/5-6.3 DG OS HSM | S + 2x');
-                        case 183:
-                            return Pel::tra('Canon EF 100-400mm f/4.5-5.6L IS or Sigma Lens');
-                        case 183.1:
-                            return Pel::tra('Sigma 150mm f/2.8 EX DG OS HSM APO Macro');
-                        case 183.2:
-                            return Pel::tra('Sigma 105mm f/2.8 EX DG OS HSM Macro');
-                        case 183.3:
-                            return Pel::tra('Sigma 180mm f/2.8 EX DG OS HSM APO Macro');
-                        case 183.4:
-                            return Pel::tra('Sigma 150-600mm f/5-6.3 DG OS HSM | C');
-                        case 183.5:
-                            return Pel::tra('Sigma 150-600mm f/5-6.3 DG OS HSM | S');
-                        case 183.6:
-                            return Pel::tra('Sigma 100-400mm f/5-6.3 DG OS HSM');
-                        case 184:
-                            return Pel::tra('Canon EF 400mm f/2.8L + 2x');
-                        case 185:
-                            return Pel::tra('Canon EF 600mm f/4L IS');
-                        case 186:
-                            return Pel::tra('Canon EF 70-200mm f/4L');
-                        case 187:
-                            return Pel::tra('Canon EF 70-200mm f/4L + 1.4x');
-                        case 188:
-                            return Pel::tra('Canon EF 70-200mm f/4L + 2x');
-                        case 189:
-                            return Pel::tra('Canon EF 70-200mm f/4L + 2.8x');
-                        case 190:
-                            return Pel::tra('Canon EF 100mm f/2.8 Macro USM');
-                        case 191:
-                            return Pel::tra('Canon EF 400mm f/4 DO IS');
-                        case 193:
-                            return Pel::tra('Canon EF 35-80mm f/4-5.6 USM');
-                        case 194:
-                            return Pel::tra('Canon EF 80-200mm f/4.5-5.6 USM');
-                        case 195:
-                            return Pel::tra('Canon EF 35-105mm f/4.5-5.6 USM');
-                        case 196:
-                            return Pel::tra('Canon EF 75-300mm f/4-5.6 USM');
-                        case 197:
-                            return Pel::tra('Canon EF 75-300mm f/4-5.6 IS USM or Sigma Lens');
-                        case 197.1:
-                            return Pel::tra('Sigma 18-300mm f/3.5-6.3 DC Macro OS HS');
-                        case 198:
-                            return Pel::tra('Canon EF 50mm f/1.4 USM or Zeiss Lens');
-                        case 198.1:
-                            return Pel::tra('Zeiss Otus 55mm f/1.4 ZE');
-                        case 198.2:
-                            return Pel::tra('Zeiss Otus 85mm f/1.4 ZE');
-                        case 199:
-                            return Pel::tra('Canon EF 28-80mm f/3.5-5.6 USM');
-                        case 200:
-                            return Pel::tra('Canon EF 75-300mm f/4-5.6 USM');
-                        case 201:
-                            return Pel::tra('Canon EF 28-80mm f/3.5-5.6 USM');
-                        case 202:
-                            return Pel::tra('Canon EF 28-80mm f/3.5-5.6 USM IV');
-                        case 208:
-                            return Pel::tra('Canon EF 22-55mm f/4-5.6 USM');
-                        case 209:
-                            return Pel::tra('Canon EF 55-200mm f/4.5-5.6');
-                        case 210:
-                            return Pel::tra('Canon EF 28-90mm f/4-5.6 USM');
-                        case 211:
-                            return Pel::tra('Canon EF 28-200mm f/3.5-5.6 USM');
-                        case 212:
-                            return Pel::tra('Canon EF 28-105mm f/4-5.6 USM');
-                        case 213:
-                            return Pel::tra('Canon EF 90-300mm f/4.5-5.6 USM or Tamron Lens');
-                        case 213.1:
-                            return Pel::tra('Tamron SP 150-600mm f/5-6.3 Di VC USD');
-                        case 213.2:
-                            return Pel::tra('Tamron 16-300mm f/3.5-6.3 Di II VC PZD Macro');
-                        case 213.3:
-                            return Pel::tra('Tamron SP 35mm f/1.8 Di VC USD');
-                        case 213.4:
-                            return Pel::tra('Tamron SP 45mm f/1.8 Di VC USD');
-                        case 214:
-                            return Pel::tra('Canon EF-S 18-55mm f/3.5-5.6 USM');
-                        case 215:
-                            return Pel::tra('Canon EF 55-200mm f/4.5-5.6 II USM');
-                        case 217:
-                            return Pel::tra('Tamron AF 18-270mm f/3.5-6.3 Di II VC PZD');
-                        case 224:
-                            return Pel::tra('Canon EF 70-200mm f/2.8L IS');
-                        case 225:
-                            return Pel::tra('Canon EF 70-200mm f/2.8L IS + 1.4x');
-                        case 226:
-                            return Pel::tra('Canon EF 70-200mm f/2.8L IS + 2x');
-                        case 227:
-                            return Pel::tra('Canon EF 70-200mm f/2.8L IS + 2.8x');
-                        case 228:
-                            return Pel::tra('Canon EF 28-105mm f/3.5-4.5 USM');
-                        case 229:
-                            return Pel::tra('Canon EF 16-35mm f/2.8L');
-                        case 230:
-                            return Pel::tra('Canon EF 24-70mm f/2.8L');
-                        case 231:
-                            return Pel::tra('Canon EF 17-40mm f/4L');
-                        case 232:
-                            return Pel::tra('Canon EF 70-300mm f/4.5-5.6 DO IS USM');
-                        case 233:
-                            return Pel::tra('Canon EF 28-300mm f/3.5-5.6L IS');
-                        case 234:
-                            return Pel::tra('Canon EF-S 17-85mm f/4-5.6 IS USM or Tokina Lens');
-                        case 234.1:
-                            return Pel::tra('Tokina AT-X 12-28 PRO DX 12-28mm f/4');
-                        case 235:
-                            return Pel::tra('Canon EF-S 10-22mm f/3.5-4.5 USM');
-                        case 236:
-                            return Pel::tra('Canon EF-S 60mm f/2.8 Macro USM');
-                        case 237:
-                            return Pel::tra('Canon EF 24-105mm f/4L IS');
-                        case 238:
-                            return Pel::tra('Canon EF 70-300mm f/4-5.6 IS USM');
-                        case 239:
-                            return Pel::tra('Canon EF 85mm f/1.2L II');
-                        case 240:
-                            return Pel::tra('Canon EF-S 17-55mm f/2.8 IS USM');
-                        case 241:
-                            return Pel::tra('Canon EF 50mm f/1.2L');
-                        case 242:
-                            return Pel::tra('Canon EF 70-200mm f/4L IS');
-                        case 243:
-                            return Pel::tra('Canon EF 70-200mm f/4L IS + 1.4x');
-                        case 244:
-                            return Pel::tra('Canon EF 70-200mm f/4L IS + 2x');
-                        case 245:
-                            return Pel::tra('Canon EF 70-200mm f/4L IS + 2.8x');
-                        case 246:
-                            return Pel::tra('Canon EF 16-35mm f/2.8L II');
-                        case 247:
-                            return Pel::tra('Canon EF 14mm f/2.8L II USM');
-                        case 248:
-                            return Pel::tra('Canon EF 200mm f/2L IS or Sigma Lens');
-                        case 248.1:
-                            return Pel::tra('Sigma 24-35mm f/2 DG HSM | A');
-                        case 249:
-                            return Pel::tra('Canon EF 800mm f/5.6L IS');
-                        case 250:
-                            return Pel::tra('Canon EF 24mm f/1.4L II or Sigma Lens');
-                        case 250.1:
-                            return Pel::tra('Sigma 20mm f/1.4 DG HSM | A');
-                        case 251:
-                            return Pel::tra('Canon EF 70-200mm f/2.8L IS II USM');
-                        case 252:
-                            return Pel::tra('Canon EF 70-200mm f/2.8L IS II USM + 1.4x');
-                        case 253:
-                            return Pel::tra('Canon EF 70-200mm f/2.8L IS II USM + 2x');
-                        case 254:
-                            return Pel::tra('Canon EF 100mm f/2.8L Macro IS USM');
-                        case 255:
-                            return Pel::tra('Sigma 24-105mm f/4 DG OS HSM | A or Other Sigma Lens');
-                        case 255.1:
-                            return Pel::tra('Sigma 180mm f/2.8 EX DG OS HSM APO Macro');
-                        case 488:
-                            return Pel::tra('Canon EF-S 15-85mm f/3.5-5.6 IS USM');
-                        case 489:
-                            return Pel::tra('Canon EF 70-300mm f/4-5.6L IS USM');
-                        case 490:
-                            return Pel::tra('Canon EF 8-15mm f/4L Fisheye USM');
-                        case 491:
-                            return Pel::tra('Canon EF 300mm f/2.8L IS II USM or Tamron Lens');
-                        case 491.1:
-                            return Pel::tra('Tamron SP 70-200mm F/2.8 Di VC USD G2 (A025)');
-                        case 491.2:
-                            return Pel::tra('Tamron 18-400mm F/3.5-6.3 Di II VC HLD (B028)');
-                        case 492:
-                            return Pel::tra('Canon EF 400mm f/2.8L IS II USM');
-                        case 493:
-                            return Pel::tra('Canon EF 500mm f/4L IS II USM or EF 24-105mm f4L IS USM');
-                        case 493.1:
-                            return Pel::tra('Canon EF 24-105mm f/4L IS USM');
-                        case 494:
-                            return Pel::tra('Canon EF 600mm f/4.0L IS II USM');
-                        case 495:
-                            return Pel::tra('Canon EF 24-70mm f/2.8L II USM or Sigma Lens');
-                        case 495.1:
-                            return Pel::tra('Sigma 24-70mm F2.8 DG OS HSM | A');
-                        case 496:
-                            return Pel::tra('Canon EF 200-400mm f/4L IS USM');
-                        case 499:
-                            return Pel::tra('Canon EF 200-400mm f/4L IS USM + 1.4x');
-                        case 502:
-                            return Pel::tra('Canon EF 28mm f/2.8 IS USM');
-                        case 503:
-                            return Pel::tra('Canon EF 24mm f/2.8 IS USM');
-                        case 504:
-                            return Pel::tra('Canon EF 24-70mm f/4L IS USM');
-                        case 505:
-                            return Pel::tra('Canon EF 35mm f/2 IS USM');
-                        case 506:
-                            return Pel::tra('Canon EF 400mm f/4 DO IS II USM');
-                        case 507:
-                            return Pel::tra('Canon EF 16-35mm f/4L IS USM');
-                        case 508:
-                            return Pel::tra('Canon EF 11-24mm f/4L USM or Tamron Lens');
-                        case 508.1:
-                            return Pel::tra('Tamron 10-24mm f/3.5-4.5 Di II VC HLD');
-                        case 747:
-                            return Pel::tra('Canon EF 100-400mm f/4.5-5.6L IS II USM or Tamron Lens');
-                        case 747.1:
-                            return Pel::tra('Tamron SP 150-600mm F5-6.3 Di VC USD G2');
-                        case 748:
-                            return Pel::tra('Canon EF 100-400mm f/4.5-5.6L IS II USM + 1.4x');
-                        case 750:
-                            return Pel::tra('Canon EF 35mm f/1.4L II USM');
-                        case 751:
-                            return Pel::tra('Canon EF 16-35mm f/2.8L III USM');
-                        case 752:
-                            return Pel::tra('Canon EF 24-105mm f/4L IS II USM');
-                        case 4142:
-                            return Pel::tra('Canon EF-S 18-135mm f/3.5-5.6 IS STM');
-                        case 4143:
-                            return Pel::tra('Canon EF-M 18-55mm f/3.5-5.6 IS STM or Tamron Lens');
-                        case 4143.1:
-                            return Pel::tra('Tamron 18-200mm F/3.5-6.3 Di III VC');
-                        case 4144:
-                            return Pel::tra('Canon EF 40mm f/2.8 STM');
-                        case 4145:
-                            return Pel::tra('Canon EF-M 22mm f/2 STM');
-                        case 4146:
-                            return Pel::tra('Canon EF-S 18-55mm f/3.5-5.6 IS STM');
-                        case 4147:
-                            return Pel::tra('Canon EF-M 11-22mm f/4-5.6 IS STM');
-                        case 4148:
-                            return Pel::tra('Canon EF-S 55-250mm f/4-5.6 IS STM');
-                        case 4149:
-                            return Pel::tra('Canon EF-M 55-200mm f/4.5-6.3 IS STM');
-                        case 4150:
-                            return Pel::tra('Canon EF-S 10-18mm f/4.5-5.6 IS STM');
-                        case 4152:
-                            return Pel::tra('Canon EF 24-105mm f/3.5-5.6 IS STM');
-                        case 4153:
-                            return Pel::tra('Canon EF-M 15-45mm f/3.5-6.3 IS STM');
-                        case 4154:
-                            return Pel::tra('Canon EF-S 24mm f/2.8 STM');
-                        case 4155:
-                            return Pel::tra('Canon EF-M 28mm f/3.5 Macro IS STM');
-                        case 4156:
-                            return Pel::tra('Canon EF 50mm f/1.8 STM');
-                        case 4157:
-                            return Pel::tra('Canon EF-M 18-150mm 1:3.5-6.3 IS STM');
-                        case 4158:
-                            return Pel::tra('Canon EF-S 18-55mm f/4-5.6 IS STM');
-                        case 4160:
-                            return Pel::tra('Canon EF-S 35mm f/2.8 Macro IS STM');
-                        case 36910:
-                            return Pel::tra('Canon EF 70-300mm f/4-5.6 IS II USM');
-                        case 36912:
-                            return Pel::tra('Canon EF-S 18-135mm f/3.5-5.6 IS USM');
-                        case 61494:
-                            return Pel::tra('Canon CN-E 85mm T1.3 L F');
-                        default:
-                            return $this->value[0];
-                    }
-                    break;
-                case PelTag::CANON_CS_FOCUS_CONTINUOUS:
-                    // CC (e->components, 1, v);
-                    switch ($this->value[0]) {
-                        case 0:
-                            return Pel::tra('Single');
-                        case 1:
-                            return Pel::tra('Continuous');
-                        case 8:
-                            return Pel::tra('Manual');
-                        default:
-                            return $this->value[0];
-                    }
-                    break;
-                case PelTag::CANON_CS_AE_SETTING:
-                    // CC (e->components, 1, v);
-                    switch ($this->value[0]) {
-                        case 0:
-                            return Pel::tra('Normal AE');
-                        case 1:
-                            return Pel::tra('Exposure Compensation');
-                        case 2:
-                            return Pel::tra('AE Lock');
-                        case 3:
-                            return Pel::tra('AE Lock + Exposure Comp.');
-                        case 4:
-                            return Pel::tra('No AE');
-                        default:
-                            return $this->value[0];
-                    }
-                    break;
-                case PelTag::CANON_CS_IMAGE_STABILIZATION:
-                    // CC (e->components, 1, v);
-                    switch ($this->value[0]) {
-                        case 0:
-                            return Pel::tra('Off');
-                        case 1:
-                            return Pel::tra('On');
-                        case 2:
-                            return Pel::tra('Shoot Only');
-                        case 3:
-                            return Pel::tra('Panning');
-                        case 4:
-                            return Pel::tra('Dynamic');
-                        case 256:
-                            return Pel::tra('Off (2)');
-                        case 257:
-                            return Pel::tra('On (2)');
-                        case 258:
-                            return Pel::tra('Shoot Only (2)');
-                        case 259:
-                            return Pel::tra('Panning (2)');
-                        case 260:
-                            return Pel::tra('Dynamic (2)');
-                        default:
-                            return $this->value[0];
-                    }
-                    break;
-                case PelTag::CANON_CS_SPOT_METERING_MODE:
-                    // CC (e->components, 1, v);
-                    switch ($this->value[0]) {
-                        case 0:
-                            return Pel::tra('Center');
-                        case 1:
-                            return Pel::tra('AF Point');
-                        default:
-                            return $this->value[0];
-                    }
-                    break;
-                case PelTag::CANON_CS_PHOTO_EFFECT:
-                    // CC (e->components, 1, v);
-                    switch ($this->value[0]) {
-                        case 0:
-                            return Pel::tra('Off');
-                        case 1:
-                            return Pel::tra('Vivid');
-                        case 2:
-                            return Pel::tra('Neutral');
-                        case 3:
-                            return Pel::tra('Smooth');
-                        case 4:
-                            return Pel::tra('Sepia');
-                        case 5:
-                            return Pel::tra('B&W');
-                        case 6:
-                            return Pel::tra('Custom');
-                        case 100:
-                            return Pel::tra('My Color Data');
-                        default:
-                            return $this->value[0];
-                    }
-                    break;
-                case PelTag::CANON_CS_MANUAL_FLASH_OUTPUT:
-                    // CC (e->components, 1, v);
-                    switch ($this->value[0]) {
-                        case 0x500:
-                            return Pel::tra('Full');
-                        case 0x502:
-                            return Pel::tra('Medium');
-                        case 0x504:
-                            return Pel::tra('Low');
-                        default:
-                            return $this->value[0];
-                    }
-                    break;
-                case PelTag::CANON_CS_COLOR_TONE:
-                    // CC (e->components, 1, v);
-                    switch ($this->value[0]) {
-                        case 0:
-                            return Pel::tra('Normal');
-                        default:
-                            return $this->value[0];
-                    }
-                    break;
-                case PelTag::CANON_CS_SRAW_QUALITY:
-                    // CC (e->components, 1, v);
-                    switch ($this->value[0]) {
-                        case 1:
-                            return Pel::tra('sRAW1 (mRAW)');
-                        case 2:
-                            return Pel::tra('sRAW2 (sRAW)');
-                        default:
-                            return $this->value[0];
-                    }
-                    break;
-                default:
-                    return parent::getText($brief);
+            if (array_key_exists($val, self::TRANSLATIONS[$this->ifd_type][$this->tag])) {
+                return Pel::tra(self::TRANSLATIONS[$this->ifd_type][$this->tag][$val]);
+            } else {
+                return $val;
             }
         }
         return parent::getText($brief);

@@ -22,21 +22,18 @@
  * Free Software Foundation, Inc., 51 Franklin St, Fifth Floor,
  * Boston, MA 02110-1301 USA
  */
-
 namespace Pel\Test;
 
-use \lsolesen\pel\PelEntrySShort;
+use lsolesen\pel\PelEntrySShort;
 
 class NumberSShortTest extends NumberTestCase
 {
-    /**
-     * {@inheritdoc}
-     */
-    public function setUp()
+
+    public function setUp(): void
     {
         parent::setUp();
         $this->num = new PelEntrySShort(42);
-        $this->min = -32768;
+        $this->min = - 32768;
         $this->max = 32767;
     }
 }

@@ -1,34 +1,20 @@
 language: php
 
-php:
-  - 5.6
-  - 7.0
-  - 7.1
-  - 7.2
-  - 7.3
-  - 7.4
-  - nightly
-
 jobs:
   include:
-    - php: 5.4
-      dist: trusty
-    - php: 5.5
-      dist: trusty
+    - php: 7.1
+    - php: 7.2
+    - php: 7.3
+    - php: 7.4
+    - php: 8.0snapshot
+    - php: nightly
   fast_finish: true
   allow_failures:
-    - php: hhvm
     - php: nightly
 
 install:
-  - travis_retry composer install --no-interaction --no-progress --no-suggest
-
-before_script:
-  - mkdir -p build/logs
+  - composer install --no-interaction --no-progress --no-suggest
 
 script:
   - ./vendor/bin/phpcs --runtime-set ignore_warnings_on_exit 1
-  - ./vendor/bin/phpunit --coverage-clover build/logs/clover.xml ./test
-
-after_script:
-  - travis_retry php vendor/bin/coveralls -v
+  - SYMFONY_PHPUNIT_REMOVE_RETURN_TYPEHINT=1 ./vendor/bin/simple-phpunit ./test

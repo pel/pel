@@ -22,17 +22,17 @@
  * Free Software Foundation, Inc., 51 Franklin St, Fifth Floor,
  * Boston, MA 02110-1301 USA
  */
-
 namespace Pel\Test;
 
-use lsolesen\pel\PelIfd;
-use lsolesen\pel\PelEntryAscii;
-use lsolesen\pel\PelTag;
-use lsolesen\pel\PelEntryTime;
 use PHPUnit\Framework\TestCase;
+use lsolesen\pel\PelEntryAscii;
+use lsolesen\pel\PelEntryTime;
+use lsolesen\pel\PelIfd;
+use lsolesen\pel\PelTag;
 
 class IfdTest extends TestCase
 {
+
     public function testIteratorAggretate()
     {
         $ifd = new PelIfd(PelIfd::IFD0);

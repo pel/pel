@@ -23,15 +23,15 @@
  * Free Software Foundation, Inc., 51 Franklin St, Fifth Floor,
  * Boston, MA 02110-1301 USA
  */
-
 namespace Pel\Test;
 
-use lsolesen\pel\PelEntryVersion;
-use lsolesen\pel\PelConvert;
 use PHPUnit\Framework\TestCase;
+use lsolesen\pel\PelConvert;
+use lsolesen\pel\PelEntryVersion;
 
 class PelEntryVersionTest extends TestCase
 {
+
     public function testVersion()
     {
         $entry = new PelEntryVersion(42);

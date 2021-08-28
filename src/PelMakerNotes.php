@@ -22,7 +22,6 @@
  * Free Software Foundation, Inc., 51 Franklin St, Fifth Floor,
  * Boston, MA 02110-1301 USA
  */
-namespace lsolesen\pel;
 
 /**
  * Namespace for functions operating on Exif formats.
@@ -41,12 +40,19 @@ namespace lsolesen\pel;
  * @package
  *
  */
+namespace lsolesen\pel;
+
 abstract class PelMakerNotes
 {
+
     protected $type;
+
     protected $parent;
+
     protected $data;
+
     protected $components;
+
     protected $offset;
 
     public static function createMakerNotesFromManufacturer($man, $parent, $data, $size, $offset)

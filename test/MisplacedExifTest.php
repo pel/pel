@@ -21,17 +21,17 @@
  * Free Software Foundation, Inc., 51 Franklin St, Fifth Floor,
  * Boston, MA 02110-1301 USA
  */
-
 namespace Pel\Test;
 
-use lsolesen\pel\Pel;
-use lsolesen\pel\PelJpeg;
-use lsolesen\pel\PelExif;
-use lsolesen\pel\PelJpegMarker;
 use PHPUnit\Framework\TestCase;
+use lsolesen\pel\Pel;
+use lsolesen\pel\PelExif;
+use lsolesen\pel\PelJpeg;
+use lsolesen\pel\PelJpegMarker;
 
 class MisplacedExifTest extends TestCase
 {
+
     // NOTE: this test relies on the assumption that internal PelJpeg::sections order is kept between section
     // manipulations. It may fail it this changes.
     public function testRead()
@@ -52,7 +52,7 @@ class MisplacedExifTest extends TestCase
                 $exifIdx = $idx;
                 break;
             }
-            ++$idx;
+            ++ $idx;
         }
         $this->assertNotNull($exifIdx);
         $newExif = new PelExif();
@@ -68,7 +68,7 @@ class MisplacedExifTest extends TestCase
         // Assert that only EXIF section is gone and all other shifted correctly.
         $sections3 = $jpeg->getSections();
         $numSections3 = count($sections3);
-        for ($idx = 0; $idx < $numSections3; ++$idx) {
+        for ($idx = 0; $idx < $numSections3; ++ $idx) {
             if ($idx >= $exifIdx) {
                 $s2idx = $idx + 1;
             } else {

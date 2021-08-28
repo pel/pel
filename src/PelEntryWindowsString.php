@@ -22,19 +22,6 @@
  * Free Software Foundation, Inc., 51 Franklin St, Fifth Floor,
  * Boston, MA 02110-1301 USA
  */
-namespace lsolesen\pel;
-
-/**
- * Classes used to hold bytes, both signed and unsigned.
- * The {@link
- * PelEntryWindowsString} class is used to manipulate strings in the
- * format Windows XP needs.
- *
- * @author Martin Geisler <mgeisler@users.sourceforge.net>
- * @license http://www.gnu.org/licenses/gpl.html GNU General Public
- *          License (GPL)
- * @package PEL
- */
 
 /**
  * Class used to manipulate strings in the format Windows XP uses.
@@ -70,9 +57,13 @@ namespace lsolesen\pel;
  * @author Martin Geisler <mgeisler@users.sourceforge.net>
  * @package PEL
  */
+namespace lsolesen\pel;
+
 class PelEntryWindowsString extends PelEntry
 {
+
     const ZEROES = "\x0\x0";
+
     /**
      * The string hold by this entry.
      *
@@ -93,7 +84,6 @@ class PelEntryWindowsString extends PelEntry
      *            {@link PelTag::XP_AUTHOR}, {@link PelTag::XP_KEYWORD}, and {@link
      *            PelTag::XP_SUBJECT} tags. If another tag is used, then this
      *            entry will be incorrectly reloaded as a {@link PelEntryByte}.
-     *
      * @param string $str
      *            the string that this entry will represent. It will
      *            be passed to {@link setValue} and thus has to obey its
@@ -124,15 +114,15 @@ class PelEntryWindowsString extends PelEntry
         $zlen = strlen(static::ZEROES);
         if (false !== $from_exif) {
             $s = $str;
-            if (substr($str, -$zlen, $zlen) == static::ZEROES) {
-                $str = substr($str, 0, -$zlen);
+            if (substr($str, - $zlen, $zlen) == static::ZEROES) {
+                $str = substr($str, 0, - $zlen);
             }
             $str = mb_convert_encoding($str, 'UTF-8', 'UCS-2LE');
         } else {
             $s = mb_convert_encoding($str, 'UCS-2LE', 'auto');
         }
 
-        if (substr($s, -$zlen, $zlen) != static::ZEROES) {
+        if (substr($s, - $zlen, $zlen) != static::ZEROES) {
             $s .= static::ZEROES;
         }
         $l = strlen($s);
@@ -161,7 +151,6 @@ class PelEntryWindowsString extends PelEntry
      *
      * @param boolean $brief
      *            not used.
-     *
      * @return string the string held, without any extra NULL
      *         characters. The string will be the same as the one given to
      *         {@link setValue} or to the {@link __construct constructor}.

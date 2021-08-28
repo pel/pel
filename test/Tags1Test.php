@@ -21,15 +21,15 @@
  * Free Software Foundation, Inc., 51 Franklin St, Fifth Floor,
  * Boston, MA 02110-1301 USA
  */
+namespace Pel\Test;
 
-namespace Pel\Test\imagetests;
-
+use PHPUnit\Framework\TestCase;
 use lsolesen\pel\Pel;
 use lsolesen\pel\PelJpeg;
-use PHPUnit\Framework\TestCase;
 
 class Tags1Test extends TestCase
 {
+
     public function testTags()
     {
         Pel::clearExceptions();
