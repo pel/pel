@@ -1,6 +1,6 @@
 # PEL: PHP Exif Library
 
-[![Build Status](https://secure.travis-ci.org/pel/pel.png?branch=master)](http://travis-ci.org/pel/pel) [![Code Coverage](https://scrutinizer-ci.com/g/pel/pel/badges/coverage.png?b=master)](https://scrutinizer-ci.com/g/pel/pel/?branch=master) [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/pel/pel/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/pel/pel/?branch=master) [![Latest Stable Version](https://poser.pugx.org/lsolesen/pel/v/stable)](https://packagist.org/packages/lsolesen/pel) [![Total Downloads](https://poser.pugx.org/lsolesen/pel/downloads)](https://packagist.org/packages/lsolesen/pel) [![License](https://poser.pugx.org/lsolesen/pel/license)](https://packagist.org/packages/lsolesen/pel)
+[![Tests](https://github.com/pel/pel/actions/workflows/tests.yml/badge.svg)](https://github.com/pel/pel/actions/workflows/tests.yml) [![Code Coverage](https://scrutinizer-ci.com/g/pel/pel/badges/coverage.png?b=master)](https://scrutinizer-ci.com/g/pel/pel/?branch=master) [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/pel/pel/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/pel/pel/?branch=master) [![Latest Stable Version](https://poser.pugx.org/lsolesen/pel/v/stable)](https://packagist.org/packages/lsolesen/pel) [![Total Downloads](https://poser.pugx.org/lsolesen/pel/downloads)](https://packagist.org/packages/lsolesen/pel) [![License](https://poser.pugx.org/lsolesen/pel/license)](https://packagist.org/packages/lsolesen/pel)
 
 README file for PEL: PHP Exif Library.  A library with support for
 reading and writing Exif headers in JPEG and TIFF images using PHP.
@@ -71,7 +71,7 @@ To work with the translations, you need the gettext package installed.
 
 The first place you should consult for support is the documentation
 supplied with PEL, found at https://pel.github.io/pel/doc/.
-There you will find a complete API documentation with descriptions of 
+There you will find a complete API documentation with descriptions of
 all classes and files in PEL.
 
 The scripts found in the examples/ directory are also a good source of
