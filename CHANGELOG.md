@@ -1,5 +1,17 @@
 # CHANGELOG
 
+## 0.9.11 - 2022-02-04
+
+* Update dump-image.php
+* Drop Travis CI config and add GitHub Actions
+* Test from PHP 7.1 up only.
+* Update badge in README
+* Update tests.yml
+* PHP 8.1 compatibility
+* Added Eclipse project information
+
+Thank you, @mondrake!
+
 ## 0.9.10 - 2021-01-01
 
 * Breaking changes:
@@ -9,7 +21,6 @@
 * Get make-image-test.php working again
 * Major refactorings and simplifications of code
 * Fix of several issues detected by scrutinizer
-
 
 ## 0.9.9 - 2020-11-07
 
