@@ -1,0 +1,47 @@
+name: Tests
+
+on:
+  push:
+    branches: [ master ]
+  schedule:
+    - cron: "0 6 * * 3"
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  php-version:
+
+    runs-on: ubuntu-latest
+
+    strategy:
+      fail-fast: false
+      matrix:
+        php-version:
+          - "7.1"
+          - "7.2"
+          - "7.3"
+          - "7.4"
+          - "8.0"
+          - "8.1"
+
+    steps:
+
+        - name: Checkout
+          uses: actions/checkout@v2
+
+        - name: Install PHP
+          uses: "shivammathur/setup-php@v2"
+          with:
+            php-version: "${{ matrix.php-version }}"
+            coverage: "none"
+            ini-values: "zend.assertions=1"
+
+        - name: Install Composer dependencies
+          run: composer install --no-progress --ansi
+
+        - name: Run tests
+          run: ./vendor/bin/simple-phpunit --color=always ./test
+
+        - name: Code style test
+          if: ${{ matrix.php-version == 7.4 }}
+          run: ./vendor/bin/phpcs --runtime-set ignore_warnings_on_exit 1

@@ -1180,7 +1180,7 @@ class PelIfd implements \IteratorAggregate, \ArrayAccess
      *            the offset to check.
      * @return boolean whether the tag exists.
      */
-    public function offsetExists($tag)
+    public function offsetExists($tag): bool
     {
         return isset($this->entries[$tag]);
     }
@@ -1202,7 +1202,7 @@ class PelIfd implements \IteratorAggregate, \ArrayAccess
      *            array entry.
      * @return PelEntry the entry.
      */
-    public function offsetGet($tag)
+    public function offsetGet($tag): PelEntry
     {
         return $this->entries[$tag];
     }
@@ -1227,7 +1227,7 @@ class PelIfd implements \IteratorAggregate, \ArrayAccess
      *            the new value.
      * @throws PelInvalidArgumentException
      */
-    public function offsetSet($tag, $e)
+    public function offsetSet($tag, $e): void
     {
         if ($e instanceof PelEntry) {
             $tag = $e->getTag();
@@ -1251,7 +1251,7 @@ class PelIfd implements \IteratorAggregate, \ArrayAccess
      * @param integer $tag
      *            the offset to delete.
      */
-    public function offsetUnset($tag)
+    public function offsetUnset($tag): void
     {
         unset($this->entries[$tag]);
     }
@@ -1301,7 +1301,7 @@ class PelIfd implements \IteratorAggregate, \ArrayAccess
      * @return \ArrayIterator an iterator using the {@link PelTag tags} as
      *         keys and the entries as values.
      */
-    public function getIterator()
+    public function getIterator(): \ArrayIterator
     {
         return new \ArrayIterator($this->entries);
     }
