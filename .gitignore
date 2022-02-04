@@ -1,7 +1,4 @@
 .externalToolBuilders
-.settings/*
-.buildpath
-.project
 locale/*
 doc/*
 vendor
