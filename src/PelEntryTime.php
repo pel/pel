@@ -115,6 +115,7 @@ class PelEntryTime extends PelEntryAscii
     public function __construct($tag, $timestamp, $type = self::UNIX_TIMESTAMP)
     {
         $this->tag = $tag;
+        $this->format = PelFormat::ASCII;
         $this->setValue($timestamp, $type);
     }
 
