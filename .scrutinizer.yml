@@ -1,6 +1,8 @@
 build:
   environment:
-    php: '7.4'
+    php: '7.4.13'
+    # Thanks to https://github.com/mundschenk-at/avatar-privacy/blob/546a362d67c555ebc4cd0d9806c1511a6b95894b/.scrutinizer.yml#L29
+    compile_options: '--with-config-file-path=/home/scrutinizer/.phpenv/versions/7.4.13/etc --with-config-file-scan-dir=/home/scrutinizer/.phpenv/versions/7.4.13/etc/conf.d --prefix=/home/scrutinizer/.phpenv/versions/7.4.13 --libexecdir=/home/scrutinizer/.phpenv/versions/7.4.0/libexec --enable-intl --with-openssl --without-pear --with-gd --enable-gd --with-jpeg-dir=/usr --with-png-dir=/usr --with-freetype-dir=/usr --enable-exif --with-libzip --with-zlib --with-zlib-dir=/usr --with-sodium --with-pdo-sqlite --enable-soap --enable-xmlreader --with-xsl --enable-ftp --with-tidy --with-xmlrpc --enable-sysvsem --enable-sysvshm --enable-sysvmsg --enable-shmop --with-mysqli=mysqlnd --with-pdo-mysql=mysqlnd --enable-pcntl --with-readline --enable-mbstring --with-curl --with-pgsql --with-pdo-pgsql --with-gettext --enable-sockets --with-bz2 --enable-bcmath --enable-calendar --with-libdir=lib --enable-fpm --enable-maintainer-zts --with-gmp --with-kerberos --with-imap --with-imap-ssl --with-apxs2=/usr/bin/apxs --with-ldap --with-pear=/home/scrutinizer/.phpenv/versions/7.4.13/pear'
 
   tests:
     override:
