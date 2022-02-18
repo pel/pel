@@ -27,6 +27,7 @@ use lsolesen\pel\PelConvert;
 use lsolesen\pel\PelEntryAscii;
 use lsolesen\pel\PelEntryCopyright;
 use lsolesen\pel\PelEntryTime;
+use lsolesen\pel\PelFormat;
 use lsolesen\pel\PelTag;
 use PHPUnit\Framework\TestCase;
 
@@ -38,20 +39,24 @@ class AsciiTest extends TestCase
         $entry = new PelEntryAscii(42);
 
         $entry = new PelEntryAscii(42, 'foo bar baz');
+        $this->assertEquals($entry->getFormat(), PelFormat::ASCII);
         $this->assertEquals($entry->getComponents(), 12);
         $this->assertEquals($entry->getValue(), 'foo bar baz');
     }
 
     public function testTime()
     {
-        $entry = new PelEntryTime(42, 10);
+        $entry = new PelEntryTime(PelTag::DATE_TIME_ORIGINAL, 10);
 
+        $this->assertEquals($entry->getFormat(), PelFormat::ASCII);
+        $this->assertEquals($entry->getTag(), PelTag::DATE_TIME_ORIGINAL);
         $this->assertEquals($entry->getComponents(), 20);
         $this->assertEquals($entry->getValue(), 10);
         $this->assertEquals($entry->getValue(PelEntryTime::UNIX_TIMESTAMP), 10);
         $this->assertEquals($entry->getValue(PelEntryTime::EXIF_STRING), '1970:01:01 00:00:10');
         $this->assertEquals($entry->getValue(PelEntryTime::JULIAN_DAY_COUNT), 2440588 + 10 / 86400);
         $this->assertEquals($entry->getText(), '1970:01:01 00:00:10');
+        $this->assertEquals($entry->getBytes(PelConvert::LITTLE_ENDIAN), '1970:01:01 00:00:10' . chr(0x00));
 
         // Malformed Exif timestamp.
         $entry->setValue('1970!01-01 00 00 30', PelEntryTime::EXIF_STRING);
@@ -88,6 +93,7 @@ class AsciiTest extends TestCase
     public function testCopyright()
     {
         $entry = new PelEntryCopyright();
+        $this->assertEquals($entry->getFormat(), PelFormat::ASCII);
         $this->assertEquals($entry->getTag(), PelTag::COPYRIGHT);
         $value = $entry->getValue();
         $this->assertEquals($value[0], '');
