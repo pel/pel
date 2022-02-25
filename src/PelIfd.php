@@ -568,7 +568,6 @@ class PelIfd implements \IteratorAggregate, \ArrayAccess
      *            the offset within the window where the directory will
      *            be found.
      * @throws PelException
-     * @throws PelEntryUndefined
      * @throws PelUnexpectedFormatException
      * @throws PelWrongComponentCountException
      */
@@ -712,7 +711,6 @@ class PelIfd implements \IteratorAggregate, \ArrayAccess
      * @param integer $tag
      *            the tag of the entry as defined in {@link PelTag}.
      * @throws PelException
-     * @throws PelEntryUndefined
      * @throws PelUnexpectedFormatException
      * @throws PelWrongComponentCountException
      */
@@ -843,7 +841,6 @@ class PelIfd implements \IteratorAggregate, \ArrayAccess
      *            entry.
      * @return PelEntry a newly created entry, holding the data given.
      * @throws PelException
-     * @throws PelEntryUndefined
      * @throws PelUnexpectedFormatException
      * @throws PelWrongComponentCountException
      */
@@ -1114,6 +1111,7 @@ class PelIfd implements \IteratorAggregate, \ArrayAccess
         if (array_key_exists($tp, self::VALID_TAGS)) {
             return self::VALID_TAGS[$tp];
         }
+        return [];
     }
 
     /**
@@ -1248,12 +1246,14 @@ class PelIfd implements \IteratorAggregate, \ArrayAccess
      * unset($ifd[PelTag::EXPOSURE_BIAS_VALUE])
      * </code>
      *
-     * @param integer $tag
+     * @param integer $offset
      *            the offset to delete.
+     *
      */
-    public function offsetUnset($tag): void
+    #[\ReturnTypeWillChange]
+    public function offsetUnset($offset): void
     {
-        unset($this->entries[$tag]);
+        unset($this->entries[$offset]);
     }
 
     /**

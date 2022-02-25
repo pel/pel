@@ -428,8 +428,7 @@ class PelJpegMarker
         self::JPG10 => 'JPG10',
         self::JPG11 => 'JPG11',
         self::JPG12 => 'JPG12',
-        self::JPG13 => 'JPG13',
-        self::COM => 'COM'
+        self::JPG13 => 'JPG13'
     ];
 
     /**
@@ -464,7 +463,6 @@ class PelJpegMarker
         self::EXP => 'Expand reference component',
         'APP' => 'Application segment %d',
         'JPG' => 'Extension %d',
-        self::COM => 'Comment'
     ];
 
     /**

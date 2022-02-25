@@ -87,11 +87,9 @@ class PelEntryCopyright extends PelEntryAscii
     /**
      * Update the copyright information.
      *
-     * @param
-     *            string the photographer copyright. Use the empty string
+     * @param string $photographer the photographer copyright. Use the empty string
      *            if there is no photographer copyright.
-     * @param
-     *            string the editor copyright. Use the empty string if
+     * @param string $editor the editor copyright. Use the empty string if
      *            there is no editor copyright.
      */
     public function setValue($photographer = '', $editor = '')

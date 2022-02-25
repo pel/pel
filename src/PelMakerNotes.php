@@ -51,6 +51,8 @@ abstract class PelMakerNotes
 
     protected $data;
 
+    protected $size;
+
     protected $components;
 
     protected $offset;
