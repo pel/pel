@@ -28,7 +28,8 @@
 		"ext-exif" : "*",
 		"squizlabs/php_codesniffer" : ">3.5",
 		"php-coveralls/php-coveralls" : ">2.4",
-		"symfony/phpunit-bridge" : "^4 || ^5"
+		"symfony/phpunit-bridge" : "^4 || ^5",
+		"phpstan/phpstan": "^1.4"
 	},
 	"autoload" : {
 		"psr-4" : {

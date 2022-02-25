@@ -250,19 +250,16 @@ class Pel
      * terminates the output with a newline, and that it only outputs
      * something if the {@link Pel::$debug} is true.
      *
-     * @param string $format
-     *            the format string.
-     * @param mixed ...$args
+     * @param string $format the format string.
+     * @param mixed ...$args [optional]
      *            any number of arguments can be given. The
      *            arguments will be available for the format string as usual with
      *            sprintf().
      */
-    public static function debug($format)
+    public static function debug($format, ...$args)
     {
         if (self::$debug) {
-            $args = func_get_args();
-            $str = array_shift($args);
-            vprintf($str . "\n", $args);
+            vprintf($format . "\n", $args);
         }
     }
 
@@ -274,19 +271,16 @@ class Pel
      * newline, and that it only outputs something if the PEL_DEBUG
      * defined to some true value.
      *
-     * @param string $format
-     *            the format string.
-     * @param mixed ...$args
+     * @param string $format the format string.
+     * @param mixed ...$args [optional]
      *            any number of arguments can be given. The
      *            arguments will be available for the format string as usual with
      *            sprintf().
      */
-    public static function warning($format)
+    public static function warning($format, ...$args)
     {
         if (self::$debug) {
-            $args = func_get_args();
-            $str = array_shift($args);
-            vprintf('Warning: ' . $str . "\n", $args);
+            vprintf('Warning: ' . $format . "\n", $args);
         }
     }
 
@@ -321,22 +315,20 @@ class Pel
      * @param string $format
      *            the format string. This will be translated
      *            before being used as a format string.
-     * @param mixed ...$args
+     * @param mixed ...$args [optional]
      *            any number of arguments can be given. The
      *            arguments will be available for the format string as usual with
      *            sprintf().
      * @return string the translated string, or the original string if
      *         no translation could be found.
      */
-    public static function fmt($format)
+    public static function fmt($format, ...$args)
     {
-        $args = func_get_args();
-        $str = array_shift($args);
-        return vsprintf(self::dgettextWrapper('pel', $str), $args);
+        return vsprintf(self::dgettextWrapper('pel', $format), $args);
     }
 
     /**
-     * Warapper for dgettext.
+     * Wrapper for dgettext.
      * The untranslated stub will be return in the case that dgettext is not available.
      *
      * @param string $domain

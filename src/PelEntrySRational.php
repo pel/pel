@@ -122,6 +122,8 @@ class PelEntrySRational extends PelEntrySLong
     {
         if (isset($this->value[0])) {
             $v = $this->value[0];
+        } else {
+            return parent::getText($brief);
         }
 
         switch ($this->tag) {
