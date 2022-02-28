@@ -707,7 +707,7 @@ class PelIfd implements \IteratorAggregate, \ArrayAccess
         if ($this->type == PelIfd::IFD0 && isset($this->sub[PelIfd::EXIF])) {
             // Get MakerNotes from EXIF IFD and check if they are set
             $mk = $this->sub[PelIfd::EXIF]->getMakerNotes();
-            if (! empty($mk) && count($mk) > 0) {
+            if (! empty($mk)) {
                 // get Make tag and load maker notes if tag is valid
                 $manufacturer = $this->getEntry(PelTag::MAKE);
                 if ($manufacturer !== null) {
@@ -1281,7 +1281,6 @@ class PelIfd implements \IteratorAggregate, \ArrayAccess
      *
      * @param integer $offset
      *            the offset to delete.
-     *            
      */
     # [\ReturnTypeWillChange]
     public function offsetUnset($offset): void
