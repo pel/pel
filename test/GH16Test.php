@@ -55,6 +55,8 @@ class GH16Test extends TestCase
 
         $data = new PelDataWindow(file_get_contents($this->file));
 
+        $this->assertTrue(PelJpeg::isValid($data));
+
         if (PelJpeg::isValid($data)) {
             $jpeg = new PelJpeg();
             $jpeg->load($data);
@@ -74,16 +76,16 @@ class GH16Test extends TestCase
                 $ifd0 = new PelIfd(PelIfd::IFD0);
                 $tiff->setIfd($ifd0);
             }
+            $ifd0->addEntry(new PelEntryWindowsString(PelTag::XP_SUBJECT, $subject));
+
+            file_put_contents($this->file, $jpeg->getBytes());
+
+            $jpeg = new PelJpeg($this->file);
+            $exif = $jpeg->getExif();
+            $tiff = $exif->getTiff();
+            $ifd0 = $tiff->getIfd();
+            $written_subject = $ifd0->getEntry(PelTag::XP_SUBJECT);
+            $this->assertEquals($subject, $written_subject->getValue());
         }
-        $ifd0->addEntry(new PelEntryWindowsString(PelTag::XP_SUBJECT, $subject));
-
-        file_put_contents($this->file, $jpeg->getBytes());
-
-        $jpeg = new PelJpeg($this->file);
-        $exif = $jpeg->getExif();
-        $tiff = $exif->getTiff();
-        $ifd0 = $tiff->getIfd();
-        $written_subject = $ifd0->getEntry(PelTag::XP_SUBJECT);
-        $this->assertEquals($subject, $written_subject->getValue());
     }
 }
