@@ -37,6 +37,7 @@ class AsciiTest extends TestCase
     public function testReturnValues()
     {
         $entry = new PelEntryAscii(42);
+        $this->assertEquals($entry->getFormat(), PelFormat::ASCII);
 
         $entry = new PelEntryAscii(42, 'foo bar baz');
         $this->assertEquals($entry->getFormat(), PelFormat::ASCII);

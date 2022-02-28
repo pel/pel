@@ -164,7 +164,6 @@ class PelEntryUndefined extends PelEntry
             case PelTag::MAKER_NOTE:
                 // TODO: handle maker notes.
                 return $this->components . ' bytes unknown MakerNote data';
-                break;
             default:
                 return '(undefined)';
         }
