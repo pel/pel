@@ -675,7 +675,7 @@ class PelIfd implements \IteratorAggregate, \ArrayAccess
      *
      * @param PelDataWindow $d
      * @param integer $offset
-     * @param integer $n
+     * @param float $n
      */
     private function getOffsetToNextIfd(PelDataWindow $d, $offset, $n)
     {
