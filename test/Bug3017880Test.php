@@ -40,7 +40,6 @@ class Bug3017880Test extends TestCase
     {
         $filename = dirname(__FILE__) . '/images/bug3017880.jpg';
         try {
-            $exif = null;
             $resave_file = 0;
             $jpeg = new PelJpeg($filename);
             $this->assertInstanceOf('\lsolesen\pel\PelJpeg', $jpeg);
@@ -49,12 +48,10 @@ class Bug3017880Test extends TestCase
             // force strip if you know the image you're branding is an original)
             // $jpeg->clearExif();
 
-            if ($exif === null) {
-                $exif = new PelExif();
-                $jpeg->setExif($exif);
-                $tiff = new PelTiff();
-                $exif->setTiff($tiff);
-            }
+            $exif = new PelExif();
+            $jpeg->setExif($exif);
+            $tiff = new PelTiff();
+            $exif->setTiff($tiff);
 
             $tiff = $exif->getTiff();
             $ifd0 = $tiff->getIfd();
