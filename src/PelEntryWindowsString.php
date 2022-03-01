@@ -62,6 +62,11 @@ namespace lsolesen\pel;
 class PelEntryWindowsString extends PelEntry
 {
 
+    /**
+     * Two zero characters
+     *
+     * @var string
+     */
     const ZEROES = "\x0\x0";
 
     /**
