@@ -214,7 +214,7 @@ class PelFormat
      *
      * @param integer $type
      *            as defined in {@link PelFormat}
-     * @return integer|string
+     * @return integer
      */
     public static function getSize($type)
     {
