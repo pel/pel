@@ -752,10 +752,6 @@ class PelIfd implements \IteratorAggregate, \ArrayAccess
         $format = $d->getShort($offset + 12 * $i + 2);
         $components = $d->getLong($offset + 12 * $i + 4);
         $size = PelFormat::getSize($format);
-        if (is_string($size)) {
-            Pel::maybeThrow(new PelException('Invalid format %s', $format));
-            return;
-        }
 
         try {
             /*

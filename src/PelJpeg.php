@@ -115,19 +115,19 @@ class PelJpeg
      */
     public function __construct($data = false)
     {
-        if ($data === false) {
-            return;
-        } elseif (is_string($data)) {
-            Pel::debug('Initializing PelJpeg object from %s', $data);
-            $this->loadFile($data);
-        } elseif ($data instanceof PelDataWindow) {
-            Pel::debug('Initializing PelJpeg object from PelDataWindow.');
-            $this->load($data);
-        } elseif ((is_resource($data) && get_resource_type($data) == 'gd') || (PHP_VERSION_ID >= 80000 && is_object($data) && $data instanceof \GDImage)) {
-            Pel::debug('Initializing PelJpeg object from image resource.');
-            $this->load(new PelDataWindow($data));
-        } else {
-            throw new PelInvalidArgumentException('Bad type for $data: %s', gettype($data));
+        if ($data !== false) {
+            if (is_string($data)) {
+                Pel::debug('Initializing PelJpeg object from %s', $data);
+                $this->loadFile($data);
+            } elseif ($data instanceof PelDataWindow) {
+                Pel::debug('Initializing PelJpeg object from PelDataWindow.');
+                $this->load($data);
+            } elseif ((is_resource($data) && get_resource_type($data) == 'gd') || (PHP_VERSION_ID >= 80000 && is_object($data) && $data instanceof \GDImage)) {
+                Pel::debug('Initializing PelJpeg object from image resource.');
+                $this->load(new PelDataWindow($data));
+            } else {
+                throw new PelInvalidArgumentException('Bad type for $data: %s', gettype($data));
+            }
         }
     }
 
