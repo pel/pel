@@ -752,10 +752,6 @@ class PelIfd implements \IteratorAggregate, \ArrayAccess
         $format = $d->getShort($offset + 12 * $i + 2);
         $components = $d->getLong($offset + 12 * $i + 4);
         $size = PelFormat::getSize($format);
-        if (is_string($size)) {
-            Pel::maybeThrow(new PelException('Invalid format %s', $format));
-            return;
-        }
 
         try {
             /*
@@ -1253,16 +1249,16 @@ class PelIfd implements \IteratorAggregate, \ArrayAccess
      * {@link PelTag} from the entry is used.
      *
      * @param integer $tag
-     *            unused.
+     *            unused parameter
      * @param PelEntry $e
-     *            the new value.
+     *            the new value to be set
      * @throws PelInvalidArgumentException
      */
     public function offsetSet($tag, $e): void
     {
         if ($e instanceof PelEntry) {
-            $tag = $e->getTag();
-            $this->entries[$tag] = $e;
+            $newTag = $e->getTag();
+            $this->entries[$newTag] = $e;
         } else {
             throw new PelInvalidArgumentException('Argument "%s" must be a PelEntry.', $e);
         }
@@ -1530,8 +1526,7 @@ class PelIfd implements \IteratorAggregate, \ArrayAccess
             } elseif ($type == PelIfd::INTEROPERABILITY) {
                 $tag = PelTag::INTEROPERABILITY_IFD_POINTER;
             } else {
-                // PelConvert::BIG_ENDIAN is the default used by PelConvert
-                $tag = PelConvert::BIG_ENDIAN;
+                throw new PelIfdException('Unknown IFD type: %d', $type);
             }
             /* Make an aditional entry with the pointer. */
             $bytes .= PelConvert::shortToBytes($tag, $order);
