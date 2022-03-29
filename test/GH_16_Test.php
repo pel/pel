@@ -32,7 +32,7 @@ use lsolesen\pel\PelJpeg;
 use lsolesen\pel\PelTag;
 use lsolesen\pel\PelTiff;
 
-class GH16Test extends TestCase
+class GH_16_Test extends TestCase
 {
 
     protected $file;
