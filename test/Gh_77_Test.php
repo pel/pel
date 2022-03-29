@@ -28,7 +28,7 @@ use PHPUnit\Framework\TestCase;
 use lsolesen\pel\PelJpeg;
 use lsolesen\pel\PelTag;
 
-class GH_77_Test extends TestCase
+class Gh_77_Test extends TestCase
 {
 
     public function testReturnModul()
