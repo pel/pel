@@ -26,7 +26,7 @@ namespace Pel\Test;
 use lsolesen\pel\PelJpeg;
 use PHPUnit\Framework\TestCase;
 
-class Gh_21_Test extends TestCase
+class Gh21Test extends TestCase
 {
 
     protected $file;
