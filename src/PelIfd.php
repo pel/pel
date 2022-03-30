@@ -1058,7 +1058,9 @@ class PelIfd implements \IteratorAggregate, \ArrayAccess
             try {
                 $this->setThumbnail($d->getClone($offset, $length));
             } catch (PelDataWindowWindowException $e) {
-                Pel::maybeThrow(new PelIfdException($e->getMessage()));
+                Pel::maybeThrow(new PelIfdException('PelDataWindowException: ' . $e->getMessage()));
+            } catch (PelDataWindowOffsetException $e) {
+                Pel::maybeThrow(new PelIfdException('PelDataWindowOffsetException: ' . $e->getMessage()));
             }
         }
     }
