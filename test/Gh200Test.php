@@ -43,5 +43,7 @@ class Gh200Test extends TestCase
 
         $data = new PelDataWindow(file_get_contents($file));
         $pelJpeg = new PelJpeg($data);
+        
+        $this->assertInstanceOf('\lsolesen\pel\PelJpeg', $pelJpeg);
     }
 }
