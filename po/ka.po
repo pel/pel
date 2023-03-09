@@ -1,0 +1,1167 @@
+# Georgian translation for pel.
+# Copyright (C) 2023 pel's authors
+# This file is distributed under the same license as the pel package.
+# Temuri Doghonadze <temuri.doghonadze@gmail.com>, 2023.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2006-11-19 20:48+0100\n"
+"PO-Revision-Date: 2023-03-09 11:20+0100\n"
+"Last-Translator: Temuri Doghonadze <temuri.doghonadze@gmail.com>\n"
+"Language-Team: Georgian <(nothing)>\n"
+"Language: ka\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 3.2.2\n"
+
+#: PelDataWindow.php:517
+#, php-format
+msgid "DataWindow: %d bytes in [%d, %d] of %d bytes"
+msgstr ""
+
+#: PelEntryAscii.php:465
+msgid "(Photographer)"
+msgstr "(ფოტოგრაფი)"
+
+#: PelEntryAscii.php:466
+msgid "(Editor)"
+msgstr "(რედაქტორი)"
+
+#: PelEntry.php:369
+#, php-format
+msgid "  Tag: 0x%04X (%s)\n"
+msgstr "  ჭდე: 0x%04X (%s)\n"
+
+#: PelEntry.php:371
+#, php-format
+msgid "    Format    : %d (%s)\n"
+msgstr "    ფორმატი    : %d (%s)\n"
+
+#: PelEntry.php:373
+#, php-format
+msgid "    Components: %d\n"
+msgstr "    კომპონენტები: %d\n"
+
+#: PelEntry.php:376
+#, php-format
+msgid "    Value     : %s\n"
+msgstr "    მნიშვნელობა     : %s\n"
+
+#: PelEntry.php:377
+#, php-format
+msgid "    Text      : %s\n"
+msgstr "    ტექსტი      : %s\n"
+
+#: PelEntryRational.php:136 PelEntryRational.php:141
+#, php-format
+msgid "f/%.01f"
+msgstr "f/%.01f"
+
+#: PelEntryRational.php:146
+#, php-format
+msgid "%.1f mm"
+msgstr "%.1f მმ"
+
+#: PelEntryRational.php:151
+#, php-format
+msgid "%.1f m"
+msgstr "%.1f მ"
+
+#: PelEntryRational.php:157
+#, php-format
+msgid "1/%d sec."
+msgstr "1/%d წმ."
+
+#: PelEntryRational.php:159
+#, php-format
+msgid "%d sec."
+msgstr "%d წმ."
+
+#: PelEntryRational.php:267
+#, php-format
+msgid "%.0f/%.0f sec. (APEX: %d)"
+msgstr "%.0f/%.0f წმ. (APEX: %d)"
+
+#: PelEntryShort.php:142 PelEntryShort.php:209 PelEntryShort.php:507
+msgid "Unknown"
+msgstr "უცნობი"
+
+#: PelEntryShort.php:144
+msgid "Average"
+msgstr "საშუალო"
+
+#: PelEntryShort.php:146
+msgid "Center-Weighted Average"
+msgstr "ცენტრალურად გაზომილი საშუალო"
+
+#: PelEntryShort.php:148
+msgid "Spot"
+msgstr "წერტილოვანი"
+
+#: PelEntryShort.php:150
+msgid "Multi Spot"
+msgstr "მრავალი ადგილი"
+
+#: PelEntryShort.php:152
+msgid "Pattern"
+msgstr "ნიმუში"
+
+#: PelEntryShort.php:154
+msgid "Partial"
+msgstr "ნაწილობრივ"
+
+#: PelEntryShort.php:156 PelEntryShort.php:247
+msgid "Other"
+msgstr "სხვა"
+
+#: PelEntryShort.php:165
+msgid "Uncompressed"
+msgstr "შეუკუმშავი"
+
+#: PelEntryShort.php:167
+msgid "JPEG compression"
+msgstr "JPEG შეკუმშვა"
+
+#: PelEntryShort.php:177
+msgid "chunky format"
+msgstr "ბლოკის ფორმატი"
+
+#: PelEntryShort.php:179
+msgid "planar format"
+msgstr "ბრტყელი ფორმატი"
+
+#: PelEntryShort.php:188 PelEntryShort.php:268
+msgid "Not defined"
+msgstr "აღუწერელია"
+
+#: PelEntryShort.php:190
+msgid "One-chip color area sensor"
+msgstr "ერთჩიპიანი ფერის ადგილის სენსორი"
+
+#: PelEntryShort.php:192
+msgid "Two-chip color area sensor"
+msgstr "ორჩიპიანი ფერის ადგილის სენსორი"
+
+#: PelEntryShort.php:194
+msgid "Three-chip color area sensor"
+msgstr "სამჩიპიანი ფერის ადგილის სენსორი"
+
+#: PelEntryShort.php:196
+msgid "Color sequential area sensor"
+msgstr ""
+
+#: PelEntryShort.php:198
+msgid "Trilinear sensor"
+msgstr "სამხაზოვანი სენსორი"
+
+#: PelEntryShort.php:200
+msgid "Color sequential linear sensor"
+msgstr ""
+
+#: PelEntryShort.php:211
+msgid "Daylight"
+msgstr "დღის სინათლე"
+
+#: PelEntryShort.php:213
+msgid "Fluorescent"
+msgstr "ფლუორესცენტული"
+
+#: PelEntryShort.php:215
+msgid "Tungsten (incandescent light)"
+msgstr ""
+
+#: PelEntryShort.php:217 PelTag.php:1808
+msgid "Flash"
+msgstr "განათება"
+
+#: PelEntryShort.php:219
+msgid "Fine weather"
+msgstr "კარგი ამინდი"
+
+#: PelEntryShort.php:221
+msgid "Cloudy weather"
+msgstr "ღრუბლიანი ამინდი"
+
+#: PelEntryShort.php:223
+msgid "Shade"
+msgstr "დაჩრდილვა"
+
+#: PelEntryShort.php:225
+msgid "Daylight fluorescent"
+msgstr "დღისით ფლუორესცენცია"
+
+#: PelEntryShort.php:227
+msgid "Day white fluorescent"
+msgstr "დღის თეთრი ფლუორესცენცია"
+
+#: PelEntryShort.php:229
+msgid "Cool white fluorescent"
+msgstr "გრილი თეთრი ფლუორესცენცია"
+
+#: PelEntryShort.php:231
+msgid "White fluorescent"
+msgstr "თეთრი ფლუორესცენცია"
+
+#: PelEntryShort.php:233
+msgid "Standard light A"
+msgstr "სტანდარტული სინათლე A"
+
+#: PelEntryShort.php:235
+msgid "Standard light B"
+msgstr "სტანდარტული სინათლე B"
+
+#: PelEntryShort.php:237
+msgid "Standard light C"
+msgstr "სტანდარტული სინათლე C"
+
+#: PelEntryShort.php:239
+msgid "D55"
+msgstr "D55"
+
+#: PelEntryShort.php:241
+msgid "D65"
+msgstr "D65"
+
+#: PelEntryShort.php:243
+msgid "D75"
+msgstr "D75"
+
+#: PelEntryShort.php:245
+msgid "ISO studio tungsten"
+msgstr "ISO სტუდია ვოლფრამი"
+
+#: PelEntryShort.php:257
+msgid "Inch"
+msgstr "დუიმი"
+
+#: PelEntryShort.php:259
+msgid "Centimeter"
+msgstr "სანტიმეტრი"
+
+#: PelEntryShort.php:270
+msgid "Manual"
+msgstr "ხელით"
+
+#: PelEntryShort.php:272
+msgid "Normal program"
+msgstr "ნორმალური პროგრამა"
+
+#: PelEntryShort.php:274
+msgid "Aperture priority"
+msgstr "დიაფრაგმის პრიორიტეტი"
+
+#: PelEntryShort.php:276
+msgid "Shutter priority"
+msgstr "შატერის პრიორიტეტი"
+
+#: PelEntryShort.php:278
+msgid "Creative program (biased toward depth of field)"
+msgstr ""
+
+#: PelEntryShort.php:280
+msgid "Action program (biased toward fast shutter speed)"
+msgstr ""
+
+#: PelEntryShort.php:282
+msgid "Portrait mode (for closeup photos with the background out of focus"
+msgstr ""
+
+#: PelEntryShort.php:284
+msgid "Landscape mode (for landscape photos with the background in focus"
+msgstr ""
+
+#: PelEntryShort.php:293
+msgid "top - left"
+msgstr "ზედა - მარცხენა"
+
+#: PelEntryShort.php:295
+msgid "top - right"
+msgstr "ზედა - მარჯვენა"
+
+#: PelEntryShort.php:297
+msgid "bottom - right"
+msgstr "ქვედა - მარჯვენა"
+
+#: PelEntryShort.php:299
+msgid "bottom - left"
+msgstr "ქვედა - მარცხენა"
+
+#: PelEntryShort.php:301
+msgid "left - top"
+msgstr "მარცხენა - ზედა"
+
+#: PelEntryShort.php:303
+msgid "right - top"
+msgstr "მარჯვენა - ზედა"
+
+#: PelEntryShort.php:305
+msgid "right - bottom"
+msgstr "მარჯვენა - ქვედა"
+
+#: PelEntryShort.php:307
+msgid "left - bottom"
+msgstr "მარცხენა - ქვედა"
+
+#: PelEntryShort.php:316
+msgid "centered"
+msgstr "შუაში"
+
+#: PelEntryShort.php:318
+msgid "co-sited"
+msgstr "ახლომდებარე"
+
+#: PelEntryShort.php:351
+msgid "Uncalibrated"
+msgstr "კალიბრაციის გარეშე"
+
+#: PelEntryShort.php:360
+msgid "Flash did not fire."
+msgstr "განათება არ ჩართულა."
+
+#: PelEntryShort.php:362
+msgid "Flash fired."
+msgstr "განათება ჩაირთო."
+
+#: PelEntryShort.php:364
+msgid "Strobe return light not detected."
+msgstr ""
+
+#: PelEntryShort.php:366
+msgid "Strobe return light detected."
+msgstr ""
+
+#: PelEntryShort.php:368
+msgid "Flash fired, compulsory flash mode."
+msgstr ""
+
+#: PelEntryShort.php:370
+msgid "Flash fired, compulsory flash mode, return light not detected."
+msgstr ""
+
+#: PelEntryShort.php:372
+msgid "Flash fired, compulsory flash mode, return light detected."
+msgstr ""
+
+#: PelEntryShort.php:374
+msgid "Flash did not fire, compulsory flash mode."
+msgstr ""
+
+#: PelEntryShort.php:376
+msgid "Flash did not fire, auto mode."
+msgstr ""
+
+#: PelEntryShort.php:378
+msgid "Flash fired, auto mode."
+msgstr ""
+
+#: PelEntryShort.php:380
+msgid "Flash fired, auto mode, return light not detected."
+msgstr ""
+
+#: PelEntryShort.php:382
+msgid "Flash fired, auto mode, return light detected."
+msgstr ""
+
+#: PelEntryShort.php:384
+msgid "No flash function."
+msgstr "სინათლის ფუნქციის გარეშე."
+
+#: PelEntryShort.php:386
+msgid "Flash fired, red-eye reduction mode."
+msgstr ""
+
+#: PelEntryShort.php:388
+msgid "Flash fired, red-eye reduction mode, return light not detected."
+msgstr ""
+
+#: PelEntryShort.php:390
+msgid "Flash fired, red-eye reduction mode, return light detected."
+msgstr ""
+
+#: PelEntryShort.php:392
+msgid "Flash fired, compulsory flash mode, red-eye reduction mode."
+msgstr ""
+
+#: PelEntryShort.php:394
+msgid ""
+"Flash fired, compulsory flash mode, red-eye reduction mode, return light not "
+"detected."
+msgstr ""
+
+#: PelEntryShort.php:396
+msgid ""
+"Flash fired, compulsory flash mode, red-eye reduction mode, return light "
+"detected."
+msgstr ""
+
+#: PelEntryShort.php:398
+msgid "Flash did not fire, auto mode, red-eye reduction mode."
+msgstr ""
+
+#: PelEntryShort.php:400
+msgid "Flash fired, auto mode, red-eye reduction mode."
+msgstr ""
+
+#: PelEntryShort.php:402
+msgid ""
+"Flash fired, auto mode, return light not detected, red-eye reduction mode."
+msgstr ""
+
+#: PelEntryShort.php:404
+msgid "Flash fired, auto mode, return light detected, red-eye reduction mode."
+msgstr ""
+
+#: PelEntryShort.php:413
+msgid "Normal process"
+msgstr "ნორმალური დამუშავება"
+
+#: PelEntryShort.php:415
+msgid "Custom process"
+msgstr "მორგებული დამუშავება"
+
+#: PelEntryShort.php:424
+msgid "Auto exposure"
+msgstr "ავტომატური ექსპოზიცია"
+
+#: PelEntryShort.php:426
+msgid "Manual exposure"
+msgstr "ავტომატური ექსპოზიცია"
+
+#: PelEntryShort.php:428
+msgid "Auto bracket"
+msgstr "ავტომატური ფრჩხილი"
+
+#: PelEntryShort.php:437
+msgid "Auto white balance"
+msgstr "ავტომატური თეთრის ბალანსი"
+
+#: PelEntryShort.php:439
+msgid "Manual white balance"
+msgstr "თეთრის ბალანსის ხელით მორგება"
+
+#: PelEntryShort.php:448
+msgid "Standard"
+msgstr "სტანდარტული"
+
+#: PelEntryShort.php:450
+msgid "Landscape"
+msgstr "ლანდშაფტი"
+
+#: PelEntryShort.php:452
+msgid "Portrait"
+msgstr "პორტრეტი"
+
+#: PelEntryShort.php:454
+msgid "Night scene"
+msgstr "ღამის სცენა"
+
+#: PelEntryShort.php:463 PelEntryShort.php:480 PelEntryShort.php:494
+msgid "Normal"
+msgstr "ჩვეულებრივი"
+
+#: PelEntryShort.php:465
+msgid "Low gain up"
+msgstr ""
+
+#: PelEntryShort.php:467
+msgid "High gain up"
+msgstr ""
+
+#: PelEntryShort.php:469
+msgid "Low gain down"
+msgstr ""
+
+#: PelEntryShort.php:471
+msgid "High gain down"
+msgstr ""
+
+#: PelEntryShort.php:482
+msgid "Low saturation"
+msgstr "დაბალი გაჯერებულობა"
+
+#: PelEntryShort.php:484
+msgid "High saturation"
+msgstr "მაღალი გაჯერებულობა"
+
+#: PelEntryShort.php:496
+msgid "Soft"
+msgstr "რბილი"
+
+#: PelEntryShort.php:498
+msgid "Hard"
+msgstr "მაგარი"
+
+#: PelEntryShort.php:509
+msgid "Macro"
+msgstr "მაკრო"
+
+#: PelEntryShort.php:511
+msgid "Close view"
+msgstr "ახლო ხედი"
+
+#: PelEntryShort.php:513
+msgid "Distant view"
+msgstr "შორი ხედი"
+
+#: PelEntryShort.php:521
+#, php-format
+msgid "(x,y) = (%d,%d)"
+msgstr "(x,y) = (%d,%d)"
+
+#: PelEntryShort.php:523
+#, php-format
+msgid "Within distance %d of (x,y) = (%d,%d)"
+msgstr ""
+
+#: PelEntryShort.php:526
+#, php-format
+msgid "Within rectangle (width %d, height %d) around (x,y) = (%d,%d)"
+msgstr ""
+
+#: PelEntryShort.php:531
+#, php-format
+msgid "Unexpected number of components (%d, expected 2, 3, or 4)."
+msgstr ""
+
+#: PelEntryUndefined.php:390
+#, php-format
+msgid "Exif %s"
+msgstr "Exif %s"
+
+#: PelEntryUndefined.php:392
+#, php-format
+msgid "Exif Version %s"
+msgstr "Exif ვერსია %s"
+
+#: PelEntryUndefined.php:396
+#, php-format
+msgid "FlashPix %s"
+msgstr "FlashPix %s"
+
+#: PelEntryUndefined.php:398
+#, php-format
+msgid "FlashPix Version %s"
+msgstr "FlashPix ვერსია %s"
+
+#: PelEntryUndefined.php:402
+#, php-format
+msgid "Interoperability %s"
+msgstr "თავსებადობა %s"
+
+#: PelEntryUndefined.php:404
+#, php-format
+msgid "Interoperability Version %s"
+msgstr "თავსებადობის ვერსია %s"
+
+#: PelEntryUndefined.php:410
+#, php-format
+msgid "Version %s"
+msgstr "ვერისა %s"
+
+#: PelExif.php:169
+msgid "Dumping Exif data...\n"
+msgstr "Exif მონაცემების გამოტანა...\n"
+
+#: PelFormat.php:192 PelFormat.php:220
+#, php-format
+msgid "Unknown format: 0x%X"
+msgstr "უცნობი ფორმატი: 0x%X"
+
+#: PelIfd.php:1180
+#, php-format
+msgid "Dumping IFD %s with %d entries...\n"
+msgstr ""
+
+#: PelIfd.php:1186
+#, php-format
+msgid "Dumping %d sub IFDs...\n"
+msgstr ""
+
+#: PelJpegMarker.php:288 PelJpegMarker.php:430
+#, php-format
+msgid "Unknown marker: 0x%02X"
+msgstr "უცნობი მარკერი: 0x%02X"
+
+#: PelJpegMarker.php:302
+msgid "Encoding (baseline)"
+msgstr ""
+
+#: PelJpegMarker.php:304
+msgid "Encoding (extended sequential)"
+msgstr ""
+
+#: PelJpegMarker.php:306
+msgid "Encoding (progressive)"
+msgstr ""
+
+#: PelJpegMarker.php:308
+msgid "Encoding (lossless)"
+msgstr ""
+
+#: PelJpegMarker.php:310
+msgid "Encoding (differential sequential)"
+msgstr ""
+
+#: PelJpegMarker.php:312
+msgid "Encoding (differential progressive)"
+msgstr ""
+
+#: PelJpegMarker.php:314
+msgid "Encoding (differential lossless)"
+msgstr ""
+
+#: PelJpegMarker.php:316
+msgid "Encoding (extended sequential, arithmetic)"
+msgstr ""
+
+#: PelJpegMarker.php:318
+msgid "Encoding (progressive, arithmetic)"
+msgstr ""
+
+#: PelJpegMarker.php:320
+msgid "Encoding (lossless, arithmetic)"
+msgstr ""
+
+#: PelJpegMarker.php:322
+msgid "Encoding (differential sequential, arithmetic)"
+msgstr ""
+
+#: PelJpegMarker.php:324
+msgid "Encoding (differential progressive, arithmetic)"
+msgstr ""
+
+#: PelJpegMarker.php:326
+msgid "Encoding (differential lossless, arithmetic)"
+msgstr ""
+
+#: PelJpegMarker.php:328
+msgid "Start of image"
+msgstr "გამოსახულების დასაწყისი"
+
+#: PelJpegMarker.php:330
+msgid "End of image"
+msgstr "გამოსახულების დასასრული"
+
+#: PelJpegMarker.php:332
+msgid "Start of scan"
+msgstr "სკანირების დასაწყისი"
+
+#: PelJpegMarker.php:334 PelJpegMarker.php:428
+msgid "Comment"
+msgstr "კომენტარი"
+
+#: PelJpegMarker.php:336
+msgid "Define Huffman table"
+msgstr "ჰაფმანის ცხრილის აღწერა"
+
+#: PelJpegMarker.php:338
+msgid "Extension"
+msgstr "გაფართოება"
+
+#: PelJpegMarker.php:340
+msgid "Define arithmetic coding conditioning"
+msgstr ""
+
+#: PelJpegMarker.php:342 PelJpegMarker.php:344 PelJpegMarker.php:346
+#: PelJpegMarker.php:348 PelJpegMarker.php:350 PelJpegMarker.php:352
+#: PelJpegMarker.php:354 PelJpegMarker.php:356
+#, php-format
+msgid "Restart %d"
+msgstr "%d-ის გადატვირთვა"
+
+#: PelJpegMarker.php:358
+msgid "Define quantization table"
+msgstr "განსაზღვრეთ კვანტიზაციის ცხრილი"
+
+#: PelJpegMarker.php:360
+msgid "Define number of lines"
+msgstr "განსაზღვრეთ ხაზების რაოდენობა"
+
+#: PelJpegMarker.php:362
+msgid "Define restart interval"
+msgstr "განსაზღვრეთ გადატვირთვის ინტერვალი"
+
+#: PelJpegMarker.php:364
+msgid "Define hierarchical progression"
+msgstr ""
+
+#: PelJpegMarker.php:366
+msgid "Expand reference component"
+msgstr ""
+
+#: PelJpegMarker.php:368 PelJpegMarker.php:370 PelJpegMarker.php:372
+#: PelJpegMarker.php:374 PelJpegMarker.php:376 PelJpegMarker.php:378
+#: PelJpegMarker.php:380 PelJpegMarker.php:382 PelJpegMarker.php:384
+#: PelJpegMarker.php:386 PelJpegMarker.php:388 PelJpegMarker.php:390
+#: PelJpegMarker.php:392 PelJpegMarker.php:394 PelJpegMarker.php:396
+#: PelJpegMarker.php:398
+#, php-format
+msgid "Application segment %d"
+msgstr "აპლიკაციის სეგმენტი %d"
+
+#: PelJpegMarker.php:400 PelJpegMarker.php:402 PelJpegMarker.php:404
+#: PelJpegMarker.php:406 PelJpegMarker.php:408 PelJpegMarker.php:410
+#: PelJpegMarker.php:412 PelJpegMarker.php:414 PelJpegMarker.php:416
+#: PelJpegMarker.php:418 PelJpegMarker.php:420 PelJpegMarker.php:422
+#: PelJpegMarker.php:424 PelJpegMarker.php:426
+#, php-format
+msgid "Extension %d"
+msgstr "გაფართოება %d"
+
+#: PelJpeg.php:543
+msgid "Dumping JPEG data...\n"
+msgstr "JPEG მონაცემების გამოტანა...\n"
+
+#: PelJpeg.php:547
+#, php-format
+msgid "Section %d (marker 0x%02X - %s):\n"
+msgstr "სექცია %d (სანიშნი 0x%02X - %s):\n"
+
+#: PelJpeg.php:549
+#, php-format
+msgid "  Description: %s\n"
+msgstr "  აღწერა: %s\n"
+
+#: PelJpeg.php:557
+msgid "  Content    : Exif data\n"
+msgstr "  შემცველობა    : Exif-ის მონაცემები\n"
+
+#: PelJpeg.php:560
+#, php-format
+msgid "  Content    : %s\n"
+msgstr "  შემცველობა    : %s\n"
+
+#: PelJpeg.php:562
+msgid "  Content    : Unknown\n"
+msgstr "  შემცველობა    : უცნობი\n"
+
+#: PelTag.php:1649
+#, php-format
+msgid "Unknown: 0x%04X"
+msgstr "უცნობი: 0x%04X"
+
+#: PelTag.php:1678
+msgid "Interoperability Index"
+msgstr "თავსებადობის ინდექსი"
+
+#: PelTag.php:1680
+msgid "Interoperability Version"
+msgstr "თავსებადობის ვერსია"
+
+#: PelTag.php:1682
+msgid "Image Width"
+msgstr "სურათის სიგანე"
+
+#: PelTag.php:1684
+msgid "Image Length"
+msgstr "გამოსახულების სიგრძე"
+
+#: PelTag.php:1686
+msgid "Bits per Sample"
+msgstr "ბიტი/სემპლი"
+
+#: PelTag.php:1688
+msgid "Compression"
+msgstr "შეკუმშვა"
+
+#: PelTag.php:1690
+msgid "Photometric Interpretation"
+msgstr "ფოტომეტრიული ინტერპრეტაცია"
+
+#: PelTag.php:1692
+msgid "Fill Order"
+msgstr "შევსების მიმდევრობა"
+
+#: PelTag.php:1694
+msgid "Document Name"
+msgstr "დოკუმენტის სახელი"
+
+#: PelTag.php:1696
+msgid "Image Description"
+msgstr "გამოსახულების აღწერა"
+
+#: PelTag.php:1698
+msgid "Manufacturer"
+msgstr "მწარმოებელი"
+
+#: PelTag.php:1700
+msgid "Model"
+msgstr "მოდელი"
+
+#: PelTag.php:1702
+msgid "Strip Offsets"
+msgstr ""
+
+#: PelTag.php:1704
+msgid "Orientation"
+msgstr "ორიენტაცია"
+
+#: PelTag.php:1706
+msgid "Samples per Pixel"
+msgstr "სემპლები თითოეულ პიქსელზე"
+
+#: PelTag.php:1708
+msgid "Rows per Strip"
+msgstr ""
+
+#: PelTag.php:1710
+msgid "Strip Byte Count"
+msgstr ""
+
+#: PelTag.php:1712
+msgid "x-Resolution"
+msgstr "x-გაფართოება"
+
+#: PelTag.php:1714
+msgid "y-Resolution"
+msgstr "y-გაფართოება"
+
+#: PelTag.php:1716
+msgid "Planar Configuration"
+msgstr "პლანარული კონფიგურაცია"
+
+#: PelTag.php:1718
+msgid "Resolution Unit"
+msgstr "გარჩევადობის საზომი ერთეული"
+
+#: PelTag.php:1720
+msgid "Transfer Function"
+msgstr "გადაცემის ფუნქცია"
+
+#: PelTag.php:1722
+msgid "Software"
+msgstr "პროგრამები"
+
+#: PelTag.php:1724
+msgid "Date and Time"
+msgstr "თარიღი და დრო"
+
+#: PelTag.php:1726
+msgid "Artist"
+msgstr "შემსრულებელი"
+
+#: PelTag.php:1728
+msgid "White Point"
+msgstr "თეთრი წერტილი"
+
+#: PelTag.php:1730
+msgid "Primary Chromaticities"
+msgstr ""
+
+#: PelTag.php:1732
+msgid "Transfer Range"
+msgstr "გადაცემის დიაპაზონი"
+
+#: PelTag.php:1734
+msgid "JPEGProc"
+msgstr "JPEGProc"
+
+#: PelTag.php:1736
+msgid "JPEG Interchange Format"
+msgstr "JPEG თავსებადი ფორმატი"
+
+#: PelTag.php:1738
+msgid "JPEG Interchange Format Length"
+msgstr "JPEG თავსებადი ფორმატის სიგრძე"
+
+#: PelTag.php:1740
+msgid "YCbCr Coefficients"
+msgstr "YCbCr კოეფიციენტები"
+
+#: PelTag.php:1742
+msgid "YCbCr Sub-Sampling"
+msgstr ""
+
+#: PelTag.php:1744
+msgid "YCbCr Positioning"
+msgstr "YCbCr მდებარეობა"
+
+#: PelTag.php:1746
+msgid "Reference Black/White"
+msgstr ""
+
+#: PelTag.php:1748
+msgid "Related Image File Format"
+msgstr ""
+
+#: PelTag.php:1750
+msgid "Related Image Width"
+msgstr ""
+
+#: PelTag.php:1752
+msgid "Related Image Length"
+msgstr ""
+
+#: PelTag.php:1754
+msgid "CFA Repeat Pattern Dim"
+msgstr ""
+
+#: PelTag.php:1756
+msgid "CFA Pattern"
+msgstr "CFA ნიმუში"
+
+#: PelTag.php:1758
+msgid "Battery Level"
+msgstr "ელემენტის მუხტის დონე"
+
+#: PelTag.php:1760
+msgid "Copyright"
+msgstr "საავტორო უფლებები"
+
+#: PelTag.php:1762
+msgid "Exposure Time"
+msgstr "ექსპოზიციის დრო"
+
+#: PelTag.php:1764
+msgid "FNumber"
+msgstr "Fრიცხვი"
+
+#: PelTag.php:1766
+msgid "IPTC/NAA"
+msgstr "IPTC/NAA"
+
+#: PelTag.php:1768
+msgid "Exif IFD Pointer"
+msgstr "Exif IFD მაჩვენებელი"
+
+#: PelTag.php:1770
+msgid "Inter Color Profile"
+msgstr "ფერთაშორისი პროფილი"
+
+#: PelTag.php:1772
+msgid "Exposure Program"
+msgstr "ექსპოზიციის პროგრამა"
+
+#: PelTag.php:1774
+msgid "Spectral Sensitivity"
+msgstr "სპექტრალური მგრძნობიარობა"
+
+#: PelTag.php:1776
+msgid "GPS Info IFD Pointer"
+msgstr ""
+
+#: PelTag.php:1778
+msgid "ISO Speed Ratings"
+msgstr "ISO შუქმგრძნობიარობა"
+
+#: PelTag.php:1780
+msgid "OECF"
+msgstr "OECF"
+
+#: PelTag.php:1782
+msgid "Exif Version"
+msgstr "Exif-ის ვერსია"
+
+#: PelTag.php:1784
+msgid "Date and Time (original)"
+msgstr "საწყისი თარიღი და დრო"
+
+#: PelTag.php:1786
+msgid "Date and Time (digitized)"
+msgstr "თარიღი და დრო (ციფრულ ფორმატში)"
+
+#: PelTag.php:1788
+msgid "Components Configuration"
+msgstr "კომპონენტების მორგება"
+
+#: PelTag.php:1790
+msgid "Compressed Bits per Pixel"
+msgstr "შეკუმშული ბიტი თითოეულ პიქსელზე"
+
+#: PelTag.php:1792
+msgid "Shutter speed"
+msgstr "შატერის სიჩქარე"
+
+#: PelTag.php:1794
+msgid "Aperture"
+msgstr "დიაფრაგმის მნიშვნელობა"
+
+#: PelTag.php:1796
+msgid "Brightness"
+msgstr "სიკაშკაშე"
+
+#: PelTag.php:1798
+msgid "Exposure Bias"
+msgstr "ექსპოკორექცია"
+
+#: PelTag.php:1800
+msgid "Max Aperture Value"
+msgstr "მაქს. დიაფრაგმის მნიშვნელობა"
+
+#: PelTag.php:1802
+msgid "Subject Distance"
+msgstr "სუბიექტის დაშორება"
+
+#: PelTag.php:1804
+msgid "Metering Mode"
+msgstr "გაზომვის რეჟიმი"
+
+#: PelTag.php:1806
+msgid "Light Source"
+msgstr "სინათლის წყარო"
+
+#: PelTag.php:1810
+msgid "Focal Length"
+msgstr "ფოკალური მანძილი"
+
+#: PelTag.php:1812
+msgid "Maker Note"
+msgstr "შენიშვნა"
+
+#: PelTag.php:1814
+msgid "User Comment"
+msgstr "მომხმარებლის კომენტარი"
+
+#: PelTag.php:1816
+msgid "SubSec Time"
+msgstr "ქვეწამის დრო"
+
+#: PelTag.php:1818
+msgid "SubSec Time Original"
+msgstr "ქვეწამის საწყისი დრო"
+
+#: PelTag.php:1820
+msgid "SubSec Time Digitized"
+msgstr "ქვეწამის გაციფრულებული დრო"
+
+#: PelTag.php:1832
+msgid "FlashPix Version"
+msgstr "FlashPix-ის ვერსია"
+
+#: PelTag.php:1834
+msgid "Color Space"
+msgstr "ფერის სივრცე"
+
+#: PelTag.php:1836
+msgid "Pixel x-Dimension"
+msgstr "პიქსელის X ზომა"
+
+#: PelTag.php:1838
+msgid "Pixel y-Dimension"
+msgstr "პიქსელის Y ზომა"
+
+#: PelTag.php:1840
+msgid "Related Sound File"
+msgstr "მიბმული ხმოვანი ფაილი"
+
+#: PelTag.php:1842
+msgid "Interoperability IFD Pointer"
+msgstr "თავსებადობის IFD მაჩვენებელი"
+
+#: PelTag.php:1844
+msgid "Flash Energy"
+msgstr "განათების ენერგია"
+
+#: PelTag.php:1846
+msgid "Spatial Frequency Response"
+msgstr ""
+
+#: PelTag.php:1848
+msgid "Focal Plane x-Resolution"
+msgstr ""
+
+#: PelTag.php:1850
+msgid "Focal Plane y-Resolution"
+msgstr ""
+
+#: PelTag.php:1852
+msgid "Focal Plane Resolution Unit"
+msgstr ""
+
+#: PelTag.php:1854
+msgid "Subject Location"
+msgstr "სუბიექტის მდებარეობა"
+
+#: PelTag.php:1856
+msgid "Exposure index"
+msgstr "ექსპოზიციის ინდექსი"
+
+#: PelTag.php:1858
+msgid "Sensing Method"
+msgstr "გრძნობის მეთოდი"
+
+#: PelTag.php:1860
+msgid "File Source"
+msgstr "ფაილის წყაროები"
+
+#: PelTag.php:1862
+msgid "Scene Type"
+msgstr "სცენის ტიპი"
+
+#: PelTag.php:1864
+msgid "Subject Area"
+msgstr "გადაღების ადგილი"
+
+#: PelTag.php:1866
+msgid "Custom Rendered"
+msgstr "ხელით დარენდერებული"
+
+#: PelTag.php:1868
+msgid "Exposure Mode"
+msgstr "ექსპოზიციის რეჟიმი"
+
+#: PelTag.php:1870
+msgid "White Balance"
+msgstr "თეთრის ბალანსი"
+
+#: PelTag.php:1872
+msgid "Digital Zoom Ratio"
+msgstr "ციფრული გადიდების კოეფიციენტი"
+
+#: PelTag.php:1874
+msgid "Focal Length In 35mm Film"
+msgstr "ფოკალური სიგრძე 35 მმ ლენტა"
+
+#: PelTag.php:1876
+msgid "Scene Capture Type"
+msgstr "სცენის ჩაწერის ტიპი"
+
+#: PelTag.php:1878
+msgid "Gain Control"
+msgstr "გაძლიერების კონტროლი"
+
+#: PelTag.php:1880
+msgid "Contrast"
+msgstr "კონტრასტი"
+
+#: PelTag.php:1882
+msgid "Saturation"
+msgstr "გაჯერებულობა"
+
+#: PelTag.php:1884
+msgid "Sharpness"
+msgstr "სიმკვეთრე"
+
+#: PelTag.php:1886
+msgid "Device Setting Description"
+msgstr "მოწყობილობის პარამეტრების აღწერა"
+
+#: PelTag.php:1888
+msgid "Subject Distance Range"
+msgstr "სუბიექტის დაშორების დიაპაზონი"
+
+#: PelTag.php:1890
+msgid "Image Unique ID"
+msgstr "გამოსახულების უნიკალური ID"
+
+#: PelTag.php:1892
+msgid "Gamma"
+msgstr "გამა"
+
+#: PelTag.php:1894
+msgid "Print IM"
+msgstr "IM-ის დაბეჭდვა"
+
+#: PelTag.php:1964
+#, php-format
+msgid "Unknown Tag: 0x%04X"
+msgstr "უცნობი ჭდე: 0x%04X"
+
+#: PelTiff.php:255
+#, php-format
+msgid "Dumping TIFF data...\n"
+msgstr "TIFF მონაცემების გამოტანა...\n"
