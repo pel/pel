@@ -1,3 +1,6 @@
+## This repository is archived, the fork at [FileEye/pel](https://github.com/FileEye/pel) has taken over. Composer requests can be made for [fileeye/pel](https://packagist.org/packages/fileeye/pel):
+`composer require fileeye/pel`
+
 # PEL: PHP Exif Library
 
 [![Tests](https://github.com/pel/pel/actions/workflows/tests.yml/badge.svg)](https://github.com/pel/pel/actions/workflows/tests.yml) [![Code Coverage](https://scrutinizer-ci.com/g/pel/pel/badges/coverage.png?b=master)](https://scrutinizer-ci.com/g/pel/pel/?branch=master) [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/pel/pel/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/pel/pel/?branch=master) [![Latest Stable Version](https://poser.pugx.org/lsolesen/pel/v/stable)](https://packagist.org/packages/lsolesen/pel) [![Total Downloads](https://poser.pugx.org/lsolesen/pel/downloads)](https://packagist.org/packages/lsolesen/pel) [![License](https://poser.pugx.org/lsolesen/pel/license)](https://packagist.org/packages/lsolesen/pel)
