@@ -47,6 +47,13 @@ class PelFormat
 {
 
     /**
+     * ERROR Handling
+     * FIX Unknown format: 0x0
+     * @author Agamemnon Katradis https://github.com/agaktr/
+     */
+    const ERROR = 0;
+
+    /**
      * Unsigned byte.
      *
      * Each component will be an unsigned 8-bit integer with a value
@@ -175,7 +182,8 @@ class PelFormat
         self::SRATIONAL => 'SRational',
         self::FLOAT => 'Float',
         self::DOUBLE => 'Double',
-        self::UNDEFINED => 'Undefined'
+        self::UNDEFINED => 'Undefined',
+        self::ERROR => 'ERROR' //FIX Unknown format: 0x0
     ];
 
     protected static $formatLength = [
@@ -190,7 +198,8 @@ class PelFormat
         self::SRATIONAL => 8,
         self::FLOAT => 4,
         self::DOUBLE => 8,
-        self::UNDEFINED => 1
+        self::UNDEFINED => 1,
+        self::ERROR => 0 //FIX Unknown format: 0x0
     ];
 
     /**
